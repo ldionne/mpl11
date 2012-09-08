@@ -16,6 +16,7 @@
 #include <duck/if.hpp>
 #include <duck/or.hpp>
 #include <duck/pack.hpp>
+#include <duck/pop_back.hpp>
 #include <duck/pop_front.hpp>
 #include <duck/size.hpp>
 #include <duck/when.hpp>
