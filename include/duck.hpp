@@ -5,6 +5,7 @@
 #ifndef DUCK_HPP
 #define DUCK_HPP
 
+#include <duck/accumulate.hpp>
 #include <duck/apply.hpp>
 #include <duck/bool.hpp>
 #include <duck/delay.hpp>
