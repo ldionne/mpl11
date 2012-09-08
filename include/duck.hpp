@@ -10,6 +10,7 @@
 #include <duck/apply.hpp>
 #include <duck/bool.hpp>
 #include <duck/delay.hpp>
+#include <duck/or.hpp>
 #include <duck/pack.hpp>
 
 #endif // !DUCK_HPP
