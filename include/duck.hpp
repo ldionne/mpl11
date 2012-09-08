@@ -18,6 +18,7 @@
 #include <duck/pack.hpp>
 #include <duck/pop_back.hpp>
 #include <duck/pop_front.hpp>
+#include <duck/satisfies.hpp>
 #include <duck/size.hpp>
 #include <duck/when.hpp>
 
