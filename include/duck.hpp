@@ -8,6 +8,7 @@
 #include <duck/accumulate.hpp>
 #include <duck/and.hpp>
 #include <duck/apply.hpp>
+#include <duck/at.hpp>
 #include <duck/back.hpp>
 #include <duck/bind.hpp>
 #include <duck/delay.hpp>
