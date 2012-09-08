@@ -13,5 +13,6 @@
 #include <duck/empty.hpp>
 #include <duck/or.hpp>
 #include <duck/pack.hpp>
+#include <duck/size.hpp>
 
 #endif // !DUCK_HPP
