@@ -23,6 +23,7 @@
 #include <duck/requires.hpp>
 #include <duck/satisfies.hpp>
 #include <duck/size.hpp>
+#include <duck/transform.hpp>
 #include <duck/when.hpp>
 
 #endif // !DUCK_HPP
