@@ -7,5 +7,6 @@
 
 #include <duck/apply.hpp>
 #include <duck/delay.hpp>
+#include <duck/pack.hpp>
 
 #endif // !DUCK_HPP
