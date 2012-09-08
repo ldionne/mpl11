@@ -16,5 +16,6 @@
 #include <duck/or.hpp>
 #include <duck/pack.hpp>
 #include <duck/size.hpp>
+#include <duck/when.hpp>
 
 #endif // !DUCK_HPP
