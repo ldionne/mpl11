@@ -14,8 +14,8 @@
 namespace duck {
 
 /**
- * Expand to the last type in the parameter pack if all the types
- * before it are true_. Otherwise, expand to an invalid type.
+ * Expand to the last type in the parameter pack if all the types before it
+ * are std::true_type. Otherwise, expand to an invalid type.
  *
  * This is useful to express the concept requirements of a template
  * in its declaration, much like std::enable_if does.

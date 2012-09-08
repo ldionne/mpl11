@@ -17,13 +17,11 @@ namespace detail {
     template <std::size_t, typename ...> struct size_impl;
 
     template <std::size_t acc> struct size_impl<acc> {
-        static std::size_t const value = acc;
+        static constexpr std::size_t value = acc;
     };
 
     template <std::size_t acc, typename T, typename ...Rest>
-    struct size_impl<acc, T, Rest...> {
-        static std::size_t const value = size_impl<acc + 1, Rest...>::value;
-    };
+    struct size_impl<acc, T, Rest...> : size_impl<acc + 1, Rest...> { };
 } // end namespace detail
 
 template <typename ...T>

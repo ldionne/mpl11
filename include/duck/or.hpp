@@ -6,8 +6,9 @@
 #define DUCK_OR_HPP
 
 #include <duck/accumulate.hpp>
-#include <duck/bool.hpp>
 #include <duck/quote.hpp>
+
+#include <type_traits>
 
 
 namespace duck {
@@ -17,30 +18,33 @@ namespace duck {
  */
 namespace detail {
     template <typename T, typename U>
-    struct or_impl : bool_<T::value || U::value> { };
+    struct or_impl : std::integral_constant<bool, T::value || U::value> { };
 }
 
 template <typename ...> struct or_;
-template <> struct or_<> : true_ { };
+template <> struct or_<> : std::true_type { };
 
 template <typename T, typename ...Rest>
 struct or_<T, Rest...>
-    : accumulate<quote<detail::or_impl>, false_, T, Rest...>::type { };
+    : accumulate<
+        quote<detail::or_impl>,
+        std::false_type, T, Rest...
+    >::type
+{ };
 
 
 namespace test {
 
-static_assert(or_<true_, true_>::value, "");
-static_assert(or_<true_, false_>::value, "");
-static_assert(or_<false_, true_>::value, "");
-static_assert(!or_<false_, false_>::value, "");
+static_assert(or_<std::true_type, std::true_type>::value, "");
+static_assert(or_<std::true_type, std::false_type>::value, "");
+static_assert(or_<std::false_type, std::true_type>::value, "");
+static_assert(!or_<std::false_type, std::false_type>::value, "");
 
 static_assert(or_<>::value, "");
-static_assert(or_<true_>::value, "");
-static_assert(!or_<false_>::value, "");
-static_assert(or_<true_, true_, false_>::value, "");
-static_assert(!or_<false_, false_, false_>::value, "");
-static_assert(or_<true_, false_, true_, true_>::value, "");
+static_assert(or_<std::true_type>::value, "");
+static_assert(!or_<std::false_type>::value, "");
+static_assert(or_<std::true_type, std::true_type, std::false_type>::value, "");
+static_assert(!or_<std::false_type, std::false_type, std::false_type>::value, "");
 
 } // end namespace test
 

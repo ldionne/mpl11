@@ -9,7 +9,6 @@
 #include <duck/and.hpp>
 #include <duck/apply.hpp>
 #include <duck/back.hpp>
-#include <duck/bool.hpp>
 #include <duck/delay.hpp>
 #include <duck/empty.hpp>
 #include <duck/front.hpp>
