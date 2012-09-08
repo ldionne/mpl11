@@ -13,6 +13,7 @@
 #include <duck/delay.hpp>
 #include <duck/empty.hpp>
 #include <duck/front.hpp>
+#include <duck/if.hpp>
 #include <duck/or.hpp>
 #include <duck/pack.hpp>
 #include <duck/size.hpp>
