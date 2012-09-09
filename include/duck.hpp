@@ -7,6 +7,7 @@
 
 #include <duck/accumulate.hpp>
 #include <duck/and.hpp>
+#include <duck/any_of.hpp>
 #include <duck/apply.hpp>
 #include <duck/at.hpp>
 #include <duck/back.hpp>
