@@ -11,7 +11,11 @@ namespace duck {
  * Template used to represent a parameter pack.
  * This is useful when we want to deduce the parameters in a pack.
  */
-template <typename ...> struct pack { };
+template <typename ...T> struct pack {
+    // Note: This is to simplify usage in metafunctions
+    //       so it can be inherited.
+    using type = pack<T...>;
+};
 
 } // end namespace duck
 
