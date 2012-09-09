@@ -15,6 +15,7 @@
 #include <duck/empty.hpp>
 #include <duck/front.hpp>
 #include <duck/if.hpp>
+#include <duck/lambda.hpp>
 #include <duck/or.hpp>
 #include <duck/pack.hpp>
 #include <duck/placeholders.hpp>
