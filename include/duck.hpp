@@ -21,6 +21,7 @@
 #include <duck/placeholders.hpp>
 #include <duck/pop_back.hpp>
 #include <duck/pop_front.hpp>
+#include <duck/push_back.hpp>
 #include <duck/push_front.hpp>
 #include <duck/quote.hpp>
 #include <duck/requires.hpp>
