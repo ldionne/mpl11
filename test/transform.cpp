@@ -9,23 +9,34 @@
 #include <type_traits>
 
 
-struct add2 {
-    template <typename IntegralConstant>
-    struct apply
-        : std::integral_constant<int, IntegralConstant::value + 2> { };
+template <int i>
+using int_ = std::integral_constant<int, i>;
+
+template <int i>
+struct add {
+    template <typename T>
+    struct apply : int_<T::value + int_<i>::value> { };
 };
 
 static_assert(std::is_same<
-                duck::transform<add2,
-                    std::integral_constant<int, 0>,
-                    std::integral_constant<int, 1>,
-                    std::integral_constant<int, 2>,
-                    std::integral_constant<int, 3>
+                duck::transform<add<2>,
+                    int_<0>, int_<1>, int_<2>, int_<3>
                 >::type,
                 duck::pack<
-                    std::integral_constant<int, 2>,
-                    std::integral_constant<int, 3>,
-                    std::integral_constant<int, 4>,
-                    std::integral_constant<int, 5>
+                    int_<2>, int_<3>, int_<4>, int_<5>
+                >
+              >::value, "");
+
+
+struct identity {
+    template <typename T>
+    struct apply { using type = T; };
+};
+static_assert(std::is_same<
+                duck::transform<identity,
+                    int, float, char
+                >::type,
+                duck::pack<
+                    int, float, char
                 >
               >::value, "");

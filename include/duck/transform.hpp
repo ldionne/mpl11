@@ -12,7 +12,7 @@
 namespace duck {
 
 /**
- * Apply a metafunction to each parameter in a parameter pack and
+ * Apply a metafunction class to each parameter in a parameter pack and
  * store the result in ``type''.
  *
  * Note: The result is in packed form.
