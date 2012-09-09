@@ -22,6 +22,7 @@
 #include <duck/pop_front.hpp>
 #include <duck/quote.hpp>
 #include <duck/requires.hpp>
+#include <duck/rotate_left.hpp>
 #include <duck/rotate_right.hpp>
 #include <duck/satisfies.hpp>
 #include <duck/size.hpp>
