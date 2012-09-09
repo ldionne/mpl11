@@ -7,6 +7,11 @@
 
 #include <duck/and.hpp>
 #include <duck/apply.hpp>
+#include <duck/bind.hpp>
+#include <duck/placeholders.hpp>
+#include <duck/quote.hpp>
+#include <duck/rotate_right.hpp>
+#include <duck/transform.hpp>
 
 
 namespace duck {
@@ -15,15 +20,20 @@ namespace duck {
  * Determine whether a type satisfies a sequence of concepts
  * in the form of metafunction classes.
  */
-template <typename T, typename ...> struct satisfies;
-template <typename T, typename Concept>
-struct satisfies<T, Concept> : apply<Concept, T>::type { };
-
-template <typename T, typename Concept, typename ...Rest>
-struct satisfies<T, Concept, Rest...>
-    : and_<
-        typename satisfies<T, Concept>::type,
-        typename satisfies<T, Rest...>::type
+namespace detail {
+    template <typename T, typename ...Concepts>
+    struct satisfies_impl
+        : apply_pack<
+            quote<and_>,
+            typename transform<bind<quote<apply>, _1, T>, Concepts...>::type
+        >
+    { };
+}
+template <typename ...ConceptsAndT>
+struct satisfies
+    : apply_pack<
+        quote<detail::satisfies_impl>,
+        typename rotate_right<ConceptsAndT...>::type
     >
 { };
 
