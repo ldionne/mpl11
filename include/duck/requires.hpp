@@ -6,8 +6,9 @@
 #define DUCK_REQUIRES_HPP
 
 #include <duck/and.hpp>
-#include <duck/pack.hpp>
-#include <duck/pop_back.hpp>
+#include <duck/apply.hpp>
+#include <duck/quote.hpp>
+#include <duck/rotate_right.hpp>
 #include <duck/when.hpp>
 
 
@@ -21,28 +22,21 @@ namespace duck {
  * in its declaration, much like std::enable_if does.
  */
 namespace detail {
-    template <typename ...> struct requires_impl2;
-    template <typename ...Concepts, typename T>
-    struct requires_impl2<pack<Concepts...>, T>
-        : when<typename and_<Concepts...>::type, T> { };
-
-    template <typename AtLeastReturnType, typename ...ConceptsAndReturnType>
+    template <typename T, typename ...Concepts>
     struct requires_impl
-        : requires_impl2<
-            typename pop_back<
-                AtLeastReturnType, ConceptsAndReturnType...
-            >::type,
-            typename back<
-                AtLeastReturnType, ConceptsAndReturnType...
-            >::type
+        : when<
+            typename and_<Concepts...>::type, T
         >
     { };
-} // end namespace detail
+}
 
-// Delegate the work to a struct implementing the logic. This allows us to
-// use `requires<Foo, void>` instead of `typename requires<Foo, void>::type`.
 template <typename ...ConceptsAndT>
-using requires = typename detail::requires_impl<ConceptsAndT...>::type;
+struct requires
+    : apply_pack<
+        quote<detail::requires_impl>,
+        typename rotate_right<ConceptsAndT...>::type
+    >
+{ };
 
 } // end namespace duck
 
