@@ -32,22 +32,6 @@ struct and_<T, Rest...>
     >::type
 { };
 
-
-namespace test {
-
-static_assert(and_<std::true_type, std::true_type>::value, "");
-static_assert(!and_<std::true_type, std::false_type>::value, "");
-static_assert(!and_<std::false_type, std::true_type>::value, "");
-static_assert(!and_<std::false_type, std::false_type>::value, "");
-
-static_assert(and_<>::value, "");
-static_assert(and_<std::true_type>::value, "");
-static_assert(!and_<std::false_type>::value, "");
-static_assert(!and_<std::true_type, std::true_type, std::false_type>::value, "");
-static_assert(and_<std::true_type, std::true_type, std::true_type>::value, "");
-
-} // end namespace test
-
 } // end namespace duck
 
 #endif // !DUCK_AND_HPP

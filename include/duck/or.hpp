@@ -32,22 +32,6 @@ struct or_<T, Rest...>
     >::type
 { };
 
-
-namespace test {
-
-static_assert(or_<std::true_type, std::true_type>::value, "");
-static_assert(or_<std::true_type, std::false_type>::value, "");
-static_assert(or_<std::false_type, std::true_type>::value, "");
-static_assert(!or_<std::false_type, std::false_type>::value, "");
-
-static_assert(or_<>::value, "");
-static_assert(or_<std::true_type>::value, "");
-static_assert(!or_<std::false_type>::value, "");
-static_assert(or_<std::true_type, std::true_type, std::false_type>::value, "");
-static_assert(!or_<std::false_type, std::false_type, std::false_type>::value, "");
-
-} // end namespace test
-
 } // end namespace duck
 
 #endif // !DUCK_OR_HPP

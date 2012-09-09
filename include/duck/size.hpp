@@ -27,15 +27,6 @@ namespace detail {
 template <typename ...T>
 using size = detail::size_impl<0, T...>;
 
-
-namespace test {
-
-static_assert(size<>::value == 0, "");
-static_assert(size<int>::value == 1, "");
-static_assert(size<float, char, void>::value == 3, "");
-
-} // end namespace test
-
 } // end namespace duck
 
 #endif // !DUCK_SIZE_HPP
