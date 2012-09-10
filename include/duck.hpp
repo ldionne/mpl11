@@ -6,6 +6,7 @@
 #define DUCK_HPP
 
 #include <duck/accumulate.hpp>
+#include <duck/all_of.hpp>
 #include <duck/and.hpp>
 #include <duck/any_of.hpp>
 #include <duck/apply.hpp>
