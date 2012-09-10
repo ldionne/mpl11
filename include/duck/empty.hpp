@@ -13,8 +13,8 @@ namespace duck {
 /**
  * Determine whether a parameter pack is empty.
  */
-template <typename ...> struct empty : std::false_type { };
-template <> struct empty<> : std::true_type { };
+template <typename ...> struct empty { using type = std::false_type; };
+template <> struct empty<> { using type = std::true_type; };
 
 } // end namespace duck
 

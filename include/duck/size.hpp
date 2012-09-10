@@ -6,6 +6,7 @@
 #define DUCK_SIZE_HPP
 
 #include <cstddef>
+#include <type_traits>
 
 
 namespace duck {
@@ -14,18 +15,20 @@ namespace duck {
  * Determine the number of parameters in a parameter pack.
  */
 namespace detail {
-    template <std::size_t, typename ...> struct size_impl;
+    template <typename Counter, typename ...> struct size_impl;
 
-    template <std::size_t acc> struct size_impl<acc> {
-        static constexpr std::size_t value = acc;
+    template <typename Acc, Acc i>
+    struct size_impl<std::integral_constant<Acc, i>> {
+        using type = std::integral_constant<Acc, i>;
     };
 
-    template <std::size_t acc, typename T, typename ...Rest>
-    struct size_impl<acc, T, Rest...> : size_impl<acc + 1, Rest...> { };
+    template <typename Acc, Acc i, typename T, typename ...Rest>
+    struct size_impl<std::integral_constant<Acc, i>, T, Rest...>
+        : size_impl<std::integral_constant<Acc, i + 1>, Rest...> { };
 } // end namespace detail
 
 template <typename ...T>
-using size = detail::size_impl<0, T...>;
+using size = detail::size_impl<std::integral_constant<std::size_t, 0>, T...>;
 
 } // end namespace duck
 
