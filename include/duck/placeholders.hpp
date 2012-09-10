@@ -5,10 +5,8 @@
 #ifndef DUCK_PLACEHOLDERS_HPP
 #define DUCK_PLACEHOLDERS_HPP
 
-#include <duck/apply.hpp>
-#include <duck/or.hpp>
+#include <duck/any_of.hpp>
 #include <duck/quote.hpp>
-#include <duck/transform.hpp>
 
 #include <cstddef>
 #include <type_traits>
@@ -39,9 +37,9 @@ struct is_placeholder_expr<placeholder<i>> : std::true_type { };
 
 template <template <typename ...> class F, typename ...Placeholders>
 struct is_placeholder_expr<F<Placeholders...>>
-    : apply_pack<
-        quote<or_>,
-        typename transform<quote<is_placeholder_expr>, Placeholders...>::type
+    : any_of<
+        quote<is_placeholder_expr>,
+        Placeholders...
     >
 { };
 
