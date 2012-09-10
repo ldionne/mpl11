@@ -19,6 +19,7 @@ namespace duck {
  */
 template <typename F, typename ...> struct any_of;
 template <typename F> struct any_of<F> : std::false_type { };
+template <typename F, typename T> struct any_of<F, T> : apply<F, T> { };
 
 template <typename F, typename T, typename ...Rest>
 struct any_of<F, T, Rest...>
