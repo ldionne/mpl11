@@ -12,9 +12,9 @@
 #include <duck/at.hpp>
 #include <duck/back.hpp>
 #include <duck/bind.hpp>
-#include <duck/delay.hpp>
 #include <duck/empty.hpp>
 #include <duck/front.hpp>
+#include <duck/identity.hpp>
 #include <duck/if.hpp>
 #include <duck/lambda.hpp>
 #include <duck/or.hpp>

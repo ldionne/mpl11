@@ -8,7 +8,7 @@
 #include <duck/any_of.hpp>
 #include <duck/apply.hpp>
 #include <duck/bind.hpp>
-#include <duck/delay.hpp>
+#include <duck/identity.hpp>
 #include <duck/if.hpp>
 #include <duck/placeholders.hpp>
 #include <duck/push_front.hpp>
@@ -42,10 +42,10 @@ struct lambda_impl<placeholder<i>> {
 template <template <typename ...> class F, typename ...Placeholders>
 struct lambda_impl<F<Placeholders...>> {
 private:
-    // Create a recursive parser. We need to use delay because we want to put
-    // lambda_impl<T> instead of lambda_impl<T>::type in the parsed result.
+    //Create a recursive parser. We need to use identity because we want to
+    //put lambda_impl<T> instead of lambda_impl<T>::type in the parsed result.
     template <typename T>
-    struct parse : delay< ::duck::detail::lambda_impl<T>> { };
+    struct parse : identity< ::duck::detail::lambda_impl<T>> { };
 
     // Use the parser on the placeholders. After this,
     // ``parsed'' is duck::pack<lambda_impl<T>, ...>.
