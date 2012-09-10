@@ -17,19 +17,19 @@ namespace duck {
  * Compute the logical or of its arguments.
  */
 namespace detail {
-    template <typename T, typename U>
-    struct or_impl : std::integral_constant<bool, T::value || U::value> { };
+    template <typename T, typename U> struct or_impl;
+    template <bool X, bool Y>
+    struct or_impl<std::integral_constant<bool, X>,
+                   std::integral_constant<bool, Y>>
+        : std::integral_constant<bool, X || Y> { };
 }
 
-template <typename ...> struct or_;
-template <> struct or_<> : std::true_type { };
-
-template <typename T, typename ...Rest>
-struct or_<T, Rest...>
+template <typename T, typename U, typename ...Rest>
+struct or_
     : accumulate<
         quote<detail::or_impl>,
-        std::false_type, T, Rest...
-    >::type
+        T, U, Rest...
+    >
 { };
 
 } // end namespace duck
