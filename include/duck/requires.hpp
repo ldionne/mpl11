@@ -5,12 +5,12 @@
 #ifndef DUCK_REQUIRES_HPP
 #define DUCK_REQUIRES_HPP
 
-#include <duck/and.hpp>
+#include <duck/all_of.hpp>
 #include <duck/apply.hpp>
+#include <duck/identity.hpp>
 #include <duck/quote.hpp>
 #include <duck/rotate_right.hpp>
 #include <duck/when.hpp>
-
 
 namespace duck {
 
@@ -25,7 +25,7 @@ namespace detail {
     template <typename T, typename ...Concepts>
     struct requires_impl
         : when<
-            typename and_<Concepts...>::type, T
+            typename all_of<quote<identity>, Concepts...>::type, T
         >
     { };
 }

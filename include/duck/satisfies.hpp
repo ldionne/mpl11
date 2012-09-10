@@ -5,13 +5,12 @@
 #ifndef DUCK_SATISFIES_HPP
 #define DUCK_SATISFIES_HPP
 
-#include <duck/and.hpp>
+#include <duck/all_of.hpp>
 #include <duck/apply.hpp>
 #include <duck/bind.hpp>
 #include <duck/placeholders.hpp>
 #include <duck/quote.hpp>
 #include <duck/rotate_right.hpp>
-#include <duck/transform.hpp>
 
 
 namespace duck {
@@ -23,9 +22,9 @@ namespace duck {
 namespace detail {
     template <typename T, typename ...Concepts>
     struct satisfies_impl
-        : apply_pack<
-            quote<and_>,
-            typename transform<bind<quote<apply>, _1, T>, Concepts...>::type
+        : all_of<
+            bind<_1, T>,
+            Concepts...
         >
     { };
 }

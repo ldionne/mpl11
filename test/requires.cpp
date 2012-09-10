@@ -19,13 +19,15 @@ static_assert(std::is_same<
 
 
 template <typename T> typename
-    duck::requires<std::is_same<int, T>,
+    duck::requires<typename std::is_same<int, T>::type,
 T>::type func() { return 0; }
 
 template <typename T> typename
-    duck::requires<std::is_same<
-                    typename std::is_same<int, T>::type,
-                    std::false_type>,
+    duck::requires<
+        typename std::is_same<
+            typename std::is_same<int, T>::type,
+            std::false_type
+        >::type,
 void>::type func() { }
 
 static_assert(std::is_same<

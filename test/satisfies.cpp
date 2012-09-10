@@ -8,17 +8,52 @@
 
 
 struct Satisfied {
-    template <typename T> struct apply : std::true_type { };
+    template <typename T>
+    struct apply { using type = std::true_type; };
 };
 
 struct Unsatisfied {
-    template <typename T> struct apply : std::false_type { };
+    template <typename T>
+    struct apply { using type = std::false_type; };
 };
 
-static_assert(duck::satisfies<Satisfied, int>::value, "");
-static_assert(duck::satisfies<Satisfied, Satisfied, int>::value, "");
+template <typename T>
+struct same_as {
+    template <typename U>
+    struct apply : std::is_same<T, U> { };
+};
 
-static_assert(!duck::satisfies<Unsatisfied, int>::value, "");
-static_assert(!duck::satisfies<Unsatisfied, Unsatisfied, int>::value, "");
+static_assert(std::is_same<
+                duck::satisfies<Satisfied, int>::type,
+                std::true_type
+              >::value, "");
 
-static_assert(!duck::satisfies<Satisfied, Unsatisfied, int>::value, "");
+static_assert(std::is_same<
+                duck::satisfies<Satisfied, Satisfied, int>::type,
+                std::true_type
+              >::value, "");
+
+static_assert(std::is_same<
+                duck::satisfies<Unsatisfied, int>::type,
+                std::false_type
+              >::value, "");
+
+static_assert(std::is_same<
+                duck::satisfies<Unsatisfied, Unsatisfied, int>::type,
+                std::false_type
+              >::value, "");
+
+static_assert(std::is_same<
+                duck::satisfies<Satisfied, Unsatisfied, int>::type,
+                std::false_type
+              >::value, "");
+
+static_assert(std::is_same<
+                duck::satisfies<same_as<int>, int>::type,
+                std::true_type
+              >::value, "");
+
+static_assert(std::is_same<
+                duck::satisfies<same_as<int>, float>::type,
+                std::false_type
+              >::value, "");
