@@ -14,11 +14,13 @@ namespace duck {
  * Expand to an invalid type when @p Bool is std::false_type,
  * and to @p T otherwise.
  */
-template <typename Bool, typename T>
-struct when { using type = T; };
+template <typename Bool, typename T> struct when;
+
+template <bool Expr, typename T>
+struct when<std::integral_constant<bool, Expr>, T> { using type = T; };
 
 template <typename T>
-struct when<std::false_type, T> { };
+struct when<std::integral_constant<bool, false>, T> { };
 
 } // end namespace duck
 

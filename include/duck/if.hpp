@@ -14,11 +14,17 @@ namespace duck {
  * Expand to @p False when @p Bool is std::false_type,
  * and to @p True otherwise.
  */
-template <typename Bool, typename True, typename False>
-struct  if_ { using type = True; };
+template <typename Bool, typename True, typename False> struct if_;
+
+template <bool Expr, typename True, typename False>
+struct if_<std::integral_constant<bool, Expr>, True, False> {
+    using type = True;
+};
 
 template <typename True, typename False>
-struct if_<std::false_type, True, False> { using type = False; };
+struct if_<std::integral_constant<bool, false>, True, False> {
+    using type = False;
+};
 
 } // end namespace duck
 
