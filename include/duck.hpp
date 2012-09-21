@@ -10,6 +10,7 @@
 #include <duck/and.hpp>
 #include <duck/any_of.hpp>
 #include <duck/apply.hpp>
+#include <duck/arg.hpp>
 #include <duck/at.hpp>
 #include <duck/back.hpp>
 #include <duck/bind.hpp>

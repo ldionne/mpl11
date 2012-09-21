@@ -6,7 +6,7 @@
 #define DUCK_BIND_HPP
 
 #include <duck/apply.hpp>
-#include <duck/at.hpp>
+#include <duck/arg.hpp>
 #include <duck/pack.hpp>
 #include <duck/placeholders.hpp>
 #include <duck/transform.hpp>
@@ -33,8 +33,8 @@ private:
 
         // When an argument is a placeholder, substitute it for the
         // argument at the placeholder's index in the arguments.
-        template <std::size_t i>
-        struct apply<placeholder<i>> : at<i - 1, Args...> { };
+        template <std::size_t n>
+        struct apply<placeholder<n>> : ::duck::apply<arg<n>, Args...> { };
 
         // Catch recursive bind expressions and evaluate them.
         template <typename ...Placeholders_>
