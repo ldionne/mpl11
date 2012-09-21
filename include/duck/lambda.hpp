@@ -98,7 +98,9 @@ public:
  * If the expression is not a placeholder expression, nothing is done.
  */
 template <typename Expression>
-using lambda = detail::lambda_impl<Expression>;
+struct lambda {
+    using type = typename detail::lambda_impl<Expression>::type;
+};
 
 } // end namespace duck
 
