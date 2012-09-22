@@ -19,6 +19,7 @@
 #include <duck/identity.hpp>
 #include <duck/if.hpp>
 #include <duck/lambda.hpp>
+#include <duck/not.hpp>
 #include <duck/or.hpp>
 #include <duck/pack.hpp>
 #include <duck/placeholders.hpp>
