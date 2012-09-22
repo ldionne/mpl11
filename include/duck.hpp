@@ -15,6 +15,7 @@
 #include <duck/at.hpp>
 #include <duck/back.hpp>
 #include <duck/bind.hpp>
+#include <duck/concept.hpp>
 #include <duck/empty.hpp>
 #include <duck/front.hpp>
 #include <duck/identity.hpp>
