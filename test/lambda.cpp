@@ -24,7 +24,7 @@ using triple = duck::lambda<add<
                >::type;
 static_assert(triple::apply<int_<4>>::value == 12, "");
 
-// lambda with an non lambda expression.
+// lambda with a non lambda expression.
 using expression_without_placeholders = add<int_<1>, add<int_<2>, int_<3>>>;
 static_assert(std::is_same<
                 duck::lambda<expression_without_placeholders>::type,
