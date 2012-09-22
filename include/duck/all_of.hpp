@@ -18,7 +18,7 @@ namespace duck {
  * the elements in a parameter pack.
  */
 template <typename F, typename ...> struct all_of;
-template <typename F> struct all_of<F> : std::false_type { };
+template <typename F> struct all_of<F> : std::true_type { };
 template <typename F, typename T> struct all_of<F, T> : apply<F, T> { };
 
 template <typename F, typename T, typename ...Rest>

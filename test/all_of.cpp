@@ -19,8 +19,8 @@ struct identity {
     template <typename T> struct apply { using type = T; };
 };
 
-static_assert(!duck::all_of<always_true>::value, "");
-static_assert(!duck::all_of<always_false>::value, "");
+static_assert(duck::all_of<always_true>::value, "");
+static_assert(duck::all_of<always_false>::value, "");
 
 static_assert(duck::all_of<always_true, int>::value, "");
 static_assert(duck::all_of<always_true, int, float, char>::value, "");
