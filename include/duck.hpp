@@ -17,6 +17,8 @@
 #include <duck/bind.hpp>
 #include <duck/empty.hpp>
 #include <duck/eval.hpp>
+#include <duck/fold_left.hpp>
+#include <duck/fold_right.hpp>
 #include <duck/front.hpp>
 #include <duck/identity.hpp>
 #include <duck/if.hpp>
