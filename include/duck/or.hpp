@@ -5,9 +5,6 @@
 #ifndef DUCK_OR_HPP
 #define DUCK_OR_HPP
 
-#include <duck/accumulate.hpp>
-#include <duck/quote.hpp>
-
 #include <type_traits>
 
 
@@ -17,20 +14,20 @@ namespace duck {
  * Compute the logical or of its arguments.
  */
 namespace detail {
-    template <typename T, typename U> struct or_impl;
-    template <bool X, bool Y>
-    struct or_impl<std::integral_constant<bool, X>,
-                   std::integral_constant<bool, Y>>
-        : std::integral_constant<bool, X || Y> { };
-}
+    template <typename T, typename ...Rest> struct or_impl;
+
+    template <typename ...Rest>
+    struct or_impl<std::false_type, Rest...> : or_impl<Rest...> { };
+
+    template <>
+    struct or_impl<std::false_type> : std::false_type { };
+
+    template <typename ...Rest>
+    struct or_impl<std::true_type, Rest...> : std::true_type { };
+} // end namespace detail
 
 template <typename T, typename U, typename ...Rest>
-struct or_
-    : accumulate<
-        quote<detail::or_impl>,
-        T, U, Rest...
-    >
-{ };
+struct or_ : detail::or_impl<T, U, Rest...> { };
 
 } // end namespace duck
 
