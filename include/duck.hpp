@@ -21,6 +21,7 @@
 #include <duck/front.hpp>
 #include <duck/identity.hpp>
 #include <duck/if.hpp>
+#include <duck/introspect.hpp>
 #include <duck/lambda.hpp>
 #include <duck/not.hpp>
 #include <duck/or.hpp>
