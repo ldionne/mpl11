@@ -41,5 +41,6 @@
 #include <duck/size.hpp>
 #include <duck/transform.hpp>
 #include <duck/when.hpp>
+#include <duck/while.hpp>
 
 #endif // !DUCK_HPP
