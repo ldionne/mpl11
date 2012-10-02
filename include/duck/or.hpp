@@ -12,9 +12,11 @@ namespace duck {
 
 /**
  * Compute the logical or of its arguments.
+ * Its arguments must be metafunctions and are short-circuited when possible.
  */
 namespace detail {
-    template <typename T, typename ...Rest> struct or_impl;
+    template <typename T, typename ...Rest>
+    struct or_impl : or_impl<typename T::type, Rest...> { };
 
     template <typename ...Rest>
     struct or_impl<std::false_type, Rest...> : or_impl<Rest...> { };

@@ -28,3 +28,16 @@ static_assert(std::is_same<
                 duck::or_<false_, false_>::type,
                 std::false_type
               >::value, "");
+
+// Make sure metafunctions are evaluated.
+struct mtrue_ { using type = std::true_type; };
+struct mfalse_ { using type = std::false_type; };
+static_assert(std::is_same<
+                duck::or_<mfalse_, mfalse_, mfalse_>::type,
+                std::false_type
+              >::value, "");
+
+static_assert(std::is_same<
+                duck::or_<mtrue_, mfalse_>::type,
+                std::true_type
+              >::value, "");

@@ -24,8 +24,8 @@ template <typename F, typename T> struct all_of<F, T> : apply<F, T> { };
 template <typename F, typename T, typename ...Rest>
 struct all_of<F, T, Rest...>
     : and_<
-        typename apply<F, T>::type,
-        typename all_of<F, Rest...>::type
+        apply<F, T>,
+        all_of<F, Rest...>
     >
 { };
 

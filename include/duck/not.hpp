@@ -11,14 +11,17 @@
 namespace duck {
 
 /**
- * Metafunction that negates the result of another metafunction.
+ * Metafunction that negates the result of evaluating a metafunction given
+ * as argument.
  */
-template <typename T> struct not_;
+template <typename T>
+struct not_ : not_<typename T::type> { };
 
-template <bool R>
-struct not_<std::integral_constant<bool, R>> {
-    using type = typename std::integral_constant<bool, !R>::type;
-};
+template <>
+struct not_<std::true_type> : std::false_type { };
+
+template <>
+struct not_<std::false_type> : std::true_type { };
 
 } // end namespace duck
 

@@ -12,9 +12,11 @@ namespace duck {
 
 /**
  * Compute the logical and of its arguments.
+ * Its arguments must be metafunctions and are short-circuited when possible.
  */
 namespace detail {
-    template <typename T, typename ...Rest> struct and_impl;
+    template <typename T, typename ...Rest>
+    struct and_impl : and_impl<typename T::type, Rest...> { };
 
     template <typename ...Rest>
     struct and_impl<std::true_type, Rest...> : and_impl<Rest...> { };

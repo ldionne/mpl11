@@ -24,8 +24,8 @@ template <typename F, typename T> struct any_of<F, T> : apply<F, T> { };
 template <typename F, typename T, typename ...Rest>
 struct any_of<F, T, Rest...>
     : or_<
-        typename apply<F, T>::type,
-        typename any_of<F, Rest...>::type
+        apply<F, T>,
+        any_of<F, Rest...>
     >
 { };
 
