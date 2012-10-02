@@ -15,6 +15,7 @@
 #include <duck/back.hpp>
 #include <duck/bind.hpp>
 #include <duck/empty.hpp>
+#include <duck/eval_if.hpp>
 #include <duck/eval.hpp>
 #include <duck/fail_on.hpp>
 #include <duck/fold_left.hpp>
