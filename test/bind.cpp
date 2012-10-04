@@ -2,15 +2,17 @@
  * This file defines unit tests for the bind metafunction.
  */
 
-#include <duck/bind.hpp>
+#include <mpl11/bind.hpp>
 
-#include <duck/apply.hpp>
-#include <duck/pack.hpp>
-#include <duck/placeholders.hpp>
-#include <duck/transform.hpp>
+#include <mpl11/apply.hpp>
+#include <mpl11/pack.hpp>
+#include <mpl11/placeholders.hpp>
+#include <mpl11/transform.hpp>
 
 #include <type_traits>
 
+
+using namespace mpl11;
 
 struct identity {
     template <typename T> struct apply { using type = T; };
@@ -18,48 +20,48 @@ struct identity {
 
 
 // Nested binds.
-using delayed = duck::bind<identity, duck::_1>;
-using delayed_twice = duck::bind<identity, delayed>;
+using delayed = bind<identity, _1>;
+using delayed_twice = bind<identity, delayed>;
 static_assert(std::is_same<
-                duck::apply<delayed, int>::type,
+                apply<delayed, int>::type,
                 int
               >::value, "");
 
 static_assert(std::is_same<
-                duck::apply<delayed_twice, int>::type,
+                apply<delayed_twice, int>::type,
                 int
               >::value, "");
 
 // Simple bind with an identity metafunction.
 static_assert(std::is_same<
-                duck::apply<duck::bind<duck::_1, int>, identity>::type,
+                apply<bind<_1, int>, identity>::type,
                 int
               >::value, "");
 
 // bind as metafunction class to algorithm working on higher order functions.
 static_assert(std::is_same<
-                duck::transform<duck::bind<identity, float>,
+                transform<bind<identity, float>,
                     int, int, int
                 >::type,
-                duck::pack<float, float, float>
+                pack<float, float, float>
               >::value, "");
 
 
 // bind with many parameters.
 struct mpack {
     template <typename ...T>
-    struct apply { using type = duck::pack<T...>; };
+    struct apply { using type = pack<T...>; };
 };
-using shuffled = duck::bind<mpack, duck::_2, duck::_1, duck::_4, duck::_3>;
+using shuffled = bind<mpack, _2, _1, _4, _3>;
 static_assert(std::is_same<
                 shuffled::apply<int, float, char, void>::type,
-                duck::pack<float, int, void, char>
+                pack<float, int, void, char>
               >::value, "");
 
 // bind with too many parameters.
 static_assert(std::is_same<
                 shuffled::apply<int, float, char, void, short, double>::type,
-                duck::pack<float, int, void, char>
+                pack<float, int, void, char>
               >::value, "");
 
 // bind without arguments.
@@ -68,7 +70,7 @@ struct self {
 };
 static_assert(std::is_same<
                 self,
-                duck::apply<duck::bind<self>>::type
+                apply<bind<self>>::type
               >::value, "");
 
 // bind with nullary template.
@@ -77,12 +79,12 @@ struct nullary {
 };
 template <> struct nullary::apply<> { using type = nullary; };
 static_assert(std::is_same<
-                duck::apply<duck::bind<nullary>>::type,
+                apply<bind<nullary>>::type,
                 nullary
               >::value, "");
 
 // Equivalence between bind and bind_pack.
 static_assert(std::is_same<
-                duck::bind<identity, duck::_1>,
-                duck::bind_pack<duck::pack<identity, duck::_1>>
+                bind<identity, _1>,
+                bind_pack<pack<identity, _1>>
               >::value, "");

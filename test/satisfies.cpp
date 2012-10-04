@@ -2,10 +2,12 @@
  * This file defines unit tests for the satisfies metafunction.
  */
 
-#include <duck/satisfies.hpp>
+#include <mpl11/satisfies.hpp>
 
 #include <type_traits>
 
+
+using namespace mpl11;
 
 struct Satisfied {
     template <typename T>
@@ -24,36 +26,36 @@ struct same_as {
 };
 
 static_assert(std::is_same<
-                duck::satisfies<Satisfied, int>::type,
+                satisfies<Satisfied, int>::type,
                 std::true_type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::satisfies<Satisfied, Satisfied, int>::type,
+                satisfies<Satisfied, Satisfied, int>::type,
                 std::true_type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::satisfies<Unsatisfied, int>::type,
+                satisfies<Unsatisfied, int>::type,
                 std::false_type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::satisfies<Unsatisfied, Unsatisfied, int>::type,
+                satisfies<Unsatisfied, Unsatisfied, int>::type,
                 std::false_type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::satisfies<Satisfied, Unsatisfied, int>::type,
+                satisfies<Satisfied, Unsatisfied, int>::type,
                 std::false_type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::satisfies<same_as<int>, int>::type,
+                satisfies<same_as<int>, int>::type,
                 std::true_type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::satisfies<same_as<int>, float>::type,
+                satisfies<same_as<int>, float>::type,
                 std::false_type
               >::value, "");

@@ -2,19 +2,20 @@
  * This file defines unit tests for the pop_front metafunction.
  */
 
-#include <duck/pop_front.hpp>
-
-#include <duck/pack.hpp>
+#include <mpl11/pop_front.hpp>
+#include <mpl11/pack.hpp>
 
 #include <type_traits>
 
 
+using namespace mpl11;
+
 static_assert(std::is_same<
-                duck::pack<float, char, int>,
-                duck::pop_front<void, float, char, int>::type
+                pack<float, char, int>,
+                pop_front<void, float, char, int>::type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::pack<>,
-                duck::pop_front<void>::type
+                pack<>,
+                pop_front<void>::type
               >::value, "");

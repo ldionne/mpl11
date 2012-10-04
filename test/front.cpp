@@ -2,17 +2,19 @@
  * This file defines unit tests for the front metafunction.
  */
 
-#include <duck/front.hpp>
+#include <mpl11/front.hpp>
 
 #include <type_traits>
 
 
+using namespace mpl11;
+
 static_assert(std::is_same<
-                duck::front<int, float, char>::type,
+                front<int, float, char>::type,
                 int
               >::value, "");
 
 static_assert(std::is_same<
-                duck::front<int>::type,
+                front<int>::type,
                 int
               >::value, "");

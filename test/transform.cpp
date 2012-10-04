@@ -2,12 +2,13 @@
  * This file defines unit tests for the transform metafunction.
  */
 
-#include <duck/transform.hpp>
-
-#include <duck/pack.hpp>
+#include <mpl11/transform.hpp>
+#include <mpl11/pack.hpp>
 
 #include <type_traits>
 
+
+using namespace mpl11;
 
 template <int i>
 using int_ = std::integral_constant<int, i>;
@@ -19,10 +20,10 @@ struct add {
 };
 
 static_assert(std::is_same<
-                duck::transform<add<2>,
+                transform<add<2>,
                     int_<0>, int_<1>, int_<2>, int_<3>
                 >::type,
-                duck::pack<
+                pack<
                     int_<2>, int_<3>, int_<4>, int_<5>
                 >
               >::value, "");
@@ -33,10 +34,10 @@ struct identity {
     struct apply { using type = T; };
 };
 static_assert(std::is_same<
-                duck::transform<identity,
+                transform<identity,
                     int, float, char
                 >::type,
-                duck::pack<
+                pack<
                     int, float, char
                 >
               >::value, "");

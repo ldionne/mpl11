@@ -2,10 +2,12 @@
  * This file defines unit tests for the @em introspect metafunction.
  */
 
-#include <duck/introspect.hpp>
+#include <mpl11/introspect.hpp>
 
 #include <type_traits>
 
+
+using namespace mpl11;
 
 #define ASSERT_SAME(a, b) static_assert(std::is_same<a, b>::value,          \
                                         STRINGIZE(a is not the same as b))
@@ -21,7 +23,7 @@ enum Enum { };
 enum class EnumClass { };
 
 // Make sure types are dispatched to the right specialization.
-using namespace duck::types;
+using namespace types;
 
 template <typename T, typename Category>
 struct check_for {
@@ -30,7 +32,7 @@ struct check_for {
     using T_for_array = typename std::conditional<
                                     std::is_function<T>::value, int, T>::type;
     template <typename U>
-    using introspect_type = typename duck::introspect<U>::type;
+    using introspect_type = typename introspect<U>::type;
     ASSERT_SAME(introspect_type<T>, Category);
     ASSERT_SAME(introspect_type<T_for_array[]>, array);
     ASSERT_SAME(introspect_type<T_for_array[10]>, array);
@@ -47,14 +49,14 @@ check_for<Union, union_> e;
 check_for<Enum, enumeration> f;
 check_for<EnumClass, enumeration> g;
 check_for<empty, class_or_struct> h;
-ASSERT_SAME(duck::introspect<int const>::type, constant);
-ASSERT_SAME(duck::introspect<int volatile>::type, volatile_);
-ASSERT_SAME(duck::introspect<int const volatile>::type, constant_volatile);
-ASSERT_SAME(duck::introspect<void>::type, primitive);
+ASSERT_SAME(introspect<int const>::type, constant);
+ASSERT_SAME(introspect<int volatile>::type, volatile_);
+ASSERT_SAME(introspect<int const volatile>::type, constant_volatile);
+ASSERT_SAME(introspect<void>::type, primitive);
 
 // Make sure type parsing nests correctly.
 using Complicated = Function* (&&)(MemberPointer, MemberFunction&&);
-using Introspected = duck::introspect<Complicated>;
+using Introspected = introspect<Complicated>;
 ASSERT_SAME(Introspected::self, Complicated);
 ASSERT_SAME(Introspected::type, rvalue_reference);
 ASSERT_SAME(Introspected::referee::result::self, Function*);

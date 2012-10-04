@@ -2,17 +2,19 @@
  * This file defines unit tests for the back metafunction.
  */
 
-#include <duck/back.hpp>
+#include <mpl11/back.hpp>
 
 #include <type_traits>
 
 
+using namespace mpl11;
+
 static_assert(std::is_same<
                 int,
-                duck::back<float, char, int>::type
+                back<float, char, int>::type
               >::value, "");
 
 static_assert(std::is_same<
                 int,
-                duck::back<int>::type
+                back<int>::type
               >::value, "");

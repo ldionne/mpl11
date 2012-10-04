@@ -2,19 +2,20 @@
  * This file defines unit tests for the pop_back metafunction.
  */
 
-#include <duck/pop_back.hpp>
-
-#include <duck/pack.hpp>
+#include <mpl11/pop_back.hpp>
+#include <mpl11/pack.hpp>
 
 #include <type_traits>
 
 
+using namespace mpl11;
+
 static_assert(std::is_same<
-                duck::pack<int, float, char>,
-                duck::pop_back<int, float, char, void>::type
+                pack<int, float, char>,
+                pop_back<int, float, char, void>::type
               >::value, "");
 
 static_assert(std::is_same<
-                duck::pack<>,
-                duck::pop_back<void>::type
+                pack<>,
+                pop_back<void>::type
               >::value, "");

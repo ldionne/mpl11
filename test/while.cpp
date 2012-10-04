@@ -2,11 +2,13 @@
  * This file defines unit tests for the @em while metafunction.
  */
 
-#include <duck/while.hpp>
+#include <mpl11/while.hpp>
 
 #include <cstddef>
 #include <type_traits>
 
+
+using namespace mpl11;
 
 template <std::size_t N>
 struct less_than {
@@ -26,7 +28,7 @@ struct increment {
 };
 
 static_assert(std::is_same<
-                duck::while_<less_than<10>,
+                while_<less_than<10>,
                     increment,
                     std::integral_constant<std::size_t, 0>
                 >::type,
