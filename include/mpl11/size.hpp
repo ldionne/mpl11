@@ -14,21 +14,11 @@ namespace mpl11 {
 /**
  * Determine the number of parameters in a parameter pack.
  */
-namespace detail {
-    template <typename Counter, typename ...> struct size_impl;
-
-    template <typename Acc, Acc i>
-    struct size_impl<std::integral_constant<Acc, i>> {
-        using type = std::integral_constant<Acc, i>;
-    };
-
-    template <typename Acc, Acc i, typename T, typename ...Rest>
-    struct size_impl<std::integral_constant<Acc, i>, T, Rest...>
-        : size_impl<std::integral_constant<Acc, i + 1>, Rest...> { };
-} // end namespace detail
-
 template <typename ...T>
-using size = detail::size_impl<std::integral_constant<std::size_t, 0>, T...>;
+struct size {
+    using type = std::integral_constant<std::size_t, sizeof...(T)>;
+    static auto const value = type::value;
+};
 
 } // end namespace mpl11
 
