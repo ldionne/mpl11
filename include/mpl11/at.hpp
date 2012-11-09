@@ -5,10 +5,10 @@
 #ifndef MPL11_AT_HPP
 #define MPL11_AT_HPP
 
+#include <mpl11/integral_constant.hpp>
 #include <mpl11/size.hpp>
 
 #include <cstddef>
-#include <type_traits>
 
 
 namespace mpl11 {
@@ -21,20 +21,20 @@ namespace detail {
 template <typename Counter, typename ...> struct at_impl;
 
 template <typename Distance, typename First, typename ...Rest>
-struct at_impl<std::integral_constant<Distance, 0>, First, Rest...> {
+struct at_impl<integral_constant<Distance, 0>, First, Rest...> {
     using type = First;
 };
 
 template <typename Distance, Distance pos, typename First, typename ...Rest>
-struct at_impl<std::integral_constant<Distance, pos>, First, Rest...>
-    : at_impl<std::integral_constant<Distance, pos - 1>, Rest...> { };
+struct at_impl<integral_constant<Distance, pos>, First, Rest...>
+    : at_impl<integral_constant<Distance, pos - 1>, Rest...> { };
 } // end namespace detail
 
 template <std::size_t pos, typename ...Range>
 struct at {
     static_assert(pos < size<Range...>::type::value, "Index out of range.");
     using type = typename detail::at_impl<
-                    std::integral_constant<std::size_t, pos>, Range...>::type;
+                        integral_constant<std::size_t, pos>, Range...>::type;
 };
 
 } // end namespace mpl11

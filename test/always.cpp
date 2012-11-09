@@ -5,6 +5,7 @@
 #include <mpl11/always.hpp>
 #include <mpl11/all_of.hpp>
 #include <mpl11/apply.hpp>
+#include <mpl11/bool.hpp>
 
 #include <type_traits>
 
@@ -23,10 +24,6 @@ static_assert(std::is_same<
 
 // Test interoperation with an algorithm.
 static_assert(std::is_same<
-                all_of<always<std::true_type>,
-                    std::false_type,
-                    std::false_type,
-                    std::false_type
-                >::type,
-                std::true_type
+                all_of<always<true_>, false_, false_, false_>::type,
+                true_
               >::value, "");

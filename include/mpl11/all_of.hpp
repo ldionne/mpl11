@@ -7,8 +7,7 @@
 
 #include <mpl11/and.hpp>
 #include <mpl11/apply.hpp>
-
-#include <type_traits>
+#include <mpl11/bool.hpp>
 
 
 namespace mpl11 {
@@ -18,7 +17,7 @@ namespace mpl11 {
  * the elements in a parameter pack.
  */
 template <typename F, typename ...> struct all_of;
-template <typename F> struct all_of<F> : std::true_type { };
+template <typename F> struct all_of<F> : true_ { };
 template <typename F, typename T> struct all_of<F, T> : apply<F, T> { };
 
 template <typename F, typename T, typename ...Rest>

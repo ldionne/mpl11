@@ -3,6 +3,7 @@
  */
 
 #include <mpl11/requires.hpp>
+#include <mpl11/bool.hpp>
 
 #include <type_traits>
 
@@ -10,12 +11,12 @@
 using namespace mpl11;
 
 static_assert(std::is_same<
-                requires<std::true_type, int>::type,
+                requires<true_, int>::type,
                 int
               >::value, "");
 
 static_assert(std::is_same<
-                requires<std::true_type, std::true_type, int>::type,
+                requires<true_, true_, int>::type,
                 int
               >::value, "");
 
@@ -28,7 +29,7 @@ template <typename T> typename
     requires<
         typename std::is_same<
             typename std::is_same<int, T>::type,
-            std::false_type
+            false_
         >::type,
 void>::type func() { }
 

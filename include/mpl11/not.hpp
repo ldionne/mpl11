@@ -5,7 +5,7 @@
 #ifndef MPL11_NOT_HPP
 #define MPL11_NOT_HPP
 
-#include <type_traits>
+#include <mpl11/bool.hpp>
 
 
 namespace mpl11 {
@@ -18,10 +18,10 @@ template <typename T>
 struct not_ : not_<typename T::type> { };
 
 template <>
-struct not_<std::true_type> : std::false_type { };
+struct not_<true_> : false_ { };
 
 template <>
-struct not_<std::false_type> : std::true_type { };
+struct not_<false_> : true_ { };
 
 } // end namespace mpl11
 

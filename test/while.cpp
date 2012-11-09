@@ -3,6 +3,7 @@
  */
 
 #include <mpl11/while.hpp>
+#include <mpl11/integral_constant.hpp>
 
 #include <cstddef>
 #include <type_traits>
@@ -15,22 +16,22 @@ struct less_than {
     template <typename> struct apply;
 
     template <std::size_t i>
-    struct apply<std::integral_constant<std::size_t, i>>
-        : std::integral_constant<bool, i < N> { };
+    struct apply<integral_constant<std::size_t, i>>
+        : integral_constant<bool, i < N> { };
 };
 
 struct increment {
     template <typename> struct apply;
 
     template <std::size_t i>
-    struct apply<std::integral_constant<std::size_t, i>>
-        : std::integral_constant<std::size_t, i + 1> { };
+    struct apply<integral_constant<std::size_t, i>>
+        : integral_constant<std::size_t, i + 1> { };
 };
 
 static_assert(std::is_same<
                 while_<less_than<10>,
                     increment,
-                    std::integral_constant<std::size_t, 0>
+                    integral_constant<std::size_t, 0>
                 >::type,
-                std::integral_constant<std::size_t, 10>
+                integral_constant<std::size_t, 10>
               >::value, "");

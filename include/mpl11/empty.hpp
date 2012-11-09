@@ -5,7 +5,7 @@
 #ifndef MPL11_EMPTY_HPP
 #define MPL11_EMPTY_HPP
 
-#include <type_traits>
+#include <mpl11/bool.hpp>
 
 
 namespace mpl11 {
@@ -13,8 +13,8 @@ namespace mpl11 {
 /**
  * Determine whether a parameter pack is empty.
  */
-template <typename ...> struct empty { using type = std::false_type; };
-template <> struct empty<> { using type = std::true_type; };
+template <typename ...> struct empty { using type = false_; };
+template <> struct empty<> { using type = true_; };
 
 } // end namespace mpl11
 

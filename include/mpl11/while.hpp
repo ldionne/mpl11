@@ -9,14 +9,12 @@
 #include <mpl11/eval_if.hpp>
 #include <mpl11/identity.hpp>
 
-#include <cstddef>
-
 
 namespace mpl11 {
 
 /**
  * Metafunction applying a metafunction class to a state until the result
- * of applying the state to a predicate is `std::false_type`.
+ * of applying the state to a predicate is `false_`.
  * The return type of the @em while_ metafunction is the last state returned
  * by the applied metafunction class.
  */

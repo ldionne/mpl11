@@ -5,7 +5,7 @@
 #ifndef MPL11_AND_HPP
 #define MPL11_AND_HPP
 
-#include <type_traits>
+#include <mpl11/bool.hpp>
 
 
 namespace mpl11 {
@@ -19,13 +19,13 @@ namespace detail {
     struct and_impl : and_impl<typename T::type, Rest...> { };
 
     template <typename ...Rest>
-    struct and_impl<std::true_type, Rest...> : and_impl<Rest...> { };
+    struct and_impl<true_, Rest...> : and_impl<Rest...> { };
 
     template <>
-    struct and_impl<std::true_type> : std::true_type { };
+    struct and_impl<true_> : true_ { };
 
     template <typename ...Rest>
-    struct and_impl<std::false_type, Rest...> : std::false_type { };
+    struct and_impl<false_, Rest...> : false_ { };
 } // end namespace detail
 
 template <typename T, typename U, typename ...Rest>

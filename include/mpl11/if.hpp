@@ -5,24 +5,29 @@
 #ifndef MPL11_IF_HPP
 #define MPL11_IF_HPP
 
-#include <type_traits>
+#include <mpl11/bool.hpp>
+#include <mpl11/integral_constant.hpp>
 
 
 namespace mpl11 {
 
 /**
- * Expand to @p False when @p Bool is std::false_type,
- * and to @p True otherwise.
+ * Expand to @p False when @p Bool is false_, and to @p True otherwise.
  */
 template <typename Bool, typename True, typename False> struct if_;
 
-template <bool Expr, typename True, typename False>
-struct if_<std::integral_constant<bool, Expr>, True, False> {
+template <typename T, T expr, typename True, typename False>
+struct if_<integral_constant<T, expr>, True, False>
+    : if_<bool_<expr>, True, False>
+{ };
+
+template <typename True, typename False>
+struct if_<true_, True, False> {
     using type = True;
 };
 
 template <typename True, typename False>
-struct if_<std::integral_constant<bool, false>, True, False> {
+struct if_<false_, True, False> {
     using type = False;
 };
 

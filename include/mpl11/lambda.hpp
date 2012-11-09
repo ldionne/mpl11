@@ -8,6 +8,7 @@
 #include <mpl11/any_of.hpp>
 #include <mpl11/apply.hpp>
 #include <mpl11/bind.hpp>
+#include <mpl11/bool.hpp>
 #include <mpl11/identity.hpp>
 #include <mpl11/if.hpp>
 #include <mpl11/placeholders.hpp>
@@ -16,7 +17,6 @@
 #include <mpl11/transform.hpp>
 
 #include <cstddef>
-#include <type_traits>
 
 
 namespace mpl11 {
@@ -27,14 +27,14 @@ namespace detail {
 template <typename T>
 struct lambda_impl {
     using type = T;
-    using is_lambda_expr = std::false_type;
+    using is_lambda_expr = false_;
 };
 
 // A placeholder is a placeholder expression.
 template <std::size_t i>
 struct lambda_impl<placeholder<i>> {
     using type = placeholder<i>;
-    using is_lambda_expr = std::true_type;
+    using is_lambda_expr = true_;
 };
 
 // A template template parameter might be a placeholder expression.

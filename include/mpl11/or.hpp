@@ -5,7 +5,7 @@
 #ifndef MPL11_OR_HPP
 #define MPL11_OR_HPP
 
-#include <type_traits>
+#include <mpl11/bool.hpp>
 
 
 namespace mpl11 {
@@ -19,13 +19,13 @@ namespace detail {
     struct or_impl : or_impl<typename T::type, Rest...> { };
 
     template <typename ...Rest>
-    struct or_impl<std::false_type, Rest...> : or_impl<Rest...> { };
+    struct or_impl<false_, Rest...> : or_impl<Rest...> { };
 
     template <>
-    struct or_impl<std::false_type> : std::false_type { };
+    struct or_impl<false_> : false_ { };
 
     template <typename ...Rest>
-    struct or_impl<std::true_type, Rest...> : std::true_type { };
+    struct or_impl<true_, Rest...> : true_ { };
 } // end namespace detail
 
 template <typename T, typename U, typename ...Rest>

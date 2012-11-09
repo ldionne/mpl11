@@ -3,6 +3,7 @@
  */
 
 #include <mpl11/satisfies.hpp>
+#include <mpl11/bool.hpp>
 
 #include <type_traits>
 
@@ -11,12 +12,12 @@ using namespace mpl11;
 
 struct Satisfied {
     template <typename T>
-    struct apply { using type = std::true_type; };
+    struct apply { using type = true_; };
 };
 
 struct Unsatisfied {
     template <typename T>
-    struct apply { using type = std::false_type; };
+    struct apply { using type = false_; };
 };
 
 template <typename T>
@@ -27,35 +28,35 @@ struct same_as {
 
 static_assert(std::is_same<
                 satisfies<Satisfied, int>::type,
-                std::true_type
+                true_
               >::value, "");
 
 static_assert(std::is_same<
                 satisfies<Satisfied, Satisfied, int>::type,
-                std::true_type
+                true_
               >::value, "");
 
 static_assert(std::is_same<
                 satisfies<Unsatisfied, int>::type,
-                std::false_type
+                false_
               >::value, "");
 
 static_assert(std::is_same<
                 satisfies<Unsatisfied, Unsatisfied, int>::type,
-                std::false_type
+                false_
               >::value, "");
 
 static_assert(std::is_same<
                 satisfies<Satisfied, Unsatisfied, int>::type,
-                std::false_type
+                false_
               >::value, "");
 
 static_assert(std::is_same<
                 satisfies<same_as<int>, int>::type,
-                std::true_type
+                true_
               >::value, "");
 
 static_assert(std::is_same<
                 satisfies<same_as<int>, float>::type,
-                std::false_type
+                false_
               >::value, "");

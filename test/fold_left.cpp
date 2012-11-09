@@ -3,6 +3,7 @@
  */
 
 #include <mpl11/fold_left.hpp>
+#include <mpl11/integral_constant.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/push_back.hpp>
 
@@ -14,17 +15,17 @@ using namespace mpl11;
 template <typename T>
 struct add {
     template <typename X, typename Y>
-    struct apply : std::integral_constant<T, X::value + Y::value> { };
+    struct apply : integral_constant<T, X::value + Y::value> { };
 };
 
 static_assert(std::is_same<
-                fold_left<add<int>, std::integral_constant<int, 0>,
-                    std::integral_constant<int, 1>,
-                    std::integral_constant<int, 2>,
-                    std::integral_constant<int, 3>,
-                    std::integral_constant<int, 4>
+                fold_left<add<int>, integral_constant<int, 0>,
+                    integral_constant<int, 1>,
+                    integral_constant<int, 2>,
+                    integral_constant<int, 3>,
+                    integral_constant<int, 4>
                 >::type,
-                std::integral_constant<int, 10>
+                integral_constant<int, 10>
               >::value, "");
 
 

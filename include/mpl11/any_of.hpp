@@ -6,9 +6,8 @@
 #define MPL11_ANY_OF_HPP
 
 #include <mpl11/apply.hpp>
+#include <mpl11/bool.hpp>
 #include <mpl11/or.hpp>
-
-#include <type_traits>
 
 
 namespace mpl11 {
@@ -18,7 +17,7 @@ namespace mpl11 {
  * the elements in a parameter pack.
  */
 template <typename F, typename ...> struct any_of;
-template <typename F> struct any_of<F> : std::false_type { };
+template <typename F> struct any_of<F> : false_ { };
 template <typename F, typename T> struct any_of<F, T> : apply<F, T> { };
 
 template <typename F, typename T, typename ...Rest>

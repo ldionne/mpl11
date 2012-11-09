@@ -3,18 +3,17 @@
  */
 
 #include <mpl11/any_of.hpp>
-
-#include <type_traits>
+#include <mpl11/bool.hpp>
 
 
 using namespace mpl11;
 
 struct always_true {
-    template <typename ...> struct apply : std::true_type { };
+    template <typename ...> struct apply : true_ { };
 };
 
 struct always_false {
-    template <typename ...> struct apply : std::false_type { };
+    template <typename ...> struct apply : false_ { };
 };
 
 struct identity {
@@ -30,5 +29,5 @@ static_assert(any_of<always_true, int, float, char>::value, "");
 static_assert(!any_of<always_false, int>::value, "");
 static_assert(!any_of<always_false, int, float, char>::value, "");
 
-static_assert(any_of<identity, std::true_type, std::false_type>::value, "");
-static_assert(!any_of<identity, std::false_type, std::false_type>::value, "");
+static_assert(any_of<identity, true_, false_>::value, "");
+static_assert(!any_of<identity, false_, false_>::value, "");

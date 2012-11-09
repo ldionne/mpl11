@@ -6,10 +6,10 @@
 #define MPL11_PLACEHOLDERS_HPP
 
 #include <mpl11/any_of.hpp>
+#include <mpl11/bool.hpp>
 #include <mpl11/quote.hpp>
 
 #include <cstddef>
-#include <type_traits>
 
 
 namespace mpl11 {
@@ -30,10 +30,10 @@ using _9 = placeholder<9>;
  * Determine whether an expression is a placeholder expression.
  */
 template <typename T>
-struct is_placeholder_expr : std::false_type { };
+struct is_placeholder_expr : false_ { };
 
 template <std::size_t i>
-struct is_placeholder_expr<placeholder<i>> : std::true_type { };
+struct is_placeholder_expr<placeholder<i>> : true_ { };
 
 template <template <typename ...> class F, typename ...Placeholders>
 struct is_placeholder_expr<F<Placeholders...>>

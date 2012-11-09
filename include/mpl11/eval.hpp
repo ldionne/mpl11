@@ -5,9 +5,6 @@
 #ifndef MPL11_EVAL_HPP
 #define MPL11_EVAL_HPP
 
-#include <type_traits>
-
-
 namespace mpl11 {
 
 /**

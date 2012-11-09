@@ -3,7 +3,7 @@
  */
 
 #include <mpl11/lambda.hpp>
-
+#include <mpl11/integral_constant.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/placeholders.hpp>
 
@@ -13,17 +13,13 @@
 using namespace mpl11;
 
 template <int i>
-using int_ = std::integral_constant<int, i>;
+using int_ = integral_constant<int, i>;
 
 template <typename X, typename Y>
 struct add : int_<X::value + Y::value> { };
 
 // lambda with nested placeholder expressions.
-using triple = lambda<add<
-                                add<_1, _1>,
-                                _1
-                            >
-               >::type;
+using triple = lambda<add<add<_1, _1>, _1>>::type;
 static_assert(triple::apply<int_<4>>::value == 12, "");
 
 // lambda with a non lambda expression.

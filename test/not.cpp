@@ -3,26 +3,20 @@
  */
 
 #include <mpl11/not.hpp>
+#include <mpl11/bool.hpp>
 
 #include <type_traits>
 
 
 using namespace mpl11;
 
-static_assert(std::is_same<
-                not_<std::true_type>::type,
-                std::false_type
-              >::value, "");
+static_assert(std::is_same< not_<true_>::type, false_>::value, "");
+static_assert(std::is_same<not_<false_>::type, true_>::value, "");
 
-static_assert(std::is_same<
-                not_<std::false_type>::type,
-                std::true_type
-              >::value, "");
+static_assert(not_<false_>::value, "");
+static_assert(!not_<true_>::value, "");
 
-static_assert(not_<std::false_type>::value, "");
-static_assert(!not_<std::true_type>::value, "");
-
-struct mtrue_ { using type = std::true_type; };
-struct mfalse_ { using type = std::false_type; };
+struct mtrue_ { using type = true_; };
+struct mfalse_ { using type = false_; };
 static_assert(not_<mfalse_>::value, "");
 static_assert(!not_<mtrue_>::value, "");

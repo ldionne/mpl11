@@ -5,8 +5,9 @@
 #ifndef MPL11_SIZE_HPP
 #define MPL11_SIZE_HPP
 
+#include <mpl11/integral_constant.hpp>
+
 #include <cstddef>
-#include <type_traits>
 
 
 namespace mpl11 {
@@ -16,7 +17,7 @@ namespace mpl11 {
  */
 template <typename ...T>
 struct size {
-    using type = std::integral_constant<std::size_t, sizeof...(T)>;
+    using type = integral_constant<std::size_t, sizeof...(T)>;
     static auto const value = type::value;
 };
 
