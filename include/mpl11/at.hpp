@@ -5,8 +5,8 @@
 #ifndef MPL11_AT_HPP
 #define MPL11_AT_HPP
 
-#include <mpl11/integral_constant.hpp>
 #include <mpl11/size.hpp>
+#include <mpl11/types.hpp>
 
 #include <cstddef>
 

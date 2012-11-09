@@ -14,7 +14,6 @@
 #include <mpl11/at.hpp>
 #include <mpl11/back.hpp>
 #include <mpl11/bind.hpp>
-#include <mpl11/bool.hpp>
 #include <mpl11/empty.hpp>
 #include <mpl11/eval_if.hpp>
 #include <mpl11/eval.hpp>
@@ -24,7 +23,6 @@
 #include <mpl11/front.hpp>
 #include <mpl11/identity.hpp>
 #include <mpl11/if.hpp>
-#include <mpl11/integral_constant.hpp>
 #include <mpl11/introspect.hpp>
 #include <mpl11/lambda.hpp>
 #include <mpl11/not.hpp>
@@ -42,6 +40,7 @@
 #include <mpl11/satisfies.hpp>
 #include <mpl11/size.hpp>
 #include <mpl11/transform.hpp>
+#include <mpl11/types.hpp>
 #include <mpl11/when.hpp>
 #include <mpl11/while.hpp>
 

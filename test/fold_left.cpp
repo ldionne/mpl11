@@ -3,9 +3,9 @@
  */
 
 #include <mpl11/fold_left.hpp>
-#include <mpl11/integral_constant.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/push_back.hpp>
+#include <mpl11/types.hpp>
 
 #include <type_traits>
 

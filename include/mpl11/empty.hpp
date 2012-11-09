@@ -5,7 +5,7 @@
 #ifndef MPL11_EMPTY_HPP
 #define MPL11_EMPTY_HPP
 
-#include <mpl11/bool.hpp>
+#include <mpl11/types.hpp>
 
 
 namespace mpl11 {

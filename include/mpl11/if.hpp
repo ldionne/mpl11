@@ -5,8 +5,7 @@
 #ifndef MPL11_IF_HPP
 #define MPL11_IF_HPP
 
-#include <mpl11/bool.hpp>
-#include <mpl11/integral_constant.hpp>
+#include <mpl11/types.hpp>
 
 
 namespace mpl11 {

@@ -3,7 +3,7 @@
  */
 
 #include <mpl11/size.hpp>
-#include <mpl11/integral_constant.hpp>
+#include <mpl11/types.hpp>
 
 #include <type_traits>
 

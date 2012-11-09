@@ -6,8 +6,8 @@
 #define MPL11_PLACEHOLDERS_HPP
 
 #include <mpl11/any_of.hpp>
-#include <mpl11/bool.hpp>
 #include <mpl11/quote.hpp>
+#include <mpl11/types.hpp>
 
 #include <cstddef>
 

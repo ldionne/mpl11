@@ -5,7 +5,7 @@
 #ifndef MPL11_SIZE_HPP
 #define MPL11_SIZE_HPP
 
-#include <mpl11/integral_constant.hpp>
+#include <mpl11/types.hpp>
 
 #include <cstddef>
 

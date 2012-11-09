@@ -5,7 +5,7 @@
 #ifndef MPL11_WHEN_HPP
 #define MPL11_WHEN_HPP
 
-#include <mpl11/bool.hpp>
+#include <mpl11/types.hpp>
 
 
 namespace mpl11 {

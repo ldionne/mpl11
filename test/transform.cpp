@@ -3,16 +3,13 @@
  */
 
 #include <mpl11/transform.hpp>
-#include <mpl11/integral_constant.hpp>
 #include <mpl11/pack.hpp>
+#include <mpl11/types.hpp>
 
 #include <type_traits>
 
 
 using namespace mpl11;
-
-template <int i>
-using int_ = integral_constant<int, i>;
 
 template <int i>
 struct add {

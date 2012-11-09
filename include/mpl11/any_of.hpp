@@ -6,7 +6,7 @@
 #define MPL11_ANY_OF_HPP
 
 #include <mpl11/apply.hpp>
-#include <mpl11/bool.hpp>
+#include <mpl11/types.hpp>
 #include <mpl11/or.hpp>
 
 
