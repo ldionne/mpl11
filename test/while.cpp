@@ -16,22 +16,20 @@ struct less_than {
     template <typename> struct apply;
 
     template <std::size_t i>
-    struct apply<integral_constant<std::size_t, i>>
-        : integral_constant<bool, i < N> { };
+    struct apply<size_t_<i>> : bool_<i < N> { };
 };
 
 struct increment {
     template <typename> struct apply;
 
     template <std::size_t i>
-    struct apply<integral_constant<std::size_t, i>>
-        : integral_constant<std::size_t, i + 1> { };
+    struct apply<size_t_<i>> : size_t_<i + 1> { };
 };
 
 static_assert(std::is_same<
                 while_<less_than<10>,
                     increment,
-                    integral_constant<std::size_t, 0>
+                    size_t_<0>
                 >::type,
-                integral_constant<std::size_t, 10>
+                size_t_<10>
               >::value, "");

@@ -7,8 +7,6 @@
 
 #include <mpl11/types.hpp>
 
-#include <cstddef>
-
 
 namespace mpl11 {
 
@@ -16,10 +14,7 @@ namespace mpl11 {
  * Determine the number of parameters in a parameter pack.
  */
 template <typename ...T>
-struct size {
-    using type = integral_constant<std::size_t, sizeof...(T)>;
-    static auto const value = type::value;
-};
+struct size : size_t_<sizeof...(T)> { };
 
 } // end namespace mpl11
 

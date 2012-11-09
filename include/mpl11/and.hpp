@@ -5,6 +5,7 @@
 #ifndef MPL11_AND_HPP
 #define MPL11_AND_HPP
 
+#include <mpl11/cast.hpp>
 #include <mpl11/types.hpp>
 
 
@@ -16,7 +17,11 @@ namespace mpl11 {
  */
 namespace detail {
     template <typename T, typename ...Rest>
-    struct and_impl : and_impl<typename T::type, Rest...> { };
+    struct and_impl
+        : and_impl<
+            typename cast<bool, typename T::type>::type, Rest...
+        >
+    { };
 
     template <typename ...Rest>
     struct and_impl<true_, Rest...> : and_impl<Rest...> { };

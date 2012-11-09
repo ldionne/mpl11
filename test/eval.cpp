@@ -9,11 +9,9 @@
 
 using namespace mpl11;
 
-#define ASSERT_SAME(x, y) static_assert(std::is_same<x, y>::value, "")
-
 template <typename T>
 struct delayed {
     using type = T;
 };
 
-ASSERT_SAME(eval<delayed<int>>::type, int);
+static_assert(std::is_same<eval<delayed<int>>::type, int>::value, "");

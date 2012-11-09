@@ -13,8 +13,8 @@ namespace mpl11 {
 /**
  * Determine whether a parameter pack is empty.
  */
-template <typename ...> struct empty { using type = false_; };
-template <> struct empty<> { using type = true_; };
+template <typename ...> struct empty : false_ { };
+template <> struct empty<> : true_ { };
 
 } // end namespace mpl11
 

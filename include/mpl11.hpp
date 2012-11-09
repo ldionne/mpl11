@@ -14,6 +14,7 @@
 #include <mpl11/at.hpp>
 #include <mpl11/back.hpp>
 #include <mpl11/bind.hpp>
+#include <mpl11/cast.hpp>
 #include <mpl11/empty.hpp>
 #include <mpl11/eval_if.hpp>
 #include <mpl11/eval.hpp>

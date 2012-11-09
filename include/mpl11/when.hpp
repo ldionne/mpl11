@@ -5,19 +5,18 @@
 #ifndef MPL11_WHEN_HPP
 #define MPL11_WHEN_HPP
 
+#include <mpl11/cast.hpp>
 #include <mpl11/types.hpp>
 
 
 namespace mpl11 {
 
 /**
- * Expand to an invalid type when @p Bool is false_, and to @p T otherwise.
+ * Expand to an invalid type when @p Expr is false_, and to @p T otherwise.
  */
-template <typename Bool, typename T> struct when;
-
-template <typename Expr, Expr expr, typename T>
-struct when<integral_constant<Expr, expr>, T>
-    : when<bool_<expr>, T>
+template <typename Expr, typename T>
+struct when
+    : when<typename cast<bool, Expr>::type, T>
 { };
 
 template <typename T>

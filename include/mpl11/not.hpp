@@ -5,6 +5,7 @@
 #ifndef MPL11_NOT_HPP
 #define MPL11_NOT_HPP
 
+#include <mpl11/cast.hpp>
 #include <mpl11/types.hpp>
 
 
@@ -15,7 +16,9 @@ namespace mpl11 {
  * as argument.
  */
 template <typename T>
-struct not_ : not_<typename T::type> { };
+struct not_
+    : not_<typename cast<bool, typename T::type>::type>
+{ };
 
 template <>
 struct not_<true_> : false_ { };

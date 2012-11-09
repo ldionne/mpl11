@@ -6,7 +6,6 @@
 #define MPL11_AT_HPP
 
 #include <mpl11/size.hpp>
-#include <mpl11/types.hpp>
 
 #include <cstddef>
 
@@ -18,23 +17,22 @@ namespace mpl11 {
  * Precondition: @p i is smaller than the number of parameters.
  */
 namespace detail {
-template <typename Counter, typename ...> struct at_impl;
+template <std::size_t counter, typename ...> struct at_impl;
 
-template <typename Distance, typename First, typename ...Rest>
-struct at_impl<integral_constant<Distance, 0>, First, Rest...> {
+template <typename First, typename ...Rest>
+struct at_impl<0, First, Rest...> {
     using type = First;
 };
 
-template <typename Distance, Distance pos, typename First, typename ...Rest>
-struct at_impl<integral_constant<Distance, pos>, First, Rest...>
-    : at_impl<integral_constant<Distance, pos - 1>, Rest...> { };
+template <std::size_t pos, typename First, typename ...Rest>
+struct at_impl<pos, First, Rest...>
+    : at_impl<pos - 1, Rest...> { };
 } // end namespace detail
 
 template <std::size_t pos, typename ...Range>
 struct at {
-    static_assert(pos < size<Range...>::type::value, "Index out of range.");
-    using type = typename detail::at_impl<
-                        integral_constant<std::size_t, pos>, Range...>::type;
+    static_assert(pos < size<Range...>::value, "Index out of range.");
+    using type = typename detail::at_impl<pos, Range...>::type;
 };
 
 } // end namespace mpl11

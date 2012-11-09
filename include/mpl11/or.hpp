@@ -5,6 +5,7 @@
 #ifndef MPL11_OR_HPP
 #define MPL11_OR_HPP
 
+#include <mpl11/cast.hpp>
 #include <mpl11/types.hpp>
 
 
@@ -16,7 +17,9 @@ namespace mpl11 {
  */
 namespace detail {
     template <typename T, typename ...Rest>
-    struct or_impl : or_impl<typename T::type, Rest...> { };
+    struct or_impl
+        : or_impl<typename cast<bool, typename T::type>::type, Rest...>
+    { };
 
     template <typename ...Rest>
     struct or_impl<false_, Rest...> : or_impl<Rest...> { };
