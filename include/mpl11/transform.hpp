@@ -18,20 +18,9 @@ namespace mpl11 {
  * Note: The result is in packed form.
  */
 template <typename F, typename ...Range>
-struct transform : transform<F, pack<Range...>, pack<>> { };
-
-template <typename F, typename ...Results>
-struct transform<F, pack<>, pack<Results...>> {
-    using type = pack<Results...>;
+struct transform {
+    using type = pack<typename apply<F, Range>::type...>;
 };
-
-template <typename F, typename First, typename ...Rest, typename ...Results>
-struct transform<F, pack<First, Rest...>, pack<Results...>>
-    : transform<F,
-        pack<Rest...>,
-        pack<Results..., typename apply<F, First>::type>
-    >
-{ };
 
 } // end namespace mpl11
 
