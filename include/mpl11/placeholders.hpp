@@ -25,6 +25,7 @@ using _6 = placeholder<6>;
 using _7 = placeholder<7>;
 using _8 = placeholder<8>;
 using _9 = placeholder<9>;
+struct _all { };
 
 /**
  * Determine whether an expression is a placeholder expression.
@@ -34,6 +35,9 @@ struct is_placeholder_expr : false_ { };
 
 template <std::size_t i>
 struct is_placeholder_expr<placeholder<i>> : true_ { };
+
+template <>
+struct is_placeholder_expr<_all> : true_ { };
 
 template <template <typename ...> class F, typename ...Placeholders>
 struct is_placeholder_expr<F<Placeholders...>>
