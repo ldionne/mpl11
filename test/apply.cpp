@@ -3,26 +3,24 @@
  */
 
 #include <mpl11/apply.hpp>
+#include <mpl11/identity.hpp>
 #include <mpl11/pack.hpp>
+#include <mpl11/quote.hpp>
 
 #include <type_traits>
 
 
 using namespace mpl11;
 
-struct identity {
-    template <typename T> struct apply { using type = T; };
+struct take2nd {
+    template <typename T, typename U>
+    struct apply { using type = U; };
 };
 
 static_assert(std::is_same<
                 int,
-                apply<identity, int>::type
+                apply<quote<identity>, int>::type
               >::value, "");
-
-
-struct take2nd {
-    template <typename T, typename U> struct apply { using type = U; };
-};
 
 static_assert(std::is_same<
                 float,

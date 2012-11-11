@@ -3,31 +3,22 @@
  */
 
 #include <mpl11/all_of.hpp>
+#include <mpl11/always.hpp>
+#include <mpl11/identity.hpp>
+#include <mpl11/quote.hpp>
 #include <mpl11/types.hpp>
 
 
 using namespace mpl11;
 
-struct always_true {
-    template <typename ...> struct apply : true_ { };
-};
+static_assert(all_of<always<true_>>::value, "");
+static_assert(all_of<always<false_>>::value, "");
 
-struct always_false {
-    template <typename ...> struct apply : false_ { };
-};
+static_assert(all_of<always<true_>, int>::value, "");
+static_assert(all_of<always<true_>, int, float, char>::value, "");
 
-struct identity {
-    template <typename T> struct apply { using type = T; };
-};
+static_assert(!all_of<always<false_>, int>::value, "");
+static_assert(!all_of<always<false_>, int, float, char>::value, "");
 
-static_assert(all_of<always_true>::value, "");
-static_assert(all_of<always_false>::value, "");
-
-static_assert(all_of<always_true, int>::value, "");
-static_assert(all_of<always_true, int, float, char>::value, "");
-
-static_assert(!all_of<always_false, int>::value, "");
-static_assert(!all_of<always_false, int, float, char>::value, "");
-
-static_assert(all_of<identity, true_, true_>::value, "");
-static_assert(!all_of<identity, true_, false_>::value, "");
+static_assert(all_of<quote<identity>, true_, true_>::value, "");
+static_assert(!all_of<quote<identity>, true_, false_>::value, "");

@@ -3,7 +3,9 @@
  */
 
 #include <mpl11/transform.hpp>
+#include <mpl11/identity.hpp>
 #include <mpl11/pack.hpp>
+#include <mpl11/quote.hpp>
 #include <mpl11/types.hpp>
 
 #include <type_traits>
@@ -26,16 +28,7 @@ static_assert(std::is_same<
                 >
               >::value, "");
 
-
-struct identity {
-    template <typename T>
-    struct apply { using type = T; };
-};
 static_assert(std::is_same<
-                transform<identity,
-                    int, float, char
-                >::type,
-                pack<
-                    int, float, char
-                >
+                transform<quote<identity>, int, float, char>::type,
+                pack<int, float, char>
               >::value, "");

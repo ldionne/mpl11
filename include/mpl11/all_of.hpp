@@ -7,6 +7,7 @@
 
 #include <mpl11/and.hpp>
 #include <mpl11/apply.hpp>
+#include <mpl11/cast.hpp>
 #include <mpl11/types.hpp>
 
 
@@ -18,7 +19,11 @@ namespace mpl11 {
  */
 template <typename F, typename ...> struct all_of;
 template <typename F> struct all_of<F> : true_ { };
-template <typename F, typename T> struct all_of<F, T> : apply<F, T> { };
+
+template <typename F, typename T>
+struct all_of<F, T>
+    : cast<bool, typename apply<F, T>::type>::type
+{ };
 
 template <typename F, typename T, typename ...Rest>
 struct all_of<F, T, Rest...>

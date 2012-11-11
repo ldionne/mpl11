@@ -6,6 +6,7 @@
 #define MPL11_ANY_OF_HPP
 
 #include <mpl11/apply.hpp>
+#include <mpl11/cast.hpp>
 #include <mpl11/types.hpp>
 #include <mpl11/or.hpp>
 
@@ -18,7 +19,10 @@ namespace mpl11 {
  */
 template <typename F, typename ...> struct any_of;
 template <typename F> struct any_of<F> : false_ { };
-template <typename F, typename T> struct any_of<F, T> : apply<F, T> { };
+template <typename F, typename T>
+struct any_of<F, T>
+    : cast<bool, typename apply<F, T>::type>::type
+{ };
 
 template <typename F, typename T, typename ...Rest>
 struct any_of<F, T, Rest...>
