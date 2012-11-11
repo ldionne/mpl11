@@ -34,6 +34,7 @@
 #include <mpl11/push_back.hpp>
 #include <mpl11/push_front.hpp>
 #include <mpl11/quote.hpp>
+#include <mpl11/rebind.hpp>
 #include <mpl11/requires.hpp>
 #include <mpl11/rotate_left.hpp>
 #include <mpl11/rotate_right.hpp>
