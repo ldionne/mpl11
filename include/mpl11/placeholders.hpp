@@ -6,6 +6,7 @@
 #define MPL11_PLACEHOLDERS_HPP
 
 #include <mpl11/any_of.hpp>
+#include <mpl11/arg.hpp>
 #include <mpl11/quote.hpp>
 #include <mpl11/types.hpp>
 
@@ -14,7 +15,7 @@
 
 namespace mpl11 {
 
-template <std::size_t> struct placeholder { };
+template <std::size_t n> using placeholder = arg<n>;
 
 using _1 = placeholder<1>;
 using _2 = placeholder<2>;
