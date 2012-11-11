@@ -24,7 +24,6 @@
 #include <mpl11/front.hpp>
 #include <mpl11/identity.hpp>
 #include <mpl11/if.hpp>
-#include <mpl11/introspect.hpp>
 #include <mpl11/lambda.hpp>
 #include <mpl11/not.hpp>
 #include <mpl11/or.hpp>

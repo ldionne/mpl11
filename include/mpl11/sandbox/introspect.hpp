@@ -2,8 +2,8 @@
  * This file defines the @em introspect metafunction.
  */
 
-#ifndef MPL11_INTROSPECT_HPP
-#define MPL11_INTROSPECT_HPP
+#ifndef MPL11_SANDBOX_INTROSPECT_HPP
+#define MPL11_SANDBOX_INTROSPECT_HPP
 
 #include <mpl11/apply.hpp>
 #include <mpl11/arg.hpp>
@@ -14,6 +14,7 @@
 
 
 namespace mpl11 {
+namespace sandbox {
 
 namespace types {
     struct primitive { };
@@ -199,6 +200,7 @@ struct introspect<Result (Args...)> {
     template <std::size_t i> using arg = detail::introspect_at<i, Args...>;
 };
 
+} // end namespace sandbox
 } // end namespace mpl11
 
-#endif // !MPL11_INTROSPECT_HPP
+#endif // !MPL11_SANDBOX_INTROSPECT_HPP

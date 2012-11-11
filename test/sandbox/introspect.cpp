@@ -2,12 +2,13 @@
  * This file defines unit tests for the @em introspect metafunction.
  */
 
-#include <mpl11/introspect.hpp>
+#include <mpl11/sandbox/introspect.hpp>
 
 #include <type_traits>
 
 
 using namespace mpl11;
+using namespace mpl11::sandbox;
 
 #define ASSERT_SAME(a, b) static_assert(std::is_same<a, b>::value,          \
                                         STRINGIZE(a is not the same as b))
