@@ -10,6 +10,7 @@
 #include <mpl11/and.hpp>
 #include <mpl11/any_of.hpp>
 #include <mpl11/apply.hpp>
+#include <mpl11/apply_pack.hpp>
 #include <mpl11/arg.hpp>
 #include <mpl11/at.hpp>
 #include <mpl11/back.hpp>

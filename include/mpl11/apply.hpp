@@ -1,5 +1,5 @@
 /**
- * This file defines the apply metafunction.
+ * This file defines the `apply` metafunction.
  */
 
 #ifndef MPL11_APPLY_HPP
@@ -14,18 +14,12 @@ namespace mpl11 {
  * Apply a metafunction class on the given arguments.
  */
 template <typename F, typename ...Args>
-struct apply : F::template apply<Args...> { };
-
-/**
- * Apply a metafunction class on packed arguments.
- *
- * Note: We need a different metafunction because it would be impossible
- *       to call apply with packed arguments otherwise.
- */
-template <typename F, typename Pack> struct apply_pack;
-template <typename F, typename ...Args>
-struct apply_pack<F, pack<Args...>> : apply<F, Args...> { };
+struct apply
+    : F::template apply<Args...>
+{ };
 
 } // end namespace mpl11
+
+#include <mpl11/apply_pack.hpp> // For backward compatibility
 
 #endif // !MPL11_APPLY_HPP
