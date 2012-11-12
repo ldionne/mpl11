@@ -5,10 +5,9 @@
 #ifndef MPL11_PLACEHOLDERS_HPP
 #define MPL11_PLACEHOLDERS_HPP
 
-#include <mpl11/any_of.hpp>
 #include <mpl11/arg.hpp>
 #include <mpl11/bool.hpp>
-#include <mpl11/quote.hpp>
+#include <mpl11/or.hpp>
 
 #include <cstddef>
 
@@ -29,7 +28,7 @@ using _9 = placeholder<9>;
 struct _all { };
 
 /**
- * Determine whether an expression is a placeholder expression.
+ * Metafunction determining whether an expression is a placeholder expression.
  */
 template <typename T>
 struct is_placeholder_expr : false_ { };
@@ -40,12 +39,23 @@ struct is_placeholder_expr<placeholder<i>> : true_ { };
 template <>
 struct is_placeholder_expr<_all> : true_ { };
 
+namespace detail {
+    template <typename ...> struct any_is_placeholder_expr : false_ { };
+
+    // Note: We can't use any_of because it uses apply, which
+    //       causes a circular dependency.
+    template <typename First, typename ...Rest>
+    struct any_is_placeholder_expr<First, Rest...>
+        : or_<
+            is_placeholder_expr<First>,
+            any_is_placeholder_expr<Rest...>
+        >
+    { };
+} // end namespace detail
+
 template <template <typename ...> class F, typename ...Placeholders>
 struct is_placeholder_expr<F<Placeholders...>>
-    : any_of<
-        quote<is_placeholder_expr>,
-        Placeholders...
-    >
+    : detail::any_is_placeholder_expr<Placeholders...>
 { };
 
 } // end namespace mpl11
