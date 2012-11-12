@@ -37,6 +37,12 @@ struct lambda_impl<placeholder<i>> {
     using is_lambda_expr = true_;
 };
 
+template <>
+struct lambda_impl<_all> {
+    using type = _all;
+    using is_lambda_expr = true_;
+};
+
 // A template template parameter might be a placeholder expression.
 // We determine whether it is one and return accordingly.
 template <template <typename ...> class F, typename ...Placeholders>

@@ -32,3 +32,12 @@ static_assert(std::is_same<
                 reversed::apply<int, float, char>::type,
                 pack<char, float, int>
               >::value, "");
+
+// lambda with the special _all placeholder.
+static_assert(std::is_same<
+                apply<
+                    lambda<pack<_all>>::type,
+                    int, float, char
+                >::type,
+                pack<int, float, char>
+              >::value, "");
