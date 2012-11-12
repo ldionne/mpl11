@@ -17,20 +17,20 @@ struct less_than {
     template <typename> struct apply;
 
     template <std::size_t i>
-    struct apply<size_t<i>> : bool_<i < N> { };
+    struct apply<mpl11::size_t<i>> : bool_<i < N> { };
 };
 
 struct increment {
     template <typename> struct apply;
 
     template <std::size_t i>
-    struct apply<size_t<i>> : size_t<i + 1> { };
+    struct apply<mpl11::size_t<i>> : mpl11::size_t<i + 1> { };
 };
 
 static_assert(std::is_same<
                 while_<less_than<10>,
                     increment,
-                    size_t<0>
+                    mpl11::size_t<0>
                 >::type,
-                size_t<10>
+                mpl11::size_t<10>
               >::value, "");

@@ -14,7 +14,7 @@ namespace mpl11 {
  * Determine the number of parameters in a parameter pack.
  */
 template <typename ...T>
-struct size : size_t<sizeof...(T)> { };
+struct size : mpl11::size_t<sizeof...(T)> { };
 
 } // end namespace mpl11
 
