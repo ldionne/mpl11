@@ -7,8 +7,8 @@
 
 #include <mpl11/and.hpp>
 #include <mpl11/apply.hpp>
+#include <mpl11/bool.hpp>
 #include <mpl11/cast.hpp>
-#include <mpl11/types.hpp>
 
 
 namespace mpl11 {

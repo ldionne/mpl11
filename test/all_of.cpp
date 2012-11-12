@@ -4,9 +4,9 @@
 
 #include <mpl11/all_of.hpp>
 #include <mpl11/always.hpp>
+#include <mpl11/bool.hpp>
 #include <mpl11/identity.hpp>
 #include <mpl11/quote.hpp>
-#include <mpl11/types.hpp>
 
 
 using namespace mpl11;

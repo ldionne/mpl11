@@ -3,7 +3,7 @@
  */
 
 #include <mpl11/or.hpp>
-#include <mpl11/types.hpp>
+#include <mpl11/bool.hpp>
 
 #include <type_traits>
 

@@ -3,7 +3,8 @@
  */
 
 #include <mpl11/cast.hpp>
-#include <mpl11/types.hpp>
+#include <mpl11/bool.hpp>
+#include <mpl11/int.hpp>
 
 #include <type_traits>
 

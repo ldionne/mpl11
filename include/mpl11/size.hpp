@@ -5,7 +5,7 @@
 #ifndef MPL11_SIZE_HPP
 #define MPL11_SIZE_HPP
 
-#include <mpl11/types.hpp>
+#include <mpl11/size_t.hpp>
 
 
 namespace mpl11 {
@@ -14,7 +14,7 @@ namespace mpl11 {
  * Determine the number of parameters in a parameter pack.
  */
 template <typename ...T>
-struct size : size_t_<sizeof...(T)> { };
+struct size : size_t<sizeof...(T)> { };
 
 } // end namespace mpl11
 

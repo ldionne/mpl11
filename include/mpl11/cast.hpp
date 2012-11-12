@@ -5,7 +5,7 @@
 #ifndef MPL11_CAST_HPP
 #define MPL11_CAST_HPP
 
-#include <mpl11/types.hpp>
+#include <mpl11/integral_constant.hpp>
 
 
 namespace mpl11 {

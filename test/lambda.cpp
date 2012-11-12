@@ -3,9 +3,9 @@
  */
 
 #include <mpl11/lambda.hpp>
+#include <mpl11/int.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/placeholders.hpp>
-#include <mpl11/types.hpp>
 
 #include <type_traits>
 

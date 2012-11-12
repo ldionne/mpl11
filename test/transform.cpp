@@ -4,9 +4,9 @@
 
 #include <mpl11/transform.hpp>
 #include <mpl11/identity.hpp>
+#include <mpl11/int.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/quote.hpp>
-#include <mpl11/types.hpp>
 
 #include <type_traits>
 

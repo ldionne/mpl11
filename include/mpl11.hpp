@@ -14,17 +14,22 @@
 #include <mpl11/at.hpp>
 #include <mpl11/back.hpp>
 #include <mpl11/bind.hpp>
+#include <mpl11/bool.hpp>
 #include <mpl11/cast.hpp>
+#include <mpl11/char.hpp>
 #include <mpl11/empty.hpp>
-#include <mpl11/eval_if.hpp>
 #include <mpl11/eval.hpp>
+#include <mpl11/eval_if.hpp>
 #include <mpl11/fail_on.hpp>
 #include <mpl11/fold_left.hpp>
 #include <mpl11/fold_right.hpp>
 #include <mpl11/front.hpp>
 #include <mpl11/identity.hpp>
 #include <mpl11/if.hpp>
+#include <mpl11/int.hpp>
+#include <mpl11/integral_constant.hpp>
 #include <mpl11/lambda.hpp>
+#include <mpl11/long.hpp>
 #include <mpl11/not.hpp>
 #include <mpl11/or.hpp>
 #include <mpl11/pack.hpp>
@@ -39,9 +44,11 @@
 #include <mpl11/rotate_left.hpp>
 #include <mpl11/rotate_right.hpp>
 #include <mpl11/satisfies.hpp>
+#include <mpl11/short.hpp>
 #include <mpl11/size.hpp>
+#include <mpl11/size_t.hpp>
 #include <mpl11/transform.hpp>
-#include <mpl11/types.hpp>
+#include <mpl11/void.hpp>
 #include <mpl11/when.hpp>
 #include <mpl11/while.hpp>
 

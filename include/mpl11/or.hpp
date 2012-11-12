@@ -5,8 +5,8 @@
 #ifndef MPL11_OR_HPP
 #define MPL11_OR_HPP
 
+#include <mpl11/bool.hpp>
 #include <mpl11/cast.hpp>
-#include <mpl11/types.hpp>
 
 
 namespace mpl11 {
