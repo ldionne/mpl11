@@ -12,10 +12,17 @@ namespace mpl11 {
 
 /**
  * Evaluate one of its two nullary-metafunction arguments depending on the
- * value of @p C.
+ * value of @p Cond.
  */
-template <typename C, typename T, typename F>
-struct eval_if : if_<C, T, F>::type { };
+template <typename Cond, typename True, typename False>
+struct eval_if
+    : if_<Cond, True, False>::type
+{ };
+
+template <bool cond, typename True, typename False>
+struct eval_if_c
+    : if_c<cond, True, False>::type
+{ };
 
 } // end namespace mpl11
 

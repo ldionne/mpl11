@@ -18,7 +18,7 @@ namespace mpl11 {
 template <std::size_t n>
 struct arg {
     template <typename ...Args>
-    struct apply : at<n - 1, Args...> { };
+    struct apply : at_c<n - 1, Args...> { };
 };
 
 } // end namespace mpl11

@@ -29,6 +29,11 @@ struct if_<false_, True, False> {
     using type = False;
 };
 
+template <bool cond, typename True, typename False>
+struct if_c
+    : if_<bool_<cond>, True, False>
+{ };
+
 } // end namespace mpl11
 
 #endif // !MPL11_IF_HPP
