@@ -20,9 +20,9 @@ template <typename To, typename From> struct cast;
  * It allows us to use something like `cast<bool, int_<2>>` to obtain `true_`.
  */
 template <typename To, typename From, From from>
-struct cast<To, integral_constant<From, from>> {
-    using type = integral_constant<To, static_cast<To>(from)>;
-};
+struct cast<To, integral_constant<From, from>>
+    : integral_constant<To, static_cast<To>(from)>
+{ };
 
 } // end namespace mpl11
 
