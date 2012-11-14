@@ -3,7 +3,6 @@
  */
 
 #include <mpl11/bind.hpp>
-
 #include <mpl11/apply.hpp>
 #include <mpl11/identity.hpp>
 #include <mpl11/pack.hpp>
