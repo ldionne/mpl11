@@ -3,9 +3,12 @@
  */
 
 #include <mpl11/lambda.hpp>
+#include <mpl11/apply.hpp>
+#include <mpl11/bind.hpp>
 #include <mpl11/int.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/placeholders.hpp>
+#include <mpl11/quote.hpp>
 
 #include <type_traits>
 
@@ -40,4 +43,21 @@ static_assert(std::is_same<
                     int, float, char
                 >::type,
                 pack<int, float, char>
+              >::value, "");
+
+// lambda with bind expressions.
+using bound_add = bind<quote<add>, _1, _2>;
+static_assert(std::is_same<
+                lambda<bound_add>::type,
+                bound_add
+              >::value, "");
+
+static_assert(std::is_same<
+                apply<bound_add, int_<1>, int_<2>>::type,
+                int_<3>
+              >::value, "");
+
+static_assert(std::is_same<
+                apply<lambda<bound_add>::type, int_<1>, int_<2>>::type,
+                int_<3>
               >::value, "");

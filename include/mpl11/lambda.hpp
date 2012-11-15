@@ -22,6 +22,11 @@ namespace detail {
         using type = Expression;
     };
 
+    template <typename ...Placeholders>
+    struct parse_lambda<bind<Placeholders...>> {
+        using type = bind<Placeholders...>;
+    };
+
     template <template <typename ...> class F, typename ...Placeholders>
     struct parse_lambda<F<Placeholders...>> {
         using type = bind<quote<F>, typename lambda<Placeholders>::type...>;
