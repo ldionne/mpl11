@@ -49,6 +49,7 @@
 #include <mpl11/size.hpp>
 #include <mpl11/size_t.hpp>
 #include <mpl11/transform.hpp>
+#include <mpl11/unpack_args.hpp>
 #include <mpl11/void.hpp>
 #include <mpl11/when.hpp>
 #include <mpl11/while.hpp>
