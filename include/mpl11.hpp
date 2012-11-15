@@ -37,6 +37,7 @@
 #include <mpl11/placeholders.hpp>
 #include <mpl11/pop_back.hpp>
 #include <mpl11/pop_front.hpp>
+#include <mpl11/protect.hpp>
 #include <mpl11/push_back.hpp>
 #include <mpl11/push_front.hpp>
 #include <mpl11/quote.hpp>

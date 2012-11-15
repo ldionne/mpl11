@@ -8,9 +8,9 @@
 namespace mpl11 {
 
 /**
- * Prevent its arguments from being recognized as a bind expression.
+ * Prevent its argument from being recognized as a bind expression.
  */
-template <typename ...Args> struct protect { };
+template <typename Arg> struct protect : Arg { };
 
 } // end namespace mpl11
 

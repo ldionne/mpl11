@@ -1,5 +1,5 @@
 /**
- * This file defines the bind metafunction.
+ * This file defines the `bind` metafunction.
  */
 
 #ifndef MPL11_BIND_HPP
@@ -9,6 +9,7 @@
 #include <mpl11/arg.hpp>
 #include <mpl11/pack.hpp>
 #include <mpl11/placeholders.hpp>
+#include <mpl11/protect.hpp>
 
 #include <cstddef>
 
@@ -56,6 +57,12 @@ namespace detail {
             : pack<
                 typename apply<bind<NestedPlaceholders...>, Args...>::type
             >
+        { };
+
+        // When a type is "protected", explicitly skip it.
+        template <typename Protected, typename Dummy>
+        struct replace_one<protect<Protected>, Dummy>
+            : pack<protect<Protected>>
         { };
 
         // Concatenate two variadic argument packs.
