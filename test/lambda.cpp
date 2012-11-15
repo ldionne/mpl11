@@ -22,11 +22,21 @@ struct add : int_<X::value + Y::value> { };
 using triple = lambda<add<add<_1, _1>, _1>>::type;
 static_assert(triple::apply<int_<4>>::value == 12, "");
 
-// lambda with a non lambda expression.
-using expression_without_placeholders = add<int_<1>, add<int_<2>, int_<3>>>;
+// lambda with a non lambda expression metafunction.
+using metafunction_without_placeholders = add<int_<1>, add<int_<2>, int_<3>>>;
 static_assert(std::is_same<
-                lambda<expression_without_placeholders>::type,
-                expression_without_placeholders
+                lambda<metafunction_without_placeholders>::type,
+                metafunction_without_placeholders
+              >::value, "");
+
+// lambda with a non lambda expression metafunction class.
+template <typename T>
+struct metafunction_class_without_placeholders {
+    template <typename U> struct apply { };
+};
+static_assert(std::is_same<
+                lambda<metafunction_class_without_placeholders<int>>::type,
+                metafunction_class_without_placeholders<int>
               >::value, "");
 
 // lambda with many mixed placeholders.
