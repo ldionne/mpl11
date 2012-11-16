@@ -18,7 +18,7 @@ static_assert(std::is_same<
                 apply<quote<identity>, int>::type
               >::value, "");
 
-// apply with lambda expressions
+// apply with lambda expressions.
 static_assert(std::is_same<
                 apply<identity<_1>, int>::type,
                 int
@@ -27,4 +27,14 @@ static_assert(std::is_same<
 static_assert(std::is_same<
                 apply<pack<_1, _2, _all>, int, char, float>::type,
                 pack<int, char, int, char, float>
+              >::value, "");
+
+// apply with a non-template apply member.
+template <typename T>
+struct weird_meta_identity {
+    struct apply { using type = T; };
+};
+static_assert(std::is_same<
+                apply<weird_meta_identity<int>>::type,
+                int
               >::value, "");

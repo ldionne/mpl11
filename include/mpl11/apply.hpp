@@ -50,6 +50,37 @@ namespace apply_detail {
             F, Placeholders...
         >
     { };
+
+    /**
+     * Determine whether a type's member apply is a template.
+     */
+    template <typename T>
+    class has_template_apply {
+        template <typename U> static false_ test(int, typename U::apply* =0);
+        template <typename> static true_ test(...);
+
+    public:
+        using type = decltype(test<T>(0));
+        static bool const value = type::value;
+    };
+
+    template <typename F, typename =typename has_template_apply<F>::type>
+    struct apply_wrapper {
+        template <typename ...Args>
+        struct apply
+            : F::template apply<Args...>
+        { };
+    };
+
+    template <typename F>
+    struct apply_wrapper<F, false_> {
+        template <typename ...Args>
+        struct apply : F::apply {
+            static_assert(sizeof...(Args) == 0,
+                "Can't use arguments with a metafunction class "
+                "having a non-template apply member.");
+        };
+    };
 } // end namespace apply_detail
 
 /**
@@ -57,7 +88,9 @@ namespace apply_detail {
  */
 template <typename F, typename ...Args>
 struct apply
-    : apply_detail::parse_lambda<F>::type::template apply<Args...>
+    : apply_detail::parse_lambda<
+        apply_detail::apply_wrapper<F>
+    >::type::template apply<Args...>
 { };
 
 } // end namespace mpl11
