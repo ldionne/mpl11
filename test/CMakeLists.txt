@@ -1,11 +1,5 @@
-
-file(
-    GLOB_RECURSE
-    unit_test_files
-    *.cpp
-)
-
-add_executable(
-    unit-tests
-    ${unit_test_files}
-)
+#=============================================================================
+# Setup unit tests
+#=============================================================================
+file(GLOB_RECURSE MPL11_TEST_SOURCES *.cpp)
+add_executable(unit ${MPL11_TEST_SOURCES})
