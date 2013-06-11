@@ -1,22 +1,22 @@
-/**
- * This file defines the `lambda` metafunction.
+/*!
+ * @file
+ * This file defines `boost::mpl11::lambda`.
  */
 
-#ifndef MPL11_LAMBDA_HPP
-#define MPL11_LAMBDA_HPP
+#ifndef BOOST_MPL11_LAMBDA_HPP
+#define BOOST_MPL11_LAMBDA_HPP
 
 #include <mpl11/bind.hpp>
 #include <mpl11/eval_if.hpp>
 #include <mpl11/identity.hpp>
-#include <mpl11/placeholders.hpp>
+#include <mpl11/placeholder.hpp>
 #include <mpl11/quote.hpp>
 
 
-namespace mpl11 {
-
+namespace boost { namespace mpl11 { inline namespace v2 {
 template <typename Expression> struct lambda;
 
-namespace detail {
+namespace lambda_detail {
     template <typename Expression>
     struct parse_lambda {
         using type = Expression;
@@ -31,20 +31,15 @@ namespace detail {
     struct parse_lambda<F<Placeholders...>> {
         using type = bind<quote<F>, typename lambda<Placeholders>::type...>;
     };
-} // end namespace detail
+} // end namespace lambda_detail
 
-/**
- * Transform a placeholder expression into a metafunction class.
- * If the expression is not a placeholder expression, nothing is done.
- */
 template <typename Expression>
 struct lambda
     : eval_if<typename is_placeholder_expr<Expression>::type,
-        detail::parse_lambda<Expression>,
+        lambda_detail::parse_lambda<Expression>,
         identity<Expression>
     >
 { };
+}}}
 
-} // end namespace mpl11
-
-#endif // !MPL11_LAMBDA_HPP
+#endif // !BOOST_MPL11_LAMBDA_HPP
