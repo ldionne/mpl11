@@ -12,10 +12,18 @@
 namespace boost { namespace mpl11 { inline namespace v2 {
 template <typename Key>
 struct placeholder {
-    template <typename ArgMap>
-    struct apply
-        : at<ArgMap, Key>
-    { };
+    template <typename Arguments>
+    struct apply {
+        using type = vector<typename at<Arguments, Key>::type>;
+    };
+};
+
+template <unsigned i>
+struct arg {
+    template <typename Arguments>
+    struct apply {
+        using type = vector<typename at<Arguments, int_<i>>::type>;
+    };
 };
 }}}
 
