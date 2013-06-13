@@ -8,6 +8,8 @@
 
 #include <boost/mpl11/container/map.hpp>
 #include <boost/mpl11/container/pair.hpp>
+#include <boost/mpl11/container/set.hpp>
+#include <boost/mpl11/container/variadic.hpp>
 #include <boost/mpl11/container/vector.hpp>
 
 #endif // !BOOST_MPL11_CONTAINER_HPP
