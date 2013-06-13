@@ -6,7 +6,10 @@
 #ifndef BOOST_MPL11_CONTAINER_MAP_HPP
 #define BOOST_MPL11_CONTAINER_MAP_HPP
 
+#include <boost/mpl11/algorithm/fold.hpp>
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
@@ -189,21 +192,34 @@ class map : public map_detail::make_map<Elements...> {
             >
         { };
 
-        template <typename Map, typename Element, typename KeyToErase>
-        struct erase_helper
-            : if_<is_same<typename key<Map, Element>::type, KeyToErase>>
-            ::template then<Map>
-            ::template else_<eval<insert<Map, Element>>>
-        { };
+        template <typename KeyToErase>
+        struct erase_helper {
+            template <typename Map, typename Element>
+            struct apply
+                : if_<is_same<typename key<Map, Element>::type, KeyToErase>>
+                  ::template then<Map>
+                  ::template else_<eval<insert<Map, Element>>>
+            { };
+        };
 
         template <typename Map, typename Key>
         struct apply<erase_key, Map, Key>
-            : fold<
-                Map, map<>, if_<is_same<key<_2, >>
-            >
-        {
-            using type = map<>;
+            : fold<Map, map<>, erase_helper<Key>>
+        { };
+
+        template <typename State, typename BinaryOp>
+        struct apply<fold, map<>, State, BinaryOp> {
+            using type = State;
         };
+
+        template <typename Head, typename ...Tail, typename State, typename BinaryOp>
+        struct apply<fold, map<Head, Tail...>, State, BinaryOp>
+            : fold<
+                map<Tail...>,
+                typename mpl11::apply<BinaryOp, State, Head>::type,
+                BinaryOp
+            >
+        { };
     };
 
 public:
