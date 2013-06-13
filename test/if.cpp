@@ -18,6 +18,17 @@ BOOST_MPL11_HAS_NESTED_TYPE(has_type, type)
 struct Then;
 struct Else;
 
+
+// if<Cond> (same as enable_if<Cond>)
+static_assert(is_same<if_<true_>::type, void>::value, "");
+static_assert(!has_type<if_<false_>>::value, "");
+
+
+// if<Cond, Then> (same as enable_if<Cond, Then>)
+static_assert(is_same<if_<true_, Then>::type, Then>::value, "");
+static_assert(!has_type<if_<false_, Then>>::value, "");
+
+
 // if<Cond, Then, Else>
 static_assert(is_same<if_<true_, Then, Else>::type, Then>::value, "");
 static_assert(is_same<if_<false_, Then, Else>::type, Else>::value, "");
@@ -30,30 +41,32 @@ static_assert(is_same<if_<true_, Then, eval<Else>>::type, Then>::value, "");
 static_assert(is_same<if_<false_, eval<Then>, Else>::type, Else>::value, "");
 
 
-// if<Cond> (same as enable_if<Cond>)
-static_assert(is_same<if_<true_>::type, void>::value, "");
-static_assert(!has_type<if_<false_>>::value, "");
-
-
-// if<Cond, Then> (same as enable_if<Cond, Then>)
-static_assert(is_same<if_<true_, Then>::type, Then>::value, "");
-static_assert(!has_type<if_<false_, Then>>::value, "");
-
-
 // if<Cond>::then<Then> (same as enable_if<Cond, Then>)
 static_assert(is_same<if_<true_>::then<Then>::type, Then>::value, "");
 static_assert(!has_type<if_<false_>::then<Then>>::value, "");
 
 
-// if<Cond>::then<Then>::else<Else>
-static_assert(is_same<if_<true_>::then<Then>::else_<Else>::type, Then>::value, "");
-static_assert(is_same<if_<false_>::then<Then>::else_<Else>::type, Else>::value, "");
+// if<Cond>::then<Then>::else_if<Cond, Else>
+static_assert(is_same<if_<false_>::then<Then>::else_if<true_, Else>::type, Else>::value, "");
+static_assert(is_same<if_<true_>::then<Then>::else_if<false_, Else>::type, Then>::value, "");
+static_assert(is_same<if_<true_>::then<Then>::else_if<true_, Else>::type, Then>::value, "");
 
 
 // if<Cond, Then>::else_if<Cond, Then>
 static_assert(is_same<if_<false_, Then>::else_if<true_, Else>::type, Else>::value, "");
 static_assert(is_same<if_<true_, Then>::else_if<false_, Else>::type, Then>::value, "");
 static_assert(is_same<if_<true_, Then>::else_if<true_, Else>::type, Then>::value, "");
+
+
+// if<Cond, Then>::else_if<Cond>::then<Else>
+static_assert(is_same<if_<false_, Then>::else_if<true_>::then<Else>::type, Else>::value, "");
+static_assert(is_same<if_<true_, Then>::else_if<false_>::then<Else>::type, Then>::value, "");
+static_assert(is_same<if_<true_, Then>::else_if<true_>::then<Else>::type, Then>::value, "");
+
+
+// if<Cond>::then<Then>::else<Else>
+static_assert(is_same<if_<true_>::then<Then>::else_<Else>::type, Then>::value, "");
+static_assert(is_same<if_<false_>::then<Then>::else_<Else>::type, Else>::value, "");
 
 
 // nested else_if's
