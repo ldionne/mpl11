@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct next_impl; }
-
-template <typename Iterator>
+template <typename Iterator, typename ...Args>
 struct next
-    : detail::tag_dispatched<
-        extension::next_impl, Iterator
-    >
+    : detail::tag_dispatched<next, Iterator, Args...>
 { };
 }}}
 

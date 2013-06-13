@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct second_impl; }
-
-template <typename Pair>
+template <typename Pair, typename ...Args>
 struct second
-    : detail::tag_dispatched<
-        extension::second_impl, Pair
-    >
+    : detail::tag_dispatched<second, Pair, Args...>
 { };
 }}}
 

@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct begin_impl; }
-
-template <typename Sequence>
+template <typename Sequence, typename ...Args>
 struct begin
-    : detail::tag_dispatched<
-        extension::begin_impl, Sequence
-    >
+    : detail::tag_dispatched<begin, Sequence, Args...>
 { };
 }}}
 

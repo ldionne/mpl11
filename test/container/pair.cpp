@@ -3,7 +3,7 @@
  * This file contains unit tests for `boost::mpl11::pair`.
  */
 
-#include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/container/pair.hpp>
 
 #include <boost/type_traits/is_same.hpp>
 

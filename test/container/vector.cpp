@@ -3,7 +3,7 @@
  * This file contains unit tests for `boost::mpl11::vector`.
  */
 
-#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/container/vector.hpp>
 
 #include <boost/type_traits/is_same.hpp>
 

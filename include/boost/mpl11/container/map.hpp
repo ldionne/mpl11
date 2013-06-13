@@ -3,11 +3,10 @@
  * This file defines the `boost::mpl11::map` container.
  */
 
-#ifndef BOOST_MPL11_MAP_HPP
-#define BOOST_MPL11_MAP_HPP
+#ifndef BOOST_MPL11_CONTAINER_MAP_HPP
+#define BOOST_MPL11_CONTAINER_MAP_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/none.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
@@ -32,7 +31,7 @@
 
 namespace boost { namespace mpl11 { inline namespace v2 {
 template <typename ...Elements>
-struct map;
+class map;
 
 namespace map_detail {
     // This is a wrapper to allow us to work with incomplete types.
@@ -78,153 +77,138 @@ namespace map_detail {
     struct make_map {
         using type = map<Elements...>;
     };
-
-    template <typename Map, typename Cell>
-    struct map_iterator {
-        struct mpl11 { using tag = map_iterator; };
-    };
 }
 
 template <typename ...Elements>
-struct map : map_detail::make_map<Elements...> {
-    struct mpl11 { using tag = map; };
-
-private:
-    friend extension::begin_impl<map>;
-    friend extension::end_impl<map>;
+class map : public map_detail::make_map<Elements...> {
     using lookup_begin = map_detail::lookup_cell<map, Elements...>;
     using lookup_end = map_detail::lookup_cell<map>;
-};
 
-namespace extension {
-    template <typename Map, typename Cell>
-    struct next_impl<map_detail::map_iterator<Map, Cell>> {
-        template <typename Iterator>
-        struct apply {
-            using type = map_detail::map_iterator<
-                Map, typename Cell::next_cell
-            >;
+    template <typename Cell>
+    class iterator {
+        struct implementation {
+            template <template <typename ...> class Impl, typename ...Args>
+            struct apply;
+
+            template <typename Iterator>
+            struct apply<next, Iterator> {
+                using type = iterator<typename Cell::next_cell>;
+            };
+
+            template <typename Iterator>
+            struct apply<deref, Iterator> {
+                using type = typename Cell::this_element;
+            };
         };
+
+    public:
+        struct mpl11 { using dispatcher = implementation; };
     };
 
-    template <typename Map, typename Cell>
-    struct deref_impl<map_detail::map_iterator<Map, Cell>> {
-        template <typename Iterator>
-        struct apply {
-            using type = typename Cell::this_element;
-        };
-    };
+    struct implementation {
+        template <template <typename ...> class Impl, typename ...Args>
+        struct apply;
 
-    template <typename ...Elements>
-    struct begin_impl<map<Elements...>> {
         template <typename Map>
-        struct apply {
-            using type = map_detail::map_iterator<
-                Map, typename Map::lookup_begin
-            >;
+        struct apply<begin, Map> {
+            using type = iterator<lookup_begin>;
         };
-    };
 
-    template <typename ...Elements>
-    struct end_impl<map<Elements...>> {
         template <typename Map>
-        struct apply {
-            using type = map_detail::map_iterator<
-                Map, typename Map::lookup_end
-            >;
+        struct apply<end, Map> {
+            using type = iterator<lookup_end>;
         };
-    };
 
-    template <typename ...Elements>
-    struct size_impl<map<Elements...>> {
         template <typename Map>
-        struct apply
+        struct apply<size, Map>
             : size_t<sizeof...(Elements)>
         { };
-    };
 
-    template <typename ...Elements>
-    struct empty_impl<map<Elements...>> {
         template <typename Map>
-        struct apply
+        struct apply<empty, Map>
             : bool_<sizeof...(Elements) == 0>
         { };
-    };
 
-    template <typename ...Elements>
-    struct front_impl<map<Elements...>> {
         template <typename Map>
-        struct apply
+        struct apply<front, Map>
             : deref<typename begin<Map>::type>
         { };
-    };
 
-    template <typename ...Elements>
-    struct has_key_impl<map<Elements...>> {
         template <typename Map, typename Key>
-        struct apply
-            : decltype(Map::lookup_begin::has_key(map_detail::wrap<Key>{}))
+        struct apply<has_key, Map, Key>
+            : decltype(lookup_begin::has_key(map_detail::wrap<Key>{}))
         { };
-    };
 
-    template <typename ...Elements>
-    struct at_impl<map<Elements...>> {
         struct fail;
-        template <typename Map, typename Key, typename Default = fail>
-        struct apply
+        template <typename Map, typename Key>
+        struct apply<at, Map, Key> : apply<at, Map, Key, fail> { };
+
+        template <typename Map, typename Key, typename Default>
+        struct apply<at, Map, Key, Default>
             : map_detail::unwrap<
-               decltype(Map::lookup_begin::at(map_detail::wrap<Key>{},
-                                              map_detail::wrap<Default>{}))
+                decltype(lookup_begin::at(map_detail::wrap<Key>{},
+                                          map_detail::wrap<Default>{}))
             >
         {
             static_assert(!is_same<typename apply::type, fail>::value,
-                "the requested key could not be found in the map");
+                "the requested key could not be found in the map "
+                "and no default return value was specified");
         };
-    };
 
-    template <typename ...Elements>
-    struct key_impl<map<Elements...>> {
         template <typename Map, typename Element>
-        struct apply : first<Element> { };
-    };
+        struct apply<key, Map, Element>
+            : first<Element>
+        { };
 
-    template <typename ...Elements>
-    struct value_impl<map<Elements...>> {
         template <typename Map, typename Element>
-        struct apply : second<Element> { };
-    };
+        struct apply<value, Map, Element>
+            : second<Element>
+        { };
 
-    template <typename ...Elements>
-    struct clear_impl<map<Elements...>> {
-        template <typename Map, typename Element>
-        struct apply {
+        template <typename Map>
+        struct apply<clear, Map> {
             using type = map<>;
         };
-    };
 
-    template <typename ...Elements>
-    struct insert_impl<map<Elements...>> {
-        template <typename Map, typename Hint, typename Element = detail::none>
-        struct apply : apply<Map, Element> { };
+        template <typename Map, typename Hint, typename Element>
+        struct apply<insert, Map, Hint, Element>
+            : apply<insert, Map, Element>
+        { };
 
         template <typename Map, typename Element>
-        struct apply<Map, Element, detail::none> {
+        struct apply<insert, Map, Element> {
             using type = map<Element, Elements...>;
         };
-    };
 
-    template <typename ...Elements>
-    struct erase_impl<map<Elements...>> {
         template <typename Map, typename Position>
-        struct apply
+        struct apply<erase, Map, Position>
             : erase_key<Map,
                 typename key<Map,
                     typename deref<Position>::type
                 >::type
             >
         { };
+
+        template <typename Map, typename Element, typename KeyToErase>
+        struct erase_helper
+            : if_<is_same<typename key<Map, Element>::type, KeyToErase>>
+            ::template then<Map>
+            ::template else_<eval<insert<Map, Element>>>
+        { };
+
+        template <typename Map, typename Key>
+        struct apply<erase_key, Map, Key>
+            : fold<
+                Map, map<>, if_<is_same<key<_2, >>
+            >
+        {
+            using type = map<>;
+        };
     };
-}
+
+public:
+    struct mpl11 { using dispatcher = implementation; };
+};
 }}}
 
-#endif // !BOOST_MPL11_MAP_HPP
+#endif // !BOOST_MPL11_CONTAINER_MAP_HPP

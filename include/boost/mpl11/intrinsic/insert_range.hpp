@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct insert_range_impl; }
-
-template <typename Sequence, typename Position, typename Range>
+template <typename Sequence, typename ...Args>
 struct insert_range
-    : detail::tag_dispatched<
-        extension::insert_range_impl, Sequence, Position, Range
-    >
+    : detail::tag_dispatched<insert_range, Sequence, Args...>
 { };
 }}}
 

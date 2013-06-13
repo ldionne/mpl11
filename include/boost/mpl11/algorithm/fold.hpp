@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct fold_impl; }
-
-template <typename Sequence, typename State, typename BinaryOp>
+template <typename Sequence, typename ...Args>
 struct fold
-    : detail::tag_dispatched<
-        extension::fold_impl, Sequence, State, BinaryOp
-    >
+    : detail::tag_dispatched<fold, Sequence, Args...>
 { };
 }}}
 

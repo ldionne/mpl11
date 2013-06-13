@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct push_back_impl; }
-
-template <typename Sequence, typename Element>
+template <typename Sequence, typename ...Args>
 struct push_back
-    : detail::tag_dispatched<
-        extension::push_back_impl, Sequence, Element
-    >
+    : detail::tag_dispatched<push_back, Sequence, Args...>
 { };
 }}}
 

@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct has_key_impl; }
-
-template <typename AssociativeSequence, typename Key>
+template <typename AssociativeSequence, typename ...Args>
 struct has_key
-    : detail::tag_dispatched<
-        extension::has_key_impl, AssociativeSequence, Key
-    >
+    : detail::tag_dispatched<has_key, AssociativeSequence, Args...>
 { };
 }}}
 

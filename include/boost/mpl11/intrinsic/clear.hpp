@@ -10,13 +10,9 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace extension { template <typename Tag> struct clear_impl; }
-
-template <typename Sequence>
+template <typename Sequence, typename ...Args>
 struct clear
-    : detail::tag_dispatched<
-        extension::clear_impl, Sequence
-    >
+    : detail::tag_dispatched<clear, Sequence, Args...>
 { };
 }}}
 
