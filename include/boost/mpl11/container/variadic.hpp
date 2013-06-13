@@ -7,8 +7,7 @@
 #define BOOST_MPL11_CONTAINER_VARIADIC_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/container/map.hpp>
-#include <boost/mpl11/container/pair.hpp>
+#include <boost/mpl11/container/set.hpp>
 #include <boost/mpl11/container/vector.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/quote.hpp>
@@ -26,58 +25,88 @@ struct transfer<Destination, Source<Content...>> {
     using type = Destination<Content...>;
 };
 
-class variadic_implementation {
-    // until we have a proper set.
-    using algos_returning_the_container = map<
-        pair<quote<clear>           , void>,
-        pair<quote<push_front>      , void>,
-        pair<quote<push_back>       , void>,
-        pair<quote<pop_back>        , void>,
-        pair<quote<pop_front>       , void>
-    >;
+using algos_returning_the_container = set<
+    quote<clear>,
+    quote<push_front>, quote<push_back>,
+    quote<pop_back>, quote<pop_front>
+>;
 
-    template <template <typename ...> class Algo>
-    struct requires_transfer
-        : has_key<algos_returning_the_container, quote<Algo>>
-    { };
+template <template <typename ...> class Algo>
+struct requires_transfer
+    : has_key<algos_returning_the_container, quote<Algo>>
+{ };
 
-    template <template <typename ...> class Algo,
-              template <typename ...> class Destination,
-              typename Source>
-    struct transfer_if_required
-        : if_<requires_transfer<Algo>,
-            eval<transfer<Destination, Source>>,
-            Source
-        >
-    { };
-
-public:
-    template <template <typename ...> class Algo, typename ...Args>
-    struct apply;
-
-    template <template <typename ...> class Algo,
-              template <typename ...> class Variadic,
-              template <typename ...> class Template,
-              typename ...TemplateParams,
-              typename ...Args>
-    struct apply<Algo, Variadic<Template<TemplateParams...>>, Args...>
-        : transfer_if_required<Algo, Template,
-            typename Algo<vector<TemplateParams...>, Args...>::type
-        >
-    { };
-};
+template <template <typename ...> class Algo,
+          template <typename ...> class Destination,
+          typename Source>
+struct transfer_if_required
+    : if_<requires_transfer<Algo>,
+        eval<transfer<Destination, Source>>,
+        Source
+    >
+{ };
 } // end namespace variadic_detail
 
 template <typename Template>
-struct variadic;
+class variadic;
 
-template <template <typename ...> class Template, typename ...Elements>
-struct variadic<Template<Elements...>> {
-    using type = variadic;
+template <template <typename ...> class Template, typename ...TemplateParams>
+class variadic<Template<TemplateParams...>> {
+    template <typename Iterator>
+    struct iterator {
+        struct mpl11 {
+            struct dispatcher {
+                template <template <typename ...> class Impl,
+                          typename Ignore, typename ...Args>
+                struct apply
+                    : Impl<Iterator, Args...>
+                { };
 
-    struct mpl11 {
-        using dispatcher = variadic_detail::variadic_implementation;
+                template <typename Ignore, typename ...Args>
+                struct apply<next, Ignore, Args...> {
+                    using type = iterator<
+                        typename next<Iterator, Args...>::type
+                    >;
+                };
+
+                template <typename Ignore, typename ...Args>
+                struct apply<prior, Ignore, Args...> {
+                    using type = iterator<
+                        typename prior<Iterator, Args...>::type
+                    >;
+                };
+            };
+        };
     };
+
+public:
+    struct mpl11 {
+        struct dispatcher {
+            template <template <typename ...> class Algo,
+                      typename Ignore, typename ...Args>
+            struct apply
+                : variadic_detail::transfer_if_required<Algo, Template,
+                    typename Algo<vector<TemplateParams...>, Args...>::type
+                >
+            { };
+
+            template <typename Ignore, typename ...Args>
+            struct apply<begin, Ignore, Args...> {
+                using type = iterator<
+                    typename begin<vector<TemplateParams...>, Args...>::type
+                >;
+            };
+
+            template <typename Ignore, typename ...Args>
+            struct apply<end, Ignore, Args...> {
+                using type = iterator<
+                    typename end<vector<TemplateParams...>, Args...>::type
+                >;
+            };
+        };
+    };
+
+    using type = variadic;
 };
 }}}
 
