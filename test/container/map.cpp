@@ -109,6 +109,7 @@ static_assert(!has_key<erase_key<map<>, k0>::type, k0>::value, "");
 static_assert(!has_key<erase_key<map<pair<k1, v1>>, k0>::type, k0>::value, "");
 static_assert(!has_key<erase_key<map<pair<k0, v0>>, k0>::type, k0>::value, "");
 static_assert(!has_key<erase_key<map<pair<k0, v0>, pair<k1, v1>>, k1>::type, k1>::value, "");
+static_assert(has_key<erase_key<map<pair<k0, v0>, pair<k1, v1>>, k1>::type, k0>::value, "");
 
 
 int main() { }
