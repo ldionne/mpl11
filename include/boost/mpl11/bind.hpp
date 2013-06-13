@@ -6,10 +6,12 @@
 #ifndef BOOST_MPL11_BIND_HPP
 #define BOOST_MPL11_BIND_HPP
 
+#include <boost/mpl11/apply_raw.hpp>
 #include <boost/mpl11/detail/basic_map.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
+#if 0
 namespace bind_detail {
     template <typename Sequence> struct apply_raw_first_to_rest;
     template <typename First, typename ...Rest>
@@ -74,6 +76,15 @@ struct bind {
         >
     { };
 };
+#else
+template <typename M, typename ...Placeholders>
+struct bind {
+    template <typename ...Args>
+    struct apply
+        : apply_raw<M, Args...>
+    { };
+};
+#endif
 }}}
 
 #endif // !BOOST_MPL11_BIND_HPP

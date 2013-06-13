@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_AND_HPP
 #define BOOST_MPL11_AND_HPP
 
-#include <mpl11/bool.hpp>
+#include <boost/mpl11/bool.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
