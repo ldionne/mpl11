@@ -73,9 +73,9 @@ static_assert(is_same<pop_front<vector<a0, a1>>::type, vector<a1>>::value, "");
 
 
 // at/at_c
-static_assert(is_same<at_c<vector<a0>, 0>::type, a0>>::value, "");
-static_assert(is_same<at_c<vector<a0, a1>, 0>::type, a0>>::value, "");
-static_assert(is_same<at_c<vector<a0, a1>, 1>::type, a1>>::value, "");
+static_assert(is_same<at_c<vector<a0>, 0>::type, a0>::value, "");
+static_assert(is_same<at_c<vector<a0, a1>, 0>::type, a0>::value, "");
+static_assert(is_same<at_c<vector<a0, a1>, 1>::type, a1>::value, "");
 
 
 // begin/end

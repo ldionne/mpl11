@@ -83,9 +83,11 @@ class vector : public vector_detail::make_vector<Elements...> {
         struct mpl11 { using dispatcher = implementation; };
     };
 
-    // using as_map = typename map_from<
-    //     zip_view<range_c<0, sizeof...(Elements)>, vector>
-    // >::type;
+#if 0
+    using as_map = typename map_from<
+        zip_view<range_c<0, sizeof...(Elements)>, vector>
+    >::type;
+#endif
 
     struct implementation {
         template <template <typename ...> class Impl, typename ...Args>
@@ -127,9 +129,24 @@ class vector : public vector_detail::make_vector<Elements...> {
                 "can't use `back` on an empty vector");
         };
 
+    private:
+        template <std::size_t counter, typename ...>
+        struct at_impl;
+
+        template <typename First, typename ...Rest>
+        struct at_impl<0, First, Rest...> {
+            using type = First;
+        };
+
+        template <std::size_t pos, typename First, typename ...Rest>
+        struct at_impl<pos, First, Rest...>
+            : at_impl<pos - 1, Rest...>
+        { };
+
+    public:
         template <typename Vector, typename Position>
         struct apply<at, Vector, Position>
-            : at<as_map, Position>
+            : at_impl<Position::type::value, Elements...>
         { };
 
         template <typename Vector>
@@ -152,9 +169,29 @@ class vector : public vector_detail::make_vector<Elements...> {
             using type = vector<Tail...>;
         };
 
+    private:
+        template <typename From, typename To>
+        struct pop_back_impl;
+
+        template <template <typename ...> class Variadic,
+                  typename Head, typename ...Tail,
+                  template <typename ...> class Result,
+                  typename ...Transferred>
+        struct pop_back_impl<Variadic<Head, Tail...>, Result<Transferred...>>
+            : pop_back_impl<Variadic<Tail...>, Result<Transferred..., Head>>
+        { };
+
+        template <template <typename ...> class Variadic, typename Back,
+                  template <typename ...> class Result, typename ...Transferred>
+        struct pop_back_impl<Variadic<Back>, Result<Transferred...>> {
+            using type = Result<Transferred...>;
+        };
+
+    public:
         template <typename Vector>
-        struct apply<pop_back, Vector> {
-            // todo
+        struct apply<pop_back, Vector> : pop_back_impl<Vector, vector<>> {
+            static_assert(!empty<Vector>::value,
+                "can't use `pop_back` on an empty vector");
         };
     };
 
