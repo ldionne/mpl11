@@ -13,7 +13,9 @@
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace intrinsic {
     struct erase_key : detail::tag_dispatched<erase_key> {
-
+        struct mpl11 {
+            struct is_inplace_transformation;
+        };
     };
 }
 

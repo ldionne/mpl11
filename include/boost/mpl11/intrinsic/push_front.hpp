@@ -13,7 +13,9 @@
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace intrinsic {
     struct push_front : detail::tag_dispatched<push_front> {
-
+        struct mpl11 {
+            struct is_inplace_transformation;
+        };
     };
 }
 

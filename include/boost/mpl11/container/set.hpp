@@ -9,6 +9,8 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/map.hpp>
 #include <boost/mpl11/container/pair.hpp>
+#include <boost/mpl11/if.hpp>
+#include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
@@ -20,15 +22,17 @@ class set_impl {
         struct implementation {
             template <typename Operation, typename ...Args>
             struct apply
-                : mpl11::apply<Operation, Iterator, Args...>
+                : if_<trait::is_inplace_transformation<Operation>,
+                    iterator<
+                        typename boost::mpl11::apply<
+                            Operation, Iterator, Args...
+                        >::type
+                    >,
+                    typename boost::mpl11::apply<
+                        Operation, Iterator, Args...
+                    >::type
+                >
             { };
-
-            template <typename ...Args>
-            struct apply<intrinsic::next, Args...> {
-                using type = iterator<
-                    typename next<Iterator, Args...>::type
-                >;
-            };
 
             template <typename ...Args>
             struct apply<intrinsic::deref, Args...>
@@ -48,34 +52,23 @@ class set_impl {
     struct implementation {
         template <typename Operation, typename ...Args>
         struct apply
-            : mpl11::apply<Operation, Map, Args...>
+            : if_<trait::is_inplace_transformation<Operation>,
+                eval<wrap<
+                    typename mpl11::apply<Operation, Map, Args...>::type
+                >>,
+                typename mpl11::apply<Operation, Map, Args...>::type
+            >
         { };
 
-        // We wrap all the intrinsics that return a map so that they return a
-        // set.
+        // Wrap insert to accept a single element instead of a pair.
         template <typename Hint, typename Element>
         struct apply<intrinsic::insert, Hint, Element>
-            : wrap<insert<Map, pair<Element, Element>>>
+            : apply<intrinsic::insert, Element>
         { };
 
         template <typename Element>
         struct apply<intrinsic::insert, Element>
             : wrap<insert<Map, pair<Element, Element>>>
-        { };
-
-        template <typename ...Args>
-        struct apply<intrinsic::erase, Args...>
-            : wrap<erase<Map, Args...>>
-        { };
-
-        template <typename ...Args>
-        struct apply<intrinsic::erase_key, Args...>
-            : wrap<erase_key<Map, Args...>>
-        { };
-
-        template <typename ...Args>
-        struct apply<intrinsic::clear, Args...>
-            : wrap<clear<Map, Args...>>
         { };
 
         // We wrap front so that it returns a single type instead of a pair.

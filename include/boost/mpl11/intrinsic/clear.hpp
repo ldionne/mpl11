@@ -13,7 +13,9 @@
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace intrinsic {
     struct clear : detail::tag_dispatched<clear> {
-
+        struct mpl11 {
+            struct is_inplace_transformation;
+        };
     };
 }
 

@@ -7,9 +7,9 @@
 #define BOOST_MPL11_CONTAINER_VARIADIC_HPP
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/container/set.hpp>
 #include <boost/mpl11/container/vector.hpp>
 #include <boost/mpl11/if.hpp>
+#include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
@@ -24,22 +24,11 @@ struct transfer<Destination, Source<Content...>> {
     using type = Destination<Content...>;
 };
 
-using algos_returning_the_container = set<
-    intrinsic::clear,
-    intrinsic::push_back, intrinsic::push_front,
-    intrinsic::pop_back, intrinsic::pop_front
->;
-
-template <typename Operation>
-struct requires_transfer
-    : has_key<algos_returning_the_container, Operation>
-{ };
-
 template <typename Operation,
           template <typename ...> class Destination,
           typename Source>
 struct transfer_if_required
-    : if_<requires_transfer<Operation>,
+    : if_<trait::is_inplace_transformation<Operation>,
         eval<transfer<Destination, Source>>,
         Source
     >
@@ -57,24 +46,17 @@ class variadic<Template<TemplateParams...>> {
             struct dispatcher {
                 template <typename Operation, typename ...Args>
                 struct apply
-                    : boost::mpl11::apply<
-                        Operation, Iterator, Args...
+                    : if_<trait::is_inplace_transformation<Operation>,
+                        iterator<
+                            typename boost::mpl11::apply<
+                                Operation, Iterator, Args...
+                            >::type
+                        >,
+                        typename boost::mpl11::apply<
+                            Operation, Iterator, Args...
+                        >::type
                     >
                 { };
-
-                template <typename ...Args>
-                struct apply<intrinsic::next, Args...> {
-                    using type = iterator<
-                        typename next<Iterator, Args...>::type
-                    >;
-                };
-
-                template <typename ...Args>
-                struct apply<intrinsic::prior, Args...> {
-                    using type = iterator<
-                        typename prior<Iterator, Args...>::type
-                    >;
-                };
             };
         };
     };

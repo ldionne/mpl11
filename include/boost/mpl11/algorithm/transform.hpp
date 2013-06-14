@@ -13,7 +13,9 @@
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace algorithm {
     struct transform : detail::tag_dispatched<transform> {
-
+        struct mpl11 {
+            struct is_inplace_transformation;
+        };
     };
 }
 
