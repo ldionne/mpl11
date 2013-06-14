@@ -5,7 +5,6 @@
 
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/bind.hpp>
-#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/protect.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/trait/is_placeholder.hpp>
@@ -51,11 +50,8 @@ struct do_test {
     >::value, "");
 };
 
-template <typename ...> struct Placeholder;
-namespace boost { namespace mpl11 { inline namespace v2 { namespace trait {
-    template <typename ...T>
-    struct is_placeholder<Placeholder<T...>> : true_ { };
-}}}}
+template <typename ...>
+struct Placeholder { struct mpl11 { struct is_placeholder; }; };
 
 struct non_template_not_a_placeholder;
 template <typename> struct unary_not_a_placeholder;

@@ -7,6 +7,7 @@
 #define BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/trait/dispatcher_of.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
@@ -15,7 +16,8 @@ namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
         template <typename Receiver, typename ...Args>
         struct apply
             : mpl11::apply<
-                typename Receiver::mpl11::dispatcher, Operation, Args...
+                typename trait::dispatcher_of<Receiver>::type,
+                Operation, Args...
             >
         { };
     };
