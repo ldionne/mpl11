@@ -6,13 +6,20 @@
 #ifndef BOOST_MPL11_ALGORITHM_TRANSFORM_HPP
 #define BOOST_MPL11_ALGORITHM_TRANSFORM_HPP
 
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
+namespace algorithm {
+    struct transform : detail::tag_dispatched<transform> {
+
+    };
+}
+
 template <typename Sequence, typename ...Args>
 struct transform
-    : detail::tag_dispatched<transform, Sequence, Args...>
+    : apply<algorithm::transform, Sequence, Args...>
 { };
 }}}
 

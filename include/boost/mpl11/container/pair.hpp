@@ -14,16 +14,16 @@ namespace boost { namespace mpl11 { inline namespace v2 {
 template <typename First, typename Second>
 class pair {
     struct implementation {
-        template <template <typename ...> class Intrinsic, typename ...Args>
+        template <typename Intrinsic, typename ...Args>
         struct apply;
 
-        template <typename Pair>
-        struct apply<first, Pair> {
+        template <typename ...Ignore>
+        struct apply<intrinsic::first, Ignore...> {
             using type = First;
         };
 
-        template <typename Pair>
-        struct apply<second, Pair> {
+        template <typename ...Ignore>
+        struct apply<intrinsic::second, Ignore...> {
             using type = Second;
         };
     };

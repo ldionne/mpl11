@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_CONTAINER_SET_HPP
 #define BOOST_MPL11_CONTAINER_SET_HPP
 
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/map.hpp>
 #include <boost/mpl11/container/pair.hpp>
 
@@ -17,28 +18,20 @@ class set_impl {
     template <typename Iterator>
     class iterator {
         struct implementation {
-            template <template <typename ...> class Impl,
-                      typename Ignore, typename ...Args>
+            template <typename Operation, typename ...Args>
             struct apply
-                : Impl<Iterator, Args...>
+                : mpl11::apply<Operation, Iterator, Args...>
             { };
 
-            template <typename Ignore, typename ...Args>
-            struct apply<next, Ignore, Args...> {
+            template <typename ...Args>
+            struct apply<intrinsic::next, Args...> {
                 using type = iterator<
                     typename next<Iterator, Args...>::type
                 >;
             };
 
-            template <typename Ignore, typename ...Args>
-            struct apply<prior, Ignore, Args...> {
-                using type = iterator<
-                    typename prior<Iterator, Args...>::type
-                >;
-            };
-
-            template <typename Ignore, typename ...Args>
-            struct apply<deref, Ignore, Args...>
+            template <typename ...Args>
+            struct apply<intrinsic::deref, Args...>
                 : key<Map, typename deref<Iterator, Args...>::type>
             { };
         };
@@ -53,66 +46,65 @@ class set_impl {
     };
 
     struct implementation {
-        template <template <typename ...> class Impl,
-                  typename Ignore, typename ...Args>
+        template <typename Operation, typename ...Args>
         struct apply
-            : Impl<Map, Args...>
+            : mpl11::apply<Operation, Map, Args...>
         { };
 
         // We wrap all the intrinsics that return a map so that they return a
         // set.
-        template <typename Ignore, typename Hint, typename Element>
-        struct apply<insert, Ignore, Hint, Element>
+        template <typename Hint, typename Element>
+        struct apply<intrinsic::insert, Hint, Element>
             : wrap<insert<Map, pair<Element, Element>>>
         { };
 
-        template <typename Ignore, typename Element>
-        struct apply<insert, Ignore, Element>
+        template <typename Element>
+        struct apply<intrinsic::insert, Element>
             : wrap<insert<Map, pair<Element, Element>>>
         { };
 
-        template <typename Ignore, typename ...Args>
-        struct apply<erase, Ignore, Args...>
+        template <typename ...Args>
+        struct apply<intrinsic::erase, Args...>
             : wrap<erase<Map, Args...>>
         { };
 
-        template <typename Ignore, typename ...Args>
-        struct apply<erase_key, Ignore, Args...>
+        template <typename ...Args>
+        struct apply<intrinsic::erase_key, Args...>
             : wrap<erase_key<Map, Args...>>
         { };
 
-        template <typename Ignore, typename ...Args>
-        struct apply<clear, Ignore, Args...>
+        template <typename ...Args>
+        struct apply<intrinsic::clear, Args...>
             : wrap<clear<Map, Args...>>
         { };
 
         // We wrap front so that it returns a single type instead of a pair.
-        template <typename Ignore, typename ...Args>
-        struct apply<front, Ignore, Args...>
+        template <typename ...Args>
+        struct apply<intrinsic::front, Args...>
             : key<Map, typename front<Map, Args...>::type>
         { };
 
         // We wrap value and key so that they return the element itself.
-        template <typename Ignore, typename Element>
-        struct apply<key, Ignore, Element> {
+        template <typename Element>
+        struct apply<intrinsic::key, Element> {
             using type = Element;
         };
 
-        template <typename Ignore, typename Element>
-        struct apply<value, Ignore, Element> {
+        template <typename Element>
+        struct apply<intrinsic::value, Element> {
             using type = Element;
         };
 
         // We wrap begin and end so that they return modified iterators
-        template <typename Ignore, typename ...Args>
-        struct apply<begin, Ignore, Args...> {
+        template <typename ...Args>
+        struct apply<intrinsic::begin, Args...> {
             using type = iterator<
                 typename begin<Map, Args...>::type
             >;
         };
 
-        template <typename Ignore, typename ...Args>
-        struct apply<end, Ignore, Args...> {
+        template <typename ...Args>
+        struct apply<intrinsic::end, Args...> {
             using type = iterator<
                 typename end<Map, Args...>::type
             >;

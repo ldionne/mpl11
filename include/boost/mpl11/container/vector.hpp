@@ -57,24 +57,25 @@ namespace vector_detail {
 
 template <typename ...Elements>
 class vector : public vector_detail::make_vector<Elements...> {
+
     template <std::size_t Position>
     class iterator {
         struct implementation {
-            template <template <typename ...> class Impl, typename ...Args>
+            template <typename Operation, typename ...Args>
             struct apply;
 
-            template <typename Iterator>
-            struct apply<next, Iterator> {
+            template <typename ...Ignore>
+            struct apply<intrinsic::next, Ignore...> {
                 using type = iterator<Position + 1>;
             };
 
-            template <typename Iterator>
-            struct apply<prior, Iterator> {
+            template <typename ...Ignore>
+            struct apply<intrinsic::prior, Ignore...> {
                 using type = iterator<Position - 1>;
             };
 
-            template <typename Iterator>
-            struct apply<deref, Iterator>
+            template <typename ...Ignore>
+            struct apply<intrinsic::deref, Ignore...>
                 : at_c<vector, Position>
             { };
         };
@@ -90,42 +91,42 @@ class vector : public vector_detail::make_vector<Elements...> {
 #endif
 
     struct implementation {
-        template <template <typename ...> class Impl, typename ...Args>
+        template <typename Operation, typename ...Args>
         struct apply;
 
-        template <typename Vector>
-        struct apply<begin, Vector> {
+        template <typename ...Ignore>
+        struct apply<intrinsic::begin, Ignore...> {
             using type = iterator<0>;
         };
 
-        template <typename Vector>
-        struct apply<end, Vector> {
+        template <typename ...Ignore>
+        struct apply<intrinsic::end, Ignore...> {
             using type = iterator<sizeof...(Elements)>;
         };
 
-        template <typename Vector>
-        struct apply<size, Vector>
+        template <typename ...Ignore>
+        struct apply<intrinsic::size, Ignore...>
             : size_t<sizeof...(Elements)>
         { };
 
-        template <typename Vector>
-        struct apply<empty, Vector>
+        template <typename ...Ignore>
+        struct apply<intrinsic::empty, Ignore...>
             : bool_<sizeof...(Elements) == 0>
         { };
 
-        template <typename Vector>
-        struct apply<front, Vector>
-            : at_c<Vector, 0>
+        template <typename ...Ignore>
+        struct apply<intrinsic::front, Ignore...>
+            : at_c<vector, 0>
         {
-            static_assert(sizeof...(Elements) > 0,
+            static_assert(!empty<vector>::value,
                 "can't use `front` on an empty vector");
         };
 
-        template <typename Vector>
-        struct apply<back, Vector>
-            : at_c<Vector, sizeof...(Elements) - 1>
+        template <typename ...Ignore>
+        struct apply<intrinsic::back, Ignore...>
+            : at_c<vector, sizeof...(Elements) - 1>
         {
-            static_assert(sizeof...(Elements) > 0,
+            static_assert(!empty<vector>::value,
                 "can't use `back` on an empty vector");
         };
 
@@ -144,29 +145,45 @@ class vector : public vector_detail::make_vector<Elements...> {
         { };
 
     public:
-        template <typename Vector, typename Position>
-        struct apply<at, Vector, Position>
+        template <typename Position>
+        struct apply<intrinsic::at, Position>
             : at_impl<Position::type::value, Elements...>
-        { };
+        {
+            static_assert(Position::type::value < size<vector>::value,
+                "trying to access a vector at an index that is out of bound");
+        };
 
-        template <typename Vector>
-        struct apply<clear, Vector> {
+        template <typename ...Ignore>
+        struct apply<intrinsic::clear, Ignore...> {
             using type = vector<>;
         };
 
-        template <typename Vector, typename Element>
-        struct apply<push_back, Vector, Element> {
+        template <typename Element>
+        struct apply<intrinsic::push_back, Element> {
             using type = vector<Elements..., Element>;
         };
 
-        template <typename Vector, typename Element>
-        struct apply<push_front, Vector, Element> {
+        template <typename Element>
+        struct apply<intrinsic::push_front, Element> {
             using type = vector<Element, Elements...>;
         };
 
+    private:
+        template <typename Vector>
+        struct pop_front_impl;
+
         template <typename Head, typename ...Tail>
-        struct apply<pop_front, vector<Head, Tail...>> {
+        struct pop_front_impl<vector<Head, Tail...>> {
             using type = vector<Tail...>;
+        };
+
+    public:
+        template <typename ...Ignore>
+        struct apply<intrinsic::pop_front, Ignore...>
+            : pop_front_impl<vector>
+        {
+            static_assert(!empty<vector>::value,
+                "can't use `pop_front` on an empty vector");
         };
 
     private:
@@ -188,9 +205,11 @@ class vector : public vector_detail::make_vector<Elements...> {
         };
 
     public:
-        template <typename Vector>
-        struct apply<pop_back, Vector> : pop_back_impl<Vector, vector<>> {
-            static_assert(!empty<Vector>::value,
+        template <typename ...Ignore>
+        struct apply<intrinsic::pop_back, Ignore...>
+            : pop_back_impl<vector, vector<>>
+        {
+            static_assert(!empty<vector>::value,
                 "can't use `pop_back` on an empty vector");
         };
     };

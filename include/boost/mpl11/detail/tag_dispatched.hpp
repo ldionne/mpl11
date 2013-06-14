@@ -6,11 +6,19 @@
 #ifndef BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 #define BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 
+#include <boost/mpl11/apply.hpp>
+
+
 namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
-template <template <typename ...> class Impl, typename Receiver, typename ...Args>
-struct tag_dispatched
-    : Receiver::mpl11::dispatcher::template apply<Impl, Receiver, Args...>
-{ };
+    template <typename Operation>
+    struct tag_dispatched {
+        template <typename Receiver, typename ...Args>
+        struct apply
+            : mpl11::apply<
+                typename Receiver::mpl11::dispatcher, Operation, Args...
+            >
+        { };
+    };
 }}}}
 
 #endif // !BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP

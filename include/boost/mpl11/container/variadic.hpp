@@ -6,11 +6,10 @@
 #ifndef BOOST_MPL11_CONTAINER_VARIADIC_HPP
 #define BOOST_MPL11_CONTAINER_VARIADIC_HPP
 
-#include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/set.hpp>
 #include <boost/mpl11/container/vector.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/quote.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
@@ -26,21 +25,21 @@ struct transfer<Destination, Source<Content...>> {
 };
 
 using algos_returning_the_container = set<
-    quote<clear>,
-    quote<push_front>, quote<push_back>,
-    quote<pop_back>, quote<pop_front>
+    intrinsic::clear,
+    intrinsic::push_back, intrinsic::push_front,
+    intrinsic::pop_back, intrinsic::pop_front
 >;
 
-template <template <typename ...> class Algo>
+template <typename Operation>
 struct requires_transfer
-    : has_key<algos_returning_the_container, quote<Algo>>
+    : has_key<algos_returning_the_container, Operation>
 { };
 
-template <template <typename ...> class Algo,
+template <typename Operation,
           template <typename ...> class Destination,
           typename Source>
 struct transfer_if_required
-    : if_<requires_transfer<Algo>,
+    : if_<requires_transfer<Operation>,
         eval<transfer<Destination, Source>>,
         Source
     >
@@ -56,21 +55,22 @@ class variadic<Template<TemplateParams...>> {
     struct iterator {
         struct mpl11 {
             struct dispatcher {
-                template <template <typename ...> class Impl,
-                          typename Ignore, typename ...Args>
+                template <typename Operation, typename ...Args>
                 struct apply
-                    : Impl<Iterator, Args...>
+                    : boost::mpl11::apply<
+                        Operation, Iterator, Args...
+                    >
                 { };
 
-                template <typename Ignore, typename ...Args>
-                struct apply<next, Ignore, Args...> {
+                template <typename ...Args>
+                struct apply<intrinsic::next, Args...> {
                     using type = iterator<
                         typename next<Iterator, Args...>::type
                     >;
                 };
 
-                template <typename Ignore, typename ...Args>
-                struct apply<prior, Ignore, Args...> {
+                template <typename ...Args>
+                struct apply<intrinsic::prior, Args...> {
                     using type = iterator<
                         typename prior<Iterator, Args...>::type
                     >;
@@ -82,23 +82,24 @@ class variadic<Template<TemplateParams...>> {
 public:
     struct mpl11 {
         struct dispatcher {
-            template <template <typename ...> class Algo,
-                      typename Ignore, typename ...Args>
+            template <typename Operation, typename ...Args>
             struct apply
-                : variadic_detail::transfer_if_required<Algo, Template,
-                    typename Algo<vector<TemplateParams...>, Args...>::type
+                : variadic_detail::transfer_if_required<Operation, Template,
+                    typename boost::mpl11::apply<
+                        Operation, vector<TemplateParams...>, Args...
+                    >::type
                 >
             { };
 
-            template <typename Ignore, typename ...Args>
-            struct apply<begin, Ignore, Args...> {
+            template <typename ...Args>
+            struct apply<intrinsic::begin, Args...> {
                 using type = iterator<
                     typename begin<vector<TemplateParams...>, Args...>::type
                 >;
             };
 
-            template <typename Ignore, typename ...Args>
-            struct apply<end, Ignore, Args...> {
+            template <typename ...Args>
+            struct apply<intrinsic::end, Args...> {
                 using type = iterator<
                     typename end<vector<TemplateParams...>, Args...>::type
                 >;

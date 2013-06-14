@@ -6,13 +6,20 @@
 #ifndef BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
 #define BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
 
+#include <boost/mpl11/apply_raw.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
+namespace intrinsic {
+    struct insert_range : detail::tag_dispatched<insert_range> {
+
+    };
+}
+
 template <typename Sequence, typename ...Args>
 struct insert_range
-    : detail::tag_dispatched<insert_range, Sequence, Args...>
+    : apply_raw<intrinsic::insert_range, Sequence, Args...>
 { };
 }}}
 
