@@ -20,7 +20,9 @@
                                                                             \
     public:                                                                 \
         using type = decltype(test<T>(0));                                  \
-        static constexpr bool value = type::value;                          \
+        using value_type = bool;                                            \
+        static constexpr value_type value = type::value;                    \
+        constexpr operator value_type() const { return value; }             \
     };                                                                      \
 /**/
 
