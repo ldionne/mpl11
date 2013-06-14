@@ -15,7 +15,9 @@ template <typename T>
 struct unwrap_eval { using type = T; };
 
 template <typename T>
-struct unwrap_eval<eval<T>> : T { };
+struct unwrap_eval<eval<T>>
+    : unwrap_eval<T>::type
+{ };
 
 template <bool Cond, typename Then, typename Else>
 struct conditional : unwrap_eval<Then> { };

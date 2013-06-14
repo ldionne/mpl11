@@ -117,4 +117,19 @@ static_assert(!has_type<
 >::value, "");
 
 
+// nested eval<>'s should be evaluated recursively
+static_assert(is_same<
+    if_<true_, eval<eval<eval<identity<identity<identity<int>>>>>>>::type,
+    int
+>::value, "");
+
+
+// make sure the nested eval<>'s are not evaluated for false branches
+static_assert(is_same<
+    if_<false_, eval<eval<struct not_a_metafunction>>>::
+    else_<eval<eval<identity<identity<int>>>>>::type,
+    int
+>::value, "");
+
+
 int main() { }
