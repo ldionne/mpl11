@@ -6,24 +6,16 @@
 #ifndef BOOST_MPL11_IF_HPP
 #define BOOST_MPL11_IF_HPP
 
+#include <boost/mpl11/eval.hpp>
+
+
 namespace boost { namespace mpl11 { inline namespace v2 {
-template <typename M>
-struct eval;
-
 namespace if_detail {
-template <typename T>
-struct unwrap_eval { using type = T; };
-
-template <typename T>
-struct unwrap_eval<eval<T>>
-    : unwrap_eval<T>::type
-{ };
-
 template <bool Cond, typename Then, typename Else>
-struct conditional : unwrap_eval<Then> { };
+struct conditional : eval<Then> { };
 
 template <typename Then, typename Else>
-struct conditional<false, Then, Else> : unwrap_eval<Else> { };
+struct conditional<false, Then, Else> : eval<Else> { };
 
 template <bool Cond, typename Action>
 struct branch {

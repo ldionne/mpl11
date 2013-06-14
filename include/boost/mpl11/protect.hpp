@@ -7,8 +7,8 @@
 #define BOOST_MPL11_PROTECT_HPP
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-    template <typename Arg>
-    struct protect;
+    template <typename M>
+    struct protect : M { };
 }}}
 
 #endif // !BOOST_MPL11_PROTECT_HPP
