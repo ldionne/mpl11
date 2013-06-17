@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_EVAL_HPP
 #define BOOST_MPL11_EVAL_HPP
 
+#include <boost/mpl11/functional/protect.hpp>
 #include <boost/mpl11/has_xxx.hpp>
-#include <boost/mpl11/protect.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {

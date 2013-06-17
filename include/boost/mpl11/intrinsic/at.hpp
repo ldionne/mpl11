@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_INTRINSIC_AT_HPP
 #define BOOST_MPL11_INTRINSIC_AT_HPP
 
-#include <boost/mpl11/apply_raw.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/functional/apply_raw.hpp>
 #include <boost/mpl11/size_t.hpp>
 
 #include <cstddef>

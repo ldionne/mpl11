@@ -3,8 +3,8 @@
  * This file defines `boost::mpl11::apply_raw`.
  */
 
-#ifndef BOOST_MPL11_APPLY_RAW_HPP
-#define BOOST_MPL11_APPLY_RAW_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_APPLY_RAW_HPP
+#define BOOST_MPL11_FUNCTIONAL_APPLY_RAW_HPP
 
 #include <boost/mpl11/detail/nested_apply.hpp>
 
@@ -16,4 +16,4 @@ namespace boost { namespace mpl11 { inline namespace v2 {
     { };
 }}}
 
-#endif // !BOOST_MPL11_APPLY_RAW_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_APPLY_RAW_HPP

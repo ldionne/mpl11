@@ -6,10 +6,10 @@
 #ifndef BOOST_MPL11_CONTAINER_SET_HPP
 #define BOOST_MPL11_CONTAINER_SET_HPP
 
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/map.hpp>
 #include <boost/mpl11/container/pair.hpp>
 #include <boost/mpl11/detail/wrap_with.hpp>
+#include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
 

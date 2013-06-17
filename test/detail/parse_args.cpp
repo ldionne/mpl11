@@ -6,9 +6,9 @@
 #include <boost/mpl11/detail/parse_args.hpp>
 #include <boost/mpl11/container/map.hpp>
 #include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/functional/named_argument.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/is_same.hpp>
-#include <boost/mpl11/named_argument.hpp>
 
 
 using namespace boost::mpl11;

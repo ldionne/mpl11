@@ -3,8 +3,8 @@
  * This file defines `boost::mpl11::named_argument`.
  */
 
-#ifndef BOOST_MPL11_NAMED_ARGUMENT_HPP
-#define BOOST_MPL11_NAMED_ARGUMENT_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP
+#define BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP
 
 namespace boost { namespace mpl11 { inline namespace v2 {
     template <typename Name, typename Value>
@@ -16,4 +16,4 @@ namespace boost { namespace mpl11 { inline namespace v2 {
     };
 }}}
 
-#endif // !BOOST_MPL11_NAMED_ARGUMENT_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP

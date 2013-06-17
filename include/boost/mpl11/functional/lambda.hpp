@@ -3,22 +3,21 @@
  * This file defines `boost::mpl11::lambda`.
  */
 
-#ifndef BOOST_MPL11_LAMBDA_HPP
-#define BOOST_MPL11_LAMBDA_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_LAMBDA_HPP
+#define BOOST_MPL11_FUNCTIONAL_LAMBDA_HPP
 
-#include <boost/mpl11/bind.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/eval.hpp>
+#include <boost/mpl11/functional/bind.hpp>
+#include <boost/mpl11/functional/protect.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/functional_fwd.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/or.hpp>
-#include <boost/mpl11/protect.hpp>
-#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/trait/is_placeholder.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-template <typename ...> struct bind;
-
 namespace lambda_detail {
     template <typename T>
     struct get_is_pe { using type = typename T::is_pe; };
@@ -63,4 +62,4 @@ struct lambda {
 };
 }}}
 
-#endif // !BOOST_MPL11_LAMBDA_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_LAMBDA_HPP

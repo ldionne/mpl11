@@ -3,8 +3,8 @@
  * This file defines several placeholders for use in placeholder expressions.
  */
 
-#ifndef BOOST_MPL11_PLACEHOLDERS_HPP
-#define BOOST_MPL11_PLACEHOLDERS_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_PLACEHOLDERS_HPP
+#define BOOST_MPL11_FUNCTIONAL_PLACEHOLDERS_HPP
 
 #include <boost/mpl11/container/vector.hpp>
 #include <boost/mpl11/eval.hpp>
@@ -73,4 +73,4 @@ struct args {
 };
 }}}
 
-#endif // !BOOST_MPL11_PLACEHOLDERS_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_PLACEHOLDERS_HPP

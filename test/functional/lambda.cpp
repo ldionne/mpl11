@@ -3,10 +3,10 @@
  * This file contains unit tests for `boost::mpl11::lambda`.
  */
 
-#include <boost/mpl11/lambda.hpp>
-#include <boost/mpl11/bind.hpp>
-#include <boost/mpl11/protect.hpp>
-#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/functional/lambda.hpp>
+#include <boost/mpl11/functional/bind.hpp>
+#include <boost/mpl11/functional/protect.hpp>
+#include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/trait/is_placeholder.hpp>
 
 #include <boost/type_traits/is_same.hpp>

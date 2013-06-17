@@ -3,15 +3,16 @@
  * This file defines `boost::mpl11::bind`.
  */
 
-#ifndef BOOST_MPL11_BIND_HPP
-#define BOOST_MPL11_BIND_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_BIND_HPP
+#define BOOST_MPL11_FUNCTIONAL_BIND_HPP
 
-#include <boost/mpl11/apply_raw.hpp>
-#include <boost/mpl11/container_fwd.hpp>
 #include <boost/mpl11/algorithm_fwd.hpp>
+#include <boost/mpl11/container_fwd.hpp>
 #include <boost/mpl11/detail/parse_args.hpp>
 #include <boost/mpl11/detail/transfer.hpp>
 #include <boost/mpl11/eval.hpp>
+#include <boost/mpl11/functional/apply_raw.hpp>
+#include <boost/mpl11/functional_fwd.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/intrinsic/empty.hpp>
 #include <boost/mpl11/intrinsic/front.hpp>
@@ -21,8 +22,6 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-template <typename ...> struct bind;
-
 namespace bind_detail {
 template <typename Sequence, typename State, typename BinaryOp>
 struct fold_bootstrap
@@ -100,7 +99,7 @@ struct bind
 { };
 }}}
 
-#endif // !BOOST_MPL11_BIND_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_BIND_HPP
 
 #include <boost/mpl11/algorithm/fold.hpp>
 #include <boost/mpl11/container/vector.hpp>

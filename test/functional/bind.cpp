@@ -3,14 +3,14 @@
  * This file contains unit tests for `boost::mpl11::bind`.
  */
 
-#include <boost/mpl11/bind.hpp>
-#include <boost/mpl11/apply_raw.hpp>
+#include <boost/mpl11/functional/bind.hpp>
+#include <boost/mpl11/functional/apply_raw.hpp>
+#include <boost/mpl11/functional/named_argument.hpp>
+#include <boost/mpl11/functional/placeholders.hpp>
+#include <boost/mpl11/functional/protect.hpp>
+#include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/is_same.hpp>
-#include <boost/mpl11/named_argument.hpp>
-#include <boost/mpl11/placeholders.hpp>
-#include <boost/mpl11/protect.hpp>
-#include <boost/mpl11/quote.hpp>
 
 
 using namespace boost::mpl11;

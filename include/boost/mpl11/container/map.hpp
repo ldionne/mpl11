@@ -7,8 +7,8 @@
 #define BOOST_MPL11_CONTAINER_MAP_HPP
 
 #include <boost/mpl11/algorithm/fold.hpp>
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>

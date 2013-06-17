@@ -3,8 +3,8 @@
  * This file defines `boost::mpl11::quote`.
  */
 
-#ifndef BOOST_MPL11_QUOTE_HPP
-#define BOOST_MPL11_QUOTE_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
+#define BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
 
 namespace boost { namespace mpl11 { inline namespace v2 {
     template <template <typename ...> class M>
@@ -16,4 +16,4 @@ namespace boost { namespace mpl11 { inline namespace v2 {
     };
 }}}
 
-#endif // !BOOST_MPL11_QUOTE_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
