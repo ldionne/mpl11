@@ -7,13 +7,14 @@
 #define BOOST_MPL11_DETAIL_WRAP_WITH_HPP
 
 #include <boost/mpl11/eval.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
 template <typename T>
 class wrap {
-    using Wrapped = typename eval<T>::type;
+    using Wrapped = typename eval<identity<T>>::type;
 
 public:
     template <template <typename ...> class Wrapper>

@@ -7,24 +7,27 @@
 #define BOOST_MPL11_IF_HPP
 
 #include <boost/mpl11/eval.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/protect.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace if_detail {
-template <bool Cond, typename Then, typename Else>
-struct conditional : eval<Then> { };
-
-template <typename Then, typename Else>
-struct conditional<false, Then, Else> : eval<Else> { };
-
-template <bool Cond, typename Action>
+template <bool Cond, typename Then>
 struct branch {
     static constexpr bool condition = Cond;
-    using action = Action;
+    using then = Then;
 };
 
+template <bool Condition, typename Then, typename Else>
+struct eval_conditional : eval<Then> { };
+
+template <typename Then, typename Else>
+struct eval_conditional<false, Then, Else> : eval<Else> { };
+
+
 // We walk the branches until we encounter one whose condition is `true`,
-// and pick its action. If there is no branch whose condition is `true`,
+// and pick its `then`. If there is no branch whose condition is `true`,
 // we don't provide a nested `type`, which enables us to mimic the
 // functionality provided by `enable_if`.
 template <typename ...Branches>
@@ -32,10 +35,10 @@ struct evaluate_branches;
 
 template <typename Branch, typename ...Rest>
 struct evaluate_branches<Branch, Rest...>
-    : conditional<
+    : eval_conditional<
         Branch::condition,
-        typename Branch::action,
-        eval<evaluate_branches<Rest...>>
+        identity<typename Branch::then>,
+        evaluate_branches<Rest...>
     >
 { };
 
@@ -44,8 +47,8 @@ template <> struct evaluate_branches<> { };
 
 template <typename ...Branches>
 struct jump_table {
-    template <bool Cond, typename Action>
-    using append = jump_table<Branches..., branch<Cond, Action>>;
+    template <bool Cond, typename Then>
+    using append = jump_table<Branches..., branch<Cond, Then>>;
 
     struct evaluate : evaluate_branches<Branches...> { };
 };
