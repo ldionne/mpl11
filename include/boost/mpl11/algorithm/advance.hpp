@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_ALGORITHM_ADVANCE_HPP
 #define BOOST_MPL11_ALGORITHM_ADVANCE_HPP
 
-#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/apply_raw.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 
 
@@ -21,7 +21,7 @@ namespace algorithm {
 
 template <typename Iterator, typename ...Args>
 struct advance
-    : apply<algorithm::advance, Iterator, Args...>
+    : apply_raw<algorithm::advance, Iterator, Args...>
 { };
 }}}
 

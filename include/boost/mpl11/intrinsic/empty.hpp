@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_EMPTY_HPP
 #define BOOST_MPL11_INTRINSIC_EMPTY_HPP
 
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/apply_raw.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
@@ -18,7 +17,7 @@ namespace intrinsic {
         template <typename ...Args>
         struct apply
             : bool_<
-                mpl11::apply<
+                apply_raw<
                     detail::tag_dispatched<empty>, Args...
                 >::type::value
             >

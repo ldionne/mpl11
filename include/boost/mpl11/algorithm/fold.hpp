@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_ALGORITHM_FOLD_HPP
 #define BOOST_MPL11_ALGORITHM_FOLD_HPP
 
-#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/apply_raw.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 
 
@@ -19,7 +19,7 @@ namespace algorithm {
 
 template <typename Sequence, typename ...Args>
 struct fold
-    : apply<algorithm::fold, Sequence, Args...>
+    : apply_raw<algorithm::fold, Sequence, Args...>
 { };
 }}}
 
