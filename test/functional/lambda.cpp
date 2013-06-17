@@ -7,12 +7,10 @@
 #include <boost/mpl11/functional/bind.hpp>
 #include <boost/mpl11/functional/protect.hpp>
 #include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/trait/is_placeholder.hpp>
 
-#include <boost/type_traits/is_same.hpp>
 
-
-using namespace boost;
 using namespace boost::mpl11;
 
 struct a0;

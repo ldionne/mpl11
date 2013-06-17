@@ -5,13 +5,11 @@
 
 #include <boost/mpl11/trait/dispatcher_of.hpp>
 #include <boost/mpl11/has_xxx.hpp>
-
-#include <boost/type_traits/is_same.hpp>
+#include <boost/mpl11/is_same.hpp>
 
 
 BOOST_MPL11_HAS_NESTED_TYPE(has_type, type)
 
-using namespace boost;
 using namespace boost::mpl11;
 
 struct no_dispatcher1;

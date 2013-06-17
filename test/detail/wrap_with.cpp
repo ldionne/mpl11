@@ -4,11 +4,9 @@
  */
 
 #include <boost/mpl11/detail/wrap_with.hpp>
+#include <boost/mpl11/is_same.hpp>
 
-#include <boost/type_traits/is_same.hpp>
 
-
-using namespace boost;
 using namespace boost::mpl11;
 using boost::mpl11::detail::wrap;
 

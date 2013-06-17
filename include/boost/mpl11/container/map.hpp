@@ -27,9 +27,8 @@
 #include <boost/mpl11/intrinsic/second.hpp>
 #include <boost/mpl11/intrinsic/size.hpp>
 #include <boost/mpl11/intrinsic/value.hpp>
+#include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/size_t.hpp>
-
-#include <boost/type_traits/is_same.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {

@@ -8,11 +8,9 @@
 #include <boost/mpl11/eval.hpp>
 #include <boost/mpl11/has_xxx.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/is_same.hpp>
 
-#include <boost/type_traits/is_same.hpp>
 
-
-using namespace boost;
 using namespace boost::mpl11;
 
 BOOST_MPL11_HAS_NESTED_TYPE(has_type, type)

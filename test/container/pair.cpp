@@ -4,11 +4,9 @@
  */
 
 #include <boost/mpl11/container/pair.hpp>
+#include <boost/mpl11/is_same.hpp>
 
-#include <boost/type_traits/is_same.hpp>
 
-
-using namespace boost;
 using namespace boost::mpl11;
 
 struct a0;
