@@ -9,7 +9,7 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/map.hpp>
 #include <boost/mpl11/container/pair.hpp>
-#include <boost/mpl11/if.hpp>
+#include <boost/mpl11/detail/wrap_with.hpp>
 #include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
 
@@ -22,16 +22,10 @@ class set_impl {
         struct implementation {
             template <typename Operation, typename ...Args>
             struct apply
-                : if_<trait::is_inplace_transformation<Operation>,
-                    iterator<
-                        typename boost::mpl11::apply<
-                            Operation, Iterator, Args...
-                        >::type
-                    >,
-                    typename boost::mpl11::apply<
-                        Operation, Iterator, Args...
-                    >::type
-                >
+                : detail::wrap<
+                    eval<boost::mpl11::apply<Operation, Iterator, Args...>>
+                >::template with<set_impl::iterator>
+                ::template if_<trait::is_inplace_transformation<Operation>>
             { };
 
             template <typename ...Args>
@@ -44,20 +38,12 @@ class set_impl {
         struct mpl11 { using delegate = implementation; };
     };
 
-    template <typename Metafunction>
-    struct wrap {
-        using type = set_impl<typename Metafunction::type>;
-    };
-
     struct implementation {
         template <typename Operation, typename ...Args>
         struct apply
-            : if_<trait::is_inplace_transformation<Operation>,
-                eval<wrap<
-                    typename mpl11::apply<Operation, Map, Args...>::type
-                >>,
-                typename mpl11::apply<Operation, Map, Args...>::type
-            >
+            : detail::wrap<eval<mpl11::apply<Operation, Map, Args...>>>
+            ::template with<set_detail::set_impl>
+            ::template if_<trait::is_inplace_transformation<Operation>>
         { };
 
         // Wrap insert to accept a single element instead of a pair.
@@ -68,7 +54,8 @@ class set_impl {
 
         template <typename Element>
         struct apply<intrinsic::insert, Element>
-            : wrap<insert<Map, pair<Element, Element>>>
+            : detail::wrap<eval<insert<Map, pair<Element, Element>>>>
+              ::template with<set_detail::set_impl>
         { };
 
         // We wrap front so that it returns a single type instead of a pair.

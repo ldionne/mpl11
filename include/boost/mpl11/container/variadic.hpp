@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/detail/wrap_with.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
@@ -46,16 +47,10 @@ class variadic<Template<TemplateParams...>> {
             struct dispatcher {
                 template <typename Operation, typename ...Args>
                 struct apply
-                    : if_<trait::is_inplace_transformation<Operation>,
-                        iterator<
-                            typename boost::mpl11::apply<
-                                Operation, Iterator, Args...
-                            >::type
-                        >,
-                        typename boost::mpl11::apply<
-                            Operation, Iterator, Args...
-                        >::type
-                    >
+                    : detail::wrap<
+                        eval<boost::mpl11::apply<Operation, Iterator, Args...>>
+                    >:: template with<variadic::iterator>
+                    ::template if_<trait::is_inplace_transformation<Operation>>
                 { };
             };
         };
