@@ -10,6 +10,8 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/size_t.hpp>
 
+#include <cstddef>
+
 
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace intrinsic {
@@ -23,7 +25,7 @@ struct at
     : apply_raw<intrinsic::at, Sequence, Args...>
 { };
 
-template <typename Sequence, size_t<0>::value_type N>
+template <typename Sequence, std::size_t N>
 struct at_c
     : at<Sequence, size_t<N>>
 { };
