@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/detail/transfer.hpp>
 #include <boost/mpl11/detail/wrap_with.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/trait/is_inplace_transformation.hpp>
@@ -15,22 +16,12 @@
 
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace variadic_detail {
-template <template <typename ...> class Destination, typename Source>
-struct transfer;
-
-template <template <typename ...> class Destination,
-          template <typename ...> class Source,
-          typename ...Content>
-struct transfer<Destination, Source<Content...>> {
-    using type = Destination<Content...>;
-};
-
 template <typename Operation,
           template <typename ...> class Destination,
           typename Source>
 struct transfer_if_required
     : if_<trait::is_inplace_transformation<Operation>,
-        eval<transfer<Destination, Source>>,
+        eval<detail::transfer<Destination, Source>>,
         Source
     >
 { };
