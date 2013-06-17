@@ -1,95 +1,110 @@
-/**
- * This file defines unit tests for the bind metafunction.
+/*!
+ * @file
+ * This file contains unit tests for `boost::mpl11::bind`.
  */
 
-#include <mpl11/bind.hpp>
-#include <mpl11/apply.hpp>
-#include <mpl11/identity.hpp>
-#include <mpl11/pack.hpp>
-#include <mpl11/placeholders.hpp>
-#include <mpl11/quote.hpp>
-#include <mpl11/transform.hpp>
+#include <boost/mpl11/bind.hpp>
+#include <boost/mpl11/apply_raw.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/named_argument.hpp>
+#include <boost/mpl11/placeholders.hpp>
+#include <boost/mpl11/protect.hpp>
+#include <boost/mpl11/quote.hpp>
 
-#include <type_traits>
+
+using namespace boost::mpl11;
+
+// bind with positional placeholders
+static_assert(is_same<
+    apply_raw<bind<quote<identity>, _1>, int>::type,
+    apply_raw<quote<identity>, int>::type,
+    identity<int>::type,
+    int
+>::value, "");
+static_assert(is_same<
+    apply_raw<bind<quote<identity>, _1>, int, float>::type,
+    apply_raw<bind<quote<identity>, _1>, int>::type
+>::value, "");
+static_assert(is_same<
+    apply_raw<bind<quote<identity>, _2>, int, float>::type,
+    apply_raw<quote<identity>, float>::type,
+    identity<float>::type,
+    float
+>::value, "");
 
 
-using namespace mpl11;
+// bind with named placeholders
+static_assert(is_same<
+    apply_raw<
+        bind<quote<identity>, kwarg<struct tag>>,
+        named_argument<struct tag, int>
+    >::type,
+    apply_raw<quote<identity>, int>::type,
+    identity<int>::type,
+    int
+>::value, "");
+static_assert(is_same<
+    apply_raw<
+        bind<quote<identity>, kwarg<struct float_tag>>,
+        named_argument<struct int_tag, int>,
+        named_argument<struct float_tag, float>
+    >::type,
+    apply_raw<quote<identity>, float>::type,
+    identity<float>::type,
+    float
+>::value, "");
 
-using midentity = quote<identity>;
 
-// Nested binds.
-using delayed = bind<midentity, _1>;
-using delayed_twice = bind<midentity, delayed>;
-static_assert(std::is_same<
-                apply<delayed, int>::type,
-                int
-              >::value, "");
+// bind with the special args placeholder
+template <typename ...> struct pack;
+template <typename ...T> struct make_pack { using type = pack<T...>; };
+static_assert(is_same<
+    apply_raw<bind<quote<make_pack>, args<>>, int, float, char>::type,
+    apply_raw<quote<make_pack>, int, float, char>::type,
+    make_pack<int, float, char>::type,
+    pack<int, float, char>
+>::value, "");
+static_assert(is_same<
+    apply_raw<bind<quote<make_pack>, args<1>>, int, float, char>::type,
+    apply_raw<quote<make_pack>, float, char>::type,
+    make_pack<float, char>::type,
+    pack<float, char>
+>::value, "");
+static_assert(is_same<
+    apply_raw<bind<quote<make_pack>, args<0, 2>>, int, float, char>::type,
+    apply_raw<quote<make_pack>, int, float>::type,
+    make_pack<int, float>::type,
+    pack<int, float>
+>::value, "");
+static_assert(is_same<
+    apply_raw<bind<quote<make_pack>, args<1, 1>>, int, float, char>::type,
+    apply_raw<quote<make_pack>>::type,
+    make_pack<>::type,
+    pack<>
+>::value, "");
 
-static_assert(std::is_same<
-                apply<delayed_twice, int>::type,
-                int
-              >::value, "");
 
-// Simple bind with an identity metafunction.
-static_assert(std::is_same<
-                apply<bind<_1, int>, midentity>::type,
-                int
-              >::value, "");
+// nested bind's
+static_assert(is_same<
+    apply_raw<
+        bind<quote<make_pack>, _2, bind<quote<make_pack>, char, _1>>,
+        int, float
+    >::type,
+    make_pack<float, make_pack<char, int>::type>::type,
+    pack<float, pack<char, int>>
+>::value, "");
 
-// bind as metafunction class to algorithm working on higher order functions.
-static_assert(std::is_same<
-                transform<bind<midentity, float>,
-                    int, int, int
-                >::type,
-                pack<float, float, float>
-              >::value, "");
 
-// bind with many parameters.
-using shuffled = bind<quote<pack>, _2, _1, _4, _3>;
-static_assert(std::is_same<
-                shuffled::apply<int, float, char, void>::type,
-                pack<float, int, void, char>
-              >::value, "");
+// nested bind's with protect
+static_assert(is_same<
+    apply_raw<
+        bind<quote<make_pack>, _2, protect<bind<quote<make_pack>, char, _1>>>,
+        int, float
+    >::type,
+    make_pack<float, protect<bind<quote<make_pack>, char, _1>>>::type,
+    pack<float, protect<bind<quote<make_pack>, char, _1>>>
+>::value, "");
 
-// bind with too many parameters.
-static_assert(std::is_same<
-                shuffled::apply<int, float, char, void, short, double>::type,
-                pack<float, int, void, char>
-              >::value, "");
 
-// bind without arguments.
-struct self {
-    template <typename ...> struct apply { using type = self; };
-};
-static_assert(std::is_same<
-                self,
-                apply<bind<self>>::type
-              >::value, "");
-
-// bind with nullary template.
-struct nullary {
-    template <typename ...> struct apply;
-};
-template <> struct nullary::apply<> { using type = nullary; };
-static_assert(std::is_same<
-                apply<bind<nullary>>::type,
-                nullary
-              >::value, "");
-
-// Equivalence between bind and bind_pack.
-static_assert(std::is_same<
-                bind<midentity, _1>,
-                bind_pack<pack<midentity, _1>>
-              >::value, "");
-
-// bind with the special _all placeholder
-static_assert(std::is_same<
-                apply<bind<quote<pack>, _all>, int, char, pack<double>>::type,
-                pack<int, char, pack<double>>
-              >::value, "");
-
-// bind with a placeholder inside the arguments (it should not be replaced)
-static_assert(std::is_same<
-                apply<bind<midentity, _1>, _1>::type,
-                _1
-              >::value, "");
+int main() { }

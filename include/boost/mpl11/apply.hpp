@@ -7,10 +7,12 @@
 #define BOOST_MPL11_APPLY_HPP
 
 #include <boost/mpl11/apply_raw.hpp>
-#include <boost/mpl11/lambda.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
+    template <typename Expression>
+    struct lambda;
+
     template <typename M, typename ...Args>
     struct apply
         : apply_raw<typename lambda<M>::type, Args...>
@@ -18,3 +20,5 @@ namespace boost { namespace mpl11 { inline namespace v2 {
 }}}
 
 #endif // !BOOST_MPL11_APPLY_HPP
+
+#include <boost/mpl11/lambda.hpp>

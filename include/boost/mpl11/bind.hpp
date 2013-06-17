@@ -7,84 +7,100 @@
 #define BOOST_MPL11_BIND_HPP
 
 #include <boost/mpl11/apply_raw.hpp>
-#include <boost/mpl11/detail/basic_map.hpp>
+#include <boost/mpl11/container_fwd.hpp>
+#include <boost/mpl11/algorithm_fwd.hpp>
+#include <boost/mpl11/detail/parse_args.hpp>
+#include <boost/mpl11/detail/transfer.hpp>
+#include <boost/mpl11/eval.hpp>
+#include <boost/mpl11/if.hpp>
+#include <boost/mpl11/intrinsic/empty.hpp>
+#include <boost/mpl11/intrinsic/front.hpp>
+#include <boost/mpl11/intrinsic/pop_front.hpp>
+#include <boost/mpl11/intrinsic/push_back.hpp>
+#include <boost/mpl11/trait/is_placeholder.hpp>
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-#if 0
+template <typename ...> struct bind;
+
 namespace bind_detail {
-    template <typename Sequence> struct apply_raw_first_to_rest;
-    template <typename First, typename ...Rest>
-    struct apply_raw_first_to_rest<vector<First, Rest...>>
-        : apply_raw<First, Rest...>
-    { };
+template <typename Sequence, typename State, typename BinaryOp>
+struct fold_bootstrap
+    : if_<empty<Sequence>,
+        State,
+        eval<fold_bootstrap<
+            eval<pop_front<Sequence>>,
+            eval<apply<BinaryOp, State, eval<front<Sequence>>>>,
+            BinaryOp
+        >>
+    >
+{ };
 
-    template <template <typename ...> class Destination, typename Source>
-    struct unpack_into;
+template <typename Sequence, typename Range>
+struct push_back_range
+    : if_<empty<Range>,
+        Sequence,
+        eval<push_back_range<
+            eval<push_back<Sequence, eval<front<Range>>>>,
+            eval<pop_front<Range>>
+        >>
+    >
+{ };
 
-    template <template <typename ...> class Destination,
-              template <typename ...> class Source, typename ...T>
-    struct unpack_into<Destination, Source<T...>> {
-        using type = Destination<T...>;
-    };
+template <typename Args, typename Kwargs>
+struct do_binding;
 
-    template <typename T, typename ArgumentMap>
-    struct substitute_rec
-        : identity<T>
-    { };
+template <typename Args, typename Kwargs, typename ...T>
+struct perform_binding
+    : detail::transfer<
+        apply_raw,
+        typename fold_bootstrap<
+            vector<T...>, vector<>, do_binding<Args, Kwargs>
+        >::type
+    >
+{ };
 
-    template <template <typename...> class N, typename ...T, typename ArgumentMap>
-    struct substitute_rec<N<T...>, ArgumentMap> {
-        using subs = typename flatten<
-            vector<typename substitute<T, ArgumentMap>::type...>
-        >::type;
-        using type = typename unpack_into<N, subs>::type;
-    };
-
-    template <typename T, typename ArgumentMap>
-    struct substitute
-        : eval_if<is_placeholder<T>, apply<T, ArgumentMap>>::template
-          eval_else<substitute_rec<T, ArgumentMap>>
-    { };
-
-    template <template <typename ...> class N, typename ...T, typename Argmap>
-    struct substitute<N<T...>, Argmap> {
-        using type = N<typename substitute<T, Argmap>::type...>;
-    };
-
-    template <unsigned long N, typename ...Args>
-    struct make_argmap { using type = detail::basic_map<>; };
-
-    template <unsigned long N, typename A0, typename ...An>
-    struct make_argmap<N, A0, ...An>
-        : make_argmap<N + 1, An...>::type::template push_front<
-            pair<typename as_key<A0, N>::type, typename as_value<A0, N>::type>
+template <typename Args, typename Kwargs>
+struct do_binding {
+    template <typename Result, typename T>
+    struct apply
+        : if_<trait::is_placeholder<T>,
+            eval<push_back_range<Result, eval<apply_raw<T, Args, Kwargs>>>>,
+            eval<push_back<Result, T>>
         >
     { };
-}
 
-
-template <typename ...Placeholders>
-struct bind {
-    template <typename ...Args>
-    struct apply
-        : bind_detail::apply_raw_first_to_rest<
-            typename bind_detail::substitute<
-                vector<Placeholders...>,
-                typename bind_detail::make_argmap<0, Args...>::type
-            >::type
+    template <typename Result, typename ...T>
+    struct apply<Result, bind<T...>>
+        : push_back<
+            Result,
+            typename perform_binding<Args, Kwargs, T...>::type::type
         >
     { };
 };
-#else
-template <typename M, typename ...Placeholders>
-struct bind {
-    template <typename ...Args>
-    struct apply
-        : apply_raw<M, Args...>
-    { };
+
+template <typename ...T>
+struct bind_impl {
+    template <typename ...A>
+    class apply {
+        using Parsed = typename detail::parse_args<A...>::type;
+        using Args = typename Parsed::args;
+        using Kwargs = typename Parsed::kwargs;
+        using Bound = typename perform_binding<Args, Kwargs, T...>::type;
+
+    public:
+        using type = typename Bound::type;
+    };
 };
-#endif
+} // end namespace bind_detail
+
+template <typename ...T>
+struct bind
+    : bind_detail::bind_impl<T...>
+{ };
 }}}
 
 #endif // !BOOST_MPL11_BIND_HPP
+
+#include <boost/mpl11/algorithm/fold.hpp>
+#include <boost/mpl11/container/vector.hpp>

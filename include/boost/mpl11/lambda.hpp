@@ -17,6 +17,8 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
+template <typename ...> struct bind;
+
 namespace lambda_detail {
     template <typename T>
     struct get_is_pe { using type = typename T::is_pe; };
