@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/bind.hpp>
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/eval.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/protect.hpp>
@@ -16,65 +17,48 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-template <typename Expression>
-struct lambda;
-
 namespace lambda_detail {
-    template <typename Expression>
-    struct is_placeholder_expression
-        : trait::is_placeholder<Expression>
-    { };
+    template <typename T>
+    struct get_is_pe { using type = typename T::is_pe; };
 
-    // Note: We can't use algorithms here because that would create a
-    //       circular dependency.
-    template <typename ...T>
-    struct any_is_placeholder_expression : false_ { };
-
-    template <typename Head, typename ...Tail>
-    struct any_is_placeholder_expression<Head, Tail...>
-        : or_<
-            is_placeholder_expression<Head>,
-            any_is_placeholder_expression<Tail...>
-        >
-    { };
-
-    template <template <typename ...> class M, typename ...T>
-    struct is_placeholder_expression<M<T...>>
-        : or_<
-            trait::is_placeholder<M<T...>>,
-            any_is_placeholder_expression<T...>
-        >
-    { };
-
-    template <typename Expression>
-    struct contains_placeholder_expression : false_ { };
-
-    template <template <typename ...> class M, typename ...T>
-    struct contains_placeholder_expression<M<T...>>
-        : any_is_placeholder_expression<T...>
-    { };
-
-    template <typename Expression>
-    struct lambdaize {
-        using type = Expression;
+    template <typename T>
+    struct lambda_impl {
+        using is_pe = typename trait::is_placeholder<T>::type;
+        using le = T;
     };
 
     template <template <typename ...> class M, typename ...T>
-    struct lambdaize<M<T...>> {
-        using type = protect<
-            bind<quote<M>, typename lambda<T>::type...>
-        >;
+    struct lambda_impl<M<T...>> {
+        // We must make sure there are always at least two arguments to the
+        // `or_`, hence the trailing `false_`.
+        using is_pe = typename or_<
+            trait::is_placeholder<M<T...>>,
+            get_is_pe<lambda_impl<T>>...,
+            false_
+        >::type;
+
+        template <typename ...U>
+        struct lazy_protect_bind_helper {
+            using type = protect<
+                bind<quote<M>, typename lambda_impl<U>::le...>
+            >;
+        };
+
+        using le =
+            typename if_<trait::is_placeholder<M<T...>>,
+                M<T...>
+            >::template else_if<is_pe,
+                eval<lazy_protect_bind_helper<T...>>
+            >::template else_<
+                M<T...>
+            >::type;
     };
 } // end namespace lambda_detail
 
 template <typename Expression>
-struct lambda
-    :   if_<trait::is_placeholder<Expression>,
-            Expression>::template
-        else_if<lambda_detail::contains_placeholder_expression<Expression>,
-            eval<lambda_detail::lambdaize<Expression>>>::template
-        else_<Expression>
-{ };
+struct lambda {
+    using type = typename lambda_detail::lambda_impl<Expression>::le;
+};
 }}}
 
 #endif // !BOOST_MPL11_LAMBDA_HPP
