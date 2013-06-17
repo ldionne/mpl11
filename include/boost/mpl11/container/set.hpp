@@ -23,7 +23,9 @@ class set_impl {
             template <typename Operation, typename ...Args>
             struct apply
                 : detail::wrap<
-                    eval<boost::mpl11::apply<Operation, Iterator, Args...>>
+                    typename boost::mpl11::apply<
+                        Operation, Iterator, Args...
+                    >::type
                 >::template with<set_impl::iterator>
                 ::template if_<trait::is_inplace_transformation<Operation>>
             { };
@@ -41,8 +43,9 @@ class set_impl {
     struct implementation {
         template <typename Operation, typename ...Args>
         struct apply
-            : detail::wrap<eval<mpl11::apply<Operation, Map, Args...>>>
-            ::template with<set_detail::set_impl>
+            : detail::wrap<
+                typename mpl11::apply<Operation, Map, Args...>::type
+            >::template with<set_detail::set_impl>
             ::template if_<trait::is_inplace_transformation<Operation>>
         { };
 
@@ -54,8 +57,9 @@ class set_impl {
 
         template <typename Element>
         struct apply<intrinsic::insert, Element>
-            : detail::wrap<eval<insert<Map, pair<Element, Element>>>>
-              ::template with<set_detail::set_impl>
+            : detail::wrap<
+                typename insert<Map, pair<Element, Element>>::type
+            >::template with<set_detail::set_impl>
         { };
 
         // We wrap front so that it returns a single type instead of a pair.

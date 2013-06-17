@@ -48,7 +48,9 @@ class variadic<Template<TemplateParams...>> {
                 template <typename Operation, typename ...Args>
                 struct apply
                     : detail::wrap<
-                        eval<boost::mpl11::apply<Operation, Iterator, Args...>>
+                        typename boost::mpl11::apply<
+                            Operation, Iterator, Args...
+                        >::type
                     >:: template with<variadic::iterator>
                     ::template if_<trait::is_inplace_transformation<Operation>>
                 { };
