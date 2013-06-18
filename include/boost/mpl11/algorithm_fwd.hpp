@@ -11,12 +11,19 @@ namespace boost { namespace mpl11 { inline namespace v2 {
         struct advance;
         struct distance;
         struct fold;
+        struct iter_fold;
         struct transform;
     }
 
     template <typename, typename ...> struct advance;
     template <typename, typename, typename ...> struct distance;
-    template <typename, typename ...> struct fold;
+
+    template <typename Sequence, typename State, typename BinaryOp>
+    struct fold;
+
+    template <typename Sequence, typename State, typename BinaryOp>
+    struct iter_fold;
+
     template <typename, typename ...> struct transform;
 }}}
 

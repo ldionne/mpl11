@@ -23,18 +23,6 @@
 
 namespace boost { namespace mpl11 { inline namespace v2 {
 namespace bind_detail {
-template <typename Sequence, typename State, typename BinaryOp>
-struct fold_bootstrap
-    : if_<empty<Sequence>,
-        State,
-        eval<fold_bootstrap<
-            eval<pop_front<Sequence>>,
-            eval<apply<BinaryOp, State, eval<front<Sequence>>>>,
-            BinaryOp
-        >>
-    >
-{ };
-
 template <typename Sequence, typename Range>
 struct push_back_range
     : if_<empty<Range>,
@@ -53,7 +41,7 @@ template <typename Args, typename Kwargs, typename ...T>
 struct perform_binding
     : detail::transfer<
         apply_raw,
-        typename fold_bootstrap<
+        typename fold<
             vector<T...>, vector<>, do_binding<Args, Kwargs>
         >::type
     >

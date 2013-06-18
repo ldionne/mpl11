@@ -7,6 +7,7 @@
 #define BOOST_MPL11_CONTAINER_VECTOR_HPP
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/detail/default_implementation.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/intrinsic/back.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
@@ -62,7 +63,9 @@ class vector : public vector_detail::make_vector<Elements...> {
     class iterator {
         struct implementation {
             template <typename Operation, typename ...Args>
-            struct apply;
+            struct apply
+                : detail::default_implementation<Operation, iterator, Args...>
+            { };
 
             template <typename ...Ignore>
             struct apply<intrinsic::next, Ignore...> {
@@ -92,7 +95,9 @@ class vector : public vector_detail::make_vector<Elements...> {
 
     struct implementation {
         template <typename Operation, typename ...Args>
-        struct apply;
+        struct apply
+            : detail::default_implementation<Operation, vector, Args...>
+        { };
 
         template <typename ...Ignore>
         struct apply<intrinsic::begin, Ignore...> {
