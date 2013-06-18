@@ -1,19 +1,27 @@
-# mpl11 - an implementation of the Boost.MPL library for C++11
+# mpl11 - a C++11 remake of the Boost.MPL
+
+
+## Disclaimer
+This is not an official Boost library. It might be proposed as a replacement
+for the MPL in the future, but there is no guarantee.
+
+The code is unstable at the moment; do not use for production.
+
 
 ## Requirements
-A conformant C++11 compiler and standard library.
+A conformant C++11 compiler.
 
 
 ## Getting started
 The __mpl11__ is a header only library. Just add the _include_ directory to
-your compiler's search path and you are good to go. All you need to do is
-
-    #include <mpl11.hpp>
+your compiler's search path and you are good to go.
 
 
-## Running the tests
-To run the tests, you will also need to have CMake installed.
+## Testing
+To compile the tests, you will also need to have CMake installed.
 If this is the case, you can go to the root of the project and do:
 
-    $ make gen-cmake # Generates CMake files in the _build/_ directory
-    $ make unit      # Compiles the tests. All tests are compile-time only.
+    $ mkdir build
+    $ cd build
+    $ cmake ..
+    $ make unit # Compiles the tests. All tests are compile-time only.
