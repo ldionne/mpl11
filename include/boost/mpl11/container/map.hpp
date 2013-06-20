@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_CONTAINER_MAP_HPP
 #define BOOST_MPL11_CONTAINER_MAP_HPP
 
-#include <boost/mpl11/algorithm/fold.hpp>
+#include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/if.hpp>
@@ -198,24 +198,24 @@ class map {
     public:
         template <typename Key>
         struct apply<intrinsic::erase_key, Key>
-            : fold<map, map<>, erase_helper<Key>>
+            : foldl<map, map<>, erase_helper<Key>>
         { };
 
     private:
         template <typename Map, typename State, typename BinaryOp>
-        struct fold_impl;
+        struct foldl_impl;
 
         template <template <typename ...> class Map,
                   typename State, typename BinaryOp>
-        struct fold_impl<Map<>, State, BinaryOp> {
+        struct foldl_impl<Map<>, State, BinaryOp> {
             using type = State;
         };
 
         template <template <typename ...> class Map,
                   typename Head, typename ...Tail,
                   typename State, typename BinaryOp>
-        struct fold_impl<Map<Head, Tail...>, State, BinaryOp>
-            : fold_impl<
+        struct foldl_impl<Map<Head, Tail...>, State, BinaryOp>
+            : foldl_impl<
                 Map<Tail...>,
                 typename mpl11::apply<BinaryOp, State, Head>::type,
                 BinaryOp
@@ -224,8 +224,8 @@ class map {
 
     public:
         template <typename State, typename BinaryOp>
-        struct apply<algorithm::fold, State, BinaryOp>
-            : fold_impl<map, State, BinaryOp>
+        struct apply<algorithm::foldl, State, BinaryOp>
+            : foldl_impl<map, State, BinaryOp>
         { };
     };
 

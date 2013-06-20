@@ -41,7 +41,7 @@ template <typename Args, typename Kwargs, typename ...T>
 struct perform_binding
     : detail::transfer<
         apply_raw,
-        typename fold<
+        typename foldl<
             vector<T...>, vector<>, do_binding<Args, Kwargs>
         >::type
     >
@@ -89,5 +89,5 @@ struct bind
 
 #endif // !BOOST_MPL11_FUNCTIONAL_BIND_HPP
 
-#include <boost/mpl11/algorithm/fold.hpp>
+#include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/container/vector.hpp>
