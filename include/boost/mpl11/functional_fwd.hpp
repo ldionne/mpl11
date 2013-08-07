@@ -7,6 +7,7 @@
 #define BOOST_MPL11_FUNCTIONAL_FWD_HPP
 
 namespace boost { namespace mpl11 { inline namespace v2 {
+    template <typename> struct always;
     template <typename, typename ...> struct apply;
     template <typename, typename ...> struct apply_raw;
     template <typename ...> struct bind;

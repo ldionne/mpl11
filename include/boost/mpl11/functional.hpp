@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_HPP
 #define BOOST_MPL11_FUNCTIONAL_HPP
 
+#include <boost/mpl11/functional/always.hpp>
 #include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/functional/apply_raw.hpp>
 #include <boost/mpl11/functional/bind.hpp>
