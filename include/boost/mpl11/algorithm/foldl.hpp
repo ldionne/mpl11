@@ -14,7 +14,7 @@
 #include <boost/mpl11/intrinsic/deref.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace foldl_detail {
     // Don't use lambda expressions here! foldl is required for
     // implementing bind, so that would create a nasty circular
@@ -37,7 +37,7 @@ namespace foldl_detail {
             deref_2nd_apply_raw<typename lambda<BinaryOp>::type>
         >
     { };
-}
+} // end namespace foldl_detail
 
 namespace algorithm {
     struct foldl : detail::tag_dispatched<foldl> {
@@ -51,6 +51,6 @@ template <typename Sequence, typename State, typename BinaryOp>
 struct foldl
     : apply_raw<algorithm::foldl, Sequence, State, BinaryOp>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FOLDL_HPP

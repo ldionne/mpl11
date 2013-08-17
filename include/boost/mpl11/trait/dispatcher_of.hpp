@@ -10,7 +10,7 @@
 #include <boost/mpl11/if.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace trait {
+namespace boost { namespace mpl11 { namespace trait {
     namespace dispatcher_of_detail {
         template <typename T>
         struct get_dispatcher {
@@ -18,13 +18,13 @@ namespace boost { namespace mpl11 { inline namespace v2 { namespace trait {
         };
 
         BOOST_MPL11_HAS_NESTED_TYPE(has_dispatcher, mpl11::dispatcher)
-    }
+    } // end namespace dispatcher_of_detail
 
     template <typename T>
     struct dispatcher_of
         : if_<dispatcher_of_detail::has_dispatcher<T>,
             eval<dispatcher_of_detail::get_dispatcher<T>>>
     { };
-}}}}
+}}} // end namespace boost::mpl11::trait
 
 #endif // !BOOST_MPL11_TRAIT_DISPATCHER_OF_HPP

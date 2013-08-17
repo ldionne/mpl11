@@ -13,7 +13,7 @@
 #include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace set_detail {
 template <typename Map>
 class set_impl {
@@ -103,6 +103,6 @@ public:
 
 template <typename ...Elements>
 using set = set_detail::set_impl<map<pair<Elements, Elements>...>>;
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_CONTAINER_SET_HPP

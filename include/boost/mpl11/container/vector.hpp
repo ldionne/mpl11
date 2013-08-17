@@ -28,7 +28,7 @@
 #include <cstddef>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 template <typename ...Elements>
 class vector;
 
@@ -54,7 +54,7 @@ namespace vector_detail {
         >
     { };
 #endif
-}
+} // end namespace vector_detail
 
 template <typename ...Elements>
 class vector : public vector_detail::make_vector<Elements...> {
@@ -222,6 +222,6 @@ class vector : public vector_detail::make_vector<Elements...> {
 public:
     struct mpl11 { using dispatcher = implementation; };
 };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_CONTAINER_VECTOR_HPP

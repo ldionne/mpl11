@@ -6,9 +6,9 @@
 #ifndef BOOST_MPL11_DETAIL_NONE_HPP
 #define BOOST_MPL11_DETAIL_NONE_HPP
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
+namespace boost { namespace mpl11 { namespace detail {
     struct none;
-}}}}
+}}}
 
 #endif // !BOOST_MPL11_DETAIL_NONE_HPP
 

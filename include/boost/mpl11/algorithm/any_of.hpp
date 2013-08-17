@@ -22,7 +22,7 @@
 #include <boost/mpl11/or.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace any_of_detail {
     template <typename First, typename Last, typename Pred>
     struct default_impl
@@ -34,7 +34,7 @@ namespace any_of_detail {
             >>
         >
     { };
-}
+} // end namespace any_of_detail
 
 namespace algorithm {
     struct any_of : detail::tag_dispatched<any_of> {
@@ -53,12 +53,12 @@ namespace algorithm {
             };
         };
     };
-}
+} // end namespace algorithm
 
 template <typename Sequence, typename Pred = quote<identity>>
 struct any_of
     : apply_raw<algorithm::any_of, Sequence, Pred>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ANY_OF_HPP

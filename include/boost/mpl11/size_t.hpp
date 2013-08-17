@@ -11,9 +11,9 @@
 #include <cstddef>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <std::size_t N>
     using size_t = integral_c<std::size_t, N>;
-}}}
+}}
 
 #endif // !BOOST_MPL11_SIZE_T_HPP

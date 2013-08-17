@@ -16,7 +16,7 @@
 #include <boost/mpl11/trait/is_bidirectional_iterator.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace advance_detail {
     template <template <typename ...> class NextIter,
               template <typename ...> class PrevN,
@@ -66,6 +66,6 @@ template <typename Iterator, typename N>
 struct advance
     : apply_raw<algorithm::advance, Iterator, N>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ADVANCE_HPP

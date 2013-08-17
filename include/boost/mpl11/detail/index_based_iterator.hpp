@@ -13,7 +13,7 @@
 #include <boost/mpl11/size_t.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
+namespace boost { namespace mpl11 { namespace detail {
 template <typename Sequence, typename size<Sequence>::value_type N>
 struct index_based_iterator {
     struct implementation {
@@ -64,6 +64,6 @@ public:
         using dispatcher = implementation;
     };
 };
-}}}}
+}}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_INDEX_BASED_ITERATOR_HPP

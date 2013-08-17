@@ -13,22 +13,22 @@
 #include <cstddef>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
-namespace intrinsic {
-    struct at : detail::tag_dispatched<at> {
+namespace boost { namespace mpl11 {
+    namespace intrinsic {
+        struct at : detail::tag_dispatched<at> {
 
-    };
-}
+        };
+    }
 
-template <typename Sequence, typename ...Args>
-struct at
-    : apply_raw<intrinsic::at, Sequence, Args...>
-{ };
+    template <typename Sequence, typename ...Args>
+    struct at
+        : apply_raw<intrinsic::at, Sequence, Args...>
+    { };
 
-template <typename Sequence, std::size_t N>
-struct at_c
-    : at<Sequence, size_t<N>>
-{ };
-}}}
+    template <typename Sequence, std::size_t N>
+    struct at_c
+        : at<Sequence, size_t<N>>
+    { };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_AT_HPP

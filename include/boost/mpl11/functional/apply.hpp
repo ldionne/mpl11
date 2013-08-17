@@ -9,12 +9,12 @@
 #include <boost/mpl11/functional_fwd.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <typename M, typename ...Args>
     struct apply
         : apply_raw<typename lambda<M>::type, Args...>
     { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_APPLY_HPP
 

@@ -9,7 +9,7 @@
 #include <cstddef>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace intrinsic {
     struct at;
     struct back;
@@ -35,7 +35,7 @@ namespace intrinsic {
     struct second;
     struct size;
     struct value;
-}
+} // end namespace intrinsic
 
 template <typename, typename ...> struct at;
 template <typename, std::size_t>  struct at_c;
@@ -62,6 +62,6 @@ template <typename, typename ...> struct push_front;
 template <typename, typename ...> struct second;
 template <typename, typename ...> struct size;
 template <typename, typename ...> struct value;
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_FWD_HPP

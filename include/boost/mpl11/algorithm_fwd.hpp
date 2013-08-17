@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_ALGORITHM_FWD_HPP
 #define BOOST_MPL11_ALGORITHM_FWD_HPP
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace algorithm {
     struct advance;
     struct any_of;
@@ -49,6 +49,6 @@ struct none_of;
 
 template <typename Sequence, typename F, typename Inserter>
 struct transform;
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FWD_HPP

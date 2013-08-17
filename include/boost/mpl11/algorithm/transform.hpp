@@ -14,7 +14,7 @@
 #include <boost/mpl11/functional/quote.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace transform_detail {
     template <typename Sequence, typename F, typename Inserter>
     struct default_impl
@@ -28,7 +28,7 @@ namespace transform_detail {
             >
         >
     { };
-}
+} // end namespace transform_detail
 
 namespace algorithm {
     struct transform : detail::tag_dispatched<transform> {
@@ -44,6 +44,6 @@ template <typename Sequence, typename F, typename Inserter>
 struct transform
     : apply_raw<algorithm::transform, Sequence, F, Inserter>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_TRANSFORM_HPP

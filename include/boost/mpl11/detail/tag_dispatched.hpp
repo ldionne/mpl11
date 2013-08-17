@@ -10,7 +10,7 @@
 #include <boost/mpl11/trait/dispatcher_of.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
+namespace boost { namespace mpl11 { namespace detail {
     template <typename Operation>
     struct tag_dispatched {
         template <typename Receiver, typename ...Args>
@@ -21,7 +21,7 @@ namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
             >
         { };
     };
-}}}}
+}}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 

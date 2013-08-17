@@ -17,7 +17,7 @@
 #include <boost/mpl11/trait/is_placeholder.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace lambda_detail {
     template <typename T>
     struct get_is_pe { using type = typename T::is_pe; };
@@ -60,6 +60,6 @@ template <typename Expression>
 struct lambda {
     using type = typename lambda_detail::lambda_impl<Expression>::le;
 };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_LAMBDA_HPP

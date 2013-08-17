@@ -10,17 +10,17 @@
 #include <boost/mpl11/functional/apply_raw.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
-namespace intrinsic {
-    struct back : detail::tag_dispatched<back> {
+namespace boost { namespace mpl11 {
+    namespace intrinsic {
+        struct back : detail::tag_dispatched<back> {
 
-    };
-}
+        };
+    }
 
-template <typename Sequence, typename ...Args>
-struct back
-    : apply_raw<intrinsic::back, Sequence, Args...>
-{ };
-}}}
+    template <typename Sequence, typename ...Args>
+    struct back
+        : apply_raw<intrinsic::back, Sequence, Args...>
+    { };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_BACK_HPP

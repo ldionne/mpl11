@@ -10,17 +10,17 @@
 #include <boost/mpl11/functional/apply_raw.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
-namespace intrinsic {
-    struct first : detail::tag_dispatched<first> {
+namespace boost { namespace mpl11 {
+    namespace intrinsic {
+        struct first : detail::tag_dispatched<first> {
 
-    };
-}
+        };
+    }
 
-template <typename Pair, typename ...Args>
-struct first
-    : apply_raw<intrinsic::first, Pair, Args...>
-{ };
-}}}
+    template <typename Pair, typename ...Args>
+    struct first
+        : apply_raw<intrinsic::first, Pair, Args...>
+    { };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_FIRST_HPP

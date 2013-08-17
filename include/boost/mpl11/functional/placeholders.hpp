@@ -16,7 +16,7 @@
 #include <boost/integer_traits.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 template <typename Name>
 struct kwarg {
     struct mpl11 { struct is_placeholder; };
@@ -59,7 +59,7 @@ namespace args_detail {
             >>
         >
     { };
-}
+} // end namespace args_detail
 
 template <int First = 0, int Last = integer_traits<int>::const_max>
 struct args {
@@ -71,6 +71,6 @@ struct args {
         : args_detail::fold_args<vector<>, Args, First, Last>
     { };
 };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_PLACEHOLDERS_HPP

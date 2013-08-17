@@ -14,7 +14,7 @@
 #include <boost/mpl11/not.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace algorithm {
     struct none_of : detail::tag_dispatched<none_of> {
         struct mpl11 {
@@ -28,12 +28,12 @@ namespace algorithm {
             };
         };
     };
-}
+} // end namespace algorithm
 
 template <typename Sequence, typename Pred = quote<identity>>
 struct none_of
     : apply_raw<algorithm::none_of, Sequence, Pred>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_NONE_OF_HPP

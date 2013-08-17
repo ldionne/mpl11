@@ -18,7 +18,7 @@
 #include <boost/mpl11/is_same.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace iter_foldr_detail {
     template <typename First, typename Last, typename State, typename BinaryOp>
     struct iter_default_impl
@@ -43,7 +43,7 @@ namespace iter_foldr_detail {
             typename lambda<BinaryOp>::type
         >
     { };
-}
+} // end namespace iter_foldr_detail
 
 namespace algorithm {
     struct iter_foldr : detail::tag_dispatched<iter_foldr> {
@@ -59,6 +59,6 @@ template <typename Sequence, typename State, typename BinaryOp>
 struct iter_foldr
     : apply_raw<algorithm::iter_foldr, Sequence, State, BinaryOp>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ITER_FOLDR_HPP

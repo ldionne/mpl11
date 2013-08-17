@@ -9,11 +9,11 @@
 #include <boost/mpl11/bool.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <typename F>
     struct not_
         : bool_<!F::type::value>
     { };
-}}}
+}}
 
 #endif // !BOOST_MPL11_NOT_HPP

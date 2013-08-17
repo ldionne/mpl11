@@ -13,7 +13,7 @@
 #include <boost/mpl11/trait/is_named_argument.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
+namespace boost { namespace mpl11 { namespace detail {
 namespace parse_args_detail {
     template <int N = 0, typename Args = vector<>, typename Kwargs = map<>>
     struct parse_info {
@@ -67,7 +67,7 @@ struct parse_args
         parse_args_detail::parse_info<>, Args...
     >
 { };
-}}}}
+}}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_PARSE_ARGS_HPP
 

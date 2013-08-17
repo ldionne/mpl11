@@ -11,7 +11,7 @@
 #include <boost/mpl11/intrinsic/value.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
+namespace boost { namespace mpl11 { namespace detail {
 namespace O1_lookup_detail {
     // This is a wrapper to allow us to work with incomplete types.
     template <typename T>
@@ -44,7 +44,7 @@ namespace O1_lookup_detail {
         template <typename Key, typename Default>
         static Default at(Key, Default);
     };
-}
+} // end namespace O1_lookup_detail
 
 template <typename Map, typename ...Elements>
 struct O1_lookup {
@@ -69,6 +69,6 @@ struct O1_lookup {
         >::type;
     };
 };
-}}}}
+}}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_O1_LOOKUP_HPP

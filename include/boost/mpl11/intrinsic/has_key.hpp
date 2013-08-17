@@ -11,24 +11,24 @@
 #include <boost/mpl11/functional/apply_raw.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
-namespace intrinsic {
-    struct has_key : detail::tag_dispatched<has_key> {
-        template <typename ...Args>
-        struct apply
-            : bool_<
-                apply_raw<
-                    detail::tag_dispatched<has_key>, Args...
-                >::type::value
-            >
-        { };
-    };
-}
+namespace boost { namespace mpl11 {
+    namespace intrinsic {
+        struct has_key : detail::tag_dispatched<has_key> {
+            template <typename ...Args>
+            struct apply
+                : bool_<
+                    apply_raw<
+                        detail::tag_dispatched<has_key>, Args...
+                    >::type::value
+                >
+            { };
+        };
+    } // end namespace intrinsic
 
-template <typename AssociativeSequence, typename ...Args>
-struct has_key
-    : apply_raw<intrinsic::has_key, AssociativeSequence, Args...>
-{ };
-}}}
+    template <typename AssociativeSequence, typename ...Args>
+    struct has_key
+        : apply_raw<intrinsic::has_key, AssociativeSequence, Args...>
+    { };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_HAS_KEY_HPP

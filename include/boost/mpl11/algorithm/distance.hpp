@@ -15,7 +15,7 @@
 #include <boost/mpl11/long.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace distance_detail {
     template <typename First, typename Last, typename N>
     struct default_impl
@@ -26,7 +26,7 @@ namespace distance_detail {
             >>
         >
     { };
-}
+} // end namespace distance_detail
 
 namespace algorithm {
     struct distance : detail::tag_dispatched<distance> {
@@ -41,12 +41,12 @@ namespace algorithm {
             };
         };
     };
-}
+} // end namespace algorithm
 
 template <typename First, typename Last>
 struct distance
     : apply_raw<algorithm::distance, First, Last>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_DISTANCE_HPP

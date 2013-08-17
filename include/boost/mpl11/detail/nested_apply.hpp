@@ -9,7 +9,7 @@
 #include <boost/utility/enable_if.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
+namespace boost { namespace mpl11 { namespace detail {
 namespace nested_apply_detail {
     template <typename T, typename ...Args>
     struct fetch_template_apply
@@ -45,6 +45,6 @@ template <typename M, typename ...Args>
 struct nested_apply
     : nested_apply_detail::pick_apply_fetcher<M, Args...>::type
 { };
-}}}} // end namespace boost::mpl11::detail
+}}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_NESTED_APPLY_HPP

@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
 #define BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <template <typename ...> class M>
     struct quote {
         template <typename ...Args>
@@ -14,6 +14,6 @@ namespace boost { namespace mpl11 { inline namespace v2 {
             : M<Args...>
         { };
     };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_QUOTE_HPP

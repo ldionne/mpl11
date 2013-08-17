@@ -21,7 +21,7 @@
 #include <boost/mpl11/trait/is_placeholder.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace bind_detail {
 template <typename Sequence, typename Range>
 struct push_back_range
@@ -85,7 +85,7 @@ template <typename ...T>
 struct bind
     : bind_detail::bind_impl<T...>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_BIND_HPP
 

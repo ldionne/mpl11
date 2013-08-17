@@ -25,7 +25,7 @@
 #include <boost/mpl11/is_same.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 template <typename ...Elements>
 class map : public vector<Elements...> {
     using lookup = detail::O1_lookup<map, Elements...>;
@@ -113,6 +113,6 @@ public:
     struct mpl11 { using dispatcher = implementation; };
     using type = map;
 };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_CONTAINER_MAP_HPP

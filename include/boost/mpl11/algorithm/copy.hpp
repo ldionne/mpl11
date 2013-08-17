@@ -11,7 +11,7 @@
 #include <boost/mpl11/functional/apply_raw.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace algorithm {
     struct copy : detail::tag_dispatched<copy> {
         struct mpl11 {
@@ -27,12 +27,12 @@ namespace algorithm {
             };
         };
     };
-}
+} // end namespace algorithm
 
 template <typename Sequence, typename Inserter>
 struct copy
     : apply_raw<algorithm::copy, Sequence, Inserter>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_COPY_HPP

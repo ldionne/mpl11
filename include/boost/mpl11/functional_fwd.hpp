@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_FWD_HPP
 #define BOOST_MPL11_FUNCTIONAL_FWD_HPP
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <typename> struct always;
     template <typename, typename ...> struct apply;
     template <typename, typename ...> struct apply_raw;
@@ -18,6 +18,6 @@ namespace boost { namespace mpl11 { inline namespace v2 {
     template <int, int> struct args;
     template <typename> struct protect;
     template <template <typename ...> class> struct quote;
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_FWD_HPP

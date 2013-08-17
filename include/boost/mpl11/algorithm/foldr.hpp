@@ -15,7 +15,7 @@
 #include <boost/mpl11/intrinsic/deref.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace foldr_detail {
     template <typename Sequence, typename State, typename BinaryOp>
     struct default_impl
@@ -37,6 +37,6 @@ template <typename Sequence, typename State, typename BinaryOp>
 struct foldr
     : apply_raw<algorithm::foldr, Sequence, State, BinaryOp>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FOLDR_HPP

@@ -10,7 +10,7 @@
 #include <boost/mpl11/has_xxx.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 template <typename Metafunction>
 struct eval;
 
@@ -48,12 +48,12 @@ namespace eval_detail {
 
     template <typename T>
     struct nested_type_type<T, false> { };
-}
+} // end namespace eval_detail
 
 template <typename Metafunction>
 struct eval
     : eval_detail::nested_type_type<eval_detail::eval_rec<Metafunction>>
 { };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_EVAL_HPP

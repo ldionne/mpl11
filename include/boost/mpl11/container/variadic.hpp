@@ -14,17 +14,17 @@
 #include <boost/mpl11/trait/is_inplace_transformation.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace variadic_detail {
-template <typename Operation,
-          template <typename ...> class Destination,
-          typename Source>
-struct transfer_if_required
-    : if_<trait::is_inplace_transformation<Operation>,
-        eval<detail::transfer<Destination, Source>>,
-        Source
-    >
-{ };
+    template <typename Operation,
+              template <typename ...> class Destination,
+              typename Source>
+    struct transfer_if_required
+        : if_<trait::is_inplace_transformation<Operation>,
+            eval<detail::transfer<Destination, Source>>,
+            Source
+        >
+    { };
 } // end namespace variadic_detail
 
 template <typename Template>
@@ -79,6 +79,6 @@ public:
 
     using type = variadic;
 };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_CONTAINER_VARIADIC_HPP

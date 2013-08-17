@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP
 #define BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <typename Name, typename Value>
     struct named_argument {
         struct mpl11 { struct is_named_argument; };
@@ -14,6 +14,6 @@ namespace boost { namespace mpl11 { inline namespace v2 {
         using key = Name;
         using value = Value;
     };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP

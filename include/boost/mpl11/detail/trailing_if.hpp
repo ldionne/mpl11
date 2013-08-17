@@ -10,15 +10,15 @@
 #include <boost/mpl11/if.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 { namespace detail {
-template <typename Derived, typename Else>
-struct trailing_if {
-    template <bool Condition>
-    using if_c = mpl11::if_c<Condition, eval<Derived>, Else>;
+namespace boost { namespace mpl11 { namespace detail {
+    template <typename Derived, typename Else>
+    struct trailing_if {
+        template <bool Condition>
+        using if_c = mpl11::if_c<Condition, eval<Derived>, Else>;
 
-    template <typename Condition>
-    using if_ = if_c<Condition::type::value>;
-};
-}}}}
+        template <typename Condition>
+        using if_ = if_c<Condition::type::value>;
+    };
+}}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_TRAILING_IF_HPP

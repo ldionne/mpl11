@@ -9,7 +9,7 @@
 #include <boost/mpl11/identity.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
     template <typename T>
     struct always : identity<T> {
         template <typename ...>
@@ -17,6 +17,6 @@ namespace boost { namespace mpl11 { inline namespace v2 {
             : identity<T>
         { };
     };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_ALWAYS_HPP

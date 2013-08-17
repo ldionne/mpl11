@@ -10,7 +10,7 @@
 #include <boost/mpl11/intrinsic/second.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 template <typename First, typename Second>
 class pair {
     struct implementation {
@@ -31,6 +31,6 @@ class pair {
 public:
     struct mpl11 { using dispatcher = implementation; };
 };
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_CONTAINER_PAIR_HPP

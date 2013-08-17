@@ -11,7 +11,7 @@
 #include <boost/mpl11/identity.hpp>
 
 
-namespace boost { namespace mpl11 { inline namespace v2 {
+namespace boost { namespace mpl11 {
 namespace if_detail {
 template <bool Cond, typename Then>
 struct branch {
@@ -161,6 +161,6 @@ struct if_c
 
 template <typename Cond, typename ...Args>
 using if_ = if_c<Cond::type::value, Args...>;
-}}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IF_HPP
