@@ -32,46 +32,6 @@
 
 
 namespace boost { namespace mpl11 { inline namespace v2 {
-namespace map_detail {
-// This is a wrapper to allow us to work with incomplete types.
-template <typename T>
-struct wrap { using type = T; };
-
-template <typename T>
-struct unwrap : T { };
-
-template <typename Map, typename ...Elements>
-struct lookup_cell;
-
-template <typename Map, typename Element, typename ...Rest>
-struct lookup_cell<Map, Element, Rest...> : lookup_cell<Map, Rest...> {
-private:
-    using Next = lookup_cell<Map, Rest...>;
-    using Key = typename key<Map, Element>::type;
-    using Value = typename value<Map, Element>::type;
-
-public:
-    using this_element = Element;
-    using next_cell = Next;
-
-    using Next::has_key;
-    static true_ has_key(wrap<Key>);
-
-    using Next::at;
-    template <typename Default>
-    static wrap<Value> at(wrap<Key>, Default);
-};
-
-template <typename Map>
-struct lookup_cell<Map> {
-    template <typename Key>
-    static false_ has_key(Key);
-
-    template <typename Key, typename Default>
-    static Default at(Key, Default);
-};
-} // end namespace map_detail
-
 template <typename ...Elements>
 class map {
     using lookup_begin = map_detail::lookup_cell<map, Elements...>;
@@ -103,66 +63,6 @@ class map {
     struct implementation {
         template <typename Operation, typename ...Args>
         struct apply;
-
-        template <typename ...Ignore>
-        struct apply<intrinsic::begin, Ignore...> {
-            using type = iterator<lookup_begin>;
-        };
-
-        template <typename ...Ignore>
-        struct apply<intrinsic::end, Ignore...> {
-            using type = iterator<lookup_end>;
-        };
-
-        template <typename ...Ignore>
-        struct apply<intrinsic::size, Ignore...>
-            : size_t<sizeof...(Elements)>
-        { };
-
-        template <typename ...Ignore>
-        struct apply<intrinsic::empty, Ignore...>
-            : bool_<sizeof...(Elements) == 0>
-        { };
-
-        template <typename ...Ignore>
-        struct apply<intrinsic::front, Ignore...>
-            : deref<typename begin<map>::type>
-        { };
-
-        template <typename Key>
-        struct apply<intrinsic::has_key, Key>
-            : decltype(lookup_begin::has_key(wrap<Key>{}))
-        { };
-
-        struct fail;
-        template <typename Key>
-        struct apply<intrinsic::at, Key>
-            : apply<intrinsic::at, Key, fail>
-        { };
-
-        template <typename Key, typename Default>
-        struct apply<intrinsic::at, Key, Default>
-            : unwrap<decltype(lookup_begin::at(wrap<Key>{}, wrap<Default>{}))>
-        {
-            static_assert(!is_same<typename apply::type, fail>::value,
-                "the requested key could not be found in the map "
-                "and no default return value was specified");
-        };
-
-        template <typename Element>
-        struct apply<intrinsic::key, Element>
-            : first<Element>
-        { };
-
-        template <typename Element>
-        struct apply<intrinsic::value, Element>
-            : second<Element>
-        { };
-
-        template <typename ...Ignore>
-        struct apply<intrinsic::clear, Ignore...> {
-            using type = map<>;
-        };
 
         template <typename Hint, typename Element>
         struct apply<intrinsic::insert, Hint, Element>
