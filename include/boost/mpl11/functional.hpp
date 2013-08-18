@@ -9,10 +9,14 @@
 #include <boost/mpl11/functional/always.hpp>
 #include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/functional/apply_raw.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/functional/args.hpp>
 #include <boost/mpl11/functional/bind.hpp>
+#include <boost/mpl11/functional/kwarg.hpp>
+#include <boost/mpl11/functional/kwargs.hpp>
 #include <boost/mpl11/functional/lambda.hpp>
 #include <boost/mpl11/functional/named_argument.hpp>
-#include <boost/mpl11/functional/placeholders.hpp>
+#include <boost/mpl11/functional/placeholder.hpp>
 #include <boost/mpl11/functional/protect.hpp>
 #include <boost/mpl11/functional/quote.hpp>
 

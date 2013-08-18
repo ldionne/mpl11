@@ -27,16 +27,10 @@ namespace parse_args_detail {
             >;
         };
 
-        template <typename Argument>
-        class add_kwarg {
-            using NamedArgPair = pair<
-                typename Argument::key,
-                typename Argument::value
-            >;
-
-        public:
+        template <typename NamedArgument>
+        struct add_kwarg {
             using type = parse_info<
-                N + 1, Args, typename insert<Kwargs, NamedArgPair>::type
+                N + 1, Args, typename insert<Kwargs, NamedArgument>::type
             >;
         };
 

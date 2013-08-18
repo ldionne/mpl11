@@ -16,6 +16,7 @@ namespace boost { namespace mpl11 {
     template <typename> struct kwarg;
     template <int> struct arg;
     template <int, int> struct args;
+    struct kwargs;
     template <typename> struct protect;
     template <template <typename ...> class> struct quote;
 }} // end namespace boost::mpl11
