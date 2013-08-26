@@ -3,8 +3,8 @@
  * This file defines `boost::mpl11::integral_c`.
  */
 
-#ifndef BOOST_MPL11_INTEGRAL_C_HPP
-#define BOOST_MPL11_INTEGRAL_C_HPP
+#ifndef BOOST_MPL11_INTEGRAL_INTEGRAL_C_HPP
+#define BOOST_MPL11_INTEGRAL_INTEGRAL_C_HPP
 
 #include <boost/mpl11/intrinsic_fwd.hpp>
 
@@ -41,4 +41,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTEGRAL_C_HPP
+#endif // !BOOST_MPL11_INTEGRAL_INTEGRAL_C_HPP

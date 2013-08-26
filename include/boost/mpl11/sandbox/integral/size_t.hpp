@@ -3,8 +3,8 @@
  * This file defines `boost::mpl11::size_t`.
  */
 
-#ifndef BOOST_MPL11_SIZE_T_HPP
-#define BOOST_MPL11_SIZE_T_HPP
+#ifndef BOOST_MPL11_INTEGRAL_SIZE_T_HPP
+#define BOOST_MPL11_INTEGRAL_SIZE_T_HPP
 
 #include <boost/mpl11/integral_c.hpp>
 
@@ -16,4 +16,4 @@ namespace boost { namespace mpl11 {
     using size_t = integral_c<std::size_t, N>;
 }}
 
-#endif // !BOOST_MPL11_SIZE_T_HPP
+#endif // !BOOST_MPL11_INTEGRAL_SIZE_T_HPP

@@ -3,8 +3,8 @@
  * This file defines `boost::mpl11::long_`.
  */
 
-#ifndef BOOST_MPL11_LONG_HPP
-#define BOOST_MPL11_LONG_HPP
+#ifndef BOOST_MPL11_INTEGRAL_LONG_HPP
+#define BOOST_MPL11_INTEGRAL_LONG_HPP
 
 #include <boost/mpl11/integral_c.hpp>
 
@@ -14,4 +14,4 @@ namespace boost { namespace mpl11 {
     using long_ = integral_c<long, N>;
 }}
 
-#endif // !BOOST_MPL11_LONG_HPP
+#endif // !BOOST_MPL11_INTEGRAL_LONG_HPP
