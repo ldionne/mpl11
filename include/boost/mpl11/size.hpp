@@ -11,11 +11,10 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/distance.hpp>
 #include <boost/mpl11/end.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct size; }
-
 /*!
  * Returns the number of elements in a sequence.
  *

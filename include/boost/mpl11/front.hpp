@@ -11,6 +11,7 @@
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,8 +24,6 @@ namespace front_detail {
         using type = typename deref<typename begin<Sequence>::type>::type;
     };
 }
-
-namespace tag { struct front; }
 
 /*!
  * Returns the first element in a sequence.

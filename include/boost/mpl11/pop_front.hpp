@@ -11,10 +11,10 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/erase.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct pop_front; }
 namespace pop_front_detail {
     template <typename Sequence>
     struct pop_front_impl {

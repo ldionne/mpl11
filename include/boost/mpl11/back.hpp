@@ -12,6 +12,7 @@
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/prior.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -26,8 +27,6 @@ namespace back_detail {
         >::type;
     };
 } // end namespace back_detail
-
-namespace tag { struct back; }
 
 /*!
  * Returns the last element in a sequence if there is such an element, and

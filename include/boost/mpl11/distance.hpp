@@ -13,11 +13,10 @@
 #include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct distance; }
-
 /*!
  * Returns the distance between `First` and `Last` iterators.
  *

@@ -12,11 +12,10 @@
 #include <boost/mpl11/find.hpp>
 #include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/not.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct contains; }
-
 /*!
  * Returns whether `Sequence` contains one or more elements identical
  * to `Element`.

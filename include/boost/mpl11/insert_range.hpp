@@ -7,11 +7,10 @@
 #define BOOST_MPL11_INSERT_RANGE_HPP
 
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct insert_range; }
-
 template <typename Sequence, typename Position, typename ...Range>
 struct insert_range {
     static_assert(detail::always_false<Sequence, Position, Range...>::value,

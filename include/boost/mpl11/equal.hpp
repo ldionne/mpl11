@@ -9,13 +9,14 @@
 #include <boost/mpl11/all_of.hpp>
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/detail/always_false.hpp>
+#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/eq.hpp>
 #include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/size.hpp>
+#include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/unpack_args.hpp>
 #include <boost/mpl11/zip_view.hpp>
 
@@ -34,17 +35,9 @@ namespace equal_detail {
     { };
 } // end namespace equal_detail
 
-namespace tag { struct equal; }
-
-template <typename Sequence1, typename Sequence2, typename ...Predicate>
-struct equal {
-    static_assert(
-    detail::always_false<Sequence1, Sequence2, Predicate...>::value,
-    "Too many arguments to `equal`. "
-    "Usage is `equal<Sequence1, Sequence2[, Predicate]>`.");
-
-    struct type;
-};
+template <typename Sequence1, typename Sequence2,
+          typename Predicate = detail::optional>
+struct equal;
 
 /*!
  * Returns whether two sequences are identical when compared
@@ -65,7 +58,10 @@ struct equal {
  * - The default implementation differs but the semantics are the same.
  */
 template <typename Sequence1, typename Sequence2, typename Predicate>
-struct equal<Sequence1, Sequence2, Predicate>
+struct equal
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+    <Sequence1, Sequence2, Predicate>
+#endif
     : detail::tag_dispatched<tag::equal, Sequence1, Sequence2, Predicate>
       ::template with_default<
         equal_detail::equal_impl<_2, _3, lambda<_4>>

@@ -7,6 +7,7 @@
 #define BOOST_MPL11_ERASE_HPP
 
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -65,8 +66,6 @@ struct erase_impl<tag::back_extensible, Sequence, First, Last>
 { };
 #error finish implementing me
 } // end namespace erase_detail
-
-namespace tag { struct erase; }
 
 template <typename Sequence, typename First, typename ...Last>
 struct erase {

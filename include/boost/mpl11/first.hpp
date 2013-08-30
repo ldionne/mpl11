@@ -7,11 +7,10 @@
 #define BOOST_MPL11_FIRST_HPP
 
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct first; }
-
 /*!
  * Returns the first element of a pair.
  *

@@ -10,6 +10,7 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/find_if.hpp>
 #include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -19,8 +20,6 @@ namespace find_detail {
         : find_if<Sequence, is_same<Element, _1>>
     { };
 } // end namespace find_detail
-
-namespace tag { struct find; }
 
 /*!
  * Returns an iterator to the first occurence of a given element in a

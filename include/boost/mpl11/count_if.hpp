@@ -14,6 +14,7 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -30,8 +31,6 @@ namespace count_if_detail {
         >
     { };
 } // end namespace count_if_detail
-
-namespace tag { struct count_if; }
 
 /*!
  * Returns the number of elements in `Sequence` satisfying `Predicate`.

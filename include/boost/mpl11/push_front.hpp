@@ -10,11 +10,10 @@
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct push_front; }
-
 /*!
  * Inserts an element at the beginning of a sequence.
  *

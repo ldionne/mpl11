@@ -16,6 +16,7 @@
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -41,8 +42,6 @@ namespace find_if_detail {
         : identity<Last>
     { };
 } // end namespace find_if_detail
-
-namespace tag { struct find_if; }
 
 /*!
  * Returns an iterator to the first element satisfying a given predicate

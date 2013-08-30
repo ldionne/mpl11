@@ -14,6 +14,7 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -34,8 +35,6 @@ namespace iter_foldr_detail {
         : identity<State>
     { };
 } // end namespace iter_foldr_detail
-
-namespace tag { struct iter_foldr; }
 
 /*!
  * Accumulates the iterators in a range from an initial state using a

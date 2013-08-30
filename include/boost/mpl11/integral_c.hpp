@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -18,8 +19,6 @@ namespace boost { namespace mpl11 {
         using type = integral_c;
         constexpr operator value_type() const { return value; }
     };
-
-    namespace tag { struct next; struct prior; }
 
     template <typename I, I N>
     struct dispatch<tag::next, integral_c<I, N>>

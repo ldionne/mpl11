@@ -12,6 +12,7 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/iter_foldr.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,8 +24,6 @@ struct foldr_impl
     >
 { };
 } // end namespace foldr_detail
-
-namespace tag { struct foldr; }
 
 /*!
  * Accumulates the elements of a sequence from an initial state using a

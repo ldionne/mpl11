@@ -11,11 +11,10 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/single_view.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct insert; }
-
 template <typename Sequence, typename Position, typename ...Element>
 struct insert {
     static_assert(detail::always_false<Sequence, Position, Element...>::value,

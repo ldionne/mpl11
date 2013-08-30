@@ -7,11 +7,10 @@
 #define BOOST_MPL11_PRIOR_HPP
 
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct prior; }
-
 /*!
  * Returns the previous iterator in the sequence.
  *

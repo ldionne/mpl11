@@ -10,6 +10,7 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -24,8 +25,6 @@ struct default_is_empty {
     { };
 };
 } // end namespace is_empty_detail
-
-namespace tag { struct is_empty; }
 
 /*!
  * Return whether the sequence is empty.

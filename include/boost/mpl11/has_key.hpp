@@ -13,6 +13,7 @@
 #include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/not.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -29,8 +30,6 @@ namespace has_key_detail {
         >
     { };
 } // end namespace has_key_detail
-
-namespace tag { struct has_key; }
 
 /*!
  * Returns whether an associative sequence contains an element with key `Key`.

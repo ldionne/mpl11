@@ -8,13 +8,12 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename First, typename Second>
     struct pair;
-
-    namespace tag { struct first; struct second; }
 
     template <typename First, typename Second>
     struct dispatch<tag::first, pair<First, Second>>

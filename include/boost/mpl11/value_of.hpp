@@ -7,11 +7,10 @@
 #define BOOST_MPL11_VALUE_OF_HPP
 
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct value_of; }
-
 /*!
  * Returns the value that _would_ be used for an element in an associative
  * sequence.

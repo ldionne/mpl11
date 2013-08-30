@@ -11,6 +11,7 @@
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/erase.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -25,8 +26,6 @@ namespace pop_back_detail {
         >::type;
     };
 } // end namespace pop_back_detail
-
-namespace tag { struct pop_back; }
 
 /*!
  * Removes the element at the end of a sequence.

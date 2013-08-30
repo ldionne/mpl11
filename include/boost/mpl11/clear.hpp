@@ -11,11 +11,10 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/erase.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct clear; }
-
 /*!
  * Returns an empty sequence concept-identical to `Sequence`.
  *

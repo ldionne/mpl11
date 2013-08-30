@@ -11,6 +11,7 @@
 #include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/remove_if.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -22,8 +23,6 @@ namespace erase_key_detail {
         >
     { };
 } // end namespace erase_key_detail
-
-namespace tag { struct erase_key; }
 
 /*!
  * Erases elements associated with a given key in an associative sequence.
