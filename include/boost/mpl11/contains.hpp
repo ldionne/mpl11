@@ -27,7 +27,7 @@ template <typename Sequence, typename Element>
 struct contains
     : detail::tag_dispatched<tag::contains, Sequence, Element>::template
       with_default<
-        not_<is_same<find<_2, _3>, end<_2>>>
+        not_<is_same<find<_1, _2>, end<_1>>>
       >
 { };
 }} // end namespace boost::mpl11

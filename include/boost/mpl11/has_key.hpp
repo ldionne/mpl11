@@ -54,7 +54,7 @@ namespace has_key_detail {
 template <typename Sequence, typename Key>
 struct has_key
     : detail::tag_dispatched<tag::has_key, Sequence, Key>::template
-      with_default<has_key_detail::has_key_impl<_2, _3>>
+      with_default<has_key_detail::has_key_impl<_1, _2>>
 { };
 }} // end namespace boost::mpl11
 

@@ -43,7 +43,7 @@ namespace back_detail {
 template <typename Sequence>
 struct back
     : detail::tag_dispatched<tag::back, Sequence>::template
-      with_default<back_detail::back_impl<_2>>
+      with_default<back_detail::back_impl<_1>>
 { };
 }} // end namespace boost::mpl11
 

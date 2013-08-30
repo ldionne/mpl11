@@ -48,7 +48,7 @@ struct foldl_impl
 template <typename Sequence, typename State, typename F>
 struct foldl
     : detail::tag_dispatched<tag::foldl, Sequence, State, F>
-      ::template with_default<foldl_detail::foldl_impl<_2, _3, _4>>
+      ::template with_default<foldl_detail::foldl_impl<_1, _2, _3>>
 { };
 }} // end namespace boost::mpl11
 

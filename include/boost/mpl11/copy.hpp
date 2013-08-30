@@ -42,7 +42,7 @@ struct copy
     <From, To, Insert>
 #endif
     : detail::tag_dispatched<tag::copy, From, To, Insert>::template
-      with_default<foldl<_2, _3, lambda<_4>>>
+      with_default<foldl<_1, _2, lambda<_3>>>
 { };
 
 namespace copy_detail {
@@ -64,7 +64,7 @@ auto copy_dispatch(category::front_extensible_sequence*, priority<1>*)
     -> foldr<From, To, push_front<_1, _2>>
 ;
 
-template <typename From, typename To, typename ...Insert>
+template <typename From, typename To>
 struct pick_best_copy
     : decltype(
         copy_dispatch<From, To>(
@@ -86,7 +86,7 @@ struct pick_best_copy
 template <typename From, typename To>
 struct copy<From, To>
     : detail::tag_dispatched<tag::copy, From, To>::template
-      with_default<copy_detail::pick_best_copy<_2, _3>>
+      with_default<copy_detail::pick_best_copy<_1, _2>>
 { };
 }} // end namespace boost::mpl11
 

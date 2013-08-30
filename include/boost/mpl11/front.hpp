@@ -39,7 +39,7 @@ namespace front_detail {
 template <typename Sequence>
 struct front
     : detail::tag_dispatched<tag::front, Sequence>::template
-      with_default<front_detail::front_impl<_2>>
+      with_default<front_detail::front_impl<_1>>
 { };
 }} // end namespace boost::mpl11
 

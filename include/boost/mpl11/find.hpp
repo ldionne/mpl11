@@ -31,7 +31,7 @@ namespace find_detail {
 template <typename Sequence, typename Element>
 struct find
     : detail::tag_dispatched<tag::find, Sequence, Element>::template
-      with_default<find_detail::find_impl<_2, _3>>
+      with_default<find_detail::find_impl<_1, _2>>
 { };
 }} // end namespace boost::mpl11
 

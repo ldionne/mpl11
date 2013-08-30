@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_IS_EMPTY_HPP
 #define BOOST_MPL11_IS_EMPTY_HPP
 
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/end.hpp>
@@ -14,18 +15,6 @@
 
 
 namespace boost { namespace mpl11 {
-namespace is_empty_detail {
-struct default_is_empty {
-    template <typename, typename Sequence>
-    struct apply
-        : is_same<
-            typename begin<Sequence>::type,
-            typename end<Sequence>::type
-        >
-    { };
-};
-} // end namespace is_empty_detail
-
 /*!
  * Return whether the sequence is empty.
  *
@@ -38,7 +27,7 @@ struct default_is_empty {
 template <typename Sequence>
 struct is_empty
     : detail::tag_dispatched<tag::is_empty, Sequence>::template
-      with_default<is_empty_detail::default_is_empty>
+      with_default<is_same<begin<_1>, end<_1>>>
 { };
 }} // end namespace boost::mpl11
 

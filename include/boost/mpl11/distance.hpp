@@ -11,8 +11,8 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/iter_foldl.hpp>
 #include <boost/mpl11/iterator_range.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -34,9 +34,9 @@ struct distance
     : detail::tag_dispatched<tag::distance, First, Last>::template
       with_default<
         iter_foldl<
-            iterator_range<_2, _3>,
+            iterator_range<_1, _2>,
             ulong<0>,
-            typename lambda<next<_1>>::type
+            quote<next>
         >
       >
 { };

@@ -42,7 +42,7 @@ namespace erase_key_detail {
 template <typename AssociativeSequence, typename Key>
 struct erase_key
     : detail::tag_dispatched<tag::erase_key, AssociativeSequence, Key>
-      ::template with_default<erase_key_detail::erase_key_impl<_2, _3>>
+      ::template with_default<erase_key_detail::erase_key_impl<_1, _2>>
 { };
 }} // end namespace boost::mpl11
 

@@ -44,7 +44,7 @@ struct foldr_impl
 template <typename Sequence, typename State, typename F>
 struct foldr
     : detail::tag_dispatched<tag::foldr, Sequence, State, F>
-      ::template with_default<foldr_detail::foldr_impl<_2, _3, _4>>
+      ::template with_default<foldr_detail::foldr_impl<_1, _2, _3>>
 { };
 }} // end namespace boost::mpl11
 

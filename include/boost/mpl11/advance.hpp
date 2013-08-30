@@ -92,7 +92,7 @@ namespace advance_detail {
 template <typename Iterator, typename N>
 struct advance
     : detail::tag_dispatched<tag::advance, Iterator, N>::template
-      with_default<advance_detail::advance_impl<_2, _3>>
+      with_default<advance_detail::advance_impl<_1, _2>>
 { };
 
 //! Convenience alias to `advance<Iterator, long_<N>>`.

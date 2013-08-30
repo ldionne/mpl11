@@ -6,37 +6,74 @@
 #ifndef BOOST_MPL11_INSERT_RANGE_HPP
 #define BOOST_MPL11_INSERT_RANGE_HPP
 
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/clear.hpp>
+#include <boost/mpl11/copy.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/iterator_range.hpp>
+#include <boost/mpl11/joint_view.hpp>
+#include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/next.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-template <typename Sequence, typename Position, typename ...Range>
-struct insert_range {
-    static_assert(detail::always_false<Sequence, Position, Range...>::value,
-    "Too many arguments to `insert_range`. "
-    "Usage is `insert_range<Sequence, Position, Range>` or "
-    "`insert_range<AssociativeSequence, Range>`.");
+template <typename Sequence, typename PositionOrRange,
+          typename RangeOrNothing = detail::optional>
+struct insert_range;
 
-    struct type;
-};
+namespace insert_range_detail {
+template <typename Sequence, typename Position, typename Range,
+          bool = is_same<Position, typename end<Sequence>::type>::value>
+struct copy_insert
+    : copy<
+        joint_view<Sequence, Range>,
+        typename clear<Sequence>::type
+    >
+{ };
 
-#error finish implementation
+template <typename Sequence, typename Position, typename Range>
+struct copy_insert<Sequence, Position, Range, false>
+    : copy<
+        joint_view<
+            iterator_range<
+                typename begin<Sequence>::type, Position
+            >,
+            Range,
+            iterator_range<
+                typename next<Position>::type, typename end<Sequence>::type
+            >
+        >,
+        typename clear<Sequence>::type
+    >
+{ };
+
+template <typename Sequence, typename Position, typename Range>
+struct insert_range_impl
+    : copy_insert<Sequence, Position, Range>
+{ };
+} // end namespace insert_range_detail
 
 /*!
  * Inserts a range of elements at an arbitrary position in a sequence.
  *
  * The default implementation is equivalent to copying the elements
  * in the ranges [`begin<Sequence>::type`, `Position`), `Range` and
- * [`next<Position>::type`, `end<Sequence>::type`). To do so, `Sequence`
- * is first `clear` ed and then each element is  inserted using either
- * `push_back` or `push_front`, depending on the extensibility category
- * of `Sequence`.
+ * [`next<Position>::type`, `end<Sequence>::type`).
  */
 template <typename Sequence, typename Position, typename Range>
-struct insert_range<Sequence, Position, Range>
+struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>)
     : detail::tag_dispatched<tag::insert_range, Sequence, Position, Range>
-      ::template with_default<>
+      ::template with_default<
+        insert_range_detail::insert_range_impl<_1, _2, _3>
+      >
 { };
 
 /*!
@@ -52,7 +89,9 @@ struct insert_range<Sequence, Position, Range>
 template <typename AssociativeSequence, typename Range>
 struct insert_range<AssociativeSequence, Range>
     : detail::tag_dispatched<tag::insert_range, AssociativeSequence, Range>
-      ::template with_default<>
+      ::template with_default<
+        foldl<_2, _1, typename lambda<insert<_1, _2>>::type>
+      >
 { };
 }} // end namespace boost::mpl11
 

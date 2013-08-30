@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 {
 template <typename Sequence, typename Element>
 struct push_back
     : detail::tag_dispatched<tag::push_back, Sequence, Element>::template
-      with_default<insert<_2, end<_2>, _3>>
+      with_default<insert<_1, end<_1>, _2>>
 { };
 }} // end namespace boost::mpl11
 

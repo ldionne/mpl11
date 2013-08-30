@@ -31,7 +31,7 @@ namespace count_detail {
 template <typename Sequence, typename Element>
 struct count
     : detail::tag_dispatched<tag::count, Sequence, Element>::template
-      with_default<count_detail::count_impl<_2, _3>>
+      with_default<count_detail::count_impl<_1, _2>>
 { };
 }} // end namespace boost::mpl11
 

@@ -41,7 +41,7 @@ namespace pop_back_detail {
 template <typename Sequence>
 struct pop_back
     : detail::tag_dispatched<tag::pop_back, Sequence>::template
-      with_default<pop_back_detail::pop_back_impl<_2>>
+      with_default<pop_back_detail::pop_back_impl<_1>>
 { };
 }} // end namespace boost::mpl11
 

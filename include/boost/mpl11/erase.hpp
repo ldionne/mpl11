@@ -6,15 +6,34 @@
 #ifndef BOOST_MPL11_ERASE_HPP
 #define BOOST_MPL11_ERASE_HPP
 
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/clear.hpp>
+#include <boost/mpl11/copy.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/iterator_range.hpp>
+#include <boost/mpl11/joint_view.hpp>
+#include <boost/mpl11/next.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
 namespace erase_detail {
-template <typename Sequence, typename First, typename Last, typename Insert,
+template <typename Sequence, typename First, typename Last,
           bool = is_same<Last, typename end<Sequence>::type>::value>
 struct copy_except
+    : copy<
+        iterator_range<typename begin<Sequence>::type, First>,
+        typename clear<Sequence>::type
+    >
+{ };
+
+template <typename Sequence, typename First, typename Last>
+struct copy_except<Sequence, First, Last, false>
     : copy<
         joint_view<
             iterator_range<
@@ -24,78 +43,34 @@ struct copy_except
                 typename next<Last>::type, typename end<Sequence>::type
             >
         >,
-        inserter<typename clear<Sequence>::type, Insert>
-    >
-{ };
-
-template <typename Sequence, typename First, typename Last, typename Insert>
-struct copy_except<Sequence, First, Last, Insert, true>
-    : copy<
-        iterator_range<typename begin<Sequence>::type, First>,
-        inserter<typename clear<Sequence>::type, Insert>
-    >
-{ };
-
-template <typename Category, typename Sequence, typename First, typename Last>
-struct erase_impl;
-
-template <typename Sequence, typename First, typename Last>
-struct erase_impl<tag::extensible, Sequence, First, Last>
-    // what do we do for these?
-{ };
-
-template <typename Sequence, typename First, typename Last>
-struct erase_impl<tag::associative_extensible, Sequence, First, Last>
-    : copy_except<
-        Sequence, First, Last, insert<_1, _2>
+        typename clear<Sequence>::type
     >
 { };
 
 template <typename Sequence, typename First, typename Last>
-struct erase_impl<tag::front_extensible, Sequence, First, Last>
-    : reverse_copy_except< // reversible algorithms: how to?
-        Sequence, First, Last, push_front<_1, _2>
-    >
+struct erase_impl
+    : copy_except<Sequence, First, Last>
 { };
-
-template <typename Sequence, typename First, typename Last>
-struct erase_impl<tag::back_extensible, Sequence, First, Last>
-    : copy_except<
-        Sequence, First, Last, push_back<_1, _2>
-    >
-{ };
-#error finish implementing me
 } // end namespace erase_detail
 
-template <typename Sequence, typename First, typename ...Last>
-struct erase {
-    static_assert(detail::always_false<Sequence, First, Last...>::value,
-    "Too many arguments to `erase`. "
-    "Usage is `erase<Sequence, First[, Last]>`.");
-
-    struct type;
-};
+template <typename Sequence, typename First, typename Last = detail::optional>
+struct erase;
 
 /*!
  * Removes several adjacent elements in a sequence starting from an
  * arbitrary position.
  *
  * The default implementation is equivalent to copying the whole sequence
- * except for the content of the range delimited by `[First, Last)`. When
- * copying, `Sequence` is first `clear`ed and then each element is inserted
- * using either `push_back`, `push_front` or `insert`, depending on the
- * extensibility category of `Sequence`.
+ * except for the content of the range delimited by `[First, Last)`.
  *
  * @warning
  * Differences from the original MPL:
  * - It is possible to erase a range of elements in an associative sequence.
  */
 template <typename Sequence, typename First, typename Last>
-struct erase<Sequence, First, Last>
+struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>)
     : detail::tag_dispatched<tag::erase, Sequence, First, Last>::template
-      with_default<
-        erase_detail::erase_impl<extensibility_category_of<_2>, _2, _3, _4>
-      >
+      with_default<erase_detail::erase_impl<_1, _2, _3>>
 { };
 
 /*!
@@ -112,7 +87,7 @@ struct erase<Sequence, First, Last>
 template <typename Sequence, typename Position>
 struct erase<Sequence, Position>
     : detail::tag_dispatched<tag::erase, Sequence, Position>::template
-      with_default<erase<_2, _3, next<_3>>>
+      with_default<erase<_1, _2, next<_2>>>
 { };
 }} // end namespace boost::mpl11
 

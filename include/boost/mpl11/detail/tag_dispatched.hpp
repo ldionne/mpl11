@@ -17,9 +17,9 @@
 namespace boost { namespace mpl11 {
 namespace tag_dispatched_detail {
     struct no_default {
-        template <typename Operation, typename ...Args>
+        template <typename OperationTag, typename ...Args>
         struct apply {
-            static_assert(detail::always_false<Operation, Args...>::value,
+            static_assert(detail::always_false<OperationTag, Args...>::value,
             "Attempt to perform an operation that is not implemented "
             "for the provided arguments and for which no default "
             "implementation is available.");
@@ -28,9 +28,10 @@ namespace tag_dispatched_detail {
         };
     };
 
-    template <typename Default, typename Operation, typename ...Args>
+    template <typename Default, typename OperationTag, typename ...Args>
     struct invalid_default {
-        static_assert(detail::always_false<Default, Operation, Args...>::value,
+        static_assert(
+        detail::always_false<Default, OperationTag, Args...>::value,
         "Attempt to use a default implementation that is invalid. A default "
         "implementation was specified for the operation, but it is not a "
         "valid MetafunctionClass for the provided arguments.");
@@ -40,21 +41,18 @@ namespace tag_dispatched_detail {
 } // end namespace tag_dispatched_detail
 
 namespace detail {
-    template <typename Operation, typename ...Args>
+    template <typename OperationTag, typename ...Args>
     struct tag_dispatched {
         template <typename Default = tag_dispatched_detail::no_default>
         struct with_default
             : either<
                 apply_wrap<
-                    dispatch<
-                        typename tag_of<Operation>::type,
-                        typename tag_of<Args>::type...
-                    >,
-                    Operation, Args...
+                    dispatch<OperationTag, typename tag_of<Args>::type...>,
+                    Args...
                 >,
-                apply<Default, Operation, Args...>,
+                apply<Default, Args...>,
                 tag_dispatched_detail::invalid_default<
-                    Default, Operation, Args...
+                    Default, OperationTag, Args...
                 >
             >
         { };

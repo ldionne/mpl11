@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
 template <typename Sequence>
 struct clear
     : detail::tag_dispatched<tag::clear, Sequence>::template
-      with_default<erase<_2, begin<_2>, end<_2>>>
+      with_default<erase<_1, begin<_1>, end<_1>>>
 { };
 }} // end namespace boost::mpl11
 

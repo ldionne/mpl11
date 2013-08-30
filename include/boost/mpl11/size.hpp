@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
 template <typename Sequence>
 struct size
     : detail::tag_dispatched<tag::size, Sequence>::template
-      with_default<distance<begin<_2>, end<_2>>>
+      with_default<distance<begin<_1>, end<_1>>>
 { };
 }} // end namespace boost::mpl11
 

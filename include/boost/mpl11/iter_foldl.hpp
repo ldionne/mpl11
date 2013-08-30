@@ -68,7 +68,7 @@ struct iter_foldl
     : detail::tag_dispatched<tag::iter_foldl, Sequence, State, F>
       ::template with_default<
         iter_foldl_detail::iter_foldl_impl<
-            begin<_2>, end<_2>, _3, lambda<_4>
+            begin<_1>, end<_1>, _2, lambda<_3>
         >
       >
 { };

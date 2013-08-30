@@ -1,0 +1,15 @@
+/*!
+ * @file
+ * Defines `BOOST_MPL11_DOXYGEN_ONLY`.
+ */
+
+#ifndef BOOST_MPL11_DETAIL_DOXYGEN_ONLY_HPP
+#define BOOST_MPL11_DETAIL_DOXYGEN_ONLY_HPP
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+#   define BOOST_MPL11_DOXYGEN_ONLY(...) __VA_ARGS__
+#else
+#   define BOOST_MPL11_DOXYGEN_ONLY(...) /* nothing */
+#endif
+
+#endif // !BOOST_MPL11_DETAIL_DOXYGEN_ONLY_HPP

@@ -49,7 +49,7 @@ namespace count_if_detail {
 template <typename Sequence, typename Predicate>
 struct count_if
     : detail::tag_dispatched<tag::count_if, Sequence, Predicate>::template
-      with_default<count_if_detail::count_if_impl<_2, _3>>
+      with_default<count_if_detail::count_if_impl<_1, _2>>
 { };
 }} // end namespace boost::mpl11
 

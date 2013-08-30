@@ -8,6 +8,7 @@
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/tag_of.hpp>
 
 
 using namespace boost::mpl11;
@@ -25,12 +26,18 @@ namespace boost { namespace mpl11 {
 
 static_assert(is_same<
     tag_dispatched<test_tag>::with_default<>::type,
-    dispatch<test_tag>::apply<test_tag>::type
+    dispatch<test_tag>::apply<>::type
+>::value, "");
+
+struct a0; struct a1;
+static_assert(is_same<
+    tag_dispatched<test_tag, a0, a1>::with_default<>::type,
+    dispatch<test_tag, tag_of<a0>::type, tag_of<a1>::type>::apply<a0, a1>::type
 >::value, "");
 
 static_assert(is_same<
-    tag_dispatched<struct unknown_tag>::with_default<always<struct T>>::type,
-    struct T
+    tag_dispatched<struct unknown_tag>::with_default<always<a0>>::type,
+    a0
 >::value, "");
 
 

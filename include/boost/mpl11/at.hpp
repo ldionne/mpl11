@@ -12,6 +12,7 @@
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/end.hpp>
@@ -122,12 +123,9 @@ struct at_impl
  *   and `Key` can't be found.
  */
 template <typename AssociativeSequence, typename Key, typename Default>
-struct at
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
-    <AssociativeSequence, Key, Default>
-#endif
+struct at BOOST_MPL11_DOXYGEN_ONLY(<AssociativeSequence, Key, Default>)
     : detail::tag_dispatched<tag::at, AssociativeSequence, Key, Default>
-      ::template with_default<at_detail::at_impl<_2, _3, _4>>
+      ::template with_default<at_detail::at_impl<_1, _2, _3>>
 { };
 
 /*!
@@ -148,7 +146,7 @@ struct at
 template <typename Sequence, typename N>
 struct at<Sequence, N>
     : detail::tag_dispatched<tag::at, Sequence, N>
-      ::template with_default<at_detail::at_impl<_2, _3>>
+      ::template with_default<at_detail::at_impl<_1, _2>>
 { };
 
 //! Convenience alias to `at<Sequence, long_<N>>`.

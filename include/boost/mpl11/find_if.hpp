@@ -56,7 +56,7 @@ template <typename Sequence, typename Predicate>
 struct find_if
     : detail::tag_dispatched<tag::find_if, Sequence, Predicate>::template
       with_default<
-        find_if_detail::find_if_impl<begin<_2>, end<_2>, lambda<_3>>
+        find_if_detail::find_if_impl<begin<_1>, end<_1>, lambda<_2>>
       >
 { };
 }} // end namespace boost::mpl11

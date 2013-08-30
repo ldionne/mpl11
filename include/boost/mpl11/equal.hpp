@@ -64,7 +64,7 @@ struct equal
 #endif
     : detail::tag_dispatched<tag::equal, Sequence1, Sequence2, Predicate>
       ::template with_default<
-        equal_detail::equal_impl<_2, _3, lambda<_4>>
+        equal_detail::equal_impl<_1, _2, lambda<_3>>
       >
 { };
 
@@ -78,7 +78,7 @@ struct equal
 template <typename Sequence1, typename Sequence2>
 struct equal<Sequence1, Sequence2>
     : detail::tag_dispatched<tag::equal, Sequence1, Sequence2>::template
-      with_default<equal<Sequence1, Sequence2, quote<is_same>>>
+      with_default<equal<_1, _2, quote<is_same>>>
 { };
 }} // end namespace boost::mpl11
 
