@@ -12,6 +12,7 @@ namespace boost { namespace mpl11 { namespace tag {
     struct at;
     struct back;
     struct begin;
+    struct category_of;
     struct clear;
     struct contains;
     struct copy;

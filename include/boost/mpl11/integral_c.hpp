@@ -7,6 +7,7 @@
 #define BOOST_MPL11_INTEGRAL_C_HPP
 
 #include <boost/mpl11/always.hpp>
+#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
@@ -16,9 +17,18 @@ namespace boost { namespace mpl11 {
     struct integral_c {
         using value_type = I;
         static constexpr value_type value = N;
-        using type = integral_c;
         constexpr operator value_type() const { return value; }
     };
+
+    template <typename I, I N>
+    struct dispatch<tag::category_of, integral_c<I, N>>
+        : always<category::integral_constant>
+    { };
+
+    template <typename I, I N>
+    struct dispatch<tag::deref, integral_c<I, N>>
+        : always<integral_c<I, N>>
+    { };
 
     template <typename I, I N>
     struct dispatch<tag::next, integral_c<I, N>>

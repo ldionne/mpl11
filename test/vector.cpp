@@ -1,19 +1,18 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::vector`.
+ * Contains unit tests for `boost::mpl11::vector`.
  */
 
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/vector.hpp>
+
 #include <boost/mpl11/is_same.hpp>
 
 
 using namespace boost::mpl11;
 
-struct a0;
-struct a1;
-struct a2;
+struct a0; struct a1; struct a2;
 
-
+#error rewrite in a generic way for all sequences perhaps
 // construction
 static_assert(is_same<
     vector<a0, a1>::type,

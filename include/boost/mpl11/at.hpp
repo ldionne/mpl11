@@ -35,7 +35,7 @@ struct at_dispatched;
 
 template <typename Sequence, typename Iterator>
 struct value_deref
-    : value_of<Sequence, typename deref<Iter>::type>
+    : value_of<Sequence, typename deref<Iterator>::type>
 { };
 
 template <typename Sequence, typename Key, typename Default>
@@ -58,7 +58,7 @@ template <typename Sequence, typename Key>
 struct at_dispatched<category::associative_sequence, Sequence, Key>
     : at<Sequence, Key, not_found>
 {
-    static_assert(!is_same<typename apply::type, not_found>::value,
+    static_assert(!is_same<typename at_dispatched::type, not_found>::value,
     "Could not find the value associated to a given key in an associated "
     "sequence and no default return value was specified.");
 };
@@ -149,9 +149,9 @@ struct at<Sequence, N>
       ::template with_default<at_detail::at_impl<_1, _2>>
 { };
 
-//! Convenience alias to `at<Sequence, long_<N>>`.
-template <typename Sequence, long N>
-using at_c = at<Sequence, long_<N>>;
+//! Convenience alias to `at<Sequence, ulong<N>>`.
+template <typename Sequence, unsigned long N>
+using at_c = at<Sequence, ulong<N>>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_AT_HPP

@@ -9,6 +9,7 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/foldl.hpp>
@@ -37,10 +38,7 @@ struct copy;
  *   the operation are specified separately.
  */
 template <typename From, typename To, typename Insert>
-struct copy
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
-    <From, To, Insert>
-#endif
+struct copy BOOST_MPL11_DOXYGEN_ONLY(<From, To, Insert>)
     : detail::tag_dispatched<tag::copy, From, To, Insert>::template
       with_default<foldl<_1, _2, lambda<_3>>>
 { };
