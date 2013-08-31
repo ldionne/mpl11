@@ -18,7 +18,7 @@
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/unpack_args.hpp>
-#include <boost/mpl11/zip_view.hpp>
+#include <boost/mpl11/view/zipped.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -28,7 +28,7 @@ namespace equal_detail {
         : and_<
             eq<size<Sequence1>, size<Sequence2>>,
             all_of<
-                zip_view<Sequence1, Sequence2>,
+                view::zipped<Sequence1, Sequence2>,
                 unpack_args<Predicate>
             >
         >

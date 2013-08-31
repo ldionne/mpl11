@@ -1,10 +1,10 @@
 /*!
  * @file
- * Defines `boost::mpl11::single_view`.
+ * Defines `boost::mpl11::view::single_element`.
  */
 
-#ifndef BOOST_MPL11_SINGLE_VIEW_HPP
-#define BOOST_MPL11_SINGLE_VIEW_HPP
+#ifndef BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
+#define BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
@@ -15,7 +15,7 @@
 
 
 namespace boost { namespace mpl11 {
-namespace single_view_detail {
+namespace single_element_detail {
     template <typename Element, bool IsEnd>
     struct single_element_iterator;
 
@@ -41,35 +41,38 @@ namespace single_view_detail {
     struct dispatch<tag::deref, Element, false>
         : identity<Element>
     { };
-} // end namespace single_view_detail
+} // end namespace single_element_detail
 
 template <typename Op, typename E, bool B>
-struct dispatch<Op, single_view_detail::single_element_iterator<E, B>>
-    : lazy_always<single_view_detail::dispatch<Op, E, B>>
+struct dispatch<Op, single_element_detail::single_element_iterator<E, B>>
+    : lazy_always<single_element_detail::dispatch<Op, E, B>>
 { };
 
-/*!
- * View onto an arbitrary `Element` as on a single-element sequence.
- *
- * `single_view` is a random access sequence.
- */
-template <typename Element>
-struct single_view BOOST_MPL11_DOXYGEN_ONLY({ });
+namespace view {
+    /*!
+     * @ingroup Views
+     * View onto an arbitrary `Element` as on a single-element sequence.
+     *
+     * `single_element` is a random access sequence.
+     */
+    template <typename Element>
+    struct single_element BOOST_MPL11_DOXYGEN_ONLY({ });
+} // end namespace view
 
 template <typename Element>
-struct dispatch<tag::begin, single_view<Element>>
-    : always<single_view_detail::single_element_iterator<Element, false>>
+struct dispatch<tag::begin, view::single_element<Element>>
+    : always<single_element_detail::single_element_iterator<Element, false>>
 { };
 
 template <typename Element>
-struct dispatch<tag::end, single_view<Element>>
-    : always<single_view_detail::single_element_iterator<Element, true>>
+struct dispatch<tag::end, view::single_element<Element>>
+    : always<single_element_detail::single_element_iterator<Element, true>>
 { };
 
 template <typename Element>
-struct dispatch<tag::category_of, single_view<Element>>
+struct dispatch<tag::category_of, view::single_element<Element>>
     : always<category::random_access_sequence>
 { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SINGLE_VIEW_HPP
+#endif // !BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP

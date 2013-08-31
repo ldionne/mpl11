@@ -1,10 +1,10 @@
 /*!
  * @file
- * Defines `boost::mpl11::transform_view`.
+ * Defines `boost::mpl11::view::transformed`.
  */
 
-#ifndef BOOST_MPL11_TRANSFORM_VIEW_HPP
-#define BOOST_MPL11_TRANSFORM_VIEW_HPP
+#ifndef BOOST_MPL11_VIEW_TRANSFORMED_HPP
+#define BOOST_MPL11_VIEW_TRANSFORMED_HPP
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
@@ -21,7 +21,7 @@
 
 
 namespace boost { namespace mpl11 {
-namespace transform_view_detail {
+namespace transformed_detail {
     template <typename First, typename Last, typename F>
     struct transform_iterator;
 
@@ -53,26 +53,29 @@ namespace transform_view_detail {
     struct dispatch<tag::category_of, First, Last, F>
         : identity<category::forward_iterator>
     { };
-} // end namespace transform_view_detail
+} // end namespace transformed_detail
 
 template <typename Op, typename First, typename Last, typename F>
-struct dispatch<Op, transform_view_detail::transform_iterator<First, Last, F>>
-    : lazy_always<transform_view_detail::dispatch<Op, First, Last, F>>
+struct dispatch<Op, transformed_detail::transform_iterator<First, Last, F>>
+    : lazy_always<transformed_detail::dispatch<Op, First, Last, F>>
 { };
 
-/*!
- * View over a `Sequence`'s elements transformed by the application of `F`.
- *
- * Regardless of the category of the underlying sequence, `transform_view`
- * is only a forward sequence.
- */
-template <typename Sequence, typename F>
-struct transform_view BOOST_MPL11_DOXYGEN_ONLY({ });
+namespace view {
+    /*!
+     * @ingroup Views
+     * View over a `Sequence`'s elements transformed by the application of `F`.
+     *
+     * Regardless of the category of the underlying sequence, `transformed`
+     * is only a forward sequence.
+     */
+    template <typename Sequence, typename F>
+    struct transformed BOOST_MPL11_DOXYGEN_ONLY({ });
+} // end namespace view
 
 template <typename Sequence, typename F>
-struct dispatch<tag::begin, transform_view<Sequence, F>>
+struct dispatch<tag::begin, view::transformed<Sequence, F>>
     : always<
-        transform_view_detail::transform_iterator<
+        transformed_detail::transform_iterator<
             typename begin<Sequence>::type,
             typename end<Sequence>::type,
             typename lambda<F>::type
@@ -81,9 +84,9 @@ struct dispatch<tag::begin, transform_view<Sequence, F>>
 { };
 
 template <typename Sequence, typename F>
-struct dispatch<tag::end, transform_view<Sequence, F>>
+struct dispatch<tag::end, view::transformed<Sequence, F>>
     : always<
-        transform_view_detail::transform_iterator<
+        transformed_detail::transform_iterator<
             typename end<Sequence>::type,
             typename end<Sequence>::type,
             typename lambda<F>::type
@@ -92,9 +95,9 @@ struct dispatch<tag::end, transform_view<Sequence, F>>
 { };
 
 template <typename Sequence, typename F>
-struct dispatch<tag::category_of, transform_view<Sequence, F>>
+struct dispatch<tag::category_of, view::transformed<Sequence, F>>
     : always<category::forward_sequence>
 { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_TRANSFORM_VIEW_HPP
+#endif // !BOOST_MPL11_VIEW_TRANSFORMED_HPP

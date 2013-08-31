@@ -1,10 +1,10 @@
 /*!
  * @file
- * Defines `boost::mpl11::filter_view`.
+ * Defines `boost::mpl11::view::filtered`.
  */
 
-#ifndef BOOST_MPL11_FILTER_VIEW_HPP
-#define BOOST_MPL11_FILTER_VIEW_HPP
+#ifndef BOOST_MPL11_VIEW_FILTERED_HPP
+#define BOOST_MPL11_VIEW_FILTERED_HPP
 
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/categories.hpp>
@@ -14,21 +14,23 @@
 #include <boost/mpl11/facade.hpp>
 #include <boost/mpl11/find_if.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
+namespace view {
 /*!
+ * @ingroup Views
  * View into the subset of elements of `Sequence` satisfying `Predicate`.
  *
- * Regardless of the category of the underlying sequence, `filter_view`
+ * Regardless of the category of the underlying sequence, `filtered`
  * is only a forward sequence.
  */
 template <typename Sequence, typename Predicate>
-struct filter_view {
+struct filtered {
 private:
     using Last = typename end<Sequence>::type;
 
@@ -41,7 +43,7 @@ private:
             detail::tagged_with<tag::facade,
                 filter_iterator<
                     typename find_if<
-                        iterator_range<Iterator, Last>,
+                        bounded_by<Iterator, Last>,
                         Predicate
                     >::type
                 >
@@ -91,11 +93,12 @@ public:
         : identity<category::forward_sequence>
     { };
 };
+} // end namespace view
 
 template <typename Sequence, typename Predicate>
-struct tag_of<filter_view<Sequence, Predicate>>
+struct tag_of<view::filtered<Sequence, Predicate>>
     : identity<tag::facade>
 { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FILTER_VIEW_HPP
+#endif // !BOOST_MPL11_VIEW_FILTERED_HPP

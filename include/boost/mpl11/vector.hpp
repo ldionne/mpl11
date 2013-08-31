@@ -16,8 +16,8 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -67,7 +67,7 @@ struct vector BOOST_MPL11_DOXYGEN_ONLY({ });
  */
 template <typename First, typename Last>
 struct vector
-    : copy<iterator_range<First, Last>, vector<>>
+    : copy<view::bounded_by<First, Last>, vector<>>
 { };
 
 template <typename ...Elements>

@@ -10,10 +10,10 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/iter_foldl.hpp>
-#include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 {
  * The default implementation is equivalent to
    @code
         iter_foldl<
-            iterator_range<First, Last>,
+            view::bounded_by<First, Last>,
             ulong<0>,
             next<_1>
         >
@@ -34,7 +34,7 @@ struct distance
     : detail::tag_dispatched<tag::distance, First, Last>::template
       with_default<
         iter_foldl<
-            iterator_range<_1, _2>,
+            view::bounded_by<_1, _2>,
             ulong<0>,
             quote<next>
         >

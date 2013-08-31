@@ -1,0 +1,29 @@
+/*!
+ * @file
+ * Includes all the views provided with the library.
+ */
+
+#ifndef BOOST_MPL11_VIEWS_HPP
+#define BOOST_MPL11_VIEWS_HPP
+
+/*!
+ * @defgroup Views Views
+ * A view is a sequence adaptor providing a lazily-altered presentation of
+ * one or more underlying sequences.
+ */
+
+/*!
+ * @namespace boost::mpl11::view
+ * Contains all the views provided with the library.
+ */
+
+#include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/empty.hpp>
+#include <boost/mpl11/view/filtered.hpp>
+#include <boost/mpl11/view/joined.hpp>
+#include <boost/mpl11/view/single_element.hpp>
+#include <boost/mpl11/view/sliced.hpp>
+#include <boost/mpl11/view/transformed.hpp>
+#include <boost/mpl11/view/zipped.hpp>
+
+#endif // !BOOST_MPL11_VIEWS_HPP

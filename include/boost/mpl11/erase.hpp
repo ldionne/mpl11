@@ -15,10 +15,10 @@
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/is_same.hpp>
-#include <boost/mpl11/iterator_range.hpp>
-#include <boost/mpl11/joint_view.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/joined.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -27,7 +27,7 @@ template <typename Sequence, typename First, typename Last,
           bool = is_same<Last, typename end<Sequence>::type>::value>
 struct copy_except
     : copy<
-        iterator_range<typename begin<Sequence>::type, First>,
+        view::bounded_by<typename begin<Sequence>::type, First>,
         typename clear<Sequence>::type
     >
 { };
@@ -35,11 +35,11 @@ struct copy_except
 template <typename Sequence, typename First, typename Last>
 struct copy_except<Sequence, First, Last, false>
     : copy<
-        joint_view<
-            iterator_range<
+        view::joined<
+            view::bounded_by<
                 typename begin<Sequence>::type, First
             >,
-            iterator_range<
+            view::bounded_by<
                 typename next<Last>::type, typename end<Sequence>::type
             >
         >,

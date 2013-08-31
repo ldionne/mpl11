@@ -17,11 +17,11 @@
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/insert.hpp>
 #include <boost/mpl11/is_same.hpp>
-#include <boost/mpl11/iterator_range.hpp>
-#include <boost/mpl11/joint_view.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/joined.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -34,7 +34,7 @@ template <typename Sequence, typename Position, typename Range,
           bool = is_same<Position, typename end<Sequence>::type>::value>
 struct copy_insert
     : copy<
-        joint_view<Sequence, Range>,
+        view::joined<Sequence, Range>,
         typename clear<Sequence>::type
     >
 { };
@@ -42,12 +42,12 @@ struct copy_insert
 template <typename Sequence, typename Position, typename Range>
 struct copy_insert<Sequence, Position, Range, false>
     : copy<
-        joint_view<
-            iterator_range<
+        view::joined<
+            view::bounded_by<
                 typename begin<Sequence>::type, Position
             >,
             Range,
-            iterator_range<
+            view::bounded_by<
                 typename next<Position>::type, typename end<Sequence>::type
             >
         >,
