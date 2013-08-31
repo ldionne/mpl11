@@ -1,10 +1,10 @@
 /*!
  * @file
- * Defines `boost::mpl11::vector`.
+ * Defines `boost::mpl11::container::vector`.
  */
 
-#ifndef BOOST_MPL11_VECTOR_HPP
-#define BOOST_MPL11_VECTOR_HPP
+#ifndef BOOST_MPL11_CONTAINER_VECTOR_HPP
+#define BOOST_MPL11_CONTAINER_VECTOR_HPP
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/at.hpp>
@@ -55,23 +55,29 @@ struct dispatch<Op, vector_detail::vector_iterator<Position, Vector>>
     : vector_detail::dispatch<Op, Position, Vector>
 { };
 
-/*!
- *
- */
-template <typename ...Elements>
-struct vector BOOST_MPL11_DOXYGEN_ONLY({ });
+namespace container {
+    /*!
+     * @ingroup Containers
+     * Contiguous sequence of types accessed by index.
+     *
+     * `vector` is a  `RandomAccessSequence`, `FrontExtensibleSequence` and
+     * `BackExtensibleSequence`.
+     */
+    template <typename ...Elements>
+    struct vector BOOST_MPL11_DOXYGEN_ONLY({ });
 
-/*!
- * Metafunction returning a `vector` containing the elements in the range
- * delimited by [`First`, `Last`).
- */
-template <typename First, typename Last>
-struct vector
-    : copy<view::bounded_by<First, Last>, vector<>>
-{ };
+    /*!
+     * Metafunction returning a `vector` containing the elements in the range
+     * delimited by [`First`, `Last`).
+     */
+    template <typename First, typename Last>
+    struct vector
+        : copy<view::bounded_by<First, Last>, vector<>>
+    { };
+} // end namespace container
 
 template <typename ...Elements>
-struct dispatch<tag::category_of, vector<Elements...>>
+struct dispatch<tag::category_of, container::vector<Elements...>>
     : lazy_always<
         inherit<
             category::random_access_sequence,
@@ -83,37 +89,37 @@ struct dispatch<tag::category_of, vector<Elements...>>
 
 // BidirectionalSequence (because of the iterators)
 template <typename ...Elements>
-struct dispatch<tag::begin, vector<Elements...>>
+struct dispatch<tag::begin, container::vector<Elements...>>
     : always<
         vector_detail::vector_iterator<
-            0, vector<Elements...>
+            0, container::vector<Elements...>
         >
     >
 { };
 
 template <typename ...Elements>
-struct dispatch<tag::end, vector<Elements...>>
+struct dispatch<tag::end, container::vector<Elements...>>
     : always<
         vector_detail::vector_iterator<
-            sizeof...(Elements), vector<Elements...>
+            sizeof...(Elements), container::vector<Elements...>
         >
     >
 { };
 
 template <typename ...Elements>
-struct dispatch<tag::size, vector<Elements...>>
+struct dispatch<tag::size, container::vector<Elements...>>
     : always<ulong<sizeof...(Elements)>>
 { };
 
 template <typename ...Elements>
-struct dispatch<tag::is_empty, vector<Elements...>>
+struct dispatch<tag::is_empty, container::vector<Elements...>>
     : always<bool_<sizeof...(Elements) == 0>>
 { };
 
 
 // RandomAccessSequence
 template <typename ...Elements, typename N>
-struct dispatch<tag::at, vector<Elements...>, N>
+struct dispatch<tag::at, container::vector<Elements...>, N>
     : detail::variadic_at<N, Elements...>
 { };
 
@@ -121,7 +127,7 @@ struct dispatch<tag::at, vector<Elements...>, N>
 // ExtensibleSequence
 template <typename ...Elements>
 struct dispatch<tag::clear, vector<Elements...>>
-    : always<vector<>>
+    : always<container::vector<>>
 { };
 
 
@@ -130,19 +136,19 @@ template <typename ...Elements, typename T_Tag>
 struct dispatch<tag::push_front, vector<Elements...>, T_Tag> {
     template <typename Self, typename T>
     struct apply
-        : identity<vector<T, Elements...>>
+        : identity<container::vector<T, Elements...>>
     { };
 };
 
 
 // BackExtensibleSequence
 template <typename ...Elements, typename T_Tag>
-struct dispatch<tag::push_back, vector<Elements...>, T_Tag> {
+struct dispatch<tag::push_back, container::vector<Elements...>, T_Tag> {
     template <typename Self, typename T>
     struct apply
-        : identity<vector<Elements..., T>>
+        : identity<container::vector<Elements..., T>>
     { };
 };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_VECTOR_HPP
+#endif // !BOOST_MPL11_CONTAINER_VECTOR_HPP

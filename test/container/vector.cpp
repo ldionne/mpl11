@@ -1,14 +1,15 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::vector`.
+ * Contains unit tests for `boost::mpl11::container::vector`.
  */
 
-#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/container/vector.hpp>
 
 #include <boost/mpl11/is_same.hpp>
 
 
 using namespace boost::mpl11;
+using container::vector;
 
 struct a0; struct a1; struct a2;
 
