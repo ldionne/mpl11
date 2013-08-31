@@ -18,6 +18,17 @@ using namespace boost::mpl11;
 // ::value
 static_assert(integral_c<int, 2>::value == 2, "");
 
+// ::type
+static_assert(is_same<
+    integral_c<int, 2>::type,
+    integral_c<int, 2>
+>::value, "");
+
+// ::value_type
+static_assert(is_same<
+    integral_c<int, 2>::value_type, int
+>::value, "");
+
 // next
 static_assert(is_same<
     next<integral_c<int, 2>>::type,
@@ -40,11 +51,6 @@ static_assert(is_same<
 static_assert(is_same<
     category_of<integral_c<int, 2>>::type,
     category::integral_constant
->::value, "");
-
-// ::value_type
-static_assert(is_same<
-    integral_c<int, 2>::value_type, int
 >::value, "");
 
 

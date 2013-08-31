@@ -10,12 +10,11 @@ namespace boost { namespace mpl11 { namespace category {
     struct integral_constant { };
 
     // Sequence categories
-    struct sequence { };
-    struct forward_sequence : sequence { };
+    struct forward_sequence { };
     struct bidirectional_sequence : forward_sequence { };
     struct random_access_sequence : bidirectional_sequence { };
 
-    struct extensible_sequence : sequence { };
+    struct extensible_sequence { };
     struct front_extensible_sequence : extensible_sequence { };
     struct back_extensible_sequence : extensible_sequence { };
 
@@ -23,8 +22,7 @@ namespace boost { namespace mpl11 { namespace category {
     struct extensible_associative_sequence : associative_sequence { };
 
     // Iterator categories
-    struct iterator { };
-    struct forward_iterator : iterator { };
+    struct forward_iterator { };
     struct bidirectional_iterator : forward_iterator { };
     struct random_access_iterator : bidirectional_iterator { };
 }}} // end namespace boost::mpl11::category

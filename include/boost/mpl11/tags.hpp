@@ -7,7 +7,6 @@
 #define BOOST_MPL11_TAGS_HPP
 
 namespace boost { namespace mpl11 { namespace tag {
-    // Operation tags
     struct advance;
     struct at;
     struct back;
@@ -22,6 +21,7 @@ namespace boost { namespace mpl11 { namespace tag {
     struct distance;
     struct end;
     struct equal;
+    struct equal_to;
     struct erase;
     struct erase_key;
     struct find;
@@ -30,6 +30,8 @@ namespace boost { namespace mpl11 { namespace tag {
     struct foldl;
     struct foldr;
     struct front;
+    struct greater;
+    struct greater_equal;
     struct has_key;
     struct insert;
     struct insert_range;
@@ -37,7 +39,10 @@ namespace boost { namespace mpl11 { namespace tag {
     struct iter_foldl;
     struct iter_foldr;
     struct key_of;
+    struct less;
+    struct less_equal;
     struct next;
+    struct not_equal_to;
     struct pop_back;
     struct pop_front;
     struct prior;

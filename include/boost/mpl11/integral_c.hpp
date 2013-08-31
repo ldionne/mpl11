@@ -9,12 +9,13 @@
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename I, I N>
-    struct integral_c {
+    struct integral_c  : identity<integral_c<I, N>> {
         using value_type = I;
         static constexpr value_type value = N;
         constexpr operator value_type() const { return value; }

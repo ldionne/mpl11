@@ -1,16 +1,17 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::dispatch_category`.
+ * Defines `boost::mpl11::detail::best_category_for`.
  */
 
-#ifndef BOOST_MPL11_DETAIL_DISPATCH_CATEGORY_HPP
-#define BOOST_MPL11_DETAIL_DISPATCH_CATEGORY_HPP
+#ifndef BOOST_MPL11_DETAIL_BEST_CATEGORY_FOR_HPP
+#define BOOST_MPL11_DETAIL_BEST_CATEGORY_FOR_HPP
 
+#include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/identity.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace dispatch_category_detail {
+namespace best_category_for_detail {
     template <typename ...T>
     struct best_match;
 
@@ -27,17 +28,19 @@ namespace dispatch_category_detail {
         template <typename Otherwise>
         static auto pick(T1*) -> T1;
     };
-} // end namespace dispatch_category_detail
+} // end namespace best_category_for_detail
 
 namespace detail {
-    template <typename Category, typename ...Categories>
-    struct dispatch_category
+    template <typename T, typename ...Categories>
+    struct best_category_for
         : identity<decltype(
-            dispatch_category_detail::best_match<Categories...>::
-                template pick<Category>((Category*)nullptr)
+            best_category_for_detail::best_match<Categories...>::template
+                pick<typename category_of<T>::type>(
+                    (typename category_of<T>::type*)nullptr
+                )
         )>
     { };
 } // end namespace detail
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_DETAIL_DISPATCH_CATEGORY_HPP
+#endif // !BOOST_MPL11_DETAIL_BEST_CATEGORY_FOR_HPP

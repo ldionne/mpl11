@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -33,8 +33,11 @@ namespace advance_detail {
         { };
     };
 
+    template <typename Category, typename Iterator, typename N>
+    struct advance_impl;
+
     template <typename Iterator, typename N>
-    struct advance_forward {
+    struct advance_impl<category::forward_iterator, Iterator, N> {
         static_assert(N::type::value >= 0,
         "The distance argument to `advance` may not be negative "
         "for forward iterators.");
@@ -57,22 +60,8 @@ namespace advance_detail {
     { };
 
     template <typename Iterator, typename N>
-    auto advance_dispatch(category::forward_iterator*) ->
-        advance_forward<Iterator, N>
-    ;
-
-    template <typename Iterator, typename N>
-    auto advance_dispatch(category::bidirectional_iterator*) ->
-        advance_bidirectional<Iterator, N>
-    ;
-
-    template <typename Iterator, typename N>
-    struct advance_impl
-        : decltype(
-            advance_dispatch<Iterator, N>(
-                (typename category_of<Iterator>::type*)nullptr
-            )
-        )
+    struct advance_impl<category::bidirectional_iterator, Iterator, N>
+        : advance_bidirectional<Iterator, N>
     { };
 } // end namespace advance_detail
 
@@ -92,7 +81,15 @@ namespace advance_detail {
 template <typename Iterator, typename N>
 struct advance
     : detail::tag_dispatched<tag::advance, Iterator, N>::template
-      with_default<advance_detail::advance_impl<_1, _2>>
+      with_default<
+        advance_detail::advance_impl<
+            detail::best_category_for<_1,
+                category::bidirectional_iterator,
+                category::forward_iterator
+            >,
+            _1, _2
+        >
+      >
 { };
 
 //! Convenience alias to `advance<Iterator, long_<N>>`.
