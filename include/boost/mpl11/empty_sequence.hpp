@@ -8,15 +8,16 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
     namespace empty_sequence_detail { struct begin_end; }
 
-    struct empty_sequence;
-
-    namespace tag { struct begin; struct end; struct category_of; }
+    //! Random access sequence containing no elements.
+    struct empty_sequence BOOST_MPL11_DOXYGEN_ONLY({ });
 
     template <>
     struct dispatch<tag::begin, empty_sequence>
@@ -30,7 +31,7 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct dispatch<tag::category_of, empty_sequence>
-        : always<tag::random_access<tag::sequence>>
+        : always<category::random_access_sequence>
     { };
 }} // end namespace boost::mpl11
 

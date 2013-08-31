@@ -27,7 +27,6 @@ namespace boost { namespace mpl11 { namespace category {
     struct forward_iterator : iterator { };
     struct bidirectional_iterator : forward_iterator { };
     struct random_access_iterator : bidirectional_iterator { };
-    struct associative_iterator : forward_iterator { };
 }}} // end namespace boost::mpl11::category
 
 #endif // !BOOST_MPL11_CATEGORIES_HPP
