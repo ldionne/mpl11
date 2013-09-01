@@ -6,14 +6,16 @@
 #include <boost/mpl11/integral_c.hpp>
 
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/category_of.hpp>
-#include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/is_same.hpp>
-#include <boost/mpl11/next.hpp>
-#include <boost/mpl11/prior.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/intrinsic/category_of.hpp>
+#include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/intrinsic/prior.hpp>
 
 
 using namespace boost::mpl11;
+using namespace intrinsic;
+using detail::is_same;
 
 // ::value
 static_assert(integral_c<int, 2>::value == 2, "");

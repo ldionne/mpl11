@@ -7,12 +7,13 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 using namespace boost::mpl11;
 using detail::best_category_for;
+using detail::is_same;
 
 template <typename Category>
 struct with_cat;

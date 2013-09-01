@@ -1,18 +1,18 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::apply_wrap`.
+ * Contains unit tests for `boost::mpl11::apply_wrap`.
  */
 
 #include <boost/mpl11/apply_wrap.hpp>
 
 #include "metafunction_classes.hpp"
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
 using boost::mpl11::detail::has_type;
 using boost::mpl11::apply_wrap;
-using boost::mpl11::is_same;
+using boost::mpl11::detail::is_same;
 
 namespace does_what_it_should_do_when_everything_is_valid {
     using variadic = with_nested_type::variadic;

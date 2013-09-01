@@ -21,7 +21,7 @@ namespace comparison_intrinsic_detail {
     template <typename T1, typename T2>
     struct BOOST_MPL11_OPERATOR_NAME<category::integral_constant, T1,
                                      category::integral_constant, T2>
-        : identity<bool_<T1::value BOOST_MPL11_OPERATOR T2::value>>>
+        : identity<bool_<T1::value BOOST_MPL11_OPERATOR T2::value>>
     { };
 } // end namespace comparison_intrinsic_detail
 

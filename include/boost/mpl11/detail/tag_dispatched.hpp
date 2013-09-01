@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 #define BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/detail/always_false.hpp>
 #include <boost/mpl11/detail/either.hpp>
@@ -50,7 +49,7 @@ namespace detail {
                     dispatch<OperationTag, typename tag_of<Args>::type...>,
                     Args...
                 >,
-                apply<Default, Args...>,
+                apply_wrap<Default, Args...>,
                 tag_dispatched_detail::invalid_default<
                     Default, OperationTag, Args...
                 >

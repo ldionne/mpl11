@@ -1,18 +1,19 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::detail::tag_dispatched`.
+ * Contains unit tests for `boost::mpl11::detail::tag_dispatched`.
  */
 
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 
 #include <boost/mpl11/always.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
 
 using namespace boost::mpl11;
 using detail::tag_dispatched;
+using detail::is_same;
 
 struct test_tag;
 

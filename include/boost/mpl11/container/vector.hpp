@@ -6,16 +6,16 @@
 #ifndef BOOST_MPL11_CONTAINER_VECTOR_HPP
 #define BOOST_MPL11_CONTAINER_VECTOR_HPP
 
+#include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/always.hpp>
-#include <boost/mpl11/at.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/copy.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/variadic_at.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
@@ -46,7 +46,7 @@ namespace vector_detail {
 
     template <unsigned long Position, typename Vector>
     struct dispatch<tag::deref, Position, Vector>
-        : at_c<Vector, Position>
+        : intrinsic::at_c<Vector, Position>
     { };
 } // end namespace vector_detail
 
@@ -72,7 +72,7 @@ namespace container {
      */
     template <typename First, typename Last>
     struct vector
-        : copy<view::bounded_by<First, Last>, vector<>>
+        : algorithm::copy<view::bounded_by<First, Last>, vector<>>
     { };
 } // end namespace container
 

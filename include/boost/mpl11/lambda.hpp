@@ -11,10 +11,10 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
+#include <boost/mpl11/intrinsic/not.hpp>
+#include <boost/mpl11/intrinsic/or.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/is_placeholder_expression.hpp>
-#include <boost/mpl11/not.hpp>
-#include <boost/mpl11/or.hpp>
 #include <boost/mpl11/quote.hpp>
 
 
@@ -51,12 +51,12 @@ namespace lambda_detail {
 
     template <typename ...E>
     struct none_is_placeholder_expression
-        : not_<or_<is_placeholder_expression<E>...>>
+        : intrinsic::not_<intrinsic::or_<is_placeholder_expression<E>...>>
     { };
 
     template <typename E>
     struct none_is_placeholder_expression<E>
-        : not_<is_placeholder_expression<E>>
+        : intrinsic::not_<is_placeholder_expression<E>>
     { };
 
     template <>
@@ -68,7 +68,7 @@ namespace lambda_detail {
 template <template <typename ...> class F, typename ...T>
 struct lambda<F<T...>>
     : if_<
-        or_<
+        intrinsic::or_<
             is_placeholder<F<T...>>,
             lambda_detail::none_is_placeholder_expression<T...>
         >,

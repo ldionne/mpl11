@@ -1,6 +1,6 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::bind`.
+ * Contains unit tests for `boost::mpl11::bind`.
  */
 
 #include <boost/mpl11/bind.hpp>
@@ -9,12 +9,13 @@
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/has_type.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
-#include <boost/mpl11/is_same.hpp>
 
 
 using namespace boost::mpl11;
 using detail::has_type;
+using detail::is_same;
 
 struct F {
     template <typename ...Args>

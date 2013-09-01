@@ -8,11 +8,12 @@
 
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
 using namespace boost::mpl11;
 using detail::has_type;
+using detail::is_same;
 
 struct a0; struct a1;
 

@@ -1,14 +1,15 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::quote`.
+ * Contains unit tests for `boost::mpl11::quote`.
  */
 
 #include <boost/mpl11/quote.hpp>
 
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
 using namespace boost::mpl11;
+using boost::mpl11::detail::is_same;
 
 namespace with_non_metafunction {
     template <typename ...> struct T;

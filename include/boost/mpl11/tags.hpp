@@ -8,6 +8,7 @@
 
 namespace boost { namespace mpl11 { namespace tag {
     struct advance;
+    struct and_;
     struct at;
     struct back;
     struct begin;
@@ -42,7 +43,9 @@ namespace boost { namespace mpl11 { namespace tag {
     struct less;
     struct less_equal;
     struct next;
+    struct not_;
     struct not_equal_to;
+    struct or_;
     struct pop_back;
     struct pop_front;
     struct prior;

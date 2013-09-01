@@ -32,7 +32,7 @@ namespace iter_foldl_detail {
     { };
 
     template <typename First, typename Last, typename State, typename F>
-    struct iter_foldl_impl<First, Last, Last, State, F, true>
+    struct iter_foldl_impl<First, Last, State, F, true>
         : identity<State>
     { };
 } // end namespace iter_foldl_detail

@@ -1,6 +1,6 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::as_placeholder`.
+ * Contains unit tests for `boost::mpl11::as_placeholder`.
  */
 
 #include <boost/mpl11/as_placeholder.hpp>

@@ -1,6 +1,6 @@
 /*!
  * @file
- * This file contains unit tests for the `BOOST_MPL11_HAS_NESTED_TYPE`.
+ * Contains unit tests for the `BOOST_MPL11_HAS_NESTED_TYPE`.
  */
 
 #include <boost/mpl11/detail/has_xxx.hpp>

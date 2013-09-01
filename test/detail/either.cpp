@@ -1,15 +1,15 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::detail::either`.
+ * Contains unit tests for `boost::mpl11::detail::either`.
  */
 
 #include <boost/mpl11/detail/either.hpp>
 
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
-using namespace boost::mpl11;
-using detail::either;
+using boost::mpl11::detail::either;
+using boost::mpl11::detail::is_same;
 
 template <int> struct metafunction { struct type; };
 struct incomplete;

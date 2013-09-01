@@ -8,10 +8,10 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -58,13 +58,13 @@ template <typename First, typename Last>
 struct dispatch<tag::category_of, view::bounded_by<First, Last>>
     : always<decltype(
         bounded_by_detail::pick_category(
-            (typename category_of<First>::type*)nullptr
+            (typename intrinsic::category_of<First>::type*)nullptr
         )
     )>
 {
     static_assert(detail::is_same<
-        typename category_of<First>::type,
-        typename category_of<Last>::type
+        typename intrinsic::category_of<First>::type,
+        typename intrinsic::category_of<Last>::type
     >::value,
     "Attempt to use `bounded_by<First, Last>` with `First` and "
     "`Last` iterators having different categories.");

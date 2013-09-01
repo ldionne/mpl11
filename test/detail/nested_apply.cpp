@@ -1,18 +1,18 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::detail::nested_apply`.
+ * Contains unit tests for `boost::mpl11::detail::nested_apply`.
  */
 
 #include <boost/mpl11/detail/nested_apply.hpp>
 
 #include "../metafunction_classes.hpp"
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
 using boost::mpl11::detail::has_type;
 using boost::mpl11::detail::nested_apply;
-using boost::mpl11::is_same;
+using boost::mpl11::detail::is_same;
 
 template <typename NS>
 void test() {

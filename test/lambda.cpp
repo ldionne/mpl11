@@ -1,6 +1,6 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::lambda`.
+ * Contains unit tests for `boost::mpl11::lambda`.
  */
 
 #include <boost/mpl11/lambda.hpp>
@@ -8,12 +8,13 @@
 #include "placeholders.hpp"
 #include <boost/mpl11/as_placeholder.hpp>
 #include <boost/mpl11/bind.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
-#include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/quote.hpp>
 
 
 using namespace boost::mpl11;
+using detail::is_same;
 
 template <typename ...> struct pack;
 struct a0; struct a1; struct a2;

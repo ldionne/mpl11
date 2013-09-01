@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_IS_PLACEHOLDER_EXPRESSION_HPP
 #define BOOST_MPL11_IS_PLACEHOLDER_EXPRESSION_HPP
 
+#include <boost/mpl11/intrinsic/or.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
-#include <boost/mpl11/or.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 {
 
     template <template <typename ...> class F, typename ...T>
     struct is_placeholder_expression<F<T...>>
-        : or_<
+        : intrinsic::or_<
             is_placeholder<F<T...>>,
             is_placeholder_expression<T>...
         >

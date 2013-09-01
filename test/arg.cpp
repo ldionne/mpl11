@@ -1,15 +1,16 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::arg`.
+ * Contains unit tests for `boost::mpl11::arg`.
  */
 
 #include <boost/mpl11/arg.hpp>
 
 #include <boost/mpl11/bind.hpp>
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
 using namespace boost::mpl11;
+using detail::is_same;
 
 struct F { template <typename ...Args> struct apply { struct type; }; };
 struct a1; struct a2; struct a3; struct a4;

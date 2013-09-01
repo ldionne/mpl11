@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_DETAIL_BEST_CATEGORY_FOR_HPP
 #define BOOST_MPL11_DETAIL_BEST_CATEGORY_FOR_HPP
 
-#include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/category_of.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -35,8 +35,8 @@ namespace detail {
     struct best_category_for
         : identity<decltype(
             best_category_for_detail::best_match<Categories...>::template
-                pick<typename category_of<T>::type>(
-                    (typename category_of<T>::type*)nullptr
+                pick<typename intrinsic::category_of<T>::type>(
+                    (typename intrinsic::category_of<T>::type*)nullptr
                 )
         )>
     { };

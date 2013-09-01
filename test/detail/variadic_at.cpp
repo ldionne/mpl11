@@ -1,14 +1,14 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::detail::variadic_at`.
+ * Contains unit tests for `boost::mpl11::detail::variadic_at`.
  */
 
 #include <boost/mpl11/detail/variadic_at.hpp>
 
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
-using boost::mpl11::is_same;
+using boost::mpl11::detail::is_same;
 using boost::mpl11::detail::variadic_at_c;
 
 struct a0; struct a1; struct a2; struct a3; struct a4;
