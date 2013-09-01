@@ -6,11 +6,11 @@
 #ifndef BOOST_MPL11_VIEW_SLICED_HPP
 #define BOOST_MPL11_VIEW_SLICED_HPP
 
-#include <boost/mpl11/advance.hpp>
-#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/algorithm/advance.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/size.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/size.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
 
@@ -18,15 +18,15 @@ namespace boost { namespace mpl11 {
 namespace sliced_detail {
     template <typename Sequence, typename From, typename To>
     struct check_indices {
-        static_assert(0 <= From::type::value,
+        static_assert(0 <= From::value,
         "Attempt to use `sliced<Sequence, From, To>` with a "
         "negative `From` index.");
 
-        static_assert(From::type::value <= To::type::value,
+        static_assert(From::value <= To::value,
         "Attempt to use `sliced<Sequence, From, To>` with a `From` "
         "index greater than the `To` index.");
 
-        static_assert(To::type::value <= size<Sequence>::type::value,
+        static_assert(To::value <= size<Sequence>::type::value,
         "Attempt to use `sliced<Sequence, From, To>` with a `To` "
         "index greater than the size of the `Sequence`.");
     };
@@ -35,6 +35,7 @@ namespace sliced_detail {
 namespace view {
     /*!
      * @ingroup Views
+     *
      * View over the subset of elements of a sequence contained in the range
      * of indices [`From`, `To`).
      *
@@ -55,8 +56,12 @@ struct dispatch<OperationTag, view::sliced<Sequence, From, To>, Args...>
       dispatch<
         OperationTag,
         view::bounded_by<
-            typename advance<typename begin<Sequence>::type, From>::type,
-            typename advance<typename begin<Sequence>::type, To>::type
+            typename algorithm::advance<
+                typename intrinsic::begin<Sequence>::type, From
+            >::type,
+            typename algorithm::advance<
+                typename intrinsic::begin<Sequence>::type, To
+            >::type
         >,
         Args...
     >

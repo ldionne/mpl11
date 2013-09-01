@@ -10,8 +10,8 @@
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/is_same.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -19,6 +19,7 @@ namespace boost { namespace mpl11 {
 namespace view {
     /*!
      * @ingroup Views
+     *
      * View over a range of elements delimited by [`First`, `Last`).
      *
      * `bounded_by` is either a `ForwardSequence`, a `BidirectionalSequence`
@@ -61,7 +62,7 @@ struct dispatch<tag::category_of, view::bounded_by<First, Last>>
         )
     )>
 {
-    static_assert(is_same<
+    static_assert(detail::is_same<
         typename category_of<First>::type,
         typename category_of<Last>::type
     >::value,

@@ -6,18 +6,18 @@
 #ifndef BOOST_MPL11_VIEW_ZIPPED_HPP
 #define BOOST_MPL11_VIEW_ZIPPED_HPP
 
+#include <boost/mpl11/algorithm/min.hpp>
 #include <boost/mpl11/always.hpp>
-#include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/end.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/min.hpp>
-#include <boost/mpl11/next.hpp>
-#include <boost/mpl11/size.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/intrinsic/size.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/joined.hpp>
 #include <boost/mpl11/view/single_element.hpp>
@@ -35,7 +35,7 @@ namespace zipped_detail {
     template <typename ...Iterators>
     struct dispatch<tag::next, Iterators...>
         : identity<
-            zip_iterator<typename next<Iterators>::type...>
+            zip_iterator<typename intrinsic::next<Iterators>::type...>
         >
     { };
 
@@ -49,7 +49,7 @@ namespace zipped_detail {
     template <typename ...Iterators>
     struct dispatch<tag::deref, Iterators...>
         : identity<
-            view_on<typename deref<Iterators>::type...>
+            view_on<typename intrinsic::deref<Iterators>::type...>
         >
     { };
 
@@ -67,6 +67,7 @@ struct dispatch<OperationTag, zipped_detail::zip_iterator<Iterators...>>
 namespace view {
     /*!
      * @ingroup Views
+     *
      * View over the elements of several zipped sequences.
      *
      * Specifically, each element of `zipped` is a sequence containing
@@ -77,6 +78,7 @@ namespace view {
      *
      * Regardless of the category of the underlying sequences, `zipped`
      * is only a forward sequence.
+     *
      *
      * @warning
      * Differences from the original MPL:
@@ -93,7 +95,11 @@ namespace view {
 template <typename S1, typename S2, typename ...Sn>
 struct dispatch<tag::size, view::zipped<S1, S2, Sn...>>
     : lazy_always<
-        min<size<S1>, size<S2>, size<Sn>...>
+        algorithm::min<
+            typename intrinsic::size<S1>::type,
+            typename intrinsic::size<S2>::type,
+            typename intrinsic::size<Sn>::type...
+        >
     >
 { };
 
@@ -101,9 +107,11 @@ template <typename ...Sequences>
 struct dispatch<tag::begin, view::zipped<Sequences...>>
     : always<
         zipped_detail::zip_iterator<
-            typename begin<
-                view::sliced<Sequences,
-                    ulong<0>, typename size<view::zipped<Sequences...>>::type
+            typename intrinsic::begin<
+                view::sliced<
+                    Sequences,
+                    ulong<0>,
+                    typename intrinsic::size<view::zipped<Sequences...>>::type
                 >
             >::type...
         >
@@ -114,9 +122,11 @@ template <typename ...Sequences>
 struct dispatch<tag::end, view::zipped<Sequences...>>
     : always<
         zipped_detail::zip_iterator<
-            typename end<
-                view::sliced<Sequences,
-                    ulong<0>, typename size<view::zipped<Sequences...>>::type
+            typename intrinsic::end<
+                view::sliced<
+                    Sequences,
+                    ulong<0>,
+                    typename intrinsic::size<view::zipped<Sequences...>>::type
                 >
             >::type...
         >

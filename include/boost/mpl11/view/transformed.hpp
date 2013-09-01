@@ -8,15 +8,15 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
-#include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/end.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/lambda.hpp>
-#include <boost/mpl11/next.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -32,7 +32,7 @@ namespace transformed_detail {
     template <typename First, typename Last, typename F>
     struct dispatch<tag::next, First, Last, F>
         : identity<
-            transform_iterator<typename next<First>::type, Last, F>
+            transform_iterator<typename intrinsic::next<First>::type, Last, F>
         >
     { };
 
@@ -42,7 +42,7 @@ namespace transformed_detail {
 
     template <typename First, typename Last, typename F>
     struct dispatch<tag::deref, First, Last, F>
-        : apply_wrap<F, typename deref<First>::type>
+        : apply_wrap<F, typename intrinsic::deref<First>::type>
     { };
 
     template <typename Last, typename F>
@@ -63,6 +63,7 @@ struct dispatch<Op, transformed_detail::transform_iterator<First, Last, F>>
 namespace view {
     /*!
      * @ingroup Views
+     *
      * View over a `Sequence`'s elements transformed by the application of `F`.
      *
      * Regardless of the category of the underlying sequence, `transformed`
@@ -76,8 +77,8 @@ template <typename Sequence, typename F>
 struct dispatch<tag::begin, view::transformed<Sequence, F>>
     : always<
         transformed_detail::transform_iterator<
-            typename begin<Sequence>::type,
-            typename end<Sequence>::type,
+            typename intrinsic::begin<Sequence>::type,
+            typename intrinsic::end<Sequence>::type,
             typename lambda<F>::type
         >
     >
@@ -87,8 +88,8 @@ template <typename Sequence, typename F>
 struct dispatch<tag::end, view::transformed<Sequence, F>>
     : always<
         transformed_detail::transform_iterator<
-            typename end<Sequence>::type,
-            typename end<Sequence>::type,
+            typename intrinsic::end<Sequence>::type,
+            typename intrinsic::end<Sequence>::type,
             typename lambda<F>::type
         >
     >

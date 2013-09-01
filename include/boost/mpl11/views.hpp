@@ -21,6 +21,7 @@
 #include <boost/mpl11/view/empty.hpp>
 #include <boost/mpl11/view/filtered.hpp>
 #include <boost/mpl11/view/joined.hpp>
+#include <boost/mpl11/view/onto_iterators.hpp>
 #include <boost/mpl11/view/single_element.hpp>
 #include <boost/mpl11/view/sliced.hpp>
 #include <boost/mpl11/view/transformed.hpp>
