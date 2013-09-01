@@ -6,17 +6,41 @@
 #ifndef BOOST_MPL11_ALGORITHM_FOLDL_HPP
 #define BOOST_MPL11_ALGORITHM_FOLDL_HPP
 
-#include <boost/mpl11/algorithm/iter_foldl.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
+namespace boost { namespace mpl11 {
+namespace foldl_detail {
+    template <typename First, typename Last, typename State, typename F,
+              bool = intrinsic::equal_to<First, Last>::type::value>
+    struct foldl_impl
+        : foldl_impl<
+            typename intrinsic::next<First>::type,
+            Last,
+            typename apply_wrap<
+                F, State, typename intrinsic::deref<First>::type
+            >::type,
+            F
+        >
+    { };
+
+    template <typename First, typename Last, typename State, typename F>
+    struct foldl_impl<First, Last, State, F, true>
+        : identity<State>
+    { };
+} // end namespace foldl_detail
+
+namespace algorithm {
     /*!
      * @ingroup algorithm
      *
@@ -33,10 +57,17 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *
      * Equivalent to
        @code
-            iter_foldl<
-                Sequence, State,
-                apply_wrap<lambda<F>::type, _1, deref<_2>>
-            >
+            using Iter1 = begin<Sequence>::type;
+            using State1 = apply<F, State, deref<Iter1>::type>::type;
+
+            using Iter2 = next<Iter1>::type;
+            using State2 = apply<F, State1, deref<Iter2>::type>::type;
+
+            ...
+
+            using StateN = apply<F, StateN-1, deref<IterN>::type>::type;
+            using Last = next<IterN>::type;
+            using Result = StateN;
        @endcode
      *
      *
@@ -49,16 +80,16 @@ namespace boost { namespace mpl11 { namespace algorithm {
         : detail::tag_dispatched<tag::foldl, Sequence, State, F>
           ::template with_default<
             lazy_always<
-                iter_foldl<
-                    Sequence,
+                foldl_detail::foldl_impl<
+                    typename intrinsic::begin<Sequence>::type,
+                    typename intrinsic::end<Sequence>::type,
                     State,
-                    apply_wrap<
-                        typename lambda<F>::type, _1, intrinsic::deref<_2>
-                    >
+                    typename lambda<F>::type
                 >
             >
           >
     { };
-}}} // end namespace boost::mpl11::algorithm
+} // end namespace algorithm
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FOLDL_HPP

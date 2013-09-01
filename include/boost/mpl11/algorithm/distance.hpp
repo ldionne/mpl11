@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_ALGORITHM_DISTANCE_HPP
 #define BOOST_MPL11_ALGORITHM_DISTANCE_HPP
 
-#include <boost/mpl11/algorithm/iter_foldl.hpp>
+#include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *
      * Equivalent to
        @code
-            iter_foldl<
+            foldl<
                 view::bounded_by<First, Last>,
                 ulong<0>,
                 next<_1>
@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
         : detail::tag_dispatched<tag::distance, First, Last>::template
           with_default<
             lazy_always<
-                iter_foldl<
+                foldl<
                     view::bounded_by<First, Last>,
                     ulong<0>,
                     quote<intrinsic::next>

@@ -6,17 +6,40 @@
 #ifndef BOOST_MPL11_ALGORITHM_FOLDR_HPP
 #define BOOST_MPL11_ALGORITHM_FOLDR_HPP
 
-#include <boost/mpl11/algorithm/iter_foldr.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
+namespace boost { namespace mpl11 {
+namespace foldr_detail {
+    template <typename First, typename Last, typename State, typename F,
+              bool = intrinsic::equal_to<First, Last>::type::value>
+    struct foldr_impl
+        : apply_wrap<
+            F,
+            typename foldr_impl<
+                typename intrinsic::next<First>::type, Last, State, F
+            >::type,
+            typename intrinsic::deref<First>::type
+        >
+    { };
+
+    template <typename First, typename Last, typename State, typename F>
+    struct foldr_impl<First, Last, State, F, true>
+        : identity<State>
+    { };
+} // end namespace foldr_detail
+
+namespace algorithm {
     /*!
      * @ingroup algorithm
      *
@@ -31,29 +54,36 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to
+     * Equivalent to the following:
+     * Let `First` be the same as `begin<Sequence>::type` and  `Last`
+     * the same as `end<Sequence>::type`. `foldr` is equivalent to
+     * `foldr_impl<First, Last, State, F>`, where `foldr_impl` is
+     * equivalent to `identity<State>` if `equal_to<First, Last>::type::value`
+     * is `true` and
        @code
-            iter_foldr<
-                Sequence, State,
-                apply_wrap<lambda<F>::type, _1, deref<_2>>
+            apply<
+                F,
+                foldr_impl<next<First>::type, Last, State, F>::type,
+                deref<First>::type
             >
        @endcode
+     * otherwise.
      */
     template <typename Sequence, typename State, typename F>
     struct foldr
         : detail::tag_dispatched<tag::foldr, Sequence, State, F>
           ::template with_default<
             lazy_always<
-                iter_foldr<
-                    Sequence,
+                foldr_detail::foldr_impl<
+                    typename intrinsic::begin<Sequence>::type,
+                    typename intrinsic::end<Sequence>::type,
                     State,
-                    apply_wrap<
-                        typename lambda<F>::type, _1, intrinsic::deref<_2>
-                    >
+                    typename lambda<F>::type
                 >
             >
           >
     { };
-}}} // end namespace boost::mpl11::algorithm
+} // end namespace algorithm
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FOLDR_HPP
