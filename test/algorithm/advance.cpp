@@ -1,9 +1,9 @@
 /*!
  * @file
- * This file contains unit tests for `boost::mpl11::advance`.
+ * Contains unit tests for `boost::mpl11::algorithm::advance`.
  */
 
-#include <boost/mpl11/advance.hpp>
+#include <boost/mpl11/algorithm/advance.hpp>
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
@@ -34,6 +34,7 @@ namespace boost { namespace mpl11 {
 }} // end namespace boost::mpl11
 
 using namespace boost::mpl11;
+using algorithm::advance_c;
 
 template <typename Category>
 void test_forward_iterator() {

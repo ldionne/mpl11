@@ -15,7 +15,7 @@ function(mpl11_add_test name sources)
 endfunction()
 
 
-mpl11_add_test(advance                   advance.cpp)
+mpl11_add_test(algorithm_advance         algorithm/advance.cpp)
 mpl11_add_test(always                    always.cpp)
 mpl11_add_test(apply_wrap                apply_wrap.cpp)
 mpl11_add_test(arg                       arg.cpp)
