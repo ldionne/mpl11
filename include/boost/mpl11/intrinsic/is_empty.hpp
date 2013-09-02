@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_INTRINSIC_IS_EMPTY_HPP
 #define BOOST_MPL11_INTRINSIC_IS_EMPTY_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
@@ -31,16 +31,17 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Sequence>
     struct is_empty
-        : detail::tag_dispatched<tag::is_empty, Sequence>::template
-          with_default<
-            lazy_always<
-                equal_to<
-                    typename begin<Sequence>::type,
-                    typename end<Sequence>::type
-                >
-            >
-          >
+        : detail::tag_dispatched<tag::is_empty, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+} // end namespace intrinsic
+
+template <typename Sequence>
+struct dispatch<detail::default_<tag::is_empty>, Sequence>
+    : intrinsic::equal_to<
+        typename intrinsic::begin<Sequence>::type,
+        typename intrinsic::end<Sequence>::type
+    >
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_IS_EMPTY_HPP

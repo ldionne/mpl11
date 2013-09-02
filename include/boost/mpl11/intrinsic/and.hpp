@@ -6,32 +6,16 @@
 #ifndef BOOST_MPL11_INTRINSIC_AND_HPP
 #define BOOST_MPL11_INTRINSIC_AND_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace and_detail {
-    template <bool F1, typename F2>
-    struct and_impl_helper
-        : identity<bool_<F2::type::value>>
-    { };
-
-    template <typename F2>
-    struct and_impl_helper<false, F2>
-        : identity<false_>
-    { };
-
-    template <typename F1, typename F2>
-    struct and_impl
-        : and_impl_helper<F1::type::value, F2>
-    { };
-} // end namespace and_detail
-
 namespace intrinsic {
     /*!
      * @ingroup logical_intrinsic
@@ -41,16 +25,22 @@ namespace intrinsic {
      */
     template <typename F1, typename F2, typename ...Fn>
     struct and_
-        : detail::tag_dispatched<tag::and_, F1, F2, Fn...>::template
-          with_default<lazy_always<and_<F1, and_<F2, Fn...>>>>
-    { };
-
-    template <typename F1, typename F2>
-    struct and_<F1, F2>
-        : detail::tag_dispatched<tag::and_, F1, F2>::template
-          with_default<lazy_always<and_detail::and_impl<F1, F2>>>
+        : detail::tag_dispatched<tag::and_, F1, F2, Fn...>
     { };
 } // end namespace intrinsic
+
+
+template <typename F1, typename F2, typename ...Fn>
+struct dispatch<detail::default_<tag::and_>, F1, F2, Fn...>
+    : intrinsic::and_<F1, intrinsic::and_<F2, Fn...>>
+{ };
+
+template <typename F1, typename F2>
+struct dispatch<detail::default_<tag::and_>, F1, F2>
+    : identity<
+        bool_<if_c<F1::type::value, F2, false_>::type::type::value>
+    >
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_AND_HPP

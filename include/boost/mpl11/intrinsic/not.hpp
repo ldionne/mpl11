@@ -6,13 +6,15 @@
 #ifndef BOOST_MPL11_INTRINSIC_NOT_HPP
 #define BOOST_MPL11_INTRINSIC_NOT_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
+namespace intrinsic {
     /*!
      * @ingroup logical_intrinsic
      *
@@ -22,17 +24,18 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `bool_<!F::type::value>`.
+     * Equivalent to `identity<bool_<!F::type::value>>`.
      */
     template <typename F>
     struct not_
-        : detail::tag_dispatched<tag::not_, F>::template
-          with_default<
-            lazy_always<
-                bool_<!F::type::value>
-            >
-          >
+        : detail::tag_dispatched<tag::not_, F>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+} // end namespace intrinsic
+
+template <typename F>
+struct dispatch<detail::default_<tag::not_>, F>
+    : identity<bool_<!F::type::value>>
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_NOT_HPP

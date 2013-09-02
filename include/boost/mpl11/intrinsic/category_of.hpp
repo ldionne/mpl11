@@ -19,7 +19,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     template <typename T>
     struct category_of
         : detail::tag_dispatched<tag::category_of, T>
-          ::template with_default<>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_INTRINSIC_FRONT_HPP
 #define BOOST_MPL11_INTRINSIC_FRONT_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
@@ -15,18 +15,6 @@
 
 
 namespace boost { namespace mpl11 {
-namespace front_detail {
-    template <typename Sequence>
-    struct front_impl {
-        static_assert(!intrinsic::is_empty<Sequence>::type::value,
-        "Attempt to use `front` on an empty sequence.");
-
-        using type = typename intrinsic::deref<
-            typename intrinsic::begin<Sequence>::type
-        >::type;
-    };
-} // end namespace front_detail
-
 namespace intrinsic {
     /*!
      * @ingroup intrinsic
@@ -47,14 +35,23 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct front
-        : detail::tag_dispatched<tag::front, Sequence>::template
-          with_default<
-            lazy_always<
-                front_detail::front_impl<Sequence>
-            >
-          >
+        : detail::tag_dispatched<tag::front, Sequence>
     { };
 } // end namespace intrinsic
+
+namespace front_detail {
+    template <typename Sequence>
+    struct assert_nonempty {
+        static_assert(!intrinsic::is_empty<Sequence>::type::value,
+        "Attempt to use `front` on an empty sequence.");
+    };
+} // end namespace front_detail
+
+template <typename Sequence>
+struct dispatch<detail::default_<tag::front>, Sequence>
+    : front_detail::assert_nonempty<Sequence>,
+      intrinsic::deref<typename intrinsic::begin<Sequence>::type>
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_FRONT_HPP

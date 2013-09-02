@@ -7,11 +7,11 @@
 #define BOOST_MPL11_ALGORITHM_NONE_OF_HPP
 
 #include <boost/mpl11/algorithm/find_if.hpp>
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
@@ -45,15 +45,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
      */
     template <typename Sequence, typename Predicate>
     struct none_of BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Predicate>)
-        : detail::tag_dispatched<tag::none_of, Sequence, Predicate>::template
-          with_default<
-            lazy_always<
-                intrinsic::equal_to<
-                    typename find_if<Sequence, Predicate>::type,
-                    typename intrinsic::end<Sequence>::type
-                >
-            >
-          >
+        : detail::tag_dispatched<tag::none_of, Sequence, Predicate>
     { };
 
     /*!
@@ -69,13 +61,22 @@ namespace boost { namespace mpl11 { namespace algorithm {
      */
     template <typename Sequence>
     struct none_of<Sequence>
-        : detail::tag_dispatched<tag::none_of, Sequence>::template
-          with_default<
-            lazy_always<
-                none_of<Sequence, _1>
-            >
-          >
+        : detail::tag_dispatched<tag::none_of, Sequence>
     { };
-}}} // end namespace boost::mpl11::algorithm
+} // end namespace algorithm
+
+template <typename Sequence>
+struct dispatch<detail::default_<tag::none_of>, Sequence>
+    : algorithm::none_of<Sequence, _1>
+{ };
+
+template <typename Sequence, typename Predicate>
+struct dispatch<detail::default_<tag::none_of>, Sequence, Predicate>
+    : intrinsic::equal_to<
+        typename algorithm::find_if<Sequence, Predicate>::type,
+        typename intrinsic::end<Sequence>::type
+    >
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_NONE_OF_HPP

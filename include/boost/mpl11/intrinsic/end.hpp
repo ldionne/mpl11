@@ -25,8 +25,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Sequence>
     struct end
-        : detail::tag_dispatched<tag::end, Sequence>::template
-          with_default<>
+        : detail::tag_dispatched<tag::end, Sequence>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

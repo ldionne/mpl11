@@ -7,14 +7,15 @@
 #define BOOST_MPL11_ALGORITHM_FIND_HPP
 
 #include <boost/mpl11/algorithm/find_if.hpp>
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
+namespace boost { namespace mpl11 {
+namespace algorithm {
     /*!
      * @ingroup algorithm
      *
@@ -28,13 +29,14 @@ namespace boost { namespace mpl11 { namespace algorithm {
      */
     template <typename Sequence, typename Element>
     struct find
-        : detail::tag_dispatched<tag::find, Sequence, Element>::template
-          with_default<
-            lazy_always<
-                find_if<Sequence, intrinsic::equal_to<Element, _1>>
-            >
-          >
+        : detail::tag_dispatched<tag::find, Sequence, Element>
     { };
-}}} // end namespace boost::mpl11::algorithm
+} // end namespace algorithm
+
+template <typename Sequence, typename Element>
+struct dispatch<detail::default_<tag::find>, Sequence, Element>
+    : algorithm::find_if<Sequence, intrinsic::equal_to<Element, _1>>
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FIND_HPP

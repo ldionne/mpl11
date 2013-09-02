@@ -7,10 +7,10 @@
 #define BOOST_MPL11_INTRINSIC_ERASE_HPP
 
 #include <boost/mpl11/algorithm/copy.hpp>
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -22,37 +22,6 @@
 
 
 namespace boost { namespace mpl11 {
-namespace erase_detail {
-    template <typename Sequence, typename First, typename Last,
-              bool = intrinsic::equal_to<
-                Last, typename intrinsic::end<Sequence>::type
-              >::type::value>
-    struct erase_impl
-        : algorithm::copy<
-            view::bounded_by<
-                typename intrinsic::begin<Sequence>::type, First
-            >,
-            typename intrinsic::clear<Sequence>::type
-        >
-    { };
-
-    template <typename Sequence, typename First, typename Last>
-    struct erase_impl<Sequence, First, Last, false>
-        : algorithm::copy<
-            view::joined<
-                view::bounded_by<
-                    typename intrinsic::begin<Sequence>::type, First
-                >,
-                view::bounded_by<
-                    typename intrinsic::next<Last>::type,
-                    typename intrinsic::end<Sequence>::type
-                >
-            >,
-            typename intrinsic::clear<Sequence>::type
-        >
-    { };
-} // end namespace erase_detail
-
 namespace intrinsic {
     /*!
      * @ingroup intrinsic
@@ -84,12 +53,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename First, typename Last>
     struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>)
-        : detail::tag_dispatched<tag::erase, Sequence, First, Last>::template
-          with_default<
-            lazy_always<
-                erase_detail::erase_impl<Sequence, First, Last>
-            >
-          >
+        : detail::tag_dispatched<tag::erase, Sequence, First, Last>
     { };
 
     /*!
@@ -109,14 +73,52 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Position>
     struct erase<Sequence, Position>
-        : detail::tag_dispatched<tag::erase, Sequence, Position>::template
-          with_default<
-            lazy_always<
-                erase<Sequence, Position, typename next<Position>::type>
-            >
-          >
+        : detail::tag_dispatched<tag::erase, Sequence, Position>
     { };
 } // end namespace intrinsic
+
+namespace erase_detail {
+    template <typename Sequence, typename First, typename Last,
+              bool = intrinsic::equal_to<
+                Last, typename intrinsic::end<Sequence>::type
+              >::type::value>
+    struct erase_impl
+        : algorithm::copy<
+            view::bounded_by<
+                typename intrinsic::begin<Sequence>::type, First
+            >,
+            typename intrinsic::clear<Sequence>::type
+        >
+    { };
+
+    template <typename Sequence, typename First, typename Last>
+    struct erase_impl<Sequence, First, Last, false>
+        : algorithm::copy<
+            view::joined<
+                view::bounded_by<
+                    typename intrinsic::begin<Sequence>::type, First
+                >,
+                view::bounded_by<
+                    typename intrinsic::next<Last>::type,
+                    typename intrinsic::end<Sequence>::type
+                >
+            >,
+            typename intrinsic::clear<Sequence>::type
+        >
+    { };
+} // end namespace erase_detail
+
+template <typename Sequence, typename Position>
+struct dispatch<detail::default_<tag::erase>, Sequence, Position>
+    : intrinsic::erase<
+        Sequence, Position, typename intrinsic::next<Position>::type
+    >
+{ };
+
+template <typename Sequence, typename First, typename Last>
+struct dispatch<detail::default_<tag::erase>, Sequence, First, Last>
+    : erase_detail::erase_impl<Sequence, First, Last>
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_ERASE_HPP

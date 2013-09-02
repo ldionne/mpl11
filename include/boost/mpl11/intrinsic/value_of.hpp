@@ -20,7 +20,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     template <typename Sequence, typename Element>
     struct value_of
         : detail::tag_dispatched<tag::value_of, Sequence, Element>
-          ::template with_default<>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

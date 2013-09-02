@@ -23,8 +23,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Iterator>
     struct deref
-        : detail::tag_dispatched<tag::deref, Iterator>::template
-          with_default<>
+        : detail::tag_dispatched<tag::deref, Iterator>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

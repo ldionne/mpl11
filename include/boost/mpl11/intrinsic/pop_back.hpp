@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_INTRINSIC_POP_BACK_HPP
 #define BOOST_MPL11_INTRINSIC_POP_BACK_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/erase.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
@@ -15,19 +15,6 @@
 
 
 namespace boost { namespace mpl11 {
-namespace pop_back_detail {
-    template <typename Sequence>
-    struct pop_back_impl {
-        static_assert(!intrinsic::is_empty<Sequence>::value,
-        "Attempt to use `pop_back` on an empty sequence.");
-
-        using type = typename intrinsic::erase<
-            Sequence,
-            typename intrinsic::end<Sequence>::type
-        >::type;
-    };
-} // end namespace pop_back_detail
-
 namespace intrinsic {
     /*!
      * @ingroup intrinsic
@@ -48,14 +35,25 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct pop_back
-        : detail::tag_dispatched<tag::pop_back, Sequence>::template
-          with_default<
-            lazy_always<
-                pop_back_detail::pop_back_impl<Sequence>
-            >
-          >
+        : detail::tag_dispatched<tag::pop_back, Sequence>
     { };
 } // end namespace intrinsic
+
+namespace pop_back_detail {
+    template <typename Sequence>
+    struct assert_nonempty {
+        static_assert(!intrinsic::is_empty<Sequence>::value,
+        "Attempt to use `pop_back` on an empty sequence.");
+    };
+} // end namespace pop_back_detail
+
+template <typename Sequence>
+struct dispatch<detail::default_<tag::pop_back>, Sequence>
+    : pop_back_detail::assert_nonempty<Sequence>,
+      intrinsic::erase<
+        Sequence, typename intrinsic::end<Sequence>::type
+    >
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_POP_BACK_HPP

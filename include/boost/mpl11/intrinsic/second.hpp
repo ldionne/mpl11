@@ -24,8 +24,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Pair>
     struct second
-        : detail::tag_dispatched<tag::second, Pair>::template
-          with_default<>
+        : detail::tag_dispatched<tag::second, Pair>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

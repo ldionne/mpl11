@@ -6,14 +6,15 @@
 #ifndef BOOST_MPL11_INTRINSIC_PUSH_BACK_HPP
 #define BOOST_MPL11_INTRINSIC_PUSH_BACK_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
+namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -26,13 +27,16 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Sequence, typename Element>
     struct push_back
-        : detail::tag_dispatched<tag::push_back, Sequence, Element>::template
-          with_default<
-            lazy_always<
-                insert<Sequence, typename end<Sequence>::type, Element>
-            >
-          >
+        : detail::tag_dispatched<tag::push_back, Sequence, Element>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+} // end namespace intrinsic
+
+template <typename Sequence, typename Element>
+struct dispatch<detail::default_<tag::push_back>, Sequence, Element>
+    : intrinsic::insert<
+        Sequence, typename intrinsic::end<Sequence>::type, Element
+    >
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_PUSH_BACK_HPP
