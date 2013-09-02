@@ -7,7 +7,7 @@
 #define BOOST_MPL11_INTRINSIC_INSERT_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/detail/forward_decls.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/insert_range.hpp>
@@ -17,16 +17,6 @@
 
 namespace boost { namespace mpl11 {
 namespace intrinsic {
-    /*!
-     * @ingroup intrinsic
-     *
-     * Overloaded intrinsic for inserting elements in a sequence.
-     */
-    template <typename Sequence,
-              typename Position,
-              typename Element = detail::optional>
-    struct insert;
-
     /*!
      * @ingroup intrinsic
      *

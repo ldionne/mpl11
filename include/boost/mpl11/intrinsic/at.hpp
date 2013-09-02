@@ -155,7 +155,7 @@ namespace at_detail {
         : intrinsic::at<Sequence, Key, not_found>
     {
         static_assert(
-            !detail::is_same<typename at_dispatched::type, not_found>::value,
+            !detail::is_same<typename at_impl::type, not_found>::value,
         "Could not find the value associated to a given key in an associated "
         "sequence and no default return value was specified.");
     };
@@ -175,7 +175,7 @@ namespace at_detail {
         "Trying to access a sequence at an index that is out of bounds.");
 
     public:
-        using type = typename deref<Iter>::type;
+        using type = typename intrinsic::deref<Iter>::type;
     };
 } // end namespace at_detail
 

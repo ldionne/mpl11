@@ -27,9 +27,8 @@
  * When invoked with arguments `T1`, `T2`, ...`Tn`, equivalent to
  * `and_<F<T1, T2>, F<T2, Tn...>>`.
  *
- * When invoked with arguments `T1` and `T2`, equivalent to
- * `identity<bool_<T1::value Op T2::value>>` if `T1` and `T2`
- * are `IntegralConstant`s, and unspecified otherwise.
+ * When invoked with arguments `T1` and `T2`, the semantics and default
+ * implementation depend on the intrinsic.
  *
  *
  * @warning

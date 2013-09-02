@@ -7,7 +7,7 @@
 #define BOOST_MPL11_VIEWS_HPP
 
 /*!
- * @defgroup Views Views
+ * @defgroup view Views
  * A view is a sequence adaptor providing a lazily-altered presentation of
  * one or more underlying sequences.
  */

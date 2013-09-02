@@ -35,12 +35,7 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct pop_front
-        : detail::tag_dispatched<tag::pop_front, Sequence>::template
-          with_default<
-            lazy_always<
-                pop_front_detail::pop_front_impl<Sequence>
-            >
-          >
+        : detail::tag_dispatched<tag::pop_front, Sequence>
     { };
 } // end namespace intrinsic
 

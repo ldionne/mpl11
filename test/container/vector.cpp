@@ -5,96 +5,203 @@
 
 #include <boost/mpl11/container/vector.hpp>
 
-#include <boost/mpl11/is_same.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsics.hpp>
 
 
 using namespace boost::mpl11;
-using container::vector;
+using namespace intrinsic;
 
-struct a0; struct a1; struct a2;
+template <typename Sequence, typename ...T>
+struct variadic_push_back
+    : identity<Sequence>
+{ };
 
-#error rewrite in a generic way for all sequences perhaps
-// construction
-static_assert(is_same<
-    vector<a0, a1>::type,
-    vector<a0, a1>
->::value, "");
+template <typename Sequence, typename Head, typename ...Tail>
+struct variadic_push_back<Sequence, Head, Tail...>
+    : variadic_push_back<
+        typename push_back<Sequence, Head>::type,
+        Tail...
+    >
+{ };
+
+template <typename EmptySequence>
+class random_access_sequence_test {
+    template <typename ...T>
+    using Sequence = typename variadic_push_back<EmptySequence, T...>::type;
+
+    struct a0; struct a1; struct a2;
+
+    // equal_to
+    static_assert(equal_to<
+        Sequence<>,
+        Sequence<>
+    >::type::value, "");
+    static_assert(equal_to<
+        Sequence<a0>,
+        Sequence<a0>
+    >::type::value, "");
+    static_assert(equal_to<
+        Sequence<a0, a1>,
+        Sequence<a0, a1>
+    >::type::value, "");
+
+    // not_equal_to
+    static_assert(not_equal_to<
+        Sequence<a0>,
+        Sequence<>
+    >::type::value, "");
+    static_assert(not_equal_to<
+        Sequence<a0>,
+        Sequence<a1>
+    >::type::value, "");
+
+    // is_empty
+    static_assert(is_empty<Sequence<>>::type::value, "");
+    static_assert(!is_empty<Sequence<a0>>::type::value, "");
+    static_assert(!is_empty<Sequence<a0, a1>>::type::value, "");
+
+    // size
+    static_assert(size<Sequence<>>::type::value == 0, "");
+    static_assert(size<Sequence<a0>>::type::value == 1, "");
+    static_assert(size<Sequence<a0, a1>>::type::value == 2, "");
+
+    // front
+    static_assert(equal_to<
+        typename front<Sequence<a0>>::type,
+        a0
+    >::type::value, "");
+    static_assert(equal_to<
+        typename front<Sequence<a0, a1>>::type,
+        a0
+    >::type::value, "");
+    static_assert(equal_to<
+        typename front<Sequence<a0, a1, a2>>::type,
+        a0
+    >::type::value, "");
+
+    // back
+    static_assert(equal_to<
+        typename back<Sequence<a0>>::type,
+        a0
+    >::type::value, "");
+    static_assert(equal_to<
+        typename back<Sequence<a0, a1>>::type,
+        a1
+    >::type::value, "");
+    static_assert(equal_to<
+        typename back<Sequence<a0, a1, a2>>::type,
+        a2
+    >::type::value, "");
+
+    // clear
+    static_assert(equal_to<
+        typename clear<Sequence<>>::type,
+        Sequence<>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename clear<Sequence<a0>>::type,
+        Sequence<>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename clear<Sequence<a0, a1>>::type,
+        Sequence<>
+    >::type::value, "");
+
+    // push_front
+    static_assert(equal_to<
+        typename push_front<Sequence<>, a0>::type,
+        Sequence<a0>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename push_front<Sequence<a1>, a0>::type,
+        Sequence<a0, a1>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename push_front<Sequence<a1, a2>, a0>::type,
+        Sequence<a0, a1, a2>
+    >::type::value, "");
+
+    // push_back
+    static_assert(equal_to<
+        typename push_back<Sequence<>, a0>::type,
+        Sequence<a0>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename push_back<Sequence<a0>, a1>::type,
+        Sequence<a0, a1>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename push_back<Sequence<a0, a1>, a2>::type,
+        Sequence<a0, a1, a2>
+    >::type::value, "");
+
+    // pop_back
+    static_assert(equal_to<
+        typename pop_back<Sequence<a0>>::type,
+        Sequence<>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename pop_back<Sequence<a0, a1>>::type,
+        Sequence<a0>
+    >::type::value, "");
+
+    // pop_front
+    static_assert(equal_to<
+        typename pop_front<Sequence<a0>>::type,
+        Sequence<>
+    >::type::value, "");
+    static_assert(equal_to<
+        typename pop_front<Sequence<a0, a1>>::type,
+        Sequence<a1>
+    >::type::value, "");
+
+    // at/at_c
+    static_assert(equal_to<
+        typename at_c<Sequence<a0>, 0>::type,
+        a0
+    >::type::value, "");
+    static_assert(equal_to<
+        typename at_c<Sequence<a0, a1>, 0>::type,
+        a0
+    >::type::value, "");
+    static_assert(equal_to<
+        typename at_c<Sequence<a0, a1>, 1>::type,
+        a1
+    >::type::value, "");
+
+    // begin/end
+    static_assert(equal_to<
+        typename begin<Sequence<>>::type,
+        typename end<Sequence<>>::type
+    >::type::value, "");
+    static_assert(not_equal_to<
+        typename begin<Sequence<a0>>::type,
+        typename end<Sequence<a0>>::type
+    >::type::value, "");
+    static_assert(not_equal_to<
+        typename end<Sequence<a0>>::type,
+        typename end<Sequence<>>::type
+    >::type::value, "");
+
+    // next/prior
+    static_assert(equal_to<
+        typename next<typename begin<Sequence<a0>>::type>::type,
+        typename end<Sequence<a0>>::type
+    >::type::value, "");
+    static_assert(equal_to<
+        typename prior<typename end<Sequence<a0>>::type>::type,
+        typename begin<Sequence<a0>>::type
+    >::type::value, "");
+
+    // deref
+    static_assert(equal_to<
+        typename deref<typename begin<Sequence<a0>>::type>::type,
+        a0
+    >::type::value, "");
+};
 
 
-// empty
-static_assert(empty<vector<>>::value, "");
-static_assert(!empty<vector<a0>>::value, "");
-
-
-// size
-static_assert(size<vector<>>::value == 0, "");
-static_assert(size<vector<a0>>::value == 1, "");
-static_assert(size<vector<a0, a1>>::value == 2, "");
-
-
-// front
-static_assert(is_same<front<vector<a0>>::type, a0>::value, "");
-static_assert(is_same<front<vector<a0, a1>>::type, a0>::value, "");
-
-
-// back
-static_assert(is_same<back<vector<a0>>::type, a0>::value, "");
-static_assert(is_same<back<vector<a0, a1>>::type, a1>::value, "");
-
-
-// clear
-static_assert(is_same<clear<vector<>>::type, vector<>>::value, "");
-static_assert(is_same<clear<vector<a0>>::type, vector<>>::value, "");
-static_assert(is_same<clear<vector<a0, a1>>::type, vector<>>::value, "");
-
-
-// push_front
-static_assert(is_same<push_front<vector<>, a0>::type, vector<a0>>::value, "");
-static_assert(is_same<push_front<vector<a1>, a0>::type, vector<a0, a1>>::value, "");
-static_assert(is_same<push_front<vector<a1, a2>, a0>::type, vector<a0, a1, a2>>::value, "");
-
-
-// push_back
-static_assert(is_same<push_back<vector<>, a0>::type, vector<a0>>::value, "");
-static_assert(is_same<push_back<vector<a0>, a1>::type, vector<a0, a1>>::value, "");
-static_assert(is_same<push_back<vector<a0, a1>, a2>::type, vector<a0, a1, a2>>::value, "");
-
-
-// pop_back
-static_assert(is_same<pop_back<vector<a0>>::type, vector<>>::value, "");
-static_assert(is_same<pop_back<vector<a0, a1>>::type, vector<a0>>::value, "");
-
-
-// pop_front
-static_assert(is_same<pop_front<vector<a0>>::type, vector<>>::value, "");
-static_assert(is_same<pop_front<vector<a0, a1>>::type, vector<a1>>::value, "");
-
-
-// at/at_c
-static_assert(is_same<at_c<vector<a0>, 0>::type, a0>::value, "");
-static_assert(is_same<at_c<vector<a0, a1>, 0>::type, a0>::value, "");
-static_assert(is_same<at_c<vector<a0, a1>, 1>::type, a1>::value, "");
-
-
-// begin/end
-static_assert(is_same<begin<vector<>>::type, end<vector<>>::type>::value, "");
-static_assert(!is_same<begin<vector<a0>>::type, end<vector<a0>>::type>::value, "");
-static_assert(!is_same<end<vector<a0>>::type, end<vector<>>::type>::value, "");
-
-
-// next/prior
-static_assert(is_same<
-    next<begin<vector<a0>>::type>::type,
-    end<vector<a0>>::type
->::value, "");
-static_assert(is_same<
-    prior<end<vector<a0>>::type>::type,
-    begin<vector<a0>>::type
->::value, "");
-
-
-// deref
-static_assert(is_same<deref<begin<vector<a0>>::type>::type, a0>::value, "");
-
-
-int main() { }
+int main() {
+    static_assert(sizeof(random_access_sequence_test<container::vector<>>), "");
+}

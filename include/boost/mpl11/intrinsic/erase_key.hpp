@@ -6,13 +6,15 @@
 #ifndef BOOST_MPL11_INTRINSIC_ERASE_KEY_HPP
 #define BOOST_MPL11_INTRINSIC_ERASE_KEY_HPP
 
-#include <boost/mpl11/algorithm/remove_if.hpp>
+#include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/key_of.hpp>
+#include <boost/mpl11/intrinsic/not_equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/filtered.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -27,9 +29,12 @@ namespace intrinsic {
      * ### Semantics and default implementation
      * Equivalent to
        @code
-            remove_if<
-                Sequence,
-                equal_to<Key, key_of<Sequence, _1>>
+            copy<
+                filtered<
+                    Sequence,
+                    not_equal_to<Key, key_of<Sequence, _1>>
+                >,
+                clear<Sequence>::type
             >
        @endcode
      *
@@ -46,9 +51,12 @@ namespace intrinsic {
 
 template <typename Sequence, typename Key>
 struct dispatch<detail::default_<tag::erase_key>, Sequence, Key>
-    : algorithm::remove_if<
-        Sequence,
-        intrinsic::equal_to<Key, intrinsic::key_of<Sequence, _1>>
+    : algorithm::copy<
+        view::filtered<
+            Sequence,
+            intrinsic::not_equal_to<Key, intrinsic::key_of<Sequence, _1>>
+        >,
+        typename intrinsic::clear<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

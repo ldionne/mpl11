@@ -11,7 +11,7 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/detail/forward_decls.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>
@@ -24,14 +24,6 @@
 
 namespace boost { namespace mpl11 {
 namespace algorithm {
-    /*!
-     * @ingroup algorithm
-     *
-     * Overloaded algorithm for copying elements from a sequence to another.
-     */
-    template <typename From, typename To, typename Insert = detail::optional>
-    struct copy;
-
     /*!
      * @ingroup algorithm
      *

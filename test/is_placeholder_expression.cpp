@@ -12,20 +12,24 @@ using namespace boost::mpl11;
 
 template <typename ...> struct pack;
 
-static_assert(!is_placeholder_expression<struct a0>::value, "");
-static_assert(!is_placeholder_expression<pack<>>::value, "");
-static_assert(!is_placeholder_expression<pack<struct a0>>::value, "");
+static_assert(!is_placeholder_expression<struct a0>::type::value, "");
+static_assert(!is_placeholder_expression<pack<>>::type::value, "");
+static_assert(!is_placeholder_expression<pack<struct a0>>::type::value, "");
 
 template <typename Placeholder>
 void test_placeholder() {
-    static_assert(is_placeholder_expression<Placeholder>::value, "");
-    static_assert(is_placeholder_expression<pack<Placeholder>>::value, "");
+    static_assert(is_placeholder_expression<
+        Placeholder
+    >::type::value, "");
+    static_assert(is_placeholder_expression<
+        pack<Placeholder>
+    >::type::value, "");
     static_assert(is_placeholder_expression<
         pack<Placeholder, pack<>>
-    >::value, "");
+    >::type::value, "");
     static_assert(is_placeholder_expression<
         pack<pack<Placeholder>>
-    >::value, "");
+    >::type::value, "");
 }
 
 

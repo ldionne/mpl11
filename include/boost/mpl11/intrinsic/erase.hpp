@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/forward_decls.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>

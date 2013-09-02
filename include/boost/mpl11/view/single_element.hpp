@@ -51,6 +51,7 @@ struct dispatch<Op, single_element_detail::single_element_iterator<E, B>>
 namespace view {
     /*!
      * @ingroup Views
+     *
      * View onto an arbitrary `Element` as on a single-element sequence.
      *
      * `single_element` is a random access sequence.

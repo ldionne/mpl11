@@ -19,6 +19,7 @@ namespace view {
 
     /*!
      * @ingroup Views
+     *
      * Random access sequence containing no elements.
      */
     struct empty BOOST_MPL11_DOXYGEN_ONLY({ });

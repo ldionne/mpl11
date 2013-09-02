@@ -22,6 +22,9 @@
 
 namespace boost { namespace mpl11 {
 namespace vector_detail {
+    template <unsigned long Position, typename Vector>
+    struct vector_iterator;
+
     template <typename OperationTag, unsigned long Position, typename Vector>
     struct dispatch;
 
@@ -71,7 +74,7 @@ namespace container {
      * delimited by [`First`, `Last`).
      */
     template <typename First, typename Last>
-    struct vector
+    struct vector<First, Last>
         : algorithm::copy<view::bounded_by<First, Last>, vector<>>
     { };
 } // end namespace container
@@ -126,14 +129,14 @@ struct dispatch<tag::at, container::vector<Elements...>, N>
 
 // ExtensibleSequence
 template <typename ...Elements>
-struct dispatch<tag::clear, vector<Elements...>>
+struct dispatch<tag::clear, container::vector<Elements...>>
     : always<container::vector<>>
 { };
 
 
 // FrontExtensibleSequence
 template <typename ...Elements, typename T_Tag>
-struct dispatch<tag::push_front, vector<Elements...>, T_Tag> {
+struct dispatch<tag::push_front, container::vector<Elements...>, T_Tag> {
     template <typename Self, typename T>
     struct apply
         : identity<container::vector<T, Elements...>>
