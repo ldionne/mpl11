@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_CLEAR_HPP
 #define BOOST_MPL11_INTRINSIC_CLEAR_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -35,7 +34,7 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct clear
-        : detail::tag_dispatched<tag::clear, Sequence>
+        : dispatch<tag::clear, Sequence>
     { };
 } // end namespace intrinsic
 

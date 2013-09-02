@@ -7,7 +7,6 @@
 #define BOOST_MPL11_INTRINSIC_SIZE_HPP
 
 #include <boost/mpl11/algorithm/distance.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -28,7 +27,7 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct size
-        : detail::tag_dispatched<tag::size, Sequence>
+        : dispatch<tag::size, Sequence>
     { };
 } // end namespace intrinsic
 

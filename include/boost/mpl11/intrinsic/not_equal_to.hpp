@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_NOT_EQUAL_TO_HPP
 #define BOOST_MPL11_INTRINSIC_NOT_EQUAL_TO_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/and.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
@@ -29,7 +28,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct not_equal_to
-        : detail::tag_dispatched<tag::not_equal_to, T1, T2, Tn...>
+        : dispatch<tag::not_equal_to, T1, T2, Tn...>
     { };
 
     /*!
@@ -44,7 +43,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2>
     struct not_equal_to<T1, T2>
-        : detail::tag_dispatched<tag::not_equal_to, T1, T2>
+        : dispatch<tag::not_equal_to, T1, T2>
     { };
 } // end namespace intrinsic
 

@@ -11,7 +11,6 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/not.hpp>
 #include <boost/mpl11/lambda.hpp>
@@ -50,7 +49,7 @@ namespace algorithm {
      */
     template <typename Sequence, typename Predicate>
     struct all_of BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Predicate>)
-        : detail::tag_dispatched<tag::all_of, Sequence, Predicate>
+        : dispatch<tag::all_of, Sequence, Predicate>
     { };
 
     /*!
@@ -66,7 +65,7 @@ namespace algorithm {
      */
     template <typename Sequence>
     struct all_of<Sequence>
-        : detail::tag_dispatched<tag::all_of, Sequence>
+        : dispatch<tag::all_of, Sequence>
     { };
 } // end namespace algorithm
 

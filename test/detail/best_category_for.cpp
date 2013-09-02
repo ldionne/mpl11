@@ -5,9 +5,9 @@
 
 #include <boost/mpl11/detail/best_category_for.hpp>
 
-#include <boost/mpl11/always.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -21,7 +21,7 @@ struct with_cat;
 namespace boost { namespace mpl11 {
     template <typename Category>
     struct dispatch<tag::category_of, with_cat<Category>>
-        : always<Category>
+        : identity<Category>
     { };
 }} // end namespace boost::mpl11
 

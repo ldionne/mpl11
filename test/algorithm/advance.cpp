@@ -5,9 +5,9 @@
 
 #include <boost/mpl11/algorithm/advance.hpp>
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -19,17 +19,17 @@ struct iterator {
 namespace boost { namespace mpl11 {
     template <typename Category, int Position>
     struct dispatch<tag::category_of, iterator<Category, Position>>
-        : always<Category>
+        : identity<Category>
     { };
 
     template <typename Category, int Position>
     struct dispatch<tag::next, iterator<Category, Position>>
-        : always<iterator<Category, Position + 1>>
+        : identity<iterator<Category, Position + 1>>
     { };
 
     template <typename Category, int Position>
     struct dispatch<tag::prior, iterator<Category, Position>>
-        : always<iterator<Category, Position - 1>>
+        : identity<iterator<Category, Position - 1>>
     { };
 }} // end namespace boost::mpl11
 

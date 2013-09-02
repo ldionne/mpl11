@@ -9,7 +9,6 @@
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -26,7 +25,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct less BOOST_MPL11_DOXYGEN_ONLY(<T1, T2, Tn...>)
-        : detail::tag_dispatched<tag::less, T1, T2, Tn...>
+        : dispatch<tag::less, T1, T2, Tn...>
     { };
 
     /*!
@@ -42,7 +41,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2>
     struct less<T1, T2>
-        : detail::tag_dispatched<tag::less, T1, T2>
+        : dispatch<tag::less, T1, T2>
     { };
 } // end namespace intrinsic
 

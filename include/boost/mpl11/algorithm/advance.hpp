@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -39,7 +38,7 @@ namespace algorithm {
      */
     template <typename Iterator, typename N>
     struct advance
-        : detail::tag_dispatched<tag::advance, Iterator, N>
+        : dispatch<tag::advance, Iterator, N>
     { };
 
     //! Convenience alias to `advance<Iterator, long_<N>>`.

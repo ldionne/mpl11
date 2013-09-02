@@ -6,12 +6,12 @@
 #ifndef BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 #define BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -45,12 +45,12 @@ namespace single_element_detail {
 
 template <typename Op, typename E, bool B>
 struct dispatch<Op, single_element_detail::single_element_iterator<E, B>>
-    : lazy_always<single_element_detail::dispatch<Op, E, B>>
+    : single_element_detail::dispatch<Op, E, B>
 { };
 
 namespace view {
     /*!
-     * @ingroup Views
+     * @ingroup view
      *
      * View onto an arbitrary `Element` as on a single-element sequence.
      *
@@ -60,19 +60,16 @@ namespace view {
     struct single_element BOOST_MPL11_DOXYGEN_ONLY({ });
 } // end namespace view
 
-template <typename Element>
-struct dispatch<tag::begin, view::single_element<Element>>
-    : always<single_element_detail::single_element_iterator<Element, false>>
-{ };
-
-template <typename Element>
-struct dispatch<tag::end, view::single_element<Element>>
-    : always<single_element_detail::single_element_iterator<Element, true>>
-{ };
-
-template <typename Element>
-struct dispatch<tag::category_of, view::single_element<Element>>
-    : always<category::random_access_sequence>
+template <typename Op, typename Element, typename ...Args>
+struct dispatch<Op, view::single_element<Element>, Args...>
+    : dispatch<
+        Op,
+        view::bounded_by<
+            single_element_detail::single_element_iterator<Element, false>,
+            single_element_detail::single_element_iterator<Element, true>
+        >,
+        Args...
+    >
 { };
 }} // end namespace boost::mpl11
 

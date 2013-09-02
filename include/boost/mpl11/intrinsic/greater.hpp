@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_GREATER_HPP
 #define BOOST_MPL11_INTRINSIC_GREATER_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/and.hpp>
 #include <boost/mpl11/intrinsic/less.hpp>
@@ -22,7 +21,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct greater
-        : detail::tag_dispatched<tag::greater, T1, T2, Tn...>
+        : dispatch<tag::greater, T1, T2, Tn...>
     { };
 
     /*!
@@ -37,7 +36,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2>
     struct greater<T1, T2>
-        : detail::tag_dispatched<tag::greater, T1, T2>
+        : dispatch<tag::greater, T1, T2>
     { };
 } // end namespace intrinsic
 

@@ -7,6 +7,7 @@
 #define BOOST_MPL11_CATEGORIES_HPP
 
 namespace boost { namespace mpl11 { namespace category {
+    struct none { };
     struct integral_constant { };
 
     // Sequence categories

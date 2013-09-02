@@ -6,10 +6,10 @@
 #ifndef BOOST_MPL11_INTEGRAL_C_HPP
 #define BOOST_MPL11_INTEGRAL_C_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -23,22 +23,25 @@ namespace boost { namespace mpl11 {
 
     template <typename I, I N>
     struct dispatch<tag::category_of, integral_c<I, N>>
-        : always<category::integral_constant>
+        : inherit<
+            category::random_access_iterator,
+            category::integral_constant
+        >
     { };
 
     template <typename I, I N>
     struct dispatch<tag::deref, integral_c<I, N>>
-        : always<integral_c<I, N>>
+        : identity<integral_c<I, N>>
     { };
 
     template <typename I, I N>
     struct dispatch<tag::next, integral_c<I, N>>
-        : always<integral_c<I, N + 1>>
+        : identity<integral_c<I, N + 1>>
     { };
 
     template <typename I, I N>
     struct dispatch<tag::prior, integral_c<I, N>>
-        : always<integral_c<I, N - 1>>
+        : identity<integral_c<I, N - 1>>
     { };
 
     template <bool B>

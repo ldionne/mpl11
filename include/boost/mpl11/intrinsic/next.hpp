@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_INTRINSIC_NEXT_HPP
 #define BOOST_MPL11_INTRINSIC_NEXT_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Iterator>
     struct next
-        : detail::tag_dispatched<tag::next, Iterator>
+        : dispatch<tag::next, Iterator>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

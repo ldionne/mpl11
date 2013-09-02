@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/algorithm/all_of.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/and.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
@@ -52,7 +51,7 @@ namespace algorithm {
      */
     template <typename Sequence1, typename Sequence2, typename Predicate>
     struct equal BOOST_MPL11_DOXYGEN_ONLY(<Sequence1, Sequence2, Predicate>)
-        : detail::tag_dispatched<tag::equal, Sequence1, Sequence2, Predicate>
+        : dispatch<tag::equal, Sequence1, Sequence2, Predicate>
     { };
 
     /*!
@@ -68,7 +67,7 @@ namespace algorithm {
      */
     template <typename Sequence1, typename Sequence2>
     struct equal<Sequence1, Sequence2>
-        : detail::tag_dispatched<tag::equal, Sequence1, Sequence2>
+        : dispatch<tag::equal, Sequence1, Sequence2>
     { };
 } // end namespace algorithm
 

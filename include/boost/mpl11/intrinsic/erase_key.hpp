@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/key_of.hpp>
@@ -45,7 +44,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Key>
     struct erase_key
-        : detail::tag_dispatched<tag::erase_key, Sequence, Key>
+        : dispatch<tag::erase_key, Sequence, Key>
     { };
 } // end namespace intrinsic
 

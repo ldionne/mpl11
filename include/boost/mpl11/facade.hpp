@@ -11,15 +11,13 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct facade; }
+    template <typename Self>
+    struct facade;
 
-    template <typename OperationTag, typename ...ArgTags>
-    struct dispatch<OperationTag, tag::facade, ArgTags...> {
-        template <typename Self, typename ...Args>
-        struct apply
-            : apply_wrap<Self, Self, Args...>
-        { };
-    };
+    template <typename OperationTag, typename ...Args>
+    struct dispatch<OperationTag, facade<Self>, Args...>
+        : apply_wrap<Self, Self, Args...>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FACADE_HPP

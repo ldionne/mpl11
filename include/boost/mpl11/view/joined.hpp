@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_VIEW_JOINED_HPP
 #define BOOST_MPL11_VIEW_JOINED_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
@@ -14,8 +13,10 @@
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,47 +24,48 @@ namespace joined_detail {
     template <typename First1, typename Last1, typename First2>
     struct joined_iterator;
 
-    template <typename OperationTag, typename F1, typename L1, typename F2>
+    template <typename Op, typename F1, typename L1, typename F2,
+              bool = intrinsic::equal_to<F1, L1>::type::value>
     struct dispatch;
 
     template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::next, F1, L1, F2>
+    struct dispatch<tag::next, F1, L1, F2, false>
         : identity<
             joined_iterator<typename intrinsic::next<F1>::type, L1, F2>
         >
     { };
 
-    template <typename L1, typename F2>
-    struct dispatch<tag::next, L1, L1, F2>
+    template <typename F1, typename L1, typename F2>
+    struct dispatch<tag::next, F1, L1, F2, true>
         : identity<
-            joined_iterator<L1, L1, typename intrinsic::next<F2>::type>
+            joined_iterator<F1, L1, typename intrinsic::next<F2>::type>
         >
     { };
 
     template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::deref, F1, L1, F2>
+    struct dispatch<tag::deref, F1, L1, F2, false>
         : intrinsic::deref<F1>
     { };
 
-    template <typename L1, typename F2>
-    struct dispatch<tag::deref, L1, L1, F2>
+    template <typename F1, typename L1, typename F2>
+    struct dispatch<tag::deref, F1, L1, F2, true>
         : intrinsic::deref<F2>
     { };
 
-    template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::category_of, F1, L1, F2>
+    template <typename F1, typename L1, typename F2, bool Whatever>
+    struct dispatch<tag::category_of, F1, L1, F2, Whatever>
         : identity<category::forward_iterator>
     { };
 } // end namespace joined_detail
 
 template <typename OperationTag, typename F1, typename L1, typename L2>
 struct dispatch<OperationTag, joined_detail::joined_iterator<F1, L1, L2>>
-    : lazy_always<joined_detail::dispatch<OperationTag, F1, L1, L2>>
+    : joined_detail::dispatch<OperationTag, F1, L1, L2>
 { };
 
 namespace view {
     /*!
-     * @ingroup Views
+     * @ingroup view
      *
      * A view into the sequence of elements formed by concatenating two
      * or more sequences.
@@ -80,30 +82,23 @@ struct dispatch<Op, view::joined<S1, S2, Sn...>, Args...>
     : dispatch<Op, view::joined<S1, view::joined<S2, Sn...>>, Args...>
 { };
 
-template <typename S1, typename S2, typename ...Sn>
-struct dispatch<tag::category_of, view::joined<S1, S2, Sn...>>
-    : always<category::forward_sequence>
-{ };
-
-template <typename S1, typename S2>
-struct dispatch<tag::begin, view::joined<S1, S2>>
-    : always<
-        joined_detail::joined_iterator<
-            typename intrinsic::begin<S1>::type,
-            typename intrinsic::end<S1>::type,
-            typename intrinsic::begin<S2>::type
-        >
-    >
-{ };
-
-template <typename S1, typename S2>
-struct dispatch<tag::end, view::joined<S1, S2>>
-    : always<
-        joined_detail::joined_iterator<
-            typename intrinsic::end<S1>::type,
-            typename intrinsic::end<S1>::type,
-            typename intrinsic::end<S2>::type
-        >
+template <typename Op, typename S1, typename S2, typename ...Args>
+struct dispatch<Op, view::joined<S1, S2>, Args...>
+    : dispatch<
+        Op,
+        view::bounded_by<
+            joined_detail::joined_iterator<
+                typename intrinsic::begin<S1>::type,
+                typename intrinsic::end<S1>::type,
+                typename intrinsic::begin<S2>::type
+            >,
+            joined_detail::joined_iterator<
+                typename intrinsic::end<S1>::type,
+                typename intrinsic::end<S1>::type,
+                typename intrinsic::end<S2>::type
+            >
+        >,
+        Args...
     >
 { };
 }} // end namespace boost::mpl11

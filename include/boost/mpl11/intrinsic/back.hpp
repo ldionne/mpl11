@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_BACK_HPP
 #define BOOST_MPL11_INTRINSIC_BACK_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -37,7 +36,7 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct back
-        : detail::tag_dispatched<tag::back, Sequence>
+        : dispatch<tag::back, Sequence>
     { };
 } // end namespace intrinsic
 

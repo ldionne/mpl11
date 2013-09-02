@@ -6,15 +6,13 @@
 #ifndef BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 #define BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 
-#include <boost/mpl11/always.hpp>
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/intrinsic/prior.hpp>
+#include <boost/mpl11/iterator/adaptor.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
@@ -23,43 +21,25 @@ namespace boost { namespace mpl11 {
 namespace onto_iterators_detail {
     template <typename Iterator>
     struct raw_iterator;
+}
 
-    template <typename OperationTag, typename Iterator>
-    struct dispatch;
+template <typename Op, typename Iterator, typename ...Args>
+struct dispatch<Op, onto_iterators_detail::raw_iterator<Iterator>, Args...>
+    : dispatch<
+        Op,
+        iterator::adaptor<onto_iterators_detail::raw_iterator<_1>, Iterator>,
+        Args...
+    >
+{ };
 
-    template <typename Iterator>
-    struct dispatch<tag::next, Iterator>
-        : identity<
-            raw_iterator<typename intrinsic::next<Iterator>::type>
-        >
-    { };
-
-    template <typename Iterator>
-    struct dispatch<tag::prior, Iterator>
-        : identity<
-            raw_iterator<typename intrinsic::prior<Iterator>::type>
-        >
-    { };
-
-    template <typename Iterator>
-    struct dispatch<tag::deref, Iterator>
-        : identity<Iterator>
-    { };
-
-    template <typename Iterator>
-    struct dispatch<tag::category_of, Iterator>
-        : category_of<Iterator>
-    { };
-} // end namespace onto_iterators_detail
-
-template <typename Op, typename Iterator>
-struct dispatch<Op, onto_iterators_detail::raw_iterator<Iterator>>
-    : lazy_always<onto_iterators_detail::dispatch<Op, Iterator>>
+template <typename Iterator>
+struct dispatch<tag::deref, onto_iterators_detail::raw_iterator<Iterator>>
+    : identity<Iterator>
 { };
 
 namespace view {
     /*!
-     * @ingroup Views
+     * @ingroup view
      *
      * View onto the iterators of a sequence.
      *

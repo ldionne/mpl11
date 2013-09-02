@@ -8,97 +8,88 @@
 
 #include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/detail/tagged_with.hpp>
-#include <boost/mpl11/facade.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace view {
-/*!
- * @ingroup Views
- *
- * View into the subset of elements of `Sequence` satisfying `Predicate`.
- *
- * Regardless of the category of the underlying sequence, `filtered`
- * is only a forward sequence.
- */
-template <typename Sequence, typename Predicate>
-struct filtered {
-private:
-    using Last = typename intrinsic::end<Sequence>::type;
-
-    template <typename Iterator>
+namespace filtered_detail {
+    template <typename First, typename Last, typename Predicate>
     struct filter_iterator;
+}
 
-    template <typename Iterator>
-    struct make_filter_iterator
-        : identity<
-            detail::tagged_with<tag::facade,
-                filter_iterator<
-                    typename algorithm::find_if<
-                        bounded_by<Iterator, Last>,
-                        Predicate
-                    >::type
-                >
-            >
+template <typename First, typename Last, typename Predicate>
+struct dispatch<
+    tag::next, filtered_detail::filter_iterator<First, Last, Predicate>
+>
+    : identity<
+        filtered_detail::filter_iterator<
+            typename algorithm::find_if<
+                view::bounded_by<typename intrinsic::next<First>::type, Last>,
+                Predicate
+            >::type,
+            Last,
+            Predicate
         >
-    { };
+    >
+{ };
 
-    template <typename Iterator>
-    struct filter_iterator {
-        template <typename OperationTag, typename ...Args>
-        struct apply;
+template <typename First, typename Last, typename Predicate>
+struct dispatch<
+    tag::deref, filtered_detail::filter_iterator<First, Last, Predicate>
+>
+    : intrinsic::deref<
+        typename algorithm::find_if<
+            view::bounded_by<First, Last>, Predicate
+        >::type
+    >
+{ };
 
-        template <typename Self>
-        struct apply<tag::next, Self>
-            : make_filter_iterator<typename intrinsic::next<Iterator>::type>
-        { };
+template <typename First, typename Last, typename Predicate>
+struct dispatch<
+    tag::category_of, filtered_detail::filter_iterator<First, Last, Predicate>
+>
+    : identity<category::forward_iterator>
+{ };
 
-        template <typename Self>
-        struct apply<tag::deref, Self>
-            : intrinsic::deref<Iterator>
-        { };
-
-        template <typename Self>
-        struct apply<tag::category_of, Self>
-            : identity<category::forward_iterator>
-        { };
-    };
-
-public:
-    template <typename OperationTag, typename ...Args>
-    struct apply;
-
-    template <typename Self>
-    struct apply<tag::begin, Self>
-        : make_filter_iterator<
-            typename intrinsic::begin<Sequence>::type
-        >
-    { };
-
-    template <typename Self>
-    struct apply<tag::end, Self>
-        : make_filter_iterator<Last>
-    { };
-
-    template <typename Self>
-    struct apply<tag::category_of, Self>
-        : identity<category::forward_sequence>
-    { };
-};
+namespace view {
+    /*!
+     * @ingroup view
+     *
+     * View into the subset of elements of `Sequence` satisfying `Predicate`.
+     *
+     * Regardless of the category of the underlying sequence, `filtered`
+     * is only a forward sequence.
+     */
+    template <typename Sequence, typename Predicate>
+    struct filtered BOOST_MPL11_DOXYGEN_ONLY({ });
 } // end namespace view
 
-template <typename Sequence, typename Predicate>
-struct tag_of<view::filtered<Sequence, Predicate>>
-    : identity<tag::facade>
+template <typename Op, typename Sequence, typename Predicate, typename ...Args>
+struct dispatch<Op, view::filtered<Sequence, Predicate>, Args...>
+    : dispatch<
+        Op,
+        view::bounded_by<
+            filtered_detail::filter_iterator<
+                typename intrinsic::begin<Sequence>::type,
+                typename intrinsic::end<Sequence>::type,
+                Predicate
+            >,
+            filtered_detail::filter_iterator<
+                typename intrinsic::end<Sequence>::type,
+                typename intrinsic::end<Sequence>::type,
+                Predicate
+            >
+        >,
+        Args...
+    >
 { };
 }} // end namespace boost::mpl11
 

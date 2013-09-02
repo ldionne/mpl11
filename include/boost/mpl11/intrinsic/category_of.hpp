@@ -6,20 +6,34 @@
 #ifndef BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP
 #define BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
+namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
      * Returns the category of a type.
+     *
+     *
+     * ### Default implementation
+     *
+     * Equivalent to `identity<category::none>`.
      */
     template <typename T>
     struct category_of
-        : detail::tag_dispatched<tag::category_of, T>
+        : dispatch<tag::category_of, T>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+} // end namespace intrinsic
+
+template <typename T>
+struct dispatch<detail::default_<tag::category_of>, T>
+    : identity<category::none>
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP

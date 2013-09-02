@@ -7,7 +7,6 @@
 #define BOOST_MPL11_INTRINSIC_OR_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
@@ -25,12 +24,12 @@ namespace intrinsic {
      */
     template <typename F1, typename F2, typename ...Fn>
     struct or_
-        : detail::tag_dispatched<tag::or_, F1, F2, Fn...>
+        : dispatch<tag::or_, F1, F2, Fn...>
     { };
 
     template <typename F1, typename F2>
     struct or_<F1, F2>
-        : detail::tag_dispatched<tag::or_, F1, F2>
+        : dispatch<tag::or_, F1, F2>
     { };
 } // end namespace intrinsic
 

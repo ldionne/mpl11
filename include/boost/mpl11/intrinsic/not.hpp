@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_NOT_HPP
 #define BOOST_MPL11_INTRINSIC_NOT_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -28,7 +27,7 @@ namespace intrinsic {
      */
     template <typename F>
     struct not_
-        : detail::tag_dispatched<tag::not_, F>
+        : dispatch<tag::not_, F>
     { };
 } // end namespace intrinsic
 

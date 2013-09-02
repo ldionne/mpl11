@@ -7,7 +7,6 @@
 #define BOOST_MPL11_INTRINSIC_AND_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
@@ -25,7 +24,7 @@ namespace intrinsic {
      */
     template <typename F1, typename F2, typename ...Fn>
     struct and_
-        : detail::tag_dispatched<tag::and_, F1, F2, Fn...>
+        : dispatch<tag::and_, F1, F2, Fn...>
     { };
 } // end namespace intrinsic
 

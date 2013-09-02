@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_LESS_EQUAL_HPP
 #define BOOST_MPL11_INTRINSIC_LESS_EQUAL_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/and.hpp>
 #include <boost/mpl11/intrinsic/less.hpp>
@@ -23,7 +22,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct less_equal
-        : detail::tag_dispatched<tag::less_equal, T1, T2, Tn...>
+        : dispatch<tag::less_equal, T1, T2, Tn...>
     { };
 
     /*!
@@ -38,7 +37,7 @@ namespace intrinsic {
      */
     template <typename T1, typename T2>
     struct less_equal<T1, T2>
-        : detail::tag_dispatched<tag::less_equal, T1, T2>
+        : dispatch<tag::less_equal, T1, T2>
     { };
 } // end namespace intrinsic
 

@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_PUSH_BACK_HPP
 #define BOOST_MPL11_INTRINSIC_PUSH_BACK_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
@@ -27,7 +26,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Element>
     struct push_back
-        : detail::tag_dispatched<tag::push_back, Sequence, Element>
+        : dispatch<tag::push_back, Sequence, Element>
     { };
 } // end namespace intrinsic
 

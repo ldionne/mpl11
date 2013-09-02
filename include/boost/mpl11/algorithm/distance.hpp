@@ -7,7 +7,6 @@
 #define BOOST_MPL11_ALGORITHM_DISTANCE_HPP
 
 #include <boost/mpl11/algorithm/foldl.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
@@ -37,7 +36,7 @@ namespace algorithm {
      */
     template <typename First, typename Last>
     struct distance
-        : detail::tag_dispatched<tag::distance, First, Last>
+        : dispatch<tag::distance, First, Last>
     { };
 } // end namespace algorithm
 

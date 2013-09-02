@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_INTRINSIC_BEGIN_HPP
 #define BOOST_MPL11_INTRINSIC_BEGIN_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Sequence>
     struct begin
-        : detail::tag_dispatched<tag::begin, Sequence>
+        : dispatch<tag::begin, Sequence>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

@@ -7,7 +7,6 @@
 #define BOOST_MPL11_ALGORITHM_CONTAINS_HPP
 
 #include <boost/mpl11/algorithm/find.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/not_equal_to.hpp>
@@ -35,7 +34,7 @@ namespace algorithm {
      */
     template <typename Sequence, typename Element>
     struct contains
-        : detail::tag_dispatched<tag::contains, Sequence, Element>
+        : dispatch<tag::contains, Sequence, Element>
     { };
 } // end namespace algorithm
 

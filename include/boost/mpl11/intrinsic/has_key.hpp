@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
@@ -46,7 +45,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Key>
     struct has_key
-        : detail::tag_dispatched<tag::has_key, Sequence, Key>
+        : dispatch<tag::has_key, Sequence, Key>
     { };
 } // end namespace intrinsic
 

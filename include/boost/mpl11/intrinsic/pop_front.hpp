@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
 #define BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/erase.hpp>
@@ -35,14 +34,14 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct pop_front
-        : detail::tag_dispatched<tag::pop_front, Sequence>
+        : dispatch<tag::pop_front, Sequence>
     { };
 } // end namespace intrinsic
 
 namespace pop_front_detail {
     template <typename Sequence>
     struct assert_nonempty {
-        static_assert(!intrinsic::is_empty<Sequence>::value,
+        static_assert(!intrinsic::is_empty<Sequence>::type::value,
         "Attempt to use `pop_front` on an empty sequence.");
     };
 } // end namespace pop_front_detail

@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_FRONT_HPP
 #define BOOST_MPL11_INTRINSIC_FRONT_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
@@ -35,7 +34,7 @@ namespace intrinsic {
      */
     template <typename Sequence>
     struct front
-        : detail::tag_dispatched<tag::front, Sequence>
+        : dispatch<tag::front, Sequence>
     { };
 } // end namespace intrinsic
 

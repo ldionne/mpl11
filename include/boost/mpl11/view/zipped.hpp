@@ -7,7 +7,6 @@
 #define BOOST_MPL11_VIEW_ZIPPED_HPP
 
 #include <boost/mpl11/algorithm/min.hpp>
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
@@ -61,12 +60,12 @@ namespace zipped_detail {
 
 template <typename OperationTag, typename ...Iterators>
 struct dispatch<OperationTag, zipped_detail::zip_iterator<Iterators...>>
-    : lazy_always<zipped_detail::dispatch<OperationTag, Iterators...>>
+    : zipped_detail::dispatch<OperationTag, Iterators...>
 { };
 
 namespace view {
     /*!
-     * @ingroup Views
+     * @ingroup view
      *
      * View over the elements of several zipped sequences.
      *
@@ -94,18 +93,16 @@ namespace view {
 
 template <typename S1, typename S2, typename ...Sn>
 struct dispatch<tag::size, view::zipped<S1, S2, Sn...>>
-    : lazy_always<
-        algorithm::min<
-            typename intrinsic::size<S1>::type,
-            typename intrinsic::size<S2>::type,
-            typename intrinsic::size<Sn>::type...
-        >
+    : algorithm::min<
+        typename intrinsic::size<S1>::type,
+        typename intrinsic::size<S2>::type,
+        typename intrinsic::size<Sn>::type...
     >
 { };
 
 template <typename ...Sequences>
 struct dispatch<tag::begin, view::zipped<Sequences...>>
-    : always<
+    : identity<
         zipped_detail::zip_iterator<
             typename intrinsic::begin<
                 view::sliced<
@@ -120,7 +117,7 @@ struct dispatch<tag::begin, view::zipped<Sequences...>>
 
 template <typename ...Sequences>
 struct dispatch<tag::end, view::zipped<Sequences...>>
-    : always<
+    : identity<
         zipped_detail::zip_iterator<
             typename intrinsic::end<
                 view::sliced<
@@ -135,7 +132,7 @@ struct dispatch<tag::end, view::zipped<Sequences...>>
 
 template <typename ...Sequences>
 struct dispatch<tag::category_of, view::zipped<Sequences...>>
-    : always<category::forward_sequence>
+    : identity<category::forward_sequence>
 { };
 }} // end namespace boost::mpl11
 

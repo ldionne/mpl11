@@ -6,11 +6,11 @@
 #ifndef BOOST_MPL11_VIEW_BOUNDED_BY_HPP
 #define BOOST_MPL11_VIEW_BOUNDED_BY_HPP
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/tags.hpp>
 
@@ -18,7 +18,7 @@
 namespace boost { namespace mpl11 {
 namespace view {
     /*!
-     * @ingroup Views
+     * @ingroup view
      *
      * View over a range of elements delimited by [`First`, `Last`).
      *
@@ -32,12 +32,12 @@ namespace view {
 
 template <typename First, typename Last>
 struct dispatch<tag::begin, view::bounded_by<First, Last>>
-    : always<First>
+    : identity<First>
 { };
 
 template <typename First, typename Last>
 struct dispatch<tag::end, view::bounded_by<First, Last>>
-    : always<Last>
+    : identity<Last>
 { };
 
 namespace bounded_by_detail {
@@ -56,11 +56,13 @@ namespace bounded_by_detail {
 
 template <typename First, typename Last>
 struct dispatch<tag::category_of, view::bounded_by<First, Last>>
-    : always<decltype(
-        bounded_by_detail::pick_category(
-            (typename intrinsic::category_of<First>::type*)nullptr
+    : identity<
+        decltype(
+            bounded_by_detail::pick_category(
+                (typename intrinsic::category_of<First>::type*)nullptr
+            )
         )
-    )>
+    >
 {
     static_assert(detail::is_same<
         typename intrinsic::category_of<First>::type,

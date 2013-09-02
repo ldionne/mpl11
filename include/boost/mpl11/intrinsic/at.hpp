@@ -14,7 +14,6 @@
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
@@ -79,7 +78,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Key, typename Default>
     struct at BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default>)
-        : detail::tag_dispatched<tag::at, Sequence, Key, Default>
+        : dispatch<tag::at, Sequence, Key, Default>
     { };
 
     /*!
@@ -109,7 +108,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename N>
     struct at<Sequence, N>
-        : detail::tag_dispatched<tag::at, Sequence, N>
+        : dispatch<tag::at, Sequence, N>
     { };
 
     //! Convenience alias to `at<Sequence, ulong<N>>`.

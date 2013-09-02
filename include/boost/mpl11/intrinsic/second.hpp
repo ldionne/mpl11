@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_INTRINSIC_SECOND_HPP
 #define BOOST_MPL11_INTRINSIC_SECOND_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Pair>
     struct second
-        : detail::tag_dispatched<tag::second, Pair>
+        : dispatch<tag::second, Pair>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

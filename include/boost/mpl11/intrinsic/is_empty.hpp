@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_INTRINSIC_IS_EMPTY_HPP
 #define BOOST_MPL11_INTRINSIC_IS_EMPTY_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -31,7 +30,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Sequence>
     struct is_empty
-        : detail::tag_dispatched<tag::is_empty, Sequence>
+        : dispatch<tag::is_empty, Sequence>
     { };
 } // end namespace intrinsic
 

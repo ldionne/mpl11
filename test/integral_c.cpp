@@ -7,7 +7,6 @@
 
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/intrinsic/prior.hpp>
@@ -47,12 +46,6 @@ static_assert(is_same<
 static_assert(is_same<
     deref<integral_c<int, 2>>::type,
     integral_c<int, 2>
->::value, "");
-
-// category_of
-static_assert(is_same<
-    category_of<integral_c<int, 2>>::type,
-    category::integral_constant
 >::value, "");
 
 

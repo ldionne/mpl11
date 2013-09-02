@@ -7,7 +7,6 @@
 #define BOOST_MPL11_CONTAINER_VECTOR_HPP
 
 #include <boost/mpl11/algorithm/copy.hpp>
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/variadic_at.hpp>
@@ -81,19 +80,17 @@ namespace container {
 
 template <typename ...Elements>
 struct dispatch<tag::category_of, container::vector<Elements...>>
-    : lazy_always<
-        inherit<
-            category::random_access_sequence,
-            category::front_extensible_sequence,
-            category::back_extensible_sequence
-        >
+    : inherit<
+        category::random_access_sequence,
+        category::front_extensible_sequence,
+        category::back_extensible_sequence
     >
 { };
 
 // BidirectionalSequence (because of the iterators)
 template <typename ...Elements>
 struct dispatch<tag::begin, container::vector<Elements...>>
-    : always<
+    : identity<
         vector_detail::vector_iterator<
             0, container::vector<Elements...>
         >
@@ -102,7 +99,7 @@ struct dispatch<tag::begin, container::vector<Elements...>>
 
 template <typename ...Elements>
 struct dispatch<tag::end, container::vector<Elements...>>
-    : always<
+    : identity<
         vector_detail::vector_iterator<
             sizeof...(Elements), container::vector<Elements...>
         >
@@ -111,12 +108,12 @@ struct dispatch<tag::end, container::vector<Elements...>>
 
 template <typename ...Elements>
 struct dispatch<tag::size, container::vector<Elements...>>
-    : always<ulong<sizeof...(Elements)>>
+    : identity<ulong<sizeof...(Elements)>>
 { };
 
 template <typename ...Elements>
 struct dispatch<tag::is_empty, container::vector<Elements...>>
-    : always<bool_<sizeof...(Elements) == 0>>
+    : identity<bool_<sizeof...(Elements) == 0>>
 { };
 
 
@@ -130,28 +127,22 @@ struct dispatch<tag::at, container::vector<Elements...>, N>
 // ExtensibleSequence
 template <typename ...Elements>
 struct dispatch<tag::clear, container::vector<Elements...>>
-    : always<container::vector<>>
+    : identity<container::vector<>>
 { };
 
 
 // FrontExtensibleSequence
-template <typename ...Elements, typename T_Tag>
-struct dispatch<tag::push_front, container::vector<Elements...>, T_Tag> {
-    template <typename Self, typename T>
-    struct apply
-        : identity<container::vector<T, Elements...>>
-    { };
-};
+template <typename ...Elements, typename T>
+struct dispatch<tag::push_front, container::vector<Elements...>, T>
+    : identity<container::vector<T, Elements...>>
+{ };
 
 
 // BackExtensibleSequence
-template <typename ...Elements, typename T_Tag>
-struct dispatch<tag::push_back, container::vector<Elements...>, T_Tag> {
-    template <typename Self, typename T>
-    struct apply
-        : identity<container::vector<Elements..., T>>
-    { };
-};
+template <typename ...Elements, typename T>
+struct dispatch<tag::push_back, container::vector<Elements...>, T>
+    : identity<container::vector<Elements..., T>>
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_CONTAINER_VECTOR_HPP

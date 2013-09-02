@@ -8,11 +8,9 @@
 
 #include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/algorithm/foldr.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/forward_decls.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
@@ -43,7 +41,7 @@ namespace algorithm {
      */
     template <typename From, typename To, typename Insert>
     struct copy BOOST_MPL11_DOXYGEN_ONLY(<From, To, Insert>)
-        : detail::tag_dispatched<tag::copy, From, To, Insert>
+        : dispatch<tag::copy, From, To, Insert>
     { };
 
     /*!
@@ -68,7 +66,7 @@ namespace algorithm {
      */
     template <typename From, typename To>
     struct copy<From, To>
-        : detail::tag_dispatched<tag::copy, From, To>
+        : dispatch<tag::copy, From, To>
     { };
 } // end namespace algorithm
 

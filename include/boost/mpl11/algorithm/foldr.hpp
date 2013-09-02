@@ -7,7 +7,6 @@
 #define BOOST_MPL11_ALGORITHM_FOLDR_HPP
 
 #include <boost/mpl11/apply_wrap.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
@@ -52,7 +51,7 @@ namespace algorithm {
      */
     template <typename Sequence, typename State, typename F>
     struct foldr
-        : detail::tag_dispatched<tag::foldr, Sequence, State, F>
+        : dispatch<tag::foldr, Sequence, State, F>
     { };
 } // end namespace algorithm
 

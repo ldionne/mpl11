@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/forward_decls.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/insert_range.hpp>
 #include <boost/mpl11/tags.hpp>
@@ -41,7 +40,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Position, typename Element>
     struct insert BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Element>)
-        : detail::tag_dispatched<tag::insert, Sequence, Position, Element>
+        : dispatch<tag::insert, Sequence, Position, Element>
     { };
 
     /*!
@@ -51,7 +50,7 @@ namespace intrinsic {
      */
     template <typename Sequence, typename Element>
     struct insert<Sequence, Element>
-        : detail::tag_dispatched<tag::insert, Sequence, Element>
+        : dispatch<tag::insert, Sequence, Element>
     { };
 } // end namespace intrinsic
 

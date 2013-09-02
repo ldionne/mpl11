@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_INTRINSIC_KEY_OF_HPP
 #define BOOST_MPL11_INTRINSIC_KEY_OF_HPP
 
-#include <boost/mpl11/detail/tag_dispatched.hpp>
+#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -19,7 +19,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      */
     template <typename Sequence, typename Element>
     struct key_of
-        : detail::tag_dispatched<tag::key_of, Sequence, Element>
+        : dispatch<tag::key_of, Sequence, Element>
     { };
 }}} // end namespace boost::mpl11::intrinsic
 

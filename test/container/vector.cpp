@@ -25,12 +25,12 @@ struct variadic_push_back<Sequence, Head, Tail...>
     >
 { };
 
+struct a0; struct a1; struct a2;
+
 template <typename EmptySequence>
 class random_access_sequence_test {
     template <typename ...T>
     using Sequence = typename variadic_push_back<EmptySequence, T...>::type;
-
-    struct a0; struct a1; struct a2;
 
     // equal_to
     static_assert(equal_to<

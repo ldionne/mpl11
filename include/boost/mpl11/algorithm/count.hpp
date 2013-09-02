@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/algorithm/count_if.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
@@ -28,7 +27,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
      */
     template <typename Sequence, typename Element>
     struct count
-        : detail::tag_dispatched<tag::count, Sequence, Element>
+        : dispatch<tag::count, Sequence, Element>
     { };
 } // end namespace algorithm
 

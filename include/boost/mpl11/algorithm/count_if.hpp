@@ -9,7 +9,6 @@
 #include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/detail/tag_dispatched.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -41,7 +40,7 @@ namespace algorithm {
      */
     template <typename Sequence, typename Predicate>
     struct count_if
-        : detail::tag_dispatched<tag::count_if, Sequence, Predicate>
+        : dispatch<tag::count_if, Sequence, Predicate>
     { };
 } // end namespace algorithm
 

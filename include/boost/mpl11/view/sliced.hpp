@@ -34,7 +34,7 @@ namespace sliced_detail {
 
 namespace view {
     /*!
-     * @ingroup Views
+     * @ingroup view
      *
      * View over the subset of elements of a sequence contained in the range
      * of indices [`From`, `To`).
