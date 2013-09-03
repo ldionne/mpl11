@@ -18,6 +18,11 @@ The __mpl11__ is a header only library. Just add the _include_ directory to
 your compiler's search path and you are good to go.
 
 
+## Documentation
+The documentation is still incomplete, but it's available
+[here](http://ldionne.github.io/mpl11).
+
+
 ## Testing
 To compile the tests, you will also need to have CMake installed.
 If this is the case, you can go to the root of the project and do:
