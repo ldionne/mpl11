@@ -23,6 +23,8 @@
 #include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/algorithm/foldr.hpp>
+#include <boost/mpl11/algorithm/max.hpp>
+#include <boost/mpl11/algorithm/min.hpp>
 #include <boost/mpl11/algorithm/none_of.hpp>
 
 #endif // !BOOST_MPL11_ALGORITHMS_HPP
