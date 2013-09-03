@@ -5,12 +5,14 @@
 
 #include <boost/mpl11/lambda.hpp>
 
-#include "placeholders.hpp"
-#include <boost/mpl11/as_placeholder.hpp>
-#include <boost/mpl11/bind.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/apply_wrap.hpp>
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
-#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/not.hpp>
+#include <boost/mpl11/lambda.hpp>
 
 
 using namespace boost::mpl11;
@@ -36,6 +38,32 @@ namespace test_variadic_pack_without_placeholders {
     >::value, "");
 }
 
+namespace test_lambda_expression_use_cases {
+    static_assert(is_same<
+        apply<identity<_1>, int>::type,
+        int
+    >::value, "");
+
+    static_assert(is_same<
+        apply<
+            apply_wrap<lambda<identity<_1>>::type, _1>, int
+        >::type,
+        int
+    >::value, "");
+
+    static_assert(!apply<
+        intrinsic::not_<
+            apply_wrap<lambda<identity<_1>>::type, _1>
+        >,
+        true_
+    >::type::value, "");
+
+    static_assert(is_same<
+        apply<_1, int>::type,
+        int
+    >::value, "");
+}
+
 // Non placeholder expressions should not be modified.
 template <typename NotPlaceholder>
 void test_non_placeholder() {
@@ -53,66 +81,6 @@ void test_non_placeholder() {
         typename lambda<pack<pack<NotPlaceholder>>>::type,
         pack<pack<NotPlaceholder>>
     >::value, "");
-}
-
-template <typename ...Expressions>
-void test_apply_wrap_equivalence() {
-    static_assert(is_same<
-        typename apply_wrap<Expressions>::type...
-    >::value, "");
-
-    static_assert(is_same<
-        typename apply_wrap<Expressions, a0>::type...
-    >::value, "");
-
-    static_assert(is_same<
-        typename apply_wrap<Expressions, a0, a1>::type...
-    >::value, "");
-}
-
-// Placeholder expressions should be replaced, but placeholders
-// (templates or otherwise) should not.
-template <typename Placeholder>
-void test_placeholder() {
-    static_assert(is_same<
-        typename lambda<Placeholder>::type,
-        Placeholder
-    >::value, "");
-
-    test_apply_wrap_equivalence<
-        typename lambda<pack<Placeholder>>::type,
-        bind<quote<pack>, Placeholder>
-    >();
-
-    test_apply_wrap_equivalence<
-        typename lambda<pack<Placeholder, a0>>::type,
-        bind<quote<pack>, Placeholder, a0>
-    >();
-
-    test_apply_wrap_equivalence<
-        typename lambda<pack<a0, Placeholder>>::type,
-        bind<quote<pack>, a0, Placeholder>
-    >();
-
-    test_apply_wrap_equivalence<
-        typename lambda<
-            pack<
-                Placeholder,
-                typename lambda<pack<Placeholder>>::type
-            >
-        >::type,
-        typename lambda<
-            pack<
-                Placeholder,
-                as_placeholder<bind<quote<pack>, Placeholder>>
-            >
-        >::type,
-        bind<
-            quote<pack>,
-            Placeholder,
-            as_placeholder<bind<quote<pack>, Placeholder>>
-        >
-    >();
 }
 
 struct not_placeholder {
@@ -141,6 +109,5 @@ struct not_placeholder {
 
 
 int main() {
-    INSTANTIATE_TESTS(test_placeholder, placeholder)
     INSTANTIATE_TESTS(test_non_placeholder, not_placeholder)
 }

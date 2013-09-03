@@ -6,74 +6,104 @@
 #ifndef BOOST_MPL11_LAMBDA_HPP
 #define BOOST_MPL11_LAMBDA_HPP
 
+#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/as_placeholder.hpp>
 #include <boost/mpl11/bind.hpp>
-#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/intrinsic/not.hpp>
-#include <boost/mpl11/intrinsic/or.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/is_placeholder_expression.hpp>
 #include <boost/mpl11/quote.hpp>
 
 
 namespace boost { namespace mpl11 {
-/*!
- * Transforms a `LambdaExpression` into its corresponding `MetafunctionClass`.
- *
- * If `T` is a `Placeholder` or if it is not a `PlaceholderExpression`,
- * returns `T` unchanged. Otherwise, let `T` be a `PlaceholderExpression`
- * in a general form `F<A1, ...An>`, where `F` is a class template and
- * `A1, ...An` are arbitrary types. `lambda<F<A1, ...An>>::type` is the same
- * as `as_placeholder<bind<quote<F>, lambda<A1>::type, ...lambda<An>::type>>`.
- *
- * @warning
- * Differences from the original MPL:
- * - `Placeholder`s are left unchanged.
- * - `PlaceholderExpression`s are replaced by something different;
- *   `mpl::protect` is not used anymore.
- */
-template <typename T>
-struct lambda
-    : identity<T>
-{ };
-
 namespace lambda_detail {
+    template <typename F>
+    struct bind_nested_placeholder_expr;
+
     template <template <typename ...> class F, typename ...T>
-    struct lazy_bind_quote
+    struct bind_nested_placeholder_expr<F<T...>>
         : identity<
+            // Using `as_placeholder` will cause this nested `bind` to be
+            // applied when the outer `bind` is applied.
             as_placeholder<
-                bind<quote<F>, typename lambda<T>::type...>
+                bind<quote<F>,
+                    typename if_<is_placeholder<T>,
+                        identity<T>
+                    >::template else_if<is_placeholder_expression<T>,
+                        bind_nested_placeholder_expr<T>
+                    >::template else_<
+                        identity<T>
+                    >::type::type...
+                >
             >
         >
     { };
 
-    template <typename ...E>
-    struct none_is_placeholder_expression
-        : intrinsic::not_<intrinsic::or_<is_placeholder_expression<E>...>>
-    { };
+    template <typename F, bool = is_placeholder<F>::type::value>
+    struct anonymous;
 
-    template <typename E>
-    struct none_is_placeholder_expression<E>
-        : intrinsic::not_<is_placeholder_expression<E>>
-    { };
+    // We have a placeholder expression that is not a placeholder.
+    template <typename F>
+    struct anonymous<F, false> {
+        struct type {
+            template <typename ...Args>
+            struct apply
+                : apply_wrap<
+                    typename bind_nested_placeholder_expr<F>::type, Args...
+                >
+            { };
+        };
+    };
 
-    template <>
-    struct none_is_placeholder_expression<>
-        : true_
-    { };
+    // We have a placeholder.
+    template <typename F>
+    struct anonymous<F, true> {
+        struct type {
+            template <typename ...Args>
+            struct apply
+                : apply_wrap<F, Args...>
+            { };
+        };
+    };
 } // end namespace lambda_detail
 
-template <template <typename ...> class F, typename ...T>
-struct lambda<F<T...>>
-    : if_<
-        intrinsic::or_<
-            is_placeholder<F<T...>>,
-            lambda_detail::none_is_placeholder_expression<T...>
-        >,
-        identity<F<T...>>,
-        lambda_detail::lazy_bind_quote<F, T...>
+/*!
+ * Transforms a `LambdaExpression` into its corresponding `MetafunctionClass`.
+ *
+ * If `T` is not a `PlaceholderExpression`, returns `T` unchanged.
+ *
+ * Otherwise, if `T` is a `Placeholder`, returns a non-template
+ * `MetafunctionClass` without base class and equivalent to `T`
+ * when applied.
+ *
+ * Otherwise, let `T` be a `LambdaExpression` in a general form
+ * `F<A1, A2, ...An>`, where `F` is a class template and `A1`, `A2`, ...`An`
+ * are arbitrary types. The returned type is a non-template
+ * `MetafunctionClass` without base class and equivalent to
+   @code
+        bind<
+            quote<F>,
+            bind_nested<A1>::type,
+            bind_nested<A2>::type,
+            bind_nested<An>::type...
+        >
+   @endcode
+ * when applied. `bind_nested` is a metafunction returning a type such that
+ * any nested `PlaceholderExpression` will be applied when the outer `bind`
+ * is applied, but all other types are left unchanged.
+ *
+ *
+ * @warning
+ * Differences from the original MPL:
+ * - The specification of the substitution mechanism is completely different,
+ *   but most existing `LambdaExpression`s should work as-is.
+ */
+template <typename F>
+struct lambda
+    : if_<is_placeholder_expression<F>,
+        lambda_detail::anonymous<F>,
+        identity<F>
     >::type
 { };
 }} // end namespace boost::mpl11

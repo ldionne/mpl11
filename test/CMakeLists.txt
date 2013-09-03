@@ -16,6 +16,8 @@ endfunction()
 
 
 mpl11_add_test(algorithm_advance         algorithm/advance.cpp)
+mpl11_add_test(algorithm_all_of          algorithm/all_of.cpp)
+mpl11_add_test(algorithm_distance        algorithm/distance.cpp)
 mpl11_add_test(always                    always.cpp)
 mpl11_add_test(apply_wrap                apply_wrap.cpp)
 mpl11_add_test(arg                       arg.cpp)
@@ -37,3 +39,4 @@ mpl11_add_test(is_placeholder_expression is_placeholder_expression.cpp)
 mpl11_add_test(lambda                    lambda.cpp)
 mpl11_add_test(pair                      pair.cpp)
 mpl11_add_test(quote                     quote.cpp)
+mpl11_add_test(view_empty                view/empty.cpp)
