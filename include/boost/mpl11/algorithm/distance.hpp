@@ -7,10 +7,10 @@
 #define BOOST_MPL11_ALGORITHM_DISTANCE_HPP
 
 #include <boost/mpl11/algorithm/foldl.hpp>
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
@@ -45,7 +45,7 @@ struct dispatch<detail::default_<tag::distance>, First, Last>
     : algorithm::foldl<
         view::bounded_by<First, Last>,
         ulong<0>,
-        quote<intrinsic::next>
+        intrinsic::next<_1>
     >
 { };
 }} // end namespace boost::mpl11

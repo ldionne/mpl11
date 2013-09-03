@@ -41,9 +41,7 @@ namespace algorithm {
        @code
             none_of<
                 Sequence,
-                lambda<
-                    not_<apply_wrap<lambda<Predicate>::type, _1>>
-                >::type
+                not_<apply_wrap<lambda<Predicate>::type, _1>>
             >
        @endcode
      */
@@ -73,9 +71,7 @@ template <typename Sequence, typename Predicate>
 struct dispatch<detail::default_<tag::all_of>, Sequence, Predicate>
     : algorithm::none_of<
         Sequence,
-        typename lambda<
-            not_<apply_wrap<typename lambda<Predicate>::type, _1>>
-        >::type
+        intrinsic::not_<apply_wrap<typename lambda<Predicate>::type, _1>>
     >
 { };
 
