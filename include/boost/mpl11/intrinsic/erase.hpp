@@ -99,8 +99,7 @@ namespace erase_detail {
                     typename intrinsic::begin<Sequence>::type, First
                 >,
                 view::bounded_by<
-                    typename intrinsic::next<Last>::type,
-                    typename intrinsic::end<Sequence>::type
+                    Last, typename intrinsic::end<Sequence>::type
                 >
             >,
             typename intrinsic::clear<Sequence>::type

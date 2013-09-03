@@ -10,6 +10,7 @@
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/erase.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
+#include <boost/mpl11/intrinsic/prior.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -23,7 +24,7 @@ namespace intrinsic {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `erase<Sequence, end<Sequence>::type>` if
+     * Equivalent to `erase<Sequence, prior<end<Sequence>::type>::type>` if
      * `is_empty<Sequence>::type::value` is `false`, and a
      * compile-time assertion is triggered otherwise.
      *
@@ -50,7 +51,10 @@ template <typename Sequence>
 struct dispatch<detail::default_<tag::pop_back>, Sequence>
     : pop_back_detail::assert_nonempty<Sequence>,
       intrinsic::erase<
-        Sequence, typename intrinsic::end<Sequence>::type
+        Sequence,
+        typename intrinsic::prior<
+            typename intrinsic::end<Sequence>::type
+        >::type
     >
 { };
 }} // end namespace boost::mpl11

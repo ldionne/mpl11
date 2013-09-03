@@ -17,6 +17,8 @@ endfunction()
 
 mpl11_add_test(algorithm_advance         algorithm/advance.cpp)
 mpl11_add_test(algorithm_all_of          algorithm/all_of.cpp)
+mpl11_add_test(algorithm_any_of          algorithm/any_of.cpp)
+mpl11_add_test(algorithm_contains        algorithm/contains.cpp)
 mpl11_add_test(algorithm_distance        algorithm/distance.cpp)
 mpl11_add_test(always                    always.cpp)
 mpl11_add_test(apply_wrap                apply_wrap.cpp)

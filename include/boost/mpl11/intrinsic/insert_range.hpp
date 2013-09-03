@@ -17,7 +17,6 @@
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
-#include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
@@ -46,8 +45,7 @@ namespace intrinsic {
      *
      * Equivalent to copying the elements from the ranges
      * [`begin<Sequence>::type`, `Position`), `Range` and
-     * [`next<Position>::type`, `end<Sequence>::type`) into
-     * `clear<Sequence>::type`
+     * [`Position`, `end<Sequence>::type`) into `clear<Sequence>::type`
      */
     template <typename Sequence, typename Position, typename Range>
     struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>)
@@ -96,8 +94,7 @@ namespace insert_range_detail {
                 >,
                 Range,
                 view::bounded_by<
-                    typename intrinsic::next<Position>::type,
-                    typename intrinsic::end<Sequence>::type
+                    Position, typename intrinsic::end<Sequence>::type
                 >
             >,
             typename intrinsic::clear<Sequence>::type
