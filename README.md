@@ -9,7 +9,8 @@ The code is unstable at the moment; do not use for production.
 
 
 ## Requirements
-A conformant C++11 compiler.
+A conformant C++11 compiler (a conformant C++11 standard library
+is _not_ required).
 
 
 ## Getting started
