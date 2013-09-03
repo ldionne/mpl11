@@ -1,0 +1,408 @@
+Start testing: Sep 03 13:10 EDT
+----------------------------------------------------------
+1/27 Testing: algorithm_advance
+1/27 Test: algorithm_advance
+Command: "/Users/ldionne/code/mpl11/build/test/algorithm_advance"
+Directory: /Users/ldionne/code/mpl11/build/test
+"algorithm_advance" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"algorithm_advance" end time: Sep 03 13:10 EDT
+"algorithm_advance" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/27 Testing: algorithm_all_of
+2/27 Test: algorithm_all_of
+Command: "/Users/ldionne/code/mpl11/build/test/algorithm_all_of"
+Directory: /Users/ldionne/code/mpl11/build/test
+"algorithm_all_of" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"algorithm_all_of" end time: Sep 03 13:10 EDT
+"algorithm_all_of" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/27 Testing: algorithm_any_of
+3/27 Test: algorithm_any_of
+Command: "/Users/ldionne/code/mpl11/build/test/algorithm_any_of"
+Directory: /Users/ldionne/code/mpl11/build/test
+"algorithm_any_of" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"algorithm_any_of" end time: Sep 03 13:10 EDT
+"algorithm_any_of" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/27 Testing: algorithm_contains
+4/27 Test: algorithm_contains
+Command: "/Users/ldionne/code/mpl11/build/test/algorithm_contains"
+Directory: /Users/ldionne/code/mpl11/build/test
+"algorithm_contains" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"algorithm_contains" end time: Sep 03 13:10 EDT
+"algorithm_contains" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/27 Testing: algorithm_distance
+5/27 Test: algorithm_distance
+Command: "/Users/ldionne/code/mpl11/build/test/algorithm_distance"
+Directory: /Users/ldionne/code/mpl11/build/test
+"algorithm_distance" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"algorithm_distance" end time: Sep 03 13:10 EDT
+"algorithm_distance" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/27 Testing: always
+6/27 Test: always
+Command: "/Users/ldionne/code/mpl11/build/test/always"
+Directory: /Users/ldionne/code/mpl11/build/test
+"always" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"always" end time: Sep 03 13:10 EDT
+"always" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/27 Testing: apply_wrap
+7/27 Test: apply_wrap
+Command: "/Users/ldionne/code/mpl11/build/test/apply_wrap"
+Directory: /Users/ldionne/code/mpl11/build/test
+"apply_wrap" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"apply_wrap" end time: Sep 03 13:10 EDT
+"apply_wrap" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/27 Testing: arg
+8/27 Test: arg
+Command: "/Users/ldionne/code/mpl11/build/test/arg"
+Directory: /Users/ldionne/code/mpl11/build/test
+"arg" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"arg" end time: Sep 03 13:10 EDT
+"arg" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/27 Testing: as_placeholder
+9/27 Test: as_placeholder
+Command: "/Users/ldionne/code/mpl11/build/test/as_placeholder"
+Directory: /Users/ldionne/code/mpl11/build/test
+"as_placeholder" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"as_placeholder" end time: Sep 03 13:10 EDT
+"as_placeholder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/27 Testing: bind
+10/27 Test: bind
+Command: "/Users/ldionne/code/mpl11/build/test/bind"
+Directory: /Users/ldionne/code/mpl11/build/test
+"bind" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"bind" end time: Sep 03 13:10 EDT
+"bind" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/27 Testing: container_vector
+11/27 Test: container_vector
+Command: "/Users/ldionne/code/mpl11/build/test/container_vector"
+Directory: /Users/ldionne/code/mpl11/build/test
+"container_vector" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"container_vector" end time: Sep 03 13:10 EDT
+"container_vector" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/27 Testing: detail_best_category_for
+12/27 Test: detail_best_category_for
+Command: "/Users/ldionne/code/mpl11/build/test/detail_best_category_for"
+Directory: /Users/ldionne/code/mpl11/build/test
+"detail_best_category_for" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"detail_best_category_for" end time: Sep 03 13:10 EDT
+"detail_best_category_for" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/27 Testing: detail_either
+13/27 Test: detail_either
+Command: "/Users/ldionne/code/mpl11/build/test/detail_either"
+Directory: /Users/ldionne/code/mpl11/build/test
+"detail_either" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"detail_either" end time: Sep 03 13:10 EDT
+"detail_either" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/27 Testing: detail_has_xxx
+14/27 Test: detail_has_xxx
+Command: "/Users/ldionne/code/mpl11/build/test/detail_has_xxx"
+Directory: /Users/ldionne/code/mpl11/build/test
+"detail_has_xxx" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"detail_has_xxx" end time: Sep 03 13:10 EDT
+"detail_has_xxx" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/27 Testing: detail_is_same
+15/27 Test: detail_is_same
+Command: "/Users/ldionne/code/mpl11/build/test/detail_is_same"
+Directory: /Users/ldionne/code/mpl11/build/test
+"detail_is_same" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"detail_is_same" end time: Sep 03 13:10 EDT
+"detail_is_same" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/27 Testing: detail_nested_apply
+16/27 Test: detail_nested_apply
+Command: "/Users/ldionne/code/mpl11/build/test/detail_nested_apply"
+Directory: /Users/ldionne/code/mpl11/build/test
+"detail_nested_apply" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"detail_nested_apply" end time: Sep 03 13:10 EDT
+"detail_nested_apply" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/27 Testing: detail_variadic_at
+17/27 Test: detail_variadic_at
+Command: "/Users/ldionne/code/mpl11/build/test/detail_variadic_at"
+Directory: /Users/ldionne/code/mpl11/build/test
+"detail_variadic_at" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"detail_variadic_at" end time: Sep 03 13:10 EDT
+"detail_variadic_at" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/27 Testing: if
+18/27 Test: if
+Command: "/Users/ldionne/code/mpl11/build/test/if"
+Directory: /Users/ldionne/code/mpl11/build/test
+"if" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"if" end time: Sep 03 13:10 EDT
+"if" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/27 Testing: integral_c
+19/27 Test: integral_c
+Command: "/Users/ldionne/code/mpl11/build/test/integral_c"
+Directory: /Users/ldionne/code/mpl11/build/test
+"integral_c" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"integral_c" end time: Sep 03 13:10 EDT
+"integral_c" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/27 Testing: intrinsic_and
+20/27 Test: intrinsic_and
+Command: "/Users/ldionne/code/mpl11/build/test/intrinsic_and"
+Directory: /Users/ldionne/code/mpl11/build/test
+"intrinsic_and" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"intrinsic_and" end time: Sep 03 13:10 EDT
+"intrinsic_and" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/27 Testing: intrinsic_not
+21/27 Test: intrinsic_not
+Command: "/Users/ldionne/code/mpl11/build/test/intrinsic_not"
+Directory: /Users/ldionne/code/mpl11/build/test
+"intrinsic_not" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"intrinsic_not" end time: Sep 03 13:10 EDT
+"intrinsic_not" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/27 Testing: intrinsic_or
+22/27 Test: intrinsic_or
+Command: "/Users/ldionne/code/mpl11/build/test/intrinsic_or"
+Directory: /Users/ldionne/code/mpl11/build/test
+"intrinsic_or" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"intrinsic_or" end time: Sep 03 13:10 EDT
+"intrinsic_or" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/27 Testing: is_placeholder_expression
+23/27 Test: is_placeholder_expression
+Command: "/Users/ldionne/code/mpl11/build/test/is_placeholder_expression"
+Directory: /Users/ldionne/code/mpl11/build/test
+"is_placeholder_expression" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"is_placeholder_expression" end time: Sep 03 13:10 EDT
+"is_placeholder_expression" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/27 Testing: lambda
+24/27 Test: lambda
+Command: "/Users/ldionne/code/mpl11/build/test/lambda"
+Directory: /Users/ldionne/code/mpl11/build/test
+"lambda" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"lambda" end time: Sep 03 13:10 EDT
+"lambda" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/27 Testing: pair
+25/27 Test: pair
+Command: "/Users/ldionne/code/mpl11/build/test/pair"
+Directory: /Users/ldionne/code/mpl11/build/test
+"pair" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"pair" end time: Sep 03 13:10 EDT
+"pair" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/27 Testing: quote
+26/27 Test: quote
+Command: "/Users/ldionne/code/mpl11/build/test/quote"
+Directory: /Users/ldionne/code/mpl11/build/test
+"quote" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"quote" end time: Sep 03 13:10 EDT
+"quote" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/27 Testing: view_empty
+27/27 Test: view_empty
+Command: "/Users/ldionne/code/mpl11/build/test/view_empty"
+Directory: /Users/ldionne/code/mpl11/build/test
+"view_empty" start time: Sep 03 13:10 EDT
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"view_empty" end time: Sep 03 13:10 EDT
+"view_empty" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 03 13:10 EDT

@@ -1,0 +1,17 @@
+Performing C++ SOURCE FILE Test MPL11_HAS_WNO_UNUSED_LOCAL_TYPEDEFS_FLAG failed with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3980224006/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3980224006.dir/build.make CMakeFiles/cmTryCompileExec3980224006.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3980224006.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WNO_UNUSED_LOCAL_TYPEDEFS_FLAG   -Wno-unused-local-typedefs -o CMakeFiles/cmTryCompileExec3980224006.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+clang: warning: unknown warning option '-Wno-unused-local-typedefs'
+warning: unknown warning option '-Wno-unused-local-typedefs' [-Wunknown-warning-option]
+1 warning generated.
+Linking CXX executable cmTryCompileExec3980224006
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3980224006.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WNO_UNUSED_LOCAL_TYPEDEFS_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3980224006.dir/src.cxx.o  -o cmTryCompileExec3980224006  
+
+Source file was:
+int main() { return 0;}

@@ -1,0 +1,251 @@
+The system is: Darwin - 12.4.0 - i386
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is Clang, found in "/Users/ldionne/code/mpl11/build/CMakeFiles/2.8.11.2/CompilerIdCXX/a.out"
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3917816109/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3917816109.dir/build.make CMakeFiles/cmTryCompileExec3917816109.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3917816109.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec3917816109.dir/testCXXCompiler.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec3917816109
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3917816109.dir/link.txt --verbose=1
+/usr/bin/c++       -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3917816109.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec3917816109  
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1321953056/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1321953056.dir/build.make CMakeFiles/cmTryCompileExec1321953056.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/2.8.11.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1321953056
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1321953056.dir/link.txt --verbose=1
+/usr/bin/c++       -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1321953056   
+Apple LLVM version 4.2 (clang-425.0.28) (based on LLVM 3.2svn)
+Target: x86_64-apple-darwin12.4.0
+Thread model: posix
+ "/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.8.0 -o cmTryCompileExec1321953056 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lSystem /usr/bin/../lib/clang/4.2/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-136
+configured to support archs: armv6 armv7 armv7s i386 x86_64
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/make "cmTryCompileExec1321953056/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTryCompileExec1321953056.dir/build.make CMakeFiles/cmTryCompileExec1321953056.dir/build]
+  ignore line: [/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/2.8.11.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec1321953056]
+  ignore line: [/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1321953056.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -Wl,-search_paths_first -Wl,-headerpad_max_install_names -v -Wl,-v CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1321953056   ]
+  ignore line: [Apple LLVM version 4.2 (clang-425.0.28) (based on LLVM 3.2svn)]
+  ignore line: [Target: x86_64-apple-darwin12.4.0]
+  ignore line: [Thread model: posix]
+  link line: [ "/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.8.0 -o cmTryCompileExec1321953056 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lSystem /usr/bin/../lib/clang/4.2/lib/darwin/libclang_rt.osx.a]
+    arg [/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.8.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec1321953056] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTryCompileExec1321953056.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lSystem] ==> lib [System]
+    arg [/usr/bin/../lib/clang/4.2/lib/darwin/libclang_rt.osx.a] ==> lib [/usr/bin/../lib/clang/4.2/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  collapse lib [/usr/bin/../lib/clang/4.2/lib/darwin/libclang_rt.osx.a] ==> [/usr/lib/clang/4.2/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
+  implicit libs: [stdc++;/usr/lib/clang/4.2/lib/darwin/libclang_rt.osx.a]
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+
+
+Performing C++ SOURCE FILE Test MPL11_HAS_PEDANTIC_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2174854083/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2174854083.dir/build.make CMakeFiles/cmTryCompileExec2174854083.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2174854083.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_PEDANTIC_FLAG   -pedantic -o CMakeFiles/cmTryCompileExec2174854083.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec2174854083
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2174854083.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_PEDANTIC_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2174854083.dir/src.cxx.o  -o cmTryCompileExec2174854083  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_STDCXX0X_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec4219361281/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4219361281.dir/build.make CMakeFiles/cmTryCompileExec4219361281.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec4219361281.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_STDCXX0X_FLAG   -std=c++0x -o CMakeFiles/cmTryCompileExec4219361281.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec4219361281
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4219361281.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_STDCXX0X_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec4219361281.dir/src.cxx.o  -o cmTryCompileExec4219361281  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_STDLIB_LIBCXX_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3309036359/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3309036359.dir/build.make CMakeFiles/cmTryCompileExec3309036359.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3309036359.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_STDLIB_LIBCXX_FLAG   -stdlib=libc++ -o CMakeFiles/cmTryCompileExec3309036359.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec3309036359
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3309036359.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_STDLIB_LIBCXX_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3309036359.dir/src.cxx.o  -o cmTryCompileExec3309036359  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_W_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1174813201/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1174813201.dir/build.make CMakeFiles/cmTryCompileExec1174813201.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1174813201.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_W_FLAG   -W -o CMakeFiles/cmTryCompileExec1174813201.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec1174813201
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1174813201.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_W_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1174813201.dir/src.cxx.o  -o cmTryCompileExec1174813201  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_WALL_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3565431340/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3565431340.dir/build.make CMakeFiles/cmTryCompileExec3565431340.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3565431340.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WALL_FLAG   -Wall -o CMakeFiles/cmTryCompileExec3565431340.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec3565431340
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3565431340.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WALL_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3565431340.dir/src.cxx.o  -o cmTryCompileExec3565431340  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_WERROR_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1473660648/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1473660648.dir/build.make CMakeFiles/cmTryCompileExec1473660648.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1473660648.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WERROR_FLAG   -Werror -o CMakeFiles/cmTryCompileExec1473660648.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec1473660648
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1473660648.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WERROR_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec1473660648.dir/src.cxx.o  -o cmTryCompileExec1473660648  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_WEXTRA_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec4232573717/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4232573717.dir/build.make CMakeFiles/cmTryCompileExec4232573717.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec4232573717.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WEXTRA_FLAG   -Wextra -o CMakeFiles/cmTryCompileExec4232573717.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec4232573717
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4232573717.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WEXTRA_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec4232573717.dir/src.cxx.o  -o cmTryCompileExec4232573717  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_WNO_LONG_LONG_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec519021368/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec519021368.dir/build.make CMakeFiles/cmTryCompileExec519021368.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec519021368.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WNO_LONG_LONG_FLAG   -Wno-long-long -o CMakeFiles/cmTryCompileExec519021368.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec519021368
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec519021368.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WNO_LONG_LONG_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec519021368.dir/src.cxx.o  -o cmTryCompileExec519021368  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_WNO_UNUSED_PARAMETER_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3920509333/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3920509333.dir/build.make CMakeFiles/cmTryCompileExec3920509333.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3920509333.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WNO_UNUSED_PARAMETER_FLAG   -Wno-unused-parameter -o CMakeFiles/cmTryCompileExec3920509333.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec3920509333
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3920509333.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WNO_UNUSED_PARAMETER_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3920509333.dir/src.cxx.o  -o cmTryCompileExec3920509333  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_WWRITE_STRINGS_FLAG succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec2556372226/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2556372226.dir/build.make CMakeFiles/cmTryCompileExec2556372226.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec2556372226.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_WWRITE_STRINGS_FLAG   -Wwrite-strings -o CMakeFiles/cmTryCompileExec2556372226.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec2556372226
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2556372226.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_WWRITE_STRINGS_FLAG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec2556372226.dir/src.cxx.o  -o cmTryCompileExec2556372226  
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test MPL11_HAS_FTEMPLATE_BACKTRACE_LIMIT_0 succeded with the following output:
+Change Dir: /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3365234942/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3365234942.dir/build.make CMakeFiles/cmTryCompileExec3365234942.dir/build
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_progress_report /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3365234942.dir/src.cxx.o
+/usr/bin/c++    -DMPL11_HAS_FTEMPLATE_BACKTRACE_LIMIT_0   -ftemplate-backtrace-limit=0 -o CMakeFiles/cmTryCompileExec3365234942.dir/src.cxx.o -c /Users/ldionne/code/mpl11/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec3365234942
+/usr/local/Cellar/cmake/2.8.11.2/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3365234942.dir/link.txt --verbose=1
+/usr/bin/c++      -DMPL11_HAS_FTEMPLATE_BACKTRACE_LIMIT_0 -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTryCompileExec3365234942.dir/src.cxx.o  -o cmTryCompileExec3365234942  
+
+Source file was:
+int main() { return 0;}
