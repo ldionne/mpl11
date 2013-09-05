@@ -7,6 +7,9 @@
 #define BOOST_MPL11_IF_HPP
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/identity.hpp>
 
 
@@ -29,77 +32,78 @@ namespace if_detail {
     { };
 
     // We walk the branches until we encounter one whose condition is `true`,
-    // and pick its `then`. If there is no branch whose condition is `true`,
-    // we don't provide a nested `type`, which enables us to mimic the
-    // functionality provided by `enable_if`.
+    // and pick its `then`. `evaluate<>` can't possibly be reached because
+    // we always provide a `branch<true_, Else>` alternative in the `if_`
+    // constructs below.
     template <typename ...Branches>
-    struct evaluate_base { };
+    struct evaluate;
 
     template <typename Branch, typename ...Rest>
-    struct evaluate_base<Branch, Rest...>
+    struct evaluate<Branch, Rest...>
         : conditional<Branch::condition::type::value,
             identity<typename Branch::then>,
-            evaluate_base<Rest...>
+            evaluate<Rest...>
         >::type
     { };
 
+    using detail::optional;
     template <typename ...Branches>
-    struct evaluate_complete;
-
-    // Emulate enable_if.
-    template <typename Cond, typename ...Branches>
-    struct evaluate_then : evaluate_base<Branches..., branch<Cond, void>> {
-        template <typename Then>
-        using then = evaluate_complete<Branches..., branch<Cond, Then>>;
-    };
-
-    template <typename ...Branches>
-    struct evaluate_complete : evaluate_base<Branches...> {
-    private:
-        template <typename Cond, typename ...OptionalThenElse>
-        struct make_else_if;
-
-    public:
-        template <typename Cond, typename ...OptionalThenElse>
-        using else_if = typename make_else_if<Cond, OptionalThenElse...>::type;
-
-        template <bool Cond, typename ...Args>
-        using else_if_c = else_if<bool_<Cond>, Args...>;
-
-        template <typename Else>
-        using else_ = evaluate_base<Branches..., branch<true_, Else>>;
-
-    private:
-        template <typename Cond>
-        struct make_else_if<Cond>
+    class accumulate {
+        template <typename Cond, typename Then, typename Else = optional>
+        struct make_else_if
             : identity<
-                evaluate_then<Cond, Branches...>
+                evaluate<Branches..., branch<Cond, Then>, branch<true_, Else>>
             >
         { };
 
         template <typename Cond, typename Then>
         struct make_else_if<Cond, Then>
             : identity<
-                typename else_if<Cond>::template then<Then>
+                accumulate<Branches..., branch<Cond, Then>>
             >
         { };
 
-        template <typename Cond, typename Then, typename Else>
-        struct make_else_if<Cond, Then, Else>
-            : identity<
-                typename else_if<Cond>::template then<Then>::
-                template else_<Else>
-            >
-        { };
+    public:
+        template <typename Cond, typename Then, typename Else = optional>
+        using else_if = typename make_else_if<Cond, Then, Else>::type;
+
+        template <bool Cond, typename Then, typename Else = optional>
+        using else_if_c = else_if<bool_<Cond>, Then, Else>;
+
+        template <typename Else>
+        using else_ = evaluate<Branches..., branch<true_, Else>>;
     };
 } // end namespace if_detail
 
-template <typename Cond, typename ...Args>
-using if_ = typename if_detail::evaluate_complete<>::
-            template else_if<Cond, Args...>;
+//! Overloaded metafunction for conditionally selecting a type or another.
+template <typename Cond,
+          typename Then = detail::optional,
+          typename Else = detail::optional>
+struct if_;
 
-template <bool Cond, typename ...Args>
-using if_c = if_<bool_<Cond>, Args...>;
+//! Equivalent to `std::enable_if<Cond, void>`.
+template <typename Cond>
+struct if_<Cond>
+    : if_<Cond, identity<void>, empty_base>::type
+{ };
+
+/*!
+ * @todo Explain features
+ */
+template <typename Cond, typename Then>
+struct if_<Cond, Then>
+    : if_detail::accumulate<>::template else_if<Cond, Then>
+{ };
+
+//! Equivalent to `std::conditional<Cond::type::value, Then, Else>`.
+template <typename Cond, typename Then, typename Else>
+struct if_ BOOST_MPL11_DOXYGEN_ONLY(<Cond, Then, Else>)
+    : if_detail::accumulate<>::template else_if<Cond, Then, Else>
+{ };
+
+//! Convenience alias to `if_<bool_<Cond>, Then, Else>`.
+template <bool Cond, typename Then, typename Else = detail::optional>
+using if_c = if_<bool_<Cond>, Then, Else>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IF_HPP

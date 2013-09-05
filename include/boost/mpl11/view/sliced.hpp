@@ -26,7 +26,7 @@ namespace sliced_detail {
         "Attempt to use `sliced<Sequence, From, To>` with a `From` "
         "index greater than the `To` index.");
 
-        static_assert(To::value <= size<Sequence>::type::value,
+        static_assert(To::value <= intrinsic::size<Sequence>::type::value,
         "Attempt to use `sliced<Sequence, From, To>` with a `To` "
         "index greater than the size of the `Sequence`.");
     };

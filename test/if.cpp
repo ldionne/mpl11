@@ -5,6 +5,8 @@
 
 #include <boost/mpl11/if.hpp>
 
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/has_type.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
@@ -17,126 +19,70 @@ using detail::is_same;
 struct Then;
 struct Else;
 
-// if<Cond> (same as enable_if<Cond>)
+
+// if_<Cond> (same as enable_if<Cond>)
 static_assert(is_same<if_<true_>::type, void>::value, "");
+static_assert(is_same<apply<if_<_1>, true_>::type, void>::value, "");
 static_assert(!has_type<if_<false_>>::value, "");
-
-
-// if<Cond, Then> (same as enable_if<Cond, Then>)
-static_assert(is_same<if_<true_, Then>::type, Then>::value, "");
-static_assert(!has_type<if_<false_, Then>>::value, "");
-
-
-// if<Cond>::then<Then> (same as if<Cond, Then>)
-static_assert(is_same<if_<true_>::then<Then>::type, Then>::value, "");
-static_assert(!has_type<if_<false_>::then<Then>>::value, "");
 
 
 // if<Cond, Then, Else>
 static_assert(is_same<if_<true_, Then, Else>::type, Then>::value, "");
+static_assert(is_same<apply<if_<_1, Then, Else>, true_>::type, Then>::value, "");
+
 static_assert(is_same<if_<false_, Then, Else>::type, Else>::value, "");
+static_assert(is_same<apply<if_<_1, Then, Else>, false_>::type, Else>::value, "");
 
 
-// if<Cond>::then<Then>::else<Else>
+// if<Cond, Then>::else_if<Cond, Then, Else>
 static_assert(is_same<
-    if_<true_>::then<Then>::
-    else_<Else>::type,
-    Then
+    if_<false_, int>::else_if<true_, char, float>::type,
+    char
 >::value, "");
 static_assert(is_same<
-    if_<false_>::then<Then>::
-    else_<Else>::type,
-    Else
+    apply<if_<_1, int>::else_if<_2, char, float>, false_, true_>::type,
+    char
 >::value, "");
 
-
-// if<Cond>::then<Then>::else_if<Cond, Else>
 static_assert(is_same<
-    if_<false_>::then<Then>::
-    else_if<true_, Else>::type,
-    Else
+    if_<false_, int>::else_if<false_, char, float>::type,
+    float
 >::value, "");
 static_assert(is_same<
-    if_<true_>::then<Then>::
-    else_if<false_, Else>::type,
-    Then
->::value, "");
-static_assert(is_same<
-    if_<true_>::then<Then>::
-    else_if<true_, Else>::type,
-    Then
+    apply<if_<_1, int>::else_if<_2, char, float>, false_, false_>::type,
+    float
 >::value, "");
 
-
-// if<Cond, Then>::else_if<Cond, Then>
 static_assert(is_same<
-    if_<false_, Then>::
-    else_if<true_, Else>::type,
-    Else
+    if_<true_, int>::else_if<false_, char, float>::type,
+    int
 >::value, "");
 static_assert(is_same<
-    if_<true_, Then>::
-    else_if<false_, Else>::type,
-    Then
->::value, "");
-static_assert(is_same<
-    if_<true_, Then>::
-    else_if<true_, Else>::type,
-    Then
->::value, "");
-
-
-// if<Cond, Then>::else_if<Cond>::then<Else>
-static_assert(is_same<
-    if_<false_, Then>::
-    else_if<true_>::then<Else>::type,
-    Else
->::value, "");
-static_assert(is_same<
-    if_<true_, Then>::
-    else_if<false_>::then<Else>::type,
-    Then
->::value, "");
-static_assert(is_same<
-    if_<true_, Then>::
-    else_if<true_>::then<Else>::type,
-    Then
+    apply<if_<_1, int>::else_if<_2, char, float>, true_, false_>::type,
+    int
 >::value, "");
 
 
 // nested else_if's
 static_assert(is_same<
-    if_<true_, int>::
-    else_if<false_, float>::
-    else_if<false_, char>::type, int
+    if_<true_,      struct _if>::
+    else_if<false_, struct _else_if1>::
+    else_if<false_, struct _else_if2>::
+    else_<          struct _else>::type, struct _if
 >::value, "");
 static_assert(is_same<
-    if_<false_, int>::
-    else_if<false_, float>::
-    else_if<false_, char>::
-    else_if<true_, void>::type, void
+    if_<false_,     struct _if>::
+    else_if<false_, struct _else_if1>::
+    else_if<false_, struct _else_if2>::
+    else_if<true_,  struct _else_if3>::
+    else_<          struct _else>::type, struct _else_if3
 >::value, "");
 static_assert(is_same<
-    if_<false_, int>::
-    else_if<true_, float>::
-    else_if<false_, char>::
-    else_if<true_, void>::type, float
->::value, "");
-
-
-// nested else_if's and then
-static_assert(is_same<
-    if_<false_>::then<int>::
-    else_if<false_>::then<float>::
-    else_if<true_>::then<void>::type, void
->::value, "");
-
-
-// enable_if behavior with else_if's
-static_assert(!has_type<
-    if_<false_, int>::
-    else_if<false_, float>::
-    else_if<false_, char>
+    if_<false_,     struct _if>::
+    else_if<true_,  struct _else_if1>::
+    else_if<false_, struct _else_if2>::
+    else_if<true_,  struct _else_if3>::
+    else_<          struct _else>::type, struct _else_if1
 >::value, "");
 
 
