@@ -51,7 +51,9 @@ namespace algorithm {
      *
      * ### Semantics and default implementation
      *
-     *
+     * The default implementation returns whether both sequences have the
+     * same number of elements and whether each element appear the same
+     * number of times in each sequence.
      */
     template <typename Sequence1, typename Sequence2, typename Predicate>
     struct is_permutation
