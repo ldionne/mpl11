@@ -6,11 +6,11 @@
 #ifndef BOOST_MPL11_ITERATOR_TRANSFORM_HPP
 #define BOOST_MPL11_ITERATOR_TRANSFORM_HPP
 
+#include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
-#include <boost/mpl11/iterator/adaptor.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -39,7 +39,7 @@ template <typename Op, typename Iterator, typename F, typename ...Args>
 struct dispatch<Op, iterator::transform<Iterator, F>, Args...>
     : dispatch<
         Op,
-        iterator::adaptor<
+        adaptor<
             // We hide `F`, which may be a `PlaceholderExpression`.
             typename transform_detail::transform_iterator_maker<F>::type,
             Iterator

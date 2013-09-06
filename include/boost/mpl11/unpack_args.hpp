@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/container/variadic.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -21,12 +21,9 @@ namespace boost { namespace mpl11 {
     struct unpack_args {
         template <typename Args>
         struct apply
-            : apply<typename algorithm::copy<Args, container::vector<>>::type>
-        { };
-
-        template <typename ...Args>
-        struct apply<container::vector<Args...>>
-            : mpl11::apply<F, Args...>
+            : algorithm::copy<
+                Args, container::variadic<mpl11::apply, F>
+            >::type
         { };
     };
 }} // end namespace boost::mpl11

@@ -6,13 +6,13 @@
 #ifndef BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 #define BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 
+#include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/iterator/adaptor.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
@@ -27,7 +27,7 @@ template <typename Op, typename Iterator, typename ...Args>
 struct dispatch<Op, onto_iterators_detail::raw_iterator<Iterator>, Args...>
     : dispatch<
         Op,
-        iterator::adaptor<onto_iterators_detail::raw_iterator<_1>, Iterator>,
+        adaptor<onto_iterators_detail::raw_iterator<_1>, Iterator>,
         Args...
     >
 { };

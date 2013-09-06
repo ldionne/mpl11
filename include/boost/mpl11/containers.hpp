@@ -15,6 +15,7 @@
  * Contains all the containers provided with the library.
  */
 
+#include <boost/mpl11/container/variadic.hpp>
 #include <boost/mpl11/container/vector.hpp>
 
 #endif // !BOOST_MPL11_CONTAINERS_HPP
