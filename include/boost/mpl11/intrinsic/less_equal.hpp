@@ -7,14 +7,10 @@
 #define BOOST_MPL11_INTRINSIC_LESS_EQUAL_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/and.hpp>
-#include <boost/mpl11/intrinsic/less.hpp>
-#include <boost/mpl11/intrinsic/not.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup comparison_intrinsic
      *
@@ -39,20 +35,10 @@ namespace intrinsic {
     struct less_equal<T1, T2>
         : dispatch<tag::less_equal, T1, T2>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-template <typename T1, typename T2, typename ...Tn>
-struct dispatch<detail::default_<tag::less_equal>, T1, T2, Tn...>
-    : intrinsic::and_<
-        intrinsic::less_equal<T1, T2>,
-        intrinsic::less_equal<T2, Tn...>
-    >
-{ };
-
-template <typename T1, typename T2>
-struct dispatch<detail::default_<tag::less_equal>, T1, T2>
-    : intrinsic::not_<intrinsic::less<T2, T1>>
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/less_equal.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_LESS_EQUAL_HPP

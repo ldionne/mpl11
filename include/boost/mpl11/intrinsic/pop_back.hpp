@@ -7,15 +7,10 @@
 #define BOOST_MPL11_INTRINSIC_POP_BACK_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/erase.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
-#include <boost/mpl11/intrinsic/prior.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -37,26 +32,10 @@ namespace intrinsic {
     struct pop_back
         : dispatch<tag::pop_back, Sequence>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-namespace pop_back_detail {
-    template <typename Sequence>
-    struct assert_nonempty {
-        static_assert(!intrinsic::is_empty<Sequence>::type::value,
-        "Attempt to use `pop_back` on an empty sequence.");
-    };
-} // end namespace pop_back_detail
-
-template <typename Sequence>
-struct dispatch<detail::default_<tag::pop_back>, Sequence>
-    : pop_back_detail::assert_nonempty<Sequence>,
-      intrinsic::erase<
-        Sequence,
-        typename intrinsic::prior<
-            typename intrinsic::end<Sequence>::type
-        >::type
-    >
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/pop_back.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_POP_BACK_HPP

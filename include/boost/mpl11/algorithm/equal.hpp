@@ -6,20 +6,13 @@
 #ifndef BOOST_MPL11_ALGORITHM_EQUAL_HPP
 #define BOOST_MPL11_ALGORITHM_EQUAL_HPP
 
-#include <boost/mpl11/algorithm/all_of.hpp>
+#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/and.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
-#include <boost/mpl11/intrinsic/size.hpp>
-#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
-#include <boost/mpl11/unpack_args.hpp>
-#include <boost/mpl11/view/zipped.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace algorithm {
+namespace boost { namespace mpl11 { namespace algorithm {
     /*!
      * @ingroup algorithm
      *
@@ -69,26 +62,10 @@ namespace algorithm {
     struct equal<Sequence1, Sequence2>
         : dispatch<tag::equal, Sequence1, Sequence2>
     { };
-} // end namespace algorithm
+}}} // end namespace boost::mpl11::algorithm
 
-template <typename Sequence1, typename Sequence2>
-struct dispatch<detail::default_<tag::equal>, Sequence1, Sequence2>
-    : algorithm::equal<Sequence1, Sequence2, quote<intrinsic::equal_to>>
-{ };
-
-template <typename Sequence1, typename Sequence2, typename Predicate>
-struct dispatch<detail::default_<tag::equal>, Sequence1, Sequence2, Predicate>
-    : intrinsic::and_<
-        intrinsic::equal_to<
-            typename intrinsic::size<Sequence1>::type,
-            typename intrinsic::size<Sequence2>::type
-        >,
-        algorithm::all_of<
-            view::zipped<Sequence1, Sequence2>,
-            unpack_args<Predicate>
-        >
-    >
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/equal.hpp>
+#endif
 
 #endif // !BOOST_MPL11_ALGORITHM_EQUAL_HPP

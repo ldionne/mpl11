@@ -7,14 +7,10 @@
 #define BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/erase.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -36,24 +32,10 @@ namespace intrinsic {
     struct pop_front
         : dispatch<tag::pop_front, Sequence>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-namespace pop_front_detail {
-    template <typename Sequence>
-    struct assert_nonempty {
-        static_assert(!intrinsic::is_empty<Sequence>::type::value,
-        "Attempt to use `pop_front` on an empty sequence.");
-    };
-} // end namespace pop_front_detail
-
-template <typename Sequence>
-struct dispatch<detail::default_<tag::pop_front>, Sequence>
-    : pop_front_detail::assert_nonempty<Sequence>,
-      intrinsic::erase<
-        Sequence,
-        typename intrinsic::begin<Sequence>::type
-    >
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/pop_front.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_POP_FRONT_HPP

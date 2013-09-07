@@ -6,14 +6,11 @@
 #ifndef BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP
 #define BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP
 
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -28,12 +25,10 @@ namespace intrinsic {
     struct category_of
         : dispatch<tag::category_of, T>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-template <typename T>
-struct dispatch<detail::default_<tag::category_of>, T>
-    : identity<category::none>
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/category_of.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP

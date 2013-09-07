@@ -7,14 +7,10 @@
 #define BOOST_MPL11_INTRINSIC_CLEAR_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/erase.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -36,16 +32,10 @@ namespace intrinsic {
     struct clear
         : dispatch<tag::clear, Sequence>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-template <typename Sequence>
-struct dispatch<detail::default_<tag::clear>, Sequence>
-    : intrinsic::erase<
-        Sequence,
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type
-    >
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/clear.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_CLEAR_HPP

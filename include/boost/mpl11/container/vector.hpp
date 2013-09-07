@@ -6,9 +6,24 @@
 #ifndef BOOST_MPL11_CONTAINER_VECTOR_HPP
 #define BOOST_MPL11_CONTAINER_VECTOR_HPP
 
+#include <boost/mpl11/detail/doxygen_only.hpp>
+
+
+namespace boost { namespace mpl11 { namespace container {
+    /*!
+     * @ingroup Containers
+     * Contiguous sequence of types accessed by index.
+     *
+     * `vector` is a  `RandomAccessSequence`, `FrontExtensibleSequence` and
+     * `BackExtensibleSequence`.
+     */
+    template <typename ...Elements>
+    struct vector BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::container
+
+
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/variadic_at.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -58,16 +73,6 @@ struct dispatch<Op, vector_detail::vector_iterator<Position, Vector>>
 { };
 
 namespace container {
-    /*!
-     * @ingroup Containers
-     * Contiguous sequence of types accessed by index.
-     *
-     * `vector` is a  `RandomAccessSequence`, `FrontExtensibleSequence` and
-     * `BackExtensibleSequence`.
-     */
-    template <typename ...Elements>
-    struct vector BOOST_MPL11_DOXYGEN_ONLY({ });
-
     /*!
      * Metafunction returning a `vector` containing the elements in the range
      * delimited by [`First`, `Last`).

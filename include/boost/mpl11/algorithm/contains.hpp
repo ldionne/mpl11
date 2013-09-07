@@ -6,15 +6,11 @@
 #ifndef BOOST_MPL11_ALGORITHM_CONTAINS_HPP
 #define BOOST_MPL11_ALGORITHM_CONTAINS_HPP
 
-#include <boost/mpl11/algorithm/find.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/not_equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace algorithm {
+namespace boost { namespace mpl11 { namespace algorithm {
     /*!
      * @ingroup algorithm
      *
@@ -36,15 +32,10 @@ namespace algorithm {
     struct contains
         : dispatch<tag::contains, Sequence, Element>
     { };
-} // end namespace algorithm
+}}} // end namespace boost::mpl11::algorithm
 
-template <typename Sequence, typename Element>
-struct dispatch<detail::default_<tag::contains>, Sequence, Element>
-    : intrinsic::not_equal_to<
-        typename algorithm::find<Sequence, Element>::type,
-        typename intrinsic::end<Sequence>::type
-    >
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/contains.hpp>
+#endif
 
 #endif // !BOOST_MPL11_ALGORITHM_CONTAINS_HPP

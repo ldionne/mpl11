@@ -6,23 +6,13 @@
 #ifndef BOOST_MPL11_INTRINSIC_ERASE_HPP
 #define BOOST_MPL11_INTRINSIC_ERASE_HPP
 
-#include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/forward_decls.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/clear.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
-#include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/tags.hpp>
-#include <boost/mpl11/view/bounded_by.hpp>
-#include <boost/mpl11/view/joined.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -75,49 +65,10 @@ namespace intrinsic {
     struct erase<Sequence, Position>
         : dispatch<tag::erase, Sequence, Position>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-namespace erase_detail {
-    template <typename Sequence, typename First, typename Last,
-              bool = intrinsic::equal_to<
-                Last, typename intrinsic::end<Sequence>::type
-              >::type::value>
-    struct erase_impl
-        : algorithm::copy<
-            view::bounded_by<
-                typename intrinsic::begin<Sequence>::type, First
-            >,
-            typename intrinsic::clear<Sequence>::type
-        >
-    { };
-
-    template <typename Sequence, typename First, typename Last>
-    struct erase_impl<Sequence, First, Last, false>
-        : algorithm::copy<
-            view::joined<
-                view::bounded_by<
-                    typename intrinsic::begin<Sequence>::type, First
-                >,
-                view::bounded_by<
-                    Last, typename intrinsic::end<Sequence>::type
-                >
-            >,
-            typename intrinsic::clear<Sequence>::type
-        >
-    { };
-} // end namespace erase_detail
-
-template <typename Sequence, typename Position>
-struct dispatch<detail::default_<tag::erase>, Sequence, Position>
-    : intrinsic::erase<
-        Sequence, Position, typename intrinsic::next<Position>::type
-    >
-{ };
-
-template <typename Sequence, typename First, typename Last>
-struct dispatch<detail::default_<tag::erase>, Sequence, First, Last>
-    : erase_detail::erase_impl<Sequence, First, Last>
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/erase.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_ERASE_HPP

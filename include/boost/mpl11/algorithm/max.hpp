@@ -7,13 +7,10 @@
 #define BOOST_MPL11_ALGORITHM_MAX_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/if.hpp>
-#include <boost/mpl11/intrinsic/less.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace algorithm {
+namespace boost { namespace mpl11 { namespace algorithm {
     /*!
      * @ingroup algorithm
      *
@@ -38,17 +35,10 @@ namespace algorithm {
     struct max
         : dispatch<tag::max, T1, T2, Tn...>
     { };
-} // end namespace algorithm
+}}} // end namespace boost::mpl11::algorithm
 
-template <typename T1, typename T2, typename ...Tn>
-struct dispatch<detail::default_<tag::max>, T1, T2, Tn...>
-    : algorithm::max<T1, typename algorithm::max<T2, Tn...>::type>
-{ };
-
-template <typename T1, typename T2>
-struct dispatch<detail::default_<tag::max>, T1, T2>
-    : if_<intrinsic::less<T1, T2>, T2, T1>
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/max.hpp>
+#endif
 
 #endif // !BOOST_MPL11_ALGORITHM_MAX_HPP

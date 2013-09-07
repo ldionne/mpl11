@@ -6,16 +6,11 @@
 #ifndef BOOST_MPL11_INTRINSIC_OR_HPP
 #define BOOST_MPL11_INTRINSIC_OR_HPP
 
-#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/if.hpp>
-#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup logical_intrinsic
      *
@@ -31,19 +26,10 @@ namespace intrinsic {
     struct or_<F1, F2>
         : dispatch<tag::or_, F1, F2>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-template <typename F1, typename F2, typename ...Fn>
-struct dispatch<detail::default_<tag::or_>, F1, F2, Fn...>
-    : intrinsic::or_<F1, intrinsic::or_<F2, Fn...>>
-{ };
-
-template <typename F1, typename F2>
-struct dispatch<detail::default_<tag::or_>, F1, F2>
-    : identity<
-        bool_<if_c<F1::type::value, true_, F2>::type::type::value>
-    >
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/or.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_OR_HPP

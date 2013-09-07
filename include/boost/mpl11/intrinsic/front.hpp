@@ -7,14 +7,10 @@
 #define BOOST_MPL11_INTRINSIC_FRONT_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/deref.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace intrinsic {
+namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
@@ -36,21 +32,10 @@ namespace intrinsic {
     struct front
         : dispatch<tag::front, Sequence>
     { };
-} // end namespace intrinsic
+}}} // end namespace boost::mpl11::intrinsic
 
-namespace front_detail {
-    template <typename Sequence>
-    struct assert_nonempty {
-        static_assert(!intrinsic::is_empty<Sequence>::type::value,
-        "Attempt to use `front` on an empty sequence.");
-    };
-} // end namespace front_detail
-
-template <typename Sequence>
-struct dispatch<detail::default_<tag::front>, Sequence>
-    : front_detail::assert_nonempty<Sequence>,
-      intrinsic::deref<typename intrinsic::begin<Sequence>::type>
-{ };
-}} // end namespace boost::mpl11
+#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
+#   include <boost/mpl11/detail/default/front.hpp>
+#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_FRONT_HPP
