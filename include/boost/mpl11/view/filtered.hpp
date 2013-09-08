@@ -23,21 +23,27 @@ namespace boost { namespace mpl11 {
 namespace filtered_detail {
     template <typename First, typename Last, typename Predicate>
     struct filter_iterator;
-}
+
+    template <typename First, typename Last, typename Predicate>
+    struct make_filter_iterator
+        : identity<
+            filter_iterator<
+                typename algorithm::find_if<
+                    view::bounded_by<First, Last>, Predicate
+                >::type,
+                Last,
+                Predicate
+            >
+        >
+    { };
+} // end namespace filtered_detail
 
 template <typename First, typename Last, typename Predicate>
 struct dispatch<
     tag::next, filtered_detail::filter_iterator<First, Last, Predicate>
 >
-    : identity<
-        filtered_detail::filter_iterator<
-            typename algorithm::find_if<
-                view::bounded_by<typename intrinsic::next<First>::type, Last>,
-                Predicate
-            >::type,
-            Last,
-            Predicate
-        >
+    : filtered_detail::make_filter_iterator<
+        typename intrinsic::next<First>::type, Last, Predicate
     >
 { };
 
@@ -45,11 +51,7 @@ template <typename First, typename Last, typename Predicate>
 struct dispatch<
     tag::deref, filtered_detail::filter_iterator<First, Last, Predicate>
 >
-    : intrinsic::deref<
-        typename algorithm::find_if<
-            view::bounded_by<First, Last>, Predicate
-        >::type
-    >
+    : intrinsic::deref<First>
 { };
 
 template <typename First, typename Last, typename Predicate>
@@ -77,16 +79,16 @@ struct dispatch<Op, view::filtered<Sequence, Predicate>, Args...>
     : dispatch<
         Op,
         view::bounded_by<
-            filtered_detail::filter_iterator<
+            typename filtered_detail::make_filter_iterator<
                 typename intrinsic::begin<Sequence>::type,
                 typename intrinsic::end<Sequence>::type,
                 Predicate
-            >,
-            filtered_detail::filter_iterator<
+            >::type,
+            typename filtered_detail::make_filter_iterator<
                 typename intrinsic::end<Sequence>::type,
                 typename intrinsic::end<Sequence>::type,
                 Predicate
-            >
+            >::type
         >,
         Args...
     >

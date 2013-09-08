@@ -31,6 +31,7 @@
 #include <boost/mpl11/pair.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/tests.hpp>
 #include <boost/mpl11/unpack_args.hpp>
 #include <boost/mpl11/views.hpp>
 

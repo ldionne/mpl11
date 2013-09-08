@@ -11,8 +11,12 @@
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/if.hpp>
+#include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/intrinsic/erase_key.hpp>
 #include <boost/mpl11/intrinsic/first.hpp>
+#include <boost/mpl11/intrinsic/has_key.hpp>
 #include <boost/mpl11/intrinsic/insert_range.hpp>
 #include <boost/mpl11/intrinsic/second.hpp>
 #include <boost/mpl11/tags.hpp>
@@ -45,22 +49,28 @@ namespace map_detail {
         static auto has_key(identity<Key>) -> identity<true_>;
     };
 
-    template <typename ...Elements>
+    template <typename Owner, typename ...Elements>
     struct map_iterator;
 } // end namespace map_detail
 
-template <typename Pair, typename ...Elements>
-struct dispatch<tag::deref, map_detail::map_iterator<Pair, Elements...>>
+template <typename Owner, typename Pair, typename ...Elements>
+struct dispatch<
+    tag::deref, map_detail::map_iterator<Owner, Pair, Elements...>
+>
     : identity<Pair>
 { };
 
-template <typename Pair, typename ...Elements>
-struct dispatch<tag::next, map_detail::map_iterator<Pair, Elements...>>
-    : identity<map_detail::map_iterator<Elements...>>
+template <typename Owner, typename Pair, typename ...Elements>
+struct dispatch<
+    tag::next, map_detail::map_iterator<Owner, Pair, Elements...>
+>
+    : identity<map_detail::map_iterator<Owner, Elements...>>
 { };
 
-template <typename ...Elements>
-struct dispatch<tag::category_of, map_detail::map_iterator<Elements...>>
+template <typename Owner, typename ...Elements>
+struct dispatch<
+    tag::category_of, map_detail::map_iterator<Owner, Elements...>
+>
     : identity<category::forward_iterator>
 { };
 
@@ -83,18 +93,24 @@ namespace container {
 
 template <typename ...Elements>
 struct dispatch<tag::category_of, container::map<Elements...>>
-    : identity<category::associative_sequence>
+    : inherit<
+        category::extensible_associative_sequence
+    >
 { };
 
 // ForwardSequence
 template <typename ...Elements>
 struct dispatch<tag::begin, container::map<Elements...>>
-    : identity<map_detail::map_iterator<Elements...>>
+    : identity<
+        map_detail::map_iterator<container::map<Elements...>, Elements...>
+    >
 { };
 
 template <typename ...Elements>
 struct dispatch<tag::end, container::map<Elements...>>
-    : identity<map_detail::map_iterator<>>
+    : identity<
+        map_detail::map_iterator<container::map<Elements...>>
+    >
 { };
 
 template <typename ...Elements>
@@ -137,11 +153,28 @@ struct dispatch<tag::value_of, container::map<Elements...>, Pair>
 
 // ExtensibleAssociativeSequence
 template <typename ...Elements, typename Pair>
-struct dispatch<tag::insert, container::map<Elements...>, Pair>
-    : identity<
-        container::map<Pair, Elements...>
-    >
-{ };
+struct dispatch<tag::insert, container::map<Elements...>, Pair> {
+private:
+    using Self = container::map<Elements...>;
+    using Key = typename intrinsic::first<Pair>::type;
+    using NewValue = typename intrinsic::second<Pair>::type;
+
+    using CleanedUpSelf = typename if_<intrinsic::has_key<Self, Key>,
+        intrinsic::erase_key<Self, Key>,
+        identity<Self>
+    >::type::type;
+
+    template <typename Map>
+    struct insert_impl;
+
+    template <typename ...E>
+    struct insert_impl<container::map<E...>>
+        : identity<container::map<Pair, E...>>
+    { };
+
+public:
+    using type = typename insert_impl<CleanedUpSelf>::type;
+};
 
 template <typename ...Elements>
 struct dispatch<tag::clear, container::map<Elements...>>
