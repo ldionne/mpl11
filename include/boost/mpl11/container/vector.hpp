@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 { namespace container {
     /*!
-     * @ingroup Containers
+     * @ingroup container
      * Contiguous sequence of types accessed by index.
      *
      * `vector` is a  `RandomAccessSequence`, `FrontExtensibleSequence` and

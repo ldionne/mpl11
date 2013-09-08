@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_HPP
 #define BOOST_MPL11_HPP
 
+#include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/algorithms.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply.hpp>
