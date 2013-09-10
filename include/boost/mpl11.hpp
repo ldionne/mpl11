@@ -11,6 +11,9 @@
  *
  * @subpage Categorizable
  *
+ * @subpage EqualityComparable
+ * @subpage LessThanComparable
+ *
  * @subpage IntegralConstant
  *
  * @subpage Metafunction
@@ -50,6 +53,46 @@
  * | Expression             | Type
  * | ----------             | ----
  * | `category_of<T>::type` | Any type
+ */
+
+/*!
+ * @page EqualityComparable Equality Comparable
+ *
+ * Concept modeled by types possessing an equivalence relation.
+ *
+ *
+ * ## Notation
+ * | Expression | Description
+ * | ---------- | -----------
+ * | `T`, `U`   | Arbitrary @ref EqualityComparable "Equality Comparables"
+ *
+ *
+ * ## Valid expressions
+ * | Expression                 | Type
+ * | ----------                 | ----
+ * | `equal_to<T, U>::type`     | Boolean @ref IntegralConstant
+ * | `not_equal_to<T, U>::type` | Boolean @ref IntegralConstant
+ */
+
+/*!
+ * @page LessThanComparable LessThan Comparable
+ *
+ * Concept modeled by types possessing a strict weak ordering relation.
+ *
+ *
+ * ## Notation
+ * | Expression | Description
+ * | ---------- | -----------
+ * | `T`, `U`   | Arbitrary @ref LessThanComparable "LessThan Comparables"
+ *
+ *
+ * ## Valid expressions
+ * | Expression                  | Type
+ * | ----------                  | ----
+ * | `less<T, U>::type`          | Boolean @ref IntegralConstant
+ * | `less_equal<T, U>::type`    | Boolean @ref IntegralConstant
+ * | `greater<T, U>::type`       | Boolean @ref IntegralConstant
+ * | `greater_equal<T, U>::type` | Boolean @ref IntegralConstant
  */
 
 /*!
