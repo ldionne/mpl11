@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      * @ingroup intrinsic
      *
      * Erases elements associated with a given key in
-     * an `AssociativeSequence`.
+     * an @ref AssociativeSequence.
      *
      *
      * ### Semantics and default implementation

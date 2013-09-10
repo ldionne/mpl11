@@ -14,8 +14,8 @@ namespace boost { namespace mpl11 { namespace container {
      * @ingroup container
      * Contiguous sequence of types accessed by index.
      *
-     * `vector` is a  `RandomAccessSequence`, `FrontExtensibleSequence` and
-     * `BackExtensibleSequence`.
+     * `vector` is a  @ref RandomAccessSequence and a
+     * @ref RandomExtensibleSequence.
      */
     template <typename ...Elements>
     struct vector BOOST_MPL11_DOXYGEN_ONLY({ });

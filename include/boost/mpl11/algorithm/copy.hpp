@@ -46,16 +46,18 @@ namespace boost { namespace mpl11 { namespace algorithm {
     /*!
      * @ingroup algorithm
      *
-     * Copies the content of a sequence from a sequence to another.
+     * Copies the content of a sequence from one sequence to another.
      *
      *
      * ### Semantics and default implementation
      *
      * Equivalent to
-     * - `foldl<From, To, push_back<_1, _2>>` for `BackExtensibleSequence`s
-     * - `foldr<From, To, push_front<_1, _2>>` for `FrontExtensibleSequence`s
-     * - `foldl<From, To, insert<_1, _2>>` for
-     *   `ExtensibleAssociativeSequence`s
+     * - `foldl<From, To, push_back<_1, _2>>` if `To` is a
+     *   @ref BackExtensibleSequence
+     * - `foldr<From, To, push_front<_1, _2>>` if `To` is a
+     *   @ref FrontExtensibleSequence
+     * - `foldl<From, To, insert<_1, _2>>` if `To` is a
+     *   @ref ExtensibleAssociativeSequence
      *
      *
      * @warning

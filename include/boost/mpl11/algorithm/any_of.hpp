@@ -42,7 +42,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
      * @ingroup algorithm
      *
      * Returns whether any of the elements of a sequence is a `true`-valued
-     * boolean `IntegralConstant`.
+     * boolean @ref IntegralConstant.
      *
      *
      * ### Semantics and default implementation

@@ -14,8 +14,8 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
-     * Returns whether an `AssociativeSequence` contains an element
-     * with key `Key`.
+     * Returns whether an @ref AssociativeSequence contains one or more
+     * elements with key `Key`.
      *
      *
      * ### Semantics and default implementation

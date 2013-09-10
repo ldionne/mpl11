@@ -18,7 +18,7 @@ namespace view {
     /*!
      * @ingroup view
      *
-     * View onto the values of an `AssociativeSequence`.
+     * View onto the values of an @ref AssociativeSequence.
      *
      * The category of `onto_values` depends on the category of the
      * underlying `Sequence`.

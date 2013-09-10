@@ -30,12 +30,13 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      *
      * ### Semantics and default implementation
      *
-     * - If `T1` and `T2` are `IntegralConstant`s, equivalent to
-     *   `identity<bool_<T1::value == T2::value>>`.
-     * - If `T1` and `T2` are `AssociativeSequence`s, equivalent to checking
-     *   whether both sequences have the same keys mapping to the same values.
-     * - If `T1` and `T2` are `ForwardSequence`s, equivalent to
-     *   `equal<T1, T2>`.
+     * - If `T1` and `T2` are @ref IntegralConstant "Integral Constants",
+     *   equivalent to `identity<bool_<T1::value == T2::value>>`.
+     * - If `T1` and `T2` are @ref AssociativeSequence "Associative Sequences",
+     *   equivalent to checking whether both sequences have the same keys
+     *   mapping to the same values.
+     * - If `T1` and `T2` are @ref ForwardSequence "Forward Sequences",
+     *   equivalent to `equal<T1, T2>`.
      * - Otherwise, equivalent to
      *   `identity<bool_<std::is_same<T1, T2>::value>>`.
      */

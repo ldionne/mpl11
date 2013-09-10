@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
-     * Returns the element associated to a key in an `AssociativeSequence`,
+     * Returns the element associated to a key in an @ref AssociativeSequence,
      * or a default value if no such element exists and a default is provided.
      *
      *
@@ -57,7 +57,8 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      * Differences from the original MPL:
      * - A compile-time assertion is triggered when no `Default` is provided
      *   and `Key` can't be found.
-     * - A default implementation is provided for `AssociativeSequence`s.
+     * - A default implementation is provided for
+     *   @ref AssociativeSequence "Associative Sequences".
      */
     template <typename Sequence, typename Key, typename Default>
     struct at BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default>)

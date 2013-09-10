@@ -31,7 +31,8 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      * ### Default implementation
      *
      * Equivalent to `identity<bool_<T1::value < T2::value>>` if `T1`
-     * and `T2` are `IntegralConstant`s, and not provided otherwise.
+     * and `T2` are @ref IntegralConstant "Integral Constants", and
+     * not provided otherwise.
      */
     template <typename T1, typename T2>
     struct less<T1, T2>

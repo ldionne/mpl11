@@ -22,9 +22,9 @@ namespace view {
      *
      * View over a range of elements delimited by [`First`, `Last`).
      *
-     * `bounded_by` is either a `ForwardSequence`, a `BidirectionalSequence`
-     * or a `RandomAccessSequence`, depending on the category of the
-     * underlying iterators.
+     * `bounded_by` is either a @ref ForwardSequence, a
+     * @ref BidirectionalSequence or a @ref RandomAccessSequence,
+     * depending on the category of the underlying iterators.
      */
     template <typename First, typename Last>
     struct bounded_by BOOST_MPL11_DOXYGEN_ONLY({ });

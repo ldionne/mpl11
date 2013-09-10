@@ -43,7 +43,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
-     * Inserts a range of elements in an `AssociativeSequence`.
+     * Inserts a range of elements in an @ref AssociativeSequence.
      *
      *
      * ### Semantics and default implementation
@@ -53,7 +53,8 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      *
      * @warning
      * Differences from the original MPL:
-     * - It is possible to use `insert_range` on `AssociativeSequence`s.
+     * - It is possible to use `insert_range` on
+     *   @ref AssociativeSequence "Associative Sequences".
      */
     template <typename Sequence, typename Range>
     struct insert_range<Sequence, Range>

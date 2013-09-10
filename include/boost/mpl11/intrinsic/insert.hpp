@@ -53,7 +53,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
-     * Inserts an element in an `AssociativeSequence`.
+     * Inserts an element in an @ref AssociativeSequence.
      */
     template <typename Sequence, typename Element>
     struct insert<Sequence, Element>

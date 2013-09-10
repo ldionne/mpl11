@@ -14,7 +14,9 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     /*!
      * @ingroup intrinsic
      *
-     * Returns the number of elements in a sequence.
+     * Returns the number of elements contained in a sequence.
+     *
+     * The size of a sequence is a non-negative @ref IntegralConstant.
      *
      *
      * ### Semantics and default implementation

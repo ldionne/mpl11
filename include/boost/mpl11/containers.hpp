@@ -7,7 +7,7 @@
 #define BOOST_MPL11_CONTAINERS_HPP
 
 /*!
- * @defgroup Containers Containers
+ * @defgroup container Containers
  */
 
 /*!

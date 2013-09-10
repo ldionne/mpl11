@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      * @warning
      * Differences from the original MPL:
      * - It is possible to erase a range of elements in an
-     *   `AssociativeSequence`.
+     *   @ref AssociativeSequence.
      */
     template <typename Sequence, typename First, typename Last>
     struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>)

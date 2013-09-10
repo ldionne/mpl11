@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      * @ingroup intrinsic
      *
      * Returns the key that _would_ be used for an element
-     * in an `AssociativeSequence`.
+     * in an @ref AssociativeSequence.
      */
     template <typename Sequence, typename Element>
     struct key_of

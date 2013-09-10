@@ -19,8 +19,8 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      *
      * @warning
      * Differences from the original MPL:
-     * - If `Sequence` is not a `ForwardSequence`, `end<Sequence>::type` is
-     *   invalid instead of being the same as `mpl::void_`.
+     * - If `Sequence` is not a @ref ForwardSequence, `end<Sequence>::type`
+     *   is invalid instead of being the same as `mpl::void_`.
      * - There is no default implementation.
      */
     template <typename Sequence>
