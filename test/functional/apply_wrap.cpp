@@ -7,12 +7,11 @@
 
 #include "metafunction_classes.hpp"
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
-using boost::mpl11::detail::has_type;
-using boost::mpl11::apply_wrap;
-using boost::mpl11::detail::is_same;
+using namespace boost::mpl11;
+using detail::has_type;
 
 namespace does_what_it_should_do_when_everything_is_valid {
     using variadic = with_nested_type::variadic;
@@ -20,35 +19,35 @@ namespace does_what_it_should_do_when_everything_is_valid {
     using unary = with_nested_type::unary;
     using binary = with_nested_type::binary;
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<variadic>::type,
         variadic::apply<>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<variadic, struct a0>::type,
         variadic::apply<struct a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<variadic, struct a0, struct a1>::type,
         variadic::apply<struct a0, struct a1>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<unary, struct a0>::type,
         unary::apply<struct a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<binary, struct a0, struct a1>::type,
         binary::apply<struct a0, struct a1>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<non_template>::type,
         non_template::apply::type
-    >::value, "");
+    >::type::value, "");
 }
 
 template <typename NS>

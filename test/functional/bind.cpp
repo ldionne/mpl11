@@ -7,15 +7,14 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/functional/always.hpp>
 #include <boost/mpl11/functional/apply_wrap.hpp>
 #include <boost/mpl11/functional/is_placeholder.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
 using detail::has_type;
-using detail::is_same;
 
 struct F {
     template <typename ...Args>
@@ -38,47 +37,47 @@ struct a0; struct a1;
 struct ignored1; struct ignored2;
 
 namespace without_placeholders {
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F>>::type,
         apply_wrap<bind<F>, ignored1>::type,
         F::apply<>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, a0>>::type,
         apply_wrap<bind<F, a0>, ignored1>::type,
         F::apply<a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, a0, a1>>::type,
         apply_wrap<bind<F, a0, a1>, ignored1>::type,
         F::apply<a0, a1>::type
-    >::value, "");
+    >::type::value, "");
 }
 
 namespace with_placeholders {
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, always_<a0>>>::type,
         F::apply<a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, always_<a0>>, ignored1>::type,
         F::apply<a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<
             bind<F, always_<a0>, always_<a1>>, ignored1, ignored2
         >::type,
         F::apply<a0, a1>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, always_<always_<a0>>>, ignored1>::type,
         F::apply<always_<a0>>::type
-    >::value, "");
+    >::type::value, "");
 }
 
 namespace with_valid_and_invalid_number_of_arguments {
@@ -91,56 +90,56 @@ namespace with_valid_and_invalid_number_of_arguments {
         struct apply { struct type; };
     };
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, a0>>::type,
         F::apply<a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, a0>, ignored1>::type,
         F::apply<a0>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, a0>, ignored1, ignored2>::type,
         F::apply<a0>::type
-    >::value, "");
+    >::type::value, "");
 
     static_assert(!has_type<
         apply_wrap<bind<F /* missing argument */>>
-    >::value, "");
+    >::type::value, "");
 
     static_assert(!has_type<
         apply_wrap<bind<F /* missing argument */>, ignored1>
-    >::value, "");
+    >::type::value, "");
 
     static_assert(!has_type<
         apply_wrap<bind<F /* missing argument */>, ignored1, ignored2>
-    >::value, "");
+    >::type::value, "");
 }
 
 namespace nested_binds_are_not_evaluated {
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, bind<F>>>::type,
         F::apply<bind<F>>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, bind<F>>, ignored1>::type,
         F::apply<bind<F>>::type
-    >::value, "");
+    >::type::value, "");
 }
 
 namespace mix_nested_binds_and_placeholders {
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, always_<a0>, bind<F, a1>>>::type,
         F::apply<a0, bind<F, a1>>::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<bind<F, bind<F, always_<a0>>>>::type,
         F::apply<bind<F, always_<a0>>>::type
-    >::value, "");
+    >::type::value, "");
 }
 
 

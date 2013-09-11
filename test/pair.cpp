@@ -5,9 +5,9 @@
 
 #include <boost/mpl11/pair.hpp>
 
-#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/intrinsic/first.hpp>
 #include <boost/mpl11/intrinsic/second.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
@@ -16,13 +16,13 @@ struct First;
 struct Second;
 using Pair = pair<First, Second>;
 
-static_assert(detail::is_same<
+static_assert(equal_to<
     first<Pair>::type, First
->::value, "");
+>::type::value, "");
 
-static_assert(detail::is_same<
+static_assert(equal_to<
     second<Pair>::type, Second
->::value, "");
+>::type::value, "");
 
 
 int main() { }

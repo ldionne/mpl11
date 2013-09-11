@@ -6,46 +6,45 @@
 #include <boost/mpl11/integral_c.hpp>
 
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/intrinsic/prior.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
-using detail::is_same;
 
 // ::value
 static_assert(integral_c<int, 2>::value == 2, "");
 
 // ::type
-static_assert(is_same<
+static_assert(equal_to<
     integral_c<int, 2>::type,
     integral_c<int, 2>
->::value, "");
+>::type::value, "");
 
 // ::value_type
-static_assert(is_same<
+static_assert(equal_to<
     integral_c<int, 2>::value_type, int
->::value, "");
+>::type::value, "");
 
 // next
-static_assert(is_same<
+static_assert(equal_to<
     next<integral_c<int, 2>>::type,
     integral_c<int, 3>
->::value, "");
+>::type::value, "");
 
 // prior
-static_assert(is_same<
+static_assert(equal_to<
     prior<integral_c<int, 2>>::type,
     integral_c<int, 1>
->::value, "");
+>::type::value, "");
 
 // deref
-static_assert(is_same<
+static_assert(equal_to<
     deref<integral_c<int, 2>>::type,
     integral_c<int, 2>
->::value, "");
+>::type::value, "");
 
 
 int main() {

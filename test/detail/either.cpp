@@ -5,11 +5,12 @@
 
 #include <boost/mpl11/detail/either.hpp>
 
-#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
-using boost::mpl11::detail::either;
-using boost::mpl11::detail::is_same;
+using namespace boost::mpl11;
+using detail::either;
+
 
 template <int> struct metafunction { struct type; };
 struct incomplete;
@@ -17,48 +18,48 @@ struct not_a_metafunction { };
 using non_class = int;
 
 // Picks the left metafunction whenever it is valid.
-static_assert(is_same<
+static_assert(equal_to<
     either<metafunction<0>, metafunction<1>>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
 // Use short-circuit evaluation: don't evaluate Right if Left is valid.
-static_assert(is_same<
+static_assert(equal_to<
     either<metafunction<0>, incomplete>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
 // Picks the right metafunction when the left one does not have a nested type.
-static_assert(is_same<
+static_assert(equal_to<
     either<incomplete, metafunction<0>>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
-static_assert(is_same<
+static_assert(equal_to<
     either<not_a_metafunction, metafunction<0>>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
-static_assert(is_same<
+static_assert(equal_to<
     either<non_class, metafunction<0>>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
 // Works with more than two types.
-static_assert(is_same<
+static_assert(equal_to<
     either<metafunction<0>, metafunction<1>, metafunction<2>>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
-static_assert(is_same<
+static_assert(equal_to<
     either<incomplete, non_class, metafunction<0>>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
-static_assert(is_same<
+static_assert(equal_to<
     either<incomplete, non_class, metafunction<0>, not_a_metafunction>::type,
     metafunction<0>::type
->::value, "");
+>::type::value, "");
 
 
 int main() { }

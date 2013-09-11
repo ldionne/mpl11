@@ -67,7 +67,7 @@ namespace at_detail {
         : at<Sequence, Key, not_found>
     {
         static_assert(
-            !detail::is_same<typename at_impl::type, not_found>::value,
+            !detail::is_same<typename at_impl::type, not_found>::type::value,
         "Could not find the value associated to a given key in an associated "
         "sequence and no default return value was specified.");
     };

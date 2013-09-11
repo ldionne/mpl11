@@ -7,50 +7,49 @@
 #include <boost/mpl11/functional/always.hpp>
 
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/functional/apply_wrap.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
 using detail::has_type;
-using detail::is_same;
 
 struct a0; struct a1;
 
 namespace test_always {
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<always<struct anything>>::type,
         struct anything
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<always<struct anything>, a0>::type,
         struct anything
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<always<struct anything>, a0, a1>::type,
         struct anything
-    >::value, "");
+    >::type::value, "");
 }
 
 namespace test_lazy_always {
     struct metafunction { struct type; };
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<lazy_always<metafunction>>::type,
         metafunction::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<lazy_always<metafunction>, a0>::type,
         metafunction::type
-    >::value, "");
+    >::type::value, "");
 
-    static_assert(is_same<
+    static_assert(equal_to<
         apply_wrap<lazy_always<metafunction>, a0, a1>::type,
         metafunction::type
-    >::value, "");
+    >::type::value, "");
 }
 
 template <typename NotAMetafunction>

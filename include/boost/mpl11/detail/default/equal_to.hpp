@@ -37,13 +37,6 @@ struct dispatch<detail::default_<tag::equal_to>, T1, T2, Tn...>
 
 namespace equal_to_detail {
     template <typename T1, typename T2>
-    struct is_same
-        : identity<
-            bool_<detail::is_same<T1, T2>::value>
-        >
-    { };
-
-    template <typename T1, typename T2>
     struct integral_constant_equal
         : identity<
             bool_<T1::value == T2::value>
@@ -92,7 +85,7 @@ namespace equal_to_detail {
 
     template <typename T1, typename T2>
     auto pick(void*, void*)
-        -> is_same<T1, T2>
+        -> detail::is_same<T1, T2>
     ;
 
     template <typename T1, typename T2>

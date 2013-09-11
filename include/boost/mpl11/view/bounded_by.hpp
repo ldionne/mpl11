@@ -8,10 +8,10 @@
 
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -64,10 +64,10 @@ struct dispatch<tag::category_of, view::bounded_by<First, Last>>
         )
     >
 {
-    static_assert(detail::is_same<
+    static_assert(equal_to<
         typename category_of<First>::type,
         typename category_of<Last>::type
-    >::value,
+    >::type::value,
     "Attempt to use `bounded_by<First, Last>` with `First` and "
     "`Last` iterators having different categories.");
 };
