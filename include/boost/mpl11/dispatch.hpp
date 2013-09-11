@@ -6,10 +6,14 @@
 #ifndef BOOST_MPL11_DISPATCH_HPP
 #define BOOST_MPL11_DISPATCH_HPP
 
-#include <boost/mpl11/detail/always_false.hpp>
-
-
 namespace boost { namespace mpl11 {
+    namespace dispatch_detail {
+        template <typename ...>
+        struct always_false {
+            static constexpr bool value = false;
+        };
+    }
+
     namespace detail {
         template <typename OperationTag>
         struct default_;
@@ -22,7 +26,8 @@ namespace boost { namespace mpl11 {
 
     template <typename OperationTag, typename ...Args>
     struct dispatch<detail::default_<OperationTag>, Args...> {
-        static_assert(detail::always_false<OperationTag, Args...>::value,
+        static_assert(
+            dispatch_detail::always_false<OperationTag, Args...>::value,
         "No default implementation is provided for the requested "
         "operation with the arguments provided.");
     };
