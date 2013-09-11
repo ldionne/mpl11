@@ -39,7 +39,7 @@ struct dispatch<tag::deref, onto_iterators_detail::raw_iterator<Iterator>>
 
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * View onto the iterators of a sequence.
      *

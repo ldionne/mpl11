@@ -12,7 +12,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns an iterator to the first element satisfying a given predicate
      * in a sequence, or the past-the-end iterator if no such element exists.

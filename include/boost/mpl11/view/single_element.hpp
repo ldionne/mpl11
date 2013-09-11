@@ -50,7 +50,7 @@ struct dispatch<Op, single_element_detail::single_element_iterator<E, B>>
 
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * View onto an arbitrary `Element` as on a single-element sequence.
      *

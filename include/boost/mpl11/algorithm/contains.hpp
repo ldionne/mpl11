@@ -12,7 +12,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether `Sequence` contains one or more elements identical
      * to `Element`.

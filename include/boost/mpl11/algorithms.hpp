@@ -7,7 +7,7 @@
 #define BOOST_MPL11_ALGORITHMS_HPP
 
 /*!
- * @defgroup algorithm Algorithms
+ * @defgroup algorithms Algorithms
  */
 
 #include <boost/mpl11/algorithm/advance.hpp>

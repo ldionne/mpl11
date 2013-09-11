@@ -42,7 +42,7 @@ struct dispatch<Operation, variadic_detail::variadic_impl<V, Vector>, Args...>
 
 namespace container {
     /*!
-     * @ingroup container
+     * @ingroup containers
      */
     template <template <typename ...> class F, typename ...T>
     using variadic = variadic_detail::variadic_impl<F, vector<T...>>;

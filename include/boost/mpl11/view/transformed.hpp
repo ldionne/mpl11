@@ -17,7 +17,7 @@
 namespace boost { namespace mpl11 {
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * View over a `Sequence`'s elements transformed by the
      * application of `F`.

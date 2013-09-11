@@ -14,7 +14,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Overloaded algorithm for copying elements from a sequence to another.
      */
@@ -22,7 +22,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     struct copy;
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Copies the content of a sequence from a sequence to another using a
      * custom operation for insertion.
@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     { };
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Copies the content of a sequence from one sequence to another.
      *

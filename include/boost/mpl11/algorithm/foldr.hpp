@@ -12,7 +12,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Accumulates the elements of a sequence from an initial state using a
      * custom operation.

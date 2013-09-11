@@ -14,7 +14,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Overloaded algorithm for querying a sequence about the truth value of
      * its elements.
@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     struct none_of;
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether no element of a sequence satisfies a given `Predicate`.
      *
@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     { };
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether no element of a sequence is a `true`-valued boolean
      * @ref IntegralConstant.

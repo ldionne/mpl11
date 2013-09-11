@@ -76,7 +76,7 @@ struct dispatch<
 
 namespace container {
     /*!
-     * @ingroup container
+     * @ingroup containers
      */
     template <typename ...Elements>
     struct map BOOST_MPL11_DOXYGEN_ONLY({ });

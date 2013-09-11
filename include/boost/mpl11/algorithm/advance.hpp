@@ -13,7 +13,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Moves `Iterator` by the distance `N`.
      *

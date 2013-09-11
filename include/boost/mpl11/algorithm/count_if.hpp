@@ -12,7 +12,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns the number of elements in `Sequence` satisfying `Predicate`.
      *

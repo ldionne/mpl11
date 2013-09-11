@@ -14,7 +14,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Overloaded algorithm for determining whether a sequence is a
      * permutation of another.
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     struct is_permutation;
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether a sequence is a permutation of another sequence,
      * using a custom predicate to determine the equality of two elements.
@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     { };
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether a sequence is a permutation of another sequence.
      *

@@ -65,7 +65,7 @@ struct dispatch<OperationTag, joined_detail::joined_iterator<F1, L1, L2>>
 
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * A view into the sequence of elements formed by concatenating two
      * or more sequences.

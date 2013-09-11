@@ -18,7 +18,7 @@ namespace view {
     namespace empty_detail { struct begin_end; }
 
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * Random access sequence containing no elements.
      */

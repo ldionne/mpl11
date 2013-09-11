@@ -14,7 +14,7 @@
 
 namespace boost { namespace mpl11 { namespace algorithm {
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Overloaded algorithm for comparing two sequences element-by-element.
      */
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     struct equal;
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether two sequences are identical when compared
      * element-by-element with a custom `Predicate`.
@@ -48,7 +48,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
     { };
 
     /*!
-     * @ingroup algorithm
+     * @ingroup algorithms
      *
      * Returns whether two sequences are identical when compared
      * element-by-element.

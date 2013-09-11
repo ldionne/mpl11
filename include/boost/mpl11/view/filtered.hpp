@@ -63,7 +63,7 @@ struct dispatch<
 
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * View into the subset of elements of `Sequence` satisfying `Predicate`.
      *

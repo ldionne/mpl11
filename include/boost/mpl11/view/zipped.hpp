@@ -65,7 +65,7 @@ struct dispatch<OperationTag, zipped_detail::zip_iterator<Iterators...>>
 
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * View over the elements of several zipped sequences.
      *

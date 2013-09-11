@@ -16,7 +16,7 @@
 namespace boost { namespace mpl11 {
 namespace view {
     /*!
-     * @ingroup view
+     * @ingroup views
      *
      * View onto the values of an @ref AssociativeSequence.
      *
