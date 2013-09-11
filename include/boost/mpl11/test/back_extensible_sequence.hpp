@@ -6,55 +6,70 @@
 #ifndef BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP
 
+#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/pop_back.hpp>
 #include <boost/mpl11/intrinsic/push_back.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/test/extensible_sequence.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace back_extensible_sequence_detail {
-    template <unsigned int>
-    struct anything;
+namespace boost { namespace mpl11 { namespace test {
+    template <typename MakeSequence, typename MakeElement = quote<inherit>>
+    class back_extensible_sequence {
+        template <unsigned int i>
+        using element = typename apply<MakeElement, uint<i>>::type;
 
-    template <template <typename ...> class Sequence,
-              template <unsigned int> class A = anything>
-    class back_extensible_sequence : test::extensible_sequence<Sequence, A> {
-        using a0 = A<0>; using a1 = A<1>; using a2 = A<2>;
+        template <unsigned int ...i>
+        using sequence = typename apply<MakeSequence, element<i>...>::type;
 
         // push_back
         static_assert(equal_to<
-            typename push_back<Sequence<>, a0>::type,
-            Sequence<a0>
+            typename push_back<sequence<>, element<0>>::type,
+            sequence<0>
         >::type::value, "");
 
         static_assert(equal_to<
-            typename push_back<Sequence<a0>, a1>::type,
-            Sequence<a0, a1>
+            typename push_back<sequence<0>, element<1>>::type,
+            sequence<0, 1>
         >::type::value, "");
 
         static_assert(equal_to<
-            typename push_back<Sequence<a0, a1>, a2>::type,
-            Sequence<a0, a1, a2>
+            typename push_back<sequence<0, 1>, element<2>>::type,
+            sequence<0, 1, 2>
         >::type::value, "");
 
 
         // pop_back
         static_assert(equal_to<
-            typename pop_back<Sequence<a0>>::type,
-            Sequence<>
+            typename pop_back<sequence<0>>::type,
+            sequence<>
         >::type::value, "");
 
         static_assert(equal_to<
-            typename pop_back<Sequence<a0, a1>>::type,
-            Sequence<a0>
+            typename pop_back<sequence<0, 1>>::type,
+            sequence<0>
+        >::type::value, "");
+
+
+        // clear
+        static_assert(equal_to<
+            typename clear<sequence<>>::type,
+            sequence<>
+        >::type::value, "");
+
+        static_assert(equal_to<
+            typename clear<sequence<0>>::type,
+            sequence<>
+        >::type::value, "");
+
+        static_assert(equal_to<
+            typename clear<sequence<0, 1>>::type,
+            sequence<>
         >::type::value, "");
     };
-} // end namespace back_extensible_sequence_detail
-
-namespace test {
-    using back_extensible_sequence_detail::back_extensible_sequence;
-}
-}} // end namespace boost::mpl11
+}}} // end namespace boost::mpl11::test
 
 #endif // !BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP

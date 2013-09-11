@@ -6,6 +6,10 @@
 #ifndef BOOST_MPL11_TEST_BIDIRECTIONAL_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_BIDIRECTIONAL_SEQUENCE_HPP
 
+#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/back.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -14,42 +18,40 @@
 #include <boost/mpl11/test/forward_sequence.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace bidirectional_sequence_detail {
-    template <unsigned int>
-    struct anything;
+namespace boost { namespace mpl11 { namespace test {
+    template <typename MakeSequence, typename MakeElement = quote<inherit>>
+    class bidirectional_sequence
+        : forward_sequence<MakeSequence, MakeElement>
+    {
+        template <unsigned int i>
+        using element = typename apply<MakeElement, uint<i>>::type;
 
-    template <template <typename ...> class Sequence,
-              template <unsigned int> class A = anything>
-    class bidirectional_sequence : test::forward_sequence<Sequence, A> {
-        using a0 = A<0>; using a1 = A<1>; using a2 = A<2>;
+        template <unsigned int ...i>
+        using sequence = typename apply<MakeSequence, element<i>...>::type;
 
         // back
         static_assert(equal_to<
-            typename back<Sequence<a0>>::type,
-            a0
+            typename back<sequence<0>>::type,
+            element<0>
         >::type::value, "");
 
         static_assert(equal_to<
-            typename back<Sequence<a0, a1>>::type,
-            a1
+            typename back<sequence<0, 1>>::type,
+            element<1>
         >::type::value, "");
 
         static_assert(equal_to<
-            typename back<Sequence<a0, a1, a2>>::type,
-            a2
+            typename back<sequence<0, 1, 2>>::type,
+            element<2>
         >::type::value, "");
 
 
         // prior
         static_assert(equal_to<
-            typename prior<typename end<Sequence<a0>>::type>::type,
-            typename begin<Sequence<a0>>::type
+            typename prior<typename end<sequence<0>>::type>::type,
+            typename begin<sequence<0>>::type
         >::type::value, "");
     };
-} // end namespace bidirectional_sequence_detail
-
-namespace test { using bidirectional_sequence_detail::bidirectional_sequence; }
-}} // end namespace boost::mpl11
+}}} // end namespace boost::mpl11::test
 
 #endif // !BOOST_MPL11_TEST_BIDIRECTIONAL_SEQUENCE_HPP

@@ -18,28 +18,20 @@ namespace boost { namespace mpl11 {
      *
      * Overloaded intrinsic for removing elements from a sequence.
      */
-    template <typename Sequence,
-              typename First,
-              typename Last = detail::optional>
+    template <typename, typename, typename = detail::optional>
     struct erase;
 
     /*!
      * @ingroup intrinsics
      *
-     * Removes several adjacent elements in a sequence starting from an
-     * arbitrary position.
+     * Removes several adjacent elements in a @ref RandomExtensibleSequence
+     * starting from an arbitrary position.
      *
      *
      * ### Semantics and default implementation
      *
      * Equivalent to copying the whole sequence except for the content of the
      * range delimited by [`First`, `Last`).
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - It is possible to erase a range of elements in an
-     *   @ref AssociativeSequence.
      */
     template <typename Sequence, typename First, typename Last>
     struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>)
@@ -49,17 +41,12 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Removes an element at a position in a sequence.
+     * Removes an element at a position in a @ref RandomExtensibleSequence.
      *
      *
      * ## Semantics and default implementation
      *
      * Equivalent to `erase<Sequence, Position, next<Position>::type>`.
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - The semantics are the same for all types of sequences.
      */
     template <typename Sequence, typename Position>
     struct erase<Sequence, Position>

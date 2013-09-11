@@ -68,8 +68,9 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Returns the `N`th element of a sequence if `N` is in the bounds of
-     * the sequence, and triggers a compile-time assertion otherwise.
+     * Returns the `N`th element of a @ref RandomAccessSequence if `N` is in
+     * the bounds of the sequence, and triggers a compile-time assertion
+     * otherwise.
      *
      *
      * ### Semantics and default implementation

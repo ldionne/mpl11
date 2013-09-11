@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      * @warning
      * Differences from the original MPL:
      * - No default implementation is provided.
-     * - The operation uses standard tag dispatching.
+     * - The intrinsic uses standard tag dispatching.
      */
     template <typename Pair>
     struct first

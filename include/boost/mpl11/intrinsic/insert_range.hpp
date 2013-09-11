@@ -18,15 +18,14 @@ namespace boost { namespace mpl11 {
      *
      * Overloaded intrinsic for inserting a range of elements in a sequence.
      */
-    template <typename SequenceOrAssociativeSequence,
-              typename PositionOrRange,
-              typename RangeOrNothing = detail::optional>
+    template <typename, typename, typename = detail::optional>
     struct insert_range;
 
     /*!
      * @ingroup intrinsics
      *
-     * Inserts a range of elements at an arbitrary position in a sequence.
+     * Inserts a range of elements at an arbitrary position in a
+     * @ref RandomExtensibleSequence.
      *
      *
      * ### Semantics and default implementation

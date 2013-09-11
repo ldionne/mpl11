@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Removes the element at the end of a sequence.
+     * Removes the element at the end of a @ref BackExtensibleSequence.
      *
      *
      * ### Semantics and default implementation

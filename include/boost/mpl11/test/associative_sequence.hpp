@@ -6,6 +6,10 @@
 #ifndef BOOST_MPL11_TEST_ASSOCIATIVE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_ASSOCIATIVE_SEQUENCE_HPP
 
+#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/intrinsic/has_key.hpp>
 #include <boost/mpl11/intrinsic/key_of.hpp>
@@ -14,62 +18,63 @@
 #include <boost/mpl11/test/forward_sequence.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace associative_sequence_detail {
-    template <unsigned int>
-    struct anything;
+namespace boost { namespace mpl11 { namespace test {
+    template <typename MakeSequence, typename MakeElement = quote<inherit>>
+    class associative_sequence
+        : forward_sequence<MakeSequence, MakeElement>
+    {
+        template <unsigned int i>
+        using element = typename apply<MakeElement, uint<i>>::type;
 
-    template <template <typename ...> class Sequence,
-              template <unsigned int> class A = anything>
-    class associative_sequence : test::forward_sequence<Sequence, A> {
-        using a0 = A<0>; using a1 = A<1>; using a2 = A<2>;
+        template <unsigned int ...i>
+        using Sequence = typename apply<MakeSequence, element<i>...>::type;
 
         // equal_to
         static_assert(equal_to<
-            Sequence<a0, a1>,
-            Sequence<a1, a0>
+            Sequence<0, 1>,
+            Sequence<1, 0>
         >::type::value, "");
 
         static_assert(equal_to<
-            Sequence<a0, a1, a2>,
-            Sequence<a2, a1, a0>
+            Sequence<0, 1, 2>,
+            Sequence<2, 1, 0>
         >::type::value, "");
 
 
         // has_key
         static_assert(!has_key<
             Sequence<>,
-            typename key_of<Sequence<>, a0>::type
+            typename key_of<Sequence<>, element<0>>::type
         >::type::value, "");
 
         static_assert(!has_key<
-            Sequence<a1>,
-            typename key_of<Sequence<a1>, a0>::type
+            Sequence<1>,
+            typename key_of<Sequence<1>, element<0>>::type
         >::type::value, "");
 
         static_assert(!has_key<
-            Sequence<a1, a2>,
-            typename key_of<Sequence<a1, a2>, a0>::type
+            Sequence<1, 2>,
+            typename key_of<Sequence<1, 2>, element<0>>::type
         >::type::value, "");
 
         static_assert(has_key<
-            Sequence<a0>,
-            typename key_of<Sequence<a0>, a0>::type
+            Sequence<0>,
+            typename key_of<Sequence<0>, element<0>>::type
         >::type::value, "");
 
         static_assert(has_key<
-            Sequence<a0, a1>,
-            typename key_of<Sequence<a0, a1>, a0>::type
+            Sequence<0, 1>,
+            typename key_of<Sequence<0, 1>, element<0>>::type
         >::type::value, "");
 
         static_assert(has_key<
-            Sequence<a0, a1>,
-            typename key_of<Sequence<a0, a1>, a1>::type
+            Sequence<0, 1>,
+            typename key_of<Sequence<0, 1>, element<1>>::type
         >::type::value, "");
 
         static_assert(has_key<
-            Sequence<a0, a1, a2>,
-            typename key_of<Sequence<a0, a1, a2>, a1>::type
+            Sequence<0, 1, 2>,
+            typename key_of<Sequence<0, 1, 2>, element<1>>::type
         >::type::value, "");
 
 
@@ -77,7 +82,7 @@ namespace associative_sequence_detail {
         static_assert(equal_to<
             typename at<
                 Sequence<>,
-                typename key_of<Sequence<>, a0>::type,
+                typename key_of<Sequence<>, element<0>>::type,
                 struct Default
             >::type,
             struct Default
@@ -85,8 +90,8 @@ namespace associative_sequence_detail {
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0>,
-                typename key_of<Sequence<a0>, a1>::type,
+                Sequence<0>,
+                typename key_of<Sequence<0>, element<1>>::type,
                 struct Default
             >::type,
             struct Default
@@ -94,8 +99,8 @@ namespace associative_sequence_detail {
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0, a1>,
-                typename key_of<Sequence<a0, a1>, a2>::type,
+                Sequence<0, 1>,
+                typename key_of<Sequence<0, 1>, element<2>>::type,
                 struct Default
             >::type,
             struct Default
@@ -103,59 +108,56 @@ namespace associative_sequence_detail {
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0>,
-                typename key_of<Sequence<a0>, a0>::type,
+                Sequence<0>,
+                typename key_of<Sequence<0>, element<0>>::type,
                 struct Default
             >::type,
-            typename value_of<Sequence<a0>, a0>::type
+            typename value_of<Sequence<0>, element<0>>::type
         >::type::value, "");
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0, a1>,
-                typename key_of<Sequence<a0, a1>, a0>::type,
+                Sequence<0, 1>,
+                typename key_of<Sequence<0, 1>, element<0>>::type,
                 struct Default
             >::type,
-            typename value_of<Sequence<a0, a1>, a0>::type
+            typename value_of<Sequence<0, 1>, element<0>>::type
         >::type::value, "");
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0, a1>,
-                typename key_of<Sequence<a0, a1>, a1>::type,
+                Sequence<0, 1>,
+                typename key_of<Sequence<0, 1>, element<1>>::type,
                 struct Default
             >::type,
-            typename value_of<Sequence<a0, a1>, a1>::type
+            typename value_of<Sequence<0, 1>, element<1>>::type
         >::type::value, "");
 
         // at without a default
         static_assert(equal_to<
             typename at<
-                Sequence<a0>,
-                typename key_of<Sequence<a0>, a0>::type
+                Sequence<0>,
+                typename key_of<Sequence<0>, element<0>>::type
             >::type,
-            typename value_of<Sequence<a0>, a0>::type
+            typename value_of<Sequence<0>, element<0>>::type
         >::type::value, "");
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0, a1>,
-                typename key_of<Sequence<a0, a1>, a0>::type
+                Sequence<0, 1>,
+                typename key_of<Sequence<0, 1>, element<0>>::type
             >::type,
-            typename value_of<Sequence<a0, a1>, a0>::type
+            typename value_of<Sequence<0, 1>, element<0>>::type
         >::type::value, "");
 
         static_assert(equal_to<
             typename at<
-                Sequence<a0, a1>,
-                typename key_of<Sequence<a0, a1>, a1>::type
+                Sequence<0, 1>,
+                typename key_of<Sequence<0, 1>, element<1>>::type
             >::type,
-            typename value_of<Sequence<a0, a1>, a1>::type
+            typename value_of<Sequence<0, 1>, element<1>>::type
         >::type::value, "");
     };
-} // end namespace associative_sequence_detail
-
-namespace test { using associative_sequence_detail::associative_sequence; }
-}} // end namespace boost::mpl11
+}}} // end namespace boost::mpl11::test
 
 #endif // !BOOST_MPL11_TEST_ASSOCIATIVE_SEQUENCE_HPP

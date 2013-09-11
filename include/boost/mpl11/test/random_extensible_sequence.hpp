@@ -1,36 +1,51 @@
 /*!
  * @file
- * Defines `boost::mpl11::test::extensible_sequence`.
+ * Defines `boost::mpl11::test::random_extensible_sequence`.
  */
 
-#ifndef BOOST_MPL11_TEST_EXTENSIBLE_SEQUENCE_HPP
-#define BOOST_MPL11_TEST_EXTENSIBLE_SEQUENCE_HPP
+#ifndef BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP
+#define BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP
 
 #include <boost/mpl11/algorithm/advance.hpp>
+#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/erase.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
 #include <boost/mpl11/intrinsic/insert_range.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/test/back_extensible_sequence.hpp>
+#include <boost/mpl11/test/front_extensible_sequence.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace extensible_sequence_detail {
-    using namespace algorithm;
-    template <unsigned int>
-    struct anything;
+namespace boost { namespace mpl11 { namespace test {
+    template <typename MakeSequence, typename MakeElement = quote<inherit>>
+    class random_extensible_sequence
+        : back_extensible_sequence<MakeSequence, MakeElement>,
+          front_extensible_sequence<MakeSequence, MakeElement>
+    {
+        template <unsigned int i>
+        using element = typename apply<MakeElement, uint<i>>::type;
 
-    template <template <typename ...> class Sequence,
-              template <unsigned int> class A = anything>
-    class extensible_sequence {
-        using a0 = A<0>; using a1 = A<1>; using a2 = A<2>; using a3 = A<3>;
-        using a4 = A<4>; using a5 = A<5>;
+        template <typename ...Elements>
+        using Sequence = typename apply<MakeSequence, Elements...>::type;
+
+        using a0 = element<0>;
+        using a1 = element<1>;
+        using a2 = element<2>;
+        using a3 = element<3>;
+        using a4 = element<4>;
+        using a5 = element<5>;
 
         using S = Sequence<a0, a1, a2, a3>;
 
-        template <unsigned long i>
-        using iter_at = typename advance_c<typename begin<S>::type, i>::type;
+        template <unsigned int i>
+        using iter_at = typename algorithm::advance_c<
+            typename begin<S>::type, i
+        >::type;
 
         // insert
         static_assert(equal_to<
@@ -172,9 +187,6 @@ namespace extensible_sequence_detail {
             Sequence<>
         >::type::value, "");
     };
-} // end namespace extensible_sequence_detail
+}}} // end namespace boost::mpl11::test
 
-namespace test { using extensible_sequence_detail::extensible_sequence; }
-}} // end namespace boost::mpl11
-
-#endif // !BOOST_MPL11_TEST_EXTENSIBLE_SEQUENCE_HPP
+#endif // !BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP

@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Returns the first element in a sequence.
+     * Returns the first element in a @ref ForwardSequence.
      *
      *
      * ### Semantics and default implementation

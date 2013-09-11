@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Removes the element at the beginning of a sequence.
+     * Removes the element at the beginning of a @ref FrontExtensibleSequence.
      *
      *
      * ### Semantics and default implementation

@@ -6,6 +6,10 @@
 #ifndef BOOST_MPL11_TEST_EXTENSIBLE_ASSOCIATIVE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_EXTENSIBLE_ASSOCIATIVE_SEQUENCE_HPP
 
+#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/erase_key.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
@@ -13,15 +17,18 @@
 #include <boost/mpl11/operator/equal_to.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace extensible_associative_sequence_detail {
-    template <unsigned int>
-    struct anything;
-
-    template <template <typename ...> class Sequence,
-              template <unsigned int> class A = anything>
+namespace boost { namespace mpl11 { namespace test {
+    template <typename MakeSequence, typename MakeElement = quote<inherit>>
     class extensible_associative_sequence {
-        using a0 = A<0>; using a1 = A<1>; using a2 = A<2>;
+        template <unsigned int i>
+        using element = typename apply<MakeElement, uint<i>>::type;
+
+        template <typename ...Elements>
+        using Sequence = typename apply<MakeSequence, Elements...>::type;
+
+        using a0 = element<0>;
+        using a1 = element<1>;
+        using a2 = element<2>;
 
         // insert
         static_assert(equal_to<
@@ -134,12 +141,6 @@ namespace extensible_associative_sequence_detail {
             Sequence<>
         >::type::value, "");
     };
-} // end namespace extensible_associative_sequence_detail
-
-namespace test {
-    using extensible_associative_sequence_detail::
-                    extensible_associative_sequence;
-}
-}} // end namespace boost::mpl11
+}}} // end namespace boost::mpl11::test
 
 #endif // !BOOST_MPL11_TEST_EXTENSIBLE_ASSOCIATIVE_SEQUENCE_HPP

@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Inserts an element at the end of a sequence.
+     * Inserts an element at the end of a @ref BackExtensibleSequence.
      *
      *
      * ### Semantics and default implementation

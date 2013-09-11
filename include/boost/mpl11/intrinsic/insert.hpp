@@ -18,15 +18,14 @@ namespace boost { namespace mpl11 {
      *
      * Overloaded intrinsic for inserting elements in a sequence.
      */
-    template <typename Sequence,
-              typename Position,
-              typename Element = detail::optional>
+    template <typename, typename, typename = detail::optional>
     struct insert;
 
     /*!
      * @ingroup intrinsics
      *
-     * Inserts an element at an arbitrary position in a sequence.
+     * Inserts an element at an arbitrary position in a
+     * @ref RandomExtensibleSequence.
      *
      *
      * ### Semantics and default implementation

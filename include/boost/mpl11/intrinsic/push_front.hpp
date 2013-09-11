@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Inserts an element at the beginning of a sequence.
+     * Inserts an element at the beginning of a @ref FrontExtensibleSequence.
      *
      *
      * ### Semantics and default implementation
