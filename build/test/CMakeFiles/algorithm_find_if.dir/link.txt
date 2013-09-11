@@ -1,1 +1,0 @@
-/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/algorithm_find_if.dir/algorithm/find_if.cpp.o  -o algorithm_find_if  

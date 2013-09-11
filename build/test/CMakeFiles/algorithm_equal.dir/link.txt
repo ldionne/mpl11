@@ -1,1 +1,0 @@
-/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/algorithm_equal.dir/algorithm/equal.cpp.o  -o algorithm_equal  
