@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/container_variadic.dir/container/variadic.cpp.o  -o container_variadic  
