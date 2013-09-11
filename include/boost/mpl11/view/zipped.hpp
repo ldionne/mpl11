@@ -34,7 +34,7 @@ namespace zipped_detail {
     template <typename ...Iterators>
     struct dispatch<tag::next, Iterators...>
         : identity<
-            zip_iterator<typename intrinsic::next<Iterators>::type...>
+            zip_iterator<typename next<Iterators>::type...>
         >
     { };
 
@@ -48,7 +48,7 @@ namespace zipped_detail {
     template <typename ...Iterators>
     struct dispatch<tag::deref, Iterators...>
         : identity<
-            view_on<typename intrinsic::deref<Iterators>::type...>
+            view_on<typename deref<Iterators>::type...>
         >
     { };
 
@@ -94,9 +94,9 @@ namespace view {
 template <typename S1, typename S2, typename ...Sn>
 struct dispatch<tag::size, view::zipped<S1, S2, Sn...>>
     : algorithm::min<
-        typename intrinsic::size<S1>::type,
-        typename intrinsic::size<S2>::type,
-        typename intrinsic::size<Sn>::type...
+        typename size<S1>::type,
+        typename size<S2>::type,
+        typename size<Sn>::type...
     >
 { };
 
@@ -104,11 +104,11 @@ template <typename ...Sequences>
 struct dispatch<tag::begin, view::zipped<Sequences...>>
     : identity<
         zipped_detail::zip_iterator<
-            typename intrinsic::begin<
+            typename begin<
                 view::sliced<
                     Sequences,
                     ulong<0>,
-                    typename intrinsic::size<view::zipped<Sequences...>>::type
+                    typename size<view::zipped<Sequences...>>::type
                 >
             >::type...
         >
@@ -119,11 +119,11 @@ template <typename ...Sequences>
 struct dispatch<tag::end, view::zipped<Sequences...>>
     : identity<
         zipped_detail::zip_iterator<
-            typename intrinsic::end<
+            typename end<
                 view::sliced<
                     Sequences,
                     ulong<0>,
-                    typename intrinsic::size<view::zipped<Sequences...>>::type
+                    typename size<view::zipped<Sequences...>>::type
                 >
             >::type...
         >

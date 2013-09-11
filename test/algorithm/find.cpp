@@ -18,22 +18,22 @@ using container::vector;
 
 template <typename Sequence, int I>
 using iter_at = typename algorithm::advance_c<
-    typename intrinsic::begin<Sequence>::type, I
+    typename begin<Sequence>::type, I
 >::type;
 
 static_assert(equal_to<
     find<vector<>, struct anything>::type,
-    intrinsic::end<vector<>>::type
+    end<vector<>>::type
 >::type::value, "");
 
 static_assert(equal_to<
     find<vector<int>, struct anything>::type,
-    intrinsic::end<vector<int>>::type
+    end<vector<int>>::type
 >::type::value, "");
 
 static_assert(equal_to<
     find<vector<float, int>, struct anything>::type,
-    intrinsic::end<vector<float, int>>::type
+    end<vector<float, int>>::type
 >::type::value, "");
 
 static_assert(equal_to<

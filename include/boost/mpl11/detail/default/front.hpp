@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::front`.
+ * Defines the default implementation of `boost::mpl11::front`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_FRONT_HPP
@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
 namespace front_detail {
     template <typename Sequence>
     struct assert_nonempty {
-        static_assert(!intrinsic::is_empty<Sequence>::type::value,
+        static_assert(!is_empty<Sequence>::type::value,
         "Attempt to use `front` on an empty sequence.");
     };
 } // end namespace front_detail
@@ -25,7 +25,7 @@ namespace front_detail {
 template <typename Sequence>
 struct dispatch<detail::default_<tag::front>, Sequence>
     : front_detail::assert_nonempty<Sequence>,
-      intrinsic::deref<typename intrinsic::begin<Sequence>::type>
+      deref<typename begin<Sequence>::type>
 { };
 }} // end namespace boost::mpl11
 

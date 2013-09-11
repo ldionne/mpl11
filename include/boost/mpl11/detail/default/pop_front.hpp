@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::pop_front`.
+ * Defines the default implementation of `boost::mpl11::pop_front`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_POP_FRONT_HPP
@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
 namespace pop_front_detail {
     template <typename Sequence>
     struct assert_nonempty {
-        static_assert(!intrinsic::is_empty<Sequence>::type::value,
+        static_assert(!is_empty<Sequence>::type::value,
         "Attempt to use `pop_front` on an empty sequence.");
     };
 } // end namespace pop_front_detail
@@ -25,9 +25,9 @@ namespace pop_front_detail {
 template <typename Sequence>
 struct dispatch<detail::default_<tag::pop_front>, Sequence>
     : pop_front_detail::assert_nonempty<Sequence>,
-      intrinsic::erase<
+      erase<
         Sequence,
-        typename intrinsic::begin<Sequence>::type
+        typename begin<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

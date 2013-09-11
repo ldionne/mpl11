@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::value_of`.
+ * Defines `boost::mpl11::value_of`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_VALUE_OF_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the value that _would_ be used for an element
      * in an @ref AssociativeSequence.
@@ -21,6 +21,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct value_of
         : dispatch<tag::value_of, Sequence, Element>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_VALUE_OF_HPP

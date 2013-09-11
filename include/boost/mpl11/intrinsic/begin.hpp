@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::begin`.
+ * Defines `boost::mpl11::begin`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_BEGIN_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns an iterator pointing to the first element of the sequence.
      *
@@ -27,6 +27,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct begin
         : dispatch<tag::begin, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_BEGIN_HPP

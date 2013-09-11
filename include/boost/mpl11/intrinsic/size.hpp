@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::size`.
+ * Defines `boost::mpl11::size`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_SIZE_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the number of elements contained in a sequence.
      *
@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct size
         : dispatch<tag::size, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/size.hpp>

@@ -18,7 +18,7 @@ template <typename Sequence, typename Element>
 struct dispatch<detail::default_<tag::contains>, Sequence, Element>
     : not_equal_to<
         typename algorithm::find<Sequence, Element>::type,
-        typename intrinsic::end<Sequence>::type
+        typename end<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

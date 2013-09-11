@@ -43,7 +43,7 @@ struct dispatch<
     tag::next, filtered_detail::filter_iterator<First, Last, Predicate>
 >
     : filtered_detail::make_filter_iterator<
-        typename intrinsic::next<First>::type, Last, Predicate
+        typename next<First>::type, Last, Predicate
     >
 { };
 
@@ -51,7 +51,7 @@ template <typename First, typename Last, typename Predicate>
 struct dispatch<
     tag::deref, filtered_detail::filter_iterator<First, Last, Predicate>
 >
-    : intrinsic::deref<First>
+    : deref<First>
 { };
 
 template <typename First, typename Last, typename Predicate>
@@ -80,13 +80,13 @@ struct dispatch<Op, view::filtered<Sequence, Predicate>, Args...>
         Op,
         view::bounded_by<
             typename filtered_detail::make_filter_iterator<
-                typename intrinsic::begin<Sequence>::type,
-                typename intrinsic::end<Sequence>::type,
+                typename begin<Sequence>::type,
+                typename end<Sequence>::type,
                 Predicate
             >::type,
             typename filtered_detail::make_filter_iterator<
-                typename intrinsic::end<Sequence>::type,
-                typename intrinsic::end<Sequence>::type,
+                typename end<Sequence>::type,
+                typename end<Sequence>::type,
                 Predicate
             >::type
         >,

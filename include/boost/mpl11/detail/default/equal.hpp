@@ -28,8 +28,8 @@ template <typename Sequence1, typename Sequence2, typename Predicate>
 struct dispatch<detail::default_<tag::equal>, Sequence1, Sequence2, Predicate>
     : and_<
         equal_to<
-            typename intrinsic::size<Sequence1>::type,
-            typename intrinsic::size<Sequence2>::type
+            typename size<Sequence1>::type,
+            typename size<Sequence2>::type
         >,
         algorithm::all_of<
             view::zipped<Sequence1, Sequence2>,

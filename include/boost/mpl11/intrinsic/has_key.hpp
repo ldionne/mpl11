@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::has_key`.
+ * Defines `boost::mpl11::has_key`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_HAS_KEY_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns whether an @ref AssociativeSequence contains one or more
      * elements with key `Key`.
@@ -40,7 +40,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct has_key
         : dispatch<tag::has_key, Sequence, Key>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/has_key.hpp>

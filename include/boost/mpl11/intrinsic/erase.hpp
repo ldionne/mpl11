@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::erase`.
+ * Defines `boost::mpl11::erase`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_ERASE_HPP
@@ -12,9 +12,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Overloaded intrinsic for removing elements from a sequence.
      */
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct erase;
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Removes several adjacent elements in a sequence starting from an
      * arbitrary position.
@@ -47,7 +47,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     { };
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Removes an element at a position in a sequence.
      *
@@ -65,7 +65,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct erase<Sequence, Position>
         : dispatch<tag::erase, Sequence, Position>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/erase.hpp>

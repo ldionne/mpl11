@@ -31,25 +31,25 @@ namespace joined_detail {
     template <typename F1, typename L1, typename F2>
     struct dispatch<tag::next, F1, L1, F2, false>
         : identity<
-            joined_iterator<typename intrinsic::next<F1>::type, L1, F2>
+            joined_iterator<typename next<F1>::type, L1, F2>
         >
     { };
 
     template <typename F1, typename L1, typename F2>
     struct dispatch<tag::next, F1, L1, F2, true>
         : identity<
-            joined_iterator<F1, L1, typename intrinsic::next<F2>::type>
+            joined_iterator<F1, L1, typename next<F2>::type>
         >
     { };
 
     template <typename F1, typename L1, typename F2>
     struct dispatch<tag::deref, F1, L1, F2, false>
-        : intrinsic::deref<F1>
+        : deref<F1>
     { };
 
     template <typename F1, typename L1, typename F2>
     struct dispatch<tag::deref, F1, L1, F2, true>
-        : intrinsic::deref<F2>
+        : deref<F2>
     { };
 
     template <typename F1, typename L1, typename F2, bool Whatever>
@@ -88,14 +88,14 @@ struct dispatch<Op, view::joined<S1, S2>, Args...>
         Op,
         view::bounded_by<
             joined_detail::joined_iterator<
-                typename intrinsic::begin<S1>::type,
-                typename intrinsic::end<S1>::type,
-                typename intrinsic::begin<S2>::type
+                typename begin<S1>::type,
+                typename end<S1>::type,
+                typename begin<S2>::type
             >,
             joined_detail::joined_iterator<
-                typename intrinsic::end<S1>::type,
-                typename intrinsic::end<S1>::type,
-                typename intrinsic::end<S2>::type
+                typename end<S1>::type,
+                typename end<S1>::type,
+                typename end<S2>::type
             >
         >,
         Args...

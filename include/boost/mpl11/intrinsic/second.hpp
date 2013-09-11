@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::second`.
+ * Defines `boost::mpl11::second`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_SECOND_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the second element of a pair.
      *
@@ -26,6 +26,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct second
         : dispatch<tag::second, Pair>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_SECOND_HPP

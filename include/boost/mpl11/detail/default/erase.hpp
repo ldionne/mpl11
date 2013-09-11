@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::erase`.
+ * Defines the default implementation of `boost::mpl11::erase`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_ERASE_HPP
@@ -23,14 +23,14 @@ namespace boost { namespace mpl11 {
 namespace erase_detail {
     template <typename Sequence, typename First, typename Last,
               bool = equal_to<
-                Last, typename intrinsic::end<Sequence>::type
+                Last, typename end<Sequence>::type
               >::type::value>
     struct erase_impl
         : algorithm::copy<
             view::bounded_by<
-                typename intrinsic::begin<Sequence>::type, First
+                typename begin<Sequence>::type, First
             >,
-            typename intrinsic::clear<Sequence>::type
+            typename clear<Sequence>::type
         >
     { };
 
@@ -39,21 +39,21 @@ namespace erase_detail {
         : algorithm::copy<
             view::joined<
                 view::bounded_by<
-                    typename intrinsic::begin<Sequence>::type, First
+                    typename begin<Sequence>::type, First
                 >,
                 view::bounded_by<
-                    Last, typename intrinsic::end<Sequence>::type
+                    Last, typename end<Sequence>::type
                 >
             >,
-            typename intrinsic::clear<Sequence>::type
+            typename clear<Sequence>::type
         >
     { };
 } // end namespace erase_detail
 
 template <typename Sequence, typename Position>
 struct dispatch<detail::default_<tag::erase>, Sequence, Position>
-    : intrinsic::erase<
-        Sequence, Position, typename intrinsic::next<Position>::type
+    : erase<
+        Sequence, Position, typename next<Position>::type
     >
 { };
 

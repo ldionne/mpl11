@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::category_of`.
+ * Defines `boost::mpl11::category_of`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_CATEGORY_OF_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the category of a type.
      *
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct category_of
         : dispatch<tag::category_of, T>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/category_of.hpp>

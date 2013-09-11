@@ -26,9 +26,9 @@ namespace foldr_detail {
         : apply_wrap<
             F,
             typename foldr_impl<
-                typename intrinsic::next<First>::type, Last, State, F
+                typename next<First>::type, Last, State, F
             >::type,
-            typename intrinsic::deref<First>::type
+            typename deref<First>::type
         >
     { };
 
@@ -41,8 +41,8 @@ namespace foldr_detail {
 template <typename Sequence, typename State, typename F>
 struct dispatch<detail::default_<tag::foldr>, Sequence, State, F>
     : foldr_detail::foldr_impl<
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type,
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type,
         State,
         typename lambda<F>::type
     >

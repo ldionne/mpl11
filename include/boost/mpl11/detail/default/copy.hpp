@@ -24,17 +24,17 @@ namespace boost { namespace mpl11 {
 namespace copy_detail {
     template <typename From, typename To>
     auto copy_impl(category::back_extensible_sequence*, int)
-        -> algorithm::foldl<From, To, quote<intrinsic::push_back>>
+        -> algorithm::foldl<From, To, quote<push_back>>
     ;
 
     template <typename From, typename To>
     auto copy_impl(category::extensible_associative_sequence*, int)
-        -> algorithm::foldl<From, To, quote<intrinsic::insert>>
+        -> algorithm::foldl<From, To, quote<insert>>
     ;
 
     template <typename From, typename To>
     auto copy_impl(category::front_extensible_sequence*, ...)
-        -> algorithm::foldr<From, To, quote<intrinsic::push_front>>
+        -> algorithm::foldr<From, To, quote<push_front>>
     ;
 } // end namespace copy_detail
 
@@ -47,7 +47,7 @@ template <typename From, typename To>
 struct dispatch<detail::default_<tag::copy>, From, To>
     : decltype(
         copy_detail::copy_impl<From, To>(
-            (typename intrinsic::category_of<To>::type*)nullptr, int()
+            (typename category_of<To>::type*)nullptr, int()
         )
     )
 { };

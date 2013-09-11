@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::is_empty`.
+ * Defines the default implementation of `boost::mpl11::is_empty`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_IS_EMPTY_HPP
@@ -17,8 +17,8 @@ namespace boost { namespace mpl11 {
 template <typename Sequence>
 struct dispatch<detail::default_<tag::is_empty>, Sequence>
     : equal_to<
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

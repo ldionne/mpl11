@@ -31,7 +31,7 @@ template <typename OperationTag, typename Sequence, typename ...Args>
 struct dispatch<OperationTag, view::onto_values<Sequence>, Args...>
     : dispatch<
         OperationTag,
-        view::transformed<Sequence, intrinsic::value_of<Sequence, _1>>,
+        view::transformed<Sequence, value_of<Sequence, _1>>,
         Args...
     >
 { };

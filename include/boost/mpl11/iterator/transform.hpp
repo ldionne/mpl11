@@ -50,7 +50,7 @@ struct dispatch<Op, iterator::transform<Iterator, F>, Args...>
 
 template <typename Iterator, typename F>
 struct dispatch<tag::deref, iterator::transform<Iterator, F>>
-    : apply<F, typename intrinsic::deref<Iterator>::type>
+    : apply<F, typename deref<Iterator>::type>
 { };
 }} // end namespace boost::mpl11
 

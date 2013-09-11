@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::insert`.
+ * Defines `boost::mpl11::insert`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_INSERT_HPP
@@ -12,9 +12,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Overloaded intrinsic for inserting elements in a sequence.
      */
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct insert;
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Inserts an element at an arbitrary position in a sequence.
      *
@@ -51,7 +51,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     { };
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Inserts an element in an @ref AssociativeSequence.
      */
@@ -59,7 +59,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct insert<Sequence, Element>
         : dispatch<tag::insert, Sequence, Element>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/insert.hpp>

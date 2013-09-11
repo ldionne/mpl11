@@ -13,7 +13,6 @@
 
 namespace boost { namespace mpl11 {
 namespace random_access_sequence_detail {
-    using namespace intrinsic;
     template <unsigned int>
     struct anything;
 

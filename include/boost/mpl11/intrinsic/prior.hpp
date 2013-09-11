@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::prior`.
+ * Defines `boost::mpl11::prior`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_PRIOR_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the previous iterator in the sequence.
      *
@@ -25,6 +25,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct prior
         : dispatch<tag::prior, Iterator>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_PRIOR_HPP

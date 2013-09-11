@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::erase_key`.
+ * Defines the default implementation of `boost::mpl11::erase_key`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_ERASE_KEY_HPP
@@ -22,9 +22,9 @@ struct dispatch<detail::default_<tag::erase_key>, Sequence, Key>
     : algorithm::copy<
         view::filtered<
             Sequence,
-            not_equal_to<Key, intrinsic::key_of<Sequence, _1>>
+            not_equal_to<Key, key_of<Sequence, _1>>
         >,
-        typename intrinsic::clear<Sequence>::type
+        typename clear<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

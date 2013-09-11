@@ -12,7 +12,6 @@
 
 
 using namespace boost::mpl11;
-using namespace intrinsic;
 
 static_assert(is_empty<view::empty>::type::value, "");
 

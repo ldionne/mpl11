@@ -26,7 +26,7 @@ namespace sliced_detail {
         "Attempt to use `sliced<Sequence, From, To>` with a `From` "
         "index greater than the `To` index.");
 
-        static_assert(To::value <= intrinsic::size<Sequence>::type::value,
+        static_assert(To::value <= size<Sequence>::type::value,
         "Attempt to use `sliced<Sequence, From, To>` with a `To` "
         "index greater than the size of the `Sequence`.");
     };
@@ -57,10 +57,10 @@ struct dispatch<OperationTag, view::sliced<Sequence, From, To>, Args...>
         OperationTag,
         view::bounded_by<
             typename algorithm::advance<
-                typename intrinsic::begin<Sequence>::type, From
+                typename begin<Sequence>::type, From
             >::type,
             typename algorithm::advance<
-                typename intrinsic::begin<Sequence>::type, To
+                typename begin<Sequence>::type, To
             >::type
         >,
         Args...

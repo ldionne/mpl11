@@ -24,7 +24,7 @@ struct dispatch<detail::default_<tag::count_if>, Sequence, Predicate>
         Sequence,
         ulong<0>,
         if_<apply_wrap<typename lambda<Predicate>::type, _2>,
-            intrinsic::next<_1>,
+            next<_1>,
             _1
         >
     >

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::clear`.
+ * Defines the default implementation of `boost::mpl11::clear`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_CLEAR_HPP
@@ -16,10 +16,10 @@
 namespace boost { namespace mpl11 {
 template <typename Sequence>
 struct dispatch<detail::default_<tag::clear>, Sequence>
-    : intrinsic::erase<
+    : erase<
         Sequence,
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

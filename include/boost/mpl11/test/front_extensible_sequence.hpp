@@ -14,7 +14,6 @@
 
 namespace boost { namespace mpl11 {
 namespace front_extensible_sequence_detail {
-    using namespace intrinsic;
     template <unsigned int>
     struct anything;
 

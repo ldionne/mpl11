@@ -21,7 +21,7 @@ struct dispatch<detail::default_<tag::distance>, First, Last>
     : algorithm::foldl<
         view::bounded_by<First, Last>,
         ulong<0>,
-        intrinsic::next<_1>
+        next<_1>
     >
 { };
 }} // end namespace boost::mpl11

@@ -35,8 +35,8 @@ namespace detail {
     struct best_category_for
         : identity<decltype(
             best_category_for_detail::best_match<Categories...>::template
-                pick<typename intrinsic::category_of<T>::type>(
-                    (typename intrinsic::category_of<T>::type*)nullptr
+                pick<typename category_of<T>::type>(
+                    (typename category_of<T>::type*)nullptr
                 )
         )>
     { };

@@ -34,8 +34,8 @@ struct dispatch<Op, view::transformed<Sequence, F>, Args...>
     : dispatch<
         Op,
         view::bounded_by<
-            iterator::transform<typename intrinsic::begin<Sequence>::type, F>,
-            iterator::transform<typename intrinsic::end<Sequence>::type, F>
+            iterator::transform<typename begin<Sequence>::type, F>,
+            iterator::transform<typename end<Sequence>::type, F>
         >,
         Args...
     >

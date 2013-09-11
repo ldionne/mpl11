@@ -56,10 +56,10 @@ struct dispatch<OperationTag, view::onto_iterators<Sequence>, Args...>
         OperationTag,
         view::bounded_by<
             onto_iterators_detail::raw_iterator<
-                typename intrinsic::begin<Sequence>::type
+                typename begin<Sequence>::type
             >,
             onto_iterators_detail::raw_iterator<
-                typename intrinsic::end<Sequence>::type
+                typename end<Sequence>::type
             >
         >,
         Args...

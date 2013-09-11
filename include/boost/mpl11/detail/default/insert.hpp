@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::insert`.
+ * Defines the default implementation of `boost::mpl11::insert`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_INSERT_HPP
@@ -15,7 +15,7 @@
 namespace boost { namespace mpl11 {
 template <typename Sequence, typename Position, typename Element>
 struct dispatch<detail::default_<tag::insert>, Sequence, Position, Element>
-    : intrinsic::insert_range<
+    : insert_range<
         Sequence, Position, view::single_element<Element>
     >
 { };

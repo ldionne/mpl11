@@ -1,7 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of
- * `boost::mpl11::intrinsic::insert_range`.
+ * Defines the default implementation of `boost::mpl11::insert_range`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_INSERT_RANGE_HPP
@@ -25,12 +24,12 @@ namespace boost { namespace mpl11 {
 namespace insert_range_detail {
     template <typename Sequence, typename Position, typename Range,
               bool = equal_to<
-                Position, typename intrinsic::end<Sequence>::type
+                Position, typename end<Sequence>::type
               >::type::value>
     struct insert_range_impl
         : algorithm::copy<
             view::joined<Sequence, Range>,
-            typename intrinsic::clear<Sequence>::type
+            typename clear<Sequence>::type
         >
     { };
 
@@ -39,21 +38,21 @@ namespace insert_range_detail {
         : algorithm::copy<
             view::joined<
                 view::bounded_by<
-                    typename intrinsic::begin<Sequence>::type, Position
+                    typename begin<Sequence>::type, Position
                 >,
                 Range,
                 view::bounded_by<
-                    Position, typename intrinsic::end<Sequence>::type
+                    Position, typename end<Sequence>::type
                 >
             >,
-            typename intrinsic::clear<Sequence>::type
+            typename clear<Sequence>::type
         >
     { };
 } // end namespace insert_range_detail
 
 template <typename Sequence, typename Range>
 struct dispatch<detail::default_<tag::insert_range>, Sequence, Range>
-    : algorithm::foldl<Range, Sequence, quote<intrinsic::insert>>
+    : algorithm::foldl<Range, Sequence, quote<insert>>
 { };
 
 template <typename Sequence, typename Position, typename Range>

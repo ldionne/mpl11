@@ -43,18 +43,18 @@ namespace advance_detail {
         // We can't derive from `move<>::apply<>`, because we want the
         // static_assert to be instantiated before the invalid metafunction
         // if `N::value` is negative.
-        using type = typename move<intrinsic::next, intrinsic::prior>::
+        using type = typename move<next, prior>::
                      template apply<Iterator, N>::type;
     };
 
     template <typename Iterator, typename N, bool = N::value < 0>
     struct advance_bidirectional
-        : move<intrinsic::prior, intrinsic::next>::template apply<Iterator, N>
+        : move<prior, next>::template apply<Iterator, N>
     { };
 
     template <typename Iterator, typename N /* >= 0 */>
     struct advance_bidirectional<Iterator, N, false>
-        : move<intrinsic::next, intrinsic::prior>::template apply<Iterator, N>
+        : move<next, prior>::template apply<Iterator, N>
     { };
 
     template <typename Iterator, typename N>

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::at` and `boost::mpl::intrinsic::at_c`.
+ * Defines `boost::mpl11::at` and `boost::mpl::at_c`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_AT_HPP
@@ -13,9 +13,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Overloaded intrinsic for accessing elements in a sequence.
      */
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct at;
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the element associated to a key in an @ref AssociativeSequence,
      * or a default value if no such element exists and a default is provided.
@@ -66,7 +66,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     { };
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the `N`th element of a sequence if `N` is in the bounds of
      * the sequence, and triggers a compile-time assertion otherwise.
@@ -98,7 +98,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     //! Convenience alias to `at<Sequence, ulong<N>>`.
     template <typename Sequence, unsigned long N>
     using at_c = at<Sequence, ulong<N>>;
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/at.hpp>

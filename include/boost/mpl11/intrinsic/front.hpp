@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::front`.
+ * Defines `boost::mpl11::front`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_FRONT_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the first element in a sequence.
      *
@@ -32,7 +32,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct front
         : dispatch<tag::front, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/front.hpp>

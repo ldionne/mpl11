@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::pop_back`.
+ * Defines `boost::mpl11::pop_back`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_POP_BACK_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Removes the element at the end of a sequence.
      *
@@ -32,7 +32,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct pop_back
         : dispatch<tag::pop_back, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/pop_back.hpp>

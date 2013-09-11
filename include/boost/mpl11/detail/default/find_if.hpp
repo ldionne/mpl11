@@ -30,13 +30,13 @@ namespace find_if_detail {
     template <typename First, typename Last, typename Predicate>
     struct lazy_next_step
         : find_if_impl<
-            typename intrinsic::next<First>::type, Last, Predicate
+            typename next<First>::type, Last, Predicate
         >
     { };
 
     template <typename First, typename Last, typename Predicate>
     struct find_if_impl<First, Last, Predicate, false>
-        : if_<apply_wrap<Predicate, typename intrinsic::deref<First>::type>,
+        : if_<apply_wrap<Predicate, typename deref<First>::type>,
             identity<First>,
             lazy_next_step<First, Last, Predicate>
         >::type
@@ -46,8 +46,8 @@ namespace find_if_detail {
 template <typename Sequence, typename Predicate>
 struct dispatch<detail::default_<tag::find_if>, Sequence, Predicate>
     : find_if_detail::find_if_impl<
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type,
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type,
         typename lambda<Predicate>::type
     >
 { };

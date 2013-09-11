@@ -13,7 +13,6 @@
 
 
 using namespace boost::mpl11;
-using namespace intrinsic;
 using detail::is_same;
 
 // ::value

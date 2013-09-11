@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::is_empty`.
+ * Defines `boost::mpl11::is_empty`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_IS_EMPTY_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns whether a sequence is empty.
      *
@@ -29,7 +29,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct is_empty
         : dispatch<tag::is_empty, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/is_empty.hpp>

@@ -17,11 +17,11 @@ struct Second;
 using Pair = pair<First, Second>;
 
 static_assert(detail::is_same<
-    intrinsic::first<Pair>::type, First
+    first<Pair>::type, First
 >::value, "");
 
 static_assert(detail::is_same<
-    intrinsic::second<Pair>::type, Second
+    second<Pair>::type, Second
 >::value, "");
 
 

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::erase_key`.
+ * Defines `boost::mpl11::erase_key`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_ERASE_KEY_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Erases elements associated with a given key in
      * an @ref AssociativeSequence.
@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct erase_key
         : dispatch<tag::erase_key, Sequence, Key>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/erase_key.hpp>

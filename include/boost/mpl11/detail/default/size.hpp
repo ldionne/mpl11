@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::size`.
+ * Defines the default implementation of `boost::mpl11::size`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_SIZE_HPP
@@ -17,8 +17,8 @@ namespace boost { namespace mpl11 {
 template <typename Sequence>
 struct dispatch<detail::default_<tag::size>, Sequence>
     : algorithm::distance<
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

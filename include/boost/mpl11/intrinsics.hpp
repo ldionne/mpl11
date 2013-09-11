@@ -7,7 +7,7 @@
 #define BOOST_MPL11_INTRINSICS_HPP
 
 /*!
- * @defgroup intrinsic Intrinsics
+ * @defgroup intrinsics Intrinsics
  */
 
 #include <boost/mpl11/intrinsic/at.hpp>

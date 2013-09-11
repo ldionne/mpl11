@@ -53,14 +53,14 @@ namespace is_permutation_detail {
 
     template <typename Sequence1, typename Sequence2, typename Predicate>
     class is_permutation_impl {
-        using Last = typename intrinsic::end<Sequence1>::type;
+        using Last = typename end<Sequence1>::type;
 
         template <typename Iter, typename Counted,
                   bool = equal_to<Iter, Last>::type::value>
         struct contains_same_elements;
 
         template <typename Iter, typename Counted,
-                  typename Element = typename intrinsic::deref<Iter>::type,
+                  typename Element = typename deref<Iter>::type,
                   bool = decltype(Counted::has_key(wrap<Element>{}))::value>
         struct continue_;
 
@@ -77,7 +77,7 @@ namespace is_permutation_detail {
         template <typename Iter, typename Counted>
         struct check_next
             : contains_same_elements<
-                typename intrinsic::next<Iter>::type, Counted
+                typename next<Iter>::type, Counted
             >
         { };
 
@@ -110,11 +110,11 @@ namespace is_permutation_detail {
     public:
         using type = typename and_<
             equal_to<
-                typename intrinsic::size<Sequence1>::type,
-                typename intrinsic::size<Sequence2>::type
+                typename size<Sequence1>::type,
+                typename size<Sequence2>::type
             >,
             contains_same_elements<
-                typename intrinsic::begin<Sequence1>::type,
+                typename begin<Sequence1>::type,
                 empty_basic_set
             >
         >::type;

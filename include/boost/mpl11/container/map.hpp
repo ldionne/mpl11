@@ -39,11 +39,11 @@ namespace map_detail {
 
     template <typename Pair, typename ...Elements>
     struct basic_map<Pair, Elements...> : basic_map<Elements...> {
-        using Key = typename intrinsic::first<Pair>::type;
+        using Key = typename first<Pair>::type;
 
         using basic_map<Elements...>::at;
         template <typename Default>
-        static auto at(identity<Key>) -> intrinsic::second<Pair>;
+        static auto at(identity<Key>) -> second<Pair>;
 
         using basic_map<Elements...>::has_key;
         static auto has_key(identity<Key>) -> identity<true_>;
@@ -87,7 +87,7 @@ namespace container {
      */
     template <typename First, typename Last>
     struct map<First, Last>
-        : intrinsic::insert_range<map<>, view::bounded_by<First, Last>>
+        : insert_range<map<>, view::bounded_by<First, Last>>
     { };
 } // end namespace container
 
@@ -142,12 +142,12 @@ struct dispatch<tag::has_key, container::map<Elements...>, Key>
 
 template <typename ...Elements, typename Pair>
 struct dispatch<tag::key_of, container::map<Elements...>, Pair>
-    : intrinsic::first<Pair>
+    : first<Pair>
 { };
 
 template <typename ...Elements, typename Pair>
 struct dispatch<tag::value_of, container::map<Elements...>, Pair>
-    : intrinsic::second<Pair>
+    : second<Pair>
 { };
 
 
@@ -156,11 +156,11 @@ template <typename ...Elements, typename Pair>
 struct dispatch<tag::insert, container::map<Elements...>, Pair> {
 private:
     using Self = container::map<Elements...>;
-    using Key = typename intrinsic::first<Pair>::type;
-    using NewValue = typename intrinsic::second<Pair>::type;
+    using Key = typename first<Pair>::type;
+    using NewValue = typename second<Pair>::type;
 
-    using CleanedUpSelf = typename if_<intrinsic::has_key<Self, Key>,
-        intrinsic::erase_key<Self, Key>,
+    using CleanedUpSelf = typename if_<has_key<Self, Key>,
+        erase_key<Self, Key>,
         identity<Self>
     >::type::type;
 

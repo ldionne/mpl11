@@ -1,7 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of
- * `boost::mpl11::intrinsic::category_of`.
+ * Defines the default implementation of `boost::mpl11::category_of`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_CATEGORY_OF_HPP

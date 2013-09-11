@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::push_front`.
+ * Defines the default implementation of `boost::mpl11::push_front`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_PUSH_FRONT_HPP
@@ -15,8 +15,8 @@
 namespace boost { namespace mpl11 {
 template <typename Sequence, typename Element>
 struct dispatch<detail::default_<tag::push_front>, Sequence, Element>
-    : intrinsic::insert<
-        Sequence, typename intrinsic::begin<Sequence>::type, Element
+    : insert<
+        Sequence, typename begin<Sequence>::type, Element
     >
 { };
 }} // end namespace boost::mpl11

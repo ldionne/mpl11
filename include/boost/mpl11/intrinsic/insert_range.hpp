@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::insert_range`.
+ * Defines `boost::mpl11::insert_range`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
@@ -12,9 +12,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Overloaded intrinsic for inserting a range of elements in a sequence.
      */
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct insert_range;
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Inserts a range of elements at an arbitrary position in a sequence.
      *
@@ -41,7 +41,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     { };
 
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Inserts a range of elements in an @ref AssociativeSequence.
      *
@@ -60,7 +60,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct insert_range<Sequence, Range>
         : dispatch<tag::insert_range, Sequence, Range>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/insert_range.hpp>

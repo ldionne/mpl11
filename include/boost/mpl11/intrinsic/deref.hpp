@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::deref`.
+ * Defines `boost::mpl11::deref`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_DEREF_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Dereferences an iterator.
      *
@@ -25,6 +25,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct deref
         : dispatch<tag::deref, Iterator>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_DEREF_HPP

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementaiton of `boost::mpl11::intrinsic::has_key`.
+ * Defines the default implementaiton of `boost::mpl11::has_key`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_HAS_KEY_HPP
@@ -22,9 +22,9 @@ struct dispatch<detail::default_<tag::has_key>, Sequence, Key>
     : not_equal_to<
         typename algorithm::find_if<
             Sequence,
-            equal_to<Key, intrinsic::key_of<Sequence, _1>>
+            equal_to<Key, key_of<Sequence, _1>>
         >::type,
-        typename intrinsic::end<Sequence>::type
+        typename end<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::end`.
+ * Defines `boost::mpl11::end`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_END_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the past-the-end iterator of the sequence.
      *
@@ -27,6 +27,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct end
         : dispatch<tag::end, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_END_HPP

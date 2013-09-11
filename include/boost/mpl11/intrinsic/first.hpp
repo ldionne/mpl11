@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::first`.
+ * Defines `boost::mpl11::first`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_FIRST_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the first element of a pair.
      *
@@ -26,6 +26,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct first
         : dispatch<tag::first, Pair>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_FIRST_HPP

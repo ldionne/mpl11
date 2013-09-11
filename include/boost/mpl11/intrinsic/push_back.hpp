@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::push_back`.
+ * Defines `boost::mpl11::push_back`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_PUSH_BACK_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Inserts an element at the end of a sequence.
      *
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct push_back
         : dispatch<tag::push_back, Sequence, Element>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/push_back.hpp>

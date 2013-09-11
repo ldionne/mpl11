@@ -59,14 +59,14 @@ struct dispatch<tag::category_of, view::bounded_by<First, Last>>
     : identity<
         decltype(
             bounded_by_detail::pick_category(
-                (typename intrinsic::category_of<First>::type*)nullptr
+                (typename category_of<First>::type*)nullptr
             )
         )
     >
 {
     static_assert(detail::is_same<
-        typename intrinsic::category_of<First>::type,
-        typename intrinsic::category_of<Last>::type
+        typename category_of<First>::type,
+        typename category_of<Last>::type
     >::value,
     "Attempt to use `bounded_by<First, Last>` with `First` and "
     "`Last` iterators having different categories.");

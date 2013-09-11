@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::clear`.
+ * Defines `boost::mpl11::clear`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_CLEAR_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns an empty sequence concept-identical to `Sequence`.
      *
@@ -32,7 +32,7 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct clear
         : dispatch<tag::clear, Sequence>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/clear.hpp>

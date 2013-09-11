@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::push_back`.
+ * Defines the default implementation of `boost::mpl11::push_back`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_PUSH_BACK_HPP
@@ -15,8 +15,8 @@
 namespace boost { namespace mpl11 {
 template <typename Sequence, typename Element>
 struct dispatch<detail::default_<tag::push_back>, Sequence, Element>
-    : intrinsic::insert<
-        Sequence, typename intrinsic::end<Sequence>::type, Element
+    : insert<
+        Sequence, typename end<Sequence>::type, Element
     >
 { };
 }} // end namespace boost::mpl11

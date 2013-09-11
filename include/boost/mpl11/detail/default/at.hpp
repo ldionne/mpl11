@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::at`.
+ * Defines the default implementation of `boost::mpl11::at`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_AT_HPP
@@ -32,9 +32,9 @@ namespace boost { namespace mpl11 {
 namespace at_detail {
     template <typename Sequence, typename Iterator>
     struct value_deref
-        : intrinsic::value_of<
+        : value_of<
             Sequence,
-            typename intrinsic::deref<Iterator>::type
+            typename deref<Iterator>::type
         >
     { };
 
@@ -46,11 +46,11 @@ namespace at_detail {
     private:
         using Iter = typename algorithm::find_if<
             Sequence,
-            equal_to<intrinsic::key_of<Sequence, _1>, Key>
+            equal_to<key_of<Sequence, _1>, Key>
         >::type;
 
         using WasNotFound = typename equal_to<
-            Iter, typename intrinsic::end<Sequence>::type
+            Iter, typename end<Sequence>::type
         >::type;
 
     public:
@@ -64,7 +64,7 @@ namespace at_detail {
 
     template <typename Sequence, typename Key>
     struct at_impl<category::associative_sequence, Sequence, Key>
-        : intrinsic::at<Sequence, Key, not_found>
+        : at<Sequence, Key, not_found>
     {
         static_assert(
             !detail::is_same<typename at_impl::type, not_found>::value,
@@ -76,18 +76,18 @@ namespace at_detail {
     struct at_impl<category::forward_sequence, Sequence, N> {
     private:
         using Iter = typename algorithm::advance<
-            typename intrinsic::begin<Sequence>::type, N
+            typename begin<Sequence>::type, N
         >::type;
 
         static_assert(
             N::value >= 0 &&
             not_equal_to<
-                Iter, typename intrinsic::end<Sequence>::type
+                Iter, typename end<Sequence>::type
             >::type::value,
         "Trying to access a sequence at an index that is out of bounds.");
 
     public:
-        using type = typename intrinsic::deref<Iter>::type;
+        using type = typename deref<Iter>::type;
     };
 } // end namespace at_detail
 

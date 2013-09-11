@@ -24,10 +24,10 @@ namespace foldl_detail {
               bool = equal_to<First, Last>::type::value>
     struct foldl_impl
         : foldl_impl<
-            typename intrinsic::next<First>::type,
+            typename next<First>::type,
             Last,
             typename apply_wrap<
-                F, State, typename intrinsic::deref<First>::type
+                F, State, typename deref<First>::type
             >::type,
             F
         >
@@ -42,8 +42,8 @@ namespace foldl_detail {
 template <typename Sequence, typename State, typename F>
 struct dispatch<detail::default_<tag::foldl>, Sequence, State, F>
     : foldl_detail::foldl_impl<
-        typename intrinsic::begin<Sequence>::type,
-        typename intrinsic::end<Sequence>::type,
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type,
         State,
         typename lambda<F>::type
     >

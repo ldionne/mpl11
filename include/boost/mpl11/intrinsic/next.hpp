@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::next`.
+ * Defines `boost::mpl11::next`.
  */
 
 #ifndef BOOST_MPL11_INTRINSIC_NEXT_HPP
@@ -10,9 +10,9 @@
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsic
+     * @ingroup intrinsics
      *
      * Returns the next iterator in the sequence.
      *
@@ -25,6 +25,6 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct next
         : dispatch<tag::next, Iterator>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INTRINSIC_NEXT_HPP

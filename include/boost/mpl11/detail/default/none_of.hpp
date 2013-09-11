@@ -25,7 +25,7 @@ template <typename Sequence, typename Predicate>
 struct dispatch<detail::default_<tag::none_of>, Sequence, Predicate>
     : equal_to<
         typename algorithm::find_if<Sequence, Predicate>::type,
-        typename intrinsic::end<Sequence>::type
+        typename end<Sequence>::type
     >
 { };
 }} // end namespace boost::mpl11

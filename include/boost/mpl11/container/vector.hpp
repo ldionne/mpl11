@@ -63,7 +63,7 @@ namespace vector_detail {
 
     template <unsigned long Position, typename Vector>
     struct dispatch<tag::deref, Position, Vector>
-        : intrinsic::at_c<Vector, Position>
+        : at_c<Vector, Position>
     { };
 } // end namespace vector_detail
 

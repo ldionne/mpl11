@@ -58,9 +58,7 @@ namespace equal_to_detail {
     template <typename S1, typename S2>
     class associative_sequence_equal {
         template <typename First1,
-                  bool = equal_to<
-                    First1, typename intrinsic::end<S1>::type
-                  >::type::value>
+                  bool = equal_to<First1, typename end<S1>::type>::type::value>
         struct apply;
 
         template <typename First1>
@@ -70,14 +68,14 @@ namespace equal_to_detail {
 
         template <typename First1>
         struct apply<First1, false> {
-            using Element = typename intrinsic::deref<First1>::type;
-            using Key = typename intrinsic::key_of<S1, Element>::type;
+            using Element = typename deref<First1>::type;
+            using Key = typename key_of<S1, Element>::type;
 
             using type = typename and_<
-                intrinsic::has_key<S2, Key>,
+                has_key<S2, Key>,
                 lazy_equal_to<
-                    intrinsic::value_of<S1, Element>,
-                    intrinsic::at<S2, Key>
+                    value_of<S1, Element>,
+                    at<S2, Key>
                 >
             >::type;
         };
@@ -85,10 +83,10 @@ namespace equal_to_detail {
     public:
         using type = typename and_<
             equal_to<
-                typename intrinsic::size<S1>::type,
-                typename intrinsic::size<S2>::type
+                typename size<S1>::type,
+                typename size<S2>::type
             >,
-            apply<typename intrinsic::begin<S1>::type>
+            apply<typename begin<S1>::type>
         >::type;
     };
 
@@ -116,8 +114,8 @@ namespace equal_to_detail {
 template <typename T1, typename T2>
 struct dispatch<detail::default_<tag::equal_to>, T1, T2>
     : decltype(equal_to_detail::pick<T1, T2>(
-        (typename intrinsic::category_of<T1>::type*)nullptr,
-        (typename intrinsic::category_of<T2>::type*)nullptr
+        (typename category_of<T1>::type*)nullptr,
+        (typename category_of<T2>::type*)nullptr
     ))
 { };
 }} // end namespace boost::mpl11
