@@ -3,19 +3,21 @@
  * Defines `boost::mpl11::unpack_args`.
  */
 
-#ifndef BOOST_MPL11_UNPACK_ARGS_HPP
-#define BOOST_MPL11_UNPACK_ARGS_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_UNPACK_ARGS_HPP
+#define BOOST_MPL11_FUNCTIONAL_UNPACK_ARGS_HPP
 
 #include <boost/mpl11/algorithm/copy.hpp>
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container/variadic.hpp>
+#include <boost/mpl11/functional/apply.hpp>
 
 
 namespace boost { namespace mpl11 {
     /*!
-     * Higher-order primitive transforming an `n`-ary `LambdaExpression` `F`
-     * into an unary `MetafunctionClass` accepting a single sequence of
-     * `n` arguments.
+     * @ingroup functional
+     *
+     * Higher-order primitive transforming an `n`-ary @ref LambdaExpression
+     * `F` into an unary @ref MetafunctionClass accepting a single sequence
+     * of `n` arguments.
      */
     template <typename F>
     struct unpack_args {
@@ -28,4 +30,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_UNPACK_ARGS_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_UNPACK_ARGS_HPP

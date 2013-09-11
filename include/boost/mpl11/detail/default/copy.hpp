@@ -12,11 +12,11 @@
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
 #include <boost/mpl11/intrinsic/push_back.hpp>
 #include <boost/mpl11/intrinsic/push_front.hpp>
-#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
 
 

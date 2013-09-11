@@ -8,12 +8,12 @@
 
 #include <boost/mpl11/algorithm/advance.hpp>
 #include <boost/mpl11/algorithm/find_if.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>

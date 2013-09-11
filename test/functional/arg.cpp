@@ -3,10 +3,10 @@
  * Contains unit tests for `boost::mpl11::arg`.
  */
 
-#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 
-#include <boost/mpl11/bind.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/functional/bind.hpp>
 
 
 using namespace boost::mpl11;

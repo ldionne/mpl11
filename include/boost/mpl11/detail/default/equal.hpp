@@ -9,12 +9,12 @@
 #include <boost/mpl11/algorithm/all_of.hpp>
 #include <boost/mpl11/algorithm/equal.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/functional/unpack_args.hpp>
 #include <boost/mpl11/intrinsic/size.hpp>
 #include <boost/mpl11/operator/and.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
-#include <boost/mpl11/unpack_args.hpp>
 #include <boost/mpl11/view/zipped.hpp>
 
 

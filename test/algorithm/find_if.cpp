@@ -6,10 +6,10 @@
 #include <boost/mpl11/algorithm/find_if.hpp>
 
 #include <boost/mpl11/algorithm/advance.hpp>
-#include <boost/mpl11/always.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/functional/always.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>

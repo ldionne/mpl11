@@ -6,10 +6,10 @@
 #ifndef BOOST_MPL11_ADAPTOR_HPP
 #define BOOST_MPL11_ADAPTOR_HPP
 
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/is_inplace_transformation.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/if.hpp>
 
 

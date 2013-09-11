@@ -3,13 +3,13 @@
  * Defines `boost::mpl11::bind`.
  */
 
-#ifndef BOOST_MPL11_BIND_HPP
-#define BOOST_MPL11_BIND_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_BIND_HPP
+#define BOOST_MPL11_FUNCTIONAL_BIND_HPP
 
-#include <boost/mpl11/apply_wrap.hpp>
+#include <boost/mpl11/functional/apply_wrap.hpp>
+#include <boost/mpl11/functional/is_placeholder.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -22,6 +22,8 @@ namespace boost { namespace mpl11 {
     } // end namespace bind_detail
 
     /*!
+     * @ingroup functional
+     *
      * Higher order primitive for argument binding.
      *
      * `bind<F, An...>::apply<Args...>::type` is equivalent to
@@ -51,4 +53,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_BIND_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_BIND_HPP

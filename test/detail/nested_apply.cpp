@@ -5,7 +5,7 @@
 
 #include <boost/mpl11/detail/nested_apply.hpp>
 
-#include "../metafunction_classes.hpp"
+#include "../functional/metafunction_classes.hpp"
 #include <boost/mpl11/detail/has_type.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 

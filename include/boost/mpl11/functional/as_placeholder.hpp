@@ -3,15 +3,17 @@
  * Defines `boost::mpl11::as_placeholder`.
  */
 
-#ifndef BOOST_MPL11_AS_PLACEHOLDER_HPP
-#define BOOST_MPL11_AS_PLACEHOLDER_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_AS_PLACEHOLDER_HPP
+#define BOOST_MPL11_FUNCTIONAL_AS_PLACEHOLDER_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/functional/is_placeholder.hpp>
 
 
 namespace boost { namespace mpl11 {
     /*!
+     * @ingroup functional
+     *
      * Wraps an arbitrary type to make it into a placeholder.
      *
      * Specifically, `as_placeholder<T>` is a type publically derived from
@@ -28,4 +30,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_AS_PLACEHOLDER_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_AS_PLACEHOLDER_HPP

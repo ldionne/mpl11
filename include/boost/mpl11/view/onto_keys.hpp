@@ -6,9 +6,9 @@
 #ifndef BOOST_MPL11_VIEW_ONTO_KEYS_HPP
 #define BOOST_MPL11_VIEW_ONTO_KEYS_HPP
 
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/intrinsic/key_of.hpp>
 #include <boost/mpl11/view/transformed.hpp>
 

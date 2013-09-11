@@ -3,8 +3,8 @@
  * Defines `boost::mpl11::apply_wrap`.
  */
 
-#ifndef BOOST_MPL11_APPLY_WRAP_HPP
-#define BOOST_MPL11_APPLY_WRAP_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_APPLY_WRAP_HPP
+#define BOOST_MPL11_FUNCTIONAL_APPLY_WRAP_HPP
 
 #include <boost/mpl11/detail/nested_apply.hpp>
 #include <boost/mpl11/empty_base.hpp>
@@ -31,6 +31,8 @@ namespace apply_wrap_detail {
 } // end namespace apply_wrap_detail
 
 /*!
+ * @ingroup functional
+ *
  * Invokes a `MetafunctionClass` `F` with arguments `Args...`.
  *
  * `apply_wrap` is just a wrapper around `F::apply<Args...>::type` or
@@ -49,4 +51,4 @@ struct apply_wrap
 { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_APPLY_WRAP_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_APPLY_WRAP_HPP

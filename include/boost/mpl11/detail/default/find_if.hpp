@@ -6,15 +6,15 @@
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_FIND_IF_HPP
 #define BOOST_MPL11_DETAIL_DEFAULT_FIND_IF_HPP
 
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/apply_wrap.hpp>
+#include <boost/mpl11/functional/lambda.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 

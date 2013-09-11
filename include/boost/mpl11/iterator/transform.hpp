@@ -7,8 +7,8 @@
 #define BOOST_MPL11_ITERATOR_TRANSFORM_HPP
 
 #include <boost/mpl11/adaptor.hpp>
-#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/apply.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/tags.hpp>

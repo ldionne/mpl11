@@ -7,8 +7,8 @@
 #define BOOST_MPL11_DETAIL_DEFAULT_DISTANCE_HPP
 
 #include <boost/mpl11/algorithm/foldl.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/tags.hpp>

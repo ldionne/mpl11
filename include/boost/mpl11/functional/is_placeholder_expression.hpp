@@ -3,14 +3,19 @@
  * Defines `boost::mpl11::is_placeholder_expression`.
  */
 
-#ifndef BOOST_MPL11_IS_PLACEHOLDER_EXPRESSION_HPP
-#define BOOST_MPL11_IS_PLACEHOLDER_EXPRESSION_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_IS_PLACEHOLDER_EXPRESSION_HPP
+#define BOOST_MPL11_FUNCTIONAL_IS_PLACEHOLDER_EXPRESSION_HPP
 
-#include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/functional/is_placeholder.hpp>
 #include <boost/mpl11/operator/or.hpp>
 
 
 namespace boost { namespace mpl11 {
+    /*!
+     * @ingroup functional
+     *
+     * Returns whether `E` is a @ref PlaceholderExpression.
+     */
     template <typename E>
     struct is_placeholder_expression
         : is_placeholder<E>
@@ -30,4 +35,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_IS_PLACEHOLDER_EXPRESSION_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_IS_PLACEHOLDER_EXPRESSION_HPP

@@ -7,9 +7,9 @@
 #define BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 
 #include <boost/mpl11/adaptor.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>

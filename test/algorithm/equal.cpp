@@ -5,9 +5,9 @@
 
 #include <boost/mpl11/algorithm/equal.hpp>
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/functional/always.hpp>
 
 
 using namespace boost::mpl11;

@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::quote`.
  */
 
-#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/functional/quote.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
 

@@ -3,8 +3,8 @@
  * Defines `boost::mpl11::quote`.
  */
 
-#ifndef BOOST_MPL11_QUOTE_HPP
-#define BOOST_MPL11_QUOTE_HPP
+#ifndef BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
+#define BOOST_MPL11_FUNCTIONAL_QUOTE_HPP
 
 #include <boost/mpl11/detail/either.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -12,8 +12,10 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * Higher-order primitive wrapping a `Metafunction` to create a
-     * corresponding `MetafunctionClass`.
+     * @ingroup functional
+     *
+     * Higher-order primitive wrapping a @ref Metafunction to create a
+     * corresponding @ref MetafunctionClass.
      *
      * Specifically, `quote<F>::apply<Args...>::type` is equivalent to
      * `F<Args...>::type` if that expression is valid, and `F<Args...>`
@@ -31,4 +33,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_QUOTE_HPP
+#endif // !BOOST_MPL11_FUNCTIONAL_QUOTE_HPP

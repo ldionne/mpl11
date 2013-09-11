@@ -9,12 +9,12 @@
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 #include <boost/mpl11/view/joined.hpp>

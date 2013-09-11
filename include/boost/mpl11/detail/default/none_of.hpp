@@ -8,8 +8,8 @@
 
 #include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/algorithm/none_of.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
