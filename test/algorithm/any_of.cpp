@@ -9,7 +9,7 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
@@ -30,12 +30,12 @@ namespace specified_predicate {
 
     static_assert(any_of<
         vector<float, int, char>,
-        intrinsic::equal_to<char, _1>
+        equal_to<char, _1>
     >::type::value, "");
 
     static_assert(!any_of<
         vector<float, int, char>,
-        intrinsic::equal_to<void, _1>
+        equal_to<void, _1>
     >::type::value, "");
 
     static_assert(!any_of<

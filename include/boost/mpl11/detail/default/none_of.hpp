@@ -11,7 +11,7 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -23,7 +23,7 @@ struct dispatch<detail::default_<tag::none_of>, Sequence>
 
 template <typename Sequence, typename Predicate>
 struct dispatch<detail::default_<tag::none_of>, Sequence, Predicate>
-    : intrinsic::equal_to<
+    : equal_to<
         typename algorithm::find_if<Sequence, Predicate>::type,
         typename intrinsic::end<Sequence>::type
     >

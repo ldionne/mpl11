@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::not_`.
+ * Defines the default implementation of `boost::mpl11::not_`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_NOT_HPP
@@ -13,10 +13,10 @@
 
 
 namespace boost { namespace mpl11 {
-template <typename F>
-struct dispatch<detail::default_<tag::not_>, F>
-    : identity<bool_<!F::type::value>>
-{ };
+    template <typename F>
+    struct dispatch<detail::default_<tag::not_>, F>
+        : identity<bool_<!F::type::value>>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_DETAIL_DEFAULT_NOT_HPP

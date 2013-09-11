@@ -11,8 +11,8 @@
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/intrinsic/not.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/operator/not.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -21,7 +21,7 @@ template <typename Sequence, typename Predicate>
 struct dispatch<detail::default_<tag::all_of>, Sequence, Predicate>
     : algorithm::none_of<
         Sequence,
-        intrinsic::not_<apply_wrap<typename lambda<Predicate>::type, _1>>
+        not_<apply_wrap<typename lambda<Predicate>::type, _1>>
     >
 { };
 

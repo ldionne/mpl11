@@ -12,16 +12,16 @@
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
 namespace foldr_detail {
     template <typename First, typename Last, typename State, typename F,
-              bool = intrinsic::equal_to<First, Last>::type::value>
+              bool = equal_to<First, Last>::type::value>
     struct foldr_impl
         : apply_wrap<
             F,

@@ -1,35 +1,26 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::equal_to`.
+ * Defines `boost::mpl11::equal_to`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_EQUAL_TO_HPP
-#define BOOST_MPL11_INTRINSIC_EQUAL_TO_HPP
+#ifndef BOOST_MPL11_EQUAL_TO_HPP
+#define BOOST_MPL11_EQUAL_TO_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup comparison_intrinsic
+     * @ingroup comparison_operators
      *
      * Returns whether `T1 == T2 == ...Tn`.
-     */
-    template <typename T1, typename T2, typename ...Tn>
-    struct equal_to BOOST_MPL11_DOXYGEN_ONLY(<T1, T2, Tn...>)
-        : dispatch<tag::equal_to, T1, T2, Tn...>
-    { };
-
-    /*!
-     * @ingroup comparison_intrinsic
-     *
-     * Returns whether `T1 == T2`.
      *
      *
      * ### Semantics and default implementation
      *
+     * When more than two arguments are provided, as described in
+     * @ref comparison_operators. Otherwise:
      * - If `T1` and `T2` are @ref IntegralConstant "Integral Constants",
      *   equivalent to `identity<bool_<T1::value == T2::value>>`.
      * - If `T1` and `T2` are @ref AssociativeSequence "Associative Sequences",
@@ -40,14 +31,14 @@ namespace boost { namespace mpl11 { namespace intrinsic {
      * - Otherwise, equivalent to
      *   `identity<bool_<std::is_same<T1, T2>::value>>`.
      */
-    template <typename T1, typename T2>
-    struct equal_to<T1, T2>
-        : dispatch<tag::equal_to, T1, T2>
+    template <typename T1, typename T2, typename ...Tn>
+    struct equal_to
+        : dispatch<tag::equal_to, T1, T2, Tn...>
     { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/equal_to.hpp>
 #endif
 
-#endif // !BOOST_MPL11_INTRINSIC_EQUAL_TO_HPP
+#endif // !BOOST_MPL11_EQUAL_TO_HPP

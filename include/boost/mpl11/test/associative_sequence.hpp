@@ -7,10 +7,10 @@
 #define BOOST_MPL11_TEST_ASSOCIATIVE_SEQUENCE_HPP
 
 #include <boost/mpl11/intrinsic/at.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/has_key.hpp>
 #include <boost/mpl11/intrinsic/key_of.hpp>
 #include <boost/mpl11/intrinsic/value_of.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/test/forward_sequence.hpp>
 
 

@@ -7,8 +7,8 @@
 
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;

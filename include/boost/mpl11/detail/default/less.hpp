@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::less`.
+ * Defines the default implementation of `boost::mpl11::less`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_LESS_HPP
@@ -11,17 +11,17 @@
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/and.hpp>
-#include <boost/mpl11/intrinsic/less.hpp>
+#include <boost/mpl11/operator/and.hpp>
+#include <boost/mpl11/operator/less.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
 template <typename T1, typename T2, typename ...Tn>
 struct dispatch<detail::default_<tag::less>, T1, T2, Tn...>
-    : intrinsic::and_<
-        intrinsic::less<T1, T2>,
-        intrinsic::less<T2, Tn...>
+    : and_<
+        less<T1, T2>,
+        less<T2, Tn...>
     >
 { };
 

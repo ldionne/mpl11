@@ -510,6 +510,7 @@
 #include <boost/mpl11/is_placeholder_expression.hpp>
 #include <boost/mpl11/iterators.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/operators.hpp>
 #include <boost/mpl11/pair.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>

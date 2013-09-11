@@ -26,9 +26,7 @@ namespace boost { namespace mpl11 { namespace tag {
     struct min;
     struct none_of;
 
-
     // Intrinsic tags
-    struct and_;
     struct at;
     struct back;
     struct begin;
@@ -36,24 +34,16 @@ namespace boost { namespace mpl11 { namespace tag {
     struct clear;
     struct deref;
     struct end;
-    struct equal_to;
     struct erase;
     struct erase_key;
     struct first;
     struct front;
-    struct greater;
-    struct greater_equal;
     struct has_key;
     struct insert;
     struct insert_range;
     struct is_empty;
     struct key_of;
-    struct less;
-    struct less_equal;
     struct next;
-    struct not_;
-    struct not_equal_to;
-    struct or_;
     struct pop_back;
     struct pop_front;
     struct prior;
@@ -62,6 +52,17 @@ namespace boost { namespace mpl11 { namespace tag {
     struct second;
     struct size;
     struct value_of;
+
+    // Operator tags
+    struct and_;
+    struct equal_to;
+    struct greater;
+    struct greater_equal;
+    struct less;
+    struct less_equal;
+    struct not_;
+    struct not_equal_to;
+    struct or_;
 }}} // end namespace boost::mpl11::tag
 
 #endif // !BOOST_MPL11_TAGS_HPP

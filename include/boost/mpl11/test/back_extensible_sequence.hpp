@@ -6,9 +6,9 @@
 #ifndef BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP
 
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/pop_back.hpp>
 #include <boost/mpl11/intrinsic/push_back.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/test/extensible_sequence.hpp>
 
 

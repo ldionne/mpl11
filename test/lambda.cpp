@@ -11,8 +11,8 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/intrinsic/not.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/operator/not.hpp>
 
 
 using namespace boost::mpl11;
@@ -52,7 +52,7 @@ namespace test_lambda_expression_use_cases {
     >::value, "");
 
     static_assert(!apply<
-        intrinsic::not_<
+        not_<
             apply_wrap<lambda<identity<_1>>::type, _1>
         >,
         true_

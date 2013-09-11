@@ -11,9 +11,9 @@
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/erase.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 #include <boost/mpl11/view/joined.hpp>
@@ -22,7 +22,7 @@
 namespace boost { namespace mpl11 {
 namespace erase_detail {
     template <typename Sequence, typename First, typename Last,
-              bool = intrinsic::equal_to<
+              bool = equal_to<
                 Last, typename intrinsic::end<Sequence>::type
               >::type::value>
     struct erase_impl

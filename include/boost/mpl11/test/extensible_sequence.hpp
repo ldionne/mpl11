@@ -9,10 +9,10 @@
 #include <boost/mpl11/algorithm/advance.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/erase.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
 #include <boost/mpl11/intrinsic/insert_range.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 namespace boost { namespace mpl11 {

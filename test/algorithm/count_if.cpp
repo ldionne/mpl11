@@ -9,7 +9,7 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
@@ -36,7 +36,7 @@ static_assert(count_if<
 >::type::value == 2, "");
 
 static_assert(count_if<
-    vector<float, int>, intrinsic::equal_to<int, _1>
+    vector<float, int>, equal_to<int, _1>
 >::type::value == 1, "");
 
 

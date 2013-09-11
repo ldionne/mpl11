@@ -9,8 +9,8 @@
 #include <boost/mpl11/intrinsic/back.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/prior.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/test/forward_sequence.hpp>
 
 

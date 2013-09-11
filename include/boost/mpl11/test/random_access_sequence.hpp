@@ -7,7 +7,7 @@
 #define BOOST_MPL11_TEST_RANDOM_ACCESS_SEQUENCE_HPP
 
 #include <boost/mpl11/intrinsic/at.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/test/bidirectional_sequence.hpp>
 
 

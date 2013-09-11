@@ -9,12 +9,12 @@
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/front.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/intrinsic/not_equal_to.hpp>
 #include <boost/mpl11/intrinsic/size.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/operator/not_equal_to.hpp>
 
 
 namespace boost { namespace mpl11 {

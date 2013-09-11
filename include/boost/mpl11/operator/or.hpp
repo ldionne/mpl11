@@ -1,18 +1,18 @@
 /*!
  * @file
- * Defines `boost::mpl11::intrinsic::or_`.
+ * Defines `boost::mpl11::or_`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_OR_HPP
-#define BOOST_MPL11_INTRINSIC_OR_HPP
+#ifndef BOOST_MPL11_OPERATOR_OR_HPP
+#define BOOST_MPL11_OPERATOR_OR_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 { namespace intrinsic {
+namespace boost { namespace mpl11 {
     /*!
-     * @ingroup logical_intrinsic
+     * @ingroup logical_operators
      *
      * Returns the result of short-circuit _logical or_ (`||`) on the result
      * of its arguments.
@@ -21,15 +21,10 @@ namespace boost { namespace mpl11 { namespace intrinsic {
     struct or_
         : dispatch<tag::or_, F1, F2, Fn...>
     { };
-
-    template <typename F1, typename F2>
-    struct or_<F1, F2>
-        : dispatch<tag::or_, F1, F2>
-    { };
-}}} // end namespace boost::mpl11::intrinsic
+}} // end namespace boost::mpl11
 
 #ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
 #   include <boost/mpl11/detail/default/or.hpp>
 #endif
 
-#endif // !BOOST_MPL11_INTRINSIC_OR_HPP
+#endif // !BOOST_MPL11_OPERATOR_OR_HPP

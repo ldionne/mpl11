@@ -14,15 +14,15 @@
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/and.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/intrinsic/not_equal_to.hpp>
 #include <boost/mpl11/intrinsic/size.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/operator/and.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/operator/not_equal_to.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
@@ -48,7 +48,7 @@ namespace is_permutation_detail {
 
     template <typename T, typename U>
     struct lazy_equal_to
-        : intrinsic::equal_to<typename T::type, typename U::type>
+        : equal_to<typename T::type, typename U::type>
     { };
 
     template <typename Sequence1, typename Sequence2, typename Predicate>
@@ -56,7 +56,7 @@ namespace is_permutation_detail {
         using Last = typename intrinsic::end<Sequence1>::type;
 
         template <typename Iter, typename Counted,
-                  bool = intrinsic::equal_to<Iter, Last>::type::value>
+                  bool = equal_to<Iter, Last>::type::value>
         struct contains_same_elements;
 
         template <typename Iter, typename Counted,
@@ -100,16 +100,16 @@ namespace is_permutation_detail {
                 Sequence2, Pred
             >;
 
-            using type = typename intrinsic::and_<
-                intrinsic::not_equal_to<typename InSequence2::type, ulong<0>>,
+            using type = typename and_<
+                not_equal_to<typename InSequence2::type, ulong<0>>,
                 lazy_equal_to<InSequence1, InSequence2>,
                 check_next<Iter, basic_set<Element, Counted>>
             >::type;
         };
 
     public:
-        using type = typename intrinsic::and_<
-            intrinsic::equal_to<
+        using type = typename and_<
+            equal_to<
                 typename intrinsic::size<Sequence1>::type,
                 typename intrinsic::size<Sequence2>::type
             >,
@@ -130,7 +130,7 @@ struct dispatch<detail::default_<tag::is_permutation>, S1, S2, Pred>
 
 template <typename S1, typename S2>
 struct dispatch<detail::default_<tag::is_permutation>, S1, S2>
-    : algorithm::is_permutation<S1, S2, quote<intrinsic::equal_to>>
+    : algorithm::is_permutation<S1, S2, quote<equal_to>>
 { };
 }} // end namespace boost::mpl11
 

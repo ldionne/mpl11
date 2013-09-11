@@ -13,8 +13,8 @@
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 
@@ -25,7 +25,7 @@ namespace joined_detail {
     struct joined_iterator;
 
     template <typename Op, typename F1, typename L1, typename F2,
-              bool = intrinsic::equal_to<F1, L1>::type::value>
+              bool = equal_to<F1, L1>::type::value>
     struct dispatch;
 
     template <typename F1, typename L1, typename F2>

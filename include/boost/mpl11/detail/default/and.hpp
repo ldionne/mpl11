@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the default implementation of `boost::mpl11::intrinsic::and_`.
+ * Defines the default implementation of `boost::mpl11::and_`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_AND_HPP
@@ -11,22 +11,22 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/and.hpp>
+#include <boost/mpl11/operator/and.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
-template <typename F1, typename F2, typename ...Fn>
-struct dispatch<detail::default_<tag::and_>, F1, F2, Fn...>
-    : intrinsic::and_<F1, intrinsic::and_<F2, Fn...>>
-{ };
+    template <typename F1, typename F2, typename ...Fn>
+    struct dispatch<detail::default_<tag::and_>, F1, F2, Fn...>
+        : and_<F1, and_<F2, Fn...>>
+    { };
 
-template <typename F1, typename F2>
-struct dispatch<detail::default_<tag::and_>, F1, F2>
-    : identity<
-        bool_<if_c<F1::type::value, F2, false_>::type::type::value>
-    >
-{ };
+    template <typename F1, typename F2>
+    struct dispatch<detail::default_<tag::and_>, F1, F2>
+        : identity<
+            bool_<if_c<F1::type::value, F2, false_>::type::type::value>
+        >
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_DETAIL_DEFAULT_AND_HPP

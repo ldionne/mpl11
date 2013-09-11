@@ -9,14 +9,14 @@
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
 template <typename Sequence>
 struct dispatch<detail::default_<tag::is_empty>, Sequence>
-    : intrinsic::equal_to<
+    : equal_to<
         typename intrinsic::begin<Sequence>::type,
         typename intrinsic::end<Sequence>::type
     >

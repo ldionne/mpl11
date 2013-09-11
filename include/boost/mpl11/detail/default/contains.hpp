@@ -9,14 +9,14 @@
 #include <boost/mpl11/algorithm/find.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/not_equal_to.hpp>
+#include <boost/mpl11/operator/not_equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
 template <typename Sequence, typename Element>
 struct dispatch<detail::default_<tag::contains>, Sequence, Element>
-    : intrinsic::not_equal_to<
+    : not_equal_to<
         typename algorithm::find<Sequence, Element>::type,
         typename intrinsic::end<Sequence>::type
     >

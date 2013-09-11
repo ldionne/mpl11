@@ -13,16 +13,16 @@
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
 namespace boost { namespace mpl11 {
 namespace find_if_detail {
     template <typename First, typename Last, typename Predicate,
-              bool = intrinsic::equal_to<First, Last>::type::value>
+              bool = equal_to<First, Last>::type::value>
     struct find_if_impl
         : identity<Last>
     { };

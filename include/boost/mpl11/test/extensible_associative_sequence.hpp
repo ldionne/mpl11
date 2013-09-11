@@ -7,10 +7,10 @@
 #define BOOST_MPL11_TEST_EXTENSIBLE_ASSOCIATIVE_SEQUENCE_HPP
 
 #include <boost/mpl11/intrinsic/clear.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/erase_key.hpp>
 #include <boost/mpl11/intrinsic/insert.hpp>
 #include <boost/mpl11/intrinsic/insert_range.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 namespace boost { namespace mpl11 {

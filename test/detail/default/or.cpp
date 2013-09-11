@@ -1,15 +1,15 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::intrinsic::or_`.
+ * Contains unit tests for `boost::mpl11::or_`.
  */
 
-#include <boost/mpl11/intrinsic/or.hpp>
+#include <boost/mpl11/operator/or.hpp>
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>
 
 
-using boost::mpl11::intrinsic::or_;
+using boost::mpl11::or_;
 using true_ = boost::mpl11::identity<boost::mpl11::true_>;
 using false_ = boost::mpl11::identity<boost::mpl11::false_>;
 

@@ -21,10 +21,10 @@
 #include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
 #include <boost/mpl11/intrinsic/key_of.hpp>
-#include <boost/mpl11/intrinsic/not_equal_to.hpp>
 #include <boost/mpl11/intrinsic/value_of.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/operator/not_equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 
@@ -46,10 +46,10 @@ namespace at_detail {
     private:
         using Iter = typename algorithm::find_if<
             Sequence,
-            intrinsic::equal_to<intrinsic::key_of<Sequence, _1>, Key>
+            equal_to<intrinsic::key_of<Sequence, _1>, Key>
         >::type;
 
-        using WasNotFound = typename intrinsic::equal_to<
+        using WasNotFound = typename equal_to<
             Iter, typename intrinsic::end<Sequence>::type
         >::type;
 
@@ -81,7 +81,7 @@ namespace at_detail {
 
         static_assert(
             N::value >= 0 &&
-            intrinsic::not_equal_to<
+            not_equal_to<
                 Iter, typename intrinsic::end<Sequence>::type
             >::type::value,
         "Trying to access a sequence at an index that is out of bounds.");

@@ -6,12 +6,11 @@
 #include <boost/mpl11/algorithm/max.hpp>
 
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/equal_to.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
 using namespace boost::mpl11;
 using algorithm::max;
-using intrinsic::equal_to;
 
 static_assert(equal_to<
     max<int_<1>, int_<0>>::type,

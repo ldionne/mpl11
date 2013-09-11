@@ -1,15 +1,15 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::intrinsic::not_`.
+ * Contains unit tests for the default implementation of `boost::mpl11::not_`.
  */
 
-#include <boost/mpl11/intrinsic/not.hpp>
+#include <boost/mpl11/operator/not.hpp>
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>
 
 
-using boost::mpl11::intrinsic::not_;
+using boost::mpl11::not_;
 using true_ = boost::mpl11::identity<boost::mpl11::true_>;
 using false_ = boost::mpl11::identity<boost::mpl11::false_>;
 
