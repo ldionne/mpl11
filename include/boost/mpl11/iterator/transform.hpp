@@ -6,6 +6,18 @@
 #ifndef BOOST_MPL11_ITERATOR_TRANSFORM_HPP
 #define BOOST_MPL11_ITERATOR_TRANSFORM_HPP
 
+#include <boost/mpl11/detail/doxygen_only.hpp>
+
+
+namespace boost { namespace mpl11 { namespace iterator {
+    /*!
+     * @ingroup iterators
+     */
+    template <typename Iterator, typename F>
+    struct transform BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::iterator
+
+
 #include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/apply.hpp>
@@ -15,14 +27,6 @@
 
 
 namespace boost { namespace mpl11 {
-namespace iterator {
-    /*!
-     * @ingroup iterator
-     */
-    template <typename Iterator, typename F>
-    struct transform;
-} // end namespace iterator
-
 namespace transform_detail {
     template <typename F>
     struct transform_iterator_maker {

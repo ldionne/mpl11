@@ -7,7 +7,7 @@
 #define BOOST_MPL11_ITERATORS_HPP
 
 /*!
- * @defgroup iterator Iterators
+ * @defgroup iterators Iterators
  */
 
 /*!
@@ -15,6 +15,7 @@
  * Contains all the iterators provided with the library.
  */
 
+#include <boost/mpl11/iterator/reverse.hpp>
 #include <boost/mpl11/iterator/transform.hpp>
 
 #endif // !BOOST_MPL11_ITERATORS_HPP

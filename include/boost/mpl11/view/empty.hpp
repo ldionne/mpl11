@@ -9,14 +9,14 @@
 #include <boost/mpl11/detail/doxygen_only.hpp>
 
 
-namespace view {
+namespace boost { namespace mpl11 { namespace view {
     /*!
      * @ingroup views
      *
      * Random access sequence containing no elements.
      */
     struct empty BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
+}}} // end namespace boost::mpl11::view
 
 
 #include <boost/mpl11/categories.hpp>
