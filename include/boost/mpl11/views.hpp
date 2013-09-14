@@ -26,6 +26,7 @@
 #include <boost/mpl11/view/onto_values.hpp>
 #include <boost/mpl11/view/single_element.hpp>
 #include <boost/mpl11/view/sliced.hpp>
+#include <boost/mpl11/view/sorted.hpp>
 #include <boost/mpl11/view/transformed.hpp>
 #include <boost/mpl11/view/zipped.hpp>
 

@@ -25,6 +25,7 @@ namespace boost { namespace mpl11 { namespace tag {
     struct max;
     struct min;
     struct none_of;
+    struct sort;
 
     // Intrinsic tags
     struct at;

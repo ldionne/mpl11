@@ -29,6 +29,7 @@ mpl11_add_test(algorithm_is_permutation             algorithm/is_permutation.cpp
 mpl11_add_test(algorithm_max                        algorithm/max.cpp)
 mpl11_add_test(algorithm_min                        algorithm/min.cpp)
 mpl11_add_test(algorithm_none_of                    algorithm/none_of.cpp)
+mpl11_add_test(algorithm_sort                       algorithm/sort.cpp)
 mpl11_add_test(container_map                        container/map.cpp)
 mpl11_add_test(container_variadic                   container/variadic.cpp)
 mpl11_add_test(container_vector                     container/vector.cpp)
