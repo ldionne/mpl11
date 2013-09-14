@@ -6,17 +6,10 @@
 #ifndef BOOST_MPL11_VIEW_EMPTY_HPP
 #define BOOST_MPL11_VIEW_EMPTY_HPP
 
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
 namespace view {
-    namespace empty_detail { struct begin_end; }
-
     /*!
      * @ingroup views
      *
@@ -25,14 +18,24 @@ namespace view {
     struct empty BOOST_MPL11_DOXYGEN_ONLY({ });
 } // end namespace view
 
+
+#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/tags.hpp>
+
+
+namespace boost { namespace mpl11 {
+namespace empty_detail { struct begin_end; }
+
 template <>
 struct dispatch<tag::begin, view::empty>
-    : identity<view::empty_detail::begin_end>
+    : identity<empty_detail::begin_end>
 { };
 
 template <>
 struct dispatch<tag::end, view::empty>
-    : identity<view::empty_detail::begin_end>
+    : identity<empty_detail::begin_end>
 { };
 
 template <>
@@ -41,7 +44,7 @@ struct dispatch<tag::category_of, view::empty>
 { };
 
 template <>
-struct dispatch<tag::category_of, view::empty_detail::begin_end>
+struct dispatch<tag::category_of, empty_detail::begin_end>
     : identity<category::random_access_iterator>
 { };
 }} // end namespace boost::mpl11

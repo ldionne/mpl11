@@ -6,8 +6,23 @@
 #ifndef BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 #define BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
+
+
+namespace boost { namespace mpl11{ namespace view {
+    /*!
+     * @ingroup views
+     *
+     * View onto an arbitrary `Element` as on a single-element sequence.
+     *
+     * `single_element` is a random access sequence.
+     */
+    template <typename Element>
+    struct single_element BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::view
+
+
+#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>
@@ -47,18 +62,6 @@ template <typename Op, typename E, bool B>
 struct dispatch<Op, single_element_detail::single_element_iterator<E, B>>
     : single_element_detail::dispatch<Op, E, B>
 { };
-
-namespace view {
-    /*!
-     * @ingroup views
-     *
-     * View onto an arbitrary `Element` as on a single-element sequence.
-     *
-     * `single_element` is a random access sequence.
-     */
-    template <typename Element>
-    struct single_element BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
 
 template <typename Op, typename Element, typename ...Args>
 struct dispatch<Op, view::single_element<Element>, Args...>

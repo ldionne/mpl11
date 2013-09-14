@@ -6,17 +6,10 @@
 #ifndef BOOST_MPL11_VIEW_BOUNDED_BY_HPP
 #define BOOST_MPL11_VIEW_BOUNDED_BY_HPP
 
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/intrinsic/category_of.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/tags.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace view {
+namespace boost { namespace mpl11 { namespace view {
     /*!
      * @ingroup views
      *
@@ -28,8 +21,18 @@ namespace view {
      */
     template <typename First, typename Last>
     struct bounded_by BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
+}}} // end namespace boost::mpl11::view
 
+
+#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/category_of.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/tags.hpp>
+
+
+namespace boost { namespace mpl11 {
 template <typename First, typename Last>
 struct dispatch<tag::begin, view::bounded_by<First, Last>>
     : identity<First>

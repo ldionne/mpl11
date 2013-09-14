@@ -6,8 +6,25 @@
 #ifndef BOOST_MPL11_VIEW_JOINED_HPP
 #define BOOST_MPL11_VIEW_JOINED_HPP
 
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
+
+
+namespace boost { namespace mpl11 { namespace view {
+    /*!
+     * @ingroup views
+     *
+     * A view into the sequence of elements formed by concatenating two
+     * or more sequences.
+     *
+     * Regardless of the category of the underlying sequences, `joined`
+     * is only a forward sequence.
+     */
+    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
+    struct joined BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::view
+
+
+#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
@@ -62,20 +79,6 @@ template <typename OperationTag, typename F1, typename L1, typename L2>
 struct dispatch<OperationTag, joined_detail::joined_iterator<F1, L1, L2>>
     : joined_detail::dispatch<OperationTag, F1, L1, L2>
 { };
-
-namespace view {
-    /*!
-     * @ingroup views
-     *
-     * A view into the sequence of elements formed by concatenating two
-     * or more sequences.
-     *
-     * Regardless of the category of the underlying sequences, `joined`
-     * is only a forward sequence.
-     */
-    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
-    struct joined BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
 
 template <typename Op, typename S1, typename S2,typename...Sn,typename...Args>
 struct dispatch<Op, view::joined<S1, S2, Sn...>, Args...>

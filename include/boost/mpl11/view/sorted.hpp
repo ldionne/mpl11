@@ -8,6 +8,22 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
+
+
+namespace boost { namespace mpl11 { namespace view {
+    /*!
+     * @ingroup views
+     *
+     * View onto the elements of a sequence sorted according to the
+     * ordering relation `Predicate`.
+     *
+     * If left unspecified, `Predicate` is equivalent to `less<_1, _2>`.
+     */
+    template <typename Sequence, typename Predicate = detail::optional>
+    struct sorted BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::view
+
+
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/apply_wrap.hpp>
 #include <boost/mpl11/functional/arg.hpp>
@@ -62,19 +78,6 @@ namespace sorted_detail {
         >;
     };
 } // end namespace sorted_detail
-
-namespace view {
-    /*!
-     * @ingroup views
-     *
-     * View onto the elements of a sequence sorted according to the
-     * ordering relation `Predicate`.
-     *
-     * If left unspecified, `Predicate` is equivalent to `less<_1, _2>`.
-     */
-    template <typename Sequence, typename Predicate = detail::optional>
-    struct sorted BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
 
 template <typename Operation, typename S, typename Pred, typename ...Args>
 struct dispatch<Operation, view::sorted<S, Pred>, Args...>

@@ -6,8 +6,24 @@
 #ifndef BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 #define BOOST_MPL11_VIEW_ONTO_ITERATORS_HPP
 
-#include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
+
+
+namespace boost { namespace mpl11 { namespace view {
+    /*!
+     * @ingroup views
+     *
+     * View onto the iterators of a sequence.
+     *
+     * The category of `onto_iterators` depends on the category of the
+     * underlying `Sequence`.
+     */
+    template <typename Sequence>
+    struct onto_iterators BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::view
+
+
+#include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -36,19 +52,6 @@ template <typename Iterator>
 struct dispatch<tag::deref, onto_iterators_detail::raw_iterator<Iterator>>
     : identity<Iterator>
 { };
-
-namespace view {
-    /*!
-     * @ingroup views
-     *
-     * View onto the iterators of a sequence.
-     *
-     * The category of `onto_iterators` depends on the category of the
-     * underlying `Sequence`.
-     */
-    template <typename Sequence>
-    struct onto_iterators BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
 
 template <typename OperationTag, typename Sequence, typename ...Args>
 struct dispatch<OperationTag, view::onto_iterators<Sequence>, Args...>

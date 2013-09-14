@@ -7,14 +7,9 @@
 #define BOOST_MPL11_VIEW_ONTO_KEYS_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/functional/arg.hpp>
-#include <boost/mpl11/intrinsic/key_of.hpp>
-#include <boost/mpl11/view/transformed.hpp>
 
 
-namespace boost { namespace mpl11 {
-namespace view {
+namespace boost { namespace mpl11 { namespace view {
     /*!
      * @ingroup views
      *
@@ -25,8 +20,16 @@ namespace view {
      */
     template <typename Sequence>
     struct onto_keys BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
+}}} // end namespace boost::mpl11::view
 
+
+#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/intrinsic/key_of.hpp>
+#include <boost/mpl11/view/transformed.hpp>
+
+
+namespace boost { namespace mpl11 {
 template <typename OperationTag, typename Sequence, typename ...Args>
 struct dispatch<OperationTag, view::onto_keys<Sequence>, Args...>
     : dispatch<

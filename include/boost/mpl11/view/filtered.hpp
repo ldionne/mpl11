@@ -6,9 +6,25 @@
 #ifndef BOOST_MPL11_VIEW_FILTERED_HPP
 #define BOOST_MPL11_VIEW_FILTERED_HPP
 
+#include <boost/mpl11/detail/doxygen_only.hpp>
+
+
+namespace boost { namespace mpl11 { namespace view {
+    /*!
+     * @ingroup views
+     *
+     * View into the subset of elements of `Sequence` satisfying `Predicate`.
+     *
+     * Regardless of the category of the underlying sequence, `filtered`
+     * is only a forward sequence.
+     */
+    template <typename Sequence, typename Predicate>
+    struct filtered BOOST_MPL11_DOXYGEN_ONLY({ });
+}}} // end namespace boost::mpl11::view
+
+
 #include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
@@ -60,19 +76,6 @@ struct dispatch<
 >
     : identity<category::forward_iterator>
 { };
-
-namespace view {
-    /*!
-     * @ingroup views
-     *
-     * View into the subset of elements of `Sequence` satisfying `Predicate`.
-     *
-     * Regardless of the category of the underlying sequence, `filtered`
-     * is only a forward sequence.
-     */
-    template <typename Sequence, typename Predicate>
-    struct filtered BOOST_MPL11_DOXYGEN_ONLY({ });
-} // end namespace view
 
 template <typename Op, typename Sequence, typename Predicate, typename ...Args>
 struct dispatch<Op, view::filtered<Sequence, Predicate>, Args...>
