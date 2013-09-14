@@ -9,8 +9,6 @@
 #include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/algorithm/foldr.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>

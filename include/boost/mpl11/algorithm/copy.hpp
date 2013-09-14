@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *
      * Overloaded algorithm for copying elements from a sequence to another.
      */
-    template <typename From, typename To, typename Insert = detail::optional>
+    template <typename, typename, typename = detail::optional>
     struct copy;
 
     /*!
@@ -56,7 +56,7 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *   @ref BackExtensibleSequence
      * - `foldr<From, To, push_front<_1, _2>>` if `To` is a
      *   @ref FrontExtensibleSequence
-     * - `foldl<From, To, insert<_1, _2>>` if `To` is a
+     * - `foldl<From, To, insert<_1, _2>>` if `To` is an
      *   @ref ExtensibleAssociativeSequence
      *
      *
