@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/inserter/into.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -22,15 +23,13 @@
 namespace boost { namespace mpl11 {
 namespace erase_detail {
     template <typename Sequence, typename First, typename Last,
-              bool = equal_to<
-                Last, typename end<Sequence>::type
-              >::type::value>
+              bool = equal_to<Last, typename end<Sequence>::type>::type::value>
     struct erase_impl
         : algorithm::copy<
             view::bounded_by<
                 typename begin<Sequence>::type, First
             >,
-            typename clear<Sequence>::type
+            inserter::into<typename clear<Sequence>::type>
         >
     { };
 
@@ -45,7 +44,7 @@ namespace erase_detail {
                     Last, typename end<Sequence>::type
                 >
             >,
-            typename clear<Sequence>::type
+            inserter::into<typename clear<Sequence>::type>
         >
     { };
 } // end namespace erase_detail

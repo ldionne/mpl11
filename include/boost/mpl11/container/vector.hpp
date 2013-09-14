@@ -28,6 +28,7 @@ namespace boost { namespace mpl11 { namespace container {
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/inserter/at_back.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/at.hpp>
 #include <boost/mpl11/tags.hpp>
@@ -79,7 +80,9 @@ namespace container {
      */
     template <typename First, typename Last>
     struct vector<First, Last>
-        : algorithm::copy<view::bounded_by<First, Last>, vector<>>
+        : algorithm::copy<
+            view::bounded_by<First, Last>, inserter::at_back<vector<>>
+        >
     { };
 } // end namespace container
 

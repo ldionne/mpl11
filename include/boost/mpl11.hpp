@@ -10,11 +10,10 @@
  * @page Concepts Concepts
  *
  * @subpage Categorizable
- *
  * @subpage EqualityComparable
  * @subpage LessThanComparable
- *
  * @subpage IntegralConstant
+ * @subpage Inserter
  *
  * @subpage Metafunction
  * @subpage MetafunctionClass
@@ -464,6 +463,11 @@
  */
 
 /*!
+ * @page Inserter Inserter
+ * @todo Document this concept
+ */
+
+/*!
  * @page Metafunction Metafunction
  * @todo Document this concept
  */
@@ -499,6 +503,7 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/inserters.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsics.hpp>
 #include <boost/mpl11/iterators.hpp>

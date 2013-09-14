@@ -10,6 +10,7 @@
 #include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/inserter/into.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/clear.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
@@ -29,7 +30,7 @@ namespace insert_range_detail {
     struct insert_range_impl
         : algorithm::copy<
             view::joined<Sequence, Range>,
-            typename clear<Sequence>::type
+            inserter::into<typename clear<Sequence>::type>
         >
     { };
 
@@ -45,7 +46,7 @@ namespace insert_range_detail {
                     Position, typename end<Sequence>::type
                 >
             >,
-            typename clear<Sequence>::type
+            inserter::into<typename clear<Sequence>::type>
         >
     { };
 } // end namespace insert_range_detail

@@ -9,6 +9,7 @@
 #include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/container/variadic.hpp>
 #include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/inserter/into.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -24,7 +25,8 @@ namespace boost { namespace mpl11 {
         template <typename Args>
         struct apply
             : algorithm::copy<
-                Args, container::variadic<mpl11::apply, F>
+                Args,
+                inserter::into<container::variadic<mpl11::apply, F>>
             >::type
         { };
     };

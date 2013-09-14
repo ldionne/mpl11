@@ -18,29 +18,30 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *
      * Overloaded algorithm for copying elements from a sequence to another.
      */
-    template <typename From, typename To, typename Insert = detail::optional>
+    template <typename, typename = detail::optional>
     struct copy;
 
     /*!
      * @ingroup algorithms
      *
      * Copies the content of a sequence from a sequence to another using a
-     * custom operation for insertion.
+     * custom inserter.
      *
      *
-     * ### Semantics and default implementation
+     * ### Semantics
      *
-     * Equivalent to `foldl<From, To, Insert>`.
+     * The returned sequence should be a concept-identical sequence equal to
+     * `Sequence`.
      *
      *
      * @warning
      * Differences from the original MPL:
-     * - Inserters are not used in this version; the destination sequence and
-     *   the operation are specified separately.
+     * - The implementation is determined by the inserter; there is no default
+     *   implementation for all inserters.
      */
-    template <typename From, typename To, typename Insert>
-    struct copy BOOST_MPL11_DOXYGEN_ONLY(<From, To, Insert>)
-        : dispatch<tag::copy, From, To, Insert>
+    template <typename Sequence, typename Inserter>
+    struct copy BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Inserter>)
+        : dispatch<tag::copy, Sequence, Inserter>
     { };
 
     /*!
@@ -51,23 +52,11 @@ namespace boost { namespace mpl11 { namespace algorithm {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to
-     * - `foldl<From, To, push_back<_1, _2>>` if `To` is a
-     *   @ref BackExtensibleSequence
-     * - `foldr<From, To, push_front<_1, _2>>` if `To` is a
-     *   @ref FrontExtensibleSequence
-     * - `foldl<From, To, insert<_1, _2>>` if `To` is a
-     *   @ref ExtensibleAssociativeSequence
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - Inserters are not used in this version.
-     * - It is mandatory to specify a destination sequence.
+     * Equivalent to `copy<Sequence, into<clear<Sequence>::type>>`.
      */
-    template <typename From, typename To>
-    struct copy<From, To>
-        : dispatch<tag::copy, From, To>
+    template <typename Sequence>
+    struct copy<Sequence>
+        : dispatch<tag::copy, Sequence>
     { };
 }}} // end namespace boost::mpl11::algorithm
 

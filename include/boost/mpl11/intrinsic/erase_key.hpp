@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
                     Sequence,
                     not_equal_to<Key, key_of<Sequence, _1>>
                 >,
-                clear<Sequence>::type
+                into<clear<Sequence>::type>
             >
        @endcode
      *
