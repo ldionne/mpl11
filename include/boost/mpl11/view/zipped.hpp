@@ -69,17 +69,12 @@ namespace zipped_detail {
         >
     { };
 
-    template <typename T1, typename T2, typename ...Tn>
-    using view_on = view::joined<
-        view::single_element<T1>,
-        view::single_element<T2>,
-        view::single_element<Tn>...
-    >;
-
     template <typename ...Iterators>
     struct dispatch<tag::deref, Iterators...>
         : identity<
-            view_on<typename deref<Iterators>::type...>
+            view::joined<
+                view::single_element<typename deref<Iterators>::type>...
+            >
         >
     { };
 

@@ -14,6 +14,8 @@ using namespace boost::mpl11;
 using detail::has_type;
 using detail::nested_apply;
 
+struct a0; struct a1; struct a2;
+
 template <typename NS>
 void test() {
     // Non template apply
@@ -23,18 +25,18 @@ void test() {
     >::type::value, "");
 
     static_assert(!has_type<
-        nested_apply<typename NS::non_template, struct a0>
+        nested_apply<typename NS::non_template, a0>
     >::value, "");
 
     static_assert(!has_type<
-        nested_apply<typename NS::non_template, struct a0, struct a1>
+        nested_apply<typename NS::non_template, a0, a1>
     >::value, "");
 
 
     // Unary template apply
     static_assert(equal_to<
-        typename nested_apply<typename NS::unary, struct a0>::type,
-        typename NS::unary::template apply<struct a0>
+        typename nested_apply<typename NS::unary, a0>::type,
+        typename NS::unary::template apply<a0>
     >::type::value, "");
 
     static_assert(!has_type<
@@ -42,14 +44,14 @@ void test() {
     >::value, "");
 
     static_assert(!has_type<
-        nested_apply<typename NS::unary, struct a0, struct a1>
+        nested_apply<typename NS::unary, a0, a1>
     >::value, "");
 
 
     // Binary template apply
     static_assert(equal_to<
-        typename nested_apply<typename NS::binary, struct a0, struct a1>::type,
-        typename NS::binary::template apply<struct a0, struct a1>
+        typename nested_apply<typename NS::binary, a0, a1>::type,
+        typename NS::binary::template apply<a0, a1>
     >::type::value, "");
 
     static_assert(!has_type<
@@ -57,11 +59,11 @@ void test() {
     >::value, "");
 
     static_assert(!has_type<
-        nested_apply<typename NS::binary, struct a0>
+        nested_apply<typename NS::binary, a0>
     >::value, "");
 
     static_assert(!has_type<
-        nested_apply<typename NS::binary, struct a0, struct a1, struct a2>
+        nested_apply<typename NS::binary, a0, a1, a2>
     >::value, "");
 
 
@@ -72,13 +74,13 @@ void test() {
     >::type::value, "");
 
     static_assert(equal_to<
-        typename nested_apply<typename NS::variadic, struct a0>::type,
-        typename NS::variadic::template apply<struct a0>
+        typename nested_apply<typename NS::variadic, a0>::type,
+        typename NS::variadic::template apply<a0>
     >::type::value, "");
 
     static_assert(equal_to<
-        typename nested_apply<typename NS::variadic, struct a0, struct a1>::type,
-        typename NS::variadic::template apply<struct a0, struct a1>
+        typename nested_apply<typename NS::variadic, a0, a1>::type,
+        typename NS::variadic::template apply<a0, a1>
     >::type::value, "");
 }
 

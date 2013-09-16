@@ -14,16 +14,20 @@ namespace boost { namespace mpl11 {
 namespace nested_apply_detail {
     // Preferred overload.
     template <typename F, typename ...Args>
-    auto pick(int, identity<F>*, identity<Args>* ...)
-        -> identity<typename F::template apply<Args...>>;
+    auto pick(int, identity<F>*, identity<Args>* ...) ->
+        identity<typename F::template apply<Args...>>
+    ;
 
     // If there are no arguments, check for a non-template nested apply too.
     template <typename F>
-    auto pick(char, identity<F>*) -> identity<typename F::apply>;
+    auto pick(char, identity<F>*) ->
+        identity<typename F::apply>
+    ;
 
     // Otherwise, there is no nested apply.
-    template <typename ...>
-    auto pick(...) -> empty_base;
+    auto pick(...) ->
+        empty_base
+    ;
 } // end namespace nested_apply_detail
 
 namespace detail {
