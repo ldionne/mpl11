@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_IS_PLACEHOLDER_EXPRESSION_HPP
 #define BOOST_MPL11_FUNCTIONAL_IS_PLACEHOLDER_EXPRESSION_HPP
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/functional/is_placeholder.hpp>
 #include <boost/mpl11/operator/or.hpp>
 
@@ -21,16 +22,13 @@ namespace boost { namespace mpl11 {
         : is_placeholder<E>
     { };
 
-    template <template <typename ...> class F>
-    struct is_placeholder_expression<F<>>
-        : is_placeholder<F<>>
-    { };
-
     template <template <typename ...> class F, typename ...T>
     struct is_placeholder_expression<F<T...>>
         : or_<
             is_placeholder<F<T...>>,
-            is_placeholder_expression<T>...
+            is_placeholder_expression<T>...,
+            // or_ requires at least two arguments, hence this dummy
+            false_
         >
     { };
 }} // end namespace boost::mpl11

@@ -32,8 +32,13 @@ void test_placeholder() {
     >::type::value, "");
 }
 
+template <typename = placeholder::non_template>
+struct with_default_param;
+
 
 int main() {
+    test_placeholder<with_default_param<>>();
+
     test_placeholder<placeholder::non_template>();
 
     test_placeholder<placeholder::variadic<>>();
