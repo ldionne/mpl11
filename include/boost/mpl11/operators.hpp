@@ -62,14 +62,27 @@
  * `F2::type::value` are guaranteed.
  */
 
+/*!
+ * @ingroup operators
+ * @defgroup arithmetic_operators Arithmetic Operators
+ *
+ * Performs a given arithmetic operation on one or more types.
+ */
+
 #include <boost/mpl11/operator/and.hpp>
+#include <boost/mpl11/operator/divides.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/operator/greater.hpp>
 #include <boost/mpl11/operator/greater_equal.hpp>
 #include <boost/mpl11/operator/less.hpp>
 #include <boost/mpl11/operator/less_equal.hpp>
+#include <boost/mpl11/operator/minus.hpp>
+#include <boost/mpl11/operator/modulus.hpp>
+#include <boost/mpl11/operator/multiplies.hpp>
+#include <boost/mpl11/operator/negate.hpp>
 #include <boost/mpl11/operator/not.hpp>
 #include <boost/mpl11/operator/not_equal_to.hpp>
 #include <boost/mpl11/operator/or.hpp>
+#include <boost/mpl11/operator/plus.hpp>
 
 #endif // !BOOST_MPL11_INTRINSICS_HPP
