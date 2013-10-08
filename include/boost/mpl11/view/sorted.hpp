@@ -6,12 +6,14 @@
 #ifndef BOOST_MPL11_VIEW_SORTED_HPP
 #define BOOST_MPL11_VIEW_SORTED_HPP
 
+#include <boost/mpl11/functional/quote.hpp> // for the default `Predicate`
+#include <boost/mpl11/operator/less.hpp>    //
+
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/apply_wrap.hpp>
 #include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/functional/lambda.hpp>
-#include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/category_of_fwd.hpp>
@@ -19,7 +21,6 @@
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/operator/less.hpp>
 #include <boost/mpl11/operator/not.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 #include <boost/mpl11/view/filtered.hpp>
