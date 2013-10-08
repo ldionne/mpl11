@@ -69,7 +69,17 @@
  * Performs a given arithmetic operation on one or more types.
  */
 
+/*!
+ * @ingroup operators
+ * @defgroup bitwise_operators Bitwise Operators
+ *
+ * Performs a given bitwise operation on one or more types.
+ */
+
 #include <boost/mpl11/operator/and.hpp>
+#include <boost/mpl11/operator/bitand.hpp>
+#include <boost/mpl11/operator/bitor.hpp>
+#include <boost/mpl11/operator/bitxor.hpp>
 #include <boost/mpl11/operator/divides.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
 #include <boost/mpl11/operator/greater.hpp>
@@ -84,5 +94,7 @@
 #include <boost/mpl11/operator/not_equal_to.hpp>
 #include <boost/mpl11/operator/or.hpp>
 #include <boost/mpl11/operator/plus.hpp>
+#include <boost/mpl11/operator/shift_left.hpp>
+#include <boost/mpl11/operator/shift_right.hpp>
 
 #endif // !BOOST_MPL11_INTRINSICS_HPP
