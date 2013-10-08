@@ -8,15 +8,11 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/functional/is_placeholder.hpp>
+#include <boost/mpl11/functional/is_placeholder_expression_fwd.hpp>
 #include <boost/mpl11/operator/or.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup functional
-     *
-     * Returns whether `E` is a @ref PlaceholderExpression.
-     */
     template <typename E>
     struct is_placeholder_expression
         : is_placeholder<E>

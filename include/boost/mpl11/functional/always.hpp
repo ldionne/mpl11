@@ -8,16 +8,11 @@
 
 #include <boost/mpl11/detail/either.hpp>
 #include <boost/mpl11/empty_base.hpp>
+#include <boost/mpl11/functional/always_fwd.hpp>
 #include <boost/mpl11/identity.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup functional
-     *
-     * Metafunction class always returning `T`, regardless of the
-     * number and types of passed arguments.
-     */
     template <typename T>
     struct always {
         template <typename ...>
@@ -26,15 +21,6 @@ namespace boost { namespace mpl11 {
         { };
     };
 
-    /*!
-     * @ingroup functional
-     *
-     * Metafunction class always returning `F::type` if it is a valid
-     * expression, regardless of the number and types of passed arguments.
-     *
-     * If `F::type` is not a valid expression, `lazy_always<F>::apply<...>`
-     * does not have a nested type.
-     */
     template <typename F>
     struct lazy_always {
         template <typename ...>

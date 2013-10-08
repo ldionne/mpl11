@@ -7,18 +7,11 @@
 #define BOOST_MPL11_FUNCTIONAL_AS_PLACEHOLDER_HPP
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/functional/as_placeholder_fwd.hpp>
 #include <boost/mpl11/functional/is_placeholder.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup functional
-     *
-     * Wraps an arbitrary type to make it into a placeholder.
-     *
-     * Specifically, `as_placeholder<T>` is a type publically derived from
-     * `T` for which the `is_placeholder` metafunction returns `true_`.
-     */
     template <typename T>
     struct as_placeholder
         : T

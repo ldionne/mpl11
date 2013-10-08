@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/detail/nested_apply.hpp>
 #include <boost/mpl11/empty_base.hpp>
+#include <boost/mpl11/functional/apply_wrap_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -30,21 +31,6 @@ namespace apply_wrap_detail {
     empty_base pick(...);
 } // end namespace apply_wrap_detail
 
-/*!
- * @ingroup functional
- *
- * Invokes a `MetafunctionClass` `F` with arguments `Args...`.
- *
- * `apply_wrap` is just a wrapper around `F::apply<Args...>::type` or
- * `F::apply::type`, depending on the arity of `F` as a `MetafunctionClass`.
- *
- * If `F::apply<Args...>::type` (and `F::apply::type` if `Args...` is empty)
- * are invalid expressions, `apply_wrap` does not have a nested type.
- *
- * @warning
- * The SFINAE-friendly behavior when `F::apply<Args...>::type` is an invalid
- * expression is a difference from the semantics of the original MPL.
- */
 template <typename F, typename ...Args>
 struct apply_wrap
     : decltype(apply_wrap_detail::pick<F, Args...>(nullptr))
