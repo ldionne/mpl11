@@ -519,7 +519,6 @@
  * @todo Document this concept
  */
 
-#include <boost/mpl11/adaptor.hpp>
 #include <boost/mpl11/algorithms.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/categories.hpp>
@@ -532,11 +531,8 @@
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsics.hpp>
-#include <boost/mpl11/iterators.hpp>
 #include <boost/mpl11/operators.hpp>
 #include <boost/mpl11/pair.hpp>
-#include <boost/mpl11/tags.hpp>
-#include <boost/mpl11/tests.hpp>
 #include <boost/mpl11/views.hpp>
 
 #endif // !BOOST_MPL11_HPP

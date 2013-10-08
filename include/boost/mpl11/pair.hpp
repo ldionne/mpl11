@@ -8,13 +8,12 @@
 
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/intrinsic/first_fwd.hpp>
+#include <boost/mpl11/intrinsic/second_fwd.hpp>
+#include <boost/mpl11/pair_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename First, typename Second>
-    struct pair;
-
     template <typename First, typename Second>
     struct dispatch<tag::first, pair<First, Second>>
         : identity<First>
