@@ -20,6 +20,8 @@
 #include <boost/mpl11/view/bounded_by.hpp>
 #include <boost/mpl11/view/empty.hpp>
 #include <boost/mpl11/view/filtered.hpp>
+#include <boost/mpl11/view/flattened.hpp>
+#include <boost/mpl11/view/indexed_by.hpp>
 #include <boost/mpl11/view/joined.hpp>
 #include <boost/mpl11/view/onto_iterators.hpp>
 #include <boost/mpl11/view/onto_keys.hpp>
