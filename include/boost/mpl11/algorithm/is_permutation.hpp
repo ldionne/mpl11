@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::is_permutation`.
+ * Defines `boost::mpl11::is_permutation`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_IS_PERMUTATION_HPP
@@ -30,7 +30,8 @@
 namespace boost { namespace mpl11 {
 namespace is_permutation_detail {
     //////////////////////////////////////////////////////////////////////////
-    // A very simple set-like class to support O1 membership testing.
+    // A very simple set-like class to support membership testing.
+    // Unfortunately this is O(n) because we have to use `equal_to`.
     struct empty_basic_set {
         template <typename Element>
         struct has_key
@@ -100,11 +101,11 @@ namespace is_permutation_detail {
                 apply_wrap<Predicate, Element, _1>
             >::type;
 
-            using InSequence1 = algorithm::count_if<
+            using InSequence1 = count_if<
                 view::bounded_by<Iter, Last>, Pred
             >;
 
-            using InSequence2 = algorithm::count_if<
+            using InSequence2 = count_if<
                 Sequence2, Pred
             >;
 
@@ -138,7 +139,7 @@ struct dispatch<tag::default_<tag::is_permutation>, S1, S2, Pred>
 
 template <typename S1, typename S2>
 struct dispatch<tag::default_<tag::is_permutation>, S1, S2>
-    : algorithm::is_permutation<S1, S2, quote<equal_to>>
+    : is_permutation<S1, S2, quote<equal_to>>
 { };
 }} // end namespace boost::mpl11
 

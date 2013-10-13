@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::min`.
+ * Defines `boost::mpl11::min`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_MIN_HPP
@@ -15,7 +15,7 @@
 namespace boost { namespace mpl11 {
     template <typename T1, typename T2, typename ...Tn>
     struct dispatch<tag::default_<tag::min>, T1, T2, Tn...>
-        : algorithm::min<T1, typename algorithm::min<T2, Tn...>::type>
+        : min<T1, typename min<T2, Tn...>::type>
     { };
 
     template <typename T1, typename T2>

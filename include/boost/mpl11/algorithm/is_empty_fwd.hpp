@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::is_empty`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_IS_EMPTY_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_IS_EMPTY_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_IS_EMPTY_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_IS_EMPTY_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 
@@ -13,9 +13,8 @@ namespace boost { namespace mpl11 {
     namespace tag { struct is_empty; }
 
     /*!
-     * @ingroup intrinsics
-     *
-     * Returns whether a sequence is empty.
+     * @ingroup algorithms
+     * Returns whether a @ref ForwardSequence is empty.
      *
      *
      * ### Semantics and default implementation
@@ -24,7 +23,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * @warning
-     * This intrinsic replaces `mpl::empty` from the original MPL.
+     * This algorithm replaces the `mpl::empty` intrinsic from the
+     * original MPL.
      */
     template <typename Sequence>
     struct is_empty
@@ -32,4 +32,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_IS_EMPTY_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_IS_EMPTY_FWD_HPP

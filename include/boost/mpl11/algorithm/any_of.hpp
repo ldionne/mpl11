@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::any_of`.
+ * Defines `boost::mpl11::any_of`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_ANY_OF_HPP
@@ -16,12 +16,12 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct dispatch<tag::default_<tag::any_of>, Sequence, Predicate>
-        : not_<algorithm::none_of<Sequence, Predicate>>
+        : not_<none_of<Sequence, Predicate>>
     { };
 
     template <typename Sequence>
     struct dispatch<tag::default_<tag::any_of>, Sequence>
-        : algorithm::any_of<Sequence, _1>
+        : any_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11
 

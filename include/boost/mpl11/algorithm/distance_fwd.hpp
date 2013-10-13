@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::distance`.
+ * Forward declares `boost::mpl11::distance`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_DISTANCE_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct distance; }
+    namespace tag { struct distance; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns the distance between `First` and `Last` iterators.
      *
      *
@@ -34,7 +32,6 @@ namespace algorithm {
     struct distance
         : dispatch<tag::distance, First, Last>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_DISTANCE_FWD_HPP

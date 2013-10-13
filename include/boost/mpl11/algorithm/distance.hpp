@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::distance`.
+ * Defines `boost::mpl11::distance`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_DISTANCE_HPP
@@ -18,7 +18,7 @@
 namespace boost { namespace mpl11 {
     template <typename First, typename Last>
     struct dispatch<tag::default_<tag::distance>, First, Last>
-        : algorithm::foldl<
+        : foldl<
             view::bounded_by<First, Last>,
             ulong<0>,
             next<_1>

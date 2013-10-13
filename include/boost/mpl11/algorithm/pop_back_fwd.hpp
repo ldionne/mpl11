@@ -1,26 +1,25 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::pop_front`.
+ * Forward declares `boost::mpl11::pop_back`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_POP_FRONT_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_POP_FRONT_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_POP_BACK_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_POP_BACK_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct pop_front; }
+    namespace tag { struct pop_back; }
 
     /*!
-     * @ingroup intrinsics
-     *
-     * Removes the element at the beginning of a @ref FrontExtensibleSequence.
+     * @ingroup algorithms
+     * Returns a sequence with its last element removed.
      *
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `erase<Sequence, begin<Sequence>::type>` if
+     * Equivalent to `erase<Sequence, prior<end<Sequence>::type>::type>` if
      * `is_empty<Sequence>::type::value` is `false`, and a
      * compile-time assertion is triggered otherwise.
      *
@@ -30,9 +29,9 @@ namespace boost { namespace mpl11 {
      * - A compile-time assertion is triggered if the sequence is empty.
      */
     template <typename Sequence>
-    struct pop_front
-        : dispatch<tag::pop_front, Sequence>
+    struct pop_back
+        : dispatch<tag::pop_back, Sequence>
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_POP_FRONT_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_POP_BACK_FWD_HPP

@@ -1,22 +1,20 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::advance`.
+ * Forward declares `boost::mpl11::advance`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_ADVANCE_FWD_HPP
 #define BOOST_MPL11_ALGORITHM_ADVANCE_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integral_c_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct advance; }
+    namespace tag { struct advance; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Moves `Iterator` by the distance `N`.
      *
      * For `RandomAccessIterator`s and `BidirecitonalIterator`s, the distance
@@ -42,7 +40,6 @@ namespace algorithm {
     struct advance_c
         : advance<Iterator, long_<N>>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ADVANCE_FWD_HPP

@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::has_key`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_HAS_KEY_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_HAS_KEY_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_HAS_KEY_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_HAS_KEY_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 
@@ -13,8 +13,7 @@ namespace boost { namespace mpl11 {
     namespace tag { struct has_key; }
 
     /*!
-     * @ingroup intrinsics
-     *
+     * @ingroup algorithms
      * Returns whether an @ref AssociativeSequence contains one or more
      * elements with key `Key`.
      *
@@ -43,4 +42,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_HAS_KEY_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_HAS_KEY_FWD_HPP

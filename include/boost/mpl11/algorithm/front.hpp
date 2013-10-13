@@ -3,14 +3,14 @@
  * Defines `boost::mpl11::front`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_FRONT_HPP
-#define BOOST_MPL11_INTRINSIC_FRONT_HPP
+#ifndef BOOST_MPL11_ALGORITHM_FRONT_HPP
+#define BOOST_MPL11_ALGORITHM_FRONT_HPP
 
+#include <boost/mpl11/algorithm/front_fwd.hpp>
+#include <boost/mpl11/algorithm/is_empty.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
-#include <boost/mpl11/intrinsic/front_fwd.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -29,4 +29,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_FRONT_HPP
+#endif // !BOOST_MPL11_ALGORITHM_FRONT_HPP

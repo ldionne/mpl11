@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::clear`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_CLEAR_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_CLEAR_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_CLEAR_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_CLEAR_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 
@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 {
     namespace tag { struct clear; }
 
     /*!
-     * @ingroup intrinsics
+     * @ingroup algorithms
      *
      * Returns an empty sequence concept-identical to `Sequence`.
      *
@@ -35,4 +35,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_CLEAR_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_CLEAR_FWD_HPP

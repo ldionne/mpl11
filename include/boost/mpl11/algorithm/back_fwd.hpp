@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::back`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_BACK_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_BACK_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_BACK_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_BACK_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 
@@ -13,8 +13,7 @@ namespace boost { namespace mpl11 {
     namespace tag { struct back; }
 
     /*!
-     * @ingroup intrinsics
-     *
+     * @ingroup algorithms
      * Returns the last element of a @ref BidirectionalSequence if there is
      * such an element, and triggers a compile-time assertion otherwise.
      *
@@ -36,4 +35,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_BACK_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_BACK_FWD_HPP

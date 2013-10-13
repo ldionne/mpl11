@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::contains`.
+ * Forward declares `boost::mpl11::contains`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_CONTAINS_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct contains; }
+    namespace tag { struct contains; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns whether `Sequence` contains one or more elements identical
      * to `Element`.
      *
@@ -34,7 +32,6 @@ namespace algorithm {
     struct contains
         : dispatch<tag::contains, Sequence, Element>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_CONTAINS_FWD_HPP

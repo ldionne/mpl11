@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::count_if`.
+ * Forward declares `boost::mpl11::count_if`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_COUNT_IF_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct count_if; }
+    namespace tag { struct count_if; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns the number of elements in `Sequence` satisfying `Predicate`.
      *
      *
@@ -36,7 +34,6 @@ namespace algorithm {
     struct count_if
         : dispatch<tag::count_if, Sequence, Predicate>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_COUNT_IF_FWD_HPP

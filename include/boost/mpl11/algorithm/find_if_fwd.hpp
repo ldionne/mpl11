@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::find_if`.
+ * Forward declares `boost::mpl11::find_if`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FIND_IF_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct find_if; }
+    namespace tag { struct find_if; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns an iterator to the first element satisfying a given predicate
      * in a sequence, or the past-the-end iterator if no such element exists.
      *
@@ -32,7 +30,6 @@ namespace algorithm {
     struct find_if
         : dispatch<tag::find_if, Sequence, Predicate>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FIND_IF_FWD_HPP

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::none_of`.
+ * Defines `boost::mpl11::none_of`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_NONE_OF_HPP
@@ -17,13 +17,13 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence>
     struct dispatch<tag::default_<tag::none_of>, Sequence>
-        : algorithm::none_of<Sequence, _1>
+        : none_of<Sequence, _1>
     { };
 
     template <typename Sequence, typename Predicate>
     struct dispatch<tag::default_<tag::none_of>, Sequence, Predicate>
         : equal_to<
-            typename algorithm::find_if<Sequence, Predicate>::type,
+            typename find_if<Sequence, Predicate>::type,
             typename end<Sequence>::type
         >
     { };

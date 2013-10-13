@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::equal`.
+ * Forward declares `boost::mpl11::equal`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_EQUAL_FWD_HPP
@@ -12,12 +12,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct equal; }
+    namespace tag { struct equal; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Overloaded algorithm for comparing two sequences element-by-element.
      */
     template <typename Sequence1,
@@ -27,7 +25,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether two sequences are identical when compared
      * element-by-element with a custom `Predicate`.
      *
@@ -51,7 +48,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether two sequences are identical when compared
      * element-by-element.
      *
@@ -64,7 +60,6 @@ namespace algorithm {
     struct equal<Sequence1, Sequence2>
         : dispatch<tag::equal, Sequence1, Sequence2>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_EQUAL_FWD_HPP

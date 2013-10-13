@@ -3,8 +3,8 @@
  * Defines `boost::mpl11::insert_range`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
-#define BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
+#ifndef BOOST_MPL11_ALGORITHM_INSERT_RANGE_HPP
+#define BOOST_MPL11_ALGORITHM_INSERT_RANGE_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
@@ -15,25 +15,30 @@ namespace boost { namespace mpl11 {
     namespace tag { struct insert_range : dispatch<insert_range> { }; }
 
     /*!
-     * @ingroup intrinsics
-     *
-     * Overloaded intrinsic for inserting a range of elements in a sequence.
+     * @ingroup algorithms
+     * Overloaded algorithm for inserting a range of elements in a sequence.
      */
     template <typename, typename, typename = detail::optional>
     struct insert_range;
 
     /*!
-     * @ingroup intrinsics
-     *
+     * @ingroup algorithms
      * Inserts a range of elements at an arbitrary position in a
-     * @ref RandomExtensibleSequence.
+     * @ref ForwardSequence.
      *
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to copying the elements from the ranges
-     * [`begin<Sequence>::type`, `Position`), `Range` and
-     * [`Position`, `end<Sequence>::type`) into `clear<Sequence>::type`
+     * Equivalent to
+     * @code
+     *     identity<
+     *         view::joined<
+     *             view::bounded_by<begin<Sequence>::type, Position>,
+     *             Range,
+     *             view::bounded_by<Position, end<Sequence>::type>
+     *         >
+     *      >
+     * @endcode
      */
     template <typename Sequence, typename Position, typename Range>
     struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>)
@@ -41,20 +46,23 @@ namespace boost { namespace mpl11 {
     { };
 
     /*!
-     * @ingroup intrinsics
-     *
+     * @ingroup algorithms
      * Inserts a range of elements in an @ref AssociativeSequence.
      *
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `foldl<Range, Sequence, insert<_1, _2>>`.
+     * Let `Filtered` be identical to
+     * @code
+     *     foldl<
+     *         Range,
+     *         Sequence,
+     *         erase_key<_1, key_of<Range, _2>>
+     *     >::type
+     * @endcode
      *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - It is possible to use `insert_range` on
-     *   @ref AssociativeSequence "Associative Sequences".
+     * Then, `insert_range` is equivalent to
+     * `identity<view::joined<Range, Filtered>>`.
      */
     template <typename Sequence, typename Range>
     struct insert_range<Sequence, Range>
@@ -62,4 +70,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
+#endif // !BOOST_MPL11_ALGORITHM_INSERT_RANGE_HPP

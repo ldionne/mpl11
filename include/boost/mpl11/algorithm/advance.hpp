@@ -1,17 +1,18 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::advance`.
+ * Defines `boost::mpl11::advance`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_ADVANCE_HPP
 #define BOOST_MPL11_ALGORITHM_ADVANCE_HPP
+
+#include <boost/mpl11/integral_c.hpp> // for advance_c
 
 #include <boost/mpl11/algorithm/advance_fwd.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/intrinsic/prior.hpp>
 

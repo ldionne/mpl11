@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::equal`.
+ * Defines `boost::mpl11::equal`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_EQUAL_HPP
@@ -20,7 +20,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence1, typename Sequence2>
     struct dispatch<tag::default_<tag::equal>, Sequence1, Sequence2>
-        : algorithm::equal<Sequence1, Sequence2, quote<equal_to>>
+        : equal<Sequence1, Sequence2, quote<equal_to>>
     { };
 
     template <typename Sequence1, typename Sequence2, typename Predicate>
@@ -30,7 +30,7 @@ namespace boost { namespace mpl11 {
                 typename size<Sequence1>::type,
                 typename size<Sequence2>::type
             >,
-            algorithm::all_of<
+            all_of<
                 view::zipped<Sequence1, Sequence2>,
                 unpack_args<Predicate>
             >

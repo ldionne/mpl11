@@ -3,10 +3,13 @@
  * Defines `boost::mpl11::at`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_AT_HPP
-#define BOOST_MPL11_INTRINSIC_AT_HPP
+#ifndef BOOST_MPL11_ALGORITHM_AT_HPP
+#define BOOST_MPL11_ALGORITHM_AT_HPP
+
+#include <boost/mpl11/integral_c.hpp> // for at_c
 
 #include <boost/mpl11/algorithm/advance.hpp>
+#include <boost/mpl11/algorithm/at_fwd.hpp>
 #include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
@@ -16,8 +19,6 @@
 #include <boost/mpl11/functional/arg.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/intrinsic/at.hpp>
-#include <boost/mpl11/intrinsic/at_fwd.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
 #include <boost/mpl11/intrinsic/category_of.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
@@ -44,7 +45,7 @@ namespace at_detail {
     template <typename Sequence, typename Key, typename Default>
     struct at_impl<category::associative_sequence, Sequence, Key, Default> {
     private:
-        using Iter = typename algorithm::find_if<
+        using Iter = typename find_if<
             Sequence,
             equal_to<key_of<Sequence, _1>, Key>
         >::type;
@@ -75,15 +76,13 @@ namespace at_detail {
     template <typename Sequence, typename N>
     struct at_impl<category::forward_sequence, Sequence, N> {
     private:
-        using Iter = typename algorithm::advance<
+        using Iter = typename advance<
             typename begin<Sequence>::type, N
         >::type;
 
         static_assert(
             N::value >= 0 &&
-            not_equal_to<
-                Iter, typename end<Sequence>::type
-            >::type::value,
+            not_equal_to<Iter, typename end<Sequence>::type>::type::value,
         "Trying to access a sequence at an index that is out of bounds.");
 
     public:
@@ -103,4 +102,4 @@ struct dispatch<detail::default_<tag::at>, Sequence, Key, Default...>
 { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_AT_HPP
+#endif // !BOOST_MPL11_ALGORITHM_AT_HPP

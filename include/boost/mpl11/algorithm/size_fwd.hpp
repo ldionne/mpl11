@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::size`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_SIZE_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_SIZE_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_SIZE_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_SIZE_FWD_HPP
 
 #include <boost/mpl11/dispatch.hpp>
 
@@ -13,8 +13,7 @@ namespace boost { namespace mpl11 {
     namespace tag { struct size; }
 
     /*!
-     * @ingroup intrinsics
-     *
+     * @ingroup algorithms
      * Returns the number of elements contained in a sequence.
      *
      * The size of a sequence is a non-negative @ref IntegralConstant.
@@ -30,4 +29,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_SIZE_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_SIZE_FWD_HPP

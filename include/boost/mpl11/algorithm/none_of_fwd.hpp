@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::none_of`.
+ * Forward declares `boost::mpl11::none_of`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_NONE_OF_FWD_HPP
@@ -12,12 +12,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct none_of; }
+    namespace tag { struct none_of; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Overloaded algorithm for querying a sequence about the truth value of
      * its elements.
      */
@@ -26,7 +24,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether no element of a sequence satisfies a given `Predicate`.
      *
      *
@@ -47,7 +44,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether no element of a sequence is a `true`-valued boolean
      * @ref IntegralConstant.
      *
@@ -60,7 +56,6 @@ namespace algorithm {
     struct none_of<Sequence>
         : dispatch<tag::none_of, Sequence>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_NONE_OF_FWD_HPP

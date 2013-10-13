@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::all_of`.
+ * Forward declares `boost::mpl11::all_of`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_ALL_OF_FWD_HPP
@@ -12,12 +12,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct all_of; }
+    namespace tag { struct all_of; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Overloaded algorithm for querying a sequence about the truth value of
      * its elements.
      */
@@ -26,7 +24,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether all the elements of a sequence satisfy a given
      * `Predicate`.
      *
@@ -48,7 +45,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether all the elements of a sequence are `true`-valued
      * boolean @ref IntegralConstant "Integral Constants".
      *
@@ -61,7 +57,6 @@ namespace algorithm {
     struct all_of<Sequence>
         : dispatch<tag::all_of, Sequence>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ALL_OF_FWD_HPP

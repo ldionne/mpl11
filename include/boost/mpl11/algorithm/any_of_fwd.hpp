@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::any_of`.
+ * Forward declares `boost::mpl11::any_of`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_ANY_OF_FWD_HPP
@@ -12,12 +12,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct any_of; }
+    namespace tag { struct any_of; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Overloaded algorithm for querying a sequence about the truth value of
      * its elements.
      */
@@ -26,7 +24,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether any of the elements of a sequence satisfies
      * a given `Predicate`.
      *
@@ -42,7 +39,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether any of the elements of a sequence is a `true`-valued
      * boolean @ref IntegralConstant.
      *
@@ -55,7 +51,6 @@ namespace algorithm {
     struct any_of<Sequence>
         : dispatch<tag::any_of, Sequence>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ANY_OF_FWD_HPP

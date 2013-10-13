@@ -14,13 +14,7 @@ namespace boost { namespace mpl11 { namespace category {
     struct forward_sequence { };
     struct bidirectional_sequence : forward_sequence { };
     struct random_access_sequence : bidirectional_sequence { };
-
-    struct extensible_sequence { };
-    struct front_extensible_sequence : extensible_sequence { };
-    struct back_extensible_sequence : extensible_sequence { };
-
-    struct associative_sequence : forward_sequence { };
-    struct extensible_associative_sequence : associative_sequence { };
+    struct associative_sequence   : forward_sequence { };
 
     // Iterator categories
     struct forward_iterator { };

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::max`.
+ * Forward declares `boost::mpl11::max`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_MAX_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct max; }
+    namespace tag { struct max; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns the largest of its arguments.
      *
      *
@@ -37,7 +35,6 @@ namespace algorithm {
     struct max
         : dispatch<tag::max, T1, T2, Tn...>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_MAX_FWD_HPP

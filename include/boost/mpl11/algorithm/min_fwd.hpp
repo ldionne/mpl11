@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::min`.
+ * Forward declares `boost::mpl11::min`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_MIN_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct min; }
+    namespace tag { struct min; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns the smallest of its arguments.
      *
      *
@@ -37,7 +35,6 @@ namespace algorithm {
     struct min
         : dispatch<tag::min, T1, T2, Tn...>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_MIN_FWD_HPP

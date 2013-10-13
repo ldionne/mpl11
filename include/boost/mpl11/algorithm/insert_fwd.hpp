@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::insert`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_INSERT_FWD_HPP
-#define BOOST_MPL11_INTRINSIC_INSERT_FWD_HPP
+#ifndef BOOST_MPL11_ALGORITHM_INSERT_FWD_HPP
+#define BOOST_MPL11_ALGORITHM_INSERT_FWD_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
@@ -15,18 +15,15 @@ namespace boost { namespace mpl11 {
     namespace tag { struct insert; }
 
     /*!
-     * @ingroup intrinsics
-     *
-     * Overloaded intrinsic for inserting elements in a sequence.
+     * @ingroup algorithms
+     * Overloaded algorithm for inserting elements in a sequence.
      */
     template <typename, typename, typename = detail::optional>
     struct insert;
 
     /*!
-     * @ingroup intrinsics
-     *
-     * Inserts an element at an arbitrary position in a
-     * @ref RandomExtensibleSequence.
+     * @ingroup algorithms
+     * Inserts an element at an arbitrary position in a @ref ForwardSequence.
      *
      *
      * ### Semantics and default implementation
@@ -39,11 +36,6 @@ namespace boost { namespace mpl11 {
                 view::single_element<Element>
             >
        @endcode
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - The default implementation differs.
      */
     template <typename Sequence, typename Position, typename Element>
     struct insert BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Element>)
@@ -51,9 +43,19 @@ namespace boost { namespace mpl11 {
     { };
 
     /*!
-     * @ingroup intrinsics
-     *
+     * @ingroup algorithms
      * Inserts an element in an @ref AssociativeSequence.
+     *
+     *
+     * ### Semantics and default implementation
+     *
+     * Equivalent to
+     * @code
+     *     insert_range<
+     *         Sequence,
+     *         view::single_element<Element>
+     *     >
+     * @endcode
      */
     template <typename Sequence, typename Element>
     struct insert<Sequence, Element>
@@ -61,4 +63,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_INSERT_FWD_HPP
+#endif // !BOOST_MPL11_ALGORITHM_INSERT_FWD_HPP

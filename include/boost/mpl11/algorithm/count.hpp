@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::count`.
+ * Defines `boost::mpl11::count`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_COUNT_HPP
@@ -16,7 +16,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
     struct dispatch<tag::default_<tag::count>, Sequence, Element>
-        : algorithm::count_if<Sequence, equal_to<Element, _1>>
+        : count_if<Sequence, equal_to<Element, _1>>
     { };
 }} // end namespace boost::mpl11
 

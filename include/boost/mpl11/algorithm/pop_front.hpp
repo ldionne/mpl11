@@ -3,14 +3,14 @@
  * Defines `boost::mpl11::pop_front`.
  */
 
-#ifndef BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
-#define BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
+#ifndef BOOST_MPL11_ALGORITHM_POP_FRONT_HPP
+#define BOOST_MPL11_ALGORITHM_POP_FRONT_HPP
 
+#include <boost/mpl11/algorithm/erase.hpp>
+#include <boost/mpl11/algorithm/is_empty.hpp>
+#include <boost/mpl11/algorithm/pop_front_fwd.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/erase.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
-#include <boost/mpl11/intrinsic/pop_front_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -32,4 +32,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
+#endif // !BOOST_MPL11_ALGORITHM_POP_FRONT_HPP

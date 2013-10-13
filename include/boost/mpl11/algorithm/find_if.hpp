@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::find_if`.
+ * Defines `boost::mpl11::find_if`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FIND_IF_HPP

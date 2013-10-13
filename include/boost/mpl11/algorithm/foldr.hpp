@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::foldr`.
+ * Defines `boost::mpl11::foldr`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FOLDR_HPP

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::foldl`.
+ * Defines `boost::mpl11::foldl`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FOLDL_HPP

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::count_if`.
+ * Defines `boost::mpl11::count_if`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_COUNT_IF_HPP
@@ -20,7 +20,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct dispatch<tag::default_<tag::count_if>, Sequence, Predicate>
-        : algorithm::foldl<
+        : foldl<
             Sequence,
             ulong<0>,
             if_<apply_wrap<typename lambda<Predicate>::type, _2>,

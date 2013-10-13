@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::all_of`.
+ * Defines `boost::mpl11::all_of`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_ALL_OF_HPP
@@ -18,7 +18,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct dispatch<tag::default_<tag::all_of>, Sequence, Predicate>
-        : algorithm::none_of<
+        : none_of<
             Sequence,
             not_<apply_wrap<typename lambda<Predicate>::type, _1>>
         >
@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
 
     template <typename Sequence>
     struct dispatch<tag::default_<tag::all_of>, Sequence>
-        : algorithm::all_of<Sequence, _1>
+        : all_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11
 

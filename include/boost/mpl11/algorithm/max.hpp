@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::max`.
+ * Defines `boost::mpl11::max`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_MAX_HPP
@@ -15,7 +15,7 @@
 namespace boost { namespace mpl11 {
     template <typename T1, typename T2, typename ...Tn>
     struct dispatch<tag::default_<tag::max>, T1, T2, Tn...>
-        : algorithm::max<T1, typename algorithm::max<T2, Tn...>::type>
+        : max<T1, typename max<T2, Tn...>::type>
     { };
 
     template <typename T1, typename T2>

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::contains`.
+ * Defines `boost::mpl11::contains`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_CONTAINS_HPP
@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
     struct dispatch<tag::default_<tag::contains>, Sequence, Element>
         : not_equal_to<
-            typename algorithm::find<Sequence, Element>::type,
+            typename find<Sequence, Element>::type,
             typename end<Sequence>::type
         >
     { };

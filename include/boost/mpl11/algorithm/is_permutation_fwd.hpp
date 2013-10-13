@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::is_permutation`.
+ * Forward declares `boost::mpl11::is_permutation`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_IS_PERMUTATION_FWD_HPP
@@ -12,12 +12,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct is_permutation; }
+    namespace tag { struct is_permutation; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Overloaded algorithm for determining whether a sequence is a
      * permutation of another.
      */
@@ -28,7 +26,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether a sequence is a permutation of another sequence,
      * using a custom predicate to determine the equality of two elements.
      *
@@ -47,7 +44,6 @@ namespace algorithm {
 
     /*!
      * @ingroup algorithms
-     *
      * Returns whether a sequence is a permutation of another sequence.
      *
      *
@@ -59,7 +55,6 @@ namespace algorithm {
     struct is_permutation<Sequence1, Sequence2>
         : dispatch<tag::is_permutation, Sequence1, Sequence2>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_IS_PERMUTATION_FWD_HPP

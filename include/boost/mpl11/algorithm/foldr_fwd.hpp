@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::foldr`.
+ * Forward declares `boost::mpl11::foldr`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FOLDR_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct foldr; }
+    namespace tag { struct foldr; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Accumulates the elements of a sequence from an initial state using a
      * custom operation.
      *
@@ -46,7 +44,6 @@ namespace algorithm {
     struct foldr
         : dispatch<tag::foldr, Sequence, State, F>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FOLDR_FWD_HPP

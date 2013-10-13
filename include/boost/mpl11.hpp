@@ -28,11 +28,6 @@
  * @subpage RandomAccessSequence
  * @subpage AssociativeSequence
  *
- * @subpage FrontExtensibleSequence
- * @subpage BackExtensibleSequence
- * @subpage RandomExtensibleSequence
- * @subpage ExtensibleAssociativeSequence
- *
  * @subpage ForwardIterator
  * @subpage BidirectionalIterator
  * @subpage RandomAccessIterator
@@ -130,13 +125,11 @@
  *
  *
  * ## Valid expressions
- * | Expression          | Type
- * | ----------          | ----
- * | `begin<S>::type`    | @ref ForwardIterator
- * | `end<S>::type`      | @ref ForwardIterator
- * | `size<S>::type`     | @ref IntegralConstant
- * | `is_empty<S>::type` | Boolean @ref IntegralConstant
- * | `front<S>::type`    | Any type
+ * | Expression             | Type
+ * | ----------             | ----
+ * | `begin<S>::type`       | @ref ForwardIterator
+ * | `end<S>::type`         | @ref ForwardIterator
+ * | `category_of<S>::type` | Convertible to `category::forward_sequence`
  *
  *
  * ## Invariants
@@ -167,11 +160,11 @@
  *
  *
  * ## Valid expressions
- * | Expression       | Type
- * | ----------       | ----
- * | `begin<S>::type` | @ref BidirectionalIterator
- * | `end<S>::type`   | @ref BidirectionalIterator
- * | `back<S>::type`  | Any type
+ * | Expression             | Type
+ * | ----------             | ----
+ * | `begin<S>::type`       | @ref BidirectionalIterator
+ * | `end<S>::type`         | @ref BidirectionalIterator
+ * | `category_of<S>::type` | Convertible to `category::bidirectional_sequence`
  */
 
 /*!
@@ -193,11 +186,11 @@
  *
  *
  * ## Valid expressions
- * | Expression       | Type
- * | ----------       | ----
- * | `begin<S>::type` | @ref RandomAccessIterator
- * | `end<S>::type`   | @ref RandomAccessIterator
- * | `at<S, N>::type` | Any type
+ * | Expression             | Type
+ * | ----------             | ----
+ * | `begin<S>::type`       | @ref RandomAccessIterator
+ * | `end<S>::type`         | @ref RandomAccessIterator
+ * | `category_of<S>::type` | Convertible to `category::random_access_sequence`
  */
 
 /*!
@@ -220,125 +213,15 @@
  * | Expression | Description
  * | ---------- | -----------
  * | `S`        | An @ref AssociativeSequence
- * | `K`, `Def` | Arbitrary types
  * | `E`        | An element of `S`
  *
  *
  * ## Valid expressions
  * | Expression             | Type
  * | ----------             | ----
- * | `has_key<S, K>::type`  | Boolean @ref IntegralConstant
- * | `at<S, K>::type`       | Any type
- * | `at<S, K, Def>::type`  | Any type
+ * | `category_of<S>::type` | Convertible to `category::associative_sequence`
  * | `key_of<S, E>::type`   | Any type
  * | `value_of<S, E>::type` | Any type
- */
-
-/*!
- * @page BackExtensibleSequence Back Extensible Sequence
- *
- * Sequence supporting insertion and removal of elements at the end.
- *
- *
- * ## Refinement of
- * @ref Categorizable
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | A @ref BackExtensibleSequence
- * | `E`        | An element of `S`
- *
- *
- * ## Valid expressions
- * | Expression              | Type
- * | ----------              | ----
- * | `push_back<S, E>::type` | @ref BackExtensibleSequence
- * | `pop_back<S>::type`     | @ref BackExtensibleSequence
- * | `clear<S>::type`        | @ref BackExtensibleSequence
- */
-
-/*!
- * @page FrontExtensibleSequence Front Extensible Sequence
- *
- * Sequence supporting insertion and removal of elements at the beginning.
- *
- *
- * ## Refinement of
- * @ref Categorizable
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | A @ref FrontExtensibleSequence
- * | `E`        | An element of `S`
- *
- *
- * ## Valid expressions
- * | Expression               | Type
- * | ----------               | ----
- * | `push_front<S, E>::type` | @ref FrontExtensibleSequence
- * | `pop_front<S>::type`     | @ref FrontExtensibleSequence
- * | `clear<S>::type`         | @ref FrontExtensibleSequence
- */
-
-/*!
- * @page RandomExtensibleSequence Random Extensible Sequence
- *
- * Sequence supporting insertion and removal of elements at any position.
- *
- *
- * ## Refinement of
- * @ref BackExtensibleSequence, @ref FrontExtensibleSequence
- *
- *
- * ## Notation
- * | Expression             | Description
- * | ----------             | -----------
- * | `S`                    | A @ref RandomExtensibleSequence
- * | `First`, `Last`, `Pos` | Iterators of `S`
- * | `E`                    | An arbitrary type
- * | `R`                    | A @ref ForwardSequence
- *
- *
- * ## Valid expressions
- * | Expression                      | Type
- * | ----------                      | ----
- * | `insert<S, Pos, E>::type`       | @ref RandomExtensibleSequence
- * | `insert_range<S, Pos, R>::type` | @ref RandomExtensibleSequence
- * | `erase<S, Pos>::type`           | @ref RandomExtensibleSequence
- * | `erase<S, First, Last>::type`   | @ref RandomExtensibleSequence
- * | `clear<S>::type`                | @ref RandomExtensibleSequence
- */
-
-/*!
- * @page ExtensibleAssociativeSequence Extensible Associative Sequence
- *
- * Sequence supporting insertion and removal of elements based on their key.
- *
- *
- * ## Refinement of
- * @ref Categorizable
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | A @ref ExtensibleAssociativeSequence
- * | `E`        | A type compatible to be used as an element of `S`
- * | `K`        | An arbitrary type
- * | `R`        | A @ref ForwardSequence
- *
- *
- * ## Valid expressions
- * | Expression                 | Type
- * | ----------                 | ----
- * | `insert<S, E>::type`       | @ref ExtensibleAssociativeSequence
- * | `insert_range<S, R>::type` | @ref ExtensibleAssociativeSequence
- * | `erase_key<S, K>::type`    | @ref ExtensibleAssociativeSequence
- * | `clear<S>::type`           | @ref ExtensibleAssociativeSequence
  */
 
 /*!
@@ -377,10 +260,11 @@
  *
  *
  * ## Valid expressions
- * | Expression       | Type
- * | ----------       | ----
- * | `deref<I>::type` | Any type
- * | `next<I>::type`  | @ref ForwardIterator
+ * | Expression             | Type
+ * | ----------             | ----
+ * | `deref<I>::type`       | Any type
+ * | `next<I>::type`        | @ref ForwardIterator
+ * | `category_of<I>::type` | Convertible to `category::forward_iterator`
  *
  *
  * ## Invariants
@@ -389,7 +273,7 @@
  * - If `I` is dereferenceable and `J` is equal to `I`, then `J` is
  *   dereferenceable as well.
  * - If `I` and `J` are equal and dereferenceable, then `deref<I>::type`
- *   and `deref<J>::type` are identical.
+ *   and `deref<J>::type` are exactly the same type.
  * - If `I` is incrementable and `J` is equal to `I`, then `J` is
  *   incrementable as well.
  * - If `I` and `J` are equal and incrementable, then `next<I>::type` and
@@ -420,10 +304,11 @@
  *
  *
  * ## Valid expressions
- * | Expression       | Type
- * | ----------       | ----
- * | `next<I>::type`  | @ref BidirectionalIterator
- * | `prior<I>::type` | @ref BidirectionalIterator
+ * | Expression             | Type
+ * | ----------             | ----
+ * | `next<I>::type`        | @ref BidirectionalIterator
+ * | `prior<I>::type`       | @ref BidirectionalIterator
+ * | `category_of<I>::type` | Convertible to `category::bidirectional_iterator`
  *
  *
  * ## Invariants
@@ -451,12 +336,13 @@
  *
  *
  * ## Valid expressions
- * | Expression            | Type                      | Complexity
- * | ----------            | ----                      | ----------
- * | `next<I>::type`       | @ref RandomAccessIterator | Constant time
- * | `prior<I>::type`      | @ref RandomAccessIterator | Constant time
- * | `advance<I, N>::type` | @ref RandomAccessIterator | Constant time
- * | `distance<I, J>::type | @ref IntegralConstant     | Constant time
+ * | Expression             | Type                      | Complexity
+ * | ----------             | ----                      | ----------
+ * | `next<I>::type`        | @ref RandomAccessIterator | Constant time
+ * | `prior<I>::type`       | @ref RandomAccessIterator | Constant time
+ * | `advance<I, N>::type`  | @ref RandomAccessIterator | Constant time
+ * | `distance<I, J>::type  | @ref IntegralConstant     | Constant time
+ * | `category_of<I>::type` | Convertible to `category::random_access_iterator`
  *
  *
  * ## Invariants
@@ -492,6 +378,7 @@
  * | `N::value`                        | An integral constant expression
  * | `N::type`                         | @ref IntegralConstant
  * | `constexpr N::value_type c = N{}` |
+ * | `category_of<N>::type`            | Convertible to `category::integral_constant`
  */
 
 /*!

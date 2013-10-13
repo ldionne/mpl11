@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::algorithm::find`.
+ * Forward declares `boost::mpl11::find`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FIND_FWD_HPP
@@ -10,12 +10,10 @@
 
 
 namespace boost { namespace mpl11 {
-namespace tag { struct find; }
+    namespace tag { struct find; }
 
-namespace algorithm {
     /*!
      * @ingroup algorithms
-     *
      * Returns an iterator to the first occurence of a given element in a
      * sequence, or the past-the-end iterator if no such element exists.
      *
@@ -28,7 +26,6 @@ namespace algorithm {
     struct find
         : dispatch<tag::find, Sequence, Element>
     { };
-} // end namespace algorithm
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FIND_FWD_HPP

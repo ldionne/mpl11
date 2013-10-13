@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::algorithm::find`.
+ * Defines `boost::mpl11::find`.
  */
 
 #ifndef BOOST_MPL11_ALGORITHM_FIND_HPP
@@ -16,7 +16,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
     struct dispatch<tag::default_<tag::find>, Sequence, Element>
-        : algorithm::find_if<Sequence, equal_to<Element, _1>>
+        : find_if<Sequence, equal_to<Element, _1>>
     { };
 }} // end namespace boost::mpl11
 
