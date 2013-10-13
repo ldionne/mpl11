@@ -91,7 +91,7 @@ namespace boost { namespace mpl11 {
         : dispatch<tag::at, Sequence, N>
     { };
 
-    //! Convenience alias to `at<Sequence, ulong<N>>`.
+    //! Alias to `at<Sequence, ulong<N>>`; provided for convenience.
     template <typename Sequence, unsigned long N>
     using at_c = at<Sequence, ulong<N>>;
 }} // end namespace boost::mpl11

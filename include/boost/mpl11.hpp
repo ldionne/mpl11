@@ -198,12 +198,6 @@
  *
  * @ref ForwardSequence allowing retrieval of elements based on keys.
  *
- * Unlike associative containers in the C++ Standard Library, MPL
- * @ref AssociativeSequence "Associative Sequences" have no associated
- * ordering relation. Instead, type equality is used to impose an equivalence
- * relation on keys, and the order in which sequence elements are traversed
- * during iteration is left unspecified.
- *
  *
  * ## Refinement of
  * @ref ForwardSequence

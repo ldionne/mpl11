@@ -17,18 +17,20 @@ namespace boost { namespace mpl11 {
      * @ingroup algorithms
      * Moves `Iterator` by the distance `N`.
      *
-     * For `RandomAccessIterator`s and `BidirecitonalIterator`s, the distance
-     * may be negative. For `ForwardIterator`s, it may not.
+     * For @ref RandomAccessIterator "Random Access Iterators" and
+     * @ref BidirecitonalIterator "Bidirecitonal Iterators", the distance
+     * may be negative. For @ref ForwardIterator "Forward Iterators", it
+     * may not.
      *
      *
      * ### Semantics and default implementation
      *
-     * For `ForwardIterator`s, equivalent to using `next` until the requested
-     * distance has been traversed.
+     * For a @ref ForwardIterator, equivalent to using `next` until the
+     * requested distance has been traversed.
      *
-     * For `RandomAccessIterator`s and `BidirecitonalIterator`s, equivalent
-     * to using either `next` or `prior` in the same way as for
-     * `ForwardIterator`s, depending on the sign of the distance.
+     * For a @ref RandomAccessIterator or a @ref BidirecitonalIterator,
+     * equivalent to using either `next` or `prior` in the same way as
+     * for a @ref ForwardIterator, depending on the sign of the distance.
      */
     template <typename Iterator, typename N>
     struct advance

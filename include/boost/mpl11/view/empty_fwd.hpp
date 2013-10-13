@@ -12,7 +12,7 @@
 namespace boost { namespace mpl11 { namespace view {
     /*!
      * @ingroup views
-     * Random access sequence containing no elements.
+     * @ref RandomAccessSequence containing no elements.
      */
     struct empty BOOST_MPL11_DOXYGEN_ONLY({ });
 }}} // end namespace boost::mpl11::view
