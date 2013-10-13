@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::container::vector`.
  */
 
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/vector.hpp>
 
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/test/instantiate.hpp>
 #include <boost/mpl11/test/random_access_sequence.hpp>

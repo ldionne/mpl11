@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::algorithm::is_permutation`.
  */
 
-#include <boost/mpl11/algorithm/is_permutation.hpp>
+#include <boost/mpl11/is_permutation.hpp>
 
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;

@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::algorithm::count`.
  */
 
-#include <boost/mpl11/algorithm/count.hpp>
+#include <boost/mpl11/count.hpp>
 
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;

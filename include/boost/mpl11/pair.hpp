@@ -6,11 +6,12 @@
 #ifndef BOOST_MPL11_PAIR_HPP
 #define BOOST_MPL11_PAIR_HPP
 
+#include <boost/mpl11/fwd/pair.hpp>
+
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/fwd/first.hpp>
+#include <boost/mpl11/fwd/second.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/intrinsic/first_fwd.hpp>
-#include <boost/mpl11/intrinsic/second_fwd.hpp>
-#include <boost/mpl11/pair_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {

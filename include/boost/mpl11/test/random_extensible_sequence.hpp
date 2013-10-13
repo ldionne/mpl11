@@ -6,17 +6,17 @@
 #ifndef BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP
 
-#include <boost/mpl11/algorithm/advance.hpp>
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/advance.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/clear.hpp>
-#include <boost/mpl11/intrinsic/erase.hpp>
-#include <boost/mpl11/intrinsic/insert.hpp>
-#include <boost/mpl11/intrinsic/insert_range.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/clear.hpp>
+#include <boost/mpl11/erase.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/insert_range.hpp>
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/test/back_extensible_sequence.hpp>
 #include <boost/mpl11/test/front_extensible_sequence.hpp>
 

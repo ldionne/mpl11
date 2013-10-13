@@ -3,13 +3,13 @@
  * Contains unit tests for `boost::mpl11::algorithm::find`.
  */
 
-#include <boost/mpl11/algorithm/find.hpp>
+#include <boost/mpl11/find.hpp>
 
-#include <boost/mpl11/algorithm/advance.hpp>
-#include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/advance.hpp>
+#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

@@ -400,20 +400,196 @@
  * @todo Document this concept
  */
 
-#include <boost/mpl11/algorithms.hpp>
+
+/*!
+ * @defgroup views Views
+ * A view is a sequence adaptor providing a lazily-altered presentation of
+ * one or more underlying sequences.
+ */
+
+/*!
+ * @defgroup operators Operators
+ */
+
+/*!
+ * @ingroup operators
+ * @defgroup comparison_operators Comparison Operators
+ *
+ * Compares several types with a given operator.
+ *
+ * Comparison operators are standard tag-dispatched metafunctions, whose
+ * semantics and default implementation share a common pattern described here.
+ *
+ *
+ * ### Semantics and default implementation
+ *
+ * Let `F` be a comparison operator representing a C++ operator `Op`.
+ *
+ * When invoked with arguments `T1`, `T2`, ...`Tn`, equivalent to
+ * `and_<F<T1, T2>, F<T2, Tn...>>`.
+ *
+ * When invoked with arguments `T1` and `T2`, the semantics and default
+ * implementation depend on the operator.
+ *
+ *
+ * @warning
+ * Differences from the original MPL:
+ * - Standard tag dispatching is used with these metafunctions.
+ * - More than two types can be compared at once.
+ */
+
+/*!
+ * @ingroup operators
+ * @defgroup logical_operators Logical Operators
+ *
+ * Returns the result of a short-circuiting logical operator on its arguments.
+ *
+ * The semantics and default implementation of the `and_` and `or_` logical
+ * operators share a common pattern described here.
+ *
+ *
+ * ### Semantics and default implementation of `and_` and `or_`
+ *
+ * Let `F` be a logical operator representing a C++ logical operator `Op`.
+ *
+ * When invoked with arguments `F1`, `F2`, ...`Fn`, equivalent to
+ * `F<F1, F<F2, Fn...>>`.
+ *
+ * When invoked with arguments `F1` and `F2`, equivalent to
+ * `identity<bool_<F1::type::value Op F2::type::value>>`, except that
+ * `F2::type::value` is never evaluated if the value of `F1::type::value`
+ * allows short-circuiting because of the semantics of `Op`. In other words,
+ * left-to-right and lazy evaluation of `F1::type::value` and
+ * `F2::type::value` are guaranteed.
+ */
+
+/*!
+ * @ingroup operators
+ * @defgroup arithmetic_operators Arithmetic Operators
+ *
+ * Performs a given arithmetic operation on one or more types.
+ */
+
+/*!
+ * @ingroup operators
+ * @defgroup bitwise_operators Bitwise Operators
+ *
+ * Performs a given bitwise operation on one or more types.
+ */
+
+/*!
+ * @defgroup intrinsics Intrinsics
+ */
+
+/*!
+ * @defgroup functional Functional
+ */
+
+/*!
+ * @defgroup algorithms Algorithms
+ */
+
+/*!
+ * @defgroup containers Containers
+ */
+
+
+#include <boost/mpl11/advance.hpp>
+#include <boost/mpl11/all_of.hpp>
+#include <boost/mpl11/always.hpp>
+#include <boost/mpl11/and.hpp>
+#include <boost/mpl11/any_of.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/apply_wrap.hpp>
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/as_placeholder.hpp>
+#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/back.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/bind.hpp>
+#include <boost/mpl11/bitand.hpp>
+#include <boost/mpl11/bitor.hpp>
+#include <boost/mpl11/bitxor.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/containers.hpp>
+#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/clear.hpp>
+#include <boost/mpl11/contains.hpp>
+#include <boost/mpl11/count.hpp>
+#include <boost/mpl11/count_if.hpp>
+#include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/distance.hpp>
+#include <boost/mpl11/divides.hpp>
 #include <boost/mpl11/empty_base.hpp>
-#include <boost/mpl11/functional.hpp>
+#include <boost/mpl11/empty_sequence.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/erase.hpp>
+#include <boost/mpl11/erase_key.hpp>
+#include <boost/mpl11/filtered_view.hpp>
+#include <boost/mpl11/find.hpp>
+#include <boost/mpl11/find_if.hpp>
+#include <boost/mpl11/first.hpp>
+#include <boost/mpl11/flattened_view.hpp>
+#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/foldr.hpp>
+#include <boost/mpl11/front.hpp>
+#include <boost/mpl11/greater.hpp>
+#include <boost/mpl11/greater_equal.hpp>
+#include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
+#include <boost/mpl11/indexed_view.hpp>
 #include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsics.hpp>
-#include <boost/mpl11/operators.hpp>
+#include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/is_permutation.hpp>
+#include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/is_placeholder_expression.hpp>
+#include <boost/mpl11/iterator_range.hpp>
+#include <boost/mpl11/iterator_view.hpp>
+#include <boost/mpl11/joined_view.hpp>
+#include <boost/mpl11/key_of.hpp>
+#include <boost/mpl11/key_view.hpp>
+#include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/less.hpp>
+#include <boost/mpl11/less_equal.hpp>
+#include <boost/mpl11/max.hpp>
+#include <boost/mpl11/min.hpp>
+#include <boost/mpl11/minus.hpp>
+#include <boost/mpl11/modulus.hpp>
+#include <boost/mpl11/multiplies.hpp>
+#include <boost/mpl11/negate.hpp>
+#include <boost/mpl11/next.hpp>
+#include <boost/mpl11/none_of.hpp>
+#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/not_equal_to.hpp>
+#include <boost/mpl11/or.hpp>
 #include <boost/mpl11/pair.hpp>
-#include <boost/mpl11/views.hpp>
+#include <boost/mpl11/plus.hpp>
+#include <boost/mpl11/pop_back.hpp>
+#include <boost/mpl11/pop_front.hpp>
+#include <boost/mpl11/prior.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/push_front.hpp>
+#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/reversed_view.hpp>
+#include <boost/mpl11/second.hpp>
+#include <boost/mpl11/shift_left.hpp>
+#include <boost/mpl11/shift_right.hpp>
+#include <boost/mpl11/single_view.hpp>
+#include <boost/mpl11/size.hpp>
+#include <boost/mpl11/sliced_view.hpp>
+#include <boost/mpl11/sorted_view.hpp>
+#include <boost/mpl11/transformed_view.hpp>
+#include <boost/mpl11/unpack_args.hpp>
+#include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/value_view.hpp>
+#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/zipped_view.hpp>
 
 #endif // !BOOST_MPL11_HPP

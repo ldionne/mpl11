@@ -6,15 +6,15 @@
 #ifndef BOOST_MPL11_TEST_ASSOCIATIVE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_ASSOCIATIVE_SEQUENCE_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/at.hpp>
-#include <boost/mpl11/intrinsic/has_key.hpp>
-#include <boost/mpl11/intrinsic/key_of.hpp>
-#include <boost/mpl11/intrinsic/value_of.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/has_key.hpp>
+#include <boost/mpl11/key_of.hpp>
+#include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/test/forward_sequence.hpp>
 
 

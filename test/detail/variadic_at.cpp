@@ -5,7 +5,7 @@
 
 #include <boost/mpl11/detail/variadic_at.hpp>
 
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

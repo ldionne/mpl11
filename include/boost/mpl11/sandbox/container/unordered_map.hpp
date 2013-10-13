@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_CONTAINER_UNORDERED_MAP_HPP
 #define BOOST_MPL11_CONTAINER_UNORDERED_MAP_HPP
 
-#include <boost/mpl11/container/unordered_map_fwd.hpp>
+#include <boost/mpl11/fwd/unordered_map.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -80,7 +80,7 @@ namespace container {
      */
     template <typename First, typename Last>
     struct unordered_map<First, Last>
-        : algorithm::copy<view::bounded_by<First, Last>, unordered_map<>>
+        : algorithm::copy<iterator_range<First, Last>, unordered_map<>>
     { };
 } // end namespace container
 

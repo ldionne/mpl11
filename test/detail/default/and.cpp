@@ -3,7 +3,7 @@
  * Contains unit tests for the default implementation of `boost::mpl11::and_`.
  */
 
-#include <boost/mpl11/operator/and.hpp>
+#include <boost/mpl11/and.hpp>
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>

@@ -3,7 +3,7 @@
  * Contains unit tests for the default implementation of `boost::mpl11::not_`.
  */
 
-#include <boost/mpl11/operator/not.hpp>
+#include <boost/mpl11/not.hpp>
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>

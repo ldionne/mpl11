@@ -3,16 +3,16 @@
  * Contains unit tests for `boost::mpl11::lambda`.
  */
 
-#include <boost/mpl11/functional/lambda.hpp>
+#include <boost/mpl11/lambda.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/apply_wrap.hpp>
-#include <boost/mpl11/functional/arg.hpp>
-#include <boost/mpl11/functional/lambda.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/apply_wrap.hpp>
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/operator/not.hpp>
+#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/not.hpp>
 
 
 using namespace boost::mpl11;

@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::algorithm::distance`.
  */
 
-#include <boost/mpl11/algorithm/distance.hpp>
+#include <boost/mpl11/distance.hpp>
 
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>

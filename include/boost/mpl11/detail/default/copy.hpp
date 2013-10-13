@@ -6,15 +6,15 @@
 #ifndef BOOST_MPL11_DETAIL_DEFAULT_COPY_HPP
 #define BOOST_MPL11_DETAIL_DEFAULT_COPY_HPP
 
-#include <boost/mpl11/algorithm/foldl.hpp>
-#include <boost/mpl11/algorithm/foldr.hpp>
+#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/foldr.hpp>
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/functional/quote.hpp>
-#include <boost/mpl11/intrinsic/category_of.hpp>
-#include <boost/mpl11/intrinsic/insert.hpp>
-#include <boost/mpl11/intrinsic/push_back.hpp>
-#include <boost/mpl11/intrinsic/push_front.hpp>
+#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/push_front.hpp>
 #include <boost/mpl11/tags.hpp>
 
 

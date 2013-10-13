@@ -7,9 +7,9 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/has_type.hpp>
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/arg.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

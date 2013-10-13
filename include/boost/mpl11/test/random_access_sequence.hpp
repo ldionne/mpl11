@@ -6,12 +6,12 @@
 #ifndef BOOST_MPL11_TEST_RANDOM_ACCESS_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_RANDOM_ACCESS_SEQUENCE_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/at.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/test/bidirectional_sequence.hpp>
 
 

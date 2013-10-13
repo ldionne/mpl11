@@ -4,7 +4,7 @@
  */
 
 #include <boost/mpl11/eval.hpp>
-#include <boost/mpl11/functional/protect.hpp>
+#include <boost/mpl11/protect.hpp>
 #include <boost/mpl11/has_xxx.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/is_same.hpp>

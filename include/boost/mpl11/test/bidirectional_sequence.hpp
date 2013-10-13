@@ -6,15 +6,15 @@
 #ifndef BOOST_MPL11_TEST_BIDIRECTIONAL_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_BIDIRECTIONAL_SEQUENCE_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/back.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/prior.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/back.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/prior.hpp>
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/test/forward_sequence.hpp>
 
 

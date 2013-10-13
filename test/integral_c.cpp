@@ -6,10 +6,10 @@
 #include <boost/mpl11/integral_c.hpp>
 
 #include <boost/mpl11/categories.hpp>
-#include <boost/mpl11/intrinsic/deref.hpp>
-#include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/intrinsic/prior.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/next.hpp>
+#include <boost/mpl11/prior.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

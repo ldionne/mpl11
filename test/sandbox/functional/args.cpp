@@ -3,8 +3,8 @@
  * This file contains unit tests for `boost::mpl11::args`.
  */
 
-#include <boost/mpl11/functional/args.hpp>
-#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/args.hpp>
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/is_same.hpp>
 
 

@@ -6,14 +6,14 @@
 #ifndef BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_BACK_EXTENSIBLE_SEQUENCE_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/clear.hpp>
-#include <boost/mpl11/intrinsic/pop_back.hpp>
-#include <boost/mpl11/intrinsic/push_back.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/clear.hpp>
+#include <boost/mpl11/pop_back.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 namespace boost { namespace mpl11 { namespace test {

@@ -3,7 +3,7 @@
  * This file contains unit tests for `boost::mpl11::variadic`.
  */
 
-#include <boost/mpl11/container/variadic.hpp>
+#include <boost/mpl11/variadic.hpp>
 #include <boost/mpl11/is_same.hpp>
 
 

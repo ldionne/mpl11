@@ -3,15 +3,15 @@
  * Contains unit tests for `boost::mpl11::algorithm::sort`.
  */
 
-#include <boost/mpl11/algorithm/sort.hpp>
+#include <boost/mpl11/sort.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/operator/greater.hpp>
-#include <boost/mpl11/operator/less_equal.hpp>
+#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/greater.hpp>
+#include <boost/mpl11/less_equal.hpp>
 
 
 using namespace boost::mpl11;

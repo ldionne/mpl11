@@ -6,12 +6,12 @@
 #ifndef BOOST_MPL11_ALGORITHM_TRANSFORM_HPP
 #define BOOST_MPL11_ALGORITHM_TRANSFORM_HPP
 
-#include <boost/mpl11/algorithm/fold.hpp>
-#include <boost/mpl11/functional/apply_raw.hpp>
-#include <boost/mpl11/functional/bind.hpp>
-#include <boost/mpl11/functional/lambda.hpp>
-#include <boost/mpl11/functional/placeholders.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/fold.hpp>
+#include <boost/mpl11/apply_raw.hpp>
+#include <boost/mpl11/bind.hpp>
+#include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/placeholders.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 namespace boost { namespace mpl11 {

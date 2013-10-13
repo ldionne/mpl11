@@ -6,10 +6,10 @@
 #ifndef BOOST_MPL11_DETAIL_PARSE_ARGS_HPP
 #define BOOST_MPL11_DETAIL_PARSE_ARGS_HPP
 
-#include <boost/mpl11/container_fwd.hpp>
+#include <boost/mpl11/fwd/container.hpp>
 #include <boost/mpl11/eval.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/intrinsic_fwd.hpp>
+#include <boost/mpl11/fwd/intrinsic.hpp>
 #include <boost/mpl11/trait/is_named_argument.hpp>
 
 
@@ -65,9 +65,9 @@ struct parse_args
 
 #endif // !BOOST_MPL11_DETAIL_PARSE_ARGS_HPP
 
-#include <boost/mpl11/container/map.hpp>
-#include <boost/mpl11/container/pair.hpp>
-#include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/intrinsic/empty.hpp>
-#include <boost/mpl11/intrinsic/insert.hpp>
-#include <boost/mpl11/intrinsic/push_back.hpp>
+#include <boost/mpl11/map.hpp>
+#include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/empty.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/push_back.hpp>

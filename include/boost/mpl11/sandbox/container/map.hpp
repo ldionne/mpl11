@@ -10,17 +10,17 @@
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/erase_key.hpp>
+#include <boost/mpl11/first.hpp>
+#include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/erase_key.hpp>
-#include <boost/mpl11/intrinsic/first.hpp>
-#include <boost/mpl11/intrinsic/has_key.hpp>
-#include <boost/mpl11/intrinsic/insert_range.hpp>
-#include <boost/mpl11/intrinsic/second.hpp>
+#include <boost/mpl11/iterator_range.hpp>
+#include <boost/mpl11/second.hpp>
 #include <boost/mpl11/tags.hpp>
-#include <boost/mpl11/view/bounded_by.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -87,7 +87,7 @@ namespace container {
      */
     template <typename First, typename Last>
     struct map<First, Last>
-        : insert_range<map<>, view::bounded_by<First, Last>>
+        : insert_range<map<>, iterator_range<First, Last>>
     { };
 } // end namespace container
 

@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::is_placeholder_expression`.
  */
 
-#include <boost/mpl11/functional/is_placeholder_expression.hpp>
+#include <boost/mpl11/is_placeholder_expression.hpp>
 
 #include "placeholders.hpp"
 

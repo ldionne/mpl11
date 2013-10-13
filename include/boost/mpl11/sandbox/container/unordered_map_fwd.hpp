@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::container::unordered_map`.
  */
 
-#ifndef BOOST_MPL11_CONTAINER_UNORDERED_MAP_FWD_HPP
-#define BOOST_MPL11_CONTAINER_UNORDERED_MAP_FWD_HPP
+#ifndef BOOST_MPL11_FWD_CONTAINER_UNORDERED_MAP_HPP
+#define BOOST_MPL11_FWD_CONTAINER_UNORDERED_MAP_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 
@@ -21,4 +21,4 @@ namespace boost { namespace mpl11 { namespace container {
     struct unordered_map BOOST_MPL11_DOXYGEN_ONLY({ });
 }}} // end namespace boost::mpl11::container
 
-#endif // !BOOST_MPL11_CONTAINER_UNORDERED_MAP_FWD_HPP
+#endif // !BOOST_MPL11_FWD_CONTAINER_UNORDERED_MAP_HPP

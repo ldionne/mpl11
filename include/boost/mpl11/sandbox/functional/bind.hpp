@@ -6,18 +6,18 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_BIND_HPP
 #define BOOST_MPL11_FUNCTIONAL_BIND_HPP
 
-#include <boost/mpl11/algorithm_fwd.hpp>
-#include <boost/mpl11/container_fwd.hpp>
+#include <boost/mpl11/fwd/algorithm.hpp>
+#include <boost/mpl11/fwd/container.hpp>
 #include <boost/mpl11/detail/parse_args.hpp>
 #include <boost/mpl11/detail/transfer.hpp>
 #include <boost/mpl11/eval.hpp>
-#include <boost/mpl11/functional/apply_raw.hpp>
-#include <boost/mpl11/functional_fwd.hpp>
+#include <boost/mpl11/apply_raw.hpp>
+#include <boost/mpl11/fwd/functional.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/intrinsic/empty.hpp>
-#include <boost/mpl11/intrinsic/front.hpp>
-#include <boost/mpl11/intrinsic/pop_front.hpp>
-#include <boost/mpl11/intrinsic/push_back.hpp>
+#include <boost/mpl11/empty.hpp>
+#include <boost/mpl11/front.hpp>
+#include <boost/mpl11/pop_front.hpp>
+#include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/trait/is_placeholder.hpp>
 
 
@@ -89,5 +89,5 @@ struct bind
 
 #endif // !BOOST_MPL11_FUNCTIONAL_BIND_HPP
 
-#include <boost/mpl11/algorithm/foldl.hpp>
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/vector.hpp>

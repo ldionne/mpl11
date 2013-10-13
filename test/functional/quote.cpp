@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::quote`.
  */
 
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/quote.hpp>
 
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

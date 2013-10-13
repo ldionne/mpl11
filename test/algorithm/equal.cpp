@@ -3,11 +3,11 @@
  * Contains unit tests for `boost::mpl11::algorithm::equal`.
  */
 
-#include <boost/mpl11/algorithm/equal.hpp>
+#include <boost/mpl11/equal.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/functional/always.hpp>
+#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/always.hpp>
 
 
 using namespace boost::mpl11;

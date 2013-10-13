@@ -3,9 +3,9 @@
  * This file contains unit tests for `boost::mpl11::kwarg`.
  */
 
-#include <boost/mpl11/functional/kwarg.hpp>
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/named_argument.hpp>
+#include <boost/mpl11/kwarg.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/named_argument.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/is_same.hpp>
 

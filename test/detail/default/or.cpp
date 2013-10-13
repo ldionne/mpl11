@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::or_`.
  */
 
-#include <boost/mpl11/operator/or.hpp>
+#include <boost/mpl11/or.hpp>
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/identity.hpp>

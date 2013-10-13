@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::algorithm::contains`.
  */
 
-#include <boost/mpl11/algorithm/contains.hpp>
+#include <boost/mpl11/contains.hpp>
 
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;

@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::as_placeholder`.
  */
 
-#include <boost/mpl11/functional/as_placeholder.hpp>
+#include <boost/mpl11/as_placeholder.hpp>
 
-#include <boost/mpl11/functional/is_placeholder.hpp>
+#include <boost/mpl11/is_placeholder.hpp>
 
 
 using namespace boost::mpl11;

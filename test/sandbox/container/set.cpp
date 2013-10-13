@@ -3,7 +3,7 @@
  * This file contains unit tests for `boost::mpl11::set`.
  */
 
-#include <boost/mpl11/container/set.hpp>
+#include <boost/mpl11/set.hpp>
 #include <boost/mpl11/is_same.hpp>
 
 

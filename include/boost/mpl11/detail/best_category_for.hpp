@@ -7,7 +7,7 @@
 #define BOOST_MPL11_DETAIL_BEST_CATEGORY_FOR_HPP
 
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/intrinsic/category_of.hpp>
+#include <boost/mpl11/category_of.hpp>
 
 
 namespace boost { namespace mpl11 {

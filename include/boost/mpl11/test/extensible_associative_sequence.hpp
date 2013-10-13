@@ -6,15 +6,15 @@
 #ifndef BOOST_MPL11_TEST_EXTENSIBLE_ASSOCIATIVE_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_EXTENSIBLE_ASSOCIATIVE_SEQUENCE_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/clear.hpp>
-#include <boost/mpl11/intrinsic/erase_key.hpp>
-#include <boost/mpl11/intrinsic/insert.hpp>
-#include <boost/mpl11/intrinsic/insert_range.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/clear.hpp>
+#include <boost/mpl11/erase_key.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/insert_range.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 namespace boost { namespace mpl11 { namespace test {

@@ -3,11 +3,11 @@
  * Contains unit tests for `boost::mpl11::container::variadic`.
  */
 
-#include <boost/mpl11/container/variadic.hpp>
+#include <boost/mpl11/variadic.hpp>
 
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/test/instantiate.hpp>
 #include <boost/mpl11/test/random_access_sequence.hpp>
 #include <boost/mpl11/test/random_extensible_sequence.hpp>

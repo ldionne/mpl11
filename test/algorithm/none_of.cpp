@@ -3,13 +3,13 @@
  * Contains unit tests for `boost::mpl11::algorithm::none_of`.
  */
 
-#include <boost/mpl11/algorithm/none_of.hpp>
+#include <boost/mpl11/none_of.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/container/vector.hpp>
-#include <boost/mpl11/functional/always.hpp>
-#include <boost/mpl11/functional/arg.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/always.hpp>
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

@@ -1,23 +1,23 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::view::empty`.
+ * Contains unit tests for `boost::mpl11::empty_sequence`.
  */
 
-#include <boost/mpl11/view/empty.hpp>
+#include <boost/mpl11/empty_sequence.hpp>
 
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/is_empty.hpp>
 
 
 using namespace boost::mpl11;
 
-static_assert(is_empty<view::empty>::type::value, "");
+static_assert(is_empty<empty_sequence>::type::value, "");
 
 static_assert(equal_to<
-    begin<view::empty>::type,
-    end<view::empty>::type
+    begin<empty_sequence>::type,
+    end<empty_sequence>::type
 >::type::value, "");
 
 

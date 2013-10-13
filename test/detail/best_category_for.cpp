@@ -7,7 +7,7 @@
 
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/tags.hpp>
 
 

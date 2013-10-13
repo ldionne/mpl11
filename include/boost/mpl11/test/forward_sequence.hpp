@@ -6,19 +6,19 @@
 #ifndef BOOST_MPL11_TEST_FORWARD_SEQUENCE_HPP
 #define BOOST_MPL11_TEST_FORWARD_SEQUENCE_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/deref.hpp>
-#include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/front.hpp>
-#include <boost/mpl11/intrinsic/is_empty.hpp>
-#include <boost/mpl11/intrinsic/next.hpp>
-#include <boost/mpl11/intrinsic/size.hpp>
-#include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/operator/not_equal_to.hpp>
+#include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/front.hpp>
+#include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/next.hpp>
+#include <boost/mpl11/size.hpp>
+#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/not_equal_to.hpp>
 
 
 namespace boost { namespace mpl11 { namespace test {

@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP
 #define BOOST_MPL11_FUNCTIONAL_NAMED_ARGUMENT_HPP
 
-#include <boost/mpl11/container/pair.hpp>
+#include <boost/mpl11/pair.hpp>
 
 
 namespace boost { namespace mpl11 {

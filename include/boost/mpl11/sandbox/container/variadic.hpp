@@ -21,7 +21,7 @@ namespace boost { namespace mpl11 { namespace container {
 
 
 #include <boost/mpl11/adaptor.hpp>
-#include <boost/mpl11/container/vector.hpp>
+#include <boost/mpl11/vector.hpp>
 #include <boost/mpl11/dispatch.hpp>
 
 

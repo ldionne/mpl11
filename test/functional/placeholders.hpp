@@ -2,7 +2,7 @@
 #define BOOST_MPL11_TEST_FUNCTIONAL_PLACEHOLDERS_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/functional/is_placeholder.hpp>
+#include <boost/mpl11/is_placeholder.hpp>
 
 
 struct placeholder {

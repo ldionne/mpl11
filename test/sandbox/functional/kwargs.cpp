@@ -3,10 +3,10 @@
  * This file contains unit tests for `boost::mpl11::kwargs`.
  */
 
-#include <boost/mpl11/functional/kwargs.hpp>
-#include <boost/mpl11/container/map.hpp>
-#include <boost/mpl11/functional/apply.hpp>
-#include <boost/mpl11/functional/named_argument.hpp>
+#include <boost/mpl11/kwargs.hpp>
+#include <boost/mpl11/map.hpp>
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/named_argument.hpp>
 #include <boost/mpl11/is_same.hpp>
 
 

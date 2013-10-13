@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FUNCTIONAL_KWARG_HPP
 #define BOOST_MPL11_FUNCTIONAL_KWARG_HPP
 
-#include <boost/mpl11/intrinsic/at.hpp>
+#include <boost/mpl11/at.hpp>
 #include <boost/mpl11/view/single_view.hpp>
 
 

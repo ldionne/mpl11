@@ -6,10 +6,10 @@
 #ifndef BOOST_MPL11_DETAIL_INDEX_BASED_ITERATOR_HPP
 #define BOOST_MPL11_DETAIL_INDEX_BASED_ITERATOR_HPP
 
-#include <boost/mpl11/algorithm_fwd.hpp>
-#include <boost/mpl11/intrinsic/at.hpp>
-#include <boost/mpl11/intrinsic/size.hpp>
-#include <boost/mpl11/intrinsic_fwd.hpp>
+#include <boost/mpl11/fwd/algorithm.hpp>
+#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/size.hpp>
+#include <boost/mpl11/fwd/intrinsic.hpp>
 #include <boost/mpl11/size_t.hpp>
 
 

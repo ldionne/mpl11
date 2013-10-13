@@ -3,10 +3,10 @@
  * Contains unit tests for `boost::mpl11::container::map`.
  */
 
-#include <boost/mpl11/container/map.hpp>
+#include <boost/mpl11/map.hpp>
 
-#include <boost/mpl11/functional/arg.hpp>
-#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/pair.hpp>
 #include <boost/mpl11/test/associative_sequence.hpp>

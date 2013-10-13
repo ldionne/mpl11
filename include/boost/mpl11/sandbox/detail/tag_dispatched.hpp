@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 #define BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 
-#include <boost/mpl11/functional_fwd.hpp>
+#include <boost/mpl11/fwd/functional.hpp>
 #include <boost/mpl11/trait/dispatcher_of.hpp>
 
 
@@ -25,4 +25,4 @@ namespace boost { namespace mpl11 { namespace detail {
 
 #endif // !BOOST_MPL11_DETAIL_TAG_DISPATCHED_HPP
 
-#include <boost/mpl11/functional/apply.hpp>
+#include <boost/mpl11/apply.hpp>
