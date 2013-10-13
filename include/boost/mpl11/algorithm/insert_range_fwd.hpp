@@ -52,17 +52,7 @@ namespace boost { namespace mpl11 {
      *
      * ### Semantics and default implementation
      *
-     * Let `Filtered` be identical to
-     * @code
-     *     foldl<
-     *         Range,
-     *         Sequence,
-     *         erase_key<_1, key_of<Range, _2>>
-     *     >::type
-     * @endcode
-     *
-     * Then, `insert_range` is equivalent to
-     * `identity<view::joined<Range, Filtered>>`.
+     * Equivalent to `foldl<Range, Sequence, insert<_1, _2>>`.
      */
     template <typename Sequence, typename Range>
     struct insert_range<Sequence, Range>

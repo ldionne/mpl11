@@ -29,13 +29,13 @@ namespace boost { namespace mpl11 {
      * ### Semantics and default implementation
      *
      * Equivalent to
-       @code
+        @code
             insert_range<
                 Sequence,
                 Position,
                 view::single_element<Element>
             >
-       @endcode
+        @endcode
      */
     template <typename Sequence, typename Position, typename Element>
     struct insert BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Element>)
@@ -49,13 +49,26 @@ namespace boost { namespace mpl11 {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to
-     * @code
-     *     insert_range<
-     *         Sequence,
-     *         view::single_element<Element>
-     *     >
-     * @endcode
+     * Let `Filtered` be the same as
+     * `erase_key<Sequence, key_of<Sequence, Element>::type>::type`.
+     *
+     * Then, `insert` is equivalent to
+        @code
+            identity<
+                view::indexed_by<
+                    view::joined<
+                        Filtered,
+                        view::indexed_by<
+                            view::single_element<Element>,
+                            lambda<key_of<Filtered, _1>>::type,
+                            lambda<value_of<Filtered, _1>>::type
+                        >
+                    >,
+                    lambda<key_of<Filtered, _1>>::type,
+                    lambda<value_of<Filtered, _1>>::type
+                >
+            >
+        @endcode
      */
     template <typename Sequence, typename Element>
     struct insert<Sequence, Element>

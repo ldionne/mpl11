@@ -14,8 +14,8 @@ namespace boost { namespace mpl11 {
 
     /*!
      * @ingroup algorithms
-     * Returns a sequence with the elements associated to a given
-     * key removed from it.
+     * Returns an @ref AssociativeSequence with the elements associated to
+     * a given key removed from it.
      *
      *
      * ### Semantics and default implementation
@@ -23,9 +23,13 @@ namespace boost { namespace mpl11 {
      * Equivalent to
        @code
             identity<
-                view::filtered<
-                    Sequence,
-                    not_equal_to<Key, key_of<Sequence, _1>>
+                view::indexed_by<
+                    view::filtered<
+                        Sequence,
+                        not_equal_to<Key, key_of<Sequence, _1>>
+                    >,
+                    lambda<key_of<Sequence, _1>>::type,
+                    lambda<value_of<Sequence, _1>>::type
                 >
             >
        @endcode
