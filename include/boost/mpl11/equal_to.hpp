@@ -9,7 +9,6 @@
 #include <boost/mpl11/fwd/equal_to.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/bool.hpp>
@@ -17,8 +16,8 @@
 #include <boost/mpl11/category/forward_sequence.hpp>
 #include <boost/mpl11/category/integral_constant.hpp>
 #include <boost/mpl11/category/none.hpp>
-#include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/detail/dual_dispatch.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
@@ -41,25 +40,11 @@ struct dispatch<tag::equal_to, T1, T2, Tn...>
 
 template <typename T1, typename T2>
 struct dispatch<tag::equal_to, T1, T2>
-    : apply_wrap<
-        dispatch<
-            tag::by_category<tag::equal_to>,
-            typename category_of<T1>::type
-        >,
-        T1, T2
-    >
-{
-    //! @bug This should be equal_to or something similar, but that would
-    //!      cause an obvious infinite recursion problem.
-    static_assert(detail::is_same<
-                    typename category_of<T1>::type,
-                    typename category_of<T2>::type
-                  >::type::value,
-    "Trying to compare two types with different categories.");
-};
+    : detail::dual_dispatch<tag::equal_to, T1, T2>::template apply<T1, T2>
+{ };
 
 template <>
-struct dispatch<tag::by_category<tag::equal_to>, category::none> {
+struct dispatch<tag::dual<tag::equal_to>, category::none, category::none> {
     template <typename T1, typename T2>
     struct apply
         : detail::is_same<T1, T2>
@@ -67,7 +52,11 @@ struct dispatch<tag::by_category<tag::equal_to>, category::none> {
 };
 
 template <>
-struct dispatch<tag::by_category<tag::equal_to>, category::forward_sequence> {
+struct dispatch<
+    tag::dual<tag::equal_to>,
+    category::forward_sequence,
+    category::forward_sequence
+> {
     template <typename S1, typename S2>
     struct apply
         : equal<S1, S2> // use element-wise equality
@@ -82,8 +71,11 @@ namespace equal_to_detail {
 } // end namespace equal_to_detail
 
 template <>
-struct dispatch<tag::by_category<tag::equal_to>,
-                category::associative_sequence> {
+struct dispatch<
+    tag::dual<tag::equal_to>,
+    category::associative_sequence,
+    category::associative_sequence
+> {
     template <typename S1, typename S2>
     class apply {
         using Last1 = typename end<S1>::type;
@@ -123,7 +115,11 @@ struct dispatch<tag::by_category<tag::equal_to>,
 };
 
 template <>
-struct dispatch<tag::by_category<tag::equal_to>, category::integral_constant> {
+struct dispatch<
+    tag::dual<tag::equal_to>,
+    category::integral_constant,
+    category::integral_constant
+> {
     template <typename I, typename J>
     struct apply
         : identity<

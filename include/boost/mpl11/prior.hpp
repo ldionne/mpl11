@@ -8,9 +8,8 @@
 
 #include <boost/mpl11/fwd/prior.hpp>
 
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/category/integral_constant.hpp>
-#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/detail/single_dispatch.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -19,18 +18,11 @@
 namespace boost { namespace mpl11 {
     template <typename N>
     struct dispatch<tag::prior, N>
-        : apply_wrap<
-            dispatch<
-                tag::by_category<tag::prior>,
-                typename category_of<N>::type
-            >,
-            N
-        >
+        : detail::single_dispatch<tag::prior, N>::template apply<N>
     { };
 
     template <>
-    struct dispatch<tag::by_category<tag::prior>,
-                    category::integral_constant> {
+    struct dispatch<tag::single<tag::prior>, category::integral_constant> {
         template <typename N>
         struct apply
             : identity<

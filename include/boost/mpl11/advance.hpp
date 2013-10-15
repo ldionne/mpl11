@@ -9,10 +9,9 @@
 #include <boost/mpl11/fwd/advance.hpp>
 #include <boost/mpl11/integral_c.hpp> // for advance_c
 
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/category/bidirectional_iterator.hpp>
 #include <boost/mpl11/category/forward_iterator.hpp>
-#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/detail/single_dispatch.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/next.hpp>
@@ -35,17 +34,12 @@ namespace advance_detail {
 
 template <typename Iterator, typename N>
 struct dispatch<tag::advance, Iterator, N>
-    : apply_wrap<
-        dispatch<
-            tag::by_category<tag::advance>,
-            typename category_of<Iterator>::type
-        >,
-        Iterator, N
-    >
+    : detail::single_dispatch<tag::advance, Iterator>::
+        template apply<Iterator, N>
 { };
 
 template <>
-struct dispatch<tag::by_category<tag::advance>, category::forward_iterator> {
+struct dispatch<tag::single<tag::advance>, category::forward_iterator> {
     template <typename Iterator, typename N>
     struct apply {
         static_assert(N::value >= 0,
@@ -62,8 +56,10 @@ struct dispatch<tag::by_category<tag::advance>, category::forward_iterator> {
 };
 
 template <>
-struct dispatch<tag::by_category<tag::advance>,
-                category::bidirectional_iterator> {
+struct dispatch<
+    tag::single<tag::advance>,
+    category::bidirectional_iterator
+> {
     template <typename Iterator, typename N, bool = N::value < 0>
     struct apply;
 

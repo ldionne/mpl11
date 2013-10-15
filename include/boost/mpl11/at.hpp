@@ -10,14 +10,13 @@
 #include <boost/mpl11/integral_c.hpp> // for at_c
 
 #include <boost/mpl11/advance.hpp>
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/category/associative_sequence.hpp>
 #include <boost/mpl11/category/forward_sequence.hpp>
-#include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/detail/single_dispatch.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal_to.hpp>
@@ -44,17 +43,12 @@ namespace at_detail {
 
 template <typename Sequence, typename Key, typename ...Default>
 struct dispatch<tag::at, Sequence, Key, Default...>
-    : apply_wrap<
-        dispatch<
-            tag::by_category<tag::at>,
-            typename category_of<Sequence>::type
-        >,
-        Sequence, Key, Default...
-    >
+    : detail::single_dispatch<tag::at, Sequence>::
+        template apply<Sequence, Key, Default...>
 { };
 
 template <>
-struct dispatch<tag::by_category<tag::at>, category::forward_sequence> {
+struct dispatch<tag::single<tag::at>, category::forward_sequence> {
     template <typename Sequence, typename N>
     class apply {
         using Iter = typename advance<
@@ -72,7 +66,7 @@ struct dispatch<tag::by_category<tag::at>, category::forward_sequence> {
 };
 
 template <>
-struct dispatch<tag::by_category<tag::at>, category::associative_sequence> {
+struct dispatch<tag::single<tag::at>, category::associative_sequence> {
     template <typename Sequence, typename Key, typename ...Default>
     struct apply;
 

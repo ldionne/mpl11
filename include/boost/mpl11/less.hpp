@@ -9,11 +9,9 @@
 #include <boost/mpl11/fwd/less.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/category/integral_constant.hpp>
-#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/detail/dual_dispatch.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
@@ -27,22 +25,17 @@ struct dispatch<tag::less, T1, T2, Tn...>
     >
 { };
 
-template <typename I, typename J>
-struct dispatch<tag::less, I, J>
-    : apply_wrap<
-        dispatch<tag::by_category<tag::less>, typename category_of<I>::type>,
-        I, J
-    >
-{
-    static_assert(equal_to<
-                    typename category_of<I>::type,
-                    typename category_of<J>::type
-                  >::type::value,
-    "Trying to less-than compare two types with different categories.");
-};
+template <typename T1, typename T2>
+struct dispatch<tag::less, T1, T2>
+    : detail::dual_dispatch<tag::less, T1, T2>::template apply<T1, T2>
+{ };
 
 template <>
-struct dispatch<tag::by_category<tag::less>, category::integral_constant> {
+struct dispatch<
+    tag::dual<tag::less>,
+    category::integral_constant,
+    category::integral_constant
+> {
     template <typename I, typename J>
     struct apply
         : identity<

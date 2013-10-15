@@ -8,22 +8,24 @@
 
 #include <boost/mpl11/fwd/dispatch.hpp>
 
-#include <boost/mpl11/category/none.hpp>
 #include <boost/mpl11/detail/dependent_on.hpp>
-#include <boost/mpl11/parent.hpp>
 
 
 namespace boost { namespace mpl11 {
+    // Raw type dispatching
     template <typename Operation, typename ...Args>
     struct dispatch {
         static_assert(
             detail::dependent_on<Operation>::template value<bool, false>(),
         "No default implementation is provided for the requested "
         "operation with the provided arguments.");
+
+        struct type;
     };
 
-    template <typename Operation>
-    struct dispatch<tag::by_category<Operation>, category::none> {
+    // Single category dispatching
+    template <typename Operation, typename Category>
+    struct dispatch<tag::single<Operation>, Category> {
         static_assert(
             detail::dependent_on<Operation>::template value<bool, false>(),
         "No default implementation is provided for the requested "
@@ -33,13 +35,17 @@ namespace boost { namespace mpl11 {
         struct apply { struct type; };
     };
 
-    template <typename Operation, typename Category>
-    struct dispatch<tag::by_category<Operation>, Category>
-        : dispatch<
-            tag::by_category<Operation>,
-            typename parent<Category>::type
-        >
-    { };
+    // Dual category dispatching
+    template <typename Operation, typename Category1, typename Category2>
+    struct dispatch<tag::dual<Operation>, Category1, Category2> {
+        static_assert(
+            detail::dependent_on<Operation>::template value<bool, false>(),
+        "No default implementation is provided for the requested "
+        "operation with the provided categories.");
+
+        template <typename ...>
+        struct apply { struct type; };
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_DISPATCH_HPP

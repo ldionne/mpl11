@@ -8,9 +8,8 @@
 
 #include <boost/mpl11/fwd/negate.hpp>
 
-#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/category/integral_constant.hpp>
-#include <boost/mpl11/category_of.hpp>
+#include <boost/mpl11/detail/single_dispatch.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -19,18 +18,11 @@
 namespace boost { namespace mpl11 {
     template <typename T>
     struct dispatch<tag::negate, T>
-        : apply_wrap<
-            dispatch<
-                tag::by_category<tag::negate>,
-                typename category_of<T>::type
-            >,
-            T
-        >
+        : detail::single_dispatch<tag::negate, T>::template apply<T>
     { };
 
     template <>
-    struct dispatch<tag::by_category<tag::negate>,
-                    category::integral_constant> {
+    struct dispatch<tag::single<tag::negate>, category::integral_constant> {
         template <typename I>
         struct apply
             : identity<
