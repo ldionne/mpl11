@@ -16,12 +16,12 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::default_<tag::any_of>, Sequence, Predicate>
+    struct dispatch<tag::any_of, Sequence, Predicate>
         : not_<none_of<Sequence, Predicate>>
     { };
 
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::any_of>, Sequence>
+    struct dispatch<tag::any_of, Sequence>
         : any_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11

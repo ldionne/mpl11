@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/equal_to.hpp>
 
 #include <boost/mpl11/and.hpp>
+#include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/bool.hpp>
@@ -31,45 +32,79 @@
 
 namespace boost { namespace mpl11 {
 template <typename T1, typename T2, typename ...Tn>
-struct dispatch<tag::default_<tag::equal_to>, T1, T2, Tn...>
+struct dispatch<tag::equal_to, T1, T2, Tn...>
     : and_<
         equal_to<T1, T2>,
         equal_to<T2, Tn...>
     >
 { };
 
-namespace equal_to_detail {
-    template <typename T1, typename T2>
-    struct integral_constant_equal
-        : identity<
-            bool_<T1::value == T2::value>
-        >
-    { };
+template <typename T1, typename T2>
+struct dispatch<tag::equal_to, T1, T2>
+    : apply_wrap<
+        dispatch<
+            tag::by_category<tag::equal_to>,
+            typename category_of<T1>::type
+        >,
+        T1, T2
+    >
+{
+    //! @bug This should be equal_to or something similar, but that would
+    //!      cause an obvious infinite recursion problem.
+    static_assert(detail::is_same<
+                    typename category_of<T1>::type,
+                    typename category_of<T2>::type
+                  >::type::value,
+    "Trying to compare two types with different categories.");
+};
 
+template <>
+struct dispatch<tag::by_category<tag::equal_to>, category::none> {
+    template <typename T1, typename T2>
+    struct apply
+        : detail::is_same<T1, T2>
+    { };
+};
+
+template <>
+struct dispatch<tag::by_category<tag::equal_to>, category::forward_sequence> {
+    template <typename S1, typename S2>
+    struct apply
+        : equal<S1, S2> // use element-wise equality
+    { };
+};
+
+namespace equal_to_detail {
     template <typename T1, typename T2>
     struct lazy_equal_to
         : equal_to<typename T1::type, typename T2::type>
     { };
+} // end namespace equal_to_detail
 
+template <>
+struct dispatch<tag::by_category<tag::equal_to>,
+                category::associative_sequence> {
     template <typename S1, typename S2>
-    class associative_sequence_equal {
+    class apply {
+        using Last1 = typename end<S1>::type;
+
         template <typename First1,
-                  bool = equal_to<First1, typename end<S1>::type>::type::value>
-        struct apply;
+                  bool = equal_to<First1, Last1>::type::value>
+        struct impl;
 
         template <typename First1>
-        struct apply<First1, true>
+        struct impl<First1, true>
             : identity<true_>
         { };
 
         template <typename First1>
-        struct apply<First1, false> {
+        struct impl<First1, false> {
             using Element = typename deref<First1>::type;
             using Key = typename key_of<S1, Element>::type;
 
             using type = typename and_<
                 has_key<S2, Key>,
-                lazy_equal_to<
+                equal_to_detail::lazy_equal_to<
                     value_of<S1, Element>,
                     at<S2, Key>
                 >
@@ -82,38 +117,20 @@ namespace equal_to_detail {
                 typename size<S1>::type,
                 typename size<S2>::type
             >,
-            apply<typename begin<S1>::type>
+            impl<typename begin<S1>::type>
         >::type;
     };
+};
 
-    template <typename T1, typename T2>
-    auto pick(category::none*, category::none*)
-        -> detail::is_same<T1, T2>
-    ;
-
-    template <typename T1, typename T2>
-    auto pick(category::integral_constant*, category::integral_constant*)
-        -> integral_constant_equal<T1, T2>
-    ;
-
-    template <typename T1, typename T2>
-    auto pick(category::forward_sequence*, category::forward_sequence*)
-        -> equal<T1, T2>
-    ;
-
-    template <typename T1, typename T2>
-    auto pick(category::associative_sequence*, category::associative_sequence*)
-        -> associative_sequence_equal<T1, T2>
-    ;
-} // end namespace equal_to_detail
-
-template <typename T1, typename T2>
-struct dispatch<tag::default_<tag::equal_to>, T1, T2>
-    : decltype(equal_to_detail::pick<T1, T2>(
-        (typename category_of<T1>::type*)nullptr,
-        (typename category_of<T2>::type*)nullptr
-    ))
-{ };
+template <>
+struct dispatch<tag::by_category<tag::equal_to>, category::integral_constant> {
+    template <typename I, typename J>
+    struct apply
+        : identity<
+            bool_<I::value == J::value>
+        >
+    { };
+};
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_EQUAL_TO_HPP

@@ -1,13 +1,13 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::dispatch` and `tag::default_`.
+ * Forward declares `boost::mpl11::dispatch` and `tag::by_category`.
  */
 
 #ifndef BOOST_MPL11_FWD_DISPATCH_HPP
 #define BOOST_MPL11_FWD_DISPATCH_HPP
 
 namespace boost { namespace mpl11 {
-    namespace tag { template <typename Operation> struct default_; }
+    namespace tag { template <typename Operation> struct by_category; }
 
     template <typename Operation, typename ...Args>
     struct dispatch;

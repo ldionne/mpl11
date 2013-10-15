@@ -17,12 +17,12 @@
 
 namespace boost { namespace mpl11 {
     template <typename F1, typename F2, typename ...Fn>
-    struct dispatch<tag::default_<tag::or_>, F1, F2, Fn...>
+    struct dispatch<tag::or_, F1, F2, Fn...>
         : or_<F1, or_<F2, Fn...>>
     { };
 
     template <typename F1, typename F2>
-    struct dispatch<tag::default_<tag::or_>, F1, F2>
+    struct dispatch<tag::or_, F1, F2>
         : identity<
             bool_<if_c<F1::type::value, true_, F2>::type::type::value>
         >

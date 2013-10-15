@@ -45,7 +45,7 @@ namespace find_if_detail {
 } // end namespace find_if_detail
 
 template <typename Sequence, typename Predicate>
-struct dispatch<tag::default_<tag::find_if>, Sequence, Predicate>
+struct dispatch<tag::find_if, Sequence, Predicate>
     : find_if_detail::find_if_impl<
         typename begin<Sequence>::type,
         typename end<Sequence>::type,

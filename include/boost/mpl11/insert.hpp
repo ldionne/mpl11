@@ -21,14 +21,14 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Position, typename Element>
-    struct dispatch<tag::default_<tag::insert>, Sequence, Position, Element>
+    struct dispatch<tag::insert, Sequence, Position, Element>
         : insert_range<
             Sequence, Position, single_view<Element>
         >
     { };
 
     template <typename Sequence, typename Element>
-    struct dispatch<tag::default_<tag::insert>, Sequence, Element> {
+    struct dispatch<tag::insert, Sequence, Element> {
     private:
         using Filtered = typename erase_key<
             Sequence, typename key_of<Sequence, Element>::type

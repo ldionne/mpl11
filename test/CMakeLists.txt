@@ -15,4 +15,5 @@ function(mpl11_add_test name sources)
 endfunction()
 
 
+mpl11_add_test(all_of     all_of.cpp)
 mpl11_add_test(integral_c integral_c.cpp)

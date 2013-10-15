@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
     } // end namespace pop_front_detail
 
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::pop_front>, Sequence>
+    struct dispatch<tag::pop_front, Sequence>
         : pop_front_detail::assert_nonempty<Sequence>,
           erase<
             Sequence,

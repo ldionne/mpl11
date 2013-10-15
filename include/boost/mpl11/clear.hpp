@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::clear>, Sequence>
+    struct dispatch<tag::clear, Sequence>
         : erase<
             Sequence,
             typename begin<Sequence>::type,

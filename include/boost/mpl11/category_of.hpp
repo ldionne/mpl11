@@ -15,7 +15,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename T>
-    struct dispatch<tag::default_<tag::category_of>, T>
+    struct dispatch<tag::category_of, T>
         : identity<category::none>
     { };
 }} // end namespace boost::mpl11

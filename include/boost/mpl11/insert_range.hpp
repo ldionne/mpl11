@@ -21,12 +21,12 @@
 
 namespace boost { namespace mpl11 {
 template <typename Sequence, typename Range>
-struct dispatch<tag::default_<tag::insert_range>, Sequence, Range>
+struct dispatch<tag::insert_range, Sequence, Range>
     : foldl<Range, Sequence, quote<insert>>
 { };
 
 template <typename Sequence, typename Position, typename Range>
-struct dispatch<tag::default_<tag::insert_range>, Sequence, Position, Range>
+struct dispatch<tag::insert_range, Sequence, Position, Range>
     : identity<
         joined_view<
             iterator_range<

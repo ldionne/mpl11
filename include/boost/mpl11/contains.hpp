@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
-    struct dispatch<tag::default_<tag::contains>, Sequence, Element>
+    struct dispatch<tag::contains, Sequence, Element>
         : not_equal_to<
             typename find<Sequence, Element>::type,
             typename end<Sequence>::type

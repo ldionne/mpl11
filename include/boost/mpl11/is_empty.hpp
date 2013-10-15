@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::is_empty>, Sequence>
+    struct dispatch<tag::is_empty, Sequence>
         : equal_to<
             typename begin<Sequence>::type,
             typename end<Sequence>::type

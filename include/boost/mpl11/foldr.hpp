@@ -40,7 +40,7 @@ namespace foldr_detail {
 } // end namespace foldr_detail
 
 template <typename Sequence, typename State, typename F>
-struct dispatch<tag::default_<tag::foldr>, Sequence, State, F>
+struct dispatch<tag::foldr, Sequence, State, F>
     : foldr_detail::foldr_impl<
         typename begin<Sequence>::type,
         typename end<Sequence>::type,

@@ -46,14 +46,14 @@ namespace erase_detail {
 } // end namespace erase_detail
 
 template <typename Sequence, typename Position>
-struct dispatch<tag::default_<tag::erase>, Sequence, Position>
+struct dispatch<tag::erase, Sequence, Position>
     : erase<
         Sequence, Position, typename next<Position>::type
     >
 { };
 
 template <typename Sequence, typename First, typename Last>
-struct dispatch<tag::default_<tag::erase>, Sequence, First, Last>
+struct dispatch<tag::erase, Sequence, First, Last>
     : erase_detail::erase_impl<Sequence, First, Last>
 { };
 }} // end namespace boost::mpl11

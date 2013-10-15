@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
     } // end namespace front_detail
 
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::front>, Sequence>
+    struct dispatch<tag::front, Sequence>
         : front_detail::assert_nonempty<Sequence>,
           deref<typename begin<Sequence>::type>
     { };

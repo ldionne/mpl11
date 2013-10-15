@@ -1,20 +1,18 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::algorithm::all_of`.
+ * Contains unit tests for `boost::mpl11::all_of`.
  */
 
 #include <boost/mpl11/all_of.hpp>
 
-#include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/vector.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;
-using algorithm::all_of;
-using container::vector;
 
 
 namespace specified_predicate {

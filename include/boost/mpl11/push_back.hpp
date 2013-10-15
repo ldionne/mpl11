@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
-    struct dispatch<tag::default_<tag::push_back>, Sequence, Element>
+    struct dispatch<tag::push_back, Sequence, Element>
         : identity<
             joined_view<Sequence, single_view<Element>>
         >

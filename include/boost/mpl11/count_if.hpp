@@ -20,7 +20,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::default_<tag::count_if>, Sequence, Predicate>
+    struct dispatch<tag::count_if, Sequence, Predicate>
         : foldl<
             Sequence,
             ulong<0>,

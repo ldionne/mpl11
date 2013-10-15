@@ -21,7 +21,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Key>
-    struct dispatch<tag::default_<tag::erase_key>, Sequence, Key>
+    struct dispatch<tag::erase_key, Sequence, Key>
         : identity<
             indexed_view<
                 filtered_view<

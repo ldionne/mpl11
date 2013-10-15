@@ -601,6 +601,7 @@
 #include <boost/mpl11/not_equal_to.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/parent.hpp>
 #include <boost/mpl11/plus.hpp>
 #include <boost/mpl11/pop_back.hpp>
 #include <boost/mpl11/pop_front.hpp>

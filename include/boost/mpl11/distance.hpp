@@ -18,7 +18,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename First, typename Last>
-    struct dispatch<tag::default_<tag::distance>, First, Last>
+    struct dispatch<tag::distance, First, Last>
         : foldl<
             iterator_range<First, Last>,
             ulong<0>,

@@ -15,12 +15,12 @@
 
 namespace boost { namespace mpl11 {
     template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::default_<tag::max>, T1, T2, Tn...>
+    struct dispatch<tag::max, T1, T2, Tn...>
         : max<T1, typename max<T2, Tn...>::type>
     { };
 
     template <typename T1, typename T2>
-    struct dispatch<tag::default_<tag::max>, T1, T2>
+    struct dispatch<tag::max, T1, T2>
         : if_<less<T1, T2>, T2, T1>
     { };
 }} // end namespace boost::mpl11

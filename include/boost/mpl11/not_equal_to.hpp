@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::default_<tag::not_equal_to>, T1, T2, Tn...>
+    struct dispatch<tag::not_equal_to, T1, T2, Tn...>
         : and_<
             not_equal_to<T1, T2>,
             not_equal_to<T2, Tn...>
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename T1, typename T2>
-    struct dispatch<tag::default_<tag::not_equal_to>, T1, T2>
+    struct dispatch<tag::not_equal_to, T1, T2>
         : not_<equal_to<T1, T2>>
     { };
 }} // end namespace boost::mpl11

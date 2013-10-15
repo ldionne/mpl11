@@ -132,14 +132,14 @@ namespace is_permutation_detail {
 } // end namespace is_permutation_detail
 
 template <typename S1, typename S2, typename Pred>
-struct dispatch<tag::default_<tag::is_permutation>, S1, S2, Pred>
+struct dispatch<tag::is_permutation, S1, S2, Pred>
     : is_permutation_detail::is_permutation_impl<
         S1, S2, typename lambda<Pred>::type
     >
 { };
 
 template <typename S1, typename S2>
-struct dispatch<tag::default_<tag::is_permutation>, S1, S2>
+struct dispatch<tag::is_permutation, S1, S2>
     : is_permutation<S1, S2, quote<equal_to>>
 { };
 }} // end namespace boost::mpl11

@@ -15,7 +15,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::default_<tag::greater>, T1, T2, Tn...>
+    struct dispatch<tag::greater, T1, T2, Tn...>
         : and_<
             greater<T1, T2>,
             greater<T2, Tn...>
@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename T1, typename T2>
-    struct dispatch<tag::default_<tag::greater>, T1, T2>
+    struct dispatch<tag::greater, T1, T2>
         : less<T2, T1>
     { };
 }} // end namespace boost::mpl11

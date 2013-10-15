@@ -41,7 +41,7 @@ namespace foldl_detail {
 } // end namespace foldl_detail
 
 template <typename Sequence, typename State, typename F>
-struct dispatch<tag::default_<tag::foldl>, Sequence, State, F>
+struct dispatch<tag::foldl, Sequence, State, F>
     : foldl_detail::foldl_impl<
         typename begin<Sequence>::type,
         typename end<Sequence>::type,

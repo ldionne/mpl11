@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::size>, Sequence>
+    struct dispatch<tag::size, Sequence>
         : distance<
             typename begin<Sequence>::type,
             typename end<Sequence>::type

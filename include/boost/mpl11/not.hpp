@@ -14,8 +14,11 @@
 
 
 namespace boost { namespace mpl11 {
+    //! @bug
+    //! We don't have a category for metafunctions, but that is what
+    //! not_ takes as argument. What should we do?
     template <typename F>
-    struct dispatch<tag::default_<tag::not_>, F>
+    struct dispatch<tag::not_, F>
         : identity<bool_<!F::type::value>>
     { };
 }} // end namespace boost::mpl11

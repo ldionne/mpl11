@@ -17,12 +17,12 @@
 
 namespace boost { namespace mpl11 {
     template <typename F1, typename F2, typename ...Fn>
-    struct dispatch<tag::default_<tag::and_>, F1, F2, Fn...>
+    struct dispatch<tag::and_, F1, F2, Fn...>
         : and_<F1, and_<F2, Fn...>>
     { };
 
     template <typename F1, typename F2>
-    struct dispatch<tag::default_<tag::and_>, F1, F2>
+    struct dispatch<tag::and_, F1, F2>
         : identity<
             bool_<if_c<F1::type::value, F2, false_>::type::type::value>
         >

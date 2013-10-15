@@ -17,12 +17,12 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::none_of>, Sequence>
+    struct dispatch<tag::none_of, Sequence>
         : none_of<Sequence, _1>
     { };
 
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::default_<tag::none_of>, Sequence, Predicate>
+    struct dispatch<tag::none_of, Sequence, Predicate>
         : equal_to<
             typename find_if<Sequence, Predicate>::type,
             typename end<Sequence>::type

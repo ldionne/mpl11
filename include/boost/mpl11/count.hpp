@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
-    struct dispatch<tag::default_<tag::count>, Sequence, Element>
+    struct dispatch<tag::count, Sequence, Element>
         : count_if<Sequence, equal_to<Element, _1>>
     { };
 }} // end namespace boost::mpl11

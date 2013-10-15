@@ -20,12 +20,12 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence1, typename Sequence2>
-    struct dispatch<tag::default_<tag::equal>, Sequence1, Sequence2>
+    struct dispatch<tag::equal, Sequence1, Sequence2>
         : equal<Sequence1, Sequence2, quote<equal_to>>
     { };
 
     template <typename Sequence1, typename Sequence2, typename Predicate>
-    struct dispatch<tag::default_<tag::equal>, Sequence1, Sequence2, Predicate>
+    struct dispatch<tag::equal, Sequence1, Sequence2, Predicate>
         : and_<
             equal_to<
                 typename size<Sequence1>::type,

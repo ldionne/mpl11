@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 {
     } // end namespace back_detail
 
     template <typename Sequence>
-    struct dispatch<tag::default_<tag::back>, Sequence>
+    struct dispatch<tag::back, Sequence>
         : back_detail::assert_nonempty<Sequence>,
           deref<
             typename prior<

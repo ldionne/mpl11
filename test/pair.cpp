@@ -5,9 +5,9 @@
 
 #include <boost/mpl11/pair.hpp>
 
+#include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/second.hpp>
-#include <boost/mpl11/equal_to.hpp>
 
 
 using namespace boost::mpl11;

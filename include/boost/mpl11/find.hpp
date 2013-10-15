@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
-    struct dispatch<tag::default_<tag::find>, Sequence, Element>
+    struct dispatch<tag::find, Sequence, Element>
         : find_if<Sequence, equal_to<Element, _1>>
     { };
 }} // end namespace boost::mpl11
