@@ -14,7 +14,6 @@ namespace boost { namespace mpl11 {
 
     /*!
      * @ingroup intrinsics
-     *
      * Returns the next iterator in the sequence.
      *
      *
@@ -26,6 +25,15 @@ namespace boost { namespace mpl11 {
     struct next
         : dispatch<tag::next, Iterator>
     { };
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+    /*!
+     * @ingroup intrinsics
+     * Returns the next @ref IntegralConstant.
+     */
+    template <>
+    struct next<IntegralConstant> { };
+#endif
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NEXT_HPP

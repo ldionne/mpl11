@@ -26,6 +26,15 @@ namespace boost { namespace mpl11 {
     struct prior
         : dispatch<tag::prior, Iterator>
     { };
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+    /*!
+     * @ingroup intrinsics
+     * Returns the previous @ref IntegralConstant.
+     */
+    template <>
+    struct prior<IntegralConstant> { };
+#endif
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_PRIOR_HPP

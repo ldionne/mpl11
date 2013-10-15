@@ -402,6 +402,8 @@
  * | `N::type`                         | @ref IntegralConstant
  * | `constexpr N::value_type c = N{}` |
  * | `category_of<N>::type`            | Convertible to `category::integral_constant`
+ * | `next<N>::type`                   | @ref IntegralConstant
+ * | `prior<N>::type`                  | @ref IntegralConstant
  */
 
 /*!
