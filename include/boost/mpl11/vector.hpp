@@ -51,7 +51,7 @@ struct dispatch<tag::next, vector_detail::iterator<Position, Vector>>
 template <unsigned long Position, typename Vector>
 struct dispatch<tag::prior, vector_detail::iterator<Position, Vector>>
     : identity<
-        iterator<Position - 1, Vector>
+        vector_detail::iterator<Position - 1, Vector>
     >
 { };
 

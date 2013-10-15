@@ -50,7 +50,7 @@ struct dispatch<tag::prior, zipped_detail::zip_iterator<Iterators...>>
 template <typename ...Iterators>
 struct dispatch<tag::deref, zipped_detail::zip_iterator<Iterators...>>
     : identity<
-        container::vector<typename deref<Iterators>::type...>
+        vector<typename deref<Iterators>::type...>
     >
 { };
 

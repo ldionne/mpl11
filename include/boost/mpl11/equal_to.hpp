@@ -98,7 +98,7 @@ namespace equal_to_detail {
 
     template <typename T1, typename T2>
     auto pick(category::forward_sequence*, category::forward_sequence*)
-        -> algorithm::equal<T1, T2>
+        -> equal<T1, T2>
     ;
 
     template <typename T1, typename T2>

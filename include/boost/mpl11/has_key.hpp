@@ -19,7 +19,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Key>
-    struct dispatch<detail::default_<tag::has_key>, Sequence, Key>
+    struct dispatch<tag::default_<tag::has_key>, Sequence, Key>
         : not_equal_to<
             typename find_if<
                 Sequence,

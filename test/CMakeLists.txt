@@ -15,4 +15,4 @@ function(mpl11_add_test name sources)
 endfunction()
 
 
-mpl11_add_test(advance advance.cpp)
+mpl11_add_test(integral_c integral_c.cpp)

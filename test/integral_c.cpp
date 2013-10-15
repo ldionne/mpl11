@@ -5,48 +5,24 @@
 
 #include <boost/mpl11/integral_c.hpp>
 
-#include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/next.hpp>
-#include <boost/mpl11/prior.hpp>
-#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/detail/test/instantiate.hpp>
+#include <boost/mpl11/detail/test/integral_constant.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 using namespace boost::mpl11;
 
-// ::value
-static_assert(integral_c<int, 2>::value == 2, "");
+template <typename T, typename N>
+struct make_integral_c
+    : identity<
+        integral_c<T, N::value>
+    >
+{ };
 
-// ::type
-static_assert(equal_to<
-    integral_c<int, 2>::type,
-    integral_c<int, 2>
->::type::value, "");
-
-// ::value_type
-static_assert(equal_to<
-    integral_c<int, 2>::value_type, int
->::type::value, "");
-
-// next
-static_assert(equal_to<
-    next<integral_c<int, 2>>::type,
-    integral_c<int, 3>
->::type::value, "");
-
-// prior
-static_assert(equal_to<
-    prior<integral_c<int, 2>>::type,
-    integral_c<int, 1>
->::type::value, "");
-
-// deref
-static_assert(equal_to<
-    deref<integral_c<int, 2>>::type,
-    integral_c<int, 2>
->::type::value, "");
+BOOST_MPL11_INSTANTIATE_TEST(detail::test::integral_constant<
+    quote<make_integral_c>
+>);
 
 
-int main() {
-    int i = integral_c<int, 2>{};
-    (void)i;
-}
+int main() { }
