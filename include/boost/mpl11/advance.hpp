@@ -9,7 +9,8 @@
 #include <boost/mpl11/fwd/advance.hpp>
 #include <boost/mpl11/integral_c.hpp> // for advance_c
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/bidirectional_iterator.hpp>
+#include <boost/mpl11/category/forward_iterator.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>

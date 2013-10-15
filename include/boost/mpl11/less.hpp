@@ -9,7 +9,7 @@
 #include <boost/mpl11/fwd/less.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/integral_constant.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>

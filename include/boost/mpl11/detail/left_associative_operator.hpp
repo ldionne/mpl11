@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_DETAIL_LEFT_ASSOCIATIVE_OPERATOR_HPP
 #define BOOST_MPL11_DETAIL_LEFT_ASSOCIATIVE_OPERATOR_HPP
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/integral_constant.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>

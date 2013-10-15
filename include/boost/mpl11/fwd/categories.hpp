@@ -1,25 +1,19 @@
 /*!
  * @file
- * Forward declares categories for sequences, iterators and integral constants.
+ * Includes the forward declaration for all the categories.
  */
 
 #ifndef BOOST_MPL11_FWD_CATEGORIES_HPP
 #define BOOST_MPL11_FWD_CATEGORIES_HPP
 
-namespace boost { namespace mpl11 { namespace category {
-    struct none { };
-    struct integral_constant { };
-
-    // Sequence categories
-    struct forward_sequence { };
-    struct bidirectional_sequence : forward_sequence { };
-    struct random_access_sequence : bidirectional_sequence { };
-    struct associative_sequence   : forward_sequence { };
-
-    // Iterator categories
-    struct forward_iterator { };
-    struct bidirectional_iterator : forward_iterator { };
-    struct random_access_iterator : bidirectional_iterator { };
-}}} // end namespace boost::mpl11::category
+#include <boost/mpl11/fwd/category/associative_sequence.hpp>
+#include <boost/mpl11/fwd/category/bidirectional_iterator.hpp>
+#include <boost/mpl11/fwd/category/bidirectional_sequence.hpp>
+#include <boost/mpl11/fwd/category/forward_iterator.hpp>
+#include <boost/mpl11/fwd/category/forward_sequence.hpp>
+#include <boost/mpl11/fwd/category/integral_constant.hpp>
+#include <boost/mpl11/fwd/category/none.hpp>
+#include <boost/mpl11/fwd/category/random_access_iterator.hpp>
+#include <boost/mpl11/fwd/category/random_access_sequence.hpp>
 
 #endif // !BOOST_MPL11_FWD_CATEGORIES_HPP

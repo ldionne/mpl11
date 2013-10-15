@@ -12,7 +12,10 @@
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/associative_sequence.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
+#include <boost/mpl11/category/integral_constant.hpp>
+#include <boost/mpl11/category/none.hpp>
 #include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
@@ -84,7 +87,7 @@ namespace equal_to_detail {
     };
 
     template <typename T1, typename T2>
-    auto pick(void*, void*)
+    auto pick(category::none*, category::none*)
         -> detail::is_same<T1, T2>
     ;
 

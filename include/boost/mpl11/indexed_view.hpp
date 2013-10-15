@@ -11,7 +11,7 @@
 #include <boost/mpl11/identity.hpp> // of the view
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/associative_sequence.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/fwd/begin.hpp>
 #include <boost/mpl11/fwd/category_of.hpp>

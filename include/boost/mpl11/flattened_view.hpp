@@ -6,13 +6,13 @@
 #ifndef BOOST_MPL11_FLATTENED_VIEW_HPP
 #define BOOST_MPL11_FLATTENED_VIEW_HPP
 
+#include <boost/mpl11/fwd/flattened_view.hpp>
 #include <boost/mpl11/always.hpp>   // for the default `Predicate`
 #include <boost/mpl11/bool.hpp>     //
-#include <boost/mpl11/fwd/flattened_view.hpp>
 
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/fwd/begin.hpp>
 #include <boost/mpl11/fwd/category_of.hpp>

@@ -12,7 +12,8 @@
 #include <boost/mpl11/advance.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/associative_sequence.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
 #include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/best_category_for.hpp>

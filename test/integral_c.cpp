@@ -5,7 +5,6 @@
 
 #include <boost/mpl11/integral_c.hpp>
 
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/prior.hpp>

@@ -9,7 +9,8 @@
 #include <boost/mpl11/fwd/filtered_view.hpp>
 
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/forward_iterator.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/find_if.hpp>
@@ -91,7 +92,7 @@ struct dispatch<tag::end, filtered_view<Sequence, Predicate>>
 
 template <typename Sequence, typename Predicate>
 struct dispatch<tag::category_of, filtered_view<Sequence, Predicate>>
-    : category_of<filtered_detail::view_impl<Sequence, Predicate>>
+    : identity<category::forward_sequence>
 { };
 }} // end namespace boost::mpl11
 

@@ -13,7 +13,7 @@
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>

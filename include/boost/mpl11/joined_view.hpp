@@ -9,7 +9,8 @@
 #include <boost/mpl11/fwd/joined_view.hpp>
 
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/forward_iterator.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal_to.hpp>

@@ -5,7 +5,7 @@
 
 #include <boost/mpl11/distance.hpp>
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/forward_iterator.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/tags.hpp>

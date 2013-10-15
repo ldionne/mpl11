@@ -33,10 +33,39 @@
  * @subpage RandomAccessIterator
  */
 
+#if 0
 /*!
  * @page Category Category
- * @todo Document this concept
+ *
+ * Type representing a position in a type classification.
+ *
+ * Categories in the same classification can be compared together.
+ * Their "less-than" comparison must be a partial order representing
+ * the "is less specialized than" relation.
+ *
+ * Categories also provide a way to get the next least specialized category
+ * via the `parent` operation.
+ *
+ * Finally, it must be possible to reach `category::none` by applying
+ * `parent` a finite number of time to any given category.
+ *
+ *
+ * ## Refinement of
+ * @ref EqualityComparable, @ref LessThanComparable
+ *
+ *
+ * ## Notation
+ * | Expression | Description
+ * | ---------- | -----------
+ * | `C`        | @ref Category
+ *
+ *
+ * ## Valid expressions
+ * | Expression        | Type
+ * | ----------        | ----
+ * | `parent<C>::type` | @ref Category
  */
+#endif
 
 /*!
  * @page Categorizable Categorizable

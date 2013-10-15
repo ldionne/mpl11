@@ -5,7 +5,9 @@
 
 #include <boost/mpl11/advance.hpp>
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/bidirectional_iterator.hpp>
+#include <boost/mpl11/category/forward_iterator.hpp>
+#include <boost/mpl11/category/random_access_iterator.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/fwd/category_of.hpp>
 #include <boost/mpl11/fwd/next.hpp>

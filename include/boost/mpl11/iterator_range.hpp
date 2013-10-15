@@ -8,7 +8,12 @@
 
 #include <boost/mpl11/fwd/iterator_range.hpp>
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/bidirectional_iterator.hpp>
+#include <boost/mpl11/category/bidirectional_sequence.hpp>
+#include <boost/mpl11/category/forward_iterator.hpp>
+#include <boost/mpl11/category/forward_sequence.hpp>
+#include <boost/mpl11/category/random_access_iterator.hpp>
+#include <boost/mpl11/category/random_access_sequence.hpp>
 #include <boost/mpl11/category_of.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/equal_to.hpp>

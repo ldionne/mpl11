@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/integral_c.hpp>
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/integral_constant.hpp>
 #include <boost/mpl11/fwd/category_of.hpp>
 #include <boost/mpl11/identity.hpp>
 

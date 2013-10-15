@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/category_of.hpp>
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/none.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 

@@ -8,7 +8,8 @@
 
 #include <boost/mpl11/fwd/vector.hpp>
 
-#include <boost/mpl11/categories.hpp>
+#include <boost/mpl11/category/random_access_iterator.hpp>
+#include <boost/mpl11/category/random_access_sequence.hpp>
 #include <boost/mpl11/detail/variadic_at.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/foldl.hpp>
