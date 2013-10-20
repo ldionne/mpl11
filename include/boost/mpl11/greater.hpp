@@ -9,22 +9,21 @@
 #include <boost/mpl11/fwd/greater.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/less.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::greater, T1, T2, Tn...>
+    template <typename A, typename B, typename ...C>
+    struct greater
         : and_<
-            greater<T1, T2>,
-            greater<T2, Tn...>
+            typename greater<A, B>::type,
+            greater<B, C...>
         >
     { };
 
-    template <typename T1, typename T2>
-    struct dispatch<tag::greater, T1, T2>
-        : less<T2, T1>
+    template <typename A, typename B>
+    struct greater<A, B>
+        : class_<A>::type::template greater<A, B>
     { };
 }} // end namespace boost::mpl11
 

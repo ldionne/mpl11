@@ -8,14 +8,13 @@
 
 #include <boost/mpl11/fwd/apply.hpp>
 
-#include <boost/mpl11/apply_wrap.hpp>
-#include <boost/mpl11/lambda.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename F, typename ...Args>
+    template <typename MetafunctionClass, typename ...Args>
     struct apply
-        : apply_wrap<typename lambda<F>::type, Args...>
+        : class_<MetafunctionClass>::type::template apply<Args...>
     { };
 }} // end namespace boost::mpl11
 

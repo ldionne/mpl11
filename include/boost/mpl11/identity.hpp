@@ -8,12 +8,15 @@
 
 #include <boost/mpl11/fwd/identity.hpp>
 
+#include <boost/mpl11/metafunction.hpp>
+
 
 namespace boost { namespace mpl11 {
-    template <typename T>
+    template <typename X>
     struct identity {
-        using type = T;
+        using mpl_class = Metafunction;
+        using type = X;
     };
-}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IDENTITY_HPP

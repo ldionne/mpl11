@@ -7,7 +7,7 @@
 #define BOOST_MPL11_FWD_INTEGRAL_C_HPP
 
 namespace boost { namespace mpl11 {
-    //! Generic @ref IntegralConstant implementation.
+    //! Generic `Integral` and `Boolean` implementation.
     template <typename I, I N>
     struct integral_c;
 

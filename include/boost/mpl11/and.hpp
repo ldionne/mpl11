@@ -8,24 +8,20 @@
 
 #include <boost/mpl11/fwd/and.hpp>
 
-#include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/class.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename F1, typename F2, typename ...Fn>
-    struct dispatch<tag::and_, F1, F2, Fn...>
-        : and_<F1, and_<F2, Fn...>>
+    template <typename A, typename B, typename ...C>
+    struct and_
+        : if_<A, and_<B, C...>, identity<A>>::type
     { };
 
-    template <typename F1, typename F2>
-    struct dispatch<tag::and_, F1, F2>
-        : identity<
-            bool_<if_c<F1::type::value, F2, false_>::type::type::value>
-        >
+    template <typename A, typename B>
+    struct and_<A, B>
+        : class_<A>::type::template and_<A, B>
     { };
 }} // end namespace boost::mpl11
 

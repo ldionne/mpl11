@@ -6,27 +6,14 @@
 #ifndef BOOST_MPL11_FWD_NOT_HPP
 #define BOOST_MPL11_FWD_NOT_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct not_; }
-
     /*!
-     * @ingroup logical_operators
+     * @ingroup Boolean
      *
-     * Returns the result of _logical not_ (`!`) on the result of
-     * its argument.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `identity<bool_<!F::type::value>>`.
+     * Returns the result of _logical not_ (`!`) on its argument.
      */
-    template <typename F>
-    struct not_
-        : dispatch<tag::not_, F>
-    { };
+    template <typename Boolean>
+    struct not_;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NOT_HPP

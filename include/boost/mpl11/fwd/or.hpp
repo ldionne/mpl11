@@ -6,22 +6,15 @@
 #ifndef BOOST_MPL11_FWD_OR_HPP
 #define BOOST_MPL11_FWD_OR_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct or_; }
-
     /*!
-     * @ingroup logical_operators
+     * @ingroup Boolean
      *
-     * Returns the result of short-circuit _logical or_ (`||`) on the result
-     * of its arguments.
+     * Returns the result of short-circuit _logical or_ (`||`)
+     * on its arguments.
      */
-    template <typename F1, typename F2, typename ...Fn>
-    struct or_
-        : dispatch<tag::or_, F1, F2, Fn...>
-    { };
+    template <typename A, typename B, typename ...C>
+    struct or_;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_OR_HPP

@@ -8,18 +8,13 @@
 
 #include <boost/mpl11/fwd/not.hpp>
 
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    //! @bug
-    //! We don't have a category for metafunctions, but that is what
-    //! not_ takes as argument. What should we do?
-    template <typename F>
-    struct dispatch<tag::not_, F>
-        : identity<bool_<!F::type::value>>
+    template <typename Boolean>
+    struct not_
+        : class_<Boolean>::type::template not_<Boolean>
     { };
 }} // end namespace boost::mpl11
 

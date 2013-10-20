@@ -8,75 +8,58 @@
 
 #include <boost/mpl11/fwd/lambda.hpp>
 
-#include <boost/mpl11/apply_wrap.hpp>
-#include <boost/mpl11/as_placeholder.hpp>
-#include <boost/mpl11/bind.hpp>
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/is_placeholder_expression.hpp>
-#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/metafunction_class.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace lambda_detail {
-    template <typename F>
-    struct bind_nested_placeholder_expr;
+    namespace lambda_detail {
+        template <bool IsPlaceholder, typename Body, typename ...Args>
+        struct substitute;
 
-    template <template <typename ...> class F, typename ...T>
-    struct bind_nested_placeholder_expr<F<T...>>
-        : identity<
-            // Using `as_placeholder` will cause this nested `bind` to be
-            // applied when the outer `bind` is applied.
-            as_placeholder<
-                bind<quote<F>,
-                    typename if_<is_placeholder<T>,
-                        identity<T>
-                    >::template else_if<is_placeholder_expression<T>,
-                        bind_nested_placeholder_expr<T>
-                    >::template else_<
-                        identity<T>
-                    >::type::type...
-                >
-            >
+        template <typename Body, typename ...Args>
+        struct substitute<true, Body, Args...>
+            : apply<Body, Args...>
+        { };
+
+        template <typename Body, typename ...Args>
+        struct substitute<false, Body, Args...>
+            : Body
+        { };
+
+        template <
+            template <typename ...> class Body,
+            typename ...T,
+            typename ...Args
         >
-    { };
+        struct substitute<false, Body<T...>, Args...>
+            : Body<
+                typename if_<typename is_placeholder<T>::type,
+                    apply<T, Args...>
+                >::template else_if<is_placeholder_expression<T>,
+                    substitute<false, T, Args...>
+                >::template else_<
+                    identity<T>
+                >::type::type...
+            >
+        { };
+    } // end namespace lambda_detail
 
-    template <typename F, bool = is_placeholder<F>::type::value>
-    struct anonymous;
+    template <typename Body>
+    struct lambda {
+        using mpl_class = MetafunctionClass;
 
-    // We have a placeholder expression that is not a placeholder.
-    template <typename F>
-    struct anonymous<F, false> {
-        struct type {
-            template <typename ...Args>
-            struct apply
-                : apply_wrap<
-                    typename bind_nested_placeholder_expr<F>::type, Args...
-                >
-            { };
-        };
+        template <typename ...Args>
+        struct apply
+            : lambda_detail::substitute<
+                is_placeholder<Body>::type::value, Body, Args...
+            >
+        { };
     };
-
-    // We have a placeholder.
-    template <typename F>
-    struct anonymous<F, true> {
-        struct type {
-            template <typename ...Args>
-            struct apply
-                : apply_wrap<F, Args...>
-            { };
-        };
-    };
-} // end namespace lambda_detail
-
-template <typename F>
-struct lambda
-    : if_<is_placeholder_expression<F>,
-        lambda_detail::anonymous<F>,
-        identity<F>
-    >::type
-{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_LAMBDA_HPP

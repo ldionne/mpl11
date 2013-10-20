@@ -8,24 +8,20 @@
 
 #include <boost/mpl11/fwd/or.hpp>
 
-#include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/dispatch.hpp>
+#include <boost/mpl11/class.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename F1, typename F2, typename ...Fn>
-    struct dispatch<tag::or_, F1, F2, Fn...>
-        : or_<F1, or_<F2, Fn...>>
+    template <typename A, typename B, typename ...C>
+    struct or_
+        : if_<A, identity<A>, or_<B, C...>>::type
     { };
 
-    template <typename F1, typename F2>
-    struct dispatch<tag::or_, F1, F2>
-        : identity<
-            bool_<if_c<F1::type::value, true_, F2>::type::type::value>
-        >
+    template <typename A, typename B>
+    struct or_<A, B>
+        : class_<A>::type::template or_<A, B>
     { };
 }} // end namespace boost::mpl11
 

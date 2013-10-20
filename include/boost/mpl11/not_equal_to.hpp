@@ -9,23 +9,21 @@
 #include <boost/mpl11/fwd/not_equal_to.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/equal_to.hpp>
-#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::not_equal_to, T1, T2, Tn...>
+    template <typename A, typename B, typename ...C>
+    struct not_equal_to
         : and_<
-            not_equal_to<T1, T2>,
-            not_equal_to<T2, Tn...>
+            typename not_equal_to<A, B>::type,
+            not_equal_to<B, C...>
         >
     { };
 
-    template <typename T1, typename T2>
-    struct dispatch<tag::not_equal_to, T1, T2>
-        : not_<equal_to<T1, T2>>
+    template <typename A, typename B>
+    struct not_equal_to
+        : class_<A>::type::template not_equal_to<A, B>
     { };
 }} // end namespace boost::mpl11
 

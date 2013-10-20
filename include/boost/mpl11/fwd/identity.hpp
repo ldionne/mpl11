@@ -7,8 +7,8 @@
 #define BOOST_MPL11_FWD_IDENTITY_HPP
 
 namespace boost { namespace mpl11 {
-    //! Returns `T` unchanged.
-    template <typename T>
+    //! Returns `X` unchanged.
+    template <typename X>
     struct identity;
 }}
 

@@ -8,13 +8,10 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup functional
+     * @ingroup MetafunctionClass
      *
-     * Invokes a @ref LambdaExpression `F` with arguments `Args...`.
-     *
-     * Equivalent to `apply_wrap<lambda<F>::type, Args...>`.
      */
-    template <typename F, typename ...Args>
+    template <typename MetafunctionClass, typename ...Args>
     struct apply;
 }} // end namespace boost::mpl11
 

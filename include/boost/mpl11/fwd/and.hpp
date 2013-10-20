@@ -6,22 +6,15 @@
 #ifndef BOOST_MPL11_FWD_AND_HPP
 #define BOOST_MPL11_FWD_AND_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct and_; }
-
     /*!
-     * @ingroup logical_operators
+     * @ingroup Boolean
      *
-     * Returns the result of short-circuit _logical and_ (`&&`) on the result
-     * of its arguments.
+     * Returns the result of short-circuit _logical and_ (`&&`)
+     * on its arguments.
      */
-    template <typename F1, typename F2, typename ...Fn>
-    struct and_
-        : dispatch<tag::and_, F1, F2, Fn...>
-    { };
+    template <typename A, typename B, typename ...C>
+    struct and_;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AND_HPP

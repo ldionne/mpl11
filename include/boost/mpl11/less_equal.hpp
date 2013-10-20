@@ -9,23 +9,21 @@
 #include <boost/mpl11/fwd/less_equal.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/less.hpp>
-#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::less_equal, T1, T2, Tn...>
+    template <typename A, typename B, typename ...C>
+    struct less_equal
         : and_<
-            less_equal<T1, T2>,
-            less_equal<T2, Tn...>
+            typename less_equal<A, B>::type,
+            less_equal<B, C...>
         >
     { };
 
-    template <typename T1, typename T2>
-    struct dispatch<tag::less_equal, T1, T2>
-        : not_<less<T2, T1>>
+    template <typename A, typename B>
+    struct less_equal<A, B>
+        : class_<A>::type::template less_equal<A, B>
     { };
 }} // end namespace boost::mpl11
 

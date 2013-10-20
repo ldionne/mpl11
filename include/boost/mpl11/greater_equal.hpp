@@ -9,23 +9,21 @@
 #include <boost/mpl11/fwd/greater_equal.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/less.hpp>
-#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::greater_equal, T1, T2, Tn...>
+    template <typename A, typename B, typename ...C>
+    struct greater_equal
         : and_<
-            greater_equal<T1, T2>,
-            greater_equal<T2, Tn...>
+            typename greater_equal<A, B>::type,
+            greater_equal<B, C...>
         >
     { };
 
-    template <typename T1, typename T2>
-    struct dispatch<tag::greater_equal, T1, T2>
-        : not_<less<T1, T2>>
+    template <typename A, typename B>
+    struct greater_equal<A, B>
+        : class_<A>::type::template greater_equal<A, B>
     { };
 }} // end namespace boost::mpl11
 
