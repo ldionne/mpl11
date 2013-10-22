@@ -6,17 +6,13 @@
 #ifndef BOOST_MPL11_FWD_DISTANCE_HPP
 #define BOOST_MPL11_FWD_DISTANCE_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct distance; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Returns the distance between `First` and `Last` iterators.
      *
-     *
+     * @todo Put the doc in the appropriate concept.
      * ### Semantics and default implementation
      *
      * Equivalent to
@@ -29,9 +25,7 @@ namespace boost { namespace mpl11 {
        @endcode
      */
     template <typename First, typename Last>
-    struct distance
-        : dispatch<tag::distance, First, Last>
-    { };
+    struct distance;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_DISTANCE_HPP

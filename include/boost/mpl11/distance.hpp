@@ -8,22 +8,13 @@
 
 #include <boost/mpl11/fwd/distance.hpp>
 
-#include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/foldl.hpp>
-#include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/iterator_range.hpp>
-#include <boost/mpl11/next.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename First, typename Last>
-    struct dispatch<tag::distance, First, Last>
-        : foldl<
-            iterator_range<First, Last>,
-            ulong<0>,
-            next<_1>
-        >
+    struct distance
+        : class_<First>::type::template distance<First, Last>
     { };
 }} // end namespace boost::mpl11
 

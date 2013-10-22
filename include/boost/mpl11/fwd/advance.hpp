@@ -6,17 +6,17 @@
 #ifndef BOOST_MPL11_FWD_ADVANCE_HPP
 #define BOOST_MPL11_FWD_ADVANCE_HPP
 
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct advance; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Moves `Iterator` by the distance `N`.
      *
+     * @internal
+     * @todo Put the specific behaviors doc in the class implementing it.
      * For @ref RandomAccessIterator "Random Access Iterators" and
      * @ref BidirecitonalIterator "Bidirecitonal Iterators", the distance
      * may be negative. For @ref ForwardIterator "Forward Iterators", it
@@ -33,15 +33,11 @@ namespace boost { namespace mpl11 {
      * for a @ref ForwardIterator, depending on the sign of the distance.
      */
     template <typename Iterator, typename N>
-    struct advance
-        : dispatch<tag::advance, Iterator, N>
-    { };
+    struct advance;
 
-    //! Equivalent to `advance<Iterator, long_<N>>`; provided for convenience.
+    //! Alias to `advance<Iterator, long_<N>>`; provided for convenience.
     template <typename Iterator, long N>
-    struct advance_c
-        : advance<Iterator, long_<N>>
-    { };
+    using advance_c = advance<Iterator, long_<N>>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ADVANCE_HPP
