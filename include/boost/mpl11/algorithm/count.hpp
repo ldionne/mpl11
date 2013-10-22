@@ -6,30 +6,18 @@
 #ifndef BOOST_MPL11_ALGORITHM_COUNT_HPP
 #define BOOST_MPL11_ALGORITHM_COUNT_HPP
 
+#include <boost/mpl11/algorithm/count_fwd.hpp>
+#include <boost/mpl11/algorithm/count_if.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
-    /*!
-     * @ingroup algorithms
-     *
-     * Returns the number of elements in `Sequence` that are identical
-     * to `Element`.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `count_if<Sequence, equal_to<Element, _1>>`.
-     */
+namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
-    struct count
-        : dispatch<tag::count, Sequence, Element>
+    struct dispatch<tag::default_<tag::count>, Sequence, Element>
+        : algorithm::count_if<Sequence, equal_to<Element, _1>>
     { };
-}}} // end namespace boost::mpl11::algorithm
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/count.hpp>
-#endif
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_COUNT_HPP

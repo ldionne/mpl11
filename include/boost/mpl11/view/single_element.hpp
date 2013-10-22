@@ -6,74 +6,39 @@
 #ifndef BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 #define BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
-namespace boost { namespace mpl11{ namespace view {
-    /*!
-     * @ingroup views
-     *
-     * View onto an arbitrary `Element` as on a single-element sequence.
-     *
-     * `single_element` is a random access sequence.
-     */
-    template <typename Element>
-    struct single_element BOOST_MPL11_DOXYGEN_ONLY({ });
-}}} // end namespace boost::mpl11::view
-
-
-#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/always.hpp>
+#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/intrinsic/begin_fwd.hpp>
+#include <boost/mpl11/intrinsic/category_of_fwd.hpp>
+#include <boost/mpl11/intrinsic/end_fwd.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/transformed.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace single_element_detail {
-    template <typename Element, bool IsEnd>
-    struct single_element_iterator;
-
-    template <typename OperationTag, typename Element, bool IsEnd>
-    struct dispatch;
-
-    template <typename Element>
-    struct dispatch<tag::next, Element, false>
-        : identity<single_element_iterator<Element, true>>
-    { };
+    namespace single_element_detail {
+        template <typename Element>
+        using view_impl = view::transformed<
+            view::bounded_by<uint<0>, uint<1>>,
+            always<Element>
+        >;
+    }
 
     template <typename Element>
-    struct dispatch<tag::prior, Element, true>
-        : identity<single_element_iterator<Element, false>>
-    { };
-
-    template <typename Element, bool IsEnd>
-    struct dispatch<tag::category_of, Element, IsEnd>
-        : identity<category::random_access_iterator>
+    struct dispatch<tag::begin, view::single_element<Element>>
+        : begin<single_element_detail::view_impl<Element>>
     { };
 
     template <typename Element>
-    struct dispatch<tag::deref, Element, false>
-        : identity<Element>
+    struct dispatch<tag::end, view::single_element<Element>>
+        : end<single_element_detail::view_impl<Element>>
     { };
-} // end namespace single_element_detail
 
-template <typename Op, typename E, bool B>
-struct dispatch<Op, single_element_detail::single_element_iterator<E, B>>
-    : single_element_detail::dispatch<Op, E, B>
-{ };
-
-template <typename Op, typename Element, typename ...Args>
-struct dispatch<Op, view::single_element<Element>, Args...>
-    : dispatch<
-        Op,
-        view::bounded_by<
-            single_element_detail::single_element_iterator<Element, false>,
-            single_element_detail::single_element_iterator<Element, true>
-        >,
-        Args...
-    >
-{ };
+    template <typename Element>
+    struct dispatch<tag::category_of, view::single_element<Element>>
+        : category_of<single_element_detail::view_impl<Element>>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_VIEW_SINGLE_ELEMENT_HPP

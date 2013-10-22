@@ -6,44 +6,27 @@
 #ifndef BOOST_MPL11_INTRINSIC_HAS_KEY_HPP
 #define BOOST_MPL11_INTRINSIC_HAS_KEY_HPP
 
+#include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/has_key_fwd.hpp>
+#include <boost/mpl11/intrinsic/key_of.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/operator/not_equal_to.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Returns whether an @ref AssociativeSequence contains one or more
-     * elements with key `Key`.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to
-       @code
-            not_equal_to<
-                find_if<
-                    Sequence,
-                    equal_to<Key, key_of<Sequence, _1>>
-                >::type,
-                end<Sequence>::type
-            >
-       @endcode
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - A default implementation is provided.
-     */
     template <typename Sequence, typename Key>
-    struct has_key
-        : dispatch<tag::has_key, Sequence, Key>
+    struct dispatch<detail::default_<tag::has_key>, Sequence, Key>
+        : not_equal_to<
+            typename algorithm::find_if<
+                Sequence,
+                equal_to<Key, key_of<Sequence, _1>>
+            >::type,
+            typename end<Sequence>::type
+        >
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/has_key.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_HAS_KEY_HPP

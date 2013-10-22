@@ -7,36 +7,31 @@
 #define BOOST_MPL11_INTRINSIC_BACK_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/intrinsic/back_fwd.hpp>
+#include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/is_empty.hpp>
+#include <boost/mpl11/intrinsic/prior.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Returns the last element of a @ref BidirectionalSequence if there is
-     * such an element, and triggers a compile-time assertion otherwise.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `deref<prior<end<Sequence>::type>::type>` if
-     * `is_empty<Sequence>::type::value` is `false`, and a
-     * compile-time assertion is triggered otherwise.
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - A compile-time assertion is triggered if the sequence is empty.
-     */
+    namespace back_detail {
+        template <typename Sequence>
+        struct assert_nonempty {
+            static_assert(!is_empty<Sequence>::type::value,
+            "Attempt to use `back` on an empty sequence.");
+        };
+    } // end namespace back_detail
+
     template <typename Sequence>
-    struct back
-        : dispatch<tag::back, Sequence>
+    struct dispatch<tag::default_<tag::back>, Sequence>
+        : back_detail::assert_nonempty<Sequence>,
+          deref<
+            typename prior<
+                typename end<Sequence>::type
+            >::type
+        >
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/back.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_BACK_HPP

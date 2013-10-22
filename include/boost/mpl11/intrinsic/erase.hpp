@@ -6,56 +6,60 @@
 #ifndef BOOST_MPL11_INTRINSIC_ERASE_HPP
 #define BOOST_MPL11_INTRINSIC_ERASE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/clear.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/erase_fwd.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/joined.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Overloaded intrinsic for removing elements from a sequence.
-     */
-    template <typename, typename, typename = detail::optional>
-    struct erase;
+namespace erase_detail {
+    template <typename Sequence, typename First, typename Last,
+              bool = equal_to<
+                Last, typename end<Sequence>::type
+              >::type::value>
+    struct erase_impl
+        : algorithm::copy<
+            view::bounded_by<
+                typename begin<Sequence>::type, First
+            >,
+            typename clear<Sequence>::type
+        >
+    { };
 
-    /*!
-     * @ingroup intrinsics
-     *
-     * Removes several adjacent elements in a @ref RandomExtensibleSequence
-     * starting from an arbitrary position.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to copying the whole sequence except for the content of the
-     * range delimited by [`First`, `Last`).
-     */
     template <typename Sequence, typename First, typename Last>
-    struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>)
-        : dispatch<tag::erase, Sequence, First, Last>
+    struct erase_impl<Sequence, First, Last, false>
+        : algorithm::copy<
+            view::joined<
+                view::bounded_by<
+                    typename begin<Sequence>::type, First
+                >,
+                view::bounded_by<
+                    Last, typename end<Sequence>::type
+                >
+            >,
+            typename clear<Sequence>::type
+        >
     { };
+} // end namespace erase_detail
 
-    /*!
-     * @ingroup intrinsics
-     *
-     * Removes an element at a position in a @ref RandomExtensibleSequence.
-     *
-     *
-     * ## Semantics and default implementation
-     *
-     * Equivalent to `erase<Sequence, Position, next<Position>::type>`.
-     */
-    template <typename Sequence, typename Position>
-    struct erase<Sequence, Position>
-        : dispatch<tag::erase, Sequence, Position>
-    { };
+template <typename Sequence, typename Position>
+struct dispatch<tag::default_<tag::erase>, Sequence, Position>
+    : erase<
+        Sequence, Position, typename next<Position>::type
+    >
+{ };
+
+template <typename Sequence, typename First, typename Last>
+struct dispatch<tag::default_<tag::erase>, Sequence, First, Last>
+    : erase_detail::erase_impl<Sequence, First, Last>
+{ };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/erase.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_ERASE_HPP

@@ -9,6 +9,7 @@
 /*!
  * @page Concepts Concepts
  *
+ * @subpage Category
  * @subpage Categorizable
  *
  * @subpage EqualityComparable
@@ -38,27 +39,33 @@
  */
 
 /*!
+ * @page Category Category
+ * @todo Document this concept
+ */
+
+/*!
  * @page Categorizable Categorizable
  *
- * The most basic concept modeled by all types manipulated by the library.
+ * Type that is in some classification and whose position in that
+ * classification is available.
  *
  *
  * ## Notation
  * | Expression | Description
  * | ---------- | -----------
- * | `T`        | An arbitrary type
+ * | `T`        | @ref Categorizable
  *
  *
  * ## Valid expressions
  * | Expression             | Type
  * | ----------             | ----
- * | `category_of<T>::type` | Any type
+ * | `category_of<T>::type` | @ref Category
  */
 
 /*!
  * @page EqualityComparable Equality Comparable
  *
- * Concept modeled by types possessing an equivalence relation.
+ * Type possessing an equivalence relation.
  *
  *
  * ## Notation
@@ -77,7 +84,7 @@
 /*!
  * @page LessThanComparable LessThan Comparable
  *
- * Concept modeled by types possessing a strict weak ordering relation.
+ * Type possessing a strict weak ordering relation.
  *
  *
  * ## Notation
@@ -346,7 +353,7 @@
  *
  *
  * ## Refinement of
- * @ref Categorizable
+ * @ref Categorizable, @ref EqualityComparable
  *
  *
  * ## Notation
@@ -382,7 +389,7 @@
  * - If `I` is dereferenceable and `J` is equal to `I`, then `J` is
  *   dereferenceable as well.
  * - If `I` and `J` are equal and dereferenceable, then `deref<I>::type`
- *   and `deref<J>::type` are equal.
+ *   and `deref<J>::type` are identical.
  * - If `I` is incrementable and `J` is equal to `I`, then `J` is
  *   incrementable as well.
  * - If `I` and `J` are equal and incrementable, then `next<I>::type` and
@@ -433,7 +440,7 @@
  *
  *
  * ## Refinement of
- * @ref BidirectionalIterator
+ * @ref BidirectionalIterator, @ref LessThanComparable
  *
  *
  * ## Notation
@@ -460,7 +467,31 @@
 
 /*!
  * @page IntegralConstant Integral Constant
- * @todo Document this concept
+ *
+ * Holder for a compile-time value of an integral type.
+ *
+ * Every @ref IntegralConstant is also a nullary @ref Metafunction
+ * returning itself. An integral constant object is implicitly convertible
+ * to the corresponding runtime value of the wrapped integral type.
+ *
+ *
+ * ## Refinement of
+ * @ref Categorizable
+ *
+ *
+ * ## Notation
+ * | Expression | Description
+ * | ---------- | -----------
+ * | `N`        | An @ref IntegralConstant
+ *
+ *
+ * ## Valid expressions
+ * | Expression                        | Type
+ * | ----------                        | ----
+ * | `N::value_type`                   | An integral type
+ * | `N::value`                        | An integral constant expression
+ * | `N::type`                         | @ref IntegralConstant
+ * | `constexpr N::value_type c = N{}` |
  */
 
 /*!

@@ -6,53 +6,48 @@
 #ifndef BOOST_MPL11_ALGORITHM_FOLDL_HPP
 #define BOOST_MPL11_ALGORITHM_FOLDL_HPP
 
+#include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/apply_wrap.hpp>
+#include <boost/mpl11/functional/lambda.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
-    /*!
-     * @ingroup algorithms
-     *
-     * Accumulates the elements of a sequence from an initial state using a
-     * custom operation.
-     *
-     * Specifically, returns the result of the successive application of the
-     * binary operation `F` to the result of the previous `F` invocation (or
-     * `State` for the first application) and every element of the sequence
-     * in order.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to
-       @code
-            using Iter1 = begin<Sequence>::type;
-            using State1 = apply<F, State, deref<Iter1>::type>::type;
-
-            using Iter2 = next<Iter1>::type;
-            using State2 = apply<F, State1, deref<Iter2>::type>::type;
-
-            ...
-
-            using StateN = apply<F, StateN-1, deref<IterN>::type>::type;
-            using Last = next<IterN>::type;
-            using Result = StateN;
-       @endcode
-     *
-     *
-     * @note
-     * This is equivalent to the `mpl::fold` metafunction from the
-     * original MPL.
-     */
-    template <typename Sequence, typename State, typename F>
-    struct foldl
-        : dispatch<tag::foldl, Sequence, State, F>
+namespace boost { namespace mpl11 {
+namespace foldl_detail {
+    template <typename First, typename Last, typename State, typename F,
+              bool = equal_to<First, Last>::type::value>
+    struct foldl_impl
+        : foldl_impl<
+            typename next<First>::type,
+            Last,
+            typename apply_wrap<
+                F, State, typename deref<First>::type
+            >::type,
+            F
+        >
     { };
-}}} // end namespace boost::mpl11::algorithm
 
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/foldl.hpp>
-#endif
+    template <typename First, typename Last, typename State, typename F>
+    struct foldl_impl<First, Last, State, F, true>
+        : identity<State>
+    { };
+} // end namespace foldl_detail
+
+template <typename Sequence, typename State, typename F>
+struct dispatch<tag::default_<tag::foldl>, Sequence, State, F>
+    : foldl_detail::foldl_impl<
+        typename begin<Sequence>::type,
+        typename end<Sequence>::type,
+        State,
+        typename lambda<F>::type
+    >
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FOLDL_HPP

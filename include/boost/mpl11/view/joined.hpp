@@ -6,103 +6,112 @@
 #ifndef BOOST_MPL11_VIEW_JOINED_HPP
 #define BOOST_MPL11_VIEW_JOINED_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
-namespace boost { namespace mpl11 { namespace view {
-    /*!
-     * @ingroup views
-     *
-     * A view into the sequence of elements formed by concatenating two
-     * or more sequences.
-     *
-     * Regardless of the category of the underlying sequences, `joined`
-     * is only a forward sequence.
-     */
-    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
-    struct joined BOOST_MPL11_DOXYGEN_ONLY({ });
-}}} // end namespace boost::mpl11::view
-
-
 #include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
-#include <boost/mpl11/intrinsic/deref.hpp>
+#include <boost/mpl11/intrinsic/category_of_fwd.hpp>
+#include <boost/mpl11/intrinsic/deref_fwd.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
-#include <boost/mpl11/intrinsic/next.hpp>
+#include <boost/mpl11/intrinsic/next_fwd.hpp>
 #include <boost/mpl11/operator/equal_to.hpp>
-#include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/joined_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
+//////////////////////////////////////////////////////////////////////////////
+// Implementation of the iterator
+//////////////////////////////////////////////////////////////////////////////
 namespace joined_detail {
     template <typename First1, typename Last1, typename First2>
     struct joined_iterator;
 
-    template <typename Op, typename F1, typename L1, typename F2,
+    template <typename F1, typename L1, typename F2,
               bool = equal_to<F1, L1>::type::value>
-    struct dispatch;
-
-    template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::next, F1, L1, F2, false>
+    struct next_impl
         : identity<
             joined_iterator<typename next<F1>::type, L1, F2>
         >
     { };
 
     template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::next, F1, L1, F2, true>
+    struct next_impl<F1, L1, F2, true>
         : identity<
             joined_iterator<F1, L1, typename next<F2>::type>
         >
     { };
 
-    template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::deref, F1, L1, F2, false>
+    template <typename F1, typename L1, typename F2,
+              bool = equal_to<F1, L1>::type::value>
+    struct deref_impl
         : deref<F1>
     { };
 
     template <typename F1, typename L1, typename F2>
-    struct dispatch<tag::deref, F1, L1, F2, true>
+    struct deref_impl<F1, L1, F2, true>
         : deref<F2>
-    { };
-
-    template <typename F1, typename L1, typename F2, bool Whatever>
-    struct dispatch<tag::category_of, F1, L1, F2, Whatever>
-        : identity<category::forward_iterator>
     { };
 } // end namespace joined_detail
 
-template <typename OperationTag, typename F1, typename L1, typename L2>
-struct dispatch<OperationTag, joined_detail::joined_iterator<F1, L1, L2>>
-    : joined_detail::dispatch<OperationTag, F1, L1, L2>
+template <typename F1, typename L1, typename F2>
+struct dispatch<tag::next, joined_detail::joined_iterator<F1, L1, F2>>
+    : joined_detail::next_impl<F1, L1, F2>
 { };
 
-template <typename Op, typename S1, typename S2,typename...Sn,typename...Args>
-struct dispatch<Op, view::joined<S1, S2, Sn...>, Args...>
-    : dispatch<Op, view::joined<S1, view::joined<S2, Sn...>>, Args...>
+template <typename F1, typename L1, typename F2>
+struct dispatch<tag::deref, joined_detail::joined_iterator<F1, L1, F2>>
+    : joined_detail::deref_impl<F1, L1, F2>
 { };
 
-template <typename Op, typename S1, typename S2, typename ...Args>
-struct dispatch<Op, view::joined<S1, S2>, Args...>
-    : dispatch<
-        Op,
-        view::bounded_by<
-            joined_detail::joined_iterator<
-                typename begin<S1>::type,
-                typename end<S1>::type,
-                typename begin<S2>::type
-            >,
-            joined_detail::joined_iterator<
-                typename end<S1>::type,
-                typename end<S1>::type,
-                typename end<S2>::type
-            >
+template <typename F1, typename L1, typename F2>
+struct dispatch<tag::category_of, joined_detail::joined_iterator<F1, L1, F2>>
+    : identity<category::forward_iterator>
+{ };
+
+
+//////////////////////////////////////////////////////////////////////////////
+// Implementation of the view
+//////////////////////////////////////////////////////////////////////////////
+namespace joined_detail {
+    template <typename S1, typename S2>
+    using view_impl = view::bounded_by<
+        joined_iterator<
+            typename begin<S1>::type,
+            typename end<S1>::type,
+            typename begin<S2>::type
         >,
-        Args...
-    >
+        joined_iterator<
+            typename end<S1>::type,
+            typename end<S1>::type,
+            typename end<S2>::type
+        >
+    >;
+} // end namespace joined_detail
+
+template <typename S1, typename S2, typename ...Sn>
+struct dispatch<tag::begin, view::joined<S1, S2, Sn...>>
+    : begin<view::joined<S1, view::joined<S2, Sn...>>>
+{ };
+
+template <typename S1, typename S2>
+struct dispatch<tag::begin, view::joined<S1, S2>>
+    : begin<joined_detail::view_impl<S1, S2>>
+{ };
+
+template <typename S1, typename S2, typename ...Sn>
+struct dispatch<tag::end, view::joined<S1, S2, Sn...>>
+    : end<view::joined<S1, view::joined<S2, Sn...>>>
+{ };
+
+template <typename S1, typename S2>
+struct dispatch<tag::end, view::joined<S1, S2>>
+    : end<joined_detail::view_impl<S1, S2>>
+{ };
+
+template <typename S1, typename S2, typename ...Sn>
+struct dispatch<tag::category_of, view::joined<S1, S2, Sn...>>
+    : identity<category::forward_sequence>
 { };
 }} // end namespace boost::mpl11
 

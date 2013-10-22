@@ -6,24 +6,7 @@
 #ifndef BOOST_MPL11_VIEW_SORTED_HPP
 #define BOOST_MPL11_VIEW_SORTED_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
-
-
-namespace boost { namespace mpl11 { namespace view {
-    /*!
-     * @ingroup views
-     *
-     * View onto the elements of a sequence sorted according to the
-     * ordering relation `Predicate`.
-     *
-     * If left unspecified, `Predicate` is equivalent to `less<_1, _2>`.
-     */
-    template <typename Sequence, typename Predicate = detail::optional>
-    struct sorted BOOST_MPL11_DOXYGEN_ONLY({ });
-}}} // end namespace boost::mpl11::view
-
-
+#include <boost/mpl11/categories.hpp>
 #include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/functional/apply_wrap.hpp>
 #include <boost/mpl11/functional/arg.hpp>
@@ -31,17 +14,18 @@ namespace boost { namespace mpl11 { namespace view {
 #include <boost/mpl11/functional/quote.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/category_of_fwd.hpp>
 #include <boost/mpl11/intrinsic/deref.hpp>
 #include <boost/mpl11/intrinsic/end.hpp>
 #include <boost/mpl11/intrinsic/is_empty.hpp>
 #include <boost/mpl11/intrinsic/next.hpp>
 #include <boost/mpl11/operator/less.hpp>
 #include <boost/mpl11/operator/not.hpp>
-#include <boost/mpl11/tags.hpp>
 #include <boost/mpl11/view/bounded_by.hpp>
 #include <boost/mpl11/view/filtered.hpp>
 #include <boost/mpl11/view/joined.hpp>
 #include <boost/mpl11/view/single_element.hpp>
+#include <boost/mpl11/view/sorted_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -77,22 +61,26 @@ namespace sorted_detail {
             typename quick_sort<GreaterThanPivot, Pred>::type
         >;
     };
+
+    template <typename Sequence, typename Predicate>
+    using view_impl = typename quick_sort<
+        Sequence, typename lambda<Predicate>::type
+    >::type;
 } // end namespace sorted_detail
 
-template <typename Operation, typename S, typename Pred, typename ...Args>
-struct dispatch<Operation, view::sorted<S, Pred>, Args...>
-    : dispatch<
-        Operation,
-        typename sorted_detail::quick_sort<
-            S, typename lambda<Pred>::type
-        >::type,
-        Args...
-    >
+template <typename Sequence, typename Predicate>
+struct dispatch<tag::begin, view::sorted<Sequence, Predicate>>
+    : begin<sorted_detail::view_impl<Sequence, Predicate>>
 { };
 
-template <typename Operation, typename S, typename ...Args>
-struct dispatch<Operation, view::sorted<S>, Args...>
-    : dispatch<Operation, view::sorted<S, quote<less>>, Args...>
+template <typename Sequence, typename Predicate>
+struct dispatch<tag::end, view::sorted<Sequence, Predicate>>
+    : end<sorted_detail::view_impl<Sequence, Predicate>>
+{ };
+
+template <typename Sequence, typename Predicate>
+struct dispatch<tag::category_of, view::sorted<Sequence, Predicate>>
+    : identity<category::forward_sequence>
 { };
 }} // end namespace boost::mpl11
 

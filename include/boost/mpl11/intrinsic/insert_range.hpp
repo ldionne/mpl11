@@ -6,63 +6,59 @@
 #ifndef BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
 #define BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/algorithm/copy.hpp>
+#include <boost/mpl11/algorithm/foldl.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/quote.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/clear.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/insert.hpp>
+#include <boost/mpl11/intrinsic/insert_range_fwd.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
+#include <boost/mpl11/view/bounded_by.hpp>
+#include <boost/mpl11/view/joined.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Overloaded intrinsic for inserting a range of elements in a sequence.
-     */
-    template <typename, typename, typename = detail::optional>
-    struct insert_range;
+namespace insert_range_detail {
+    template <typename Sequence, typename Position, typename Range,
+              bool = equal_to<
+                Position, typename end<Sequence>::type
+              >::type::value>
+    struct insert_range_impl
+        : algorithm::copy<
+            view::joined<Sequence, Range>,
+            typename clear<Sequence>::type
+        >
+    { };
 
-    /*!
-     * @ingroup intrinsics
-     *
-     * Inserts a range of elements at an arbitrary position in a
-     * @ref RandomExtensibleSequence.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to copying the elements from the ranges
-     * [`begin<Sequence>::type`, `Position`), `Range` and
-     * [`Position`, `end<Sequence>::type`) into `clear<Sequence>::type`
-     */
     template <typename Sequence, typename Position, typename Range>
-    struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>)
-        : dispatch<tag::insert_range, Sequence, Position, Range>
+    struct insert_range_impl<Sequence, Position, Range, false>
+        : algorithm::copy<
+            view::joined<
+                view::bounded_by<
+                    typename begin<Sequence>::type, Position
+                >,
+                Range,
+                view::bounded_by<
+                    Position, typename end<Sequence>::type
+                >
+            >,
+            typename clear<Sequence>::type
+        >
     { };
+} // end namespace insert_range_detail
 
-    /*!
-     * @ingroup intrinsics
-     *
-     * Inserts a range of elements in an @ref AssociativeSequence.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `foldl<Range, Sequence, insert<_1, _2>>`.
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - It is possible to use `insert_range` on
-     *   @ref AssociativeSequence "Associative Sequences".
-     */
-    template <typename Sequence, typename Range>
-    struct insert_range<Sequence, Range>
-        : dispatch<tag::insert_range, Sequence, Range>
-    { };
+template <typename Sequence, typename Range>
+struct dispatch<tag::default_<tag::insert_range>, Sequence, Range>
+    : algorithm::foldl<Range, Sequence, quote<insert>>
+{ };
+
+template <typename Sequence, typename Position, typename Range>
+struct dispatch<tag::default_<tag::insert_range>, Sequence, Position, Range>
+    : insert_range_detail::insert_range_impl<Sequence, Position, Range>
+{ };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/insert_range.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_INSERT_RANGE_HPP

@@ -7,30 +7,25 @@
 #define BOOST_MPL11_OPERATOR_GREATER_EQUAL_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/operator/and.hpp>
+#include <boost/mpl11/operator/greater_equal_fwd.hpp>
+#include <boost/mpl11/operator/less.hpp>
+#include <boost/mpl11/operator/not.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup comparison_operators
-     *
-     * Returns whether `T1 >= T2 >= ...Tn`.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * When more than two arguments are provided, as described in
-     * @ref comparison_operators. Otherwise, equivalent to
-     * `not_<less<T1, T2>>`.
-     */
     template <typename T1, typename T2, typename ...Tn>
-    struct greater_equal
-        : dispatch<tag::greater_equal, T1, T2, Tn...>
+    struct dispatch<tag::default_<tag::greater_equal>, T1, T2, Tn...>
+        : and_<
+            greater_equal<T1, T2>,
+            greater_equal<T2, Tn...>
+        >
+    { };
+
+    template <typename T1, typename T2>
+    struct dispatch<tag::default_<tag::greater_equal>, T1, T2>
+        : not_<less<T1, T2>>
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/greater_equal.hpp>
-#endif
 
 #endif // !BOOST_MPL11_OPERATOR_GREATER_EQUAL_HPP

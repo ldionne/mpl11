@@ -6,30 +6,24 @@
 #ifndef BOOST_MPL11_DISPATCH_HPP
 #define BOOST_MPL11_DISPATCH_HPP
 
+#include <boost/mpl11/detail/dependent_on.hpp>
+
+
 namespace boost { namespace mpl11 {
-    namespace dispatch_detail {
-        template <typename ...>
-        struct always_false {
-            static constexpr bool value = false;
-        };
-    }
+    namespace tag { template <typename Operation> struct default_; }
 
-    namespace detail {
-        template <typename OperationTag>
-        struct default_;
-    }
-
-    template <typename OperationTag, typename ...Args>
+    template <typename Operation, typename ...Args>
     struct dispatch
-        : dispatch<detail::default_<OperationTag>, Args...>
+        : dispatch<tag::default_<Operation>, Args...>
     { };
 
-    template <typename OperationTag, typename ...Args>
-    struct dispatch<detail::default_<OperationTag>, Args...> {
+    template <typename Operation, typename ...Args>
+    struct dispatch<tag::default_<Operation>, Args...> {
         static_assert(
-            dispatch_detail::always_false<OperationTag, Args...>::value,
-        "No default implementation is provided for the requested "
-        "operation with the arguments provided.");
+            detail::dependent_on<Operation>::template value<bool, false>(),
+            "No default implementation is provided for the requested "
+            "operation with the provided arguments."
+        );
     };
 }} // end namespace boost::mpl11
 

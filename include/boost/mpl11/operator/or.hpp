@@ -6,25 +6,26 @@
 #ifndef BOOST_MPL11_OPERATOR_OR_HPP
 #define BOOST_MPL11_OPERATOR_OR_HPP
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/if.hpp>
+#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/operator/or_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup logical_operators
-     *
-     * Returns the result of short-circuit _logical or_ (`||`) on the result
-     * of its arguments.
-     */
     template <typename F1, typename F2, typename ...Fn>
-    struct or_
-        : dispatch<tag::or_, F1, F2, Fn...>
+    struct dispatch<tag::default_<tag::or_>, F1, F2, Fn...>
+        : or_<F1, or_<F2, Fn...>>
+    { };
+
+    template <typename F1, typename F2>
+    struct dispatch<tag::default_<tag::or_>, F1, F2>
+        : identity<
+            bool_<if_c<F1::type::value, true_, F2>::type::type::value>
+        >
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/or.hpp>
-#endif
 
 #endif // !BOOST_MPL11_OPERATOR_OR_HPP

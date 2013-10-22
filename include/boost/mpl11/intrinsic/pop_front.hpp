@@ -7,35 +7,29 @@
 #define BOOST_MPL11_INTRINSIC_POP_FRONT_HPP
 
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/erase.hpp>
+#include <boost/mpl11/intrinsic/is_empty.hpp>
+#include <boost/mpl11/intrinsic/pop_front_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Removes the element at the beginning of a @ref FrontExtensibleSequence.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `erase<Sequence, begin<Sequence>::type>` if
-     * `is_empty<Sequence>::type::value` is `false`, and a
-     * compile-time assertion is triggered otherwise.
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - A compile-time assertion is triggered if the sequence is empty.
-     */
+    namespace pop_front_detail {
+        template <typename Sequence>
+        struct assert_nonempty {
+            static_assert(!is_empty<Sequence>::type::value,
+            "Attempt to use `pop_front` on an empty sequence.");
+        };
+    } // end namespace pop_front_detail
+
     template <typename Sequence>
-    struct pop_front
-        : dispatch<tag::pop_front, Sequence>
+    struct dispatch<tag::default_<tag::pop_front>, Sequence>
+        : pop_front_detail::assert_nonempty<Sequence>,
+          erase<
+            Sequence,
+            typename begin<Sequence>::type
+        >
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/pop_front.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_POP_FRONT_HPP

@@ -6,30 +6,18 @@
 #ifndef BOOST_MPL11_ALGORITHM_FIND_HPP
 #define BOOST_MPL11_ALGORITHM_FIND_HPP
 
+#include <boost/mpl11/algorithm/find_fwd.hpp>
+#include <boost/mpl11/algorithm/find_if.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/operator/equal_to.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
-    /*!
-     * @ingroup algorithms
-     *
-     * Returns an iterator to the first occurence of a given element in a
-     * sequence, or the past-the-end iterator if no such element exists.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `find_if<Sequence, equal_to<Element, _1>>`.
-     */
+namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
-    struct find
-        : dispatch<tag::find, Sequence, Element>
+    struct dispatch<tag::default_<tag::find>, Sequence, Element>
+        : algorithm::find_if<Sequence, equal_to<Element, _1>>
     { };
-}}} // end namespace boost::mpl11::algorithm
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/find.hpp>
-#endif
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_FIND_HPP

@@ -6,43 +6,27 @@
 #ifndef BOOST_MPL11_INTRINSIC_ERASE_KEY_HPP
 #define BOOST_MPL11_INTRINSIC_ERASE_KEY_HPP
 
+#include <boost/mpl11/algorithm/copy.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/intrinsic/clear.hpp>
+#include <boost/mpl11/intrinsic/erase_key_fwd.hpp>
+#include <boost/mpl11/intrinsic/key_of.hpp>
+#include <boost/mpl11/operator/not_equal_to.hpp>
+#include <boost/mpl11/view/filtered.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Erases elements associated with a given key in
-     * an @ref AssociativeSequence.
-     *
-     *
-     * ### Semantics and default implementation
-     * Equivalent to
-       @code
-            copy<
-                filtered<
-                    Sequence,
-                    not_equal_to<Key, key_of<Sequence, _1>>
-                >,
-                clear<Sequence>::type
-            >
-       @endcode
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - A default implementation is provided.
-     */
     template <typename Sequence, typename Key>
-    struct erase_key
-        : dispatch<tag::erase_key, Sequence, Key>
+    struct dispatch<tag::default_<tag::erase_key>, Sequence, Key>
+        : algorithm::copy<
+            view::filtered<
+                Sequence,
+                not_equal_to<Key, key_of<Sequence, _1>>
+            >,
+            typename clear<Sequence>::type
+        >
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/erase_key.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_ERASE_KEY_HPP

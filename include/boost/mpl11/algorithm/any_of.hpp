@@ -6,57 +6,23 @@
 #ifndef BOOST_MPL11_ALGORITHM_ANY_OF_HPP
 #define BOOST_MPL11_ALGORITHM_ANY_OF_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/algorithm/any_of_fwd.hpp>
+#include <boost/mpl11/algorithm/none_of.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/functional/arg.hpp>
+#include <boost/mpl11/operator/not.hpp>
 
 
-namespace boost { namespace mpl11 { namespace algorithm {
-    /*!
-     * @ingroup algorithms
-     *
-     * Overloaded algorithm for querying a sequence about the truth value of
-     * its elements.
-     */
-    template <typename Sequence, typename Predicate = detail::optional>
-    struct any_of;
-
-    /*!
-     * @ingroup algorithms
-     *
-     * Returns whether any of the elements of a sequence satisfies
-     * a given `Predicate`.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `not_<none_of<Sequence, Predicate>>`.
-     */
+namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
-    struct any_of BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Predicate>)
-        : dispatch<tag::any_of, Sequence, Predicate>
+    struct dispatch<tag::default_<tag::any_of>, Sequence, Predicate>
+        : not_<algorithm::none_of<Sequence, Predicate>>
     { };
 
-    /*!
-     * @ingroup algorithms
-     *
-     * Returns whether any of the elements of a sequence is a `true`-valued
-     * boolean @ref IntegralConstant.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `any_of<Sequence, _1>`.
-     */
     template <typename Sequence>
-    struct any_of<Sequence>
-        : dispatch<tag::any_of, Sequence>
+    struct dispatch<tag::default_<tag::any_of>, Sequence>
+        : algorithm::any_of<Sequence, _1>
     { };
-}}} // end namespace boost::mpl11::algorithm
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/any_of.hpp>
-#endif
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ALGORITHM_ANY_OF_HPP

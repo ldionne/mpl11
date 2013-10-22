@@ -6,31 +6,21 @@
 #ifndef BOOST_MPL11_INTRINSIC_SIZE_HPP
 #define BOOST_MPL11_INTRINSIC_SIZE_HPP
 
+#include <boost/mpl11/algorithm/distance.hpp>
 #include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/tags.hpp>
+#include <boost/mpl11/intrinsic/begin.hpp>
+#include <boost/mpl11/intrinsic/end.hpp>
+#include <boost/mpl11/intrinsic/size_fwd.hpp>
 
 
 namespace boost { namespace mpl11 {
-    /*!
-     * @ingroup intrinsics
-     *
-     * Returns the number of elements contained in a sequence.
-     *
-     * The size of a sequence is a non-negative @ref IntegralConstant.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `distance<begin<Sequence>::type, end<Sequence>::type>`.
-     */
     template <typename Sequence>
-    struct size
-        : dispatch<tag::size, Sequence>
+    struct dispatch<tag::default_<tag::size>, Sequence>
+        : algorithm::distance<
+            typename begin<Sequence>::type,
+            typename end<Sequence>::type
+        >
     { };
 }} // end namespace boost::mpl11
-
-#ifndef BOOST_MPL11_DONT_INCLUDE_DEFAULTS
-#   include <boost/mpl11/detail/default/size.hpp>
-#endif
 
 #endif // !BOOST_MPL11_INTRINSIC_SIZE_HPP
