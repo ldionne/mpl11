@@ -10,7 +10,6 @@
 
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
@@ -18,7 +17,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::all_of, Sequence, Predicate>
+    struct all_of
         : none_of<
             Sequence,
             not_<apply_wrap<typename lambda<Predicate>::type, _1>>
@@ -26,7 +25,7 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename Sequence>
-    struct dispatch<tag::all_of, Sequence>
+    struct all_of<Sequence>
         : all_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11
