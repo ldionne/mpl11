@@ -8,31 +8,14 @@
 
 #include <boost/mpl11/fwd/back.hpp>
 
-#include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/end.hpp>
-#include <boost/mpl11/is_empty.hpp>
-#include <boost/mpl11/prior.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace back_detail {
-        template <typename Sequence>
-        struct assert_nonempty {
-            static_assert(!is_empty<Sequence>::type::value,
-            "Attempt to use `back` on an empty sequence.");
-        };
-    } // end namespace back_detail
-
     template <typename Sequence>
-    struct dispatch<tag::back, Sequence>
-        : back_detail::assert_nonempty<Sequence>,
-          deref<
-            typename prior<
-                typename end<Sequence>::type
-            >::type
-        >
+    struct back
+        : class_<Sequence>::type::template back<Sequence>
     { };
-}} // end namespace boost::mpl11
+}}
 
 #endif // !BOOST_MPL11_BACK_HPP

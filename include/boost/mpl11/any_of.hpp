@@ -9,19 +9,18 @@
 #include <boost/mpl11/fwd/any_of.hpp>
 
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::any_of, Sequence, Predicate>
+    struct any_of
         : not_<none_of<Sequence, Predicate>>
     { };
 
     template <typename Sequence>
-    struct dispatch<tag::any_of, Sequence>
+    struct any_of<Sequence>
         : any_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11

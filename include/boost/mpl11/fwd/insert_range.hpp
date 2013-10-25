@@ -8,21 +8,12 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct insert_range : dispatch<insert_range> { }; }
-
     /*!
-     * @ingroup algorithms
-     * Overloaded algorithm for inserting a range of elements in a sequence.
-     */
-    template <typename, typename, typename = detail::optional>
-    struct insert_range;
-
-    /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Inserts a range of elements at an arbitrary position in a
      * @ref ForwardSequence.
      *
@@ -41,12 +32,11 @@ namespace boost { namespace mpl11 {
      * @endcode
      */
     template <typename Sequence, typename Position, typename Range>
-    struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>)
-        : dispatch<tag::insert_range, Sequence, Position, Range>
-    { };
+    struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>);
 
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Inserts a range of elements in an @ref AssociativeSequence.
      *
      *
@@ -55,9 +45,7 @@ namespace boost { namespace mpl11 {
      * Equivalent to `foldl<Range, Sequence, insert<_1, _2>>`.
      */
     template <typename Sequence, typename Range>
-    struct insert_range<Sequence, Range>
-        : dispatch<tag::insert_range, Sequence, Range>
-    { };
+    struct insert_range<Sequence, Range>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INSERT_RANGE_HPP

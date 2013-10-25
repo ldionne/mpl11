@@ -11,6 +11,6 @@
 #include <boost/mpl11/detail/left_associative_operator.hpp>
 
 
-BOOST_MPL11_DEFINE_LEFT_ASSOCIATIVE_OPERATOR(bitor_, |)
+BOOST_MPL11_DEFINE_LEFT_ASSOCIATIVE_OPERATOR(bitor_)
 
 #endif // !BOOST_MPL11_BITOR_HPP

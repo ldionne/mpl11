@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_CONTAINS_HPP
 #define BOOST_MPL11_FWD_CONTAINS_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct contains; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns whether `Sequence` contains one or more elements identical
      * to `Element`.
      *
@@ -29,9 +25,7 @@ namespace boost { namespace mpl11 {
        @endcode
      */
     template <typename Sequence, typename Element>
-    struct contains
-        : dispatch<tag::contains, Sequence, Element>
-    { };
+    struct contains;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CONTAINS_HPP

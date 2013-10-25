@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_COUNT_HPP
 #define BOOST_MPL11_FWD_COUNT_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct count; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns the number of elements in `Sequence` that are identical
      * to `Element`.
      *
@@ -23,9 +19,7 @@ namespace boost { namespace mpl11 {
      * Equivalent to `count_if<Sequence, equal_to<Element, _1>>`.
      */
     template <typename Sequence, typename Element>
-    struct count
-        : dispatch<tag::count, Sequence, Element>
-    { };
+    struct count;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COUNT_HPP

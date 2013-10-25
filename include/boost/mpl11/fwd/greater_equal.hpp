@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_GREATER_EQUAL_HPP
 #define BOOST_MPL11_FWD_GREATER_EQUAL_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct greater_equal; }
-
     /*!
      * @ingroup comparison_operators
      *
@@ -25,9 +20,7 @@ namespace boost { namespace mpl11 {
      * `not_<less<T1, T2>>`.
      */
     template <typename T1, typename T2, typename ...Tn>
-    struct greater_equal
-        : dispatch<tag::greater_equal, T1, T2, Tn...>
-    { };
+    struct greater_equal;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_GREATER_EQUAL_HPP

@@ -8,24 +8,16 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct at; }
-
     /*!
-     * @ingroup algorithms
-     * Overloaded intrinsic for accessing elements in a sequence.
-     */
-    template <typename SequenceOrAssociativeSequence,
-              typename IndexOrKey,
-              typename DefaultOrNothing = detail::optional>
-    struct at;
-
-    /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
+     * @todo Move the doc to the proper concept
+     * @todo There is no default implementation when a default is provided
+     *       right now, maybe there should be one?
      * Returns the element associated to a key in an @ref AssociativeSequence,
      * or a default value if no such element exists and a default is provided.
      *
@@ -57,13 +49,17 @@ namespace boost { namespace mpl11 {
      * - A compile-time assertion is triggered when no `Default` is provided
      *   and `Key` can't be found.
      */
-    template <typename Sequence, typename Key, typename Default>
-    struct at BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default>)
-        : dispatch<tag::at, Sequence, Key, Default>
-    { };
+    template <
+        typename Sequence,
+        typename Key,
+        typename Default = detail::optional
+    >
+    struct at BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default>);
 
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
+     * @todo Move the doc to the proper concept
      * Returns the `N`th element of a sequence if `N` is in the bounds of the
      * sequence, and triggers a compile-time assertion otherwise.
      *
@@ -87,9 +83,7 @@ namespace boost { namespace mpl11 {
      *   `Sequence`.
      */
     template <typename Sequence, typename N>
-    struct at<Sequence, N>
-        : dispatch<tag::at, Sequence, N>
-    { };
+    struct at<Sequence, N>;
 
     //! Alias to `at<Sequence, ulong<N>>`; provided for convenience.
     template <typename Sequence, unsigned long N>

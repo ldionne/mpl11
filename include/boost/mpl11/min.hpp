@@ -8,19 +8,18 @@
 
 #include <boost/mpl11/fwd/min.hpp>
 
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/less.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename T1, typename T2, typename ...Tn>
-    struct dispatch<tag::min, T1, T2, Tn...>
+    struct min
         : min<T1, typename min<T2, Tn...>::type>
     { };
 
     template <typename T1, typename T2>
-    struct dispatch<tag::min, T1, T2>
+    struct min<T1, T2>
         : if_<less<T1, T2>, T1, T2>
     { };
 }} // end namespace boost::mpl11

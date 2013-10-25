@@ -8,21 +8,12 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct insert; }
-
     /*!
-     * @ingroup algorithms
-     * Overloaded algorithm for inserting elements in a sequence.
-     */
-    template <typename, typename, typename = detail::optional>
-    struct insert;
-
-    /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Inserts an element at an arbitrary position in a @ref ForwardSequence.
      *
      *
@@ -38,12 +29,11 @@ namespace boost { namespace mpl11 {
         @endcode
      */
     template <typename Sequence, typename Position, typename Element>
-    struct insert BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Element>)
-        : dispatch<tag::insert, Sequence, Position, Element>
-    { };
+    struct insert BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Element>);
 
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Inserts an element in an @ref AssociativeSequence.
      *
      *
@@ -71,9 +61,7 @@ namespace boost { namespace mpl11 {
         @endcode
      */
     template <typename Sequence, typename Element>
-    struct insert<Sequence, Element>
-        : dispatch<tag::insert, Sequence, Element>
-    { };
+    struct insert<Sequence, Element>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INSERT_HPP

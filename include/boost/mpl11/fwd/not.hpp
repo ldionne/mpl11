@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_NOT_HPP
 #define BOOST_MPL11_FWD_NOT_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct not_; }
-
     /*!
      * @ingroup logical_operators
      *
@@ -24,9 +19,7 @@ namespace boost { namespace mpl11 {
      * Equivalent to `identity<bool_<!F::type::value>>`.
      */
     template <typename F>
-    struct not_
-        : dispatch<tag::not_, F>
-    { };
+    struct not_;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NOT_HPP

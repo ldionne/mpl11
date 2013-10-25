@@ -8,22 +8,12 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct all_of; }
-
     /*!
      * @ingroup algorithms
-     * Overloaded algorithm for querying a sequence about the truth value of
-     * its elements.
-     */
-    template <typename Sequence, typename Predicate = detail::optional>
-    struct all_of;
-
-    /*!
-     * @ingroup algorithms
+     *
      * Returns whether all the elements of a sequence satisfy a given
      * `Predicate`.
      *
@@ -38,13 +28,12 @@ namespace boost { namespace mpl11 {
             >
        @endcode
      */
-    template <typename Sequence, typename Predicate>
-    struct all_of BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Predicate>)
-        : dispatch<tag::all_of, Sequence, Predicate>
-    { };
+    template <typename Sequence, typename Predicate = detail::optional>
+    struct all_of BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Predicate>);
 
     /*!
      * @ingroup algorithms
+     *
      * Returns whether all the elements of a sequence are `true`-valued
      * boolean @ref IntegralConstant "Integral Constants".
      *
@@ -54,9 +43,7 @@ namespace boost { namespace mpl11 {
      * Equivalent to `all_of<Sequence, _1>`.
      */
     template <typename Sequence>
-    struct all_of<Sequence>
-        : dispatch<tag::all_of, Sequence>
-    { };
+    struct all_of<Sequence>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ALL_OF_HPP

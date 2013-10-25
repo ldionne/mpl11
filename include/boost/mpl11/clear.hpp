@@ -8,20 +8,13 @@
 
 #include <boost/mpl11/fwd/clear.hpp>
 
-#include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/end.hpp>
-#include <boost/mpl11/erase.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Sequence>
-    struct dispatch<tag::clear, Sequence>
-        : erase<
-            Sequence,
-            typename begin<Sequence>::type,
-            typename end<Sequence>::type
-        >
+    struct clear
+        : class_<Sequence>::type::template clear<Sequence>
     { };
 }} // end namespace boost::mpl11
 

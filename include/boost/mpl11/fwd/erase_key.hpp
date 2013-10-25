@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_ERASE_KEY_HPP
 #define BOOST_MPL11_FWD_ERASE_KEY_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct erase_key; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Returns an @ref AssociativeSequence with the elements associated to
      * a given key removed from it.
      *
@@ -35,9 +31,7 @@ namespace boost { namespace mpl11 {
        @endcode
      */
     template <typename Sequence, typename Key>
-    struct erase_key
-        : dispatch<tag::erase_key, Sequence, Key>
-    { };
+    struct erase_key;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ERASE_KEY_HPP

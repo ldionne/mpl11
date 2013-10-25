@@ -1,23 +1,12 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::divides`.
+ * Forward declares `boost::mpl11::over`.
  */
 
-#ifndef BOOST_MPL11_FWD_DIVIDES_HPP
-#define BOOST_MPL11_FWD_DIVIDES_HPP
-
-#include <boost/mpl11/dispatch.hpp>
-
+#ifndef BOOST_MPL11_FWD_OVER_HPP
+#define BOOST_MPL11_FWD_OVER_HPP
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct divides; }
-
-    template <typename T1, typename T2, typename ...Tn>
-    struct divides
-        : dispatch<tag::divides, T1, T2, Tn...>
-    { };
-
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup arithmetic_operators
      *
@@ -26,11 +15,12 @@ namespace boost { namespace mpl11 {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `divides<divides<T1, T2>::type, Tn...>`.
+     * Equivalent to `over<over<T1, T2>::type, Tn...>`.
      */
-    template <>
-    struct divides<T1, T2, Tn...> { };
+    template <typename T1, typename T2, typename ...Tn>
+    struct over;
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup arithmetic_operators
      *
@@ -46,8 +36,8 @@ namespace boost { namespace mpl11 {
      * @pre `T2::value != 0`
      */
     template <>
-    struct divides<IntegralConstant, IntegralConstant> { };
+    struct over<IntegralConstant, IntegralConstant> { };
 #endif
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FWD_DIVIDES_HPP
+#endif // !BOOST_MPL11_FWD_OVER_HPP

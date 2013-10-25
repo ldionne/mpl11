@@ -10,7 +10,6 @@
 
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -20,7 +19,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::count_if, Sequence, Predicate>
+    struct count_if
         : foldl<
             Sequence,
             ulong<0>,

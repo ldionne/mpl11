@@ -8,24 +8,12 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct is_permutation; }
-
     /*!
      * @ingroup algorithms
-     * Overloaded algorithm for determining whether a sequence is a
-     * permutation of another.
-     */
-    template <typename Sequence1,
-              typename Sequence2,
-              typename Predicate = detail::optional>
-    struct is_permutation;
-
-    /*!
-     * @ingroup algorithms
+     *
      * Returns whether a sequence is a permutation of another sequence,
      * using a custom predicate to determine the equality of two elements.
      *
@@ -36,7 +24,11 @@ namespace boost { namespace mpl11 {
      * same number of elements and whether each element appear the same
      * number of times in each sequence.
      */
-    template <typename Sequence1, typename Sequence2, typename Predicate>
+    template <
+        typename Sequence1,
+        typename Sequence2,
+        typename Predicate = detail::optional
+    >
     struct is_permutation
     BOOST_MPL11_DOXYGEN_ONLY(<Sequence1, Sequence2, Predicate>)
         : dispatch<tag::is_permutation, Sequence1, Sequence2, Predicate>
@@ -44,6 +36,7 @@ namespace boost { namespace mpl11 {
 
     /*!
      * @ingroup algorithms
+     *
      * Returns whether a sequence is a permutation of another sequence.
      *
      *

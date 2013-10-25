@@ -6,18 +6,7 @@
 #ifndef BOOST_MPL11_FWD_SHIFT_RIGHT_HPP
 #define BOOST_MPL11_FWD_SHIFT_RIGHT_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct shift_right; }
-
-    template <typename T, typename Shift>
-    struct shift_right
-        : dispatch<tag::shift_right, T, Shift>
-    { };
-
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup bitwise_operators
      *
@@ -31,9 +20,8 @@ namespace boost { namespace mpl11 {
      * `identity<integral_c<decltype(T::value >> Shift::value),
      *                      T::value >> Shift::value>>`.
      */
-    template <>
-    struct shift_right<IntegralConstant, IntegralConstant> { };
-#endif
+    template <typename T, typename Shift>
+    struct shift_right;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SHIFT_RIGHT_HPP

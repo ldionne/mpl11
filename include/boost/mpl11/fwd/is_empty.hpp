@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_IS_EMPTY_HPP
 #define BOOST_MPL11_FWD_IS_EMPTY_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct is_empty; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns whether a @ref ForwardSequence is empty.
      *
      *
@@ -27,9 +23,7 @@ namespace boost { namespace mpl11 {
      * original MPL.
      */
     template <typename Sequence>
-    struct is_empty
-        : dispatch<tag::is_empty, Sequence>
-    { };
+    struct is_empty;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IS_EMPTY_HPP

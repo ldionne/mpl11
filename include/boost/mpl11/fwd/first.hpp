@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_FIRST_HPP
 #define BOOST_MPL11_FWD_FIRST_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct first; }
-
     /*!
      * @ingroup intrinsics
      *
@@ -24,9 +19,7 @@ namespace boost { namespace mpl11 {
      * - The intrinsic uses standard tag dispatching.
      */
     template <typename Pair>
-    struct first
-        : dispatch<tag::first, Pair>
-    { };
+    struct first;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FIRST_HPP

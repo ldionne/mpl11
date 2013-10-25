@@ -10,7 +10,6 @@
 
 #include <boost/mpl11/all_of.hpp>
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/size.hpp>
@@ -19,13 +18,8 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence1, typename Sequence2>
-    struct dispatch<tag::equal, Sequence1, Sequence2>
-        : equal<Sequence1, Sequence2, quote<equal_to>>
-    { };
-
     template <typename Sequence1, typename Sequence2, typename Predicate>
-    struct dispatch<tag::equal, Sequence1, Sequence2, Predicate>
+    struct equal
         : and_<
             equal_to<
                 typename size<Sequence1>::type,
@@ -36,6 +30,11 @@ namespace boost { namespace mpl11 {
                 unpack_args<Predicate>
             >
         >
+    { };
+
+    template <typename Sequence1, typename Sequence2>
+    struct equal<Sequence1, Sequence2>
+        : equal<Sequence1, Sequence2, quote<equal_to>>
     { };
 }} // end namespace boost::mpl11
 

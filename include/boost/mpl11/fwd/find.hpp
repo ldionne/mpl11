@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_FIND_HPP
 #define BOOST_MPL11_FWD_FIND_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct find; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns an iterator to the first occurence of a given element in a
      * sequence, or the past-the-end iterator if no such element exists.
      *
@@ -23,9 +19,7 @@ namespace boost { namespace mpl11 {
      * Equivalent to `find_if<Sequence, equal_to<Element, _1>>`.
      */
     template <typename Sequence, typename Element>
-    struct find
-        : dispatch<tag::find, Sequence, Element>
-    { };
+    struct find;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FIND_HPP

@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_FIND_IF_HPP
 #define BOOST_MPL11_FWD_FIND_IF_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct find_if; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns an iterator to the first element satisfying a given predicate
      * in a sequence, or the past-the-end iterator if no such element exists.
      *
@@ -27,9 +23,7 @@ namespace boost { namespace mpl11 {
      * instead.
      */
     template <typename Sequence, typename Predicate>
-    struct find_if
-        : dispatch<tag::find_if, Sequence, Predicate>
-    { };
+    struct find_if;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FIND_IF_HPP

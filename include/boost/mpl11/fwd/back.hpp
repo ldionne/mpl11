@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_BACK_HPP
 #define BOOST_MPL11_FWD_BACK_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct back; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Returns the last element of a @ref BidirectionalSequence if there is
      * such an element, and triggers a compile-time assertion otherwise.
      *
@@ -30,9 +26,7 @@ namespace boost { namespace mpl11 {
      * - A compile-time assertion is triggered if the sequence is empty.
      */
     template <typename Sequence>
-    struct back
-        : dispatch<tag::back, Sequence>
-    { };
+    struct back;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BACK_HPP

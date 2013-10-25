@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_VALUE_OF_HPP
 #define BOOST_MPL11_FWD_VALUE_OF_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct value_of; }
-
     /*!
      * @ingroup intrinsics
      *
@@ -19,9 +14,7 @@ namespace boost { namespace mpl11 {
      * in an @ref AssociativeSequence.
      */
     template <typename Sequence, typename Element>
-    struct value_of
-        : dispatch<tag::value_of, Sequence, Element>
-    { };
+    struct value_of;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_VALUE_OF_HPP

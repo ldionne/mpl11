@@ -6,14 +6,11 @@
 #ifndef BOOST_MPL11_FWD_HAS_KEY_HPP
 #define BOOST_MPL11_FWD_HAS_KEY_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct has_key; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
+     * @todo No default implementation is provided.
      * Returns whether an @ref AssociativeSequence contains one or more
      * elements with key `Key`.
      *
@@ -30,16 +27,9 @@ namespace boost { namespace mpl11 {
                 end<Sequence>::type
             >
        @endcode
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - A default implementation is provided.
      */
     template <typename Sequence, typename Key>
-    struct has_key
-        : dispatch<tag::has_key, Sequence, Key>
-    { };
+    struct has_key;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_HAS_KEY_HPP

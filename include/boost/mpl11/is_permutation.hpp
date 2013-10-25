@@ -15,7 +15,6 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/count_if.hpp>
 #include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -132,14 +131,14 @@ namespace is_permutation_detail {
 } // end namespace is_permutation_detail
 
 template <typename S1, typename S2, typename Pred>
-struct dispatch<tag::is_permutation, S1, S2, Pred>
+struct is_permutation
     : is_permutation_detail::is_permutation_impl<
         S1, S2, typename lambda<Pred>::type
     >
 { };
 
 template <typename S1, typename S2>
-struct dispatch<tag::is_permutation, S1, S2>
+struct is_permutation<S1, S2>
     : is_permutation<S1, S2, quote<equal_to>>
 { };
 }} // end namespace boost::mpl11

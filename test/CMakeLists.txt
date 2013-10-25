@@ -14,6 +14,3 @@ function(mpl11_add_test name sources)
     add_dependencies(unit ${name})
 endfunction()
 
-
-mpl11_add_test(all_of     all_of.cpp)
-mpl11_add_test(integral_c integral_c.cpp)

@@ -8,21 +8,12 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct erase; }
-
     /*!
-     * @ingroup algorithms
-     * Overloaded intrinsic for removing elements from a sequence.
-     */
-    template <typename, typename, typename = detail::optional>
-    struct erase;
-
-    /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Removes several adjacent elements in a sequence,
      * starting from an arbitrary position.
      *
@@ -34,12 +25,11 @@ namespace boost { namespace mpl11 {
      * [`First`, `Last`).
      */
     template <typename Sequence, typename First, typename Last>
-    struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>)
-        : dispatch<tag::erase, Sequence, First, Last>
-    { };
+    struct erase BOOST_MPL11_DOXYGEN_ONLY(<Sequence, First, Last>);
 
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Removes an element at a position in a sequence.
      *
      *
@@ -48,9 +38,7 @@ namespace boost { namespace mpl11 {
      * Equivalent to `erase<Sequence, Position, next<Position>::type>`.
      */
     template <typename Sequence, typename Position>
-    struct erase<Sequence, Position>
-        : dispatch<tag::erase, Sequence, Position>
-    { };
+    struct erase<Sequence, Position>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ERASE_HPP

@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_NOT_EQUAL_TO_HPP
 #define BOOST_MPL11_FWD_NOT_EQUAL_TO_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct not_equal_to; }
-
     /*!
      * @ingroup comparison_operators
      *
@@ -31,9 +26,7 @@ namespace boost { namespace mpl11 {
      * whether they are different from left to right.
      */
     template <typename T1, typename T2, typename ...Tn>
-    struct not_equal_to
-        : dispatch<tag::not_equal_to, T1, T2, Tn...>
-    { };
+    struct not_equal_to;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NOT_EQUAL_TO_HPP

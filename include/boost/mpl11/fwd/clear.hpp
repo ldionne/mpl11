@@ -6,14 +6,9 @@
 #ifndef BOOST_MPL11_FWD_CLEAR_HPP
 #define BOOST_MPL11_FWD_CLEAR_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct clear; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
      *
      * Returns an empty sequence concept-identical to `Sequence`.
      *
@@ -30,9 +25,7 @@ namespace boost { namespace mpl11 {
        @endcode
      */
     template <typename Sequence>
-    struct clear
-        : dispatch<tag::clear, Sequence>
-    { };
+    struct clear;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CLEAR_HPP

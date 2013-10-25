@@ -6,18 +6,7 @@
 #ifndef BOOST_MPL11_FWD_BITAND_HPP
 #define BOOST_MPL11_FWD_BITAND_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct bitand_; }
-
-    template <typename T1, typename T2, typename ...Tn>
-    struct bitand_
-        : dispatch<tag::bitand_, T1, T2, Tn...>
-    { };
-
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup bitwise_operators
      *
@@ -28,12 +17,14 @@ namespace boost { namespace mpl11 {
      *
      * Equivalent to `bitand_<bitand_<T1, T2>::type, Tn...>`.
      */
-    template <>
-    struct bitand_<T1, T2, Tn...> { };
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitand_;
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup bitwise_operators
      *
+     * @todo move to right concept
      * Returns the _bitwise and_ of two
      * @ref IntegralConstant "Integral Constants".
      *

@@ -8,25 +8,13 @@
 
 #include <boost/mpl11/fwd/front.hpp>
 
-#include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/class.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace front_detail {
-        template <typename Sequence>
-        struct assert_nonempty {
-            static_assert(!is_empty<Sequence>::type::value,
-            "Attempt to use `front` on an empty sequence.");
-        };
-    } // end namespace front_detail
-
     template <typename Sequence>
-    struct dispatch<tag::front, Sequence>
-        : front_detail::assert_nonempty<Sequence>,
-          deref<typename begin<Sequence>::type>
+    struct front
+        : class_<Sequence>::type::template front<Sequence>
     { };
 }} // end namespace boost::mpl11
 

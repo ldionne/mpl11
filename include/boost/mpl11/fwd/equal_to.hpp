@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_EQUAL_TO_HPP
 #define BOOST_MPL11_FWD_EQUAL_TO_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct equal_to; }
-
     /*!
      * @ingroup comparison_operators
      *
@@ -33,9 +28,7 @@ namespace boost { namespace mpl11 {
      *   `identity<bool_<std::is_same<T1, T2>::value>>`.
      */
     template <typename T1, typename T2, typename ...Tn>
-    struct equal_to
-        : dispatch<tag::equal_to, T1, T2, Tn...>
-    { };
+    struct equal_to;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_EQUAL_TO_HPP

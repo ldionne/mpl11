@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_BEGIN_HPP
 #define BOOST_MPL11_FWD_BEGIN_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct begin; }
-
     /*!
      * @ingroup intrinsics
      *
@@ -25,9 +20,7 @@ namespace boost { namespace mpl11 {
      * - No default implementation is provided.
      */
     template <typename Sequence>
-    struct begin
-        : dispatch<tag::begin, Sequence>
-    { };
+    struct begin;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BEGIN_HPP

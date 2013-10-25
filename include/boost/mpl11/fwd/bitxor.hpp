@@ -6,18 +6,7 @@
 #ifndef BOOST_MPL11_FWD_BITXOR_HPP
 #define BOOST_MPL11_FWD_BITXOR_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct bitxor_; }
-
-    template <typename T1, typename T2, typename ...Tn>
-    struct bitxor_
-        : dispatch<tag::bitxor_, T1, T2, Tn...>
-    { };
-
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup bitwise_operators
      *
@@ -28,9 +17,10 @@ namespace boost { namespace mpl11 {
      *
      * Equivalent to `bitxor_<bitxor_<T1, T2>::type, Tn...>`.
      */
-    template <>
-    struct bitxor_<T1, T2, Tn...> { };
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitxor_;
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup bitwise_operators
      *

@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_MIN_HPP
 #define BOOST_MPL11_FWD_MIN_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct min; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns the smallest of its arguments.
      *
      *
@@ -28,13 +24,10 @@ namespace boost { namespace mpl11 {
      *
      * @warning
      * Differences from the original MPL:
-     * - `min` uses standard tag dispatching.
      * - Several types can be compared at a time.
      */
     template <typename T1, typename T2, typename ...Tn>
-    struct min
-        : dispatch<tag::min, T1, T2, Tn...>
-    { };
+    struct min;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_MIN_HPP

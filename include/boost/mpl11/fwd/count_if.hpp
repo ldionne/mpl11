@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_COUNT_IF_HPP
 #define BOOST_MPL11_FWD_COUNT_IF_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct count_if; }
-
     /*!
      * @ingroup algorithms
+     *
      * Returns the number of elements in `Sequence` satisfying `Predicate`.
      *
      *
@@ -31,9 +27,7 @@ namespace boost { namespace mpl11 {
        @endcode
      */
     template <typename Sequence, typename Predicate>
-    struct count_if
-        : dispatch<tag::count_if, Sequence, Predicate>
-    { };
+    struct count_if;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COUNT_IF_HPP

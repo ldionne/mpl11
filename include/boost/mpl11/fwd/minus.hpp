@@ -6,18 +6,7 @@
 #ifndef BOOST_MPL11_FWD_MINUS_HPP
 #define BOOST_MPL11_FWD_MINUS_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct minus; }
-
-    template <typename T1, typename T2, typename ...Tn>
-    struct minus
-        : dispatch<tag::minus, T1, T2, Tn...>
-    { };
-
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup arithmetic_operators
      *
@@ -28,9 +17,10 @@ namespace boost { namespace mpl11 {
      *
      * Equivalent to `minus<minus<T1, T2>::type, Tn...>`.
      */
-    template <>
-    struct minus<T1, T2, Tn...> { };
+    template <typename T1, typename T2, typename ...Tn>
+    struct minus;
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup arithmetic_operators
      *

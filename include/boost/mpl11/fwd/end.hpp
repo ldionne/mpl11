@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_END_HPP
 #define BOOST_MPL11_FWD_END_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct end; }
-
     /*!
      * @ingroup intrinsics
      *
@@ -25,9 +20,7 @@ namespace boost { namespace mpl11 {
      * - There is no default implementation.
      */
     template <typename Sequence>
-    struct end
-        : dispatch<tag::end, Sequence>
-    { };
+    struct end;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_END_HPP

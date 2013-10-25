@@ -6,18 +6,7 @@
 #ifndef BOOST_MPL11_FWD_PLUS_HPP
 #define BOOST_MPL11_FWD_PLUS_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct plus; }
-
-    template <typename T1, typename T2, typename ...Tn>
-    struct plus
-        : dispatch<tag::plus, T1, T2, Tn...>
-    { };
-
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup arithmetic_operators
      *
@@ -28,9 +17,10 @@ namespace boost { namespace mpl11 {
      *
      * Equivalent to `plus<plus<T1, T2>::type, Tn...>`.
      */
-    template <>
-    struct plus<T1, T2, Tn...> { };
+    template <typename T1, typename T2, typename ...Tn>
+    struct plus;
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup arithmetic_operators
      *

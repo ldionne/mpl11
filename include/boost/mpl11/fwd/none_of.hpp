@@ -8,22 +8,12 @@
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/optional.hpp>
-#include <boost/mpl11/dispatch.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace tag { struct none_of; }
-
     /*!
      * @ingroup algorithms
-     * Overloaded algorithm for querying a sequence about the truth value of
-     * its elements.
-     */
-    template <typename Sequence, typename Predicate = detail::optional>
-    struct none_of;
-
-    /*!
-     * @ingroup algorithms
+     *
      * Returns whether no element of a sequence satisfies a given `Predicate`.
      *
      *
@@ -37,13 +27,14 @@ namespace boost { namespace mpl11 {
             >
        @endcode
      */
-    template <typename Sequence, typename Predicate>
+    template <typename Sequence, typename Predicate = detail::optional>
     struct none_of BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Predicate>)
         : dispatch<tag::none_of, Sequence, Predicate>
     { };
 
     /*!
      * @ingroup algorithms
+     *
      * Returns whether no element of a sequence is a `true`-valued boolean
      * @ref IntegralConstant.
      *

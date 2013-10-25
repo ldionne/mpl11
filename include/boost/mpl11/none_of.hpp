@@ -9,24 +9,23 @@
 #include <boost/mpl11/fwd/none_of.hpp>
 
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/find_if.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
-    struct dispatch<tag::none_of, Sequence>
-        : none_of<Sequence, _1>
-    { };
-
     template <typename Sequence, typename Predicate>
-    struct dispatch<tag::none_of, Sequence, Predicate>
+    struct none_of
         : equal_to<
             typename find_if<Sequence, Predicate>::type,
             typename end<Sequence>::type
         >
+    { };
+
+    template <typename Sequence>
+    struct none_of<Sequence>
+        : none_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11
 

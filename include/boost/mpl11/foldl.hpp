@@ -11,7 +11,6 @@
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -41,7 +40,7 @@ namespace foldl_detail {
 } // end namespace foldl_detail
 
 template <typename Sequence, typename State, typename F>
-struct dispatch<tag::foldl, Sequence, State, F>
+struct foldl
     : foldl_detail::foldl_impl<
         typename begin<Sequence>::type,
         typename end<Sequence>::type,

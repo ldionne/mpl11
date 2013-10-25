@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_SECOND_HPP
 #define BOOST_MPL11_FWD_SECOND_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct second; }
-
     /*!
      * @ingroup intrinsics
      *
@@ -24,9 +19,7 @@ namespace boost { namespace mpl11 {
      * - The operation uses standard tag dispatching.
      */
     template <typename Pair>
-    struct second
-        : dispatch<tag::second, Pair>
-    { };
+    struct second;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SECOND_HPP

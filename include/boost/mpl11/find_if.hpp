@@ -11,7 +11,6 @@
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/dispatch.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal_to.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -45,7 +44,7 @@ namespace find_if_detail {
 } // end namespace find_if_detail
 
 template <typename Sequence, typename Predicate>
-struct dispatch<tag::find_if, Sequence, Predicate>
+struct find_if
     : find_if_detail::find_if_impl<
         typename begin<Sequence>::type,
         typename end<Sequence>::type,

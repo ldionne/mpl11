@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_POP_FRONT_HPP
 #define BOOST_MPL11_FWD_POP_FRONT_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct pop_front; }
-
     /*!
-     * @ingroup algorithms
+     * @ingroup intrinsics
+     *
      * Returns a sequence with its first element removed.
      *
      *
@@ -29,9 +25,7 @@ namespace boost { namespace mpl11 {
      * - A compile-time assertion is triggered if the sequence is empty.
      */
     template <typename Sequence>
-    struct pop_front
-        : dispatch<tag::pop_front, Sequence>
-    { };
+    struct pop_front;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_POP_FRONT_HPP

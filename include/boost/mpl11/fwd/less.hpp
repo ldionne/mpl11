@@ -6,12 +6,7 @@
 #ifndef BOOST_MPL11_FWD_LESS_HPP
 #define BOOST_MPL11_FWD_LESS_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct less; }
-
     /*!
      * @ingroup comparison_operators
      *
@@ -27,9 +22,7 @@ namespace boost { namespace mpl11 {
      * - Not provided otherwise.
      */
     template <typename T1, typename T2, typename ...Tn>
-    struct less
-        : dispatch<tag::less, T1, T2, Tn...>
-    { };
+    struct less;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_LESS_HPP

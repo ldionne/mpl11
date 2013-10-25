@@ -6,14 +6,10 @@
 #ifndef BOOST_MPL11_FWD_FOLDR_HPP
 #define BOOST_MPL11_FWD_FOLDR_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct foldr; }
-
     /*!
      * @ingroup algorithms
+     *
      * Accumulates the elements of a sequence from an initial state using a
      * custom operation.
      *
@@ -41,9 +37,7 @@ namespace boost { namespace mpl11 {
      * otherwise.
      */
     template <typename Sequence, typename State, typename F>
-    struct foldr
-        : dispatch<tag::foldr, Sequence, State, F>
-    { };
+    struct foldr;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FOLDR_HPP
