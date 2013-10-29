@@ -101,6 +101,7 @@
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/pair.hpp>
 #include <boost/mpl11/prev.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>

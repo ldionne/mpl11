@@ -5,47 +5,48 @@
 
 #include <boost/mpl11/quote.hpp>
 
-#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 
 
 using namespace boost::mpl11;
+using detail::is_same;
 
 namespace with_non_metafunction {
     template <typename ...> struct T;
 
-    static_assert(equal_to<
+    static_assert(is_same<
         quote<T>::apply<>::type,
         T<>
-    >::type::value, "");
+    >::value, "");
 
-    static_assert(equal_to<
+    static_assert(is_same<
         quote<T>::apply<struct a0>::type,
         T<struct a0>
-    >::type::value, "");
+    >::value, "");
 
-    static_assert(equal_to<
+    static_assert(is_same<
         quote<T>::apply<struct a0, struct a1>::type,
         T<struct a0, struct a1>
-    >::type::value, "");
+    >::value, "");
 }
 
 namespace with_metafunction {
     template <typename ...> struct F { struct type; };
 
-    static_assert(equal_to<
+    static_assert(is_same<
         quote<F>::apply<>::type,
         F<>::type
-    >::type::value, "");
+    >::value, "");
 
-    static_assert(equal_to<
+    static_assert(is_same<
         quote<F>::apply<struct a0>::type,
         F<struct a0>::type
-    >::type::value, "");
+    >::value, "");
 
-    static_assert(equal_to<
+    static_assert(is_same<
         quote<F>::apply<struct a0, struct a1>::type,
         F<struct a0, struct a1>::type
-    >::type::value, "");
+    >::value, "");
 }
 
 

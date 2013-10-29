@@ -16,6 +16,12 @@ namespace either_detail {
 } // end namespace either_detail
 
 namespace detail {
+    /*!
+     * @ingroup details
+     *
+     * Returns the nested `::type` of the first argument with a
+     * valid nested `::type`.
+     */
     template <typename Left, typename Right, typename ...More>
     struct either
         : either<Left, either<Right, More...>>

@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup functional
+     * @ingroup metafunctions
      *
      * Higher-order primitive wrapping a @ref Metafunction to create a
      * corresponding @ref MetafunctionClass.
