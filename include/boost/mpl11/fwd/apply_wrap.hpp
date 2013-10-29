@@ -7,23 +7,23 @@
 #define BOOST_MPL11_FWD_APPLY_WRAP_HPP
 
 namespace boost { namespace mpl11 {
-/*!
- * @ingroup functional
- *
- * Invokes a @ref MetafunctionClass `F` with arguments `Args...`.
- *
- * `apply_wrap` is just a wrapper around `F::apply<Args...>::type` or
- * `F::apply::type`, depending on the arity of `F` as a @ref MetafunctionClass.
- *
- * If `F::apply<Args...>::type` (and `F::apply::type` if `Args...` is empty)
- * are invalid expressions, `apply_wrap` does not have a nested type.
- *
- * @warning
- * The SFINAE-friendly behavior when `F::apply<Args...>::type` is an invalid
- * expression is a difference from the semantics of the original MPL.
- */
-template <typename F, typename ...Args>
-struct apply_wrap;
+    /*!
+     * @ingroup metafunctions
+     *
+     * Invokes a @ref MetafunctionClass `F` with arguments `Args...`.
+     *
+     * If `Args...` are provided, `apply_wrap` is just a wrapper over
+     * `F::apply<Args...>`. Otherwise, `apply_wrap` is either `F::apply`
+     * or `F::apply<>`, depending on which expression is valid.
+     *
+     *
+     * @note
+     * If `F::apply<Args...>` (or `F::apply`) is an invalid expression, an
+     * incomplete type or a type from which one can't derive, a hard error
+     * is triggered.
+     */
+    template <typename F, typename ...Args>
+    struct apply_wrap;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_APPLY_WRAP_HPP

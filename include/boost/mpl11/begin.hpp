@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/begin.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename I>
     struct begin
-        : class_<Sequence>::type::template begin<Sequence>
+        : class_of<I>::type::template begin_impl<I>
     { };
 }} // end namespace boost::mpl11
 

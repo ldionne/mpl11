@@ -8,14 +8,9 @@
 
 #include <boost/mpl11/fwd/shift_left.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/detail/left_associative_operator.hpp>
 
 
-namespace boost { namespace mpl11 {
-    template <typename I, typename Shift>
-    struct shift_left
-        : class_<I>::type::template shift_left<I, Shift>
-    { };
-}} // end namespace boost::mpl11
+BOOST_MPL11_DEFINE_LEFT_ASSOCIATIVE_OPERATOR(shift_left, shift_left_impl)
 
 #endif // !BOOST_MPL11_SHIFT_LEFT_HPP

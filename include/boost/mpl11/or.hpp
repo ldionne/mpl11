@@ -8,10 +8,7 @@
 
 #include <boost/mpl11/fwd/or.hpp>
 
-#include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/if.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -22,9 +19,7 @@ namespace boost { namespace mpl11 {
 
     template <typename F1, typename F2>
     struct or_<F1, F2>
-        : identity<
-            bool_<if_c<F1::type::value, true_, F2>::type::type::value>
-        >
+        : class_of<typename F1::type>::type::template or_impl<F1, F2>
     { };
 }} // end namespace boost::mpl11
 

@@ -14,6 +14,6 @@ namespace boost { namespace mpl11 {
     struct identity {
         using type = T;
     };
-}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IDENTITY_HPP

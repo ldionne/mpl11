@@ -12,6 +12,9 @@ namespace boost { namespace mpl11 {
      *
      * Returns the result of short-circuit _logical and_ (`&&`) on the result
      * of its arguments.
+     *
+     *
+     * @todo Document the special behavior of this intrinsic.
      */
     template <typename F1, typename F2, typename ...Fn>
     struct and_;

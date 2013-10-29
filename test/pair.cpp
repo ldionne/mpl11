@@ -5,24 +5,14 @@
 
 #include <boost/mpl11/pair.hpp>
 
-#include <boost/mpl11/equal_to.hpp>
-#include <boost/mpl11/first.hpp>
-#include <boost/mpl11/second.hpp>
+#include <boost/mpl11/detail/test_couple.hpp>
 
 
 using namespace boost::mpl11;
 
-struct First;
-struct Second;
-using Pair = pair<First, Second>;
-
-static_assert(equal_to<
-    first<Pair>::type, First
->::type::value, "");
-
-static_assert(equal_to<
-    second<Pair>::type, Second
->::type::value, "");
+struct instantiate_test
+    : detail::test_couple<pair>
+{ };
 
 
 int main() { }

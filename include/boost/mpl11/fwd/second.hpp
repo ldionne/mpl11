@@ -14,9 +14,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * @warning
-     * Differences from the original MPL:
-     * - No default implementation is provided.
-     * - The operation uses standard tag dispatching.
+     * In the original MPL, `mpl11::second` was a trivial metafunction
+     * fetching `Pair::second`. `mpl11::second` is now an intrinsic.
      */
     template <typename Pair>
     struct second;

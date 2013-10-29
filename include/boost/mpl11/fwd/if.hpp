@@ -3,37 +3,28 @@
  * Forward declares `boost::mpl11::if_` and defines `boost::mpl11::if_c`.
  */
 
-#ifndef BOOST_FWD_MPL11_IF_HPP
-#define BOOST_FWD_MPL11_IF_HPP
+#ifndef BOOST_MPL11_FWD_IF_HPP
+#define BOOST_MPL11_FWD_IF_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/fwd/bool.hpp>
 
 
 namespace boost { namespace mpl11 {
-template <typename, typename = detail::optional, typename = detail::optional>
-struct if_;
+    /*!
+     * @ingroup metafunctions
+     *
+     * Select one of two types based on a `Boolean` condition.
+     *
+     * If `not_<identity<Condition>>::type` is `false_`, `Then` is returned.
+     * Otherwise, `Else` is returned.
+     */
+    template <typename Condition, typename Then, typename Else>
+    struct if_;
 
-//! Equivalent to `std::conditional<Cond::type::value, Then, Else>`.
-template <typename Cond, typename Then, typename Else>
-struct if_ BOOST_MPL11_DOXYGEN_ONLY(<Cond, Then, Else>);
-
-//! Equivalent to `std::enable_if<Cond, void>`.
-template <typename Cond>
-struct if_<Cond>;
-
-//! @todo Explain features
-template <typename Cond, typename Then>
-struct if_<Cond, Then>;
-
-//! Alias to `if_<bool_<Cond>, Then, Else>`; provided for convenience.
-template <
-    bool Cond,
-    typename Then = detail::optional,
-    typename Else = detail::optional
->
-using if_c = if_<bool_<Cond>, Then, Else>;
+    //! @ingroup metafunctions
+    //! Alias to `if_<bool_<Condition>, Then, Else>`; provided for convenience.
+    template <bool Condition, typename Then, typename Else>
+    using if_c = if_<bool_<Condition>, Then, Else>;
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_FWD_MPL11_IF_HPP
+#endif // !BOOST_MPL11_FWD_IF_HPP

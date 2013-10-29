@@ -6,27 +6,16 @@
 #ifndef BOOST_MPL11_FWD_SIZE_HPP
 #define BOOST_MPL11_FWD_SIZE_HPP
 
-#include <boost/mpl11/dispatch.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace tag { struct size; }
-
     /*!
-     * @ingroup algorithms
-     * Returns the number of elements contained in a sequence.
+     * @ingroup iterable_intrinsics
      *
-     * The size of a sequence is a non-negative @ref IntegralConstant.
+     * Returns the number of elements contained in an `Iterable`.
      *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `distance<begin<Sequence>::type, end<Sequence>::type>`.
+     * The size of a sequence is a non-negative `IntegralConstant`.
      */
-    template <typename Sequence>
-    struct size
-        : dispatch<tag::size, Sequence>
-    { };
+    template <typename I>
+    struct size;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SIZE_HPP

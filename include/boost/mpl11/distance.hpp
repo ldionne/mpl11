@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/distance.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename First, typename Last>
     struct distance
-        : class_<First>::type::template distance<First, Last>
+        : class_of<First>::type::template distance_impl<First, Last>
     { };
 }} // end namespace boost::mpl11
 

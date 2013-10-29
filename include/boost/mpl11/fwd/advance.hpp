@@ -11,24 +11,18 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsics
+     * @ingroup iterator_intrinsics
      *
      * Moves `Iterator` by the distance `N`.
      *
-     * @internal
-     * @todo Put the specific behaviors doc in the class implementing it.
-     * For @ref RandomAccessIterator "Random Access Iterators" and
-     * @ref BidirecitonalIterator "Bidirecitonal Iterators", the distance
-     * may be negative. For @ref ForwardIterator "Forward Iterators", it
-     * may not.
      *
+     * @todo
+     * Document the nature of N. Could it be only a `Value` instead of a full
+     * `IntegralConstant`?
      *
-     * ### Semantics and default implementation
-     *
-     * For a @ref ForwardIterator, equivalent to using `next` until the
-     * requested distance has been traversed.
-     *
-     * For a @ref RandomAccessIterator or a @ref BidirecitonalIterator,
+     * @todo
+     * Put the folowing in the concept documentation:
+     * For a @ref RandomAccessIterator or a @ref BidirectionalIterator,
      * equivalent to using either `next` or `prior` in the same way as
      * for a @ref ForwardIterator, depending on the sign of the distance.
      */

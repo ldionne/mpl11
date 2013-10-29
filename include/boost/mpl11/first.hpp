@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/first.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Pair>
     struct first
-        : class_<Pair>::type::template first<Pair>
+        : class_of<Pair>::type::template first_impl<Pair>
     { };
 }} // end namespace boost::mpl11
 

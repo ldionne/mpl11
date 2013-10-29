@@ -6,15 +6,19 @@
 #ifndef BOOST_MPL11_FWD_RANDOM_ACCESS_ITERATOR_HPP
 #define BOOST_MPL11_FWD_RANDOM_ACCESS_ITERATOR_HPP
 
+#include <boost/mpl11/detail/doxygen_only.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup concepts
+     * @ingroup mixins
      *
-     * ...
+     * Mixin for random access iterators.
      *
-     * @todo document this
+     *
+     * @todo Document this concept properly.
      */
-    struct RandomAccessIterator;
+    struct RandomAccessIterator BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_RANDOM_ACCESS_ITERATOR_HPP

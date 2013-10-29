@@ -11,6 +11,6 @@
 #include <boost/mpl11/detail/comparison_operator.hpp>
 
 
-BOOST_MPL11_DEFINE_COMPARISON_OPERATOR(less_equal)
+BOOST_MPL11_DEFINE_COMPARISON_OPERATOR(less_equal, less_equal_impl)
 
 #endif // !BOOST_MPL11_LESS_EQUAL_HPP

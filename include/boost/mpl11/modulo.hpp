@@ -11,6 +11,6 @@
 #include <boost/mpl11/detail/left_associative_operator.hpp>
 
 
-BOOST_MPL11_DEFINE_LEFT_ASSOCIATIVE_OPERATOR(modulo)
+BOOST_MPL11_DEFINE_LEFT_ASSOCIATIVE_OPERATOR(modulo, modulo_impl)
 
 #endif // !BOOST_MPL11_MODULO_HPP

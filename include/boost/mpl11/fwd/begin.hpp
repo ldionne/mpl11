@@ -8,18 +8,17 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsics
+     * @ingroup iterable_intrinsics
      *
      * Returns an iterator pointing to the first element of the sequence.
      *
      *
      * @warning
      * Differences from the original MPL:
-     * - If `Sequence` is not a @ref ForwardSequence, `begin<Sequence>::type`
-     *   is invalid instead of being the same as `mpl::void_`.
-     * - No default implementation is provided.
+     * - If `I` is not an `Iterable`, `begin<I>::type` is invalid instead of
+     *   being the same as `mpl::void_`.
      */
-    template <typename Sequence>
+    template <typename I>
     struct begin;
 }} // end namespace boost::mpl11
 

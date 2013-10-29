@@ -8,8 +8,11 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * Returns an unspecified non-template type publically
+     * @ingroup metafunctions
+     *
+     * Returns an unspecified non-template type publicly
      * derived from `Bases...`.
+     *
      *
      * @warning
      * Differences from the original MPL:

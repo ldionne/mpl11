@@ -8,19 +8,13 @@
 
 #include <boost/mpl11/fwd/size.hpp>
 
-#include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/distance.hpp>
-#include <boost/mpl11/end.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
-    struct dispatch<tag::size, Sequence>
-        : distance<
-            typename begin<Sequence>::type,
-            typename end<Sequence>::type
-        >
+    template <typename I>
+    struct size
+        : class_of<I>::type::template size_impl<I>
     { };
 }} // end namespace boost::mpl11
 

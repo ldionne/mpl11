@@ -8,34 +8,9 @@
 
 #include <boost/mpl11/fwd/equal.hpp>
 
-#include <boost/mpl11/all_of.hpp>
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/equal_to.hpp>
-#include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/size.hpp>
-#include <boost/mpl11/unpack_args.hpp>
-#include <boost/mpl11/zipped_view.hpp>
+#include <boost/mpl11/detail/comparison_operator.hpp>
 
 
-namespace boost { namespace mpl11 {
-    template <typename Sequence1, typename Sequence2, typename Predicate>
-    struct equal
-        : and_<
-            equal_to<
-                typename size<Sequence1>::type,
-                typename size<Sequence2>::type
-            >,
-            all_of<
-                zipped_view<Sequence1, Sequence2>,
-                unpack_args<Predicate>
-            >
-        >
-    { };
-
-    template <typename Sequence1, typename Sequence2>
-    struct equal<Sequence1, Sequence2>
-        : equal<Sequence1, Sequence2, quote<equal_to>>
-    { };
-}} // end namespace boost::mpl11
+BOOST_MPL11_DEFINE_COMPARISON_OPERATOR(equal, equal_impl)
 
 #endif // !BOOST_MPL11_EQUAL_HPP

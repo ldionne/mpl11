@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/is_empty.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename I>
     struct is_empty
-        : class_<Sequence>::type::template is_empty<Sequence>
+        : class_of<I>::type::template is_empty_impl<I>
     { };
 }} // end namespace boost::mpl11
 

@@ -8,22 +8,22 @@
 
 #include <boost/mpl11/fwd/pair.hpp>
 
-#include <boost/mpl11/dispatch.hpp>
-#include <boost/mpl11/fwd/first.hpp>
-#include <boost/mpl11/fwd/second.hpp>
+#include <boost/mpl11/couple.hpp>
+#include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/identity.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename First, typename Second>
-    struct dispatch<tag::first, pair<First, Second>>
-        : identity<First>
-    { };
+    struct class_of<pair<First, Second>> {
+        struct type final : Couple {
+            template <typename>
+            using first_impl = identity<First>;
 
-    template <typename First, typename Second>
-    struct dispatch<tag::second, pair<First, Second>>
-        : identity<Second>
-    { };
+            template <typename>
+            using second_impl = identity<Second>;
+        };
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_PAIR_HPP

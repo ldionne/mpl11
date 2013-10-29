@@ -10,17 +10,9 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup bitwise_operators
      *
-     * Returns the result of bitwise _shift left_ operation on an
-     * @ref IntegralConstant.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to
-     * `identity<integral_c<decltype(T::value << Shift::value),
-     *                      T::value << Shift::value>>`.
+     * Returns `T1 << T2 << ...Tn`.
      */
-    template <typename T, typename Shift>
+    template <typename T1, typename T2, typename ...Tn>
     struct shift_left;
 }} // end namespace boost::mpl11
 

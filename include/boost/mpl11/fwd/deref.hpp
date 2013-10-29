@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsics
+     * @ingroup iterator_intrinsics
      *
      * Returns the element pointed to by an iterator.
      */

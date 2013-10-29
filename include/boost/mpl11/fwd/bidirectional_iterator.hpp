@@ -6,15 +6,19 @@
 #ifndef BOOST_MPL11_FWD_BIDIRECTIONAL_ITERATOR_HPP
 #define BOOST_MPL11_FWD_BIDIRECTIONAL_ITERATOR_HPP
 
+#include <boost/mpl11/detail/doxygen_only.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup concepts
+     * @ingroup mixins
      *
-     * ...
+     * Mixin for bidirectional iterators.
      *
-     * @todo document this
+     *
+     * @todo Document this concept properly.
      */
-    struct BidirectionalIterator;
+    struct BidirectionalIterator BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BIDIRECTIONAL_ITERATOR_HPP

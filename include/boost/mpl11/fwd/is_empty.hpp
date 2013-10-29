@@ -8,21 +8,16 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup algorithms
+     * @ingroup iterable_intrinsics
      *
-     * Returns whether a @ref ForwardSequence is empty.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to `equal_to<begin<Sequence>::type, end<Sequence>::type>`.
+     * Returns whether an `Iterable` is empty.
      *
      *
      * @warning
-     * This algorithm replaces the `mpl::empty` intrinsic from the
+     * This intrinsic replaces the `mpl::empty` intrinsic from the
      * original MPL.
      */
-    template <typename Sequence>
+    template <typename I>
     struct is_empty;
 }} // end namespace boost::mpl11
 

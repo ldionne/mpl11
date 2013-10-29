@@ -8,21 +8,9 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsics
+     * @ingroup iterator_intrinsics
      *
-     * Returns the distance between `First` and `Last` iterators.
-     *
-     * @todo Put the doc in the appropriate concept.
-     * ### Semantics and default implementation
-     *
-     * Equivalent to
-       @code
-            foldl<
-                iterator_range<First, Last>,
-                ulong<0>,
-                next<_1>
-            >
-       @endcode
+     * Returns the distance between `First` and `Last`.
      */
     template <typename First, typename Last>
     struct distance;

@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/deref.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Iterator>
     struct deref
-        : class_<Iterator>::type::template deref<Iterator>
+        : class_of<Iterator>::type::template deref_impl<Iterator>
     { };
 }} // end namespace boost::mpl11
 

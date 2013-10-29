@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/prev.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Iterator>
     struct prev
-        : class_<Iterator>::type::template prev<Iterator>
+        : class_of<Iterator>::type::template prev_impl<Iterator>
     { };
 }} // end namespace boost::mpl11
 

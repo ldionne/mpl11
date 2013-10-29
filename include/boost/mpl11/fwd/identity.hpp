@@ -7,9 +7,13 @@
 #define BOOST_MPL11_FWD_IDENTITY_HPP
 
 namespace boost { namespace mpl11 {
-    //! Returns `T` unchanged.
+    /*!
+     * @ingroup metafunctions
+     *
+     * Metafunction returning its argument unchanged.
+     */
     template <typename T>
     struct identity;
-}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IDENTITY_HPP

@@ -8,14 +8,13 @@
 
 #include <boost/mpl11/fwd/not.hpp>
 
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename F>
     struct not_
-        : identity<bool_<!F::type::value>>
+        : class_of<typename F::type>::type::template not_impl<typename F::type>
     { };
 }} // end namespace boost::mpl11
 

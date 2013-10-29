@@ -5,24 +5,14 @@
 
 #include <boost/mpl11/integral_c.hpp>
 
-#include <boost/mpl11/detail/test/instantiate.hpp>
-#include <boost/mpl11/detail/test/integral_constant.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/detail/test_integral_constant.hpp>
 
 
 using namespace boost::mpl11;
 
-template <typename T, typename N>
-struct make_integral_c
-    : identity<
-        integral_c<T, N::value>
-    >
+struct instantiate_test
+    : detail::test_integral_constant<integral_c>
 { };
-
-BOOST_MPL11_INSTANTIATE_TEST(detail::test::integral_constant<
-    quote<make_integral_c>
->);
 
 
 int main() { }

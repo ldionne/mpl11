@@ -14,9 +14,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * @warning
-     * Differences from the original MPL:
-     * - No default implementation is provided.
-     * - The intrinsic uses standard tag dispatching.
+     * In the original MPL, `mpl11::first` was a trivial metafunction
+     * fetching `Pair::first`. `mpl11::first` is now an intrinsic.
      */
     template <typename Pair>
     struct first;
