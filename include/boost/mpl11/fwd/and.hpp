@@ -10,11 +10,14 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup logical_operators
      *
-     * Returns the result of short-circuit _logical and_ (`&&`) on the result
-     * of its arguments.
+     * Returns `F1::type && F2::type && ...Fn::type`.
      *
      *
-     * @todo Document the special behavior of this intrinsic.
+     * @note
+     * Custom implementations are called with `F1` and `F2`.
+     *
+     * @todo
+     * Clarify the Python-like behavior of `and_`.
      */
     template <typename F1, typename F2, typename ...Fn>
     struct and_;

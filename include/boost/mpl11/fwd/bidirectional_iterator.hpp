@@ -13,10 +13,39 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup mixins
      *
-     * Mixin for bidirectional iterators.
+     * `ForwardIterator` providing a way to obtain an iterator to the previous
+     * element in the sequence.
      *
      *
-     * @todo Document this concept properly.
+     * ## Refinement of
+     * `ForwardIterator`
+     *
+     *
+     * ## Notation
+     * | Expression | Description
+     * | ---------- | -----------
+     * | `I`        | A `BidirectionalIterator`
+     * | `N`        | An `IntegralConstant`
+     *
+     *
+     * ## Definitions
+     * - `I` is decrementable if there is a "previous" iterator, that is, if
+     *   the `prev<I>::type` expression is well-defined; iterators pointing
+     *   to the first element of a sequence are not decrementable.
+     *
+     *
+     * ## Valid expressions
+     * | Expression            | Type
+     * | ----------            | ----
+     * | `next<I>::type`       | A `BidirectionalIterator`
+     * | `prev<I>::type`       | A `BidirectionalIterator`
+     * | `advance<I, N>::type` | A `BidirectionalIterator`
+     *
+     *
+     * ## Invariants
+     * - If `I` is incrementable, then `prev<next<I>::type>::type` is equal to
+     *   `I`; similarly, if `I` is decrementable, `next<prev<I>::type>::type`
+     *   is equal to `I`.
      */
     struct BidirectionalIterator BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11

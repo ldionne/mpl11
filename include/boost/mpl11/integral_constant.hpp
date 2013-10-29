@@ -18,7 +18,7 @@
 
 namespace boost { namespace mpl11 {
     struct IntegralConstant
-        : Arithmetic, Bitwise, Logical, Comparable, Orderable
+        : Arithmetic, Bitwise, Comparable, Logical, Orderable
     {
         // Logical
         template <typename N>

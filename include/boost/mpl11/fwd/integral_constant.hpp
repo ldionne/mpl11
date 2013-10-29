@@ -13,10 +13,31 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup mixins
      *
-     * Mixin for `StaticConstant`s of an integral type.
+     * Holder for a compile-time value of an integral type.
+     *
+     * Every `IntegralConstant` is also a nullary @ref Metafunction
+     * returning itself. An integral constant object is implicitly
+     * convertible to the corresponding runtime value of the wrapped
+     * integral type.
      *
      *
-     * @todo Document this concept properly.
+     * ## Refinement of
+     * `Arithmetic`, `Bitwise`, `Comparable`, `Logical`, `Orderable`
+     *
+     *
+     * ## Notation
+     * | Expression | Description
+     * | ---------- | -----------
+     * | `N`        | An `IntegralConstant`
+     *
+     *
+     * ## Valid expressions
+     * | Expression                        | Type
+     * | ----------                        | ----
+     * | `N::value_type`                   | An integral type
+     * | `N::value`                        | An integral constant expression
+     * | `N::type`                         | `N`
+     * | `constexpr N::value_type c = N{}` |
      */
     struct IntegralConstant BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11

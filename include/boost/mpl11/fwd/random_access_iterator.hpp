@@ -13,10 +13,34 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup mixins
      *
-     * Mixin for random access iterators.
+     * `BidirectionalIterator` providing constant-time guarantees on moving
+     * the iterator an arbitrary number of positions.
      *
      *
-     * @todo Document this concept properly.
+     * ## Refinement of
+     * `BidirectionalIterator`, `Orderable`
+     *
+     *
+     * ## Notation
+     * | Expression | Description
+     * | ---------- | -----------
+     * | `I`, `J`   | `RandomAccessIterator`s
+     * | `N`        | An `IntegralConstant`
+     *
+     *
+     * ## Valid expressions
+     * | Expression            | Type                   | Complexity
+     * | ----------            | ----                   | ----------
+     * | `next<I>::type`       | `RandomAccessIterator` | Constant time
+     * | `prev<I>::type`       | `RandomAccessIterator` | Constant time
+     * | `advance<I, N>::type` | `RandomAccessIterator` | Constant time
+     * | `distance<I, J>`      | `IntegralConstant`     | Constant time
+     *
+     *
+     * ## Invariants
+     * - If `advance_c<I, N::value>::type` is well-defined, then
+     *   `advance_c<advance_c<I, N::value>::type, -N::value>::type`
+     *   is equal to `I`.
      */
     struct RandomAccessIterator BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
