@@ -47,23 +47,21 @@ namespace boost { namespace mpl11 {
         /*!
          * Counts the number of applications of `mpl11::next` required
          * for `First` to become equal to `Last`.
-         *
-         *
-         * @todo
-         * Use size_t to count the distance.
          */
         template <
             typename First, typename Last,
-            unsigned long long Dist = 0,
+            typename Distance = size_t<0>,
             bool = equal<First, Last>::value
         >
-        struct distance_impl {
-            using type = integral_c<unsigned long long, Dist>;
-        };
+        struct distance_impl
+            : Distance
+        { };
 
-        template <typename First, typename Last, unsigned long long Dist>
-        struct distance_impl<First, Last, Dist, false>
-            : distance_impl<typename next<First>::type, Last, Dist + 1>
+        template <typename First, typename Last, typename Distance>
+        struct distance_impl<First, Last, Distance, false>
+            : distance_impl<
+                typename next<First>::type, Last, size_t<Distance::value + 1>
+            >
         { };
     };
 }} // end namespace boost::mpl11
