@@ -17,7 +17,12 @@ namespace boost { namespace mpl11 {
      * Intrinsics representing C++ comparison operators.
      *
      *
-     * @todo Document the syntaxic sugar allowing comparison chains.
+     * @todo
+     * Document the syntaxic sugar allowing comparison chains.
+     *
+     * @todo
+     * Document the fact that comparison operators are
+     * boolean `IntegralConstant`s.
      */
 
     /*!

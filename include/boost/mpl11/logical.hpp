@@ -1,21 +1,21 @@
 /*!
  * @file
- * Defines `boost::mpl11::Boolean`.
+ * Defines `boost::mpl11::Logical`.
  */
 
-#ifndef BOOST_MPL11_BOOLEAN_HPP
-#define BOOST_MPL11_BOOLEAN_HPP
+#ifndef BOOST_MPL11_LOGICAL_HPP
+#define BOOST_MPL11_LOGICAL_HPP
 
-#include <boost/mpl11/fwd/boolean.hpp>
+#include <boost/mpl11/fwd/logical.hpp>
 
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/not.hpp>
 
 
 namespace boost { namespace mpl11 {
-    struct Boolean {
+    struct Logical {
         //! This operation must be provided by the user.
-        template <typename B>
+        template <typename L>
         struct not_impl;
 
         /*!
@@ -38,4 +38,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_BOOLEAN_HPP
+#endif // !BOOST_MPL11_LOGICAL_HPP

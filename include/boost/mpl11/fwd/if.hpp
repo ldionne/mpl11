@@ -6,16 +6,16 @@
 #ifndef BOOST_MPL11_FWD_IF_HPP
 #define BOOST_MPL11_FWD_IF_HPP
 
-#include <boost/mpl11/fwd/bool.hpp>
+#include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Select one of two types based on a `Boolean` condition.
+     * Select one of two types based on a `Logical` condition.
      *
-     * If `not_<identity<Condition>>::type` is `false_`, `Then` is returned.
+     * If `not_<identity<Condition>>::value` is `false`, `Then` is returned.
      * Otherwise, `Else` is returned.
      */
     template <typename Condition, typename Then, typename Else>

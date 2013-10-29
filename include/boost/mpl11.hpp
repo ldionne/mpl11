@@ -69,8 +69,6 @@
 #include <boost/mpl11/bitor.hpp>
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/bitxor.hpp>
-#include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/boolean.hpp>
 #include <boost/mpl11/class_of.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/couple.hpp>
@@ -93,6 +91,7 @@
 #include <boost/mpl11/iterable.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>
+#include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/modulo.hpp>
 #include <boost/mpl11/multiply.hpp>
 #include <boost/mpl11/next.hpp>
@@ -108,6 +107,5 @@
 #include <boost/mpl11/shift_right.hpp>
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/substract.hpp>
-#include <boost/mpl11/value.hpp>
 
 #endif // !BOOST_MPL11_HPP

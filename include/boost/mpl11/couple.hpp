@@ -31,22 +31,25 @@ namespace boost { namespace mpl11 {
 
         //! Performs a lexicographical comparison of the two pairs.
         template <typename Pair1, typename Pair2>
-        class less_impl {
-            using First1 = typename first<Pair1>::type;
-            using First2 = typename first<Pair2>::type;
-
-            using Second1 = typename second<Pair1>::type;
-            using Second2 = typename second<Pair2>::type;
-
-        public:
-            using type = typename or_<
-                less<First1, First2>,
+        struct less_impl
+            : or_<
+                less<
+                    typename first<Pair1>::type,
+                    typename first<Pair2>::type
+                >,
                 and_<
-                    not_<less<First2, First1>>,
-                    less<Second1, Second2>
+                    not_<
+                        less<
+                            typename first<Pair2>::type,
+                            typename first<Pair1>::type>
+                    >,
+                    less<
+                        typename second<Pair1>::type,
+                        typename second<Pair2>::type
+                    >
                 >
-            >::type;
-        };
+            >
+        { };
 
         //! Performs a memberwise comparison of the two pairs.
         template <typename Pair1, typename Pair2>

@@ -1,10 +1,10 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Boolean`.
+ * Forward declares `boost::mpl11::Logical`.
  */
 
-#ifndef BOOST_MPL11_FWD_BOOLEAN_HPP
-#define BOOST_MPL11_FWD_BOOLEAN_HPP
+#ifndef BOOST_MPL11_FWD_LOGICAL_HPP
+#define BOOST_MPL11_FWD_LOGICAL_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
 
@@ -24,12 +24,9 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup mixins
      *
-     * Mixin for types possessing a truth value.
-     *
-     *
-     * @todo Document this mixin.
+     * Mixin for types supporting logical operations.
      */
-    struct Boolean BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Logical BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FWD_BOOLEAN_HPP
+#endif // !BOOST_MPL11_FWD_LOGICAL_HPP

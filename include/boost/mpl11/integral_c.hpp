@@ -8,21 +8,18 @@
 
 #include <boost/mpl11/fwd/integral_c.hpp>
 
-#include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/integral_constant.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename I, I N>
+    template <typename T, T v>
     struct integral_c {
-        using value_type = I;
-        static constexpr value_type value = N;
+        using value_type = T;
+        static constexpr value_type value = v;
         constexpr operator value_type() const { return value; }
-    };
 
-    template <typename I, I N>
-    struct class_of<integral_c<I, N>> {
-        using type = IntegralConstant<integral_c>;
+        using type = integral_c;
+        using mpl_class = IntegralConstant;
     };
 }} // end namespace boost::mpl11
 

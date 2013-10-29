@@ -10,14 +10,25 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup datatypes
      *
-     * Wrapper over a static constant of the specified type.
+     * Wrapper over a static constant of the specified integral type.
      *
      *
      * @todo
      * Provide a size_t alias. Note that size_t is decltype(sizeof(...)).
      */
-    template <typename I, I N>
+    template <typename T, T v>
     struct integral_c;
+
+    //! @ingroup datatypes
+    //! Alias to `integral_c<bool, B>`; provided for convenience.
+    template <bool B>
+    using bool_ = integral_c<bool, B>;
+
+    //! Alias to `bool_<true>`; provided for convenience.
+    using true_ = bool_<true>;
+
+    //! Alias to `bool_<false>`; provided for convenience.
+    using false_ = bool_<false>;
 
     //! @ingroup datatypes
     //! Alias to `integral_c<char, C>`; provided for convenience.

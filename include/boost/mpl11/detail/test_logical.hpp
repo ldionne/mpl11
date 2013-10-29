@@ -1,14 +1,13 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::test_boolean`.
+ * Defines `boost::mpl11::detail::test_logical`.
  */
 
-#ifndef BOOST_MPL11_DETAIL_TEST_BOOLEAN_HPP
-#define BOOST_MPL11_DETAIL_TEST_BOOLEAN_HPP
+#ifndef BOOST_MPL11_DETAIL_TEST_LOGICAL_HPP
+#define BOOST_MPL11_DETAIL_TEST_LOGICAL_HPP
 
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/or.hpp>
@@ -18,14 +17,14 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Generic unit test for `Boolean` types.
+     * Generic unit test for `Logical` types.
      *
      *
-     * @tparam True  A `Boolean` representing `true`.
-     * @tparam False A `Boolean` representing `false`.
+     * @tparam True  A `Logical` representing `true`.
+     * @tparam False A `Logical` representing `false`.
      */
-    template <typename True, typename False>
-    class test_boolean {
+    template <typename False, typename True>
+    class test_logical {
         template <typename ...Conditions>
         using and_ = mpl11::and_<identity<Conditions>...>;
 
@@ -36,14 +35,8 @@ namespace boost { namespace mpl11 { namespace detail {
         using not_ = mpl11::not_<identity<Condition>>;
 
         // not_
-        static_assert(is_same<
-            typename not_<True>::type,
-            false_
-        >::value, "");
-        static_assert(is_same<
-            typename not_<False>::type,
-            true_
-        >::value, "");
+        static_assert(!not_<True>::value, "");
+        static_assert(not_<False>::value, "");
 
         // and_
         static_assert(is_same<
@@ -83,4 +76,4 @@ namespace boost { namespace mpl11 { namespace detail {
     };
 }}} // end namespace boost::mpl11::detail
 
-#endif // !BOOST_MPL11_DETAIL_TEST_BOOLEAN_HPP
+#endif // !BOOST_MPL11_DETAIL_TEST_LOGICAL_HPP

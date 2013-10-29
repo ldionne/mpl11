@@ -9,7 +9,6 @@
 #include <boost/mpl11/fwd/forward_iterator.hpp>
 
 #include <boost/mpl11/comparable.hpp>
-#include <boost/mpl11/detail/bool_cast.hpp>
 #include <boost/mpl11/detail/move.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -48,11 +47,15 @@ namespace boost { namespace mpl11 {
         /*!
          * Counts the number of applications of `mpl11::next` required
          * for `First` to become equal to `Last`.
+         *
+         *
+         * @todo
+         * Use size_t to count the distance.
          */
         template <
             typename First, typename Last,
             unsigned long long Dist = 0,
-            bool = detail::bool_cast<typename equal<First, Last>::type>::value
+            bool = equal<First, Last>::value
         >
         struct distance_impl {
             using type = integral_c<unsigned long long, Dist>;

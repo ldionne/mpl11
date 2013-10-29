@@ -14,17 +14,15 @@ namespace boost { namespace mpl11 {
      * metafunction argument.
      *
      * `not_` is a special intrinsic: its argument is a metafunction returning
-     * a `Boolean`. This is so because it makes it easier to combine `not_`
+     * a `Logical`. This is so because it makes it easier to combine `not_`
      * with other logical operators that must ensure short-circuit evaluation.
      *
      *
      * @note
      * Custom implementations are called with `F::type` instead of `F`.
      *
-     * @note
-     * The result of custom implementations must be either `true_`
-     * or `false_`. Returning any other type is invalid, even if
-     * the returned type is a `Boolean`.
+     * @todo
+     * Document the fact that `not_` is a boolean `IntegralConstant`.
      */
     template <typename F>
     struct not_;

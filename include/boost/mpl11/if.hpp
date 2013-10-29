@@ -8,31 +8,17 @@
 
 #include <boost/mpl11/fwd/if.hpp>
 
-#include <boost/mpl11/bool.hpp> // for if_c
+#include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/integral_c.hpp> // for if_c
 #include <boost/mpl11/not.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace if_detail {
-        template <typename Condition, typename Then, typename Else>
-        struct if_impl;
-
-        template <typename Then, typename Else>
-        struct if_impl<true_, Then, Else> {
-            using type = Then;
-        };
-
-        template <typename Then, typename Else>
-        struct if_impl<false_, Then, Else> {
-            using type = Else;
-        };
-    } // end namespace if_detail
-
     template <typename Condition, typename Then, typename Else>
     struct if_
-        : if_detail::if_impl<
-            typename not_<identity<Condition>>::type, Else, Then
+        : detail::conditional<
+            not_<identity<Condition>>::value, Else, Then
         >
     { };
 }} // end namespace boost::mpl11

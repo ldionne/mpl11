@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_DETAIL_TEST_COUPLE_HPP
 #define BOOST_MPL11_DETAIL_TEST_COUPLE_HPP
 
-#include <boost/mpl11/detail/bool_cast.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/first.hpp>
@@ -44,10 +43,8 @@ namespace boost { namespace mpl11 { namespace detail {
         using couple_c = couple<int_<x>, int_<y>>;
 
 #define BOOST_MPL11_CHECK_BINOP(NAME, X1, Y1, X2, Y2)                       \
-        static_assert(bool_cast<                                            \
-            typename NAME<                                                  \
-                couple_c<(X1), (Y1)>, couple_c<(X2), (Y2)>                  \
-            >::type                                                         \
+        static_assert(NAME<                                                 \
+            couple_c<(X1), (Y1)>, couple_c<(X2), (Y2)>                      \
         >::value, "");                                                      \
 /**/
 

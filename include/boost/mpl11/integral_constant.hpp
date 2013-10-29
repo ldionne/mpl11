@@ -10,40 +10,38 @@
 
 #include <boost/mpl11/arithmetic.hpp>
 #include <boost/mpl11/bitwise.hpp>
-#include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/boolean.hpp>
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/orderable.hpp>
-#include <boost/mpl11/value.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <template <typename T, T v> class integral_constant>
     struct IntegralConstant
-        : Arithmetic, Bitwise, Boolean, Comparable, Orderable, Value
+        : Arithmetic, Bitwise, Logical, Comparable, Orderable
     {
-        // Boolean
+        // Logical
         template <typename N>
-        struct not_impl {
-            using type = bool_<!static_cast<bool>(N::value)>;
-        };
+        struct not_impl
+            : bool_<!static_cast<bool>(N::value)>
+        { };
 
         // Comparable
         template <typename M, typename N>
-        struct equal_impl {
-            using type = bool_<M::value == N::value>;
-        };
+        struct equal_impl
+            : bool_<(M::value == N::value)>
+        { };
 
         // Orderable
         template <typename M, typename N>
-        struct less_impl {
-            using type = bool_<M::value < N::value>;
-        };
+        struct less_impl
+            : bool_<(M::value < N::value)>
+        { };
 
 #define BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(NAME, OPERATOR)                 \
         template <typename M, typename N>                                   \
         struct NAME ## _impl {                                              \
-            using type = integral_constant<                                 \
+            using type = integral_c<                                        \
                 decltype(M::value OPERATOR N::value),                       \
                 (M::value OPERATOR N::value)                                \
             >;                                                              \
