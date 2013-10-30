@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 {
      */
 
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * Type representing a positional reference to an element of a sequence.
      *

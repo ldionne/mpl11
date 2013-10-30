@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * Holder for a compile-time value of an integral type.
      *

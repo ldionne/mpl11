@@ -11,9 +11,9 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
-     * Type possessing a strict weak partial ordering relation.
+     * Type implementing the `<`, `<=`, `>` and `>=` C++ operators.
      *
      *
      * ## Notation

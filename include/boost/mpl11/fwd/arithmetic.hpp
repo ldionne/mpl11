@@ -21,9 +21,9 @@ namespace boost { namespace mpl11 {
      */
 
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
-     * Mixin for types supporting arithmetic operations.
+     * Type implementing C++ arithmetic operators.
      */
     struct Arithmetic BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11

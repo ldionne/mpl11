@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * `BidirectionalSequence` whose iterators model the
      * `RandomAccessIterator` concept.

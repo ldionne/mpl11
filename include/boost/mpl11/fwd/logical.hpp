@@ -45,9 +45,9 @@ namespace boost { namespace mpl11 {
      */
 
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
-     * Type supporting logical operations.
+     * Type implementing C++ logical operators.
      *
      *
      * ## Notation

@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 {
      */
 
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * Collection of types that can be traversed.
      *

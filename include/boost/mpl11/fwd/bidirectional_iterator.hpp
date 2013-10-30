@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * `ForwardIterator` providing a way to obtain an iterator to the previous
      * element in the sequence.

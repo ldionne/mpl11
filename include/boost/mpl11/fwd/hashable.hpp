@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * Type from which it is possible to extract a hash.
      *
@@ -27,9 +27,9 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression            | Type
-     * | ----------            | ----
-     * | `hash<H>::type`       | Any type
+     * | Expression      | Type
+     * | ----------      | ----
+     * | `hash<H>::type` | Any type
      */
     struct Hashable BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11

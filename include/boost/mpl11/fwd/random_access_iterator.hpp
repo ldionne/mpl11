@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
      * `BidirectionalIterator` providing constant-time guarantees on moving
      * the iterator an arbitrary number of positions.

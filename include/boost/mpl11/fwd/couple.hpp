@@ -11,9 +11,9 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
-     * Mixin for holders of two arbitrary types.
+     * Type holding two arbitrary types.
      *
      * The first type can be retrieved using `mpl11::first`, and the second
      * using `mpl11::second`. `Couple`s are `Comparable` and `Orderable` if

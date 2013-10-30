@@ -78,15 +78,17 @@
  */
 
 /*!
- * @defgroup mixins Mixins
+ * @defgroup concepts Concepts
  *
- * Classes providing some operations based on other operations provided
- * by the user.
+ * Concepts upon which the library is built.
+ *
+ * In this library, concepts are more than just documented syntaxic and
+ * semantic requirements about types. Each concept is also a C++ class
+ * that can be used as mixin to ease the implementation of the concept.
  *
  *
  * @todo
- * Document the usage and composition of mixins, and their
- * relation to concepts.
+ * Expand upon the usage and composition of concepts as mixins.
  */
 
 #include <boost/mpl11/add.hpp>

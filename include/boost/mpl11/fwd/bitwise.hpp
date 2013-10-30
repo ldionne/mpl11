@@ -21,9 +21,9 @@ namespace boost { namespace mpl11 {
      */
 
     /*!
-     * @ingroup mixins
+     * @ingroup concepts
      *
-     * Mixin for types supporting bitwise operations.
+     * Type implementing C++ bitwise operators.
      */
     struct Bitwise BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
