@@ -91,6 +91,8 @@
 #include <boost/mpl11/front.hpp>
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
+#include <boost/mpl11/hash.hpp>
+#include <boost/mpl11/hashable.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>

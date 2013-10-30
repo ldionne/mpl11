@@ -8,11 +8,15 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup comparison_operators
+     * @ingroup intrinsics
      *
-     * @todo document me
+     * Returns a type that is almost uniquely associated to `H`.
+     *
+     *
+     * @todo
+     * Document this further if it's useful.
      */
-    template <typename Hashable>
+    template <typename H>
     struct hash;
 }} // end namespace boost::mpl11
 

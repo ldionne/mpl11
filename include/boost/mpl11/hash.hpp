@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/hash.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Hashable>
+    template <typename H>
     struct hash
-        : class_<Hashable>::type::template hash<Hashable>
+        : class_of<H>::type::template hash_impl<H>
     { };
 }} // end namespace boost::mpl11
 
