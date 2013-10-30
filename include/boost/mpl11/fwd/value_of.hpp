@@ -8,12 +8,12 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsics
+     * @ingroup sequence_intrinsics
      *
      * Returns the value that _would_ be used for an element
-     * in an @ref AssociativeSequence.
+     * in an `AssociativeSequence`.
      */
-    template <typename Sequence, typename Element>
+    template <typename Seq, typename Element>
     struct value_of;
 }} // end namespace boost::mpl11
 

@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/value_of.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence, typename Element>
+    template <typename Seq, typename Element>
     struct value_of
-        : class_<Sequence>::type::template value_of<Sequence, Element>
+        : class_of<Seq>::type::template value_of_impl<Seq, Element>
     { };
 }} // end namespace boost::mpl11
 

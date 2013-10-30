@@ -33,30 +33,7 @@
  * @subpage RandomAccessIterator
  */
 
-/*!
- * @page AssociativeSequence Associative Sequence
- *
- * @ref ForwardSequence allowing retrieval of elements based on keys.
- *
- *
- * ## Refinement of
- * @ref ForwardSequence
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | An @ref AssociativeSequence
- * | `E`        | An element of `S`
- *
- *
- * ## Valid expressions
- * | Expression             | Type
- * | ----------             | ----
- * | `category_of<S>::type` | Convertible to `category::associative_sequence`
- * | `key_of<S, E>::type`   | Any type
- * | `value_of<S, E>::type` | Any type
- */
+
 
 
 

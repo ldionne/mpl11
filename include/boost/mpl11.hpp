@@ -67,6 +67,7 @@
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arithmetic.hpp>
+#include <boost/mpl11/associative_sequence.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/back.hpp>
 #include <boost/mpl11/begin.hpp>
@@ -91,6 +92,7 @@
 #include <boost/mpl11/front.hpp>
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
+#include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/hash.hpp>
 #include <boost/mpl11/hashable.hpp>
 #include <boost/mpl11/identity.hpp>
@@ -99,6 +101,7 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/integral_constant.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>
 #include <boost/mpl11/logical.hpp>
@@ -119,5 +122,6 @@
 #include <boost/mpl11/shift_right.hpp>
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/substract.hpp>
+#include <boost/mpl11/value_of.hpp>
 
 #endif // !BOOST_MPL11_HPP

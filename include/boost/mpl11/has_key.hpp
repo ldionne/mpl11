@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/has_key.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence, typename Key>
+    template <typename Seq, typename Key>
     struct has_key
-        : class_<Sequence>::type::template has_key<Sequence, Key>
+        : class_of<Seq>::type::template has_key_impl<Seq, Key>
     { };
 }} // end namespace boost::mpl11
 
