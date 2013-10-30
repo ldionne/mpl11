@@ -15,20 +15,13 @@ namespace boost { namespace mpl11 {
      *
      * Moves `Iterator` by the distance `N`.
      *
-     *
-     * @todo
-     * Document the nature of N. Could it be only a `Value` instead of a full
-     * `IntegralConstant`?
-     *
-     * @todo
-     * Put the folowing in the concept documentation:
-     * For a @ref RandomAccessIterator or a @ref BidirectionalIterator,
-     * equivalent to using either `next` or `prior` in the same way as
-     * for a @ref ForwardIterator, depending on the sign of the distance.
+     * `N` must be an `IntegralConstant`. The sign of `N` depends on the
+     * concept modeled by `Iterator`; see the concept-specific documentation.
      */
     template <typename Iterator, typename N>
     struct advance;
 
+    //! @ingroup iterator_intrinsics
     //! Alias to `advance<Iterator, long_<N>>`; provided for convenience.
     template <typename Iterator, long N>
     using advance_c = advance<Iterator, long_<N>>;
