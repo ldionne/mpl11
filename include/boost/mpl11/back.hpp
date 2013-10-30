@@ -8,14 +8,14 @@
 
 #include <boost/mpl11/fwd/back.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename I>
     struct back
-        : class_<Sequence>::type::template back<Sequence>
+        : class_of<I>::type::template back_impl<I>
     { };
-}}
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_BACK_HPP

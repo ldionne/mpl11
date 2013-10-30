@@ -21,8 +21,9 @@
 namespace boost { namespace mpl11 {
     struct ForwardIterable : Iterable, Comparable, Orderable {
         /*!
-         * Returns `deref<begin<I>::type>::type` if `is_empty<I>::value` is
-         * `false`, and triggers a static assertion otherwise.
+         * Returns `mpl11::deref<mpl11::begin<I>::type>::type` if
+         * `is_empty<I>::value` is `false`, and triggers a static
+         * assertion otherwise.
          */
         template <typename I>
         struct front_impl {

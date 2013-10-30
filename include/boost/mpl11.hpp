@@ -67,7 +67,9 @@
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arithmetic.hpp>
+#include <boost/mpl11/back.hpp>
 #include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/bidirectional_iterable.hpp>
 #include <boost/mpl11/bidirectional_iterator.hpp>
 #include <boost/mpl11/bitand.hpp>
 #include <boost/mpl11/bitor.hpp>

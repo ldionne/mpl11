@@ -34,32 +34,6 @@
  */
 
 
-
-/*!
- * @page BidirectionalSequence Bidirectional Sequence
- *
- * @ref ForwardSequence whose iterators model the @ref BidirectionalIterator
- * concept.
- *
- *
- * ## Refinement of
- * @ref ForwardSequence
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | A @ref BidirectionalSequence
- *
- *
- * ## Valid expressions
- * | Expression             | Type
- * | ----------             | ----
- * | `begin<S>::type`       | @ref BidirectionalIterator
- * | `end<S>::type`         | @ref BidirectionalIterator
- * | `category_of<S>::type` | Convertible to `category::bidirectional_sequence`
- */
-
 /*!
  * @page RandomAccessSequence Random Access Sequence
  *
