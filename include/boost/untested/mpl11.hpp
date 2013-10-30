@@ -33,50 +33,7 @@
  * @subpage RandomAccessIterator
  */
 
-/*!
- * @page ForwardSequence Forward Sequence
- *
- * Compile-time sequence allowing iteration through the elements of the
- * sequence in one direction.
- *
- * A @ref ForwardSequence guarantees that its elements are arranged in a
- * definite, but possibly unspecified, order. Every MPL sequence is a
- * @ref ForwardSequence.
- *
- *
- * ## Refinement of
- * @ref Categorizable
- *
- *
- * ## Definitions
- * - The size of a sequence is the number of elements it contains. The size
- *   is a non-negative number.
- * - A sequence is empty if its size is zero.
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | A @ref ForwardSequence
- *
- *
- * ## Valid expressions
- * | Expression             | Type
- * | ----------             | ----
- * | `begin<S>::type`       | @ref ForwardIterator
- * | `end<S>::type`         | @ref ForwardIterator
- * | `category_of<S>::type` | Convertible to `category::forward_sequence`
- *
- *
- * ## Invariants
- * - [`begin<S>::type`, `end<S>::type`) is always a valid range.
- * - An algorithm that iterates through the range
- *   [`begin<S>::type`, `end<S>::type`) will pass
- *   through every element of `S` exactly once.
- * - `begin<S>::type` is equal to `end<S>::type` if and only if `S` is empty.
- * - Two different iterations through `S` will access its elements in the
- *   same order.
- */
+
 
 /*!
  * @page BidirectionalSequence Bidirectional Sequence

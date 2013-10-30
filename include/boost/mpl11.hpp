@@ -12,6 +12,10 @@
  * Implementation details.
  *
  *
+ * @todo
+ * Fix the note below: some metafunctions in `detail` do return
+ * `IntegralConstant`s.
+ *
  * @note
  * In order to reduce dependencies to the maximum, boolean metafunctions in
  * this category are not real boolean metafunctions as they do not return
@@ -79,7 +83,9 @@
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/first.hpp>
+#include <boost/mpl11/forward_iterable.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
+#include <boost/mpl11/front.hpp>
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
 #include <boost/mpl11/identity.hpp>

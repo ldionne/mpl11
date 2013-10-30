@@ -20,13 +20,46 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup mixins
      *
-     * Mixin for types that can be traversed.
+     * Collection of types that can be traversed.
+     *
+     * An `Iterable` guarantees that its elements are arranged in a definite,
+     * but possibly unspecified and not meaningful order.
      *
      *
-     * @note
-     * The order of traversal is not necessarily meaningful.
+     * ## Definitions
+     * - The size of an iterable is the number of elements it contains.
+     *   The size is a non-negative number.
      *
-     * @todo Document this concept properly.
+     * - An iterable is empty if its size is zero.
+     *
+     *
+     * ## Notation
+     * | Expression | Description
+     * | ---------- | -----------
+     * | `I`        | An `Iterable`
+     *
+     *
+     * ## Valid expressions
+     * | Expression       | Type
+     * | ----------       | ----
+     * | `begin<I>::type` | `ForwardIterator`
+     * | `end<I>::type`   | `ForwardIterator`
+     * | `size<I>`        | `IntegralConstant`
+     * | `is_empty<I>`    | Boolean `IntegralConstant`
+     *
+     *
+     * ## Invariants
+     * - [`begin<I>::type`, `end<I>::type`) is always a valid range.
+     *
+     * - An algorithm that iterates through the range
+     *   [`begin<I>::type`, `end<I>::type`) will pass
+     *   through every element of `I` exactly once.
+     *
+     * - `begin<I>::type` is equal to `end<I>::type` if and only if `I`
+     *   is empty.
+     *
+     * - Two different iterations through `I` will access its elements
+     *   in the same order.
      */
     struct Iterable BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
