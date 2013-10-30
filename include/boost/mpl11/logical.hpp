@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/logical.hpp>
 
-#include <boost/mpl11/if.hpp>
+#include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/not.hpp>
 
 
@@ -18,22 +18,27 @@ namespace boost { namespace mpl11 {
         template <typename L>
         struct not_impl;
 
+        // IMPORTANT:
+        // Do not use `if_` instead of `detail::conditional` here.
+        // `if_` depends on `integral_c`, which in turns depends on `Logical`.
+        // Also, using `detail::conditional` is more efficient.
+
         /*!
-         * Returns `A::type` if `not_<A>::type` is `true_` and
+         * Returns `A::type` if `not_<A>::value` is `true` and
          * `B::type` otherwise.
          */
         template <typename A, typename B>
         struct and_impl
-            : if_<typename not_<A>::type, A, B>::type
+            : detail::conditional<not_<A>::value, A, B>::type
         { };
 
         /*!
-         * Returns `B::type` if `not_<A>::type` is `true_` and
+         * Returns `B::type` if `not_<A>::value` is `true` and
          * `A::type` otherwise.
          */
         template <typename A, typename B>
         struct or_impl
-            : if_<typename not_<A>::type, B, A>::type
+            : detail::conditional<not_<A>::value, B, A>::type
         { };
     };
 }} // end namespace boost::mpl11
