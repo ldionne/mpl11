@@ -20,8 +20,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup mixins
      *
-     * Type representing a positional reference to an element of
-     * an `Iterable`.
+     * Type representing a positional reference to an element of a sequence.
      *
      * A `ForwardIterator` allows accessing the element through a dereference
      * operation, and provides a way to obtain an iterator to the next element

@@ -8,13 +8,13 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup iterable_intrinsics
+     * @ingroup sequence_intrinsics
      *
-     * Returns the number of elements contained in an `Iterable`.
+     * Returns the number of elements contained in a `Sequence`.
      *
      * The size of a sequence is a non-negative `IntegralConstant`.
      */
-    template <typename I>
+    template <typename Seq>
     struct size;
 }} // end namespace boost::mpl11
 

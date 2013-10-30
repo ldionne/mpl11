@@ -8,16 +8,16 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup iterable_intrinsics
+     * @ingroup sequence_intrinsics
      *
-     * Returns whether an `Iterable` is empty.
+     * Returns whether a `Sequence` is empty.
      *
      *
      * @warning
      * This intrinsic replaces the `mpl::empty` intrinsic from the
      * original MPL.
      */
-    template <typename I>
+    template <typename Seq>
     struct is_empty;
 }} // end namespace boost::mpl11
 

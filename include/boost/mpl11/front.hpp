@@ -12,9 +12,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename I>
+    template <typename Seq>
     struct front
-        : class_of<I>::type::template front_impl<I>
+        : class_of<Seq>::type::template front_impl<Seq>
     { };
 }} // end namespace boost::mpl11
 

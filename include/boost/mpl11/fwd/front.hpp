@@ -8,12 +8,12 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup intrinsics
+     * @ingroup sequence_intrinsics
      *
-     * Returns the first element of a `ForwardIterable` if there is such an
+     * Returns the first element of a `ForwardSequence` if there is such an
      * element, and triggers a compile-time assertion otherwise.
      */
-    template <typename I>
+    template <typename Seq>
     struct front;
 }} // end namespace boost::mpl11
 

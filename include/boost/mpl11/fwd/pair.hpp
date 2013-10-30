@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      * This type can't be used as a base class, nor can its MPL class.
      *
      * @todo
-     * Consider making pairs compatible with `Iterable`s.
+     * Consider making pairs compatible with sequences.
      */
     template <typename First, typename Second>
     struct pair BOOST_MPL11_DOXYGEN_ONLY({ });

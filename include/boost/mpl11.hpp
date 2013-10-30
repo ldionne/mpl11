@@ -69,8 +69,8 @@
 #include <boost/mpl11/arithmetic.hpp>
 #include <boost/mpl11/back.hpp>
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/bidirectional_iterable.hpp>
 #include <boost/mpl11/bidirectional_iterator.hpp>
+#include <boost/mpl11/bidirectional_sequence.hpp>
 #include <boost/mpl11/bitand.hpp>
 #include <boost/mpl11/bitor.hpp>
 #include <boost/mpl11/bitwise.hpp>
@@ -85,8 +85,8 @@
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/first.hpp>
-#include <boost/mpl11/forward_iterable.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
+#include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/front.hpp>
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
@@ -96,7 +96,6 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/integral_constant.hpp>
 #include <boost/mpl11/is_empty.hpp>
-#include <boost/mpl11/iterable.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>
 #include <boost/mpl11/logical.hpp>

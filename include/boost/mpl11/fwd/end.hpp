@@ -8,17 +8,17 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup iterable_intrinsics
+     * @ingroup sequence_intrinsics
      *
      * Returns the past-the-end iterator of the sequence.
      *
      *
      * @warning
      * Differences from the original MPL:
-     * - If `I` is not an `Iterable`, `end<I>::type` is invalid instead of
-     *   being the same as `mpl::void_`.
+     * - If `Seq` is not a `Sequence`, `end<Seq>::type` is invalid instead
+     *   of being the same as `mpl::void_`.
      */
-    template <typename I>
+    template <typename Seq>
     struct end;
 }} // end namespace boost::mpl11
 
