@@ -26,14 +26,42 @@
 /*!
  * @defgroup datatypes Data types
  *
- * General purpose data types provided with the library.
+ * Constructs for manipulating data at compile-time.
+ */
+
+/*!
+ * @defgroup sequences Sequences
+ * @ingroup datatypes
+ *
+ * Types representing collections of other types.
+ */
+
+/*!
+ * @defgroup containers Containers
+ * @ingroup sequences
+ *
+ * Mutable sequences.
+ */
+
+/*!
+ * @defgroup views Views
+ * @ingroup sequences
+ *
+ * Immutable sequences providing a lazily-altered presentation of one or more
+ * underlying sequences.
  */
 
 /*!
  * @defgroup metafunctions Metafunctions
  *
- * General purpose metafunctions and metafunction classes provided with the
- * library.
+ * Compile-time functions operating on types.
+ */
+
+/*!
+ * @defgroup algorithms Algorithms
+ * @ingroup metafunctions
+ *
+ * Generic algorithms manipulating @ref datatypes through their intrinsics.
  */
 
 /*!
