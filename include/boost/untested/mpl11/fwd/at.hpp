@@ -55,39 +55,6 @@ namespace boost { namespace mpl11 {
         typename Default = detail::optional
     >
     struct at BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default>);
-
-    /*!
-     * @ingroup intrinsics
-     *
-     * @todo Move the doc to the proper concept
-     * Returns the `N`th element of a sequence if `N` is in the bounds of the
-     * sequence, and triggers a compile-time assertion otherwise.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Let `Iter` be the same as `advance<begin<Sequence>::type, N>::type`.
-     * Then, `at` is equivalent to `deref<Iter>` if
-       @code
-            equal_to<
-                Iter, end<Sequence>::type
-            >::type::value
-       @endcode
-     * and `N::value < 0` are `false`, and a compile-time assertion
-     * is triggered otherwise.
-     *
-     *
-     * @warning
-     * Differences from the original MPL:
-     * - A compile-time assertion is triggered if `N` is out of the bounds of
-     *   `Sequence`.
-     */
-    template <typename Sequence, typename N>
-    struct at<Sequence, N>;
-
-    //! Alias to `at<Sequence, ulong<N>>`; provided for convenience.
-    template <typename Sequence, unsigned long N>
-    using at_c = at<Sequence, ulong<N>>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AT_HPP

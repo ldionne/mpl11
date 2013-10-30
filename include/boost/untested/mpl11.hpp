@@ -33,33 +33,6 @@
  * @subpage RandomAccessIterator
  */
 
-
-/*!
- * @page RandomAccessSequence Random Access Sequence
- *
- * @ref BidirectionalSequence whose iterators model the
- * @ref RandomAccessIterator concept.
- *
- *
- * ## Refinement of
- * @ref BidirectionalSequence
- *
- *
- * ## Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `S`        | A @ref RandomAccessSequence
- * | `N`        | An @ref IntegralConstant
- *
- *
- * ## Valid expressions
- * | Expression             | Type
- * | ----------             | ----
- * | `begin<S>::type`       | @ref RandomAccessIterator
- * | `end<S>::type`         | @ref RandomAccessIterator
- * | `category_of<S>::type` | Convertible to `category::random_access_sequence`
- */
-
 /*!
  * @page AssociativeSequence Associative Sequence
  *

@@ -13,14 +13,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Seq, typename Key, typename Default>
+    template <typename Seq, typename N>
     struct at
-        : class_of<Seq>::type::template at_impl<Seq, Key, Default>
-    { };
-
-    template <typename Seq, typename KeyOrIndex>
-    struct at<Seq, KeyOrIndex>
-        : class_of<Seq>::type::template at_impl<Seq, KeyOrIndex>
+        : class_of<Seq>::type::template at_impl<Seq, N>
     { };
 }} // end namespace boost::mpl11
 

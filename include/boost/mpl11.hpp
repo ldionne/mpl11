@@ -67,6 +67,7 @@
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arithmetic.hpp>
+#include <boost/mpl11/at.hpp>
 #include <boost/mpl11/back.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/bidirectional_iterator.hpp>
@@ -110,6 +111,7 @@
 #include <boost/mpl11/prev.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
+#include <boost/mpl11/random_access_sequence.hpp>
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>
