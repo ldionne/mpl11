@@ -9,6 +9,7 @@
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/next.hpp>
 
 
@@ -22,16 +23,16 @@ namespace boost { namespace mpl11 { namespace detail {
     template <
         typename F1, typename L1,
         typename F2, typename L2,
-        bool = equal<F1, L1>::value
+        bool = equal<F1, L1>::value,
+        bool = equal<F2, L2>::value
     >
-    struct std_equal;
+    struct std_equal
+        : false_
+    { };
 
-    template <
-        typename F1, typename L1,
-        typename F2, typename L2
-    >
-    struct std_equal<F1, L1, F2, L2, true>
-        : equal<F2, L2>
+    template <typename F1, typename L1, typename F2, typename L2>
+    struct std_equal<F1, L1, F2, L2, true, true>
+        : true_
     { };
 
     namespace std_equal_detail {
@@ -45,7 +46,7 @@ namespace boost { namespace mpl11 { namespace detail {
     } // end namespace std_equal_detail
 
     template <typename F1, typename L1, typename F2, typename L2>
-    struct std_equal<F1, L1, F2, L2, false>
+    struct std_equal<F1, L1, F2, L2, false, false>
         : and_<
             equal<typename deref<F1>::type, typename deref<F2>::type>,
             std_equal_detail::lazy_next_step<F1, L1, F2, L2>
