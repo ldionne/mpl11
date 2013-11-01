@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/clear.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename Seq>
     struct clear
-        : class_<Sequence>::type::template clear<Sequence>
+        : class_of<Seq>::type::template clear_impl<Seq>
     { };
 }} // end namespace boost::mpl11
 

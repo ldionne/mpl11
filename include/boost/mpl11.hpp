@@ -37,13 +37,6 @@
  */
 
 /*!
- * @defgroup containers Containers
- * @ingroup sequences
- *
- * Mutable sequences.
- */
-
-/*!
  * @defgroup views Views
  * @ingroup sequences
  *
@@ -108,7 +101,9 @@
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/bitxor.hpp>
 #include <boost/mpl11/class_of.hpp>
+#include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/container.hpp>
 #include <boost/mpl11/couple.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/directional_sequence.hpp>
