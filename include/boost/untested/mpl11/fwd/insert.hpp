@@ -14,26 +14,6 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Inserts an element at an arbitrary position in a @ref ForwardSequence.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to
-        @code
-            insert_range<
-                Sequence,
-                Position,
-                single_view<Element>
-            >
-        @endcode
-     */
-    template <typename Sequence, typename Position, typename Element>
-    struct insert BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Element>);
-
-    /*!
-     * @ingroup intrinsics
-     *
      * Inserts an element in an @ref AssociativeSequence.
      *
      *

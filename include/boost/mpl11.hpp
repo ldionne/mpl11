@@ -113,6 +113,8 @@
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/erase.hpp>
+#include <boost/mpl11/erase_range.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
 #include <boost/mpl11/front.hpp>
@@ -125,6 +127,8 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/insert.hpp>
+#include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/integral_constant.hpp>
 #include <boost/mpl11/is_empty.hpp>
@@ -148,6 +152,7 @@
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
+#include <boost/mpl11/random_extensible_container.hpp>
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>

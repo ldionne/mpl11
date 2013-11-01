@@ -14,29 +14,6 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Inserts a range of elements at an arbitrary position in a
-     * @ref ForwardSequence.
-     *
-     *
-     * ### Semantics and default implementation
-     *
-     * Equivalent to
-     * @code
-     *     identity<
-     *         joined_view<
-     *             iterator_range<begin<Sequence>::type, Position>,
-     *             Range,
-     *             iterator_range<Position, end<Sequence>::type>
-     *         >
-     *      >
-     * @endcode
-     */
-    template <typename Sequence, typename Position, typename Range>
-    struct insert_range BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Position, Range>);
-
-    /*!
-     * @ingroup intrinsics
-     *
      * Inserts a range of elements in an @ref AssociativeSequence.
      *
      *

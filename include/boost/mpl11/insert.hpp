@@ -8,13 +8,14 @@
 
 #include <boost/mpl11/fwd/insert.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence, typename ...Args>
+    template <typename Container, typename Position, typename Element>
     struct insert
-        : class_<Sequence>::type::template insert<Sequence, Args...>
+        : class_of<Container>::type::template
+            insert_impl<Container, Position, Element>
     { };
 }} // end namespace boost::mpl11
 
