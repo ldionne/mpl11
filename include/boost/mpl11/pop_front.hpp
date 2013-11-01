@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/pop_front.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename Seq>
     struct pop_front
-        : class_<Sequence>::type::template pop_front<Sequence>
+        : class_of<Seq>::type::template pop_front_impl<Seq>
     { };
 }} // end namespace boost::mpl11
 

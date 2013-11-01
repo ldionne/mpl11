@@ -8,13 +8,13 @@
 
 #include <boost/mpl11/fwd/pop_back.hpp>
 
-#include <boost/mpl11/class.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename Seq>
     struct pop_back
-        : class_<Sequence>::type::template pop_back<Sequence>
+        : class_of<Seq>::type::template pop_back_impl<Seq>
     { };
 }} // end namespace boost::mpl11
 

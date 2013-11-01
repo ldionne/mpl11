@@ -93,6 +93,7 @@
 #include <boost/mpl11/associative_sequence.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/back.hpp>
+#include <boost/mpl11/back_extensible_container.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/bidirectional_iterator.hpp>
 #include <boost/mpl11/bidirectional_sequence.hpp>
@@ -115,6 +116,7 @@
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
 #include <boost/mpl11/front.hpp>
+#include <boost/mpl11/front_extensible_container.hpp>
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
 #include <boost/mpl11/has_key.hpp>
@@ -138,7 +140,11 @@
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/pop_back.hpp>
+#include <boost/mpl11/pop_front.hpp>
 #include <boost/mpl11/prev.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/push_front.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
