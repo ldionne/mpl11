@@ -1,12 +1,12 @@
 /*!
  * @file
- * Defines `boost::mpl11::ForwardSequence`.
+ * Defines `boost::mpl11::DirectionalSequence`.
  */
 
-#ifndef BOOST_MPL11_FORWARD_SEQUENCE_HPP
-#define BOOST_MPL11_FORWARD_SEQUENCE_HPP
+#ifndef BOOST_MPL11_DIRECTIONAL_SEQUENCE_HPP
+#define BOOST_MPL11_DIRECTIONAL_SEQUENCE_HPP
 
-#include <boost/mpl11/fwd/forward_sequence.hpp>
+#include <boost/mpl11/fwd/directional_sequence.hpp>
 
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/comparable.hpp>
@@ -19,7 +19,7 @@
 
 
 namespace boost { namespace mpl11 {
-    struct ForwardSequence : Sequence, Comparable, Orderable {
+    struct DirectionalSequence : Sequence, Comparable, Orderable {
         /*!
          * Returns `mpl11::deref<mpl11::begin<Seq>::type>::type` if
          * `is_empty<Seq>::value` is `false`, and triggers a static
@@ -53,4 +53,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FORWARD_SEQUENCE_HPP
+#endif // !BOOST_MPL11_DIRECTIONAL_SEQUENCE_HPP

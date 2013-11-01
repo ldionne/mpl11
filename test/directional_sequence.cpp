@@ -1,9 +1,9 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::ForwardSequence`.
+ * Contains unit tests for `boost::mpl11::DirectionalSequence`.
  */
 
-#include <boost/mpl11/forward_sequence.hpp>
+#include <boost/mpl11/directional_sequence.hpp>
 
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
@@ -43,7 +43,7 @@ struct sequence {
         };
     };
 
-    struct mpl_class : ForwardSequence {
+    struct mpl_class : DirectionalSequence {
         template <typename Self>
         struct begin_impl { using type = iterator<0>; };
 
@@ -110,7 +110,6 @@ static_assert(!less<seq<0, 1>, seq<0, 1>>::value, "");
 static_assert( less<seq<0, 1>, seq<0, 1, 2>>::value, "");
 static_assert(!less<seq<0, 2>, seq<0, 1>>::value, "");
 static_assert(!less<seq<0, 2>, seq<0, 1, 2>>::value, "");
-
 
 // miscellaneous tests for less
 static_assert( less<seq<0, 1, 2, 3, 4>, seq<0, 1, 4, 1>>::value, "");

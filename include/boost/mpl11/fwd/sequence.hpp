@@ -14,16 +14,13 @@ namespace boost { namespace mpl11 {
      * @defgroup sequence_intrinsics Sequence intrinsics
      * @ingroup intrinsics
      *
-     * Intrinsics forming the essential interface of `Sequence`s.
+     * Intrinsics forming the essential interface of sequences.
      */
 
     /*!
      * @ingroup concepts
      *
      * Collection of types that can be traversed.
-     *
-     * A `Sequence` guarantees that its elements are arranged in a definite,
-     * but possibly unspecified and not meaningful order.
      *
      *
      * ## Definitions

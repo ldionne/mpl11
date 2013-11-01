@@ -9,14 +9,14 @@
 #include <boost/mpl11/fwd/bidirectional_sequence.hpp>
 
 #include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/directional_sequence.hpp>
 #include <boost/mpl11/end.hpp>
-#include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/prev.hpp>
 
 
 namespace boost { namespace mpl11 {
-    struct BidirectionalSequence : ForwardSequence {
+    struct BidirectionalSequence : DirectionalSequence {
         /*!
          * Returns
          * `mpl11::deref<mpl11::prev<mpl11::end<Seq>::type>::type>::type`

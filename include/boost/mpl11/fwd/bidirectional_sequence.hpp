@@ -13,12 +13,11 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * `ForwardSequence` whose iterators model the `BidirectionalIterator`
-     * concept.
+     * `DirectionalSequence` whose elements can be traversed in reverse order.
      *
      *
      * ## Refinement of
-     * `ForwardSequence`
+     * `DirectionalSequence`
      *
      *
      * ## Notation

@@ -111,6 +111,7 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/couple.hpp>
 #include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/directional_sequence.hpp>
 #include <boost/mpl11/distance.hpp>
 #include <boost/mpl11/divide.hpp>
 #include <boost/mpl11/empty_base.hpp>
@@ -118,7 +119,6 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
-#include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/front.hpp>
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
