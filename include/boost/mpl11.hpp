@@ -159,5 +159,6 @@
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/substract.hpp>
 #include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/vector.hpp>
 
 #endif // !BOOST_MPL11_HPP
