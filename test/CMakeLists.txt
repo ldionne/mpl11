@@ -17,6 +17,7 @@ endfunction()
 
 mpl11_add_test(always                   always.cpp)
 mpl11_add_test(apply_wrap               apply_wrap.cpp)
+mpl11_add_test(associative_sequence     associative_sequence.cpp)
 mpl11_add_test(bidirectional_iterator   bidirectional_iterator.cpp)
 mpl11_add_test(bidirectional_sequence   bidirectional_sequence.cpp)
 mpl11_add_test(class_of                 class_of.cpp)

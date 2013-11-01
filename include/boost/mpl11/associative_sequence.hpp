@@ -76,14 +76,21 @@ namespace boost { namespace mpl11 {
     } // end namespace associative_sequence_detail
 
     struct AssociativeSequence : Sequence, Comparable {
+        template <
+            typename Seq, typename Key, typename Default = detail::optional
+        >
+        struct at_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Seq, typename Key, typename Default>
+        struct at_impl BOOST_MPL11_DOXYGEN_ONLY(<Seq, Key, Default> { });
+
         /*!
          * Returns `mpl11::at<Seq, Key, X>::type`, where `X` is such that a
          * compile-time assertion is triggered if `X` is returned.
          */
-        template <
-            typename Seq, typename Key, typename Default = detail::optional
-        >
-        struct at_impl
+        template <typename Seq, typename Key>
+        struct at_impl<Seq, Key>
             : at<Seq, Key, associative_sequence_detail::not_found>
         {
             static_assert(
@@ -91,13 +98,9 @@ namespace boost { namespace mpl11 {
                     typename at_impl::type,
                     associative_sequence_detail::not_found
                 >::value,
-            "Could not find the value associated to a given key in an "
+            "Could not find the value associated to the given key in an "
             "associative sequence and no default return value was specified.");
         };
-
-        //! This operation must be provided by the user.
-        template <typename Seq, typename Key>
-        struct at_impl<Seq, Key> BOOST_MPL11_DOXYGEN_ONLY({ });
 
         //! This operation must be provided by the user.
         template <typename Seq, typename Key>
