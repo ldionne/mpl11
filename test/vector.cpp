@@ -27,6 +27,7 @@
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/push_front.hpp>
 #include <boost/mpl11/size.hpp>
+#include <boost/mpl11/unpack.hpp>
 
 
 using namespace boost::mpl11;
@@ -303,6 +304,21 @@ namespace test_erase {
         vector<x, y>
     >::value, "");
 }
+
+// unpack (optimization)
+struct f { template <typename ...> struct apply { struct type; }; };
+static_assert(is_same<
+    unpack<vector<>, f>::type, f::apply<>::type
+>::value, "");
+static_assert(is_same<
+    unpack<vector<x>, f>::type, f::apply<x>::type
+>::value, "");
+static_assert(is_same<
+    unpack<vector<x, y>, f>::type, f::apply<x, y>::type
+>::value, "");
+static_assert(is_same<
+    unpack<vector<x, y, z>, f>::type, f::apply<x, y, z>::type
+>::value, "");
 
 
 int main() { }

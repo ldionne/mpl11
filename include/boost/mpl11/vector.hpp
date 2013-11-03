@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/fwd/vector.hpp>
 
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/detail/copy_into_variadic_pack.hpp>
 #include <boost/mpl11/detail/variadic/at.hpp>
@@ -17,6 +18,7 @@
 #include <boost/mpl11/detail/variadic/rebind.hpp>
 #include <boost/mpl11/detail/variadic/take.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
+#include <boost/mpl11/fwd/unpack.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
@@ -230,10 +232,16 @@ struct class_of<vector_detail::iterator<Vector, Position>> {
     using type = vector_detail::iterator_class;
 };
 
-template <typename ...Elements>
-struct class_of<vector<Elements...>> {
+template <typename ...T>
+struct class_of<vector<T...>> {
     using type = vector_detail::vector_class;
 };
+
+// Optimization
+template <typename ...T, typename F>
+struct unpack<vector<T...>, F>
+    : apply<F, T...>
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_VECTOR_HPP
