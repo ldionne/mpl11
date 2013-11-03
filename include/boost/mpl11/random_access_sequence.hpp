@@ -17,6 +17,7 @@
 
 namespace boost { namespace mpl11 {
     struct RandomAccessSequence : BidirectionalSequence {
+        //! Advances `begin<Seq>::type` `N` positions and dereferences it.
         template <typename Seq, typename N>
         struct at_impl {
             static_assert(N::value >= 0,
