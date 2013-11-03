@@ -118,6 +118,7 @@
 #include <boost/mpl11/erase_range.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/foldr.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
 #include <boost/mpl11/front.hpp>
 #include <boost/mpl11/front_extensible_container.hpp>
