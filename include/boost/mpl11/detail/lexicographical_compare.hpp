@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Performs a lexicographical ordering of the two iterator-delimted
+     * Performs a lexicographical ordering of the two iterator-delimited
      * ranges.
      */
     template <
