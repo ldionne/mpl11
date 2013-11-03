@@ -22,7 +22,7 @@ namespace boost { namespace mpl11 {
      * ### Semantics and default implementation
      *
      * Equivalent to
-       @code
+     *
             using Iter1 = begin<Sequence>::type;
             using State1 = apply<F, State, deref<Iter1>::type>::type;
 
@@ -34,12 +34,15 @@ namespace boost { namespace mpl11 {
             using StateN = apply<F, StateN-1, deref<IterN>::type>::type;
             using Last = next<IterN>::type;
             using Result = StateN;
-       @endcode
+     *
      *
      *
      * @note
      * This is equivalent to the `mpl::fold` metafunction from the
      * original MPL.
+     *
+     * @todo
+     * Use a minimal sequence in `foldl`'s unit test.
      */
     template <typename Sequence, typename State, typename F>
     struct foldl;
