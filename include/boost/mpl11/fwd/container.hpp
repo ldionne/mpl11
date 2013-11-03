@@ -43,7 +43,13 @@ namespace boost { namespace mpl11 {
      * ## Valid expressions
      * | Expression       | Type
      * | ----------       | ----
-     * | `clear<C>::type` | A concept-identical empty container
+     * | `new_<C>`        | @ref MetafunctionClass
+     * | `clear<C>::type` | `Container`
+     *
+     *
+     * @todo
+     * Change the name of most *_impl metafunctions from Seq
+     * to something better.
      */
     struct Container BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11

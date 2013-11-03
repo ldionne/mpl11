@@ -133,6 +133,14 @@ namespace vector_detail {
             using type = vector<>;
         };
 
+        template <typename Vector>
+        struct new_impl {
+            template <typename ...T>
+            struct apply {
+                using type = vector<T...>;
+            };
+        };
+
         /////////////////////////////////
         // BackExtensibleContainer
         /////////////////////////////////

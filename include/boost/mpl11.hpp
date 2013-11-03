@@ -140,6 +140,7 @@
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/modulo.hpp>
 #include <boost/mpl11/multiply.hpp>
+#include <boost/mpl11/new.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/not_equal.hpp>

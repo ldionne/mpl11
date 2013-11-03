@@ -6,6 +6,7 @@
 #include <boost/mpl11/vector.hpp>
 
 #include <boost/mpl11/advance.hpp>
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/clear.hpp>
@@ -20,6 +21,7 @@
 #include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/less.hpp>
+#include <boost/mpl11/new.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/pop_back.hpp>
 #include <boost/mpl11/pop_front.hpp>
@@ -154,6 +156,23 @@ static_assert(is_same<at_c<vector<x, y>, 1>::type, y>::value, "");
 static_assert(is_same<at_c<vector<x, y, z>, 0>::type, x>::value, "");
 static_assert(is_same<at_c<vector<x, y, z>, 1>::type, y>::value, "");
 static_assert(is_same<at_c<vector<x, y, z>, 2>::type, z>::value, "");
+
+// new_
+template <typename V>
+struct check_new {
+    template <typename ...T>
+    using New = typename apply<new_<V>, T...>::type;
+    static_assert(is_same<New<>, vector<>>::value, "");
+    static_assert(is_same<New<x>, vector<x>>::value, "");
+    static_assert(is_same<New<x, y>, vector<x, y>>::value, "");
+    static_assert(is_same<New<x, y, z>, vector<x, y, z>>::value, "");
+};
+struct check_all_new :
+    check_new<vector<>>,
+    check_new<vector<x>>,
+    check_new<vector<x, y>>,
+    check_new<vector<x, y, z>>
+{ };
 
 // clear
 static_assert(is_same<clear<vector<>>::type, vector<>>::value, "");

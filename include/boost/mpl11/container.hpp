@@ -15,6 +15,10 @@ namespace boost { namespace mpl11 {
     struct Container : Sequence {
         //! This operation must be provided by the user.
         template <typename Seq>
+        struct new_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Seq>
         struct clear_impl;
     };
 }} // end namespace boost::mpl11
