@@ -50,3 +50,6 @@ mpl11_add_test(quote                    quote.cpp)
 mpl11_add_test(random_access_sequence   random_access_sequence.cpp)
 mpl11_add_test(sequence                 sequence.cpp)
 mpl11_add_test(vector                   vector.cpp)
+
+add_executable(benchmark_vector50_at       EXCLUDE_FROM_ALL benchmark/vector50_at.cpp)
+add_executable(benchmark_vector50_pop_back EXCLUDE_FROM_ALL benchmark/vector50_pop_back.cpp)
