@@ -7,12 +7,14 @@
 
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/variadic_at.hpp>
+#include <boost/mpl11/detail/variadic/at.hpp>
+#include <boost/mpl11/detail/variadic/pack.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 
 
 using namespace boost::mpl11;
+namespace variadic = detail::variadic;
 using detail::is_same;
 
 template <typename ...Elements>
@@ -57,7 +59,7 @@ struct sequence {
 
             template <typename Self>
             struct deref_impl
-                : detail::variadic_at_c<Self::position, Elements...>
+                : variadic::at<variadic::pack<Elements...>, Self::position>
             { };
         };
     };
