@@ -139,6 +139,8 @@
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>
 #include <boost/mpl11/logical.hpp>
+#include <boost/mpl11/max.hpp>
+#include <boost/mpl11/min.hpp>
 #include <boost/mpl11/modulo.hpp>
 #include <boost/mpl11/multiply.hpp>
 #include <boost/mpl11/new.hpp>
