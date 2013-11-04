@@ -16,6 +16,9 @@ namespace boost { namespace mpl11 {
     struct RandomExtensibleContainer
         : FrontExtensibleContainer, BackExtensibleContainer
     {
+        // We have to disambiguate.
+        using BackExtensibleContainer::new_impl;
+
         //! This operation must be provided by the user.
         template <typename Seq, typename Pos, typename Element>
         struct insert_impl;
