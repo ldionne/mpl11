@@ -17,10 +17,10 @@ namespace boost { namespace mpl11 {
      * ### Semantics and default implementation
      *
      * Equivalent to returning the first iterator `It` in the range
-     * [`begin<Sequence>::type`, `end<Sequence>::type`) such that
+     * [`begin<%Sequence>::type`, `end<%Sequence>::type`) such that
      * `apply<Predicate, deref<It>::type>::type::value` is `true`.
-     * If no such iterator exists, `end<Sequence>::type` is returned
-     * instead.
+     * If no such iterator exists, `end<%Sequence>::type` is
+     * returned instead.
      */
     template <typename Sequence, typename Predicate>
     struct find_if;

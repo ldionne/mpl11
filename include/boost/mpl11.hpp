@@ -116,6 +116,7 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/erase.hpp>
 #include <boost/mpl11/erase_range.hpp>
+#include <boost/mpl11/find_if.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/foldr.hpp>
