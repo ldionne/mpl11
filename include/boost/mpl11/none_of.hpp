@@ -8,24 +8,20 @@
 
 #include <boost/mpl11/fwd/none_of.hpp>
 
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/end.hpp>
-#include <boost/mpl11/equal_to.hpp>
+#include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/find_if.hpp>
+#include <boost/mpl11/identity.hpp> // for default Predicate
+#include <boost/mpl11/quote.hpp>    //
 
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct none_of
-        : equal_to<
+        : equal<
             typename find_if<Sequence, Predicate>::type,
             typename end<Sequence>::type
         >
-    { };
-
-    template <typename Sequence>
-    struct none_of<Sequence>
-        : none_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11
 

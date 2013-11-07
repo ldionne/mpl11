@@ -86,8 +86,10 @@
 
 #include <boost/mpl11/add.hpp>
 #include <boost/mpl11/advance.hpp>
+#include <boost/mpl11/all_of.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/and.hpp>
+#include <boost/mpl11/any_of.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/apply_wrap.hpp>
 #include <boost/mpl11/arithmetic.hpp>
@@ -147,6 +149,7 @@
 #include <boost/mpl11/multiply.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/not_equal.hpp>
 #include <boost/mpl11/or.hpp>

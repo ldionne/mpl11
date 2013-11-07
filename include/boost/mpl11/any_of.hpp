@@ -8,20 +8,16 @@
 
 #include <boost/mpl11/fwd/any_of.hpp>
 
-#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/identity.hpp> // for default Predicate
 #include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
+#include <boost/mpl11/quote.hpp> // for default Predicate
 
 
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct any_of
         : not_<none_of<Sequence, Predicate>>
-    { };
-
-    template <typename Sequence>
-    struct any_of<Sequence>
-        : any_of<Sequence, _1>
     { };
 }} // end namespace boost::mpl11
 
