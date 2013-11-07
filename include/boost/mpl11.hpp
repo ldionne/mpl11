@@ -135,6 +135,7 @@
 #include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/integral_constant.hpp>
+#include <boost/mpl11/into.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/less.hpp>
