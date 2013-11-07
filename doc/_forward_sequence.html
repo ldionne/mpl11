@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><p>Compile-time sequence allowing iteration through the elements of the sequence in one direction.</p>
 <p>A <a class="el" href="_forward_sequence.html">Forward Sequence</a> guarantees that its elements are arranged in a definite, but possibly unspecified, order. Every MPL sequence is a <a class="el" href="_forward_sequence.html">Forward Sequence</a>.</p>
 <h2>Refinement of</h2>
-<p><a class="el" href="_categorizable.html">Categorizable</a></p>
+<p>Categorizable</p>
 <h2>Definitions</h2>
 <ul>
 <li>The size of a sequence is the number of elements it contains. The size is a non-negative number.</li>
@@ -106,15 +106,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <th>Expression </th><th>Type  </th></tr>
 <tr>
-<td><code>begin&lt;S&gt;::type</code> </td><td><a class="el" href="_forward_iterator.html">Forward Iterator</a> </td></tr>
+<td><code>begin&lt;S&gt;::type</code> </td><td>ForwardIterator </td></tr>
 <tr>
-<td><code>end&lt;S&gt;::type</code> </td><td><a class="el" href="_forward_iterator.html">Forward Iterator</a> </td></tr>
+<td><code>end&lt;S&gt;::type</code> </td><td>ForwardIterator </td></tr>
 <tr>
-<td><code>size&lt;S&gt;::type</code> </td><td><a class="el" href="_integral_constant.html">Integral Constant</a> </td></tr>
-<tr>
-<td><code>is_empty&lt;S&gt;::type</code> </td><td>Boolean <a class="el" href="_integral_constant.html">Integral Constant</a> </td></tr>
-<tr>
-<td><code>front&lt;S&gt;::type</code> </td><td>Any type </td></tr>
+<td><code>category_of&lt;S&gt;::type</code> </td><td>Convertible to <code>category::forward_sequence</code> </td></tr>
 </table>
 <h2>Invariants</h2>
 <ul>
@@ -126,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 10 2013 23:46:05 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 29 2013 16:59:22 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/intrinsic/not_equal_to.hpp Source File</title>
+<title>mpl11: boost/mpl11/not_equal_to.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_3d4978afd7bbc77397977b40095cba3b.html">intrinsic</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,55 +92,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="not__equal__to_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_INTRINSIC_NOT_EQUAL_TO_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_INTRINSIC_NOT_EQUAL_TO_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_NOT_EQUAL_TO_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_NOT_EQUAL_TO_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dispatch_8hpp.html">boost/mpl11/dispatch.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="and_8hpp.html">boost/mpl11/intrinsic/and.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="equal__to_8hpp.html">boost/mpl11/intrinsic/equal_to.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="not_8hpp.html">boost/mpl11/intrinsic/not.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="tags_8hpp.html">boost/mpl11/tags.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2not__equal__to_8hpp.html">boost/mpl11/fwd/not_equal_to.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="comparison__operator_8hpp.html">boost/mpl11/detail/comparison_operator.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="group__details.html#ga4ec61147c79c8ef18c5fb156d4c63c07">BOOST_MPL11_DEFINE_COMPARISON_OPERATOR</a>(not_equal_to)</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>intrinsic {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1intrinsic_1_1not__equal__to.html">   30</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1intrinsic_1_1not__equal__to.html">not_equal_to</a></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        : dispatch&lt;tag::not_equal_to, T1, T2, Tn...&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    { };</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1intrinsic_1_1not__equal__to_3_01_t1_00_01_t2_01_4.html">   45</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1intrinsic_1_1not__equal__to.html">not_equal_to</a>&lt;T1, T2&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        : dispatch&lt;tag::not_equal_to, T1, T2&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    { };</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <span class="comment">// end namespace intrinsic</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">struct </span>dispatch&lt;detail::default_&lt;tag::not_equal_to&gt;, T1, T2, Tn...&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    : <a class="code" href="structboost_1_1mpl11_1_1intrinsic_1_1and__.html">intrinsic::and_</a>&lt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        intrinsic::not_equal_to&lt;T1, T2&gt;,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        intrinsic::not_equal_to&lt;T2, Tn...&gt;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    &gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ };</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">struct </span>dispatch&lt;detail::default_&lt;tag::not_equal_to&gt;, T1, T2&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    : intrinsic::not_&lt;intrinsic::equal_to&lt;T1, T2&gt;&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;{ };</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_INTRINSIC_NOT_EQUAL_TO_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1intrinsic_1_1not__equal__to_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1intrinsic_1_1not__equal__to.html">boost::mpl11::intrinsic::not_equal_to</a></div><div class="ttdoc">Returns whether T1 != T2 != ...Tn. </div><div class="ttdef"><b>Definition:</b> not_equal_to.hpp:30</div></div>
-<div class="ttc" id="dispatch_8hpp_html"><div class="ttname"><a href="dispatch_8hpp.html">dispatch.hpp</a></div><div class="ttdoc">Defines boost::mpl11::dispatch. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1intrinsic_1_1and___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1intrinsic_1_1and__.html">boost::mpl11::intrinsic::and_</a></div><div class="ttdoc">Returns the result of short-circuit logical and (&amp;amp;&amp;amp;) on the result of its arguments. </div><div class="ttdef"><b>Definition:</b> and.hpp:26</div></div>
-<div class="ttc" id="tags_8hpp_html"><div class="ttname"><a href="tags_8hpp.html">tags.hpp</a></div><div class="ttdoc">Defines all the tags of the library. </div></div>
-<div class="ttc" id="and_8hpp_html"><div class="ttname"><a href="and_8hpp.html">and.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::and_. </div></div>
-<div class="ttc" id="equal__to_8hpp_html"><div class="ttname"><a href="equal__to_8hpp.html">equal_to.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::equal_to. </div></div>
-<div class="ttc" id="not_8hpp_html"><div class="ttname"><a href="not_8hpp.html">not.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::not_. </div></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_NOT_EQUAL_TO_HPP</span></div>
+<div class="ttc" id="group__details_html_ga4ec61147c79c8ef18c5fb156d4c63c07"><div class="ttname"><a href="group__details.html#ga4ec61147c79c8ef18c5fb156d4c63c07">BOOST_MPL11_DEFINE_COMPARISON_OPERATOR</a></div><div class="ttdeci">#define BOOST_MPL11_DEFINE_COMPARISON_OPERATOR(NAME)</div><div class="ttdoc">Macro expanding to the definition of a comparison operator. </div><div class="ttdef"><b>Definition:</b> comparison_operator.hpp:18</div></div>
+<div class="ttc" id="fwd_2not__equal__to_8hpp_html"><div class="ttname"><a href="fwd_2not__equal__to_8hpp.html">not_equal_to.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::not_equal_to. </div></div>
+<div class="ttc" id="comparison__operator_8hpp_html"><div class="ttname"><a href="comparison__operator_8hpp.html">comparison_operator.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DEFINE_COMPARISON_OPERATOR. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 27 2013 15:47:32 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

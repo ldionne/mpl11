@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,25 +82,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="structboost_1_1mpl11_1_1if___3_01_cond_00_01_then_01_4.html">boost::mpl11::if_&lt; Cond, Then &gt;</a>  </dt>
-<dd>Explain features  </dd>
-<dt><a class="anchor" id="_todo000002"></a>Page <a class="el" href="_integral_constant.html">Integral Constant</a>  </dt>
-<dd>Document this concept  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Page <a class="el" href="_lambda_expression.html">Lambda Expression</a>  </dt>
-<dd>Document this concept  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Page <a class="el" href="_metafunction.html">Metafunction</a>  </dt>
-<dd>Document this concept  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Page <a class="el" href="_metafunction_class.html">Metafunction Class</a>  </dt>
-<dd>Document this concept  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Page <a class="el" href="_placeholder.html">Placeholder</a>  </dt>
-<dd>Document this concept  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Page <a class="el" href="_placeholder_expression.html">Placeholder Expression</a>  </dt>
-<dd>Document this concept </dd>
+<dt><a class="anchor" id="_todo000006"></a>Group <a class="el" href="group__arithmetic__operators.html">arithmetic_operators</a>  </dt>
+<dd>Document the left associativity of arithmetic operators.  </dd>
+<dt><a class="anchor" id="_todo000008"></a>Group <a class="el" href="group__bitwise__operators.html">bitwise_operators</a>  </dt>
+<dd>Document the left associativity of bitwise operators.  </dd>
+<dt><a class="anchor" id="_todo000026"></a>Class <a class="el" href="structboost_1_1mpl11_1_1algorithm_1_1sort_3_01_sequence_00_01_predicate_00_01_destination_01_4.html">boost::mpl11::algorithm::sort&lt; Sequence, Predicate, Destination &gt;</a>  </dt>
+<dd>Document me </dd>
+<dt><a class="anchor" id="_todo000004"></a>Class <a class="el" href="structboost_1_1mpl11_1_1and__.html">boost::mpl11::and_&lt; F1, F2, Fn &gt;</a>  </dt>
+<dd>Clarify the Python-like behavior of <code>and_</code>.  </dd>
+<dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply&lt; F, Args &gt;</a>  </dt>
+<dd><p class="startdd">Implement apply correctly using lambda. </p>
+<p class="enddd">Decide what to do with lambda expressions vs metafunction classes and the object system.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000024"></a>Class <a class="el" href="structboost_1_1mpl11_1_1_associative_container_1_1insert__range.html">boost::mpl11::AssociativeContainer::insert_range&lt; AC, Range &gt;</a>  </dt>
+<dd>A better implementation is not too hard to think of.  </dd>
+<dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="structboost_1_1mpl11_1_1at.html">boost::mpl11::at&lt; SEE_DETAILS &gt;</a>  </dt>
+<dd>Consider returning a <code>Logical</code> from <code>at&lt;Sequence, Key&gt;</code>. Something like a <code>Maybe</code> would be neat.  </dd>
+<dt><a class="anchor" id="_todo000009"></a>Class <a class="el" href="structboost_1_1mpl11_1_1_container.html">boost::mpl11::Container</a>  </dt>
+<dd>Change the name of most *_impl metafunctions from Seq to something better.  </dd>
+<dt><a class="anchor" id="_todo000002"></a>Class <a class="el" href="structboost_1_1mpl11_1_1detail_1_1copy__into__variadic__pack.html">boost::mpl11::detail::copy_into_variadic_pack&lt; Sequence &gt;</a>  </dt>
+<dd><p class="startdd">Find an elegant way to convert arbitrary sequences into variadic packs.</p>
+<p class="enddd">Find an elegant way to leverage sequences whose behavior is that of a variadic parameter pack.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000010"></a>Class <a class="el" href="structboost_1_1mpl11_1_1foldl.html">boost::mpl11::foldl&lt; Sequence, State, F &gt;</a>  </dt>
+<dd>Use a minimal sequence in <code>foldl</code>'s unit test.  </dd>
+<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="structboost_1_1mpl11_1_1hash.html">boost::mpl11::hash&lt; Hashable &gt;</a>  </dt>
+<dd>Document this further if it's useful.  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="structboost_1_1mpl11_1_1not__.html">boost::mpl11::not_&lt; F &gt;</a>  </dt>
+<dd>Make it clearer that <code>not_</code> is a boolean <code>IntegralConstant</code>.  </dd>
+<dt><a class="anchor" id="_todo000013"></a>Class <a class="el" href="structboost_1_1mpl11_1_1or__.html">boost::mpl11::or_&lt; F1, F2, Fn &gt;</a>  </dt>
+<dd>Clarify the Python-like behavior of <code>or_</code>.  </dd>
+<dt><a class="anchor" id="_todo000014"></a>Class <a class="el" href="structboost_1_1mpl11_1_1pair.html">boost::mpl11::pair&lt; First, Second &gt;</a>  </dt>
+<dd>Consider making pairs compatible with sequences.  </dd>
+<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="structboost_1_1mpl11_1_1quote.html">boost::mpl11::quote&lt; F &gt;</a>  </dt>
+<dd>Consider changing the behavior such that it's always equivalent to <code>F&lt;Args...&gt;::type</code>, and having another way of unpacking arguments into a variadic template.  </dd>
+<dt><a class="anchor" id="_todo000016"></a>Class <a class="el" href="structboost_1_1mpl11_1_1unpack.html">boost::mpl11::unpack&lt; Sequence, F &gt;</a>  </dt>
+<dd><p class="startdd">Document the default behavior + semantics.</p>
+<p>Document the fact that this should be specialized for variadic sequences.</p>
+<p>Consider making this an intrinsic or an algorithm.</p>
+<p class="enddd">Use a minimal sequence in the unit tests instead of vector, which could specialize unpack.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000020"></a>Class <a class="el" href="structboost_1_1mpl11_1_1vector.html">boost::mpl11::vector&lt; Elements &gt;</a>  </dt>
+<dd>Consider adding a custom implementation of <code>equal</code> using variadics.  </dd>
+<dt><a class="anchor" id="_todo000023"></a>Group <a class="el" href="group__concepts.html">concepts</a>  </dt>
+<dd>Expand upon the usage and composition of concepts as mixins.  </dd>
+<dt><a class="anchor" id="_todo000021"></a>Group <a class="el" href="group__details.html">details</a>  </dt>
+<dd>Fix the note below: some metafunctions in <code>detail</code> do return <code>IntegralConstant</code>s. </dd>
+<dt><a class="anchor" id="_todo000022"></a>Group <a class="el" href="group__intrinsics.html">intrinsics</a>  </dt>
+<dd>Document the dispatching system.  </dd>
+<dt><a class="anchor" id="_todo000028"></a>Member <a class="el" href="back__extensible__container_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>  ()</dt>
+<dd><p class="startdd">Don't assume that <code>push_back&lt;vector&lt;&gt;, X&gt;::type</code> is <code>vector&lt;X&gt;</code>. If we used a different implementation for <code>push_back</code> for a <code>vector</code>, the test below could break. </p>
+<p class="enddd">Don't assume that <code>push_front&lt;vector&lt;&gt;, X&gt;::type</code> is <code>vector&lt;X&gt;</code>. If we used a different implementation for <code>push_front</code> for a <code>vector</code>, the test below could break.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000030"></a>Class <a class="el" href="structsame__as.html">same_as&lt; T &gt;</a>  </dt>
+<dd>Don't repeat <code><a class="el" href="structsame__as.html">same_as</a></code> like this. See <code>all_of</code>'s unit test and others too. </dd>
 </dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 10 2013 23:46:05 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:51 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

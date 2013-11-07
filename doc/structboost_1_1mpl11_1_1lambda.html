@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
@@ -72,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,33 +93,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Transforms a <code>LambdaExpression</code> into its corresponding <code>MetafunctionClass</code>.  
+<p>Transforms a LambdaExpression into its corresponding MetafunctionClass.  
  <a href="structboost_1_1mpl11_1_1lambda.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="lambda_8hpp_source.html">boost/mpl11/lambda.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fwd_2lambda_8hpp_source.html">boost/old/mpl11/fwd/lambda.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename F&gt;<br/>
 struct boost::mpl11::lambda&lt; F &gt;</h3>
 
-<p>Transforms a <code>LambdaExpression</code> into its corresponding <code>MetafunctionClass</code>. </p>
-<p>If <code>T</code> is not a <code>PlaceholderExpression</code>, returns <code>T</code> unchanged.</p>
-<p>Otherwise, if <code>T</code> is a <code>Placeholder</code>, returns a non-template <code>MetafunctionClass</code> without base class and equivalent to <code>T</code> when applied.</p>
-<p>Otherwise, let <code>T</code> be a <code>LambdaExpression</code> in a general form <code>F&lt;A1, A2, ...An&gt;</code>, where <code>F</code> is a class template and <code>A1</code>, <code>A2</code>, ...<code>An</code> are arbitrary types. The returned type is a non-template <code>MetafunctionClass</code> without base class and equivalent to </p>
+<p>Transforms a LambdaExpression into its corresponding MetafunctionClass. </p>
+<p>If <code>T</code> is not a PlaceholderExpression, returns <code>T</code> unchanged.</p>
+<p>Otherwise, if <code>T</code> is a Placeholder, returns a non-template MetafunctionClass without base class and equivalent to <code>T</code> when applied.</p>
+<p>Otherwise, let <code>T</code> be a PlaceholderExpression in a general form <code>F&lt;A1, A2, ...An&gt;</code>, where <code>F</code> is a class template and <code>A1</code>, <code>A2</code>, ...<code>An</code> are arbitrary types. The returned type is a non-template MetafunctionClass without base class and equivalent to </p>
 <div class="fragment"><div class="line">bind&lt;</div>
 <div class="line">    quote&lt;F&gt;,</div>
 <div class="line">    bind_nested&lt;A1&gt;::type,</div>
 <div class="line">    bind_nested&lt;A2&gt;::type,</div>
 <div class="line">    bind_nested&lt;An&gt;::type...</div>
 <div class="line">&gt;</div>
-</div><!-- fragment --><p> when applied. <code>bind_nested</code> is a metafunction returning a type such that any nested <code>PlaceholderExpression</code> will be applied when the outer <code>bind</code> is applied, but all other types are left unchanged.</p>
+</div><!-- fragment --><p> when applied. <code>bind_nested</code> is a metafunction returning a type such that any nested PlaceholderExpression will be applied when the outer <code>bind</code> is applied, but all other types are left unchanged.</p>
 <dl class="section warning"><dt>Warning</dt><dd>Differences from the original MPL:<ul>
-<li>The specification of the substitution mechanism is completely different, but most existing <code>LambdaExpression</code>s should work as-is. </li>
+<li>The specification of the substitution mechanism is completely different, but most existing Lambda Expressions should work as-is. </li>
 </ul>
 </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:51 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p><a class="el" href="_bidirectional_iterator.html">Bidirectional Iterator</a> providing constant-time guarantees on moving the iterator an arbitrary number of positions.</p>
 <h2>Refinement of</h2>
-<p><a class="el" href="_bidirectional_iterator.html">Bidirectional Iterator</a></p>
+<p><a class="el" href="_bidirectional_iterator.html">Bidirectional Iterator</a>, LessThanComparable</p>
 <h2>Notation</h2>
 <table class="doxtable">
 <tr>
@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td><code>I</code>, <code>J</code> </td><td><a class="el" href="_random_access_iterator.html">Random Access Iterators</a> </td></tr>
 <tr>
-<td><code>N</code> </td><td>An <a class="el" href="_integral_constant.html">Integral Constant</a> </td></tr>
+<td><code>N</code> </td><td>An IntegralConstant </td></tr>
 </table>
 <h2>Valid expressions</h2>
 <table class="doxtable">
@@ -108,16 +108,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td><code>advance&lt;I, N&gt;::type</code> </td><td><a class="el" href="_random_access_iterator.html">Random Access Iterator</a> </td><td>Constant time </td></tr>
 <tr>
-<td>`distance&lt;I, J&gt;::type </td><td><a class="el" href="_integral_constant.html">Integral Constant</a> </td><td>Constant time </td></tr>
-</table>
+<td><p class="starttd"><code>distance&lt;I, J&gt;::type &lt;td&gt; @ref IntegralConstant &lt;td&gt; Constant time &lt;/table&gt; |</code>category_of&lt;I&gt;::type&lt;tt&gt;| Convertible tocategory::random_access_iterator`</p>
 <h2>Invariants</h2>
 <ul>
 <li>If <code>advance_c&lt;I, N::value&gt;::type</code> is well-defined, then <code>advance_c&lt;advance_c&lt;I, N::value&gt;::type, -N::value&gt;::type</code> is equal to <code>I</code>. </li>
 </ul>
+</td></tr>
+</table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 10 2013 23:46:05 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 29 2013 16:35:27 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

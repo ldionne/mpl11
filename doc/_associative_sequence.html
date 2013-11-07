@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -85,18 +85,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Associative Sequence </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="el" href="_forward_sequence.html">Forward Sequence</a> allowing retrieval of elements based on keys.</p>
-<p>Unlike associative containers in the C++ Standard Library, MPL <a class="el" href="_associative_sequence.html">Associative Sequences</a> have no associated ordering relation. Instead, type equality is used to impose an equivalence relation on keys, and the order in which sequence elements are traversed during iteration is left unspecified.</p>
+<div class="textblock"><p>ForwardSequence allowing retrieval of elements based on keys.</p>
 <h2>Refinement of</h2>
-<p><a class="el" href="_forward_sequence.html">Forward Sequence</a></p>
+<p>ForwardSequence</p>
 <h2>Notation</h2>
 <table class="doxtable">
 <tr>
 <th>Expression </th><th>Description  </th></tr>
 <tr>
 <td><code>S</code> </td><td>An <a class="el" href="_associative_sequence.html">Associative Sequence</a> </td></tr>
-<tr>
-<td><code>K</code>, <code>Def</code> </td><td>Arbitrary types </td></tr>
 <tr>
 <td><code>E</code> </td><td>An element of <code>S</code> </td></tr>
 </table>
@@ -105,11 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <th>Expression </th><th>Type  </th></tr>
 <tr>
-<td><code>has_key&lt;S, K&gt;::type</code> </td><td>Boolean <a class="el" href="_integral_constant.html">Integral Constant</a> </td></tr>
-<tr>
-<td><code>at&lt;S, K&gt;::type</code> </td><td>Any type </td></tr>
-<tr>
-<td><code>at&lt;S, K, Def&gt;::type</code> </td><td>Any type </td></tr>
+<td><code>category_of&lt;S&gt;::type</code> </td><td>Convertible to <code>category::associative_sequence</code> </td></tr>
 <tr>
 <td><code>key_of&lt;S, E&gt;::type</code> </td><td>Any type </td></tr>
 <tr>
@@ -118,7 +111,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 10 2013 23:46:05 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 30 2013 11:35:42 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

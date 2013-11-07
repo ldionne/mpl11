@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/intrinsic/pop_front.hpp File Reference</title>
+<title>mpl11: boost/mpl11/pop_front.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,46 +83,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_3d4978afd7bbc77397977b40095cba3b.html">intrinsic</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_669f14f0986222489a0a88d859cac1d0.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">pop_front.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1pop__front.html" title="Removes the element at the beginning of a sequence. ">boost::mpl11::intrinsic::pop_front</a></code>.  
+<p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1pop__front.html" title="Removes the first element of a FrontExtensibleContainer. ">boost::mpl11::pop_front</a></code>.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="dispatch_8hpp_source.html">boost/mpl11/dispatch.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="begin_8hpp_source.html">boost/mpl11/intrinsic/begin.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="erase_8hpp_source.html">boost/mpl11/intrinsic/erase.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="is__empty_8hpp_source.html">boost/mpl11/intrinsic/is_empty.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="tags_8hpp_source.html">boost/mpl11/tags.hpp</a>&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="fwd_2pop__front_8hpp_source.html">boost/mpl11/fwd/pop_front.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="class__of_8hpp_source.html">boost/mpl11/class_of.hpp</a>&gt;</code><br/>
 </div>
 <p><a href="pop__front_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1pop__front.html">boost::mpl11::intrinsic::pop_front&lt; Sequence &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the element at the beginning of a sequence.  <a href="structboost_1_1mpl11_1_1intrinsic_1_1pop__front.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespaceboost_1_1mpl11_1_1intrinsic"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1mpl11_1_1intrinsic.html">boost::mpl11::intrinsic</a></td></tr>
-<tr class="memdesc:namespaceboost_1_1mpl11_1_1intrinsic"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all the intrinsics provided with the library. <br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1pop__front.html">boost::mpl11::pop_front&lt; Container &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the first element of a <code><a class="el" href="structboost_1_1mpl11_1_1_front_extensible_container.html" title="Container supporting insertion and removal at the beginning. ">FrontExtensibleContainer</a></code>.  <a href="structboost_1_1mpl11_1_1pop__front.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1pop__front.html" title="Removes the element at the beginning of a sequence. ">boost::mpl11::intrinsic::pop_front</a></code>. </p>
+<div class="textblock"><p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1pop__front.html" title="Removes the first element of a FrontExtensibleContainer. ">boost::mpl11::pop_front</a></code>. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:50 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

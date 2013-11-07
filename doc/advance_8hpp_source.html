@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/algorithm/advance.hpp Source File</title>
+<title>mpl11: boost/mpl11/advance.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_c0854e8f688c9e368220fc61979e6475.html">algorithm</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_669f14f0986222489a0a88d859cac1d0.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,104 +92,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="advance_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_ALGORITHM_ADVANCE_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_ALGORITHM_ADVANCE_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_ADVANCE_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_ADVANCE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="categories_8hpp.html">boost/mpl11/categories.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="best__category__for_8hpp.html">boost/mpl11/detail/best_category_for.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dispatch_8hpp.html">boost/mpl11/dispatch.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="identity_8hpp.html">boost/mpl11/identity.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="next_8hpp.html">boost/mpl11/intrinsic/next.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="prior_8hpp.html">boost/mpl11/intrinsic/prior.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="tags_8hpp.html">boost/mpl11/tags.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>algorithm {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1algorithm_1_1advance.html">   40</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1algorithm_1_1advance.html">advance</a></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        : dispatch&lt;tag::advance, Iterator, N&gt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    { };</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keywordtype">long</span> N&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">using</span> <a class="code" href="structboost_1_1mpl11_1_1algorithm_1_1advance.html">advance_c</a> = <a class="code" href="structboost_1_1mpl11_1_1algorithm_1_1advance.html">advance&lt;Iterator, long_&lt;N&gt;</a>&gt;;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;} <span class="comment">// end namespace algorithm</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">namespace </span>advance_detail {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt; <span class="keyword">class </span>Next,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;              <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt; <span class="keyword">class </span>Prior&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">struct </span>move {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N, <span class="keywordtype">bool</span> = N::value == 0&gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            : <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a>&lt;typename Next&lt;Iterator&gt;::type, typename Prior&lt;N&gt;::type&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        { };</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">struct </span>apply&lt;Iterator, N, true&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            : identity&lt;Iterator&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        { };</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    };</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Category, <span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">struct </span>advance_impl;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">struct </span>advance_impl&lt;category::forward_iterator, Iterator, N&gt; {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        static_assert(N::value &gt;= 0,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="stringliteral">&quot;The distance argument to `advance` may not be negative &quot;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="stringliteral">&quot;for forward iterators.&quot;</span>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// We can&#39;t derive from `move&lt;&gt;::apply&lt;&gt;`, because we want the</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">// static_assert to be instantiated before the invalid metafunction</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// if `N::value` is negative.</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">using</span> type = <span class="keyword">typename</span> move&lt;intrinsic::next, intrinsic::prior&gt;::</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                     template apply&lt;Iterator, N&gt;::type;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    };</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N, <span class="keywordtype">bool</span> = N::value &lt; 0&gt;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    struct advance_b<span class="keywordtype">id</span>irectional</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        : move&lt;<span class="keywordtype">int</span>rinsic::prior, <span class="keywordtype">int</span>rinsic::next&gt;::<span class="keyword">template</span> apply&lt;Iterator, N&gt;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    { };</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N <span class="comment">/* &gt;= 0 */</span>&gt;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">struct </span>advance_bidirectional&lt;Iterator, N, false&gt;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        : move&lt;intrinsic::next, intrinsic::prior&gt;::template apply&lt;Iterator, N&gt;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    { };</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">struct </span>advance_impl&lt;category::bidirectional_iterator, Iterator, N&gt;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        : advance_bidirectional&lt;Iterator, N&gt;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    { };</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// end namespace advance_detail</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">struct </span>dispatch&lt;detail::default_&lt;tag::advance&gt;, Iterator, N&gt;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    : advance_detail::advance_impl&lt;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        typename detail::best_category_for&lt;Iterator,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            category::bidirectional_iterator,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            category::forward_iterator</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        &gt;::type,</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        Iterator, N</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    &gt;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{ };</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_ALGORITHM_ADVANCE_HPP</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2advance_8hpp.html">boost/mpl11/fwd/advance.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="class__of_8hpp.html">boost/mpl11/class_of.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span> <span class="comment">// for advance_c</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1advance.html">   17</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1advance.html">advance</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1class__of.html">class_of</a>&lt;Iterator&gt;::type::template advance_impl&lt;Iterator, N&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    { };</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_ADVANCE_HPP</span></div>
 <div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
-<div class="ttc" id="categories_8hpp_html"><div class="ttname"><a href="categories_8hpp.html">categories.hpp</a></div><div class="ttdoc">Defines categories for sequences, iterators and integral constants. </div></div>
-<div class="ttc" id="dispatch_8hpp_html"><div class="ttname"><a href="dispatch_8hpp.html">dispatch.hpp</a></div><div class="ttdoc">Defines boost::mpl11::dispatch. </div></div>
-<div class="ttc" id="prior_8hpp_html"><div class="ttname"><a href="prior_8hpp.html">prior.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::prior. </div></div>
-<div class="ttc" id="next_8hpp_html"><div class="ttname"><a href="next_8hpp.html">next.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::next. </div></div>
-<div class="ttc" id="best__category__for_8hpp_html"><div class="ttname"><a href="best__category__for_8hpp.html">best_category_for.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::best_category_for. </div></div>
-<div class="ttc" id="tags_8hpp_html"><div class="ttname"><a href="tags_8hpp.html">tags.hpp</a></div><div class="ttdoc">Defines all the tags of the library. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1algorithm_1_1advance_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1algorithm_1_1advance.html">boost::mpl11::algorithm::advance</a></div><div class="ttdoc">Moves Iterator by the distance N. </div><div class="ttdef"><b>Definition:</b> advance.hpp:40</div></div>
-<div class="ttc" id="identity_8hpp_html"><div class="ttname"><a href="identity_8hpp.html">identity.hpp</a></div><div class="ttdoc">Defines boost::mpl11::identity. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a LambdaExpression F with arguments Args.... </div><div class="ttdef"><b>Definition:</b> apply.hpp:20</div></div>
+<div class="ttc" id="fwd_2advance_8hpp_html"><div class="ttname"><a href="fwd_2advance_8hpp.html">advance.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::advance. </div></div>
+<div class="ttc" id="class__of_8hpp_html"><div class="ttname"><a href="class__of_8hpp.html">class_of.hpp</a></div><div class="ttdoc">Defines boost::mpl11::class_of. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1class__of_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1class__of.html">boost::mpl11::class_of</a></div><div class="ttdoc">Returns the MPL class of a type. </div><div class="ttdef"><b>Definition:</b> class_of.hpp:14</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1advance_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1advance.html">boost::mpl11::advance</a></div><div class="ttdoc">Moves Iterator by the distance N. </div><div class="ttdef"><b>Definition:</b> advance.hpp:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:49 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

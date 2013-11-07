@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/intrinsic/at.hpp File Reference</title>
+<title>mpl11: boost/mpl11/at.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,77 +83,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_3d4978afd7bbc77397977b40095cba3b.html">intrinsic</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_669f14f0986222489a0a88d859cac1d0.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">at.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1at.html" title="Overloaded intrinsic for accessing elements in a sequence. ">boost::mpl11::intrinsic::at</a></code> and <code>boost::mpl::intrinsic::at_c</code>.  
+<p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1at.html" title="General purpose intrinsic for accessing elements in a sequence. ">boost::mpl11::at</a></code>.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="advance_8hpp_source.html">boost/mpl11/algorithm/advance.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="find__if_8hpp_source.html">boost/mpl11/algorithm/find_if.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="arg_8hpp_source.html">boost/mpl11/arg.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="categories_8hpp_source.html">boost/mpl11/categories.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="best__category__for_8hpp_source.html">boost/mpl11/detail/best_category_for.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="doxygen__only_8hpp_source.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="is__same_8hpp_source.html">boost/mpl11/detail/is_same.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="optional_8hpp_source.html">boost/mpl11/detail/optional.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="dispatch_8hpp_source.html">boost/mpl11/dispatch.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="identity_8hpp_source.html">boost/mpl11/identity.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="if_8hpp_source.html">boost/mpl11/if.hpp</a>&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="fwd_2at_8hpp_source.html">boost/mpl11/fwd/at.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="class__of_8hpp_source.html">boost/mpl11/class_of.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="integral__c_8hpp_source.html">boost/mpl11/integral_c.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="begin_8hpp_source.html">boost/mpl11/intrinsic/begin.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="category__of_8hpp_source.html">boost/mpl11/intrinsic/category_of.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="deref_8hpp_source.html">boost/mpl11/intrinsic/deref.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="end_8hpp_source.html">boost/mpl11/intrinsic/end.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="equal__to_8hpp_source.html">boost/mpl11/intrinsic/equal_to.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="key__of_8hpp_source.html">boost/mpl11/intrinsic/key_of.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="not__equal__to_8hpp_source.html">boost/mpl11/intrinsic/not_equal_to.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="value__of_8hpp_source.html">boost/mpl11/intrinsic/value_of.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="tags_8hpp_source.html">boost/mpl11/tags.hpp</a>&gt;</code><br/>
 </div>
 <p><a href="at_8hpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1at.html">boost::mpl11::intrinsic::at&lt; SequenceOrAssociativeSequence, IndexOrKey, DefaultOrNothing &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded intrinsic for accessing elements in a sequence.  <a href="structboost_1_1mpl11_1_1intrinsic_1_1at.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1at_3_01_sequence_00_01_key_00_01_default_01_4.html">boost::mpl11::intrinsic::at&lt; Sequence, Key, Default &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the element associated to a key in an <code>AssociativeSequence</code>, or a default value if no such element exists and a default is provided.  <a href="structboost_1_1mpl11_1_1intrinsic_1_1at_3_01_sequence_00_01_key_00_01_default_01_4.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1at_3_01_sequence_00_01_n_01_4.html">boost::mpl11::intrinsic::at&lt; Sequence, N &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>N</code>th element of a sequence if <code>N</code> is in the bounds of the sequence, and triggers a compile-time assertion otherwise.  <a href="structboost_1_1mpl11_1_1intrinsic_1_1at_3_01_sequence_00_01_n_01_4.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespaceboost_1_1mpl11_1_1intrinsic"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1mpl11_1_1intrinsic.html">boost::mpl11::intrinsic</a></td></tr>
-<tr class="memdesc:namespaceboost_1_1mpl11_1_1intrinsic"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all the intrinsics provided with the library. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:aa12e45459781601d7b867a302da778e9"><td class="memTemplParams" colspan="2"><a class="anchor" id="aa12e45459781601d7b867a302da778e9"></a>
-template&lt;typename Sequence , unsigned long N&gt; </td></tr>
-<tr class="memitem:aa12e45459781601d7b867a302da778e9"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1mpl11_1_1intrinsic.html#aa12e45459781601d7b867a302da778e9">boost::mpl11::intrinsic::at_c</a> = at&lt; Sequence, ulong&lt; N &gt;&gt;</td></tr>
-<tr class="memdesc:aa12e45459781601d7b867a302da778e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience alias to <code>at&lt;Sequence, ulong&lt;N&gt;&gt;</code>. <br/></td></tr>
-<tr class="separator:aa12e45459781601d7b867a302da778e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1intrinsic_1_1at.html" title="Overloaded intrinsic for accessing elements in a sequence. ">boost::mpl11::intrinsic::at</a></code> and <code>boost::mpl::intrinsic::at_c</code>. </p>
+<div class="textblock"><p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1at.html" title="General purpose intrinsic for accessing elements in a sequence. ">boost::mpl11::at</a></code>. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:50 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

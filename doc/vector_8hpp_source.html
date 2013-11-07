@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/container/vector.hpp Source File</title>
+<title>mpl11: boost/mpl11/vector.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_853353a323961901271ae9a342412291.html">container</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_669f14f0986222489a0a88d859cac1d0.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,157 +92,260 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="vector_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_CONTAINER_VECTOR_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_CONTAINER_VECTOR_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_VECTOR_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_VECTOR_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="copy_8hpp.html">boost/mpl11/algorithm/copy.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="categories_8hpp.html">boost/mpl11/categories.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="variadic__at_8hpp.html">boost/mpl11/detail/variadic_at.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dispatch_8hpp.html">boost/mpl11/dispatch.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="identity_8hpp.html">boost/mpl11/identity.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="inherit_8hpp.html">boost/mpl11/inherit.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="at_8hpp.html">boost/mpl11/intrinsic/at.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="tags_8hpp.html">boost/mpl11/tags.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bounded__by_8hpp.html">boost/mpl11/view/bounded_by.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>vector_detail {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">struct </span>vector_iterator;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2vector_8hpp.html">boost/mpl11/fwd/vector.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="apply_8hpp.html">boost/mpl11/apply.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="at_8hpp.html">boost/mpl11/at.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="copy__into__variadic__pack_8hpp.html">boost/mpl11/detail/copy_into_variadic_pack.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="detail_2variadic_2at_8hpp.html">boost/mpl11/detail/variadic/at.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="concat_8hpp.html">boost/mpl11/detail/variadic/concat.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="drop_8hpp.html">boost/mpl11/detail/variadic/drop.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="pack_8hpp.html">boost/mpl11/detail/variadic/pack.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="rebind_8hpp.html">boost/mpl11/detail/variadic/rebind.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="take_8hpp.html">boost/mpl11/detail/variadic/take.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2class__of_8hpp.html">boost/mpl11/fwd/class_of.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2unpack_8hpp.html">boost/mpl11/fwd/unpack.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span> <span class="comment">// for vector_c</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="random__access__iterator_8hpp.html">boost/mpl11/random_access_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2random__access__sequence_8hpp.html">boost/mpl11/random_access_sequence.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="random__extensible__container_8hpp.html">boost/mpl11/random_extensible_container.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> OperationTag, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">struct </span>dispatch;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">struct </span>dispatch&lt;tag::next, Position, Vector&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        : identity&lt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            vector_iterator&lt;Position + 1, Vector&gt;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        &gt;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    { };</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">struct </span>dispatch&lt;tag::prior, Position, Vector&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        : identity&lt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            vector_iterator&lt;Position - 1, Vector&gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        &gt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    { };</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">struct </span>dispatch&lt;tag::category_of, Position, Vector&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        : identity&lt;category::random_access_iterator&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    { };</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">struct </span>dispatch&lt;tag::deref, Position, Vector&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        : <a class="code" href="namespaceboost_1_1mpl11_1_1intrinsic.html#aa12e45459781601d7b867a302da778e9">intrinsic::at_c</a>&lt;Vector, Position&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    { };</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <span class="comment">// end namespace vector_detail</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Op, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> Position, <span class="keyword">typename</span> Vector&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">struct </span>dispatch&lt;Op, vector_detail::vector_iterator&lt;Position, Vector&gt;&gt;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    : vector_detail::dispatch&lt;Op, Position, Vector&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{ };</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="namespaceboost_1_1mpl11_1_1container.html">   60</a></span>&#160;<span class="keyword">namespace </span>container {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1container_1_1vector.html">   69</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1container_1_1vector.html">vector</a> BOOST_MPL11_DOXYGEN_ONLY({ });</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> First, <span class="keyword">typename</span> Last&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1container_1_1vector_3_01_first_00_01_last_01_4.html">   76</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1container_1_1vector.html">vector</a>&lt;First, Last&gt;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1algorithm_1_1copy.html">algorithm::copy</a>&lt;view::bounded_by&lt;First, Last&gt;, vector&lt;&gt;&gt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    { };</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;} <span class="comment">// end namespace container</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span>vector_detail {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">using</span> Index = <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> long;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Pos&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">struct </span>iterator;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">struct </span>iterator_class final : RandomAccessIterator {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">// ForwardIterator</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"></span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt; <span class="keyword">struct </span>next_impl;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Pos&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">struct </span>next_impl&lt;iterator&lt;Vector, Pos&gt;&gt; {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keyword">using</span> type = iterator&lt;Vector, Pos + 1&gt;;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        };</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt; <span class="keyword">struct </span>deref_impl;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Pos&gt;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">struct </span>deref_impl&lt;iterator&lt;Vector, Pos&gt;&gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            : <a class="code" href="group__sequence__intrinsics.html#gafcc11844575ae69a7e97149fc5480506">at_c</a>&lt;Vector, Pos&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        { };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Self, <span class="keyword">typename</span> Other&gt; <span class="keyword">struct </span>equal_impl;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Self, Index Other&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">struct </span>equal_impl&lt;iterator&lt;Vector, Self&gt;, iterator&lt;Vector, Other&gt;&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            : <a class="code" href="group__datatypes.html#ga8e7452511a9e0ee93883aad223234fd4">bool_</a>&lt;Self == Other&gt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        { };</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// BidirectionalIterator</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment"></span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt; <span class="keyword">struct </span>prev_impl;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Pos&gt;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">struct </span>prev_impl&lt;iterator&lt;Vector, Pos&gt;&gt; {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="keyword">using</span> type = iterator&lt;Vector, Pos - 1&gt;;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        };</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">// RandomAccessIterator</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt; <span class="keyword">struct </span>advance_impl;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Pos, <span class="keyword">typename</span> N&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">struct </span>advance_impl&lt;iterator&lt;Vector, Pos&gt;, N&gt; {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keyword">using</span> type = iterator&lt;Vector, Pos + N::value&gt;;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        };</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> First, <span class="keyword">typename</span> Last&gt; <span class="keyword">struct </span>distance_impl;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index First, Index Last&gt;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">struct </span>distance_impl&lt;iterator&lt;Vector, First&gt;, iterator&lt;Vector, Last&gt;&gt;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            : integral_c&lt;decltype(Last - First), Last - First&gt;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        { };</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::category_of, <a class="code" href="structboost_1_1mpl11_1_1container_1_1vector.html">container::vector</a>&lt;Elements...&gt;&gt;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    : <a class="code" href="structboost_1_1mpl11_1_1inherit.html">inherit</a>&lt;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        category::random_access_sequence,</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        category::front_extensible_sequence,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        category::back_extensible_sequence</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    &gt;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{ };</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">// BidirectionalSequence (because of the iterators)</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::begin, container::vector&lt;Elements...&gt;&gt;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    : identity&lt;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        vector_detail::vector_iterator&lt;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            0, container::vector&lt;Elements...&gt;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        &gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    &gt;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{ };</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Self, <span class="keyword">typename</span> Other&gt; <span class="keyword">struct </span>less_impl;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Vector, Index Self, Index Other&gt;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">struct </span>less_impl&lt;iterator&lt;Vector, Self&gt;, iterator&lt;Vector, Other&gt;&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            : <a class="code" href="group__datatypes.html#ga8e7452511a9e0ee93883aad223234fd4">bool_</a>&lt;(Self &lt; Other)&gt;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        { };</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    };</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    namespace variadic = detail::variadic;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    struct vector_class final</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        : RandomAccessSequence, RandomExtensibleContainer</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">// Sequence</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment"></span>        template &lt;typename Vector&gt;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        struct begin_impl {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            using type = iterator&lt;Vector, 0&gt;;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        };</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::end, container::vector&lt;Elements...&gt;&gt;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    : identity&lt;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        vector_detail::vector_iterator&lt;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            sizeof...(Elements), container::vector&lt;Elements...&gt;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        &gt;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    &gt;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{ };</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::size, container::vector&lt;Elements...&gt;&gt;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    : identity&lt;ulong&lt;sizeof...(Elements)&gt;&gt;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;{ };</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::is_empty, container::vector&lt;Elements...&gt;&gt;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    : identity&lt;bool_&lt;sizeof...(Elements) == 0&gt;&gt;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{ };</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        template &lt;typename Vector&gt; struct end_impl;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        template &lt;typename ...T&gt;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        struct end_impl&lt;vector&lt;T...&gt;&gt; {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            using type = iterator&lt;vector&lt;T...&gt;, sizeof...(T)&gt;;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        };</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        template &lt;typename Vector&gt; struct is_empty_impl;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// See below for the other specialization.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        template &lt;typename ...T&gt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        struct is_empty_impl&lt;vector&lt;T...&gt;&gt;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            : false_</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        { };</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        template &lt;typename Vector&gt; struct size_impl;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        template &lt;typename ...T&gt;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        struct size_impl&lt;vector&lt;T...&gt;&gt;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            : size_t&lt;sizeof...(T)&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        { };</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// RandomAccessSequence</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::at, container::vector&lt;Elements...&gt;, N&gt;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    : detail::variadic_at&lt;N, Elements...&gt;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{ };</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">// ExtensibleSequence</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements&gt;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::clear, container::vector&lt;Elements...&gt;&gt;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    : identity&lt;container::vector&lt;&gt;&gt;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;{ };</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">// FrontExtensibleSequence</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::push_front, container::vector&lt;Elements...&gt;, T&gt;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    : identity&lt;container::vector&lt;T, Elements...&gt;&gt;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;{ };</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">// BackExtensibleSequence</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...Elements, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword">struct </span>dispatch&lt;tag::push_back, container::vector&lt;Elements...&gt;, T&gt;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    : identity&lt;container::vector&lt;Elements..., T&gt;&gt;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;{ };</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_CONTAINER_VECTOR_HPP</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment">// RandomAccessSequence</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment"></span>        template &lt;typename Vector, typename N&gt; struct at_impl;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        template &lt;typename ...T, typename N&gt;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        struct at_impl&lt;vector&lt;T...&gt;, N&gt;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            : variadic::at&lt;variadic::pack&lt;T...&gt;, N::value&gt;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        { };</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="comment">// Container</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment"></span>        template &lt;typename Vector&gt;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        struct clear_impl {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            using type = vector&lt;&gt;;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        };</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        template &lt;typename Vector&gt;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        struct new_impl {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            template &lt;typename ...T&gt;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            struct apply {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                using type = vector&lt;T...&gt;;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            };</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        };</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="comment">// BackExtensibleContainer</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment"></span>        template &lt;typename Vector&gt; struct pop_back_impl;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        template &lt;typename ...T&gt;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        struct pop_back_impl&lt;vector&lt;T...&gt;&gt;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            : variadic::rebind&lt;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                typename variadic::take&lt;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                    variadic::pack&lt;T...&gt;, sizeof...(T) - 1</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                &gt;::type,</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                vector</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            &gt;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        { };</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        template &lt;typename Vector, typename X&gt; struct push_back_impl;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        template &lt;typename ...T, typename X&gt;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        struct push_back_impl&lt;vector&lt;T...&gt;, X&gt; {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            using type = vector&lt;T..., X&gt;;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        };</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="comment">// FrontExtensibleContainer</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment"></span>        template &lt;typename Vector&gt; struct pop_front_impl;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        template &lt;typename Head, typename ...Tail&gt;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        struct pop_front_impl&lt;vector&lt;Head, Tail...&gt;&gt; {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            using type = vector&lt;Tail...&gt;;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        };</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        template &lt;typename Vector, typename X&gt; struct push_front_impl;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        template &lt;typename ...T, typename X&gt;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        struct push_front_impl&lt;vector&lt;T...&gt;, X&gt; {</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            using type = vector&lt;X, T...&gt;;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        };</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="comment">// RandomExtensibleContainer</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"></span>        template &lt;typename Vector, typename Pos, typename Range&gt;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        struct insert_range_impl;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        template &lt;typename ...T, Index Pos, typename Range&gt;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        struct insert_range_impl&lt;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            vector&lt;T...&gt;, iterator&lt;vector&lt;T...&gt;, Pos&gt;, Range</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        &gt;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            : variadic::rebind&lt;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                typename variadic::concat&lt;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    <span class="comment">// [0, Pos)</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    typename variadic::take&lt;variadic::pack&lt;T...&gt;, Pos&gt;::type,</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                    typename detail::copy_into_variadic_pack&lt;Range&gt;::type,</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    <span class="comment">// [Pos, sizeof...(T))</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                    typename variadic::drop&lt;variadic::pack&lt;T...&gt;, Pos&gt;::type</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                &gt;::type,</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                vector</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            &gt;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        { };</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        template &lt;typename Vector, typename Pos, typename X&gt;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        struct insert_impl</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            : insert_range_impl&lt;Vector, Pos, vector&lt;X&gt;&gt;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        { };</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        template &lt;typename Vector, typename First, typename Last&gt;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        struct erase_range_impl;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        template &lt;typename ...T, Index First, Index Last&gt;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        struct erase_range_impl&lt;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            vector&lt;T...&gt;,</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            iterator&lt;vector&lt;T...&gt;, First&gt;,</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            iterator&lt;vector&lt;T...&gt;, Last&gt;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        &gt;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            : variadic::rebind&lt;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                typename variadic::concat&lt;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                    <span class="comment">// [0, First)</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                    typename variadic::take&lt;variadic::pack&lt;T...&gt;,First&gt;::type,</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                    <span class="comment">// [Last, sizeof...(T))</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                    typename variadic::drop&lt;variadic::pack&lt;T...&gt;, Last&gt;::type</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                &gt;::type,</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                vector</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            &gt;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        { };</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        template &lt;typename V, typename Pos&gt; struct erase_impl;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        template &lt;typename V, Index Pos&gt;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        struct erase_impl&lt;V, iterator&lt;V, Pos&gt;&gt;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            : erase_range_impl&lt;V, iterator&lt;V, Pos&gt;, iterator&lt;V, Pos + 1&gt;&gt;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        { };</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    };</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="comment">// This can&#39;t appear inside the class because it&#39;s a full specialization.</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    template &lt;&gt;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    struct vector_class::is_empty_impl&lt;vector&lt;&gt;&gt;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        : true_</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    { };</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;} <span class="comment">// end namespace vector_detail</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;template &lt;typename Vector, vector_detail::Index Position&gt;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;struct class_of&lt;vector_detail::iterator&lt;Vector, Position&gt;&gt; {</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    using type = vector_detail::iterator_class;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;};</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;template &lt;typename ...T&gt;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;struct class_of&lt;vector&lt;T...&gt;&gt; {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    using type = vector_detail::vector_class;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;};</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">// Optimization</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;template &lt;typename ...T, typename F&gt;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;struct unpack&lt;vector&lt;T...&gt;, F&gt;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    : apply&lt;F, T...&gt;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;{ };</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;#endif <span class="comment">// !BOOST_MPL11_VECTOR_HPP</span></div>
 <div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
-<div class="ttc" id="categories_8hpp_html"><div class="ttname"><a href="categories_8hpp.html">categories.hpp</a></div><div class="ttdoc">Defines categories for sequences, iterators and integral constants. </div></div>
-<div class="ttc" id="inherit_8hpp_html"><div class="ttname"><a href="inherit_8hpp.html">inherit.hpp</a></div><div class="ttdoc">Defines boost::mpl11::inherit. </div></div>
-<div class="ttc" id="at_8hpp_html"><div class="ttname"><a href="at_8hpp.html">at.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::at and boost::mpl::intrinsic::at_c. </div></div>
-<div class="ttc" id="dispatch_8hpp_html"><div class="ttname"><a href="dispatch_8hpp.html">dispatch.hpp</a></div><div class="ttdoc">Defines boost::mpl11::dispatch. </div></div>
-<div class="ttc" id="namespaceboost_1_1mpl11_1_1intrinsic_html_aa12e45459781601d7b867a302da778e9"><div class="ttname"><a href="namespaceboost_1_1mpl11_1_1intrinsic.html#aa12e45459781601d7b867a302da778e9">boost::mpl11::intrinsic::at_c</a></div><div class="ttdeci">at&lt; Sequence, ulong&lt; N &gt;&gt; at_c</div><div class="ttdoc">Convenience alias to at&amp;lt;Sequence, ulong&amp;lt;N&amp;gt;&amp;gt;. </div><div class="ttdef"><b>Definition:</b> at.hpp:116</div></div>
-<div class="ttc" id="tags_8hpp_html"><div class="ttname"><a href="tags_8hpp.html">tags.hpp</a></div><div class="ttdoc">Defines all the tags of the library. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1inherit_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1inherit.html">boost::mpl11::inherit</a></div><div class="ttdoc">Returns an unspecified non-template type publically derived from Bases.... </div><div class="ttdef"><b>Definition:</b> inherit.hpp:20</div></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="identity_8hpp_html"><div class="ttname"><a href="identity_8hpp.html">identity.hpp</a></div><div class="ttdoc">Defines boost::mpl11::identity. </div></div>
-<div class="ttc" id="variadic__at_8hpp_html"><div class="ttname"><a href="variadic__at_8hpp.html">variadic_at.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic_at. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1container_1_1vector_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1container_1_1vector.html">boost::mpl11::container::vector</a></div><div class="ttdoc">Contiguous sequence of types accessed by index. </div><div class="ttdef"><b>Definition:</b> vector.hpp:69</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1algorithm_1_1copy_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1algorithm_1_1copy.html">boost::mpl11::algorithm::copy</a></div><div class="ttdoc">Overloaded algorithm for copying elements from a sequence to another. </div><div class="ttdef"><b>Definition:</b> forward_decls.hpp:36</div></div>
-<div class="ttc" id="copy_8hpp_html"><div class="ttname"><a href="copy_8hpp.html">copy.hpp</a></div><div class="ttdoc">Defines boost::mpl11::algorithm::copy. </div></div>
-<div class="ttc" id="bounded__by_8hpp_html"><div class="ttname"><a href="bounded__by_8hpp.html">bounded_by.hpp</a></div><div class="ttdoc">Defines boost::mpl11::view::bounded_by. </div></div>
+<div class="ttc" id="copy__into__variadic__pack_8hpp_html"><div class="ttname"><a href="copy__into__variadic__pack_8hpp.html">copy_into_variadic_pack.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::copy_into_variadic_pack. </div></div>
+<div class="ttc" id="fwd_2unpack_8hpp_html"><div class="ttname"><a href="fwd_2unpack_8hpp.html">unpack.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::unpack. </div></div>
+<div class="ttc" id="pack_8hpp_html"><div class="ttname"><a href="pack_8hpp.html">pack.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic::pack. </div></div>
+<div class="ttc" id="group__datatypes_html_ga8e7452511a9e0ee93883aad223234fd4"><div class="ttname"><a href="group__datatypes.html#ga8e7452511a9e0ee93883aad223234fd4">boost::mpl11::bool_</a></div><div class="ttdeci">integral_c&lt; bool, B &gt; bool_</div><div class="ttdoc">Alias to integral_c&amp;lt;bool, B&amp;gt;; provided for convenience. </div><div class="ttdef"><b>Definition:</b> integral_c.hpp:21</div></div>
+<div class="ttc" id="at_8hpp_html"><div class="ttname"><a href="at_8hpp.html">at.hpp</a></div><div class="ttdoc">Defines boost::mpl11::at. </div></div>
+<div class="ttc" id="take_8hpp_html"><div class="ttname"><a href="take_8hpp.html">take.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic::take. </div></div>
+<div class="ttc" id="random__access__iterator_8hpp_html"><div class="ttname"><a href="random__access__iterator_8hpp.html">random_access_iterator.hpp</a></div><div class="ttdoc">Defines boost::mpl11::RandomAccessIterator. </div></div>
+<div class="ttc" id="group__sequence__intrinsics_html_gafcc11844575ae69a7e97149fc5480506"><div class="ttname"><a href="group__sequence__intrinsics.html#gafcc11844575ae69a7e97149fc5480506">boost::mpl11::at_c</a></div><div class="ttdeci">at&lt; Sequence, ulong&lt; N &gt;&gt; at_c</div><div class="ttdoc">Alias to at&amp;lt;Sequence, ulong&amp;lt;N&amp;gt;&amp;gt;; provided for convenience. </div><div class="ttdef"><b>Definition:</b> at.hpp:54</div></div>
+<div class="ttc" id="fwd_2vector_8hpp_html"><div class="ttname"><a href="fwd_2vector_8hpp.html">vector.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::vector and boost::mpl11::vector_c. </div></div>
+<div class="ttc" id="fwd_2class__of_8hpp_html"><div class="ttname"><a href="fwd_2class__of_8hpp.html">class_of.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::class_of. </div></div>
+<div class="ttc" id="rebind_8hpp_html"><div class="ttname"><a href="rebind_8hpp.html">rebind.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic::rebind. </div></div>
+<div class="ttc" id="mpl11_2random__access__sequence_8hpp_html"><div class="ttname"><a href="mpl11_2random__access__sequence_8hpp.html">random_access_sequence.hpp</a></div><div class="ttdoc">Defines boost::mpl11::RandomAccessIterable. </div></div>
+<div class="ttc" id="concat_8hpp_html"><div class="ttname"><a href="concat_8hpp.html">concat.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic::concat. </div></div>
+<div class="ttc" id="apply_8hpp_html"><div class="ttname"><a href="apply_8hpp.html">apply.hpp</a></div><div class="ttdoc">Defines boost::mpl11::apply. </div></div>
+<div class="ttc" id="detail_2variadic_2at_8hpp_html"><div class="ttname"><a href="detail_2variadic_2at_8hpp.html">at.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic::at. </div></div>
+<div class="ttc" id="drop_8hpp_html"><div class="ttname"><a href="drop_8hpp.html">drop.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic::drop. </div></div>
+<div class="ttc" id="random__extensible__container_8hpp_html"><div class="ttname"><a href="random__extensible__container_8hpp.html">random_extensible_container.hpp</a></div><div class="ttdoc">Defines boost::mpl11::RandomExtensibleContainer. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:50 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

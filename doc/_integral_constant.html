@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -85,11 +85,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Integral Constant </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Document this concept </dd></dl>
+<div class="textblock"><p>Holder for a compile-time value of an integral type.</p>
+<p>Every <a class="el" href="_integral_constant.html">Integral Constant</a> is also a nullary <a class="el" href="_metafunction.html">Metafunction</a> returning itself. An integral constant object is implicitly convertible to the corresponding runtime value of the wrapped integral type.</p>
+<h2>Refinement of</h2>
+<p><a class="el" href="_categorizable.html">Categorizable</a></p>
+<h2>Notation</h2>
+<table class="doxtable">
+<tr>
+<th>Expression </th><th>Description  </th></tr>
+<tr>
+<td><code>N</code> </td><td>An <a class="el" href="_integral_constant.html">Integral Constant</a> </td></tr>
+</table>
+<h2>Valid expressions</h2>
+<table class="doxtable">
+<tr>
+<th>Expression </th><th>Type  </th></tr>
+<tr>
+<td><code>N::value_type</code> </td><td>An integral type </td></tr>
+<tr>
+<td><code>N::value</code> </td><td>An integral constant expression </td></tr>
+<tr>
+<td><code>N::type</code> </td><td><a class="el" href="_integral_constant.html">Integral Constant</a> </td></tr>
+</table>
+<p>| <code>constexpr N::value_type c = N{}</code> | | <code>category_of&lt;N&gt;::type</code> | Convertible to <code>category::integral_constant</code> | <code>next&lt;N&gt;::type</code> | <a class="el" href="_integral_constant.html">Integral Constant</a> | <code>prior&lt;N&gt;::type</code> | <a class="el" href="_integral_constant.html">Integral Constant</a> </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 10 2013 23:46:05 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 29 2013 14:58:37 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

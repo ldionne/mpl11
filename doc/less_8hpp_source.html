@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/intrinsic/less.hpp Source File</title>
+<title>mpl11: boost/mpl11/less.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_3d4978afd7bbc77397977b40095cba3b.html">intrinsic</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_669f14f0986222489a0a88d859cac1d0.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,80 +92,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="less_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_INTRINSIC_LESS_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_INTRINSIC_LESS_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_LESS_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_LESS_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="categories_8hpp.html">boost/mpl11/categories.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="best__category__for_8hpp.html">boost/mpl11/detail/best_category_for.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dispatch_8hpp.html">boost/mpl11/dispatch.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="identity_8hpp.html">boost/mpl11/identity.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="and_8hpp.html">boost/mpl11/intrinsic/and.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="tags_8hpp.html">boost/mpl11/tags.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>intrinsic {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1intrinsic_1_1less_3_01_t1_00_01_t2_00_01_tn_8_8_8_4.html">   27</a></span>&#160;    <span class="keyword">struct </span>less BOOST_MPL11_DOXYGEN_ONLY(&lt;T1, T2, Tn...&gt;)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        : dispatch&lt;tag::less, T1, T2, Tn...&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    { };</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1intrinsic_1_1less_3_01_t1_00_01_t2_01_4.html">   43</a></span>&#160;    <span class="keyword">struct </span>less&lt;T1, T2&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        : dispatch&lt;tag::less, T1, T2&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    { };</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <span class="comment">// end namespace intrinsic</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">struct </span>dispatch&lt;detail::default_&lt;tag::less&gt;, T1, T2, Tn...&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    : <a class="code" href="structboost_1_1mpl11_1_1intrinsic_1_1and__.html">intrinsic::and_</a>&lt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        intrinsic::less&lt;T1, T2&gt;,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        intrinsic::less&lt;T2, Tn...&gt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    &gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{ };</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">namespace </span>less_detail {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Category1, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> Category2, <span class="keyword">typename</span> T2&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">struct </span>less_impl;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">struct </span>less_impl&lt;category::integral_constant, T1,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                     category::integral_constant, T2&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        : identity&lt;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            bool_&lt;T1::value &lt; T2::value&gt;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        &gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    { };</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// end namespace less_detail</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;template &lt;typename T1, typename T2&gt;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;struct dispatch&lt;detail::default_&lt;tag::less&gt;, T1, T2&gt;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    : less_detail::less_impl&lt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        typename detail::best_category_for&lt;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            T1, category::integral_constant</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        &gt;::type, T1,</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        typename detail::best_category_for&lt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            T2, category::integral_constant</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        &gt;::type, T2</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    &gt;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{ };</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;#endif <span class="comment">// !BOOST_MPL11_INTRINSIC_LESS_HPP</span></div>
-<div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
-<div class="ttc" id="categories_8hpp_html"><div class="ttname"><a href="categories_8hpp.html">categories.hpp</a></div><div class="ttdoc">Defines categories for sequences, iterators and integral constants. </div></div>
-<div class="ttc" id="dispatch_8hpp_html"><div class="ttname"><a href="dispatch_8hpp.html">dispatch.hpp</a></div><div class="ttdoc">Defines boost::mpl11::dispatch. </div></div>
-<div class="ttc" id="best__category__for_8hpp_html"><div class="ttname"><a href="best__category__for_8hpp.html">best_category_for.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::best_category_for. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1intrinsic_1_1and___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1intrinsic_1_1and__.html">boost::mpl11::intrinsic::and_</a></div><div class="ttdoc">Returns the result of short-circuit logical and (&amp;amp;&amp;amp;) on the result of its arguments. </div><div class="ttdef"><b>Definition:</b> and.hpp:26</div></div>
-<div class="ttc" id="tags_8hpp_html"><div class="ttname"><a href="tags_8hpp.html">tags.hpp</a></div><div class="ttdoc">Defines all the tags of the library. </div></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="and_8hpp_html"><div class="ttname"><a href="and_8hpp.html">and.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::and_. </div></div>
-<div class="ttc" id="identity_8hpp_html"><div class="ttname"><a href="identity_8hpp.html">identity.hpp</a></div><div class="ttdoc">Defines boost::mpl11::identity. </div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2less_8hpp.html">boost/mpl11/fwd/less.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="comparison__operator_8hpp.html">boost/mpl11/detail/comparison_operator.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="group__details.html#ga0fe4fadb68350b2864179b523659e951">BOOST_MPL11_DEFINE_COMPARISON_OPERATOR</a>(less, less_impl)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_LESS_HPP</span></div>
+<div class="ttc" id="fwd_2less_8hpp_html"><div class="ttname"><a href="fwd_2less_8hpp.html">less.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::less. </div></div>
+<div class="ttc" id="group__details_html_ga0fe4fadb68350b2864179b523659e951"><div class="ttname"><a href="group__details.html#ga0fe4fadb68350b2864179b523659e951">BOOST_MPL11_DEFINE_COMPARISON_OPERATOR</a></div><div class="ttdeci">#define BOOST_MPL11_DEFINE_COMPARISON_OPERATOR(NAME, IMPL)</div><div class="ttdoc">Macro expanding to the definition of a comparison operator. </div><div class="ttdef"><b>Definition:</b> comparison_operator.hpp:18</div></div>
+<div class="ttc" id="comparison__operator_8hpp_html"><div class="ttname"><a href="comparison__operator_8hpp.html">comparison_operator.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DEFINE_COMPARISON_OPERATOR. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:50 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

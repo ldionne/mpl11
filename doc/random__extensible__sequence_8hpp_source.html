@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/test/random_extensible_sequence.hpp Source File</title>
+<title>mpl11: boost/old/mpl11/sandbox/test/random_extensible_sequence.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_6310c329e93d681ce7e05fd1eed98fa4.html">test</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_5d7cdb539eb99903fac3e9f61df3237f.html">old</a></li><li class="navelem"><a class="el" href="dir_3546482c8a902c51ab094fc725b4fd54.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_2ae02c95643e9137753585e73e68c064.html">sandbox</a></li><li class="navelem"><a class="el" href="dir_a79233cd13bc286bfdf43842dc2f444c.html">test</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,19 +95,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="algorithm_2advance_8hpp.html">boost/mpl11/algorithm/advance.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="apply_8hpp.html">boost/mpl11/functional/apply.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="quote_8hpp.html">boost/mpl11/functional/quote.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="advance_8hpp.html">boost/mpl11/advance.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="apply_8hpp.html">boost/mpl11/apply.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="quote_8hpp.html">boost/mpl11/quote.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="inherit_8hpp.html">boost/mpl11/inherit.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="begin_8hpp.html">boost/mpl11/intrinsic/begin.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="intrinsic_2clear_8hpp.html">boost/mpl11/intrinsic/clear.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="intrinsic_2erase_8hpp.html">boost/mpl11/intrinsic/erase.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="intrinsic_2insert_8hpp.html">boost/mpl11/intrinsic/insert.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="intrinsic_2insert__range_8hpp.html">boost/mpl11/intrinsic/insert_range.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="operator_2equal__to_8hpp.html">boost/mpl11/operator/equal_to.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="back__extensible__sequence_8hpp.html">boost/mpl11/test/back_extensible_sequence.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="front__extensible__sequence_8hpp.html">boost/mpl11/test/front_extensible_sequence.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="begin_8hpp.html">boost/mpl11/begin.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="clear_8hpp.html">boost/mpl11/clear.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="erase_8hpp.html">boost/mpl11/erase.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2insert_8hpp.html">boost/mpl11/insert.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2insert__range_8hpp.html">boost/mpl11/insert_range.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/equal_to.hpp&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/test/back_extensible_sequence.hpp&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/test/front_extensible_sequence.hpp&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 { <span class="keyword">namespace </span>test {</div>
@@ -131,7 +132,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">using</span> S = Sequence&lt;a0, a1, a2, a3&gt;;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">template</span> &lt;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">using</span> iter_at = <span class="keyword">typename</span> algorithm::advance_c&lt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">using</span> iter_at = <span class="keyword">typename</span> <a class="code" href="group__iterator__intrinsics.html#ga58e36f60cae76bc5a1eebe7e54a3d4a2">algorithm::advance_c</a>&lt;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keyword">typename</span> begin&lt;S&gt;::type, i</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        &gt;::type;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
@@ -278,23 +279,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::test</span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_TEST_RANDOM_EXTENSIBLE_SEQUENCE_HPP</span></div>
+<div class="ttc" id="advance_8hpp_html"><div class="ttname"><a href="advance_8hpp.html">advance.hpp</a></div><div class="ttdoc">Defines boost::mpl11::advance. </div></div>
 <div class="ttc" id="begin_8hpp_html"><div class="ttname"><a href="begin_8hpp.html">begin.hpp</a></div><div class="ttdoc">Defines boost::mpl11::begin. </div></div>
 <div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
-<div class="ttc" id="operator_2equal__to_8hpp_html"><div class="ttname"><a href="operator_2equal__to_8hpp.html">equal_to.hpp</a></div><div class="ttdoc">Defines boost::mpl11::equal_to. </div></div>
-<div class="ttc" id="intrinsic_2insert__range_8hpp_html"><div class="ttname"><a href="intrinsic_2insert__range_8hpp.html">insert_range.hpp</a></div><div class="ttdoc">Defines boost::mpl11::insert_range. </div></div>
-<div class="ttc" id="front__extensible__sequence_8hpp_html"><div class="ttname"><a href="front__extensible__sequence_8hpp.html">front_extensible_sequence.hpp</a></div><div class="ttdoc">Defines boost::mpl11::test::front_extensible_sequence. </div></div>
+<div class="ttc" id="mpl11_2insert__range_8hpp_html"><div class="ttname"><a href="mpl11_2insert__range_8hpp.html">insert_range.hpp</a></div><div class="ttdoc">Defines boost::mpl11::insert_range. </div></div>
 <div class="ttc" id="quote_8hpp_html"><div class="ttname"><a href="quote_8hpp.html">quote.hpp</a></div><div class="ttdoc">Defines boost::mpl11::quote. </div></div>
 <div class="ttc" id="inherit_8hpp_html"><div class="ttname"><a href="inherit_8hpp.html">inherit.hpp</a></div><div class="ttdoc">Defines boost::mpl11::inherit. </div></div>
-<div class="ttc" id="back__extensible__sequence_8hpp_html"><div class="ttname"><a href="back__extensible__sequence_8hpp.html">back_extensible_sequence.hpp</a></div><div class="ttdoc">Defines boost::mpl11::test::back_extensible_sequence. </div></div>
-<div class="ttc" id="algorithm_2advance_8hpp_html"><div class="ttname"><a href="algorithm_2advance_8hpp.html">advance.hpp</a></div><div class="ttdoc">Defines boost::mpl11::algorithm::advance. </div></div>
-<div class="ttc" id="intrinsic_2clear_8hpp_html"><div class="ttname"><a href="intrinsic_2clear_8hpp.html">clear.hpp</a></div><div class="ttdoc">Defines boost::mpl11::clear. </div></div>
-<div class="ttc" id="intrinsic_2insert_8hpp_html"><div class="ttname"><a href="intrinsic_2insert_8hpp.html">insert.hpp</a></div><div class="ttdoc">Defines boost::mpl11::insert. </div></div>
+<div class="ttc" id="mpl11_2insert_8hpp_html"><div class="ttname"><a href="mpl11_2insert_8hpp.html">insert.hpp</a></div><div class="ttdoc">Defines boost::mpl11::insert. </div></div>
+<div class="ttc" id="group__iterator__intrinsics_html_ga58e36f60cae76bc5a1eebe7e54a3d4a2"><div class="ttname"><a href="group__iterator__intrinsics.html#ga58e36f60cae76bc5a1eebe7e54a3d4a2">boost::mpl11::advance_c</a></div><div class="ttdeci">advance&lt; Iterator, long_&lt; N &gt;&gt; advance_c</div><div class="ttdoc">Alias to advance&amp;lt;Iterator, long_&amp;lt;N&amp;gt;&amp;gt;; provided for convenience. </div><div class="ttdef"><b>Definition:</b> advance.hpp:27</div></div>
+<div class="ttc" id="clear_8hpp_html"><div class="ttname"><a href="clear_8hpp.html">clear.hpp</a></div><div class="ttdoc">Defines boost::mpl11::clear. </div></div>
 <div class="ttc" id="apply_8hpp_html"><div class="ttname"><a href="apply_8hpp.html">apply.hpp</a></div><div class="ttdoc">Defines boost::mpl11::apply. </div></div>
-<div class="ttc" id="intrinsic_2erase_8hpp_html"><div class="ttname"><a href="intrinsic_2erase_8hpp.html">erase.hpp</a></div><div class="ttdoc">Defines boost::mpl11::erase. </div></div>
+<div class="ttc" id="erase_8hpp_html"><div class="ttname"><a href="erase_8hpp.html">erase.hpp</a></div><div class="ttdoc">Defines boost::mpl11::erase. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 10 2013 23:46:03 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:50 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

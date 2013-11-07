@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logical_20intrinsics',['Logical Intrinsics',['../group__logical__intrinsic.html',1,'']]]
+  ['logical_20operators',['Logical operators',['../group__logical__operators.html',1,'']]]
 ];

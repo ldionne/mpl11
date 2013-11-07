@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/mpl11/algorithm/count_if.hpp Source File</title>
+<title>mpl11: boost/old/mpl11/count_if.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
@@ -63,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -70,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_c0854e8f688c9e368220fc61979e6475.html">algorithm</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_5d7cdb539eb99903fac3e9f61df3237f.html">old</a></li><li class="navelem"><a class="el" href="dir_3546482c8a902c51ab094fc725b4fd54.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,57 +92,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="count__if_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_ALGORITHM_COUNT_IF_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_ALGORITHM_COUNT_IF_HPP</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_COUNT_IF_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_COUNT_IF_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="foldl_8hpp.html">boost/mpl11/algorithm/foldl.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="apply__wrap_8hpp.html">boost/mpl11/apply_wrap.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="arg_8hpp.html">boost/mpl11/arg.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="dispatch_8hpp.html">boost/mpl11/dispatch.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="if_8hpp.html">boost/mpl11/if.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="next_8hpp.html">boost/mpl11/intrinsic/next.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="lambda_8hpp.html">boost/mpl11/lambda.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="tags_8hpp.html">boost/mpl11/tags.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/fwd/count_if.hpp&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="apply__wrap_8hpp.html">boost/mpl11/apply_wrap.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/arg.hpp&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="foldl_8hpp.html">boost/mpl11/foldl.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2if_8hpp.html">boost/mpl11/if.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/lambda.hpp&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="next_8hpp.html">boost/mpl11/next.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>algorithm {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence, <span class="keyword">typename</span> Predicate&gt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1algorithm_1_1count__if.html">   42</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1algorithm_1_1count__if.html">count_if</a></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        : dispatch&lt;tag::count_if, Sequence, Predicate&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    { };</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;} <span class="comment">// end namespace algorithm</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence, <span class="keyword">typename</span> Predicate&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">struct </span>dispatch&lt;detail::default_&lt;tag::count_if&gt;, Sequence, Predicate&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    : <a class="code" href="structboost_1_1mpl11_1_1algorithm_1_1foldl.html">algorithm::foldl</a>&lt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        Sequence,</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        ulong&lt;0&gt;,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        if_&lt;apply_wrap&lt;typename lambda&lt;Predicate&gt;::type, _2&gt;,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            intrinsic::next&lt;_1&gt;,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            _1</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        &gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    &gt;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{ };</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_ALGORITHM_COUNT_IF_HPP</span></div>
-<div class="ttc" id="arg_8hpp_html"><div class="ttname"><a href="arg_8hpp.html">arg.hpp</a></div><div class="ttdoc">Defines boost::mpl11::arg. </div></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence, <span class="keyword">typename</span> Predicate&gt;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1count__if.html">   22</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1count__if.html">count_if</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1foldl.html">foldl</a>&lt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            Sequence,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            ulong&lt;0&gt;,</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            if_&lt;apply_wrap&lt;typename lambda&lt;Predicate&gt;::type, _2&gt;,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                next&lt;_1&gt;,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                _1</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            &gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        &gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    { };</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_COUNT_IF_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1count__if_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1count__if.html">boost::mpl11::count_if</a></div><div class="ttdoc">Returns the number of elements in Sequence satisfying Predicate. </div><div class="ttdef"><b>Definition:</b> count_if.hpp:22</div></div>
+<div class="ttc" id="mpl11_2if_8hpp_html"><div class="ttname"><a href="mpl11_2if_8hpp.html">if.hpp</a></div><div class="ttdoc">Defines boost::mpl11::if_. </div></div>
 <div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
-<div class="ttc" id="foldl_8hpp_html"><div class="ttname"><a href="foldl_8hpp.html">foldl.hpp</a></div><div class="ttdoc">Defines boost::mpl11::algorithm::foldl. </div></div>
-<div class="ttc" id="dispatch_8hpp_html"><div class="ttname"><a href="dispatch_8hpp.html">dispatch.hpp</a></div><div class="ttdoc">Defines boost::mpl11::dispatch. </div></div>
-<div class="ttc" id="next_8hpp_html"><div class="ttname"><a href="next_8hpp.html">next.hpp</a></div><div class="ttdoc">Defines boost::mpl11::intrinsic::next. </div></div>
-<div class="ttc" id="lambda_8hpp_html"><div class="ttname"><a href="lambda_8hpp.html">lambda.hpp</a></div><div class="ttdoc">Defines boost::mpl11::lambda. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1algorithm_1_1foldl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1algorithm_1_1foldl.html">boost::mpl11::algorithm::foldl</a></div><div class="ttdoc">Accumulates the elements of a sequence from an initial state using a custom operation. </div><div class="ttdef"><b>Definition:</b> foldl.hpp:58</div></div>
-<div class="ttc" id="tags_8hpp_html"><div class="ttname"><a href="tags_8hpp.html">tags.hpp</a></div><div class="ttdoc">Defines all the tags of the library. </div></div>
-<div class="ttc" id="if_8hpp_html"><div class="ttname"><a href="if_8hpp.html">if.hpp</a></div><div class="ttdoc">Defines boost::mpl11::if_ and boost::mpl11::if_c. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1algorithm_1_1count__if_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1algorithm_1_1count__if.html">boost::mpl11::algorithm::count_if</a></div><div class="ttdoc">Returns the number of elements in Sequence satisfying Predicate. </div><div class="ttdef"><b>Definition:</b> count_if.hpp:42</div></div>
+<div class="ttc" id="foldl_8hpp_html"><div class="ttname"><a href="foldl_8hpp.html">foldl.hpp</a></div><div class="ttdoc">Defines boost::mpl11::foldl. </div></div>
+<div class="ttc" id="next_8hpp_html"><div class="ttname"><a href="next_8hpp.html">next.hpp</a></div><div class="ttdoc">Defines boost::mpl11::next. </div></div>
 <div class="ttc" id="apply__wrap_8hpp_html"><div class="ttname"><a href="apply__wrap_8hpp.html">apply_wrap.hpp</a></div><div class="ttdoc">Defines boost::mpl11::apply_wrap. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1foldl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1foldl.html">boost::mpl11::foldl</a></div><div class="ttdoc">Accumulates the elements of a sequence from an initial state using a custom operation. </div><div class="ttdef"><b>Definition:</b> foldl.hpp:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 3 2013 12:51:43 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 7 2013 18:18:50 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
