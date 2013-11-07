@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::RandomAccessIterable`.
+ * Defines `boost::mpl11::RandomAccessSequence`.
  */
 
 #ifndef BOOST_MPL11_RANDOM_ACCESS_SEQUENCE_HPP
