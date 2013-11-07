@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 {
      * Returns whether an `AssociativeSequence` contains one or more
      * elements with key `Key`.
      */
-    template <typename Seq, typename Key>
+    template <typename Sequence, typename Key>
     struct has_key;
 }} // end namespace boost::mpl11
 

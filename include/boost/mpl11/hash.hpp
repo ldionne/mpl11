@@ -12,9 +12,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename H>
+    template <typename Hashable>
     struct hash
-        : class_of<H>::type::template hash_impl<H>
+        : class_of<Hashable>::type::template hash_impl<Hashable>
     { };
 }} // end namespace boost::mpl11
 

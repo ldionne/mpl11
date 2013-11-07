@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
      * This intrinsic replaces the `mpl::empty` intrinsic from the
      * original MPL.
      */
-    template <typename Seq>
+    template <typename Sequence>
     struct is_empty;
 }} // end namespace boost::mpl11
 

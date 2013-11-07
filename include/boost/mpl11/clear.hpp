@@ -12,9 +12,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Seq>
+    template <typename Container>
     struct clear
-        : class_of<Seq>::type::template clear_impl<Seq>
+        : class_of<Container>::type::template clear_impl<Container>
     { };
 }} // end namespace boost::mpl11
 

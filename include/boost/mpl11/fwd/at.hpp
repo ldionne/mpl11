@@ -17,31 +17,31 @@ namespace boost { namespace mpl11 {
      *
      * General purpose intrinsic for accessing elements in a sequence.
      *
-     * ### `AssociativeSequence`: `at<Seq, Key, Default = optional>`
+     * ### `AssociativeSequence`: `at<%Sequence, Key, Default = optional>`
      *
      * If `Default` is provided, returns the element associated to `Key` in
-     * `Seq` or `Default` if so such element exists.
+     * `%Sequence` or `Default` if so such element exists.
      *
      * If `Default` is not provided, returns the element associated to `Key`
-     * in `Seq` or triggers a compile-time assertion if so such element
+     * in `%Sequence` or triggers a compile-time assertion if so such element
      * exists.
      *
      *
-     * ### `RandomAccessSequence`: `at<Seq, N>`
+     * ### `RandomAccessSequence`: `at<%Sequence, N>`
      *
-     * Returns the `N`th element of `Seq` if `N` is in the bounds of the
-     * sequence, and triggers a compile-time assertion otherwise.
+     * Returns the `N`th element of `%Sequence` if `N` is in the bounds of
+     * the sequence, and triggers a compile-time assertion otherwise.
      *
      *
      * @todo
-     * Consider returning a `Logical` from `at<Seq, Key>`. Something like
-     * a Maybe would be neat.
+     * Consider returning a `Logical` from `at<%Sequence, Key>`. Something
+     * like a `Maybe` would be neat.
      */
     template <typename SEE_DETAILS>
     struct at { };
 #else
     template <
-        typename Seq,
+        typename Sequence,
         typename KeyOrIndex,
         typename Default = detail::optional
     >
@@ -49,9 +49,9 @@ namespace boost { namespace mpl11 {
 #endif
 
     //! @ingroup sequence_intrinsics
-    //! Alias to `at<Seq, ulong<N>>`; provided for convenience.
-    template <typename Seq, unsigned long N>
-    using at_c = at<Seq, ulong<N>>;
+    //! Alias to `at<%Sequence, ulong<N>>`; provided for convenience.
+    template <typename Sequence, unsigned long N>
+    using at_c = at<Sequence, ulong<N>>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AT_HPP

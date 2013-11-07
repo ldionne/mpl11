@@ -10,10 +10,12 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Removes the first element of a container if such an element exists,
-     * and triggers a compile-time assertion otherwise.
+     * Removes the first element of a `FrontExtensibleContainer`.
+     *
+     * If no such element exists, i.e. if `%Container` is empty, a
+     * compile-time assertion is triggered.
      */
-    template <typename Seq>
+    template <typename Container>
     struct pop_front;
 }} // end namespace boost::mpl11
 

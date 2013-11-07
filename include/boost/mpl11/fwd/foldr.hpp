@@ -22,8 +22,8 @@ namespace boost { namespace mpl11 {
      * ### Semantics and default implementation
      *
      * Equivalent to the following:
-     * Let `First` be the same as `begin<Sequence>::type` and  `Last`
-     * the same as `end<Sequence>::type`. `foldr` is equivalent to
+     * Let `First` be the same as `begin<%Sequence>::type` and  `Last`
+     * the same as `end<%Sequence>::type`. `foldr` is equivalent to
      * `foldr_impl<First, Last, State, F>`, where `foldr_impl` is
      * equivalent to `identity<State>` if `equal<First, Last>::value`
      * is `true` and

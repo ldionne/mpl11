@@ -12,9 +12,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Seq, typename Key>
+    template <typename Sequence, typename Key>
     struct has_key
-        : class_of<Seq>::type::template has_key_impl<Seq, Key>
+        : class_of<Sequence>::type::template has_key_impl<Sequence, Key>
     { };
 }} // end namespace boost::mpl11
 

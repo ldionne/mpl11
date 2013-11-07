@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 {
      * Use a minimal sequence in the unit tests instead of vector, which
      * could specialize unpack.
      */
-    template <typename Seq, typename F>
+    template <typename Sequence, typename F>
     struct unpack;
 }} // end namespace boost::mpl11
 

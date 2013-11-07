@@ -10,9 +10,9 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Erases all the elements of a container.
+     * Erases all the elements of a `Container`.
      */
-    template <typename Seq>
+    template <typename Container>
     struct clear;
 }} // end namespace boost::mpl11
 

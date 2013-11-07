@@ -28,10 +28,10 @@ namespace boost { namespace mpl11 {
         };
     } // end namespace unpack_detail
 
-    template <typename Seq, typename F>
+    template <typename Sequence, typename F>
     struct unpack
         : foldl<
-            Seq, apply<F>, unpack_detail::variadic_push_back
+            Sequence, apply<F>, unpack_detail::variadic_push_back
         >::type
     { };
 }} // end namespace boost::mpl11

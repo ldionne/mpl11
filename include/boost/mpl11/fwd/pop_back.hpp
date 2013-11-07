@@ -10,10 +10,12 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Removes the last element of a sequence if such an element exists, and
-     * triggers a compile-time assertion otherwise.
+     * Removes the last element of a `BackExtensibleContainer`.
+     *
+     * If no such element exists, i.e. if `%Container` is empty, a
+     * compile-time assertion is triggered.
      */
-    template <typename Seq>
+    template <typename Container>
     struct pop_back;
 }} // end namespace boost::mpl11
 

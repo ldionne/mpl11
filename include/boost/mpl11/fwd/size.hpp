@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
      *
      * The size of a sequence is a non-negative `IntegralConstant`.
      */
-    template <typename Seq>
+    template <typename Sequence>
     struct size;
 }} // end namespace boost::mpl11
 

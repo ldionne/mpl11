@@ -10,9 +10,9 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Appends an element at the end of a container.
+     * Inserts an element at the end of a `BackExtensibleContainer`.
      */
-    template <typename Seq, typename Element>
+    template <typename Container, typename Element>
     struct push_back;
 }} // end namespace boost::mpl11
 

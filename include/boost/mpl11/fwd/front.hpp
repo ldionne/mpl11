@@ -10,10 +10,12 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup sequence_intrinsics
      *
-     * Returns the first element of a sequence if there is such an
-     * element, and triggers a compile-time assertion otherwise.
+     * Returns the first element of a `Sequence`.
+     *
+     * If there is no such element, i.e. if the sequence is empty, a
+     * compile-time assertion is triggered.
      */
-    template <typename Seq>
+    template <typename Sequence>
     struct front;
 }} // end namespace boost::mpl11
 

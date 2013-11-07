@@ -10,8 +10,8 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Removes several adjacent elements in a container, starting from
-     * an arbitrary position.
+     * Removes several adjacent elements in a `RandomExtensibleContainer`,
+     * starting from an arbitrary position.
      */
     template <typename Container, typename First, typename Last>
     struct erase_range;

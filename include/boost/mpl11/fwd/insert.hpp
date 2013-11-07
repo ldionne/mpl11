@@ -10,7 +10,8 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Inserts an element at an arbitrary position in a container.
+     * Inserts an element at an arbitrary position in a
+     * `RandomExtensibleContainer`.
      */
     template <typename Container, typename Position, typename Element>
     struct insert;

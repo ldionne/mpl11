@@ -10,15 +10,15 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup sequence_intrinsics
      *
-     * Returns an iterator pointing to the first element of the sequence.
+     * Returns an iterator pointing to the first element of a `Sequence`.
      *
      *
      * @warning
      * Differences from the original MPL:
-     * - If `Seq` is not a `Sequence`, `begin<Seq>::type` is invalid instead
-     *   of being the same as `mpl::void_`.
+     * - If `%Sequence` is not a `Sequence`, `begin<%Sequence>::type` is
+     *   invalid instead of being the same as `mpl::void_`.
      */
-    template <typename Seq>
+    template <typename Sequence>
     struct begin;
 }} // end namespace boost::mpl11
 

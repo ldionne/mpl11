@@ -12,9 +12,10 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Seq, typename Element>
+    template <typename Container, typename Element>
     struct push_back
-        : class_of<Seq>::type::template push_back_impl<Seq, Element>
+        : class_of<Container>::type::template
+            push_back_impl<Container, Element>
     { };
 }} // end namespace boost::mpl11
 

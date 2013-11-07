@@ -29,9 +29,9 @@ namespace boost { namespace mpl11 {
      * ## Valid expressions
      * | Expression                          | Type
      * | ----------                          | ----
-     * | `insert<C, Pos, T>::type`           | `RandomExtensibleContainer`
+     * | `mpl11::insert<C, Pos, T>::type`    | `RandomExtensibleContainer`
      * | `insert_range<C, Pos, R>::type`     | `RandomExtensibleContainer`
-     * | `erase<C, Pos>::type`               | `RandomExtensibleContainer`
+     * | `mpl11::erase<C, Pos>::type`        | `RandomExtensibleContainer`
      * | `erase_range<C, First, Last>::type` | `RandomExtensibleContainer`
      */
     struct RandomExtensibleContainer BOOST_MPL11_DOXYGEN_ONLY({ });

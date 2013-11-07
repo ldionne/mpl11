@@ -10,13 +10,13 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup intrinsics
      *
-     * Returns a type that is almost uniquely associated to `H`.
+     * Returns a type that is almost uniquely associated to `%Hashable`.
      *
      *
      * @todo
      * Document this further if it's useful.
      */
-    template <typename H>
+    template <typename Hashable>
     struct hash;
 }} // end namespace boost::mpl11
 

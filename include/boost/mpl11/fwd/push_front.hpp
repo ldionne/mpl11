@@ -10,9 +10,9 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Prepends an element at the beginning of a container.
+     * Inserts an element at the beginning of a `FrontExtensibleContainer`.
      */
-    template <typename Seq, typename Element>
+    template <typename Container, typename Element>
     struct push_front;
 }} // end namespace boost::mpl11
 

@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 {
      * Returns the key that _would_ be used for an element
      * in an `AssociativeSequence`.
      */
-    template <typename Seq, typename Element>
+    template <typename Sequence, typename Element>
     struct key_of;
 }} // end namespace boost::mpl11
 
