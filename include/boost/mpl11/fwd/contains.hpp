@@ -10,19 +10,13 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup algorithms
      *
-     * Returns whether `Sequence` contains one or more elements identical
+     * Returns whether a `Sequence` contains one or more elements equal
      * to `Element`.
      *
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to
-       @code
-            not_equal_to<
-                find<Sequence, Element>::type,
-                end<Sequence>::type
-            >
-       @endcode
+     * Equivalent to `any_of<%Sequence, lambda<equal<_1, Element>>>`.
      */
     template <typename Sequence, typename Element>
     struct contains;

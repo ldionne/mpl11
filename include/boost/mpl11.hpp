@@ -108,6 +108,7 @@
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/container.hpp>
+#include <boost/mpl11/contains.hpp>
 #include <boost/mpl11/couple.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/directional_sequence.hpp>
@@ -118,6 +119,7 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/erase.hpp>
 #include <boost/mpl11/erase_range.hpp>
+#include <boost/mpl11/find.hpp>
 #include <boost/mpl11/find_if.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/foldl.hpp>

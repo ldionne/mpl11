@@ -7,11 +7,13 @@
 
 #include <boost/mpl11/advance.hpp>
 #include <boost/mpl11/always.hpp>
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/new.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
@@ -32,8 +34,11 @@ struct same_as {
     { };
 };
 
-template <template <typename ...> class container>
+template <typename Container>
 struct test_one {
+    template <typename ...T>
+    using container = typename apply<new_<Container>, T...>::type;
+
     static_assert(equal<
         typename find_if<container<>, always<true_>>::type,
         typename end<container<>>::type
@@ -109,7 +114,7 @@ struct test_one {
 };
 
 struct test_all
-    : test_one<vector>
+    : test_one<vector<>>
 { };
 
 
