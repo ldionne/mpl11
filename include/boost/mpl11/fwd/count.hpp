@@ -10,13 +10,17 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup algorithms
      *
-     * Returns the number of elements in `Sequence` that are identical
+     * Returns the number of elements in a `Sequence` that are equal
      * to `Element`.
      *
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `count_if<Sequence, equal_to<Element, _1>>`.
+     * Equivalent to `count_if<%Sequence, lambda<equal<Element, _1>>>`.
+     *
+     *
+     * @todo
+     * Fix the default implementation's use of lambda.
      */
     template <typename Sequence, typename Element>
     struct count;

@@ -109,6 +109,8 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/container.hpp>
 #include <boost/mpl11/contains.hpp>
+#include <boost/mpl11/count.hpp>
+#include <boost/mpl11/count_if.hpp>
 #include <boost/mpl11/couple.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/directional_sequence.hpp>

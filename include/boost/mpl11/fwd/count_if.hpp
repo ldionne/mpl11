@@ -10,21 +10,14 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup algorithms
      *
-     * Returns the number of elements in `Sequence` satisfying `Predicate`.
+     * Returns the number of elements in a `Sequence` satisfying `Predicate`.
      *
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to
-       @code
-            foldl<
-                Sequence, ulong<0>,
-                if_<apply_wrap<lambda<Predicate>::type, _2>,
-                    next<_1>,
-                    _1
-                >
-            >
-       @endcode
+     * Equivalent to `foldl<Sequence, ulong<0>, Count>`, where `Count` is
+     * a @ref MetafunctionClass incrementing the counter if `Predicate`
+     * is satisfied for that element.
      */
     template <typename Sequence, typename Predicate>
     struct count_if;
