@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 { namespace detail {
     template <
         template <typename ...> class Next,
         typename Iterator,
-        unsigned long N
+        unsigned long long N
     >
     struct move
         : move<Next, typename Next<Iterator>::type, N - 1>
