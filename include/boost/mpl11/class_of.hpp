@@ -8,11 +8,21 @@
 
 #include <boost/mpl11/fwd/class_of.hpp>
 
+#include <boost/mpl11/detail/default_class.hpp>
+
 
 namespace boost { namespace mpl11 {
+    namespace class_of_detail {
+        template <typename T>
+        auto pick(void*) -> typename T::mpl_class;
+
+        template <typename T>
+        auto pick(...) -> detail::default_class;
+    } // end namespace class_of_detail
+
     template <typename T>
     struct class_of {
-        using type = typename T::mpl_class;
+        using type = decltype(class_of_detail::pick<T>(nullptr));
     };
 }} // end namespace boost::mpl11
 
