@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FWD_BACK_EXTENSIBLE_CONTAINER_HPP
 #define BOOST_MPL11_FWD_BACK_EXTENSIBLE_CONTAINER_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/container.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -33,7 +33,22 @@ namespace boost { namespace mpl11 {
      * | `pop_back<C>::type`     | `BackExtensibleContainer`
      * | `push_back<C, T>::type` | `BackExtensibleContainer`
      */
-    struct BackExtensibleContainer BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct BackExtensibleContainer : Container {
+        //! This operation must be provided by the user.
+        template <typename Container>
+        struct pop_back_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Container, typename T>
+        struct push_back_impl;
+
+        /*!
+         * Uses `push_back` repeatedly on `clear<%Container>::type` to
+         * create a new container.
+         */
+        template <typename Container>
+        struct new_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BACK_EXTENSIBLE_CONTAINER_HPP

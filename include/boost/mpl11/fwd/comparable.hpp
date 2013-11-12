@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_COMPARABLE_HPP
 #define BOOST_MPL11_FWD_COMPARABLE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup comparison_operators Comparison operators
@@ -69,7 +66,15 @@ namespace boost { namespace mpl11 {
      * | `mpl11::equal<T, U>`     | Boolean `IntegralConstant`
      * | `mpl11::not_equal<T, U>` | Boolean `IntegralConstant`
      */
-    struct Comparable BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Comparable {
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct equal_impl;
+
+        //! Equivalent to `not_<equal<X, Y>>`.
+        template <typename X, typename Y>
+        struct not_equal_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COMPARABLE_HPP

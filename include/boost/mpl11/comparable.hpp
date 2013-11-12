@@ -13,17 +13,10 @@
 
 
 namespace boost { namespace mpl11 {
-    struct Comparable {
-        //! This operation must be provided by the user.
-        template <typename X, typename Y>
-        struct equal_impl;
-
-        //! Equivalent to `not_<equal<X, Y>>`.
-        template <typename X, typename Y>
-        struct not_equal_impl
-            : not_<equal<X, Y>>
-        { };
-    };
+    template <typename X, typename Y>
+    struct Comparable::not_equal_impl
+        : not_<equal<X, Y>>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_COMPARABLE_HPP

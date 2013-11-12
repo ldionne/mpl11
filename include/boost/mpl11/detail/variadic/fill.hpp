@@ -6,16 +6,22 @@
 #ifndef BOOST_MPL11_DETAIL_VARIADIC_FILL_HPP
 #define BOOST_MPL11_DETAIL_VARIADIC_FILL_HPP
 
-#include <boost/mpl11/detail/variadic/concat.hpp>
-#include <boost/mpl11/detail/variadic/pack.hpp>
-
-
 namespace boost { namespace mpl11 { namespace detail { namespace variadic {
     /*!
      * @ingroup details
      *
      * Create a `variadic::pack<T, ..., T>` of size `N` in O(log N) time.
      */
+    template <unsigned long long N, typename T>
+    struct fill;
+}}}} // end namespace boost::mpl11::detail::variadic
+
+
+#include <boost/mpl11/detail/variadic/concat.hpp>
+#include <boost/mpl11/detail/variadic/pack.hpp>
+
+
+namespace boost { namespace mpl11 { namespace detail { namespace variadic {
     template <unsigned long long N, typename T>
     struct fill
         : concat<

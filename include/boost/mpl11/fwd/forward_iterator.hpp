@@ -6,7 +6,9 @@
 #ifndef BOOST_MPL11_FWD_FORWARD_ITERATOR_HPP
 #define BOOST_MPL11_FWD_FORWARD_ITERATOR_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -83,7 +85,36 @@ namespace boost { namespace mpl11 {
      * - If `I` and `J` are equal and incrementable, then `next<I>::type` and
      *   `next<J>::type` are equal.
      */
-    struct ForwardIterator BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct ForwardIterator : Comparable {
+        //! This operation must be provided by the user.
+        template <typename Iterator>
+        struct next_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Iterator>
+        struct deref_impl;
+
+        /*!
+         * Performs `N::value` applications of `mpl11::next` to `Iterator`.
+         *
+         *
+         * @note
+         * A static assertion is triggered if `N::value` is negative.
+         */
+        template <typename Iterator, typename N>
+        struct advance_impl;
+
+        /*!
+         * Counts the number of applications of `mpl11::next` required
+         * for `First` to become equal to `Last`.
+         */
+        template <
+            typename First, typename Last,
+            typename Distance = size_t<0>,
+            bool = equal<First, Last>::value
+        >
+        struct distance_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FORWARD_ITERATOR_HPP

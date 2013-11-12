@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_LOGICAL_HPP
 #define BOOST_MPL11_FWD_LOGICAL_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup logical_operators Logical operators
@@ -63,7 +60,25 @@ namespace boost { namespace mpl11 {
      * | `and_<A0, ..., An>` | @ref Metafunction
      * | `or_<A0, ..., An>`  | @ref Metafunction
      */
-    struct Logical BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Logical {
+        //! This operation must be provided by the user.
+        template <typename L>
+        struct not_impl;
+
+        /*!
+         * Returns `A::type` if `not_<A>::value` is `true` and
+         * `B::type` otherwise.
+         */
+        template <typename A, typename B>
+        struct and_impl;
+
+        /*!
+         * Returns `B::type` if `not_<A>::value` is `true` and
+         * `A::type` otherwise.
+         */
+        template <typename A, typename B>
+        struct or_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_LOGICAL_HPP

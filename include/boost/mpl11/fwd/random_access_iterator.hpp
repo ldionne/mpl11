@@ -6,7 +6,8 @@
 #ifndef BOOST_MPL11_FWD_RANDOM_ACCESS_ITERATOR_HPP
 #define BOOST_MPL11_FWD_RANDOM_ACCESS_ITERATOR_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/bidirectional_iterator.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -42,7 +43,15 @@ namespace boost { namespace mpl11 {
      *   `advance_c<advance_c<I, N::value>::type, -N::value>::type`
      *   is equal to `I`.
      */
-    struct RandomAccessIterator BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct RandomAccessIterator : BidirectionalIterator, Orderable {
+        //! This operation must be O(1) and provided by the user.
+        template <typename Iterator, typename N>
+        struct advance_impl;
+
+        //! This operation must be O(1) and provided by the user.
+        template <typename First, typename Last>
+        struct distance_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_RANDOM_ACCESS_ITERATOR_HPP

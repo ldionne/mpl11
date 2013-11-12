@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_SEQUENCE_HPP
 #define BOOST_MPL11_FWD_SEQUENCE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup sequence_intrinsics Sequence intrinsics
@@ -58,7 +55,26 @@ namespace boost { namespace mpl11 {
      * - Two different iterations through `S` will access its elements
      *   in the same order.
      */
-    struct Sequence BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Sequence {
+          //! This operation must be provided by the user.
+          template <typename Sequence>
+          struct begin_impl;
+
+          //! This operation must be provided by the user.
+          template <typename Sequence>
+          struct end_impl;
+
+          //! Returns the distance between both ends of the sequence.
+          template <typename Sequence>
+          struct size_impl;
+
+          /*!
+           * Returns whether `begin<%Sequence>::type` is equal to
+           * `end<%Sequence>::type`.
+           */
+          template <typename Sequence>
+          struct is_empty_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SEQUENCE_HPP

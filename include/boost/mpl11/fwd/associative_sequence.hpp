@@ -7,6 +7,9 @@
 #define BOOST_MPL11_FWD_ASSOCIATIVE_SEQUENCE_HPP
 
 #include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/optional.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,22 +26,56 @@ namespace boost { namespace mpl11 {
      * ## Notation
      * | Expression | Description
      * | ---------- | -----------
-     * | `Seq`      | An `AssociativeSequence`
+     * | `S`        | An `AssociativeSequence`
      * | `Element`  | An element of `S`
      * | `Key`      | Any type
      * | `Default`  | Any type
      *
      *
      * ## Valid expressions
-     * | Expression                     | Type
-     * | ----------                     | ----
-     * | `key_of<Seq, Element>::type`   | Any type
-     * | `value_of<Seq, Element>::type` | Any type
-     * | `at<Seq, Key>::type`           | Any type
-     * | `at<Seq, Key, Default>::type`  | Any type
-     * | `has_key<Seq, Key>`            | Boolean `IntegralConstant`
+     * | Expression                   | Type
+     * | ----------                   | ----
+     * | `key_of<S, Element>::type`   | Any type
+     * | `value_of<S, Element>::type` | Any type
+     * | `at<S, Key>::type`           | Any type
+     * | `at<S, Key, Default>::type`  | Any type
+     * | `has_key<S, Key>`            | Boolean `IntegralConstant`
      */
-    struct AssociativeSequence BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct AssociativeSequence : Sequence, Comparable {
+        template <typename Sequence, typename Key,
+                  typename Default = detail::optional>
+        struct at_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Sequence, typename Key, typename Default>
+        struct at_impl BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default> { });
+
+        /*!
+         * Returns `mpl11::at<%Sequence, Key, X>::type`, where `X` is such
+         * that a compile-time assertion is triggered if `X` is returned.
+         */
+        template <typename Sequence, typename Key>
+        struct at_impl<Sequence, Key>;
+
+        //! This operation must be provided by the user.
+        template <typename Sequence, typename Key>
+        struct has_key_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Sequence, typename Element>
+        struct key_of_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Sequence, typename Element>
+        struct value_of_impl;
+
+        /*!
+         * Returns whether both sequences have the same size and the same
+         * keys mapping to equal values.
+         */
+        template <typename Sequence1, typename Sequence2>
+        struct equal_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ASSOCIATIVE_SEQUENCE_HPP

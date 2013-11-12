@@ -6,6 +6,18 @@
 #ifndef BOOST_MPL11_DETAIL_VARIADIC_DROP_HPP
 #define BOOST_MPL11_DETAIL_VARIADIC_DROP_HPP
 
+namespace boost { namespace mpl11 { namespace detail { namespace variadic {
+    /*!
+     * @ingroup details
+     *
+     * Returns a `variadic::pack` containing all the elements in
+     * the range [`Index`, `sizeof...(An)`).
+     */
+    template <typename Pack, unsigned long long Index>
+    struct drop;
+}}}} // end namespace boost::mpl11::detail::variadic
+
+
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/variadic/fill.hpp>
 #include <boost/mpl11/detail/variadic/pack.hpp>
@@ -22,15 +34,6 @@ namespace boost { namespace mpl11 { namespace detail { namespace variadic {
             static pack<Tail...> apply(IgnoreHead..., no_decay<Tail>*...);
         };
     } // end namespace drop_detail
-
-    /*!
-     * @ingroup details
-     *
-     * Returns a `variadic::pack` containing all the elements in
-     * the range [`Index`, `sizeof...(An)`).
-     */
-    template <typename Pack, unsigned long long Index>
-    struct drop;
 
     template <typename ...An, unsigned long long Index>
     struct drop<pack<An...>, Index> {

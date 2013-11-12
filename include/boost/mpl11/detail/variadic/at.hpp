@@ -6,6 +6,17 @@
 #ifndef BOOST_MPL11_DETAIL_VARIADIC_AT_HPP
 #define BOOST_MPL11_DETAIL_VARIADIC_AT_HPP
 
+namespace boost { namespace mpl11 { namespace detail { namespace variadic {
+    /*!
+     * @ingroup details
+     *
+     * Returns the parameter at position `N` in a parameter pack.
+     */
+    template <typename Pack, unsigned long long N>
+    struct at;
+}}}} // end namespace boost::mpl11::detail::variadic
+
+
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/variadic/fill.hpp>
 #include <boost/mpl11/detail/variadic/pack.hpp>
@@ -22,14 +33,6 @@ namespace boost { namespace mpl11 { namespace detail { namespace variadic {
             static Nth apply(Ignore..., no_decay<Nth>*, ...);
         };
     } // end namespace at_detail
-
-    /*!
-     * @ingroup details
-     *
-     * Returns the parameter at position `N` in a parameter pack.
-     */
-    template <typename Pack, unsigned long long N>
-    struct at;
 
     template <typename ...An, unsigned long long N>
     struct at<pack<An...>, N> {

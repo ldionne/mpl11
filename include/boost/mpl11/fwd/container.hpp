@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FWD_CONTAINER_HPP
 #define BOOST_MPL11_FWD_CONTAINER_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -45,13 +45,16 @@ namespace boost { namespace mpl11 {
      * | ----------       | ----
      * | `new_<C>`        | @ref MetafunctionClass
      * | `clear<C>::type` | `Container`
-     *
-     *
-     * @todo
-     * Change the name of most *_impl metafunctions from Seq
-     * to something better.
      */
-    struct Container BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Container : Sequence {
+        //! This operation must be provided by the user.
+        template <typename Container>
+        struct new_impl;
+
+        //! This operation must be provided by the user.
+        template <typename Container>
+        struct clear_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CONTAINER_HPP

@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_ORDERABLE_HPP
 #define BOOST_MPL11_FWD_ORDERABLE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
@@ -30,7 +27,23 @@ namespace boost { namespace mpl11 {
      * | `mpl11::greater<A0, ..., An>`       | Boolean `IntegralConstant`
      * | `mpl11::greater_equal<A0, ..., An>` | Boolean `IntegralConstant`
      */
-    struct Orderable BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Orderable {
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct less_impl;
+
+        //! Equivalent to `not_<mpl11::less<Y, X>>`.
+        template <typename X, typename Y>
+        struct less_equal_impl;
+
+        //! Equivalent to `mpl11::less<Y, X>`.
+        template <typename X, typename Y>
+        struct greater_impl;
+
+        //! Equivalent to `not_<mpl11::less<X, Y>>`.
+        template <typename X, typename Y>
+        struct greater_equal_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ORDERABLE_HPP

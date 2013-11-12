@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_DETAIL_IS_SPECIALIZATION_HPP
 #define BOOST_MPL11_DETAIL_IS_SPECIALIZATION_HPP
 
-#include <boost/mpl11/integral_c.hpp>
-
-
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
@@ -20,6 +17,15 @@ namespace boost { namespace mpl11 { namespace detail {
      * Templates with non-type or template template parameters are
      * not supported.
      */
+    template <typename T>
+    struct is_specialization;
+}}} // end namespace boost::mpl11::detail
+
+
+#include <boost/mpl11/integral_c.hpp>
+
+
+namespace boost { namespace mpl11 { namespace detail {
     template <typename T>
     struct is_specialization
         : false_

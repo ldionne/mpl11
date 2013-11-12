@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP
 #define BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/bidirectional_sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -35,7 +35,14 @@ namespace boost { namespace mpl11 {
      * | `mpl11::end<S>::type`   | `RandomAccessIterator`
      * | `mpl11::at<S, N>::type` | Any type
      */
-    struct RandomAccessSequence BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct RandomAccessSequence : BidirectionalSequence {
+        /*!
+         * Advances `begin<%Sequence>::type` `N` positions
+         * and dereferences it.
+         */
+        template <typename Sequence, typename N>
+        struct at_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP

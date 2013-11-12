@@ -8,64 +8,54 @@
 
 #include <boost/mpl11/fwd/couple.hpp>
 
-#include <boost/mpl11/and.hpp>
+// Required by the forward declaration.
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/orderable.hpp>
+
+#include <boost/mpl11/and.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/or.hpp>
-#include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/second.hpp>
 
 
 namespace boost { namespace mpl11 {
-    struct Couple : Comparable, Orderable {
-        //! This operation must be provided by the user.
-        template <typename Pair>
-        struct first_impl;
-
-        //! This operation must be provided by the user.
-        template <typename Pair>
-        struct second_impl;
-
-        //! Performs a lexicographical comparison of the two pairs.
-        template <typename Pair1, typename Pair2>
-        struct less_impl
-            : or_<
-                less<
-                    typename first<Pair1>::type,
-                    typename first<Pair2>::type
-                >,
-                and_<
-                    not_<
-                        less<
-                            typename first<Pair2>::type,
-                            typename first<Pair1>::type>
-                    >,
+    template <typename C1, typename C2>
+    struct Couple::less_impl
+        : or_<
+            less<
+                typename first<C1>::type,
+                typename first<C2>::type
+            >,
+            and_<
+                not_<
                     less<
-                        typename second<Pair1>::type,
-                        typename second<Pair2>::type
-                    >
-                >
-            >
-        { };
-
-        //! Performs a memberwise comparison of the two pairs.
-        template <typename Pair1, typename Pair2>
-        struct equal_impl
-            : and_<
-                equal<
-                    typename first<Pair1>::type,
-                    typename first<Pair2>::type
+                        typename first<C2>::type,
+                        typename first<C1>::type>
                 >,
-                equal<
-                    typename second<Pair1>::type,
-                    typename second<Pair2>::type
+                less<
+                    typename second<C1>::type,
+                    typename second<C2>::type
                 >
             >
-        { };
-    };
+        >
+    { };
+
+    template <typename C1, typename C2>
+    struct Couple::equal_impl
+        : and_<
+            equal<
+                typename first<C1>::type,
+                typename first<C2>::type
+            >,
+            equal<
+                typename second<C1>::type,
+                typename second<C2>::type
+            >
+        >
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_COUPLE_HPP

@@ -6,6 +6,18 @@
 #ifndef BOOST_MPL11_DETAIL_VARIADIC_SLICE_HPP
 #define BOOST_MPL11_DETAIL_VARIADIC_SLICE_HPP
 
+namespace boost { namespace mpl11 { namespace detail { namespace variadic {
+    /*!
+     * @ingroup details
+     *
+     * Returns a `variadic::pack` containing all the elements in
+     * the range [`First`, `Last`).
+     */
+    template <typename Pack, unsigned long long First,unsigned long long Last>
+    struct slice;
+}}}} // end namespace boost::mpl11::detail::variadic
+
+
 #include <boost/mpl11/detail/variadic/drop.hpp>
 #include <boost/mpl11/detail/variadic/pack.hpp>
 #include <boost/mpl11/detail/variadic/take.hpp>
@@ -44,19 +56,6 @@ namespace boost { namespace mpl11 { namespace detail { namespace variadic {
             : take<pack<An...>, Last>
         { };
     } // end namespace slice_detail
-
-    /*!
-     * @ingroup details
-     *
-     * Returns a `variadic::pack` containing all the elements in
-     * the range [`First`, `Last`).
-     */
-    template <
-        typename Pack,
-        unsigned long long First,
-        unsigned long long Last
-    >
-    struct slice;
 
     template <
         typename ...An,

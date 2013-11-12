@@ -15,33 +15,21 @@
 
 
 namespace boost { namespace mpl11 {
-    struct Sequence {
-        //! This operation must be provided by the user.
-        template <typename Seq>
-        struct begin_impl;
+    template <typename S>
+    struct Sequence::size_impl
+        : distance<
+            typename begin<S>::type,
+            typename end<S>::type
+        >
+    { };
 
-        //! This operation must be provided by the user.
-        template <typename Seq>
-        struct end_impl;
-
-        //! Returns the distance between both ends of the sequence.
-        template <typename Seq>
-        struct size_impl
-            : distance<
-                typename begin<Seq>::type,
-                typename end<Seq>::type
-            >
-        { };
-
-        //! Returns whether `begin<Seq>::type` is equal to `end<Seq>::type`.
-        template <typename Seq>
-        struct is_empty_impl
-            : equal<
-                typename begin<Seq>::type,
-                typename end<Seq>::type
-            >
-        { };
-    };
+    template <typename S>
+    struct Sequence::is_empty_impl
+        : equal<
+            typename begin<S>::type,
+            typename end<S>::type
+        >
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_SEQUENCE_HPP

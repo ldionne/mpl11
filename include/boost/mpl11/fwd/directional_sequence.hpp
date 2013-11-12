@@ -6,7 +6,9 @@
 #ifndef BOOST_MPL11_FWD_DIRECTIONAL_SEQUENCE_HPP
 #define BOOST_MPL11_FWD_DIRECTIONAL_SEQUENCE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,15 +25,31 @@ namespace boost { namespace mpl11 {
      * ## Notation
      * | Expression | Description
      * | ---------- | -----------
-     * | `Seq`      | A `DirectionalSequence`
+     * | `S`        | A `DirectionalSequence`
      *
      *
      * ## Valid expressions
-     * | Expression         | Type
-     * | ----------         | ----
-     * | `front<Seq>::type` | Any type
+     * | Expression       | Type
+     * | ----------       | ----
+     * | `front<S>::type` | Any type
      */
-    struct DirectionalSequence BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct DirectionalSequence : Sequence, Comparable, Orderable {
+        /*!
+         * Returns `mpl11::deref<mpl11::begin<%Sequence>::type>::type` if
+         * `is_empty<%Sequence>::value` is `false`, and triggers a static
+         * assertion otherwise.
+         */
+        template <typename Sequence>
+        struct front_impl;
+
+        //! Performs an element-wise comparison of the two sequences.
+        template <typename Sequence1, typename Sequence2>
+        struct equal_impl;
+
+        //! Performs a lexicographical comparison of the two sequences.
+        template <typename Sequence1, typename Sequence2>
+        struct less_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_DIRECTIONAL_SEQUENCE_HPP

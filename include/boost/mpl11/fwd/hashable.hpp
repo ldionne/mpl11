@@ -6,14 +6,14 @@
 #ifndef BOOST_MPL11_FWD_HASHABLE_HPP
 #define BOOST_MPL11_FWD_HASHABLE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
 
 
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type from which it is possible to extract a hash.
+     * Type from which it is possible to extract a hash value.
      *
      *
      * ## Refinement of
@@ -31,7 +31,11 @@ namespace boost { namespace mpl11 {
      * | ----------      | ----
      * | `hash<H>::type` | Any type
      */
-    struct Hashable BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Hashable : Comparable {
+        //! Returns a type uniquely associated to `H`.
+        template <typename Hashable>
+        struct hash_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_HASHABLE_HPP

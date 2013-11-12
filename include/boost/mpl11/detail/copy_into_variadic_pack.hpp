@@ -6,6 +6,25 @@
 #ifndef BOOST_MPL11_DETAIL_COPY_INTO_VARIADIC_PACK_HPP
 #define BOOST_MPL11_DETAIL_COPY_INTO_VARIADIC_PACK_HPP
 
+namespace boost { namespace mpl11 { namespace detail {
+    /*!
+     * @ingroup details
+     *
+     * Copy an arbitrary sequence into a `variadic::pack`.
+     *
+     *
+     * @todo
+     * Find an elegant way to convert arbitrary sequences into variadic packs.
+     *
+     * @todo
+     * Find an elegant way to leverage sequences whose behavior is that of
+     * a variadic parameter pack.
+     */
+    template <typename Sequence>
+    struct copy_into_variadic_pack;
+}}} // end namespace boost::mpl11::detail
+
+
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/variadic/pack.hpp>
@@ -38,19 +57,6 @@ namespace boost { namespace mpl11 { namespace detail {
         { };
     } // end namespace copy_into_variadic_pack_detail
 
-    /*!
-     * @ingroup details
-     *
-     * Copy an arbitrary sequence into a `variadic::pack`.
-     *
-     *
-     * @todo
-     * Find an elegant way to convert arbitrary sequences into variadic packs.
-     *
-     * @todo
-     * Find an elegant way to leverage sequences whose behavior is that of
-     * a variadic parameter pack.
-     */
     template <typename Sequence>
     struct copy_into_variadic_pack
         : copy_into_variadic_pack_detail::impl<

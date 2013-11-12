@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP
 #define BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/fwd/directional_sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -21,19 +21,34 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Notation
-     * | Expression   | Description
-     * | ----------   | -----------
-     * | `Seq`        | A `BidirectionalSequence`
+     * | Expression | Description
+     * | ---------- | -----------
+     * | `S`        | A `BidirectionalSequence`
      *
      *
      * ## Valid expressions
-     * | Expression         | Type
-     * | ----------         | ----
-     * | `begin<Seq>::type` | `BidirectionalIterator`
-     * | `end<Seq>::type`   | `BidirectionalIterator`
-     * | `back<Seq>::type`  | Any type
+     * | Expression       | Type
+     * | ----------       | ----
+     * | `begin<S>::type` | `BidirectionalIterator`
+     * | `end<S>::type`   | `BidirectionalIterator`
+     * | `back<S>::type`  | Any type
      */
-    struct BidirectionalSequence BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct BidirectionalSequence : DirectionalSequence {
+        /*!
+         * Returns
+         *
+            mpl11::deref<
+                mpl11::prev<
+                    mpl11::end<Sequence>::type
+                >::type
+            >::type
+         *
+         * if `is_empty<%Sequence>::value` is `false`, and triggers a static
+         * assertion otherwise.
+         */
+        template <typename Sequence>
+        struct back_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP

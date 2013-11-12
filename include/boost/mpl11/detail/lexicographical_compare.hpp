@@ -6,14 +6,7 @@
 #ifndef BOOST_MPL11_DETAIL_LEXICOGRAPHICAL_COMPARE_HPP
 #define BOOST_MPL11_DETAIL_LEXICOGRAPHICAL_COMPARE_HPP
 
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/equal.hpp>
-#include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/less.hpp>
-#include <boost/mpl11/next.hpp>
-#include <boost/mpl11/not.hpp>
-#include <boost/mpl11/or.hpp>
+#include <boost/mpl11/fwd/equal.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
@@ -29,6 +22,22 @@ namespace boost { namespace mpl11 { namespace detail {
         bool = equal<F1, L1>::value,
         bool = equal<F2, L2>::value
     >
+    struct lexicographical_compare;
+}}} // end namespace boost::mpl11::detail
+
+
+#include <boost/mpl11/and.hpp>
+#include <boost/mpl11/deref.hpp>
+#include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/less.hpp>
+#include <boost/mpl11/next.hpp>
+#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/or.hpp>
+
+
+namespace boost { namespace mpl11 { namespace detail {
+    template <typename F1, typename L1, typename F2, typename L2, bool, bool>
     struct lexicographical_compare
         : false_
     { };

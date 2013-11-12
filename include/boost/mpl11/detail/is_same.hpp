@@ -6,15 +6,21 @@
 #ifndef BOOST_MPL11_DETAIL_IS_SAME_HPP
 #define BOOST_MPL11_DETAIL_IS_SAME_HPP
 
-#include <boost/mpl11/integral_c.hpp>
-
-
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
      * Returns whether two types are identical.
      */
+    template <typename T, typename U>
+    struct is_same;
+}}} // end namespace boost::mpl11::detail
+
+
+#include <boost/mpl11/integral_c.hpp>
+
+
+namespace boost { namespace mpl11 { namespace detail {
     template <typename T, typename U>
     struct is_same
         : false_

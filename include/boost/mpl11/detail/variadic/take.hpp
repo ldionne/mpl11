@@ -6,6 +6,23 @@
 #ifndef BOOST_MPL11_DETAIL_VARIADIC_TAKE_HPP
 #define BOOST_MPL11_DETAIL_VARIADIC_TAKE_HPP
 
+namespace boost { namespace mpl11 { namespace detail { namespace variadic {
+    /*!
+     * @ingroup details
+     *
+     * Returns a `variadic::pack` containing all the elements in
+     * the range [`0`, `N`).
+     *
+     *
+     * @internal
+     * If `N < O1_TAKE`, this algorithm is O(1).
+     * Otherwise, it is O(3 * floor(N / O1_TAKE)).
+     */
+    template <typename Pack, unsigned long long N>
+    struct take;
+}}}} // end namespace boost::mpl11::detail::variadic
+
+
 #include <boost/mpl11/detail/variadic/concat.hpp>
 #include <boost/mpl11/detail/variadic/drop.hpp>
 #include <boost/mpl11/detail/variadic/pack.hpp>
@@ -81,20 +98,6 @@ end
         // END GENERATED OUTPUT
         //////////////////////////////////////////////////////////////////////
     } // end namespace take_detail
-
-    /*!
-     * @ingroup details
-     *
-     * Returns a `variadic::pack` containing all the elements in
-     * the range [`0`, `N`).
-     *
-     *
-     * @internal
-     * If `N < O1_TAKE`, this algorithm is O(1).
-     * Otherwise, it is O(3 * floor(N / O1_TAKE)).
-     */
-    template <typename Pack, unsigned long long N>
-    struct take;
 
     template <typename ...An, unsigned long long N>
     struct take<pack<An...>, N> {

@@ -8,20 +8,20 @@
 
 #include <boost/mpl11/fwd/associative_sequence.hpp>
 
+// Required by the forward declaration.
+#include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/sequence.hpp>
+
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/next.hpp>
-#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/value_of.hpp>
 
@@ -75,57 +75,26 @@ namespace boost { namespace mpl11 {
         { };
     } // end namespace associative_sequence_detail
 
-    struct AssociativeSequence : Sequence, Comparable {
-        template <
-            typename Seq, typename Key, typename Default = detail::optional
-        >
-        struct at_impl;
-
-        //! This operation must be provided by the user.
-        template <typename Seq, typename Key, typename Default>
-        struct at_impl BOOST_MPL11_DOXYGEN_ONLY(<Seq, Key, Default> { });
-
-        /*!
-         * Returns `mpl11::at<Seq, Key, X>::type`, where `X` is such that a
-         * compile-time assertion is triggered if `X` is returned.
-         */
-        template <typename Seq, typename Key>
-        struct at_impl<Seq, Key>
-            : at<Seq, Key, associative_sequence_detail::not_found>
-        {
-            static_assert(
-                !detail::is_same<
-                    typename at_impl::type,
-                    associative_sequence_detail::not_found
-                >::value,
-            "Could not find the value associated to the given key in an "
-            "associative sequence and no default return value was specified.");
-        };
-
-        //! This operation must be provided by the user.
-        template <typename Seq, typename Key>
-        struct has_key_impl;
-
-        //! This operation must be provided by the user.
-        template <typename Seq, typename Element>
-        struct key_of_impl;
-
-        //! This operation must be provided by the user.
-        template <typename Seq, typename Element>
-        struct value_of_impl;
-
-        /*!
-         * Returns whether both sequences have the same size and the same
-         * keys mapping to equal values.
-         */
-        template <typename Seq1, typename Seq2>
-        struct equal_impl
-            : and_<
-                equal<typename size<Seq1>::type, typename size<Seq2>::type>,
-                associative_sequence_detail::is_subset_of<Seq1, Seq2>
-            >
-        { };
+    template <typename S, typename Key>
+    struct AssociativeSequence::at_impl<S, Key>
+        : at<S, Key, associative_sequence_detail::not_found>
+    {
+        static_assert(
+            !detail::is_same<
+                typename at_impl::type,
+                associative_sequence_detail::not_found
+            >::value,
+        "Could not find the value associated to the given key in an "
+        "associative sequence and no default return value was specified.");
     };
+
+    template <typename S1, typename S2>
+    struct AssociativeSequence::equal_impl
+        : and_<
+            equal<typename size<S1>::type, typename size<S2>::type>,
+            associative_sequence_detail::is_subset_of<S1, S2>
+        >
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ASSOCIATIVE_SEQUENCE_HPP

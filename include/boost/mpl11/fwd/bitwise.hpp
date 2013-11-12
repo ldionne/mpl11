@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_BITWISE_HPP
 #define BOOST_MPL11_FWD_BITWISE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup bitwise_operators Bitwise operators
@@ -25,7 +22,27 @@ namespace boost { namespace mpl11 {
      *
      * Type implementing C++ bitwise operators.
      */
-    struct Bitwise BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Bitwise {
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct shift_left_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct shift_right_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct bitor_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct bitand_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct bitxor_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BITWISE_HPP

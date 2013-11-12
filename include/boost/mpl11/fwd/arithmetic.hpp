@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_ARITHMETIC_HPP
 #define BOOST_MPL11_FWD_ARITHMETIC_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup arithmetic_operators Arithmetic operators
@@ -25,7 +22,27 @@ namespace boost { namespace mpl11 {
      *
      * Type implementing C++ arithmetic operators.
      */
-    struct Arithmetic BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct Arithmetic {
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct add_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct substract_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct modulo_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct divide_impl;
+
+        //! This operation must be provided by the user.
+        template <typename X, typename Y>
+        struct multiply_impl;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ARITHMETIC_HPP
