@@ -14,7 +14,11 @@ namespace boost { namespace mpl11 { namespace detail {
      * basic operations.
      */
     struct default_class {
+        template <typename U, typename V>
+        struct equal_impl;
 
+        template <typename U, typename V>
+        struct not_equal_impl;
     };
 }}} // end namespace boost::mpl11::detail
 
