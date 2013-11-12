@@ -95,20 +95,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2directional__sequence_8hpp.html">boost/mpl11/fwd/directional_sequence.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">struct </span>BidirectionalSequence <a class="code" href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a>({ });</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP</span></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="group__details_html_ga67ba27d6cf39ebe7b3a9018d31c2dde7"><div class="ttname"><a href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ONLY(...)</div><div class="ttdoc">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing othe...</div><div class="ttdef"><b>Definition:</b> doxygen_only.hpp:16</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">   36</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">BidirectionalSequence</a> : <a class="code" href="structboost_1_1mpl11_1_1_directional_sequence.html">DirectionalSequence</a> {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence&gt;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">back_impl</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    };</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_sequence_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">boost::mpl11::BidirectionalSequence</a></div><div class="ttdoc">DirectionalSequence whose elements can be traversed in reverse order. </div><div class="ttdef"><b>Definition:</b> bidirectional_sequence.hpp:36</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_directional_sequence_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_directional_sequence.html">boost::mpl11::DirectionalSequence</a></div><div class="ttdoc">Sequence whose elements are traversed in a definite order. </div><div class="ttdef"><b>Definition:</b> directional_sequence.hpp:36</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">boost::mpl11::BidirectionalSequence::back_impl</a></div><div class="ttdoc">Returns. </div><div class="ttdef"><b>Definition:</b> bidirectional_sequence.hpp:20</div></div>
+<div class="ttc" id="fwd_2directional__sequence_8hpp_html"><div class="ttname"><a href="fwd_2directional__sequence_8hpp.html">directional_sequence.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::DirectionalSequence. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:46 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

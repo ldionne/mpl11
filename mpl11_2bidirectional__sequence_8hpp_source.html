@@ -98,35 +98,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2fwd_2bidirectional__sequence_8hpp.html">boost/mpl11/fwd/bidirectional_sequence.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="deref_8hpp.html">boost/mpl11/deref.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="directional__sequence_8hpp.html">boost/mpl11/directional_sequence.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="directional__sequence_8hpp.html">boost/mpl11/directional_sequence.hpp</a>&gt;</span> <span class="comment">// required by forward decl</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="end_8hpp.html">boost/mpl11/end.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="is__empty_8hpp.html">boost/mpl11/is_empty.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="prev_8hpp.html">boost/mpl11/prev.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">   19</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">BidirectionalSequence</a> : <a class="code" href="structboost_1_1mpl11_1_1_directional_sequence.html">DirectionalSequence</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Seq&gt;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">   27</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">back_impl</a> {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            static_assert(!<a class="code" href="structboost_1_1mpl11_1_1is__empty.html">is_empty&lt;Seq&gt;::type::value</a>,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="stringliteral">&quot;Attempt to use `back` on an empty sequence.&quot;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">using</span> type = <span class="keyword">typename</span> <a class="code" href="structboost_1_1mpl11_1_1deref.html">deref</a>&lt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <span class="keyword">typename</span> <a class="code" href="structboost_1_1mpl11_1_1prev.html">prev&lt;typename end&lt;Seq&gt;::type</a>&gt;::type</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            &gt;::type;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        };</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_BIDIRECTIONAL_SEQUENCE_HPP</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> S&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">   20</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">BidirectionalSequence::back_impl</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        static_assert(!<a class="code" href="structboost_1_1mpl11_1_1is__empty.html">is_empty&lt;S&gt;::type::value</a>,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="stringliteral">&quot;Attempt to use `back` on an empty sequence.&quot;</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">using</span> type = <span class="keyword">typename</span> <a class="code" href="structboost_1_1mpl11_1_1deref.html">deref</a>&lt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">typename</span> <a class="code" href="structboost_1_1mpl11_1_1prev.html">prev&lt;typename end&lt;S&gt;::type</a>&gt;::type</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        &gt;::type;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    };</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_BIDIRECTIONAL_SEQUENCE_HPP</span></div>
 <div class="ttc" id="directional__sequence_8hpp_html"><div class="ttname"><a href="directional__sequence_8hpp.html">directional_sequence.hpp</a></div><div class="ttdoc">Defines boost::mpl11::DirectionalSequence. </div></div>
 <div class="ttc" id="end_8hpp_html"><div class="ttname"><a href="end_8hpp.html">end.hpp</a></div><div class="ttdoc">Defines boost::mpl11::end. </div></div>
 <div class="ttc" id="structboost_1_1mpl11_1_1prev_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1prev.html">boost::mpl11::prev</a></div><div class="ttdoc">Returns an iterator to the previous element in the sequence. </div><div class="ttdef"><b>Definition:</b> prev.hpp:16</div></div>
 <div class="ttc" id="prev_8hpp_html"><div class="ttname"><a href="prev_8hpp.html">prev.hpp</a></div><div class="ttdoc">Defines boost::mpl11::prev. </div></div>
 <div class="ttc" id="structboost_1_1mpl11_1_1is__empty_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1is__empty.html">boost::mpl11::is_empty</a></div><div class="ttdoc">Returns whether a Sequence is empty. </div><div class="ttdef"><b>Definition:</b> is_empty.hpp:21</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_sequence_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">boost::mpl11::BidirectionalSequence</a></div><div class="ttdoc">DirectionalSequence whose elements can be traversed in reverse order. </div><div class="ttdef"><b>Definition:</b> bidirectional_sequence.hpp:19</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_directional_sequence_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_directional_sequence.html">boost::mpl11::DirectionalSequence</a></div><div class="ttdoc">Sequence whose elements are traversed in a definite order. </div><div class="ttdef"><b>Definition:</b> directional_sequence.hpp:22</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">boost::mpl11::BidirectionalSequence::back_impl</a></div><div class="ttdoc">Returns mpl11::deref&amp;lt;mpl11::prev&amp;lt;mpl11::end&amp;lt;Seq&amp;gt;::type&amp;gt;::type&amp;gt;::type if is_empty&amp;lt;Seq&amp;gt;::value is false...</div><div class="ttdef"><b>Definition:</b> bidirectional_sequence.hpp:27</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_sequence_1_1back__impl.html">boost::mpl11::BidirectionalSequence::back_impl</a></div><div class="ttdoc">Returns. </div><div class="ttdef"><b>Definition:</b> bidirectional_sequence.hpp:20</div></div>
 <div class="ttc" id="is__empty_8hpp_html"><div class="ttname"><a href="is__empty_8hpp.html">is_empty.hpp</a></div><div class="ttdoc">Defines boost::mpl11::is_empty. </div></div>
 <div class="ttc" id="mpl11_2fwd_2bidirectional__sequence_8hpp_html"><div class="ttname"><a href="mpl11_2fwd_2bidirectional__sequence_8hpp.html">bidirectional_sequence.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::BidirectionalSequence. </div></div>
 <div class="ttc" id="deref_8hpp_html"><div class="ttname"><a href="deref_8hpp.html">deref.hpp</a></div><div class="ttdoc">Defines boost::mpl11::deref. </div></div>
@@ -134,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:46 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

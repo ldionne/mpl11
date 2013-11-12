@@ -93,21 +93,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Returns an iterator to the first occurence of a given element in a sequence, or the past-the-end iterator if no such element exists.  
+<p>Returns an iterator to the first occurence of a given element in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code>, or the past-the-end iterator if no such element exists.  
  <a href="structboost_1_1mpl11_1_1find.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fwd_2find_8hpp_source.html">boost/old/mpl11/fwd/find.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="find_8hpp_source.html">boost/mpl11/find.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Sequence, typename Element&gt;<br/>
 struct boost::mpl11::find&lt; Sequence, Element &gt;</h3>
 
-<p>Returns an iterator to the first occurence of a given element in a sequence, or the past-the-end iterator if no such element exists. </p>
+<p>Returns an iterator to the first occurence of a given element in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code>, or the past-the-end iterator if no such element exists. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Use lambda here once implemented. </dd></dl>
 <h3>Semantics and default implementation</h3>
-<p>Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1find__if.html" title="Returns an iterator to the first element satisfying a given predicate in a sequence, or the past-the-end iterator if no such element exists. ">find_if</a>&lt;<a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a>, equal_to&lt;Element, _1&gt;&gt;</code>. </p>
+<p>Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1find__if.html" title="Returns an iterator to the first element satisfying a given predicate in a sequence, or the past-the-end iterator if no such element exists. ">find_if</a>&lt;Sequence, lambda&lt;equal&lt;Element, _1&gt;&gt;&gt;</code>.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Fix lambda expression in the default implementation. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

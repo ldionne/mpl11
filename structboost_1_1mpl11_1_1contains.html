@@ -93,25 +93,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Returns whether <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> contains one or more elements identical to <code>Element</code>.  
+<p>Returns whether a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> contains one or more elements equal to <code>Element</code>.  
  <a href="structboost_1_1mpl11_1_1contains.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fwd_2contains_8hpp_source.html">boost/old/mpl11/fwd/contains.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="contains_8hpp_source.html">boost/mpl11/contains.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Sequence, typename Element&gt;<br/>
 struct boost::mpl11::contains&lt; Sequence, Element &gt;</h3>
 
-<p>Returns whether <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> contains one or more elements identical to <code>Element</code>. </p>
+<p>Returns whether a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> contains one or more elements equal to <code>Element</code>. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Use lambda here once implemented. </dd></dl>
 <h3>Semantics and default implementation</h3>
-<p>Equivalent to </p>
-<div class="fragment"><div class="line">not_equal_to&lt;</div>
-<div class="line">    find&lt;Sequence, Element&gt;::type,</div>
-<div class="line">    end&lt;Sequence&gt;::type</div>
-<div class="line">&gt;</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<p>Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1any__of.html" title="Returns whether any of the elements of a Sequence satisfies a given Predicate. ">any_of</a>&lt;Sequence, lambda&lt;equal&lt;_1, Element&gt;&gt;&gt;</code>. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

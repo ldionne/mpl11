@@ -95,21 +95,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_HASHABLE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_HASHABLE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2comparable_8hpp.html">boost/mpl11/fwd/comparable.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_hashable.html">   34</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_hashable.html">Hashable</a> <a class="code" href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a>({ });</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_HASHABLE_HPP</span></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="group__details_html_ga67ba27d6cf39ebe7b3a9018d31c2dde7"><div class="ttname"><a href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ONLY(...)</div><div class="ttdoc">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing othe...</div><div class="ttdef"><b>Definition:</b> doxygen_only.hpp:16</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_hashable_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_hashable.html">boost::mpl11::Hashable</a></div><div class="ttdoc">Type from which it is possible to extract a hash. </div><div class="ttdef"><b>Definition:</b> hashable.hpp:34</div></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_hashable.html">   34</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_hashable.html">Hashable</a> : <a class="code" href="structboost_1_1mpl11_1_1_comparable.html">Comparable</a> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Hashable&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_hashable_1_1hash__impl.html">   37</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_hashable_1_1hash__impl.html">hash_impl</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_HASHABLE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_comparable_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_comparable.html">boost::mpl11::Comparable</a></div><div class="ttdoc">Type implementing the == and != C++ operators. </div><div class="ttdef"><b>Definition:</b> comparable.hpp:69</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_hashable_1_1hash__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_hashable_1_1hash__impl.html">boost::mpl11::Hashable::hash_impl</a></div><div class="ttdoc">Returns a type uniquely associated to H. </div><div class="ttdef"><b>Definition:</b> hashable.hpp:37</div></div>
+<div class="ttc" id="fwd_2comparable_8hpp_html"><div class="ttname"><a href="fwd_2comparable_8hpp.html">comparable.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Comparable. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_hashable_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_hashable.html">boost::mpl11::Hashable</a></div><div class="ttdoc">Type from which it is possible to extract a hash value. </div><div class="ttdef"><b>Definition:</b> hashable.hpp:34</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

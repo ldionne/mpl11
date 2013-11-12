@@ -102,41 +102,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">struct </span>Orderable {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_orderable_1_1less__impl.html">   19</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_orderable_1_1less__impl.html">less_impl</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">struct </span>Orderable::less_equal_impl</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        : not_&lt;less&lt;Y, X&gt;&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    { };</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_orderable_1_1less__equal__impl.html">   23</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_orderable_1_1less__equal__impl.html">less_equal_impl</a></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            : <a class="code" href="structboost_1_1mpl11_1_1not__.html">not_</a>&lt;less&lt;Y, X&gt;&gt;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        { };</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_orderable_1_1greater__impl.html">   29</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_orderable_1_1greater__impl.html">greater_impl</a></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            : <a class="code" href="structboost_1_1mpl11_1_1less.html">less</a>&lt;Y, X&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        { };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_orderable_1_1greater__equal__impl.html">   35</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_orderable_1_1greater__equal__impl.html">greater_equal_impl</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            : <a class="code" href="structboost_1_1mpl11_1_1not__.html">not_</a>&lt;less&lt;X, Y&gt;&gt;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        { };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_ORDERABLE_ORDERABLE_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_orderable_1_1less__equal__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_orderable_1_1less__equal__impl.html">boost::mpl11::Orderable::less_equal_impl</a></div><div class="ttdoc">Equivalent to not_&amp;lt;mpl11::less&amp;lt;Y, X&amp;gt;&amp;gt;. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:23</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_orderable_1_1greater__equal__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_orderable_1_1greater__equal__impl.html">boost::mpl11::Orderable::greater_equal_impl</a></div><div class="ttdoc">Equivalent to not_&amp;lt;mpl11::less&amp;lt;X, Y&amp;gt;&amp;gt;. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:35</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_orderable_1_1less__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_orderable_1_1less__impl.html">boost::mpl11::Orderable::less_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:19</div></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">struct </span>Orderable::greater_impl</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        : less&lt;Y, X&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    { };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">struct </span>Orderable::greater_equal_impl</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        : not_&lt;less&lt;X, Y&gt;&gt;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    { };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_ORDERABLE_ORDERABLE_HPP</span></div>
 <div class="ttc" id="less_8hpp_html"><div class="ttname"><a href="less_8hpp.html">less.hpp</a></div><div class="ttdoc">Defines boost::mpl11::less. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1less_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1less.html">boost::mpl11::less</a></div><div class="ttdoc">Returns T1 &amp;lt; T2 &amp;lt; ...Tn. </div><div class="ttdef"><b>Definition:</b> less.hpp:16</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_orderable_1_1greater__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_orderable_1_1greater__impl.html">boost::mpl11::Orderable::greater_impl</a></div><div class="ttdoc">Equivalent to mpl11::less&amp;lt;Y, X&amp;gt;. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:29</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1not___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1not__.html">boost::mpl11::not_</a></div><div class="ttdoc">Returns !F::type. </div><div class="ttdef"><b>Definition:</b> not.hpp:23</div></div>
 <div class="ttc" id="not_8hpp_html"><div class="ttname"><a href="not_8hpp.html">not.hpp</a></div><div class="ttdoc">Defines boost::mpl11::not_. </div></div>
 <div class="ttc" id="fwd_2orderable_8hpp_html"><div class="ttname"><a href="fwd_2orderable_8hpp.html">orderable.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Orderable. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

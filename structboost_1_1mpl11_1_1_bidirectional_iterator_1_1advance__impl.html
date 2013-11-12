@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost::mpl11::BidirectionalIterator&lt; I &gt;::advance_impl&lt; Iterator, N, bool &gt; Struct Template Reference</title>
+<title>mpl11: boost::mpl11::BidirectionalIterator&lt; I &gt;::advance_impl&lt; Iterator, N, Backwards &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,24 +89,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">boost::mpl11::BidirectionalIterator&lt; I &gt;::advance_impl&lt; Iterator, N, bool &gt; Struct Template Reference</div>  </div>
+<div class="title">boost::mpl11::BidirectionalIterator&lt; I &gt;::advance_impl&lt; Iterator, N, Backwards &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Performs <code>N::value</code> applications of <code><a class="el" href="structboost_1_1mpl11_1_1next.html" title="Returns an iterator to the next element in the sequence. ">mpl11::next</a></code> or <code><a class="el" href="structboost_1_1mpl11_1_1prev.html" title="Returns an iterator to the previous element in the sequence. ">mpl11::prev</a></code> to <code>Iterator</code>, depending on the sign of <code>N::value</code>.  
  <a href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="bidirectional__iterator_8hpp_source.html">boost/mpl11/bidirectional_iterator.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fwd_2bidirectional__iterator_8hpp_source.html">boost/mpl11/fwd/bidirectional_iterator.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename I&gt;<br/>
-template&lt;typename Iterator, typename N, bool = (N::value &lt; 0)&gt;<br/>
-struct boost::mpl11::BidirectionalIterator&lt; I &gt;::advance_impl&lt; Iterator, N, bool &gt;</h3>
+template&lt;typename Iterator, typename N, bool Backwards&gt;<br/>
+struct boost::mpl11::BidirectionalIterator&lt; I &gt;::advance_impl&lt; Iterator, N, Backwards &gt;</h3>
 
 <p>Performs <code>N::value</code> applications of <code><a class="el" href="structboost_1_1mpl11_1_1next.html" title="Returns an iterator to the next element in the sequence. ">mpl11::next</a></code> or <code><a class="el" href="structboost_1_1mpl11_1_1prev.html" title="Returns an iterator to the previous element in the sequence. ">mpl11::prev</a></code> to <code>Iterator</code>, depending on the sign of <code>N::value</code>. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

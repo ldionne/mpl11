@@ -71,6 +71,8 @@ var searchData=
   ['is_5fplaceholder_3c_20e_20_3e',['is_placeholder&lt; E &gt;',['../structboost_1_1mpl11_1_1is__placeholder.html',1,'boost::mpl11']]],
   ['is_5fplaceholder_5fexpression',['is_placeholder_expression',['../structboost_1_1mpl11_1_1is__placeholder__expression.html',1,'boost::mpl11']]],
   ['is_5fsame',['is_same',['../structboost_1_1mpl11_1_1detail_1_1is__same.html',1,'boost::mpl11::detail']]],
+  ['is_5fsame_3c_20u_2c_20v_20_3e',['is_same&lt; U, V &gt;',['../structboost_1_1mpl11_1_1detail_1_1is__same.html',1,'boost::mpl11::detail']]],
+  ['is_5fsame_3c_20x_2c_20y_20_3e',['is_same&lt; X, Y &gt;',['../structboost_1_1mpl11_1_1detail_1_1is__same.html',1,'boost::mpl11::detail']]],
   ['is_5fspecialization',['is_specialization',['../structboost_1_1mpl11_1_1detail_1_1is__specialization.html',1,'boost::mpl11::detail']]],
   ['iterator_5frange',['iterator_range',['../structboost_1_1mpl11_1_1iterator__range.html',1,'boost::mpl11']]],
   ['iterator_5fview',['iterator_view',['../structboost_1_1mpl11_1_1iterator__view.html',1,'boost::mpl11']]]

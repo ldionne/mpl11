@@ -97,22 +97,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 { <span class="keyword">namespace </span>detail {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">is_same</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    };</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">is_same</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::detail</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">is_same</a>&lt;T, T&gt; {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::detail</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_DETAIL_IS_SAME_HPP</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 { <span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">is_same</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        : false_</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    { };</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">is_same</a>&lt;T, T&gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        : true_</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    { };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::detail</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_DETAIL_IS_SAME_HPP</span></div>
+<div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
 <div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1is__same_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1is__same.html">boost::mpl11::detail::is_same</a></div><div class="ttdoc">Returns whether two types are identical. </div><div class="ttdef"><b>Definition:</b> is_same.hpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

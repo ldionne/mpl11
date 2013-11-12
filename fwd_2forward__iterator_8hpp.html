@@ -96,7 +96,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Forward declares <code><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator.html" title="Type representing a positional reference to an element of a sequence. ">boost::mpl11::ForwardIterator</a></code>.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="doxygen__only_8hpp_source.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="fwd_2comparable_8hpp_source.html">boost/mpl11/fwd/comparable.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="mpl11_2fwd_2equal_8hpp_source.html">boost/mpl11/fwd/equal.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="fwd_2integral__c_8hpp_source.html">boost/mpl11/fwd/integral_c.hpp</a>&gt;</code><br/>
 </div>
 <p><a href="fwd_2forward__iterator_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -105,13 +107,25 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator.html">boost::mpl11::ForwardIterator&lt; I &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type representing a positional reference to an element of a sequence.  <a href="structboost_1_1mpl11_1_1_forward_iterator.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator_1_1next__impl.html">boost::mpl11::ForwardIterator&lt; I &gt;::next_impl&lt; Iterator &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_forward_iterator_1_1next__impl.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator_1_1deref__impl.html">boost::mpl11::ForwardIterator&lt; I &gt;::deref_impl&lt; Iterator &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_forward_iterator_1_1deref__impl.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator_1_1advance__impl.html">boost::mpl11::ForwardIterator&lt; I &gt;::advance_impl&lt; Iterator, N &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs <code>N::value</code> applications of <code><a class="el" href="structboost_1_1mpl11_1_1next.html" title="Returns an iterator to the next element in the sequence. ">mpl11::next</a></code> to <code>Iterator</code>.  <a href="structboost_1_1mpl11_1_1_forward_iterator_1_1advance__impl.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator_1_1distance__impl.html">boost::mpl11::ForwardIterator&lt; I &gt;::distance_impl&lt; First, Last, Distance, Done &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts the number of applications of <code><a class="el" href="structboost_1_1mpl11_1_1next.html" title="Returns an iterator to the next element in the sequence. ">mpl11::next</a></code> required for <code>First</code> to become equal to <code>Last</code>.  <a href="structboost_1_1mpl11_1_1_forward_iterator_1_1distance__impl.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Forward declares <code><a class="el" href="structboost_1_1mpl11_1_1_forward_iterator.html" title="Type representing a positional reference to an element of a sequence. ">boost::mpl11::ForwardIterator</a></code>. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>mpl11: boost/old/mpl11/contains.hpp Source File</title>
+<title>mpl11: boost/mpl11/contains.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_5d7cdb539eb99903fac3e9f61df3237f.html">old</a></li><li class="navelem"><a class="el" href="dir_3546482c8a902c51ab094fc725b4fd54.html">mpl11</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_214a9a5f6ac8745ad55531c5eab6bd11.html">boost</a></li><li class="navelem"><a class="el" href="dir_669f14f0986222489a0a88d859cac1d0.html">mpl11</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,30 +95,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_CONTAINS_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_CONTAINS_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/fwd/contains.hpp&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2contains_8hpp.html">boost/mpl11/fwd/contains.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="end_8hpp.html">boost/mpl11/end.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/find.hpp&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;boost/mpl11/not_equal_to.hpp&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="any__of_8hpp.html">boost/mpl11/any_of.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2equal_8hpp.html">boost/mpl11/equal.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence, <span class="keyword">typename</span> Element&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1contains.html">   18</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1contains.html">contains</a></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        : not_equal_to&lt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            typename find&lt;Sequence, Element&gt;::type,</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            typename end&lt;Sequence&gt;::type</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        &gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    { };</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">namespace </span>contains_detail {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Element&gt;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">struct </span>is_equal_to {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Other&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keyword">struct </span>apply</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                : equal&lt;Element, Other&gt;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            { };</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    } <span class="comment">// end namespace contains_detail</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_CONTAINS_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1contains_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1contains.html">boost::mpl11::contains</a></div><div class="ttdoc">Returns whether Sequence contains one or more elements identical to Element. </div><div class="ttdef"><b>Definition:</b> contains.hpp:18</div></div>
-<div class="ttc" id="end_8hpp_html"><div class="ttname"><a href="end_8hpp.html">end.hpp</a></div><div class="ttdoc">Defines boost::mpl11::end. </div></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence, <span class="keyword">typename</span> Element&gt;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1contains.html">   28</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1contains.html">contains</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1any__of.html">any_of</a>&lt;Sequence, contains_detail::is_equal_to&lt;Element&gt;&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    { };</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_CONTAINS_HPP</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1contains_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1contains.html">boost::mpl11::contains</a></div><div class="ttdoc">Returns whether a Sequence contains one or more elements equal to Element. </div><div class="ttdef"><b>Definition:</b> contains.hpp:28</div></div>
+<div class="ttc" id="mpl11_2equal_8hpp_html"><div class="ttname"><a href="mpl11_2equal_8hpp.html">equal.hpp</a></div><div class="ttdoc">Defines boost::mpl11::equal. </div></div>
+<div class="ttc" id="any__of_8hpp_html"><div class="ttname"><a href="any__of_8hpp.html">any_of.hpp</a></div><div class="ttdoc">Defines boost::mpl11::any_of. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1any__of_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1any__of.html">boost::mpl11::any_of</a></div><div class="ttdoc">Returns whether any of the elements of a Sequence satisfies a given Predicate. </div><div class="ttdef"><b>Definition:</b> any_of.hpp:19</div></div>
+<div class="ttc" id="fwd_2contains_8hpp_html"><div class="ttname"><a href="fwd_2contains_8hpp.html">contains.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::contains. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

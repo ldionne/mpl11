@@ -95,20 +95,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_COMPARABLE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_COMPARABLE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">struct </span>Comparable <a class="code" href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a>({ });</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_COMPARABLE_HPP</span></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="group__details_html_ga67ba27d6cf39ebe7b3a9018d31c2dde7"><div class="ttname"><a href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ONLY(...)</div><div class="ttdoc">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing othe...</div><div class="ttdef"><b>Definition:</b> doxygen_only.hpp:16</div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_comparable.html">   69</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_comparable.html">Comparable</a> {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_comparable_1_1equal__impl.html">   72</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_comparable_1_1equal__impl.html">equal_impl</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_comparable_1_1not__equal__impl.html">not_equal_impl</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    };</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_COMPARABLE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_comparable_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_comparable.html">boost::mpl11::Comparable</a></div><div class="ttdoc">Type implementing the == and != C++ operators. </div><div class="ttdef"><b>Definition:</b> comparable.hpp:69</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_comparable_1_1not__equal__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_comparable_1_1not__equal__impl.html">boost::mpl11::Comparable::not_equal_impl</a></div><div class="ttdoc">Equivalent to not_&amp;lt;equal&amp;lt;X, Y&amp;gt;&amp;gt;. </div><div class="ttdef"><b>Definition:</b> comparable.hpp:17</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_comparable_1_1equal__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_comparable_1_1equal__impl.html">boost::mpl11::Comparable::equal_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> comparable.hpp:72</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

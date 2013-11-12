@@ -93,28 +93,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Returns the number of elements in <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfying <code>Predicate</code>.  
+<p>Returns the number of elements in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfying <code>Predicate</code>.  
  <a href="structboost_1_1mpl11_1_1count__if.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fwd_2count__if_8hpp_source.html">boost/old/mpl11/fwd/count_if.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fwd_2count__if_8hpp_source.html">boost/mpl11/fwd/count_if.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename Sequence, typename Predicate&gt;<br/>
 struct boost::mpl11::count_if&lt; Sequence, Predicate &gt;</h3>
 
-<p>Returns the number of elements in <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfying <code>Predicate</code>. </p>
+<p>Returns the number of elements in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfying <code>Predicate</code>. </p>
 <h3>Semantics and default implementation</h3>
-<p>Equivalent to </p>
-<div class="fragment"><div class="line">foldl&lt;</div>
-<div class="line">    Sequence, ulong&lt;0&gt;,</div>
-<div class="line">    if_&lt;apply_wrap&lt;lambda&lt;Predicate&gt;::type, _2&gt;,</div>
-<div class="line">        next&lt;_1&gt;,</div>
-<div class="line">        _1</div>
-<div class="line">    &gt;</div>
-<div class="line">&gt;</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<p>Equivalent to <code>foldl&lt;<a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a>, ulong&lt;0&gt;, Count&gt;</code>, where <code>Count</code> is a MetafunctionClass incrementing the counter if <code>Predicate</code> is satisfied for that element. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -97,20 +97,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence.html" title="Sequence allowing retrieval of elements based on keys. ">boost::mpl11::AssociativeSequence</a></code>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="mpl11_2fwd_2associative__sequence_8hpp_source.html">boost/mpl11/fwd/associative_sequence.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="comparable_8hpp_source.html">boost/mpl11/comparable.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="sequence_8hpp_source.html">boost/mpl11/sequence.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="and_8hpp_source.html">boost/mpl11/and.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="at_8hpp_source.html">boost/mpl11/at.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="begin_8hpp_source.html">boost/mpl11/begin.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="comparable_8hpp_source.html">boost/mpl11/comparable.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="deref_8hpp_source.html">boost/mpl11/deref.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="doxygen__only_8hpp_source.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="is__same_8hpp_source.html">boost/mpl11/detail/is_same.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="optional_8hpp_source.html">boost/mpl11/detail/optional.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="end_8hpp_source.html">boost/mpl11/end.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="mpl11_2equal_8hpp_source.html">boost/mpl11/equal.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="integral__c_8hpp_source.html">boost/mpl11/integral_c.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="key__of_8hpp_source.html">boost/mpl11/key_of.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="next_8hpp_source.html">boost/mpl11/next.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="sequence_8hpp_source.html">boost/mpl11/sequence.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="size_8hpp_source.html">boost/mpl11/size.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="value__of_8hpp_source.html">boost/mpl11/value_of.hpp</a>&gt;</code><br/>
 </div>
@@ -118,25 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence.html">boost::mpl11::AssociativeSequence&lt; S &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> allowing retrieval of elements based on keys.  <a href="structboost_1_1mpl11_1_1_associative_sequence.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_00_01_default_01_4.html">boost::mpl11::AssociativeSequence&lt; S &gt;::at_impl&lt; Seq, Key, Default &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_00_01_default_01_4.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_01_4.html">boost::mpl11::AssociativeSequence&lt; S &gt;::at_impl&lt; Seq, Key &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="structboost_1_1mpl11_1_1at.html" title="General purpose intrinsic for accessing elements in a sequence. ">mpl11::at</a>&lt;Seq, Key, X&gt;::type</code>, where <code>X</code> is such that a compile-time assertion is triggered if <code>X</code> is returned.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_01_4.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1has__key__impl.html">boost::mpl11::AssociativeSequence&lt; S &gt;::has_key_impl&lt; Seq, Key &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1has__key__impl.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1key__of__impl.html">boost::mpl11::AssociativeSequence&lt; S &gt;::key_of_impl&lt; Seq, Element &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1key__of__impl.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1value__of__impl.html">boost::mpl11::AssociativeSequence&lt; S &gt;::value_of_impl&lt; Seq, Element &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1value__of__impl.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1equal__impl.html">boost::mpl11::AssociativeSequence&lt; S &gt;::equal_impl&lt; Seq1, Seq2 &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1equal__impl.html">boost::mpl11::AssociativeSequence&lt; S &gt;::equal_impl&lt; S1, S2 &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether both sequences have the same size and the same keys mapping to equal values.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1equal__impl.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -145,7 +125,7 @@ Classes</h2></td></tr>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

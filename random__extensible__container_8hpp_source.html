@@ -97,43 +97,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2random__extensible__container_8hpp.html">boost/mpl11/fwd/random_extensible_container.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="back__extensible__container_8hpp.html">boost/mpl11/back_extensible_container.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="front__extensible__container_8hpp.html">boost/mpl11/front_extensible_container.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Required by the forward declaration.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="back__extensible__container_8hpp.html">boost/mpl11/back_extensible_container.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="front__extensible__container_8hpp.html">boost/mpl11/front_extensible_container.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">struct </span>RandomExtensibleContainer</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        : FrontExtensibleContainer, BackExtensibleContainer</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="comment">// We have to disambiguate.</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">using</span> BackExtensibleContainer::new_impl;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Seq, <span class="keyword">typename</span> Pos, <span class="keyword">typename</span> Element&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__impl.html">   24</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__impl.html">insert_impl</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Seq, <span class="keyword">typename</span> Pos, <span class="keyword">typename</span> Range&gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__range__impl.html">   28</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__range__impl.html">insert_range_impl</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Seq, <span class="keyword">typename</span> Pos&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__impl.html">   32</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__impl.html">erase_impl</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Seq, <span class="keyword">typename</span> First, <span class="keyword">typename</span> Last&gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__range__impl.html">   36</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__range__impl.html">erase_range_impl</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_RANDOM_EXTENSIBLE_CONTAINER_HPP</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_RANDOM_EXTENSIBLE_CONTAINER_HPP</span></div>
 <div class="ttc" id="front__extensible__container_8hpp_html"><div class="ttname"><a href="front__extensible__container_8hpp.html">front_extensible_container.hpp</a></div><div class="ttdoc">Defines boost::mpl11::FrontExtensibleContainer. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__impl.html">boost::mpl11::RandomExtensibleContainer::insert_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> random_extensible_container.hpp:24</div></div>
 <div class="ttc" id="fwd_2random__extensible__container_8hpp_html"><div class="ttname"><a href="fwd_2random__extensible__container_8hpp.html">random_extensible_container.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::RandomExtensibleContainer. </div></div>
 <div class="ttc" id="back__extensible__container_8hpp_html"><div class="ttname"><a href="back__extensible__container_8hpp.html">back_extensible_container.hpp</a></div><div class="ttdoc">Defines boost::mpl11::BackExtensibleContainer. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__range__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__range__impl.html">boost::mpl11::RandomExtensibleContainer::erase_range_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> random_extensible_container.hpp:36</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_extensible_container_1_1erase__impl.html">boost::mpl11::RandomExtensibleContainer::erase_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> random_extensible_container.hpp:32</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__range__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_extensible_container_1_1insert__range__impl.html">boost::mpl11::RandomExtensibleContainer::insert_range_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> random_extensible_container.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

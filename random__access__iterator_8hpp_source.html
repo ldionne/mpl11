@@ -97,30 +97,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2random__access__iterator_8hpp.html">boost/mpl11/fwd/random_access_iterator.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bidirectional__iterator_8hpp.html">boost/mpl11/bidirectional_iterator.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="orderable_8hpp.html">boost/mpl11/orderable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Required by the forward declaration.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bidirectional__iterator_8hpp.html">boost/mpl11/bidirectional_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="orderable_8hpp.html">boost/mpl11/orderable.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">struct </span>RandomAccessIterator : BidirectionalIterator, Orderable {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_access_iterator_1_1advance__impl.html">   19</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_access_iterator_1_1advance__impl.html">advance_impl</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> First, <span class="keyword">typename</span> Last&gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_access_iterator_1_1distance__impl.html">   23</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_access_iterator_1_1distance__impl.html">distance_impl</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_RANDOM_ACCESS_ITERATOR_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_random_access_iterator_1_1distance__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_access_iterator_1_1distance__impl.html">boost::mpl11::RandomAccessIterator::distance_impl</a></div><div class="ttdoc">This operation must be O(1) and provided by the user. </div><div class="ttdef"><b>Definition:</b> random_access_iterator.hpp:23</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_random_access_iterator_1_1advance__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_access_iterator_1_1advance__impl.html">boost::mpl11::RandomAccessIterator::advance_impl</a></div><div class="ttdoc">This operation must be O(1) and provided by the user. </div><div class="ttdef"><b>Definition:</b> random_access_iterator.hpp:19</div></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_RANDOM_ACCESS_ITERATOR_HPP</span></div>
 <div class="ttc" id="fwd_2random__access__iterator_8hpp_html"><div class="ttname"><a href="fwd_2random__access__iterator_8hpp.html">random_access_iterator.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::RandomAccessIterator. </div></div>
 <div class="ttc" id="orderable_8hpp_html"><div class="ttname"><a href="orderable_8hpp.html">orderable.hpp</a></div><div class="ttdoc">Defines boost::mpl11::Orderable. </div></div>
 <div class="ttc" id="bidirectional__iterator_8hpp_html"><div class="ttname"><a href="bidirectional__iterator_8hpp.html">bidirectional_iterator.hpp</a></div><div class="ttdoc">Defines boost::mpl11::BidirectionalIterator. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

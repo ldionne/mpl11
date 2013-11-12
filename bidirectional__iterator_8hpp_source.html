@@ -98,43 +98,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2bidirectional__iterator_8hpp.html">boost/mpl11/fwd/bidirectional_iterator.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="move_8hpp.html">boost/mpl11/detail/move.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="forward__iterator_8hpp.html">boost/mpl11/forward_iterator.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="forward__iterator_8hpp.html">boost/mpl11/forward_iterator.hpp</a>&gt;</span> <span class="comment">// required by fwd declaration</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="next_8hpp.html">boost/mpl11/next.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="prev_8hpp.html">boost/mpl11/prev.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_iterator.html">   18</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_iterator.html">BidirectionalIterator</a> : <a class="code" href="structboost_1_1mpl11_1_1_forward_iterator.html">ForwardIterator</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N, <span class="keywordtype">bool</span> = (N::value &lt; 0)&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">   24</a></span>&#160;        struct advance_impl</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            : detail::move&lt;prev, Iterator, -N::value&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        { };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">advance_impl&lt;Iterator, N, false&gt;</a></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            : <a class="code" href="structboost_1_1mpl11_1_1detail_1_1move.html">detail::move&lt;next, Iterator, N::value&gt;</a></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        { };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator&gt;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1prev__impl.html">   35</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1prev__impl.html">prev_impl</a>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    };</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_BIDIRECTIONAL_ITERATOR_HPP</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N, <span class="keywordtype">bool</span> Backwards&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">   19</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">BidirectionalIterator::advance_impl</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1detail_1_1move.html">detail::move</a>&lt;prev, Iterator, -N::value&gt;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    { };</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Iterator, <span class="keyword">typename</span> N&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">BidirectionalIterator::advance_impl</a>&lt;Iterator, N, false&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1detail_1_1move.html">detail::move</a>&lt;next, Iterator, N::value&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    { };</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_BIDIRECTIONAL_ITERATOR_HPP</span></div>
 <div class="ttc" id="forward__iterator_8hpp_html"><div class="ttname"><a href="forward__iterator_8hpp.html">forward_iterator.hpp</a></div><div class="ttdoc">Defines boost::mpl11::ForwardIterator. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1prev__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1prev__impl.html">boost::mpl11::BidirectionalIterator::prev_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> bidirectional_iterator.hpp:35</div></div>
 <div class="ttc" id="next_8hpp_html"><div class="ttname"><a href="next_8hpp.html">next.hpp</a></div><div class="ttdoc">Defines boost::mpl11::next. </div></div>
 <div class="ttc" id="prev_8hpp_html"><div class="ttname"><a href="prev_8hpp.html">prev.hpp</a></div><div class="ttdoc">Defines boost::mpl11::prev. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1move_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1move.html">boost::mpl11::detail::move&lt; next, Iterator, N::value &gt;</a></div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1move_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1move.html">boost::mpl11::detail::move</a></div><div class="ttdoc">Performs N::value applications of Next to Iterator. </div><div class="ttdef"><b>Definition:</b> move.hpp:20</div></div>
 <div class="ttc" id="move_8hpp_html"><div class="ttname"><a href="move_8hpp.html">move.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::move. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_iterator_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_iterator.html">boost::mpl11::BidirectionalIterator</a></div><div class="ttdoc">ForwardIterator providing a way to obtain an iterator to the previous element in the sequence...</div><div class="ttdef"><b>Definition:</b> bidirectional_iterator.hpp:18</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">boost::mpl11::BidirectionalIterator::advance_impl</a></div><div class="ttdoc">Performs N::value applications of mpl11::next or mpl11::prev to Iterator, depending on the sign of N:...</div><div class="ttdef"><b>Definition:</b> bidirectional_iterator.hpp:24</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_forward_iterator_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_forward_iterator.html">boost::mpl11::ForwardIterator</a></div><div class="ttdoc">Type representing a positional reference to an element of a sequence. </div><div class="ttdef"><b>Definition:</b> forward_iterator.hpp:19</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_iterator_1_1advance__impl.html">boost::mpl11::BidirectionalIterator::advance_impl</a></div><div class="ttdoc">Performs N::value applications of mpl11::next or mpl11::prev to Iterator, depending on the sign of N:...</div><div class="ttdef"><b>Definition:</b> bidirectional_iterator.hpp:19</div></div>
 <div class="ttc" id="fwd_2bidirectional__iterator_8hpp_html"><div class="ttname"><a href="fwd_2bidirectional__iterator_8hpp.html">bidirectional_iterator.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::BidirectionalIterator. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:46 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

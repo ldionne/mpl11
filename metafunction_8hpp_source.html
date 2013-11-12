@@ -153,7 +153,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">class </span>BooleanIntegralConstant : IntegralConstant&lt;N&gt; {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    static_assert(is_same&lt;typename N::value_type, bool&gt;::value, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    static_assert(<a class="code" href="structboost_1_1mpl11_1_1detail_1_1is__same.html">is_same&lt;typename N::value_type, bool&gt;::value</a>, <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
@@ -335,10 +335,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_CONCEPT_METAFUNCTION_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1is__same_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1is__same.html">boost::mpl11::detail::is_same</a></div><div class="ttdoc">Returns whether two types are identical. </div><div class="ttdef"><b>Definition:</b> is_same.hpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -95,21 +95,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_integral_constant.html">   42</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_integral_constant.html">IntegralConstant</a> <a class="code" href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a>({ });</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP</span></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1_integral_constant_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_integral_constant.html">boost::mpl11::IntegralConstant</a></div><div class="ttdoc">Holder for a compile-time value of an integral type. </div><div class="ttdef"><b>Definition:</b> integral_constant.hpp:42</div></div>
-<div class="ttc" id="group__details_html_ga67ba27d6cf39ebe7b3a9018d31c2dde7"><div class="ttname"><a href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ONLY(...)</div><div class="ttdoc">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing othe...</div><div class="ttdef"><b>Definition:</b> doxygen_only.hpp:16</div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2arithmetic_8hpp.html">boost/mpl11/fwd/arithmetic.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2bitwise_8hpp.html">boost/mpl11/fwd/bitwise.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2comparable_8hpp.html">boost/mpl11/fwd/comparable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2logical_8hpp.html">boost/mpl11/fwd/logical.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2orderable_8hpp.html">boost/mpl11/fwd/orderable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_integral_constant.html">   46</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_integral_constant.html">IntegralConstant</a></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1_arithmetic.html">Arithmetic</a>, <a class="code" href="structboost_1_1mpl11_1_1_bitwise.html">Bitwise</a>, <a class="code" href="structboost_1_1mpl11_1_1_comparable.html">Comparable</a>, <a class="code" href="structboost_1_1mpl11_1_1_logical.html">Logical</a>, <a class="code" href="structboost_1_1mpl11_1_1_orderable.html">Orderable</a></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">// Logical</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt; <span class="keyword">struct </span>not_impl;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#define BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(NAME) \</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">    template &lt;typename M, typename N&gt; struct NAME ## _impl;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// Comparable</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1equal.html">equal</a>)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// Orderable</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1less.html">less</a>)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Arithmetic</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1add.html">add</a>)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1substract.html">substract</a>)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1divide.html">divide</a>)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1multiply.html">multiply</a>)</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1modulo.html">modulo</a>)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// Bitwise</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1shift__left.html">shift_left</a>)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(<a class="code" href="structboost_1_1mpl11_1_1shift__right.html">shift_right</a>)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(bitxor)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(bitor)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(bitand)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#undef BOOST_MPL11_INTEGRAL_CONSTANT_BINOP</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor"></span>    };</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1shift__left_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1shift__left.html">boost::mpl11::shift_left</a></div><div class="ttdoc">Returns T1 &amp;lt;&amp;lt; T2 &amp;lt;&amp;lt; ...Tn. </div><div class="ttdef"><b>Definition:</b> shift_left.hpp:16</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise.html">boost::mpl11::Bitwise</a></div><div class="ttdoc">Type implementing C++ bitwise operators. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:25</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_comparable_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_comparable.html">boost::mpl11::Comparable</a></div><div class="ttdoc">Type implementing the == and != C++ operators. </div><div class="ttdef"><b>Definition:</b> comparable.hpp:69</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1shift__right_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1shift__right.html">boost::mpl11::shift_right</a></div><div class="ttdoc">Returns T1 &amp;gt;&amp;gt; T2 &amp;gt;&amp;gt; ...Tn. </div><div class="ttdef"><b>Definition:</b> shift_right.hpp:16</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_arithmetic_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_arithmetic.html">boost::mpl11::Arithmetic</a></div><div class="ttdoc">Type implementing C++ arithmetic operators. </div><div class="ttdef"><b>Definition:</b> arithmetic.hpp:25</div></div>
+<div class="ttc" id="fwd_2arithmetic_8hpp_html"><div class="ttname"><a href="fwd_2arithmetic_8hpp.html">arithmetic.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Arithmetic. </div></div>
+<div class="ttc" id="fwd_2bitwise_8hpp_html"><div class="ttname"><a href="fwd_2bitwise_8hpp.html">bitwise.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Bitwise. </div></div>
+<div class="ttc" id="fwd_2logical_8hpp_html"><div class="ttname"><a href="fwd_2logical_8hpp.html">logical.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Logical. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_logical_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_logical.html">boost::mpl11::Logical</a></div><div class="ttdoc">Type implementing C++ logical operators. </div><div class="ttdef"><b>Definition:</b> logical.hpp:63</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1modulo_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1modulo.html">boost::mpl11::modulo</a></div><div class="ttdoc">Returns T1 % T2 % ...Tn. </div><div class="ttdef"><b>Definition:</b> modulo.hpp:16</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_integral_constant_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_integral_constant.html">boost::mpl11::IntegralConstant</a></div><div class="ttdoc">Holder for a compile-time value of an integral type. </div><div class="ttdef"><b>Definition:</b> integral_constant.hpp:46</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1substract_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1substract.html">boost::mpl11::substract</a></div><div class="ttdoc">Returns T1 - T2 - ...Tn. </div><div class="ttdef"><b>Definition:</b> substract.hpp:16</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_orderable_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_orderable.html">boost::mpl11::Orderable</a></div><div class="ttdoc">Type implementing the &amp;lt;, &amp;lt;=, &amp;gt; and &amp;gt;= C++ operators. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:30</div></div>
+<div class="ttc" id="fwd_2comparable_8hpp_html"><div class="ttname"><a href="fwd_2comparable_8hpp.html">comparable.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Comparable. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1less_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1less.html">boost::mpl11::less</a></div><div class="ttdoc">Returns T1 &amp;lt; T2 &amp;lt; ...Tn. </div><div class="ttdef"><b>Definition:</b> less.hpp:16</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1divide_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1divide.html">boost::mpl11::divide</a></div><div class="ttdoc">Returns T1 / T2 / ...Tn. </div><div class="ttdef"><b>Definition:</b> divide.hpp:14</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1equal_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1equal.html">boost::mpl11::equal</a></div><div class="ttdoc">Returns T1 == T2 == ...Tn. </div><div class="ttdef"><b>Definition:</b> equal.hpp:23</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1multiply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1multiply.html">boost::mpl11::multiply</a></div><div class="ttdoc">Returns T1 * T2 * ...Tn. </div><div class="ttdef"><b>Definition:</b> multiply.hpp:16</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1add_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1add.html">boost::mpl11::add</a></div><div class="ttdoc">Returns T1 + T2 + ...Tn. </div><div class="ttdef"><b>Definition:</b> add.hpp:14</div></div>
+<div class="ttc" id="fwd_2orderable_8hpp_html"><div class="ttname"><a href="fwd_2orderable_8hpp.html">orderable.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::Orderable. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

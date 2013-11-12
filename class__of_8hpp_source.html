@@ -97,21 +97,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2class__of_8hpp.html">boost/mpl11/fwd/class_of.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1class__of.html">   14</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1class__of.html">class_of</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">using</span> type = <span class="keyword">typename</span> T::mpl_class;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    };</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="default__class_8hpp.html">boost/mpl11/detail/default_class.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">namespace </span>class_of_detail {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">auto</span> pick(<span class="keywordtype">void</span>*) -&gt; <span class="keyword">typename</span> T::mpl_class;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_CLASS_OF_HPP</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">auto</span> pick(...) -&gt; detail::default_class;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    } <span class="comment">// end namespace class_of_detail</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1class__of.html">   24</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1class__of.html">class_of</a> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">using</span> type = decltype(class_of_detail::pick&lt;T&gt;(<span class="keyword">nullptr</span>));</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_CLASS_OF_HPP</span></div>
 <div class="ttc" id="fwd_2class__of_8hpp_html"><div class="ttname"><a href="fwd_2class__of_8hpp.html">class_of.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::class_of. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1class__of_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1class__of.html">boost::mpl11::class_of</a></div><div class="ttdoc">Returns the MPL class of a type. </div><div class="ttdef"><b>Definition:</b> class_of.hpp:14</div></div>
+<div class="ttc" id="default__class_8hpp_html"><div class="ttname"><a href="default__class_8hpp.html">default_class.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::default_class. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1class__of_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1class__of.html">boost::mpl11::class_of</a></div><div class="ttdoc">Returns the MPL class of a type. </div><div class="ttdef"><b>Definition:</b> class_of.hpp:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

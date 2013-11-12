@@ -95,20 +95,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_BITWISE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_BITWISE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">struct </span>Bitwise <a class="code" href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a>({ });</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_BITWISE_HPP</span></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="group__details_html_ga67ba27d6cf39ebe7b3a9018d31c2dde7"><div class="ttname"><a href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ONLY(...)</div><div class="ttdoc">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing othe...</div><div class="ttdef"><b>Definition:</b> doxygen_only.hpp:16</div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bitwise.html">   25</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bitwise.html">Bitwise</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bitwise_1_1shift__left__impl.html">   28</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bitwise_1_1shift__left__impl.html">shift_left_impl</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bitwise_1_1shift__right__impl.html">   32</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bitwise_1_1shift__right__impl.html">shift_right_impl</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bitwise_1_1bitor__impl.html">   36</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bitwise_1_1bitor__impl.html">bitor_impl</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bitwise_1_1bitand__impl.html">   40</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bitwise_1_1bitand__impl.html">bitand_impl</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> X, <span class="keyword">typename</span> Y&gt;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_bitwise_1_1bitxor__impl.html">   44</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_bitwise_1_1bitxor__impl.html">bitxor_impl</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_BITWISE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise.html">boost::mpl11::Bitwise</a></div><div class="ttdoc">Type implementing C++ bitwise operators. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:25</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_1_1bitand__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise_1_1bitand__impl.html">boost::mpl11::Bitwise::bitand_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:40</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_1_1shift__right__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise_1_1shift__right__impl.html">boost::mpl11::Bitwise::shift_right_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:32</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_1_1bitxor__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise_1_1bitxor__impl.html">boost::mpl11::Bitwise::bitxor_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:44</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_1_1bitor__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise_1_1bitor__impl.html">boost::mpl11::Bitwise::bitor_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:36</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bitwise_1_1shift__left__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bitwise_1_1shift__left__impl.html">boost::mpl11::Bitwise::shift_left_impl</a></div><div class="ttdoc">This operation must be provided by the user. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:53 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

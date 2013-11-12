@@ -95,21 +95,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen__only_8hpp.html">boost/mpl11/detail/doxygen_only.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mpl11_2fwd_2bidirectional__sequence_8hpp.html">boost/mpl11/fwd/bidirectional_sequence.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_access_sequence.html">   38</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_access_sequence.html">RandomAccessSequence</a> <a class="code" href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a>({ });</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP</span></div>
-<div class="ttc" id="doxygen__only_8hpp_html"><div class="ttname"><a href="doxygen__only_8hpp.html">doxygen_only.hpp</a></div><div class="ttdoc">Defines BOOST_MPL11_DOXYGEN_ONLY. </div></div>
-<div class="ttc" id="group__details_html_ga67ba27d6cf39ebe7b3a9018d31c2dde7"><div class="ttname"><a href="group__details.html#ga67ba27d6cf39ebe7b3a9018d31c2dde7">BOOST_MPL11_DOXYGEN_ONLY</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ONLY(...)</div><div class="ttdoc">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing othe...</div><div class="ttdef"><b>Definition:</b> doxygen_only.hpp:16</div></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_access_sequence.html">   38</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_access_sequence.html">RandomAccessSequence</a> : <a class="code" href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">BidirectionalSequence</a> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Sequence, <span class="keyword">typename</span> N&gt;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1_random_access_sequence_1_1at__impl.html">   44</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1_random_access_sequence_1_1at__impl.html">at_impl</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_bidirectional_sequence_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_bidirectional_sequence.html">boost::mpl11::BidirectionalSequence</a></div><div class="ttdoc">DirectionalSequence whose elements can be traversed in reverse order. </div><div class="ttdef"><b>Definition:</b> bidirectional_sequence.hpp:36</div></div>
+<div class="ttc" id="mpl11_2fwd_2bidirectional__sequence_8hpp_html"><div class="ttname"><a href="mpl11_2fwd_2bidirectional__sequence_8hpp.html">bidirectional_sequence.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::BidirectionalSequence. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1_random_access_sequence_1_1at__impl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_access_sequence_1_1at__impl.html">boost::mpl11::RandomAccessSequence::at_impl</a></div><div class="ttdoc">Advances begin&amp;lt;Sequence&amp;gt;::type N positions and dereferences it. </div><div class="ttdef"><b>Definition:</b> random_access_sequence.hpp:44</div></div>
 <div class="ttc" id="structboost_1_1mpl11_1_1_random_access_sequence_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1_random_access_sequence.html">boost::mpl11::RandomAccessSequence</a></div><div class="ttdoc">BidirectionalSequence whose iterators model the RandomAccessIterator concept. </div><div class="ttdef"><b>Definition:</b> random_access_sequence.hpp:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:47 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:54 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

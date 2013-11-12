@@ -104,11 +104,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 struct boost::mpl11::class_of&lt; T &gt;</h3>
 
 <p>Returns the MPL class of a type. </p>
-<p>The default implementation uses <code>T::mpl_class</code>. Users may specialize <code><a class="el" href="structboost_1_1mpl11_1_1class__of.html" title="Returns the MPL class of a type. ">class_of</a></code> to change its default behavior. </p>
+<p>The default implementation returns <code>T::mpl_class</code> if it is a valid expression and <code><a class="el" href="structboost_1_1mpl11_1_1detail_1_1default__class.html" title="Default class returned by class_of and providing some basic operations. ">detail::default_class</a></code> otherwise. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

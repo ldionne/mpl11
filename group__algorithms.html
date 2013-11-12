@@ -95,6 +95,18 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1any__of.html">boost::mpl11::any_of&lt; Sequence, Predicate &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether any of the elements of a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfies a given <code>Predicate</code>.  <a href="structboost_1_1mpl11_1_1any__of.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1contains.html">boost::mpl11::contains&lt; Sequence, Element &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> contains one or more elements equal to <code>Element</code>.  <a href="structboost_1_1mpl11_1_1contains.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1count.html">boost::mpl11::count&lt; Sequence, Element &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> that are equal to <code>Element</code>.  <a href="structboost_1_1mpl11_1_1count.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1count__if.html">boost::mpl11::count_if&lt; Sequence, Predicate &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfying <code>Predicate</code>.  <a href="structboost_1_1mpl11_1_1count__if.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1find.html">boost::mpl11::find&lt; Sequence, Element &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterator to the first occurence of a given element in a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code>, or the past-the-end iterator if no such element exists.  <a href="structboost_1_1mpl11_1_1find.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1find__if.html">boost::mpl11::find_if&lt; Sequence, Predicate &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterator to the first element satisfying a given predicate in a sequence, or the past-the-end iterator if no such element exists.  <a href="structboost_1_1mpl11_1_1find__if.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,18 +124,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1none__of.html">boost::mpl11::none_of&lt; Sequence, Predicate &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether no element of a <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfies a given <code>Predicate</code>.  <a href="structboost_1_1mpl11_1_1none__of.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1contains.html">boost::mpl11::contains&lt; Sequence, Element &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> contains one or more elements identical to <code>Element</code>.  <a href="structboost_1_1mpl11_1_1contains.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1count.html">boost::mpl11::count&lt; Sequence, Element &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> that are identical to <code>Element</code>.  <a href="structboost_1_1mpl11_1_1count.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1count__if.html">boost::mpl11::count_if&lt; Sequence, Predicate &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in <code><a class="el" href="structboost_1_1mpl11_1_1_sequence.html" title="Collection of types that can be traversed. ">Sequence</a></code> satisfying <code>Predicate</code>.  <a href="structboost_1_1mpl11_1_1count__if.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1find.html">boost::mpl11::find&lt; Sequence, Element &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterator to the first occurence of a given element in a sequence, or the past-the-end iterator if no such element exists.  <a href="structboost_1_1mpl11_1_1find.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1is__permutation_3_01_sequence1_00_01_sequence2_00_01_predicate_01_4.html">boost::mpl11::is_permutation&lt; Sequence1, Sequence2, Predicate &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a sequence is a permutation of another sequence, using a custom predicate to determine the equality of two elements.  <a href="structboost_1_1mpl11_1_1is__permutation_3_01_sequence1_00_01_sequence2_00_01_predicate_01_4.html#details">More...</a><br/></td></tr>
@@ -157,7 +157,7 @@ Classes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

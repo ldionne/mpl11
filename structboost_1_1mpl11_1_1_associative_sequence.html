@@ -103,11 +103,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_01_4.html">at_impl&lt; Seq, Key &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code><a class="el" href="structboost_1_1mpl11_1_1at.html" title="General purpose intrinsic for accessing elements in a sequence. ">mpl11::at</a>&lt;Seq, Key, X&gt;::type</code>, where <code>X</code> is such that a compile-time assertion is triggered if <code>X</code> is returned.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_01_4.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_00_01_default_01_4.html">at_impl&lt; Seq, Key, Default &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_seq_00_01_key_00_01_default_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_sequence_00_01_key_00_01_default_01_4.html">at_impl&lt; Sequence, Key, Default &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This operation must be provided by the user.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1at__impl_3_01_sequence_00_01_key_00_01_default_01_4.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence_1_1equal__impl.html">equal_impl</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether both sequences have the same size and the same keys mapping to equal values.  <a href="structboost_1_1mpl11_1_1_associative_sequence_1_1equal__impl.html#details">More...</a><br/></td></tr>
@@ -134,7 +131,7 @@ class boost::mpl11::AssociativeSequence&lt; S &gt;</h3>
 <tr>
 <th>Expression </th><th>Description  </th></tr>
 <tr>
-<td><code>Seq</code> </td><td>An <code><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence.html" title="Sequence allowing retrieval of elements based on keys. ">AssociativeSequence</a></code> </td></tr>
+<td><code>S</code> </td><td>An <code><a class="el" href="structboost_1_1mpl11_1_1_associative_sequence.html" title="Sequence allowing retrieval of elements based on keys. ">AssociativeSequence</a></code> </td></tr>
 <tr>
 <td><code>Element</code> </td><td>An element of <code>S</code> </td></tr>
 <tr>
@@ -147,20 +144,20 @@ class boost::mpl11::AssociativeSequence&lt; S &gt;</h3>
 <tr>
 <th>Expression </th><th>Type  </th></tr>
 <tr>
-<td><code><a class="el" href="structboost_1_1mpl11_1_1key__of.html" title="Returns the key that would be used for an element in an AssociativeSequence. ">key_of</a>&lt;Seq, Element&gt;::type</code> </td><td>Any type </td></tr>
+<td><code><a class="el" href="structboost_1_1mpl11_1_1key__of.html" title="Returns the key that would be used for an element in an AssociativeSequence. ">key_of</a>&lt;S, Element&gt;::type</code> </td><td>Any type </td></tr>
 <tr>
-<td><code><a class="el" href="structboost_1_1mpl11_1_1value__of.html" title="Returns the value that would be used for an element in an AssociativeSequence. ">value_of</a>&lt;Seq, Element&gt;::type</code> </td><td>Any type </td></tr>
+<td><code><a class="el" href="structboost_1_1mpl11_1_1value__of.html" title="Returns the value that would be used for an element in an AssociativeSequence. ">value_of</a>&lt;S, Element&gt;::type</code> </td><td>Any type </td></tr>
 <tr>
-<td><code>at&lt;Seq, Key&gt;::type</code> </td><td>Any type </td></tr>
+<td><code>at&lt;S, Key&gt;::type</code> </td><td>Any type </td></tr>
 <tr>
-<td><code>at&lt;Seq, Key, Default&gt;::type</code> </td><td>Any type </td></tr>
+<td><code>at&lt;S, Key, Default&gt;::type</code> </td><td>Any type </td></tr>
 <tr>
-<td><code><a class="el" href="structboost_1_1mpl11_1_1has__key.html" title="Returns whether an AssociativeSequence contains one or more elements with key Key. ">has_key</a>&lt;Seq, Key&gt;</code> </td><td>Boolean <code><a class="el" href="structboost_1_1mpl11_1_1_integral_constant.html" title="Holder for a compile-time value of an integral type. ">IntegralConstant</a></code> </td></tr>
+<td><code><a class="el" href="structboost_1_1mpl11_1_1has__key.html" title="Returns whether an AssociativeSequence contains one or more elements with key Key. ">has_key</a>&lt;S, Key&gt;</code> </td><td>Boolean <code><a class="el" href="structboost_1_1mpl11_1_1_integral_constant.html" title="Holder for a compile-time value of an integral type. ">IntegralConstant</a></code> </td></tr>
 </table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 7 2013 18:41:48 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 12 2013 00:24:55 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
