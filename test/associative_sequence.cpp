@@ -119,7 +119,7 @@ struct sequence : lookup<Elements...> {
 struct is_same_comparable : Comparable {
     template <typename X, typename Y>
     struct equal_impl
-        : bool_<is_same<X, Y>::value>
+        : is_same<X, Y>
     { };
 };
 

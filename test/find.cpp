@@ -12,7 +12,6 @@
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
-#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/vector.hpp>
 
@@ -25,7 +24,7 @@ struct t {
     struct mpl_class : Comparable {
         template <typename T, typename U>
         struct equal_impl
-            : bool_<detail::is_same<T, U>::value>
+            : detail::is_same<T, U>
         { };
     };
 };

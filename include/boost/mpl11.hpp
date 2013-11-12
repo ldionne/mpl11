@@ -10,17 +10,6 @@
  * @defgroup details Details
  *
  * Implementation details.
- *
- *
- * @todo
- * Fix the note below: some metafunctions in `detail` do return
- * `IntegralConstant`s.
- *
- * @note
- * In order to reduce dependencies to the maximum, boolean metafunctions in
- * this category are not real boolean metafunctions as they do not return
- * `IntegralConstant`s. Instead, they have a nested boolean `value` which
- * carries the result.
  */
 
 /*!

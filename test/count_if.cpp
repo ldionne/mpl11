@@ -22,7 +22,7 @@ template <typename T>
 struct same_as {
     template <typename U>
     struct apply
-        : bool_<detail::is_same<T, U>::value>
+        : detail::is_same<T, U>
     { };
 };
 

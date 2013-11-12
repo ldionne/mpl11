@@ -20,17 +20,16 @@
 using namespace boost::mpl11;
 
 template <typename Sequence, int I>
-using iter_at = typename advance_c<
-    typename begin<Sequence>::type, I
->::type;
+using iter_at = typename advance_c<typename begin<Sequence>::type, I>::type;
 
 struct x; struct y; struct z;
 
+//! @todo Use lambda here when ready.
 template <typename T>
 struct same_as {
     template <typename U>
     struct apply
-        : bool_<detail::is_same<T, U>::value>
+        : detail::is_same<T, U>
     { };
 };
 
