@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/class_of.hpp>
 
-#include <boost/mpl11/detail/default_class.hpp>
+#include <boost/mpl11/type.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
         auto pick(void*) -> typename T::mpl_class;
 
         template <typename T>
-        auto pick(...) -> detail::default_class;
+        auto pick(...) -> Type;
     } // end namespace class_of_detail
 
     template <typename T>

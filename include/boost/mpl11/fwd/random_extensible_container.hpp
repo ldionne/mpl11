@@ -28,7 +28,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression                          | Type
+     * | Expression                          | %Type
      * | ----------                          | ----
      * | `mpl11::insert<C, Pos, T>::type`    | `RandomExtensibleContainer`
      * | `insert_range<C, Pos, R>::type`     | `RandomExtensibleContainer`

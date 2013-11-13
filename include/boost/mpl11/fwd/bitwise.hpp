@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type implementing C++ bitwise operators.
+     * %Type implementing C++ bitwise operators.
      */
     struct Bitwise {
         //! This operation must be provided by the user.

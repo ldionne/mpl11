@@ -33,7 +33,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression                   | Type
+     * | Expression                   | %Type
      * | ----------                   | ----
      * | `key_of<S, Element>::type`   | Any type
      * | `value_of<S, Element>::type` | Any type

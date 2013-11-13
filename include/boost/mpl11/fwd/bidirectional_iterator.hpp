@@ -35,7 +35,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression            | Type
+     * | Expression            | %Type
      * | ----------            | ----
      * | `next<I>::type`       | A `BidirectionalIterator`
      * | `prev<I>::type`       | A `BidirectionalIterator`

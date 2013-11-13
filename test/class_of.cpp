@@ -5,8 +5,8 @@
 
 #include <boost/mpl11/class_of.hpp>
 
-#include <boost/mpl11/detail/default_class.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/type.hpp>
 
 
 using namespace boost::mpl11;
@@ -21,7 +21,7 @@ static_assert(is_same<
 
 static_assert(is_same<
     class_of<struct no_nested_mpl_class>::type,
-    detail::default_class
+    Type
 >::value, "");
 
 

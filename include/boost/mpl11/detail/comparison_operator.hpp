@@ -6,10 +6,6 @@
 #ifndef BOOST_MPL11_DETAIL_COMPARISON_OPERATOR_HPP
 #define BOOST_MPL11_DETAIL_COMPARISON_OPERATOR_HPP
 
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/class_of.hpp>
-
-
 /*!
  * @ingroup details
  *
@@ -31,5 +27,9 @@ namespace boost { namespace mpl11 {                                         \
     { };                                                                    \
 }} /* end namespace boost::mpl11 */                                         \
 /**/
+
+
+#include <boost/mpl11/and.hpp>
+#include <boost/mpl11/class_of.hpp>
 
 #endif // !BOOST_MPL11_DETAIL_COMPARISON_OPERATOR_HPP

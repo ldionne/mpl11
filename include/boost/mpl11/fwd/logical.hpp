@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type implementing C++ logical operators.
+     * %Type implementing C++ logical operators.
      *
      *
      * ## Notation
@@ -54,7 +54,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression          | Type
+     * | Expression          | %Type
      * | ----------          | ----
      * | `not_<A0>`          | Boolean `IntegralConstant`
      * | `and_<A0, ..., An>` | @ref Metafunction

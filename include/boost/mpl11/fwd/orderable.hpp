@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type implementing the `<`, `<=`, `>` and `>=` C++ operators.
+     * %Type implementing the `<`, `<=`, `>` and `>=` C++ operators.
      *
      *
      * ## Notation
@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression                          | Type
+     * | Expression                          | %Type
      * | ----------                          | ----
      * | `mpl11::less<A0, ..., An>`          | Boolean `IntegralConstant`
      * | `mpl11::less_equal<A0, ..., An>`    | Boolean `IntegralConstant`

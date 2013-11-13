@@ -29,7 +29,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression       | Type
+     * | Expression       | %Type
      * | ----------       | ----
      * | `front<S>::type` | Any type
      */

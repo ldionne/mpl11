@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 {
      * Returns the MPL class of a type.
      *
      * The default implementation returns `T::mpl_class` if it is a valid
-     * expression and `detail::default_class` otherwise.
+     * expression and `Type` otherwise.
      */
     template <typename T>
     struct class_of;

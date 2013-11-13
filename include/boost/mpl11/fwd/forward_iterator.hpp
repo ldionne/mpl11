@@ -22,7 +22,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type representing a positional reference to an element of a sequence.
+     * %Type representing a positional reference to an element of a sequence.
      *
      * A `ForwardIterator` allows accessing the element through a dereference
      * operation, and provides a way to obtain an iterator to the next element
@@ -61,7 +61,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression             | Type
+     * | Expression             | %Type
      * | ----------             | ----
      * | `deref<I>::type`       | Any type
      * | `next<I>::type`        | A `ForwardIterator`

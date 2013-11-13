@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type implementing C++ arithmetic operators.
+     * %Type implementing C++ arithmetic operators.
      */
     struct Arithmetic {
         //! This operation must be provided by the user.

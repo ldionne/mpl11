@@ -58,6 +58,7 @@ mpl11_add_test(pair                       pair.cpp)
 mpl11_add_test(quote                      quote.cpp)
 mpl11_add_test(random_access_sequence     random_access_sequence.cpp)
 mpl11_add_test(sequence                   sequence.cpp)
+mpl11_add_test(type                       type.cpp)
 mpl11_add_test(unpack                     unpack.cpp)
 mpl11_add_test(vector                     vector.cpp)
 

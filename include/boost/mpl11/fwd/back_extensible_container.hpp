@@ -28,7 +28,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression              | Type
+     * | Expression              | %Type
      * | ----------              | ----
      * | `pop_back<C>::type`     | `BackExtensibleContainer`
      * | `push_back<C, T>::type` | `BackExtensibleContainer`

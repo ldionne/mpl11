@@ -162,6 +162,7 @@
 #include <boost/mpl11/shift_right.hpp>
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/substract.hpp>
+#include <boost/mpl11/type.hpp>
 #include <boost/mpl11/unpack.hpp>
 #include <boost/mpl11/value_of.hpp>
 #include <boost/mpl11/vector.hpp>

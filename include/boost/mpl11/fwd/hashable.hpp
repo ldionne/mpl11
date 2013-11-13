@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * Type from which it is possible to extract a hash value.
+     * %Type from which it is possible to extract a hash value.
      *
      *
      * ## Refinement of
@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression      | Type
+     * | Expression      | %Type
      * | ----------      | ----
      * | `hash<H>::type` | Any type
      */
