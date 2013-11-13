@@ -20,12 +20,17 @@ option(MPL11_ENABLE_WERROR   "Fail and stop if a warning is triggered." OFF)
 option(MPL11_ENABLE_CXX0X    "Use the -std=c++0x switch if the compiler supports it." ON)
 option(MPL11_ENABLE_LIBCXX   "Use the -stdlib=libc++ if the compiler supports it." ON)
 CMAKE_DEPENDENT_OPTION(
-    MPL11_ENABLE_TESTS "Enable the unit tests. To avoid target name conflicts and cluttering the list of targets, unit tests are disabled when the library is nested inside another project."
+    MPL11_ENABLE_TESTS "Enable the `unit` target. To avoid target name conflicts and cluttering the list of targets, unit tests are disabled when the library is nested inside another project."
     OFF "MPL11_IS_NESTED" # OFF when MPL11_IS_NESTED
     ON                    # ON otherwise
 )
 CMAKE_DEPENDENT_OPTION(
-    MPL11_ENABLE_DOC "Enable the documentation target. To avoid target name conflicts and cluttering the list of targets, this is disabled when the library is nested inside another project."
+    MPL11_ENABLE_DOC "Enable the `doc` target. To avoid target name conflicts and cluttering the list of targets, this is disabled when the library is nested inside another project."
+    OFF "MPL11_IS_NESTED" # OFF when MPL11_IS_NESTED
+    ON                    # ON otherwise
+)
+CMAKE_DEPENDENT_OPTION(
+    MPL11_ENABLE_EXAMPLES "Enable the `example` target. To avoid target name conflicts and cluttering the list of targets, this is disabled when the library is nested inside another project."
     OFF "MPL11_IS_NESTED" # OFF when MPL11_IS_NESTED
     ON                    # ON otherwise
 )
@@ -113,6 +118,13 @@ endif()
 # Setup tests
 #=============================================================================
 if (MPL11_ENABLE_TESTS)
-    enable_testing()
     add_subdirectory(test)
+endif()
+
+
+#=============================================================================
+# Setup examples
+#=============================================================================
+if (MPL11_ENABLE_EXAMPLES)
+    add_subdirectory(example)
 endif()

@@ -22,11 +22,13 @@ your compiler's search path and you are good to go.
 Available [here](http://ldionne.github.io/mpl11).
 
 
-## Testing
-To compile the tests, you will also need to have CMake installed.
-If this is the case, you can go to the root of the project and do:
+## Compiling the tests and examples
+To do this, you will also need to have CMake installed. If this is the case,
+you can go to the root of the project and issue:
 
     $ mkdir build
     $ cd build
     $ cmake ..
-    $ make unit # Compiles the tests. All tests are compile-time only.
+    $ make unit     # Compiles the tests. All tests are compile-time only.
+    $ make example  # Compiles the examples.
+    $ make          # Compiles the tests and the examples.

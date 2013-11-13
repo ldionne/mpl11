@@ -1,11 +1,10 @@
 #=============================================================================
 # Setup unit tests
 #=============================================================================
-add_custom_target(unit COMMENT "build all the unit tests")
+add_custom_target(unit COMMENT "Build all the unit tests.")
 
 function(mpl11_add_test name sources)
-    add_executable(${name} EXCLUDE_FROM_ALL ${sources})
-    add_test(NAME ${name} COMMAND ${name})
+    add_executable(${name} ${sources})
     add_dependencies(unit ${name})
 endfunction()
 
@@ -61,6 +60,3 @@ mpl11_add_test(sequence                   sequence.cpp)
 mpl11_add_test(type                       type.cpp)
 mpl11_add_test(unpack                     unpack.cpp)
 mpl11_add_test(vector                     vector.cpp)
-
-add_executable(benchmark_vector50_at       EXCLUDE_FROM_ALL benchmark/vector50_at.cpp)
-add_executable(benchmark_vector50_pop_back EXCLUDE_FROM_ALL benchmark/vector50_pop_back.cpp)
