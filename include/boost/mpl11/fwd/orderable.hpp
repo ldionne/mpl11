@@ -28,9 +28,12 @@ namespace boost { namespace mpl11 {
      * | `mpl11::greater_equal<A0, ..., An>` | Boolean `IntegralConstant`
      */
     struct Orderable {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename X, typename Y>
         struct less_impl;
+#endif
 
         //! Equivalent to `not_<mpl11::less<Y, X>>`.
         template <typename X, typename Y>

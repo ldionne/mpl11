@@ -67,9 +67,12 @@ namespace boost { namespace mpl11 {
      * | `mpl11::not_equal<T, U>` | Boolean `IntegralConstant`
      */
     struct Comparable {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename X, typename Y>
         struct equal_impl;
+#endif
 
         //! Equivalent to `not_<equal<X, Y>>`.
         template <typename X, typename Y>

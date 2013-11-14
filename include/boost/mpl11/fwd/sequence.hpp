@@ -56,6 +56,8 @@ namespace boost { namespace mpl11 {
      *   in the same order.
      */
     struct Sequence {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
           //! This operation must be provided by the user.
           template <typename Sequence>
           struct begin_impl;
@@ -63,6 +65,7 @@ namespace boost { namespace mpl11 {
           //! This operation must be provided by the user.
           template <typename Sequence>
           struct end_impl;
+#endif
 
           //! Returns the distance between both ends of the sequence.
           template <typename Sequence>

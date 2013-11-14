@@ -48,16 +48,19 @@ namespace boost { namespace mpl11 {
      *   is equal to `I`.
      */
     struct BidirectionalIterator : ForwardIterator {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+        //! This operation must be provided by the user.
+        template <typename Iterator>
+        struct prev_impl;
+#endif
+
         /*!
          * Performs `N::value` applications of `mpl11::next` or `mpl11::prev`
          * to `Iterator`, depending on the sign of `N::value`.
          */
         template <typename Iterator, typename N, bool = (N::value < 0)>
         struct advance_impl;
-
-        //! This operation must be provided by the user.
-        template <typename Iterator>
-        struct prev_impl;
     };
 }} // end namespace boost::mpl11
 

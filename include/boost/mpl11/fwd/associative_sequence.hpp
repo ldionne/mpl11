@@ -58,6 +58,7 @@ namespace boost { namespace mpl11 {
         template <typename Sequence, typename Key>
         struct at_key_impl<Sequence, Key>;
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Sequence, typename Key>
         struct has_key_impl;
@@ -69,6 +70,7 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename Sequence, typename Element>
         struct value_of_impl;
+#endif
 
         /*!
          * Returns whether both sequences have the same size and the same

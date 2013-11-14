@@ -7,74 +7,19 @@
 
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/vector.hpp>
+
+#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
 using detail::is_same;
 
-template <typename ...Elements>
-struct sequence {
-    template <unsigned long Position>
-    struct iterator {
-        static constexpr auto position = Position;
-
-        struct mpl_class : RandomAccessIterator {
-            template <typename Self, typename Other>
-            struct equal_impl
-                : bool_<Self::position == Other::position>
-            { };
-
-            template <typename Self, typename Other>
-            struct less_impl
-                : bool_<Self::position < Other::position>
-            { };
-
-            template <typename Self, typename Other>
-            struct distance_impl
-                : longlong<Other::position - Self::position>
-            {
-                static_assert(Self::position <= Other::position,
-                "invalid arguments to distance");
-            };
-
-            template <typename Self, typename N>
-            struct advance_impl {
-                using type = iterator<Self::position + N::value>;
-            };
-
-            template <typename Self>
-            struct next_impl {
-                using type = iterator<Self::position + 1>;
-            };
-
-            template <typename Self>
-            struct prev_impl {
-                using type = iterator<Self::position - 1>;
-            };
-
-            template <typename Self>
-            struct deref_impl
-                : at_c<vector<Elements...>, Self::position>
-            { };
-        };
-    };
-
-    struct mpl_class : RandomAccessSequence {
-        template <typename Self>
-        struct begin_impl { using type = iterator<0>; };
-
-        template <typename Self>
-        struct end_impl { using type = iterator<sizeof...(Elements)>; };
-    };
-};
-
 template <int> struct x;
-
 template <int ...i>
-using seq = sequence<x<i>...>;
+using seq = test::wrapper<
+    test::minimal_requirements<RandomAccessSequence>, vector<x<i>...>
+>;
 
 // at/at_c
 static_assert(is_same<at_c<seq<0>, 0>::type, x<0>>::value, "");

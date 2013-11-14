@@ -44,6 +44,8 @@ namespace boost { namespace mpl11 {
      *   is equal to `I`.
      */
     struct RandomAccessIterator : BidirectionalIterator, Orderable {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be O(1) and provided by the user.
         template <typename Iterator, typename N>
         struct advance_impl;
@@ -51,6 +53,8 @@ namespace boost { namespace mpl11 {
         //! This operation must be O(1) and provided by the user.
         template <typename First, typename Last>
         struct distance_impl;
+#endif
+
     };
 }} // end namespace boost::mpl11
 

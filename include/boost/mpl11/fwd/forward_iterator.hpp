@@ -86,6 +86,8 @@ namespace boost { namespace mpl11 {
      *   `next<J>::type` are equal.
      */
     struct ForwardIterator : Comparable {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Iterator>
         struct next_impl;
@@ -93,6 +95,7 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename Iterator>
         struct deref_impl;
+#endif
 
         /*!
          * Performs `N::value` applications of `mpl11::next` to `Iterator`.

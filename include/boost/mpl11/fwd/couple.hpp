@@ -21,6 +21,8 @@ namespace boost { namespace mpl11 {
      * both of their stored types are.
      */
     struct Couple : Comparable, Orderable {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Couple>
         struct first_impl;
@@ -28,6 +30,7 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename Couple>
         struct second_impl;
+#endif
 
         //! Performs a lexicographical comparison of the two couples.
         template <typename Couple1, typename Couple2>

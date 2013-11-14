@@ -43,17 +43,20 @@ namespace boost { namespace mpl11 {
      * Write unit test for operations with defaults.
      */
     struct AssociativeContainer : Container {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Container, typename Element>
         struct insert_key_impl;
 
-        //! Inserts each element using `insert_key`.
-        template <typename Container, typename Elements>
-        struct insert_keys_impl;
-
         //! This operation must be provided by the user.
         template <typename Container, typename Key>
         struct erase_key_impl;
+#endif
+
+        //! Inserts each element using `insert_key`.
+        template <typename Container, typename Elements>
+        struct insert_keys_impl;
 
         //! Erases each key using `erase_key`.
         template <typename Container, typename Keys>

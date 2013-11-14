@@ -34,6 +34,8 @@ namespace boost { namespace mpl11 {
      * | `push_front<C, T>::type` | `FrontExtensibleContainer`
      */
     struct FrontExtensibleContainer : Container {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Container>
         struct pop_front_impl;
@@ -41,6 +43,7 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename Container, typename T>
         struct push_front_impl;
+#endif
 
         /*!
          * Uses `push_front` repeatedly on `clear<%Container>::type`

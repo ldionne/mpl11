@@ -47,6 +47,8 @@ namespace boost { namespace mpl11 {
      * | `clear<C>::type` | `Container`
      */
     struct Container : Sequence {
+
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Container>
         struct new_impl;
@@ -54,6 +56,8 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename Container>
         struct clear_impl;
+#endif
+
     };
 }} // end namespace boost::mpl11
 

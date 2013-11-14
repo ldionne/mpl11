@@ -65,7 +65,11 @@ namespace boost { namespace mpl11 {
         struct is_subset_of_impl
             : and_<
                 equal<
-                    Value, typename at_key<Seq2, Key, equal_to_nothing>::type
+                    // IMPORTANT: The comparison must be made in this
+                    // direction, i.e. with the potential equal_to_nothing
+                    // on the left so that we use equal_to_nothing's
+                    // comparison operator instead of Value's.
+                    typename at_key<Seq2, Key, equal_to_nothing>::type, Value
                 >,
                 lazy_next_step<Seq1, Seq2, First, Last>
             >

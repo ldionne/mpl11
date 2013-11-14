@@ -5,85 +5,65 @@
 
 #include <boost/mpl11/couple.hpp>
 
-#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/equal.hpp>
-#include <boost/mpl11/first.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/less.hpp>
-#include <boost/mpl11/second.hpp>
+#include <boost/mpl11/orderable.hpp>
+#include <boost/mpl11/pair.hpp>
+
+#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
-using detail::is_same;
 
-template <int i>
-struct x {
-    static constexpr auto value = i;
+namespace test_equal {
+    template <int X, int Y>
+    using couple = test::wrapper<
+        test::minimal_requirements<Couple>,
+        pair<
+            test::wrapper<test::minimal_requirements<Comparable>, int_<X>>,
+            test::wrapper<test::minimal_requirements<Comparable>, int_<Y>>
+        >
+    >;
 
-    struct mpl_class : Orderable, Comparable {
-        template <typename Self, typename Other>
-        struct equal_impl
-            : bool_<Self::value == Other::value>
-        { };
+    static_assert( equal<couple<0, 0>, couple<0, 0>>::value, "");
+    static_assert(!equal<couple<1, 0>, couple<0, 0>>::value, "");
+    static_assert(!equal<couple<0, 1>, couple<0, 0>>::value, "");
+    static_assert(!equal<couple<0, 0>, couple<1, 0>>::value, "");
+    static_assert(!equal<couple<0, 0>, couple<0, 1>>::value, "");
+}
 
-        template <typename Self, typename Other>
-        struct less_impl
-            : bool_<Self::value < Other::value>
-        { };
-    };
-};
+namespace test_less {
+    template <int X, int Y>
+    using couple = test::wrapper<
+        test::minimal_requirements<Couple>,
+        pair<
+            test::wrapper<test::minimal_requirements<Orderable>, int_<X>>,
+            test::wrapper<test::minimal_requirements<Orderable>, int_<Y>>
+        >
+    >;
 
-template <typename X, typename Y>
-struct couple {
-    using first = X;
-    using second = Y;
+    static_assert(!less<couple<0, 0>, couple<0, 0>>::value, "");
+    static_assert( less<couple<0, 0>, couple<0, 1>>::value, "");
+    static_assert( less<couple<0, 0>, couple<1, 0>>::value, "");
+    static_assert( less<couple<0, 0>, couple<1, 1>>::value, "");
 
-    struct mpl_class : Couple {
-        template <typename Self>
-        struct first_impl { using type = typename Self::first; };
-        template <typename Self>
-        struct second_impl { using type = typename Self::second; };
-    };
-};
+    static_assert(!less<couple<0, 1>, couple<0, 0>>::value, "");
+    static_assert(!less<couple<0, 1>, couple<0, 1>>::value, "");
+    static_assert( less<couple<0, 1>, couple<1, 0>>::value, "");
+    static_assert( less<couple<0, 1>, couple<1, 1>>::value, "");
 
-struct First; struct Second;
+    static_assert(!less<couple<1, 0>, couple<0, 0>>::value, "");
+    static_assert(!less<couple<1, 0>, couple<0, 1>>::value, "");
+    static_assert(!less<couple<1, 0>, couple<1, 0>>::value, "");
+    static_assert( less<couple<1, 0>, couple<1, 1>>::value, "");
 
-// first
-static_assert(is_same<first<couple<First, Second>>::type, First>::value, "");
-
-
-// second
-static_assert(is_same<second<couple<First, Second>>::type, Second>::value, "");
-
-
-// equal
-static_assert( equal<couple<x<0>, x<0>>, couple<x<0>, x<0>>>::value, "");
-static_assert(!equal<couple<x<1>, x<0>>, couple<x<0>, x<0>>>::value, "");
-static_assert(!equal<couple<x<0>, x<1>>, couple<x<0>, x<0>>>::value, "");
-static_assert(!equal<couple<x<0>, x<0>>, couple<x<1>, x<0>>>::value, "");
-static_assert(!equal<couple<x<0>, x<0>>, couple<x<0>, x<1>>>::value, "");
-
-
-// less
-static_assert(!less<couple<x<0>, x<0>>, couple<x<0>, x<0>>>::value, "");
-static_assert( less<couple<x<0>, x<0>>, couple<x<0>, x<1>>>::value, "");
-static_assert( less<couple<x<0>, x<0>>, couple<x<1>, x<0>>>::value, "");
-static_assert( less<couple<x<0>, x<0>>, couple<x<1>, x<1>>>::value, "");
-
-static_assert(!less<couple<x<0>, x<1>>, couple<x<0>, x<0>>>::value, "");
-static_assert(!less<couple<x<0>, x<1>>, couple<x<0>, x<1>>>::value, "");
-static_assert( less<couple<x<0>, x<1>>, couple<x<1>, x<0>>>::value, "");
-static_assert( less<couple<x<0>, x<1>>, couple<x<1>, x<1>>>::value, "");
-
-static_assert(!less<couple<x<1>, x<0>>, couple<x<0>, x<0>>>::value, "");
-static_assert(!less<couple<x<1>, x<0>>, couple<x<0>, x<1>>>::value, "");
-static_assert(!less<couple<x<1>, x<0>>, couple<x<1>, x<0>>>::value, "");
-static_assert( less<couple<x<1>, x<0>>, couple<x<1>, x<1>>>::value, "");
-
-static_assert(!less<couple<x<1>, x<1>>, couple<x<0>, x<0>>>::value, "");
-static_assert(!less<couple<x<1>, x<1>>, couple<x<0>, x<1>>>::value, "");
-static_assert(!less<couple<x<1>, x<1>>, couple<x<1>, x<0>>>::value, "");
-static_assert(!less<couple<x<1>, x<1>>, couple<x<1>, x<1>>>::value, "");
+    static_assert(!less<couple<1, 1>, couple<0, 0>>::value, "");
+    static_assert(!less<couple<1, 1>, couple<0, 1>>::value, "");
+    static_assert(!less<couple<1, 1>, couple<1, 0>>::value, "");
+    static_assert(!less<couple<1, 1>, couple<1, 1>>::value, "");
+}
 
 
 int main() { }
