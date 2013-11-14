@@ -32,7 +32,7 @@ namespace boost { namespace mpl11 {
      * | `hash<H>::type` | Any type
      */
     struct Hashable : Comparable {
-        //! Returns a type uniquely associated to `H`.
+        //! Returns a type uniquely associated to `%Hashable`.
         template <typename Hashable>
         struct hash_impl;
     };
