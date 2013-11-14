@@ -3,8 +3,8 @@
  * Forward declares `boost::mpl11::end`.
  */
 
-#ifndef BOOST_MPL11_FWD_BEGIN_HPP
-#define BOOST_MPL11_FWD_BEGIN_HPP
+#ifndef BOOST_MPL11_FWD_END_HPP
+#define BOOST_MPL11_FWD_END_HPP
 
 namespace boost { namespace mpl11 {
     /*!
@@ -22,4 +22,4 @@ namespace boost { namespace mpl11 {
     struct end;
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FWD_BEGIN_HPP
+#endif // !BOOST_MPL11_FWD_END_HPP
