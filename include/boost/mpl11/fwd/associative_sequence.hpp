@@ -33,29 +33,30 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression                   | %Type
-     * | ----------                   | ----
-     * | `key_of<S, Element>::type`   | Any type
-     * | `value_of<S, Element>::type` | Any type
-     * | `at<S, Key>::type`           | Any type
-     * | `at<S, Key, Default>::type`  | Any type
-     * | `has_key<S, Key>`            | Boolean `IntegralConstant`
+     * | Expression                      | %Type
+     * | ----------                      | ----
+     * | `key_of<S, Element>::type`      | Any type
+     * | `value_of<S, Element>::type`    | Any type
+     * | `at_key<S, Key>::type`          | Any type
+     * | `at_key<S, Key, Default>::type` | Any type
+     * | `has_key<S, Key>`               | Boolean `IntegralConstant`
      */
     struct AssociativeSequence : Sequence, Comparable {
         template <typename Sequence, typename Key,
                   typename Default = detail::optional>
-        struct at_impl;
+        struct at_key_impl;
 
         //! This operation must be provided by the user.
         template <typename Sequence, typename Key, typename Default>
-        struct at_impl BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default> { });
+        struct at_key_impl
+        BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default> { });
 
         /*!
-         * Returns `mpl11::at<%Sequence, Key, X>::type`, where `X` is such
-         * that a compile-time assertion is triggered if `X` is returned.
+         * Returns `mpl11::at_key<%Sequence, Key, X>::type`, where `X` is
+         * such that a compile-time assertion is triggered if `X` is returned.
          */
         template <typename Sequence, typename Key>
-        struct at_impl<Sequence, Key>;
+        struct at_key_impl<Sequence, Key>;
 
         //! This operation must be provided by the user.
         template <typename Sequence, typename Key>

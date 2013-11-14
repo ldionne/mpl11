@@ -124,7 +124,7 @@ namespace imap_detail {
         template <
            typename Map, typename Key, typename Default = detail::optional
         >
-        struct at_impl;
+        struct at_key_impl;
         template <typename Map, typename Key>
         struct has_key_impl;
         template <typename Map, typename Element>
@@ -133,12 +133,12 @@ namespace imap_detail {
         struct value_of_impl;
 
         template <typename ...Elements, typename Key>
-        struct at_impl<imap<Elements...>, Key>
-            : AssociativeSequence::template at_impl<imap<Elements...>, Key>
+        struct at_key_impl<imap<Elements...>, Key>
+            : AssociativeSequence::template at_key_impl<imap<Elements...>, Key>
         { };
 
         template <typename ...Elements, typename Key, typename Default>
-        struct at_impl<imap<Elements...>, Key, Default>
+        struct at_key_impl<imap<Elements...>, Key, Default>
             : decltype(
                 iterator<Elements...>::template at_key<Default>(
                     (detail::no_decay<Key>*)nullptr

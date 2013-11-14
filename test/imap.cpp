@@ -5,7 +5,7 @@
 
 #include <boost/mpl11/imap.hpp>
 
-#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/deref.hpp>
@@ -96,61 +96,61 @@ static_assert(is_same<
 >::value, "");
 
 
-// at (without default)
+// at_key (without default)
 static_assert(is_same<
-    at<imap<kv<0, 0>>, key<0>>::type,
+    at_key<imap<kv<0, 0>>, key<0>>::type,
     value<0>
 >::value, "");
 
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>>, key<0>>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<0>>::type,
     value<0>
 >::value, "");
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>>, key<1>>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<1>>::type,
     value<1>
 >::value, "");
 
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>, key<0>>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>, key<0>>::type,
     value<0>
 >::value, "");
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>, key<1>>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>, key<1>>::type,
     value<1>
 >::value, "");
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>, key<2>>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>, key<2>>::type,
     value<2>
 >::value, "");
 
 
-// at (with default)
+// at_key (with default)
 struct default_;
 static_assert(is_same<
-    at<imap<>, key<0>, default_>::type,
+    at_key<imap<>, key<0>, default_>::type,
     default_
 >::value, "");
 
 static_assert(is_same<
-    at<imap<kv<0, 0>>, key<0>, default_>::type,
+    at_key<imap<kv<0, 0>>, key<0>, default_>::type,
     value<0>
 >::value, "");
 static_assert(is_same<
-    at<imap<kv<0, 0>>, key<1>, default_>::type,
+    at_key<imap<kv<0, 0>>, key<1>, default_>::type,
     default_
 >::value, "");
 
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>>, key<0>, default_>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<0>, default_>::type,
     value<0>
 >::value, "");
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>>, key<1>, default_>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<1>, default_>::type,
     value<1>
 >::value, "");
 static_assert(is_same<
-    at<imap<kv<0, 0>, kv<1, 1>>, key<2>, default_>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<2>, default_>::type,
     default_
 >::value, "");
 

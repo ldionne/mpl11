@@ -5,7 +5,7 @@
 
 #include <boost/mpl11/associative_sequence.hpp>
 
-#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/equal.hpp>
@@ -91,15 +91,15 @@ struct sequence : lookup<Elements...> {
         { };
 
         template <typename Self, typename Key, typename Default = struct opt>
-        struct at_impl {
+        struct at_key_impl {
             using type = decltype(
                 Self::template at_key_<Default>((wrapper<Key>*)nullptr)
             );
         };
 
         template <typename Self, typename Key>
-        struct at_impl<Self, Key>
-            : AssociativeSequence::at_impl<Self, Key>
+        struct at_key_impl<Self, Key>
+            : AssociativeSequence::at_key_impl<Self, Key>
         { };
 
         template <typename Self, typename Element>
@@ -281,50 +281,50 @@ static_assert(!has_key<
 >::value, "");
 
 
-// at without default
+// at_key without default
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>>, k<0>>::type, v<0>
+    at_key<sequence<pair<k<0>, v<0>>>, k<0>>::type, v<0>
 >::value, "");
 
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<0>>::type, v<0>
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<0>>::type, v<0>
 >::value, "");
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<1>>::type, v<1>
->::value, "");
-
-static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>, pair<k<2>, v<2>>>, k<0>>::type, v<0>
->::value, "");
-static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>, pair<k<2>, v<2>>>, k<1>>::type, v<1>
->::value, "");
-static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>, pair<k<2>, v<2>>>, k<2>>::type, v<2>
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<1>>::type, v<1>
 >::value, "");
 
-
-// at with default
 static_assert(is_same<
-    at<sequence<>, k<0>, struct def>::type,
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>, pair<k<2>, v<2>>>, k<0>>::type, v<0>
+>::value, "");
+static_assert(is_same<
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>, pair<k<2>, v<2>>>, k<1>>::type, v<1>
+>::value, "");
+static_assert(is_same<
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>, pair<k<2>, v<2>>>, k<2>>::type, v<2>
+>::value, "");
+
+
+// at_key with default
+static_assert(is_same<
+    at_key<sequence<>, k<0>, struct def>::type,
     struct def
 >::value, "");
 
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>>, k<0>, struct def>::type, v<0>
+    at_key<sequence<pair<k<0>, v<0>>>, k<0>, struct def>::type, v<0>
 >::value, "");
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>>, k<1>, struct def>::type, struct def
+    at_key<sequence<pair<k<0>, v<0>>>, k<1>, struct def>::type, struct def
 >::value, "");
 
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<0>, struct def>::type, v<0>
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<0>, struct def>::type, v<0>
 >::value, "");
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<1>, struct def>::type, v<1>
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<1>, struct def>::type, v<1>
 >::value, "");
 static_assert(is_same<
-    at<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<2>, struct def>::type, struct def
+    at_key<sequence<pair<k<0>, v<0>>, pair<k<1>, v<1>>>, k<2>, struct def>::type, struct def
 >::value, "");
 
 

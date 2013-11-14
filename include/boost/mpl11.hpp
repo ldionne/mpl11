@@ -85,6 +85,7 @@
 #include <boost/mpl11/associative_container.hpp>
 #include <boost/mpl11/associative_sequence.hpp>
 #include <boost/mpl11/at.hpp>
+#include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/back.hpp>
 #include <boost/mpl11/back_extensible_container.hpp>
 #include <boost/mpl11/begin.hpp>

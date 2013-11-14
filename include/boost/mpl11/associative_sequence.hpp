@@ -13,7 +13,7 @@
 #include <boost/mpl11/sequence.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
@@ -64,7 +64,9 @@ namespace boost { namespace mpl11 {
         >
         struct is_subset_of_impl
             : and_<
-                equal<Value, typename at<Seq2, Key, equal_to_nothing>::type>,
+                equal<
+                    Value, typename at_key<Seq2, Key, equal_to_nothing>::type
+                >,
                 lazy_next_step<Seq1, Seq2, First, Last>
             >
         { };
@@ -76,12 +78,12 @@ namespace boost { namespace mpl11 {
     } // end namespace associative_sequence_detail
 
     template <typename S, typename Key>
-    struct AssociativeSequence::at_impl<S, Key>
-        : at<S, Key, associative_sequence_detail::not_found>
+    struct AssociativeSequence::at_key_impl<S, Key>
+        : at_key<S, Key, associative_sequence_detail::not_found>
     {
         static_assert(
             !detail::is_same<
-                typename at_impl::type,
+                typename at_key_impl::type,
                 associative_sequence_detail::not_found
             >::value,
         "Could not find the value associated to the given key in an "

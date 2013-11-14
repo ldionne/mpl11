@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::at`.
+ * Defines `boost::mpl11::at` and `boost::mpl11::at_c`.
  */
 
 #ifndef BOOST_MPL11_AT_HPP
@@ -13,19 +13,10 @@
 
 
 namespace boost { namespace mpl11 {
-// The definitions of at below clash with the desired definition of at
-// for Doxygen, because at is an overloaded name.
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    template <typename Sequence, typename Key, typename Default>
+    template <typename Sequence, typename N>
     struct at
-        : class_of<Sequence>::type::template at_impl<Sequence, Key, Default>
+        : class_of<Sequence>::type::template at_impl<Sequence, N>
     { };
-
-    template <typename Sequence, typename KeyOrIndex>
-    struct at<Sequence, KeyOrIndex>
-        : class_of<Sequence>::type::template at_impl<Sequence, KeyOrIndex>
-    { };
-#endif
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_AT_HPP
