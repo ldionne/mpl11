@@ -8,8 +8,6 @@
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/variadic/at.hpp>
-#include <boost/mpl11/detail/variadic/pack.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/first.hpp>
@@ -21,10 +19,10 @@
 #include <boost/mpl11/pair.hpp>
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;
-namespace variadic = detail::variadic;
 using detail::is_same;
 
 template <typename T> struct wrapper;
@@ -71,7 +69,7 @@ struct sequence : lookup<Elements...> {
 
             template <typename Self>
             struct deref_impl
-                : variadic::at<variadic::pack<Elements...>, Self::position>
+                : at_c<vector<Elements...>, Self::position>
             { };
         };
     };
