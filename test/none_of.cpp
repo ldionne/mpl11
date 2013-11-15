@@ -5,25 +5,17 @@
 
 #include <boost/mpl11/none_of.hpp>
 
-#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;
-
-//! @todo
-//! Don't repeat `same_as` like this. See `all_of`'s unit test and others too.
-template <typename T>
-struct same_as {
-    template <typename U>
-    struct apply
-        : detail::is_same<T, U>
-    { };
-};
+using detail::is_same;
 
 template <typename Container>
 struct test_one {
@@ -33,36 +25,38 @@ struct test_one {
     // specify always false predicate
     static_assert(none_of<
         container<>,
-        always<false_>
+        lambda<false_>
     >::value, "");
 
     static_assert(none_of<
         container<true_>,
-        always<false_>
+        lambda<false_>
     >::value, "");
 
     static_assert(none_of<
         container<true_, true_>,
-        always<false_>
+        lambda<false_>
     >::value, "");
 
 
     // specify always true predicate
     static_assert(none_of<
         container<>,
-        always<true_>
+        lambda<true_>
     >::value, "");
 
     static_assert(!none_of<
         container<false_>,
-        always<true_>
+        lambda<true_>
     >::value, "");
 
     static_assert(!none_of<
         container<false_, false_>,
-        always<true_>
+        lambda<true_>
     >::value, "");
 
+    template <typename T>
+    using same_as = lambda<is_same<T, _1>>;
 
     // specify a sometimes-true predicate
     static_assert(none_of<

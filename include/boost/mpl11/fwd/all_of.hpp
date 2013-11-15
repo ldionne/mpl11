@@ -20,9 +20,7 @@ namespace boost { namespace mpl11 {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `none_of<%Sequence, negation_of<Predicate>>`,
-     * where `negation_of` is a @ref MetafunctionClass equivalent to
-     * `not_<apply<Predicate, Args...>>`.
+     * Equivalent to `none_of<%Sequence, lambda<not_<apply<Predicate, _1>>>>`.
      */
     template <typename Sequence, typename Predicate = quote<identity>>
     struct all_of;

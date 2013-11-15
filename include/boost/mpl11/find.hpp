@@ -8,25 +8,16 @@
 
 #include <boost/mpl11/fwd/find.hpp>
 
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/find_if.hpp>
+#include <boost/mpl11/lambda.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace find_detail {
-        template <typename Element>
-        struct is_equal_to {
-            template <typename Other>
-            struct apply
-                : equal<Element, Other>
-            { };
-        };
-    } // end namespace find_detail
-
-    //! @todo Use lambda here once implemented.
     template <typename Sequence, typename Element>
     struct find
-        : find_if<Sequence, find_detail::is_equal_to<Element>>
+        : find_if<Sequence, lambda<equal<Element, _1>>>
     { };
 }} // end namespace boost::mpl11
 

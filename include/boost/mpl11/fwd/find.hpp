@@ -17,10 +17,6 @@ namespace boost { namespace mpl11 {
      * ### Semantics and default implementation
      *
      * Equivalent to `find_if<%Sequence, lambda<equal<Element, _1>>>`.
-     *
-     *
-     * @todo
-     * Fix lambda expression in the default implementation.
      */
     template <typename Sequence, typename Element>
     struct find;
