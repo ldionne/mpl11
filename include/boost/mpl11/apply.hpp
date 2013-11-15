@@ -8,16 +8,24 @@
 
 #include <boost/mpl11/fwd/apply.hpp>
 
-#include <boost/mpl11/apply_wrap.hpp>
-// #include <boost/mpl11/lambda.hpp>
-
 
 namespace boost { namespace mpl11 {
-    //! @todo Implement apply correctly using lambda.
+    namespace apply_detail {
+        template <typename F>
+        auto pick() -> typename F::apply;
+
+        template <typename F>
+        auto pick() -> typename F::template apply<>;
+    } // end namespace apply_detail
+
     template <typename F, typename ...Args>
     struct apply
-        // : apply_wrap<typename lambda<F>::type, Args...>
-        : apply_wrap<F, Args...>
+        : F::template apply<Args...>
+    { };
+
+    template <typename F>
+    struct apply<F>
+        : decltype(apply_detail::pick<F>())
     { };
 }} // end namespace boost::mpl11
 
