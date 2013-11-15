@@ -8,15 +8,15 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup functional
+     * @ingroup metafunctions
      *
-     * @ref Placeholder returning the `N`th of its arguments.
+     * @ref Placeholder returning the `N-1`th of its arguments.
      *
      * The `_1`, ...`_9` aliases are provided for convenience. They
      * are equivalent to the `arg<N>` specialization corresponding
      * to their number (`_N` is equivalent to `arg<N>`).
      */
-    template <unsigned long N>
+    template <unsigned long long N>
     struct arg;
 
     using _1 = arg<1>;
