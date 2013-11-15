@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/is_placeholder.hpp>
 
-#include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {

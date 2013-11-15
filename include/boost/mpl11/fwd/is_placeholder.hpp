@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup functional
+     * @ingroup metafunctions
      *
      * Returns whether `T` is a @ref Placeholder.
      */
