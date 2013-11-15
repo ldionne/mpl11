@@ -8,19 +8,13 @@
 
 #include <boost/mpl11/fwd/quote.hpp>
 
-#include <boost/mpl11/detail/either.hpp>
-#include <boost/mpl11/identity.hpp>
-
 
 namespace boost { namespace mpl11 {
     template <template <typename ...> class F>
     struct quote {
         template <typename ...Args>
         struct apply
-            : detail::either<
-                F<Args...>,
-                identity<F<Args...>>
-            >
+            : F<Args...>
         { };
     };
 }} // end namespace boost::mpl11

@@ -13,15 +13,15 @@ namespace boost { namespace mpl11 {
      * Higher-order primitive wrapping a @ref Metafunction to create a
      * corresponding @ref MetafunctionClass.
      *
-     * Specifically, `quote<F>::apply<Args...>::type` is equivalent to
-     * `F<Args...>::type` if that expression is valid, and `F<Args...>`
-     * otherwise.
+     * Specifically, `apply<quote<F>, Args...>` inherits `F<Args...>`.
      *
      *
-     * @todo
-     * Consider changing the behavior such that it's always equivalent to
-     * `F<Args...>::type`, and having another way of unpacking arguments
-     * into a variadic template.
+     * @warning
+     * `quote` in the original MPL used to return either `F<Args...>` or
+     * `F<Args...>::type` depending on the validity of the latter expression.
+     * This is not the case anymore.
+     *
+     * @see `mpl11::into`
      */
     template <template <typename ...> class F>
     struct quote;
