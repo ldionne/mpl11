@@ -55,10 +55,10 @@ struct test_one {
         lambda<true_>
     >::value, "");
 
-    template <typename T>
-    using same_as = lambda<is_same<T, _1>>;
 
     // specify a sometimes-true predicate
+    template <typename T>
+    using same_as = lambda<is_same<T, _0>>;
     static_assert(none_of<
         container<>,
         same_as<struct x>

@@ -66,8 +66,7 @@ struct test_one {
     >::value, "");
 
     template <typename T>
-    using same_as = lambda<is_same<T, _1>>;
-
+    using same_as = lambda<is_same<T, _0>>;
     static_assert(equal<
         typename find_if<container<>, same_as<x>>::type,
         typename end<container<>>::type

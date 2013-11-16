@@ -10,15 +10,21 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * @ref Placeholder returning the `N-1`th of its arguments.
+     * @ref MetafunctionClass and @ref Placeholder returning the `N`th of
+     * its arguments.
      *
-     * The `_1`, ...`_9` aliases are provided for convenience. They
+     * The `_0`, ...`_9` aliases are provided for convenience. They
      * are equivalent to the `arg<N>` specialization corresponding
      * to their number (`_N` is equivalent to `arg<N>`).
+     *
+     *
+     * @warning
+     * Unlike in the original MPL, indexing starts at 0.
      */
     template <unsigned long long N>
     struct arg;
 
+    using _0 = arg<0>;
     using _1 = arg<1>;
     using _2 = arg<2>;
     using _3 = arg<3>;

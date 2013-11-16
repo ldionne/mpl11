@@ -30,7 +30,7 @@ struct test_one {
     static_assert(count_if<sequence<x, y, z>, lambda<true_>>::value == 3, "");
 
     template <typename T>
-    using same_as = lambda<is_same<T, _1>>;
+    using same_as = lambda<is_same<T, _0>>;
     static_assert(count_if<sequence<x>, same_as<x>>::value == 1, "");
     static_assert(count_if<sequence<x, x>, same_as<x>>::value == 2, "");
     static_assert(count_if<sequence<x, x, x>, same_as<x>>::value == 3, "");

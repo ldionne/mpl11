@@ -9,9 +9,9 @@
 #include <boost/mpl11/fwd/vector.hpp>
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/args.hpp>
 #include <boost/mpl11/at.hpp>
-#include <boost/mpl11/detail/vector_at.hpp>
 #include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
@@ -121,8 +121,10 @@ namespace vector_detail {
         /////////////////////////////////
         template <typename Vector, typename N> struct at_impl;
 
-        template <typename Vector, typename N>
-        struct at_impl : detail::vector_at<Vector, N::value> {
+        template <typename ...T, typename N>
+        struct at_impl<vector<T...>, N>
+            : apply<arg<N::value>, T...>
+        {
             static_assert(N::value >= 0,
             "Accessing a `vector` at a negative index.");
         };

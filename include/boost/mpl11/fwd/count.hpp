@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `count_if<%Sequence, lambda<equal<Element, _1>>>`.
+     * Equivalent to `count_if<%Sequence, lambda<equal<Element, _0>>>`.
      */
     template <typename Sequence, typename Element>
     struct count;

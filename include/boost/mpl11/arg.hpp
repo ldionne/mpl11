@@ -8,42 +8,44 @@
 
 #include <boost/mpl11/fwd/arg.hpp>
 
-#include <boost/mpl11/at.hpp>
-#include <boost/mpl11/detail/dependent_on.hpp>
+#include <boost/mpl11/detail/no_decay.hpp>
+#include <boost/mpl11/detail/vector_fill.hpp>
 #include <boost/mpl11/fwd/is_placeholder.hpp>
+#include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 {
+    namespace arg_detail {
+        template <typename Ignore>
+        struct arg_impl;
+
+        template <typename ...Ignore>
+        struct arg_impl<vector<Ignore...>> {
+            template <typename Nth>
+            static Nth apply(Ignore..., detail::no_decay<Nth>*, ...);
+        };
+    } // end namespace arg_detail
+
     template <unsigned long long N>
     struct arg {
         template <typename ...Args>
-        struct apply
-            : at_c<vector<Args...>, N - 1>
-        { };
-    };
-
-    template <>
-    struct arg<0> {
-        template <typename ...Args>
         struct apply {
-            static_assert(
-            detail::dependent_on<apply>::template value<bool, false>(),
-            "Using `arg<0>` is prohibited.");
+            static_assert(N < sizeof...(Args),
+            "Invalid usage of `arg`: "
+            "accessing a parameter pack at an out-of-bounds index.");
 
-            struct type;
+            using type = decltype(
+                arg_detail::arg_impl<
+                    typename detail::vector_fill<N, void*>::type
+                >::apply((detail::no_decay<Args>*)nullptr...)
+            );
         };
     };
 
     template <unsigned long long N>
     struct is_placeholder<arg<N>>
         : true_
-    { };
-
-    template <>
-    struct is_placeholder<arg<0>>
-        : false_
     { };
 }} // end namespace boost::mpl11
 
