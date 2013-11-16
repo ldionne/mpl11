@@ -9,11 +9,10 @@
 #include <boost/mpl11/fwd/vector.hpp>
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/args.hpp>
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/detail/vector_at.hpp>
 #include <boost/mpl11/detail/vector_concat.hpp>
-#include <boost/mpl11/detail/vector_drop.hpp>
-#include <boost/mpl11/detail/vector_take.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
@@ -25,9 +24,9 @@
 
 namespace boost { namespace mpl11 {
 namespace vector_detail {
-    using Index = unsigned long long;
+    using IndexT = unsigned long long;
 
-    template <typename Vector, Index Pos>
+    template <typename Vector, IndexT Pos>
     struct iterator;
 
     struct iterator_class final : RandomAccessIterator {
@@ -38,17 +37,17 @@ namespace vector_detail {
         template <typename Iterator>             struct deref_impl;
         template <typename Self, typename Other> struct equal_impl;
 
-        template <typename Vector, Index Pos>
+        template <typename Vector, IndexT Pos>
         struct next_impl<iterator<Vector, Pos>> {
             using type = iterator<Vector, Pos + 1>;
         };
 
-        template <typename Vector, Index Pos>
+        template <typename Vector, IndexT Pos>
         struct deref_impl<iterator<Vector, Pos>>
             : at_c<Vector, Pos>
         { };
 
-        template <typename Vector, Index Self, Index Other>
+        template <typename Vector, IndexT Self, IndexT Other>
         struct equal_impl<iterator<Vector, Self>, iterator<Vector, Other>>
             : bool_<Self == Other>
         { };
@@ -58,7 +57,7 @@ namespace vector_detail {
         /////////////////////////////////
         template <typename Iterator> struct prev_impl;
 
-        template <typename Vector, Index Pos>
+        template <typename Vector, IndexT Pos>
         struct prev_impl<iterator<Vector, Pos>> {
             using type = iterator<Vector, Pos - 1>;
         };
@@ -70,17 +69,17 @@ namespace vector_detail {
         template <typename First, typename Last> struct distance_impl;
         template <typename Self, typename Other> struct less_impl;
 
-        template <typename Vector, Index Pos, typename N>
+        template <typename Vector, IndexT Pos, typename N>
         struct advance_impl<iterator<Vector, Pos>, N> {
             using type = iterator<Vector, Pos + N::value>;
         };
 
-        template <typename Vector, Index First, Index Last>
+        template <typename Vector, IndexT First, IndexT Last>
         struct distance_impl<iterator<Vector, First>, iterator<Vector, Last>>
             : integral_c<decltype(Last - First), Last - First>
         { };
 
-        template <typename Vector, Index Self, Index Other>
+        template <typename Vector, IndexT Self, IndexT Other>
         struct less_impl<iterator<Vector, Self>, iterator<Vector, Other>>
             : bool_<(Self < Other)>
         { };
@@ -155,7 +154,7 @@ namespace vector_detail {
 
         template <typename ...T>
         struct pop_back_impl<vector<T...>>
-            : detail::vector_take<vector<T...>, sizeof...(T) - 1>
+            : apply<args<0, sizeof...(T) - 1>, T...>
         { };
 
         template <typename ...T, typename X>
@@ -191,16 +190,16 @@ namespace vector_detail {
         template <typename Vector, typename Pos>
         struct erase_impl;
 
-        template <typename Vector, Index Pos, typename Range>
+        template <typename ...T, IndexT Pos, typename Range>
         struct insert_range_impl<
-            Vector, iterator<Vector, Pos>, Range
+            vector<T...>, iterator<vector<T...>, Pos>, Range
         >
             : detail::vector_concat<
                 // [0, Pos)
-                typename detail::vector_take<Vector, Pos>::type,
+                typename apply<args<0, Pos>, T...>::type,
                 typename unpack<Range, into<vector>>::type,
                 // [Pos, sizeof...(T))
-                typename detail::vector_drop<Vector, Pos>::type
+                typename apply<args<Pos, sizeof...(T)>, T...>::type
             >
         { };
 
@@ -209,26 +208,28 @@ namespace vector_detail {
             : insert_range_impl<Vector, Pos, vector<X>>
         { };
 
-        template <typename Vector, Index First, Index Last>
+        template <typename ...T, IndexT First, IndexT Last>
         struct erase_range_impl<
-            Vector, iterator<Vector, First>, iterator<Vector, Last>
+            vector<T...>,
+            iterator<vector<T...>, First>,
+            iterator<vector<T...>, Last>
         >
             : detail::vector_concat<
                 // [0, First)
-                typename detail::vector_take<Vector, First>::type,
+                typename apply<args<0, First>, T...>::type,
                 // [Last, sizeof...(T))
-                typename detail::vector_drop<Vector, Last>::type
+                typename apply<args<Last, sizeof...(T)>, T...>::type
             >
         { };
 
-        template <typename V, Index Pos>
+        template <typename V, IndexT Pos>
         struct erase_impl<V, iterator<V, Pos>>
             : erase_range_impl<V, iterator<V, Pos>, iterator<V, Pos + 1>>
         { };
     };
 } // end namespace vector_detail
 
-template <typename Vector, vector_detail::Index Position>
+template <typename Vector, vector_detail::IndexT Position>
 struct class_of<vector_detail::iterator<Vector, Position>> {
     using type = vector_detail::iterator_class;
 };
