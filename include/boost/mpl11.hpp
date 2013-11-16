@@ -81,6 +81,7 @@
 #include <boost/mpl11/any_of.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/args.hpp>
 #include <boost/mpl11/arithmetic.hpp>
 #include <boost/mpl11/associative_container.hpp>
 #include <boost/mpl11/associative_sequence.hpp>

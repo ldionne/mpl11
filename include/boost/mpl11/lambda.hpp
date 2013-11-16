@@ -9,6 +9,8 @@
 #include <boost/mpl11/fwd/lambda.hpp>
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/detail/vector_concat.hpp>
+#include <boost/mpl11/fwd/args.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
@@ -61,6 +63,26 @@ namespace boost { namespace mpl11 {
             : parser<F, Args, false>::template parse<vector<>, vector<T...>>
         { };
 
+        template <typename Head, typename Args, typename ...Parsed>
+        struct update_parsed {
+            using type = vector<
+                Parsed...,
+                typename lambda_impl<Head, Args>::result::type
+            >;
+        };
+
+        //! @todo MEGA HACK: FIND A PROPER WAY TO DO THIS!!!
+        template <
+            unsigned long long First, unsigned long long ...Last,
+            typename ...Args, typename ...Parsed
+        >
+        struct update_parsed<args<First, Last...>, vector<Args...>, Parsed...>
+            : detail::vector_concat<
+                vector<Parsed...>,
+                typename apply<args<First, Last...>, Args...>::type
+            >
+        { };
+
         // Template specializations are tricky:
         // We won't know whether it really is a normal type or a placeholder
         // expression until we've examined each of its template parameters.
@@ -86,10 +108,7 @@ namespace boost { namespace mpl11 {
                     Args,
                     lambda_impl<Head, Args>::is_pe
                 >::template parse<
-                    vector<
-                        Parsed...,
-                        typename lambda_impl<Head, Args>::result::type
-                    >,
+                    typename update_parsed<Head, Args, Parsed...>::type,
                     vector<Tail...>
                 >
             { };
@@ -112,10 +131,7 @@ namespace boost { namespace mpl11 {
             template <typename ...Parsed, typename Head, typename ...Tail>
             struct parse<vector<Parsed...>, vector<Head, Tail...>>
                 : parse<
-                    vector<
-                        Parsed...,
-                        typename lambda_impl<Head, Args>::result::type
-                    >,
+                    typename update_parsed<Head, Args, Parsed...>::type,
                     vector<Tail...>
                 >
             { };
