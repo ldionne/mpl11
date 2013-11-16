@@ -61,9 +61,11 @@ namespace boost { namespace mpl11 {
      * | `or_<A0, ..., An>`  | @ref Metafunction
      */
     struct Logical {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename L>
         struct not_impl;
+#endif
 
         /*!
          * Returns `A::type` if `not_<A>::value` is `true` and

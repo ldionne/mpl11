@@ -23,6 +23,7 @@ namespace boost { namespace mpl11 {
      * %Type implementing C++ bitwise operators.
      */
     struct Bitwise {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename X, typename Y>
         struct shift_left_impl;
@@ -42,6 +43,7 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename X, typename Y>
         struct bitxor_impl;
+#endif
     };
 }} // end namespace boost::mpl11
 

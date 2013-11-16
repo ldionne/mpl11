@@ -23,6 +23,7 @@ namespace boost { namespace mpl11 {
      * %Type implementing C++ arithmetic operators.
      */
     struct Arithmetic {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename X, typename Y>
         struct add_impl;
@@ -42,6 +43,7 @@ namespace boost { namespace mpl11 {
         //! This operation must be provided by the user.
         template <typename X, typename Y>
         struct multiply_impl;
+#endif
     };
 }} // end namespace boost::mpl11
 
