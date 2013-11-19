@@ -17,7 +17,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
     struct contains
-        : any_of<Sequence, lambda<equal<Element, _0>>>
+        : any_of<Sequence, lambda<equal<Element, _1>>>
     { };
 }} // end namespace boost::mpl11
 

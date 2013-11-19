@@ -57,7 +57,7 @@ struct test_one {
 
 
     template <typename T>
-    using same_as = lambda<is_same<T, _0>>;
+    using same_as = lambda<is_same<T, _1>>;
 
     // specify a sometimes-true predicate
     static_assert(all_of<

@@ -20,7 +20,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct all_of
-        : none_of<Sequence, lambda<not_<apply<Predicate, _0>>>>
+        : none_of<Sequence, lambda<not_<apply<Predicate, _1>>>>
     { };
 }} // end namespace boost::mpl11
 

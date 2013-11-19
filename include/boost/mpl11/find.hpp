@@ -17,7 +17,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Element>
     struct find
-        : find_if<Sequence, lambda<equal<Element, _0>>>
+        : find_if<Sequence, lambda<equal<Element, _1>>>
     { };
 }} // end namespace boost::mpl11
 
