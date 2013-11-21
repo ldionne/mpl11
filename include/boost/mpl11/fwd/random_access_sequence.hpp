@@ -30,7 +30,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression              | %Type
-     * | ----------              | ----
+     * | ----------              | -----
      * | `mpl11::begin<S>::type` | `RandomAccessIterator`
      * | `mpl11::end<S>::type`   | `RandomAccessIterator`
      * | `mpl11::at<S, N>::type` | Any type

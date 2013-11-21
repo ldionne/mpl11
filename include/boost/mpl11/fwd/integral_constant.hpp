@@ -37,7 +37,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression                        | %Type
-     * | ----------                        | ----
+     * | ----------                        | -----
      * | `N::value_type`                   | An integral type
      * | `N::value`                        | An integral constant expression
      * | `N::type`                         | `N`

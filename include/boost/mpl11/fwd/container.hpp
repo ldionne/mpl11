@@ -42,7 +42,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression       | %Type
-     * | ----------       | ----
+     * | ----------       | -----
      * | `new_<C>`        | @ref MetafunctionClass
      * | `clear<C>::type` | `Container`
      */

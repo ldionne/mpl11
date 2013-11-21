@@ -62,7 +62,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression               | %Type
-     * | ----------               | ----
+     * | ----------               | -----
      * | `mpl11::equal<T, U>`     | Boolean `IntegralConstant`
      * | `mpl11::not_equal<T, U>` | Boolean `IntegralConstant`
      */

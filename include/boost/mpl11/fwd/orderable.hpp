@@ -21,7 +21,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression                          | %Type
-     * | ----------                          | ----
+     * | ----------                          | -----
      * | `mpl11::less<A0, ..., An>`          | Boolean `IntegralConstant`
      * | `mpl11::less_equal<A0, ..., An>`    | Boolean `IntegralConstant`
      * | `mpl11::greater<A0, ..., An>`       | Boolean `IntegralConstant`

@@ -55,7 +55,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression          | %Type
-     * | ----------          | ----
+     * | ----------          | -----
      * | `not_<A0>`          | Boolean `IntegralConstant`
      * | `and_<A0, ..., An>` | @ref Metafunction
      * | `or_<A0, ..., An>`  | @ref Metafunction

@@ -32,7 +32,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression                       | %Type
-     * | ----------                       | ----
+     * | ----------                       | -----
      * | `insert_key<C, Element>::type`   | `AssociativeContainer`
      * | `insert_keys<C, Elements>::type` | `AssociativeContainer`
      * | `erase_key<C, Key>::type`        | `AssociativeContainer`

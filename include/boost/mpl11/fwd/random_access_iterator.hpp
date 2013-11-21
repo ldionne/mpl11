@@ -31,7 +31,7 @@ namespace boost { namespace mpl11 {
      *
      * ## Valid expressions
      * | Expression                   | %Type                  | Complexity
-     * | ----------                   | ----                   | ----------
+     * | ----------                   | -----                  | ----------
      * | `mpl11::next<I>::type`       | `RandomAccessIterator` | O(1) time
      * | `mpl11::prev<I>::type`       | `RandomAccessIterator` | O(1) time
      * | `mpl11::advance<I, N>::type` | `RandomAccessIterator` | O(1) time
