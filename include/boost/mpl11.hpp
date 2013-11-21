@@ -128,6 +128,7 @@
 #include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/hash.hpp>
 #include <boost/mpl11/hashable.hpp>
+#include <boost/mpl11/hset.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/imap.hpp>
