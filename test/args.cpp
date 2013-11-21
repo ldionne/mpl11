@@ -40,7 +40,7 @@ static_assert(is_placeholder<args<2, 4>>::value, "");
 
 // test args<> as a lambda placeholder
 static_assert(is_same<
-    apply<lambda<args<>>, a0, a1, a2>::type,
+    apply<lambda<_args>, a0, a1, a2>::type,
     vector<a0, a1, a2>
 >::value, "");
 static_assert(is_same<
@@ -48,7 +48,7 @@ static_assert(is_same<
     vector<a0, a1>
 >::value, "");
 static_assert(is_same<
-    apply<lambda<f<args<>>>, a0, a1, a2>::type,
+    apply<lambda<f<_args>>, a0, a1, a2>::type,
     f<a0, a1, a2>::type
 >::value, "");
 static_assert(is_same<
