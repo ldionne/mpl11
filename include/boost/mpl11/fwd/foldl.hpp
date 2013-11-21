@@ -40,9 +40,6 @@ namespace boost { namespace mpl11 {
      * @note
      * This is equivalent to the `mpl::fold` metafunction from the
      * original MPL.
-     *
-     * @todo
-     * Use a minimal sequence in `foldl`'s unit test.
      */
     template <typename Sequence, typename State, typename F>
     struct foldl;
