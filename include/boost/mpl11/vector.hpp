@@ -14,8 +14,10 @@
 #include <boost/mpl11/at.hpp>
 #include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
+#include <boost/mpl11/fwd/has_optimization.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
 #include <boost/mpl11/random_extensible_container.hpp>
@@ -241,10 +243,19 @@ struct class_of<vector<T...>> {
     using type = vector_detail::vector_class;
 };
 
-// Optimization
 template <typename ...T, typename F>
 struct unpack<vector<T...>, F>
     : apply<F, T...>
+{ };
+
+template <typename ...T>
+struct has_optimization<vector<T...>, optimization::O1_unpack>
+    : true_
+{ };
+
+template <typename ...T>
+struct has_optimization<vector<T...>, optimization::O1_size>
+    : true_
 { };
 }} // end namespace boost::mpl11
 

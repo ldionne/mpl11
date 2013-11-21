@@ -17,12 +17,14 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/erase.hpp>
 #include <boost/mpl11/erase_range.hpp>
+#include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/insert.hpp>
 #include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/next.hpp>
+#include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/pop_back.hpp>
 #include <boost/mpl11/pop_front.hpp>
 #include <boost/mpl11/prev.hpp>
@@ -323,6 +325,10 @@ namespace test_erase {
         vector<x, y>
     >::value, "");
 }
+
+// has_optimization
+static_assert(has_optimization<vector<>, optimization::O1_size>::value, "");
+static_assert(has_optimization<vector<>, optimization::O1_unpack>::value, "");
 
 // unpack (optimization)
 struct f { template <typename ...> struct apply { struct type; }; };
