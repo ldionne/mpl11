@@ -126,6 +126,7 @@
 #include <boost/mpl11/greater.hpp>
 #include <boost/mpl11/greater_equal.hpp>
 #include <boost/mpl11/has_key.hpp>
+#include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/hash.hpp>
 #include <boost/mpl11/hashable.hpp>
 #include <boost/mpl11/hset.hpp>
@@ -156,6 +157,7 @@
 #include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/not_equal.hpp>
+#include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/pair.hpp>
