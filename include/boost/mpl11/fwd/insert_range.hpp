@@ -15,6 +15,11 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container, typename Position, typename Range>
     struct insert_range;
+
+    template <typename Container, typename Position, typename Range>
+    using insert_range_t = typename insert_range<
+        Container, Position, Range
+    >::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INSERT_RANGE_HPP

@@ -15,6 +15,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container, typename Position, typename Element>
     struct insert;
+
+    template <typename Container, typename Position, typename Element>
+    using insert_t = typename insert<Container, Position, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INSERT_HPP

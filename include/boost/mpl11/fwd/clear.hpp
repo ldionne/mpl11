@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container>
     struct clear;
+
+    template <typename Container>
+    using clear_t = typename clear<Container>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CLEAR_HPP

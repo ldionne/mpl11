@@ -16,6 +16,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence>
     struct size;
+
+    template <typename Sequence>
+    using size_t = typename size<Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SIZE_HPP

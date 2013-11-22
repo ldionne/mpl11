@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Iterator>
     struct deref;
+
+    template <typename Iterator>
+    using deref_t = typename deref<Iterator>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_DEREF_HPP

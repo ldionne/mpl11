@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Iterator>
     struct next;
+
+    template <typename Iterator>
+    using next_t = typename next<Iterator>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NEXT_HPP

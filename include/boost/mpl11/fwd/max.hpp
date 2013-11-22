@@ -28,6 +28,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct max;
+
+    template <typename T1, typename T2, typename ...Tn>
+    using max_t = typename max<T1, T2, Tn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_MAX_HPP

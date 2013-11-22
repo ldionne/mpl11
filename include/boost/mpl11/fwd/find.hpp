@@ -20,6 +20,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Element>
     struct find;
+
+    template <typename Sequence, typename Element>
+    using find_t = typename find<Sequence, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FIND_HPP

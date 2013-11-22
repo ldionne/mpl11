@@ -21,10 +21,16 @@ namespace boost { namespace mpl11 {
     template <typename Iterator, typename N>
     struct advance;
 
+    template <typename Iterator, typename N>
+    using advance_t = typename advance<Iterator, N>::type;
+
     //! @ingroup iterator_intrinsics
     //! Alias to `advance<Iterator, long_<N>>`; provided for convenience.
     template <typename Iterator, long N>
     using advance_c = advance<Iterator, long_<N>>;
+
+    template <typename Iterator, long N>
+    using advance_c_t = typename advance_c<Iterator, N>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ADVANCE_HPP

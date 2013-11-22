@@ -24,6 +24,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Predicate>
     struct find_if;
+
+    template <typename Sequence, typename Predicate>
+    using find_if_t = typename find_if<Sequence, Predicate>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FIND_IF_HPP

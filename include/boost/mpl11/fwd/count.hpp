@@ -20,6 +20,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Element>
     struct count;
+
+    template <typename Sequence, typename Element>
+    using count_t = typename count<Sequence, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COUNT_HPP

@@ -15,6 +15,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Key>
     struct has_key;
+
+    template <typename Sequence, typename Key>
+    using has_key_t = typename has_key<Sequence, Key>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_HAS_KEY_HPP

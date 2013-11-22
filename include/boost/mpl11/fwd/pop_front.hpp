@@ -17,6 +17,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container>
     struct pop_front;
+
+    template <typename Container>
+    using pop_front_t = typename pop_front<Container>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_POP_FRONT_HPP

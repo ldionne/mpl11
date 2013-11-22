@@ -7,8 +7,6 @@
 #define BOOST_MPL11_FWD_FORWARD_ITERATOR_HPP
 
 #include <boost/mpl11/fwd/comparable.hpp>
-#include <boost/mpl11/fwd/equal.hpp>
-#include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -111,11 +109,7 @@ namespace boost { namespace mpl11 {
          * Counts the number of applications of `mpl11::next` required
          * for `First` to become equal to `Last`.
          */
-        template <
-            typename First, typename Last,
-            typename Distance = size_t<0>,
-            bool = equal<First, Last>::value
-        >
+        template <typename First, typename Last>
         struct distance_impl;
     };
 }} // end namespace boost::mpl11

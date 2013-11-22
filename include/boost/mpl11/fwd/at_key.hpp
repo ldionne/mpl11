@@ -31,6 +31,9 @@ namespace boost { namespace mpl11 {
         typename Default = detail::optional
     >
     struct at_key;
+
+    template <typename Sequence, typename Key, typename ...Default>
+    using at_key_t = typename at_key<Sequence, Key, Default...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AT_KEY_HPP

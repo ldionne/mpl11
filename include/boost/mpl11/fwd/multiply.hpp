@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct multiply;
+
+    template <typename T1, typename T2, typename ...Tn>
+    using multiply_t = typename multiply<T1, T2, Tn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_MULTIPLY_HPP

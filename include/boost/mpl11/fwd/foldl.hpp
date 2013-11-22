@@ -43,6 +43,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename State, typename F>
     struct foldl;
+
+    template <typename Sequence, typename State, typename F>
+    using foldl_t = typename foldl<Sequence, State, F>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FOLDL_HPP

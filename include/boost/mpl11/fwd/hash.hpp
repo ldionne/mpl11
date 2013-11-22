@@ -18,6 +18,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Hashable>
     struct hash;
+
+    template <typename Hashable>
+    using hash_t = typename hash<Hashable>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_HASH_HPP

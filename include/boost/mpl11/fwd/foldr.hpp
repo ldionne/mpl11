@@ -38,6 +38,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename State, typename F>
     struct foldr;
+
+    template <typename Sequence, typename State, typename F>
+    using foldr_t = typename foldr<Sequence, State, F>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FOLDR_HPP

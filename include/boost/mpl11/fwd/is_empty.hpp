@@ -19,6 +19,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence>
     struct is_empty;
+
+    template <typename Sequence>
+    using is_empty_t = typename is_empty<Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IS_EMPTY_HPP

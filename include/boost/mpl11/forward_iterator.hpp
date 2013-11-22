@@ -8,12 +8,10 @@
 
 #include <boost/mpl11/fwd/forward_iterator.hpp>
 
-// Required by fwd/forward_iterator.hpp
-#include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/comparable.hpp> // Required by fwd/forward_iterator.hpp
+#include <boost/mpl11/detail/move.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/integral_c.hpp>
-
-#include <boost/mpl11/detail/move.hpp>
 #include <boost/mpl11/next.hpp>
 
 
@@ -30,16 +28,29 @@ namespace boost { namespace mpl11 {
         using type = typename detail::move<next, Iterator, N::value>::type;
     };
 
-    template <typename First, typename Last, typename Distance, bool Done>
-    struct ForwardIterator::distance_impl
-        : Distance
-    { };
+    namespace forward_iterator_detail {
+        //! @todo Use a generic size/distance type.
+        using DistanceT = unsigned long long;
 
-    template <typename First, typename Last, typename Distance>
-    struct ForwardIterator::distance_impl<First, Last, Distance, false>
-        : distance_impl<
-            typename next<First>::type, Last, size_t<Distance::value + 1>
-        >
+        template <
+            typename First, typename Last, DistanceT Dist,
+            bool Done = equal<First, Last>::value>
+        struct count_between;
+
+        template <typename First, typename Last, DistanceT Dist>
+        struct count_between<First, Last, Dist, true>
+            : integral_c<decltype(Dist), Dist>
+        { };
+
+        template <typename First, typename Last, DistanceT Dist>
+        struct count_between<First, Last, Dist, false>
+            : count_between<typename next<First>::type, Last, Dist + 1>
+        { };
+    } // end namespace forward_iterator_detail
+
+    template <typename First, typename Last>
+    struct ForwardIterator::distance_impl
+        : forward_iterator_detail::count_between<First, Last, 0>
     { };
 }} // end namespace boost::mpl11
 

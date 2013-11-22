@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container, typename Key>
     struct erase_key;
+
+    template <typename Container, typename Key>
+    using erase_key_t = typename erase_key<Container, Key>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ERASE_KEY_HPP

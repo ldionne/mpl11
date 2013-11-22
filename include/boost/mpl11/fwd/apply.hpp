@@ -24,6 +24,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename F, typename ...Args>
     struct apply;
+
+    template <typename F, typename ...Args>
+    using apply_t = typename apply<F, Args...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_APPLY_HPP

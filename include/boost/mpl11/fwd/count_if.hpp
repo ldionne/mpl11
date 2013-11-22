@@ -21,6 +21,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Predicate>
     struct count_if;
+
+    template <typename Sequence, typename Predicate>
+    using count_if_t = typename count_if<Sequence, Predicate>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COUNT_IF_HPP

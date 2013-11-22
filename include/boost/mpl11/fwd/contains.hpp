@@ -20,6 +20,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Element>
     struct contains;
+
+    template <typename Sequence, typename Element>
+    using contains_t = typename contains<Sequence, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CONTAINS_HPP

@@ -29,6 +29,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename F>
     struct unpack;
+
+    template <typename Sequence, typename F>
+    using unpack_t = typename unpack<Sequence, F>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_UNPACK_HPP

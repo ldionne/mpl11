@@ -24,6 +24,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Predicate = quote<identity>>
     struct any_of;
+
+    template <typename Sequence, typename ...Predicate>
+    using any_of_t = typename any_of<Sequence, Predicate...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ANY_OF_HPP

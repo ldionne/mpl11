@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     struct args;
 
     //! @ingroup metafunctions
-    //! Alias to `mpl11::args<>`, provided for convenience.
+    //! Alias to `mpl11::args<>`; provided for convenience.
     using _args = args<>;
 }} // end namespace boost::mpl11
 

@@ -19,6 +19,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Pair>
     struct second;
+
+    template <typename Pair>
+    using second_t = typename second<Pair>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SECOND_HPP

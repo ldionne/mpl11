@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container, typename Elements>
     struct insert_keys;
+
+    template <typename Container, typename Elements>
+    using insert_keys_t = typename insert_keys<Container, Elements>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INSERT_KEYS_HPP

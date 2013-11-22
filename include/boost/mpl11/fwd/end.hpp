@@ -20,6 +20,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence>
     struct end;
+
+    template <typename Sequence>
+    using end_t = typename end<Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_END_HPP

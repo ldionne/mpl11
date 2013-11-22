@@ -21,6 +21,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename F1, typename F2, typename ...Fn>
     struct and_;
+
+    template <typename F1, typename F2, typename ...Fn>
+    using and_t = typename and_<F1, F2, Fn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AND_HPP

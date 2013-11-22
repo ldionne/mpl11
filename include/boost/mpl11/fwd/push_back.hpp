@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container, typename Element>
     struct push_back;
+
+    template <typename Container, typename Element>
+    using push_back_t = typename push_back<Container, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_PUSH_BACK_HPP

@@ -115,7 +115,7 @@ namespace vector_detail {
 
         template <typename ...T>
         struct size_impl<vector<T...>>
-            : size_t<sizeof...(T)>
+            : integral_c<decltype(sizeof...(T)), sizeof...(T)>
         { };
 
         /////////////////////////////////

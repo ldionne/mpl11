@@ -70,11 +70,6 @@ namespace boost { namespace mpl11 {
     //! Alias to `integral_c<unsigned long long, N>`; provided for convenience.
     template <unsigned long long N>
     using ulonglong = integral_c<unsigned long long, N>;
-
-    //! @ingroup datatypes
-    //! Alias to `integral_c<std::size_t, N>`; provided for convenience.
-    template <decltype(sizeof(int)) N>
-    using size_t = integral_c<decltype(sizeof(int)), N>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INTEGRAL_C_HPP

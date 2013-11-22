@@ -17,6 +17,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Container>
     struct pop_back;
+
+    template <typename Container>
+    using pop_back_t = typename pop_back<Container>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_POP_BACK_HPP

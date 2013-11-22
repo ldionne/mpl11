@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename T>
     struct is_placeholder;
+
+    template <typename T>
+    using is_placeholder_t = typename is_placeholder<T>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IS_PLACEHOLDER_HPP

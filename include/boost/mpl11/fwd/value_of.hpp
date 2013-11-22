@@ -15,6 +15,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Element>
     struct value_of;
+
+    template <typename Sequence, typename Element>
+    using value_of_t = typename value_of<Sequence, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_VALUE_OF_HPP

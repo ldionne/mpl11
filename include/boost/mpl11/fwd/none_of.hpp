@@ -30,6 +30,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence, typename Predicate = quote<identity>>
     struct none_of;
+
+    template <typename Sequence, typename ...Predicate>
+    using none_of_t = typename none_of<Sequence, Predicate...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NONE_OF_HPP

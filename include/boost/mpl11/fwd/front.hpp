@@ -17,6 +17,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence>
     struct front;
+
+    template <typename Sequence>
+    using front_t = typename front<Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FRONT_HPP

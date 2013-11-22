@@ -17,6 +17,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename T>
     struct class_of;
+
+    template <typename T>
+    using class_of_t = typename class_of<T>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CLASS_OF_HPP

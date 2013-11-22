@@ -21,10 +21,16 @@ namespace boost { namespace mpl11 {
     template <typename Sequence, typename N>
     struct at;
 
+    template <typename Sequence, typename N>
+    using at_t = typename at<Sequence, N>::type;
+
     //! @ingroup sequence_intrinsics
     //! Alias to `at<%Sequence, ulong<N>>`; provided for convenience.
     template <typename Sequence, unsigned long N>
     using at_c = at<Sequence, ulong<N>>;
+
+    template <typename Sequence, unsigned long N>
+    using at_c_t = typename at_c<Sequence, N>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AT_HPP

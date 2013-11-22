@@ -17,6 +17,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence>
     struct back;
+
+    template <typename Sequence>
+    using back_t = typename back<Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BACK_HPP

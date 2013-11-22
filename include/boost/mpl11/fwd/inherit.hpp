@@ -21,6 +21,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename ...Bases>
     struct inherit;
+
+    template <typename ...Bases>
+    using inherit_t = typename inherit<Bases...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INHERIT_HPP

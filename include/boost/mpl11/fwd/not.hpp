@@ -21,6 +21,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename F>
     struct not_;
+
+    template <typename F>
+    using not_t = typename not_<F>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NOT_HPP

@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename T1, typename T2, typename ...Tn>
     struct substract;
+
+    template <typename T1, typename T2, typename ...Tn>
+    using substract_t = typename substract<T1, T2, Tn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SUBSTRACT_HPP

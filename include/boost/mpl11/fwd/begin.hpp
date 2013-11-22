@@ -20,6 +20,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Sequence>
     struct begin;
+
+    template <typename Sequence>
+    using begin_t = typename begin<Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_BEGIN_HPP
