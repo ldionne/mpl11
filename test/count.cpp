@@ -28,7 +28,7 @@ struct t {
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using sequence = typename apply<new_<Container>, T...>::type;
+    using sequence = typename apply<new_<Container>, vector<T...>>::type;
 
     static_assert(count<sequence<>, t<0>>::value == 0, "");
 

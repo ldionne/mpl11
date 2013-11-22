@@ -8,6 +8,7 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/new.hpp>
+#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/vector.hpp>
 
 #include "minimal_requirements.hpp"
@@ -22,20 +23,26 @@ using container = test::wrapper<
     vector<T...>
 >;
 
+template <typename ...T>
+using sequence = test::wrapper<
+    test::minimal_requirements<Sequence>,
+    vector<T...>
+>;
+
 struct x; struct y; struct z;
 
 // new_
 static_assert(is_same<
-    apply<new_<container<>>>::type, container<>
+    apply<new_<container<>>, sequence<>>::type, container<>
 >::value, "");
 static_assert(is_same<
-    apply<new_<container<>>, x>::type, container<x>
+    apply<new_<container<>>, sequence<x>>::type, container<x>
 >::value, "");
 static_assert(is_same<
-    apply<new_<container<>>, x, y>::type, container<x, y>
+    apply<new_<container<>>, sequence<x, y>>::type, container<x, y>
 >::value, "");
 static_assert(is_same<
-    apply<new_<container<>>, x, y, z>::type, container<x, y, z>
+    apply<new_<container<>>, sequence<x, y, z>>::type, container<x, y, z>
 >::value, "");
 
 

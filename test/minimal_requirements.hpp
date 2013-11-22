@@ -285,11 +285,11 @@ namespace boost { namespace mpl11 { namespace test {
     {
         template <typename C>
         struct new_impl {
-            template <typename ...Args>
+            template <typename Sequence>
             struct apply {
                 using type = typename C::template rebind<
                     typename mpl11::apply<
-                        new_<typename unwrap<C>::type>, Args...
+                        new_<typename unwrap<C>::type>, Sequence
                     >::type
                 >;
             };

@@ -20,7 +20,6 @@
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/into.hpp>
 #include <boost/mpl11/second.hpp>
 
 
@@ -159,7 +158,7 @@ namespace imap_detail {
         /////////////////////////////////
         //! @todo Decide the semantics of new_ for `imap` and test it.
         template <typename Map>
-        using new_impl = into<imap>;
+        struct new_impl;
 
         template <typename Map>
         using clear_impl = identity<imap<>>;

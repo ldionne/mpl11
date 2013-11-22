@@ -29,7 +29,7 @@ struct x; struct y; struct z;
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using container = typename apply<new_<Container>, T...>::type;
+    using container = typename apply<new_<Container>, vector<T...>>::type;
 
     static_assert(equal<
         typename find_if<container<>, lambda<true_>>::type,

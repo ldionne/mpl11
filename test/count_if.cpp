@@ -22,7 +22,7 @@ struct x; struct y; struct z;
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using sequence = typename apply<new_<Container>, T...>::type;
+    using sequence = typename apply<new_<Container>, vector<T...>>::type;
 
     static_assert(count_if<sequence<>, lambda<true_>>::value == 0, "");
     static_assert(count_if<sequence<x>, lambda<true_>>::value == 1, "");

@@ -30,8 +30,11 @@
 #include <boost/mpl11/prev.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/push_front.hpp>
+#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/unpack.hpp>
+
+#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
@@ -160,10 +163,13 @@ static_assert(is_same<at_c<vector<x, y, z>, 1>::type, y>::value, "");
 static_assert(is_same<at_c<vector<x, y, z>, 2>::type, z>::value, "");
 
 // new_
+template <typename ...T>
+using seq = test::wrapper<test::minimal_requirements<Sequence>, vector<T...>>;
+
 template <typename V>
 struct check_new {
     template <typename ...T>
-    using New = typename apply<new_<V>, T...>::type;
+    using New = typename apply<new_<V>, seq<T...>>::type;
     static_assert(is_same<New<>, vector<>>::value, "");
     static_assert(is_same<New<x>, vector<x>>::value, "");
     static_assert(is_same<New<x, y>, vector<x, y>>::value, "");

@@ -138,8 +138,18 @@ namespace vector_detail {
         template <typename Vector>
         using clear_impl = identity<vector<>>;
 
+        //! @todo
+        //! Check whether there are other places in the library where we can
+        //! make a similar optimization.
+        struct new_impl_actual {
+            template <typename Sequence>
+            using apply = unpack<Sequence, into<vector>>;
+        };
+
+        // We defer to `new_impl_actual` because we don't need `Vector` and
+        // we don't want to have different instantiations where unnecessary.
         template <typename Vector>
-        using new_impl = into<vector>;
+        using new_impl = new_impl_actual;
 
         /////////////////////////////////
         // BackExtensibleContainer
@@ -178,8 +188,6 @@ namespace vector_detail {
         /////////////////////////////////
         template <typename Vector, typename Pos, typename Range>
         struct insert_range_impl;
-        template <typename Vector, typename Pos, typename X>
-        struct insert_impl;
         template <typename Vector, typename First, typename Last>
         struct erase_range_impl;
         template <typename Vector, typename Pos>
@@ -199,9 +207,7 @@ namespace vector_detail {
         { };
 
         template <typename Vector, typename Pos, typename X>
-        struct insert_impl
-            : insert_range_impl<Vector, Pos, vector<X>>
-        { };
+        using insert_impl = insert_range_impl<Vector, Pos, vector<X>>;
 
         template <typename ...T, IndexT First, IndexT Last>
         struct erase_range_impl<

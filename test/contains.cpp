@@ -27,7 +27,7 @@ struct t {
 template <typename Container>
 struct test_one {
     template <typename ..T>
-    using container = typename apply<new_<Container>, T...>::type;
+    using container = typename apply<new_<Container>, vector<T...>>::type;
 
     static_assert(!contains<container<>, t<0>>::value, "");
 

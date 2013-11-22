@@ -35,7 +35,7 @@ using iter_at = typename advance_c<typename begin<Sequence>::type, I>::type;
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using sequence = typename apply<new_<Container>, T...>::type;
+    using sequence = typename apply<new_<Container>, vector<T...>>::type;
 
     static_assert(equal<
         typename find<sequence<>, t<0>>::type,

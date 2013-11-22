@@ -20,7 +20,7 @@ using detail::is_same;
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using container = typename apply<new_<Container>, T...>::type;
+    using container = typename apply<new_<Container>, vector<T...>>::type;
 
     // specify always false predicate
     static_assert(all_of<

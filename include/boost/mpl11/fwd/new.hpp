@@ -10,8 +10,8 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Variadic @ref MetafunctionClass creating a `Container` from
-     * the arguments provided to it.
+     * @ref MetafunctionClass creating a `Container` from the `Sequence`
+     * passed to it.
      */
     template <typename Container>
     struct new_;

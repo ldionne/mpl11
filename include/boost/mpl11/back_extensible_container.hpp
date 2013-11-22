@@ -10,31 +10,16 @@
 
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/container.hpp> // required by the fwd declaration
+#include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace back_extensible_container_detail {
-        template <typename C, typename ...T>
-        struct foldl_push_back;
-
-        template <typename C>
-        struct foldl_push_back<C> {
-            using type = C;
-        };
-
-        template <typename C, typename Head, typename ...Tail>
-        struct foldl_push_back<C, Head, Tail...>
-            : foldl_push_back<push_back_t<C, Head>, Tail...>
-        { };
-    } // end namespace back_extensible_container_detail
-
     template <typename C>
     struct BackExtensibleContainer::new_impl {
-        template <typename ...T>
-        using apply = back_extensible_container_detail::foldl_push_back<
-            clear_t<C>, T...
-        >;
+        template <typename Sequence>
+        using apply = foldl<Sequence, clear_t<C>, quote<push_back>>;
     };
 }} // end namespace boost::mpl11
 

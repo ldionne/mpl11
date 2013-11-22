@@ -10,21 +10,16 @@
 
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/container.hpp> // required by the fwd declaration
+#include <boost/mpl11/foldr.hpp>
 #include <boost/mpl11/push_front.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename C>
     struct FrontExtensibleContainer::new_impl {
-        template <typename ...T>
-        struct apply
-            : clear<C>
-        { };
-
-        template <typename Head, typename ...Tail>
-        struct apply<Head, Tail...>
-            : push_front<typename apply<Tail...>::type, Head>
-        { };
+        template <typename Sequence>
+        using apply = foldr<Sequence, clear_t<C>, quote<push_front>>;
     };
 }} // end namespace boost::mpl11
 
