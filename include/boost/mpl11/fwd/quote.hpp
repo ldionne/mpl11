@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 {
      * Higher-order primitive wrapping a @ref Metafunction to create a
      * corresponding @ref MetafunctionClass.
      *
-     * Specifically, `apply<quote<F>, Args...>` inherits `F<Args...>`.
+     * Specifically, `apply<quote<F>, Args...>` is equivalent to `F<Args...>`.
      *
      *
      * @warning

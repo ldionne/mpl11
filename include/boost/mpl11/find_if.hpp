@@ -28,7 +28,7 @@ namespace boost { namespace mpl11 {
         template <
             typename First, typename Last,
             typename Predicate,
-            bool = apply<Predicate, typename deref<First>::type>::type::value
+            bool = apply_t<Predicate, deref_t<First>>::value
         >
         struct return_or_continue;
 
@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 {
 
         template <typename First, typename Last, typename Predicate>
         struct return_or_continue<First, Last, Predicate, false>
-            : find_if_impl<typename next<First>::type, Last, Predicate>
+            : find_if_impl<next_t<First>, Last, Predicate>
         { };
 
         template <typename First, typename Last, typename Predicate>
@@ -56,8 +56,8 @@ namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct find_if
         : find_if_detail::find_if_impl<
-            typename begin<Sequence>::type,
-            typename end<Sequence>::type,
+            begin_t<Sequence>,
+            end_t<Sequence>,
             Predicate
         >
     { };

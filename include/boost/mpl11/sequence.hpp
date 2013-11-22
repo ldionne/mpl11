@@ -17,18 +17,12 @@
 namespace boost { namespace mpl11 {
     template <typename S>
     struct Sequence::size_impl
-        : distance<
-            typename begin<S>::type,
-            typename end<S>::type
-        >
+        : distance<begin_t<S>, end_t<S>>
     { };
 
     template <typename S>
     struct Sequence::is_empty_impl
-        : equal<
-            typename begin<S>::type,
-            typename end<S>::type
-        >
+        : equal<begin_t<S>, end_t<S>>
     { };
 }} // end namespace boost::mpl11
 

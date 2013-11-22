@@ -79,7 +79,7 @@ namespace boost { namespace mpl11 {
         struct update_parsed<args<First, Last...>, vector<Args...>, Parsed...>
             : detail::vector_concat<
                 vector<Parsed...>,
-                typename apply<args<First, Last...>, Args...>::type
+                apply_t<args<First, Last...>, Args...>
             >
         { };
 

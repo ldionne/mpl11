@@ -30,9 +30,9 @@ namespace boost { namespace mpl11 {
             : apply<
                 F,
                 typename foldr_impl<
-                    typename next<First>::type, Last, State, F
+                    next_t<First>, Last, State, F
                 >::type,
-                typename deref<First>::type
+                deref_t<First>
             >
         { };
 
@@ -45,8 +45,8 @@ namespace boost { namespace mpl11 {
     template <typename Sequence, typename State, typename F>
     struct foldr
         : foldr_detail::foldr_impl<
-            typename begin<Sequence>::type,
-            typename end<Sequence>::type,
+            begin_t<Sequence>,
+            end_t<Sequence>,
             State, F
         >
     { };

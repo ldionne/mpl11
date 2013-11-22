@@ -29,8 +29,8 @@ namespace boost { namespace mpl11 {
         struct unrolled_foldl_impl
             : unrolled_foldl_impl<
                 Size - 1,
-                typename next<Iter>::type,
-                typename apply<F, State, typename deref<Iter>::type>::type,
+                next_t<Iter>,
+                apply_t<F, State, deref_t<Iter>>,
                 F
             >
         { };
@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 {
         struct unrolled_foldl
             : unrolled_foldl_impl<
                 size<Sequence>::value,
-                typename begin<Sequence>::type,
+                begin_t<Sequence>,
                 State, F
             >
         { };
@@ -59,9 +59,9 @@ namespace boost { namespace mpl11 {
         template <typename First, typename Last, typename State, typename F>
         struct normal_foldl_impl<First, Last, State, F, false>
             : normal_foldl_impl<
-                typename next<First>::type,
+                next_t<First>,
                 Last,
-                typename apply<F, State, typename deref<First>::type>::type,
+                apply_t<F, State, deref_t<First>>,
                 F
             >
         { };
@@ -74,8 +74,8 @@ namespace boost { namespace mpl11 {
         template <typename Sequence, typename State, typename F>
         struct normal_foldl
             : normal_foldl_impl<
-                typename begin<Sequence>::type,
-                typename end<Sequence>::type,
+                begin_t<Sequence>,
+                end_t<Sequence>,
                 State, F
             >
         { };

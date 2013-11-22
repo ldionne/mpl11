@@ -25,20 +25,10 @@ namespace boost { namespace mpl11 {
     template <typename C1, typename C2>
     struct Couple::less_impl
         : or_<
-            less<
-                typename first<C1>::type,
-                typename first<C2>::type
-            >,
+            less<first_t<C1>, first_t<C2>>,
             and_<
-                not_<
-                    less<
-                        typename first<C2>::type,
-                        typename first<C1>::type>
-                >,
-                less<
-                    typename second<C1>::type,
-                    typename second<C2>::type
-                >
+                not_<less<first_t<C2>, first_t<C1>>>,
+                less<second_t<C1>, second_t<C2>>
             >
         >
     { };
@@ -46,14 +36,8 @@ namespace boost { namespace mpl11 {
     template <typename C1, typename C2>
     struct Couple::equal_impl
         : and_<
-            equal<
-                typename first<C1>::type,
-                typename first<C2>::type
-            >,
-            equal<
-                typename second<C1>::type,
-                typename second<C2>::type
-            >
+            equal<first_t<C1>, first_t<C2>>,
+            equal<second_t<C1>, second_t<C2>>
         >
     { };
 }} // end namespace boost::mpl11

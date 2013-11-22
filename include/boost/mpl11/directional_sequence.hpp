@@ -26,22 +26,22 @@ namespace boost { namespace mpl11 {
         static_assert(!is_empty<S>::value,
         "Attempt to use `front` on an empty sequence.");
 
-        using type = typename deref<typename begin<S>::type>::type;
+        using type = deref_t<begin_t<S>>;
     };
 
     template <typename S1, typename S2>
     struct DirectionalSequence::equal_impl
         : detail::std_equal<
-            typename begin<S1>::type, typename end<S1>::type,
-            typename begin<S2>::type, typename end<S2>::type
+            begin_t<S1>, end_t<S1>,
+            begin_t<S2>, end_t<S2>
         >
     { };
 
     template <typename S1, typename S2>
     struct DirectionalSequence::less_impl
         : detail::lexicographical_compare<
-            typename begin<S1>::type, typename end<S1>::type,
-            typename begin<S2>::type, typename end<S2>::type
+            begin_t<S1>, end_t<S1>,
+            begin_t<S2>, end_t<S2>
         >
     { };
 }} // end namespace boost::mpl11

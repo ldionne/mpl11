@@ -15,6 +15,7 @@
 #include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/fwd/has_optimization.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/optimization.hpp>
@@ -134,21 +135,11 @@ namespace vector_detail {
         /////////////////////////////////
         // Container
         /////////////////////////////////
-        template <typename Vector> struct clear_impl;
-        template <typename Vector> struct new_impl;
+        template <typename Vector>
+        using clear_impl = identity<vector<>>;
 
         template <typename Vector>
-        struct clear_impl {
-            using type = vector<>;
-        };
-
-        template <typename Vector>
-        struct new_impl {
-            template <typename ...T>
-            struct apply {
-                using type = vector<T...>;
-            };
-        };
+        using new_impl = into<vector>;
 
         /////////////////////////////////
         // BackExtensibleContainer
@@ -200,10 +191,10 @@ namespace vector_detail {
         >
             : detail::vector_concat<
                 // [0, Pos)
-                typename apply<args<0, Pos>, T...>::type,
-                typename unpack<Range, into<vector>>::type,
+                apply_t<args<0, Pos>, T...>,
+                unpack_t<Range, into<vector>>,
                 // [Pos, sizeof...(T))
-                typename apply<args<Pos, sizeof...(T)>, T...>::type
+                apply_t<args<Pos, sizeof...(T)>, T...>
             >
         { };
 
@@ -220,9 +211,9 @@ namespace vector_detail {
         >
             : detail::vector_concat<
                 // [0, First)
-                typename apply<args<0, First>, T...>::type,
+                apply_t<args<0, First>, T...>,
                 // [Last, sizeof...(T))
-                typename apply<args<Last, sizeof...(T)>, T...>::type
+                apply_t<args<Last, sizeof...(T)>, T...>
             >
         { };
 

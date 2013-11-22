@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 {
 
         template <typename First, typename Last, DistanceT Dist>
         struct count_between<First, Last, Dist, false>
-            : count_between<typename next<First>::type, Last, Dist + 1>
+            : count_between<next_t<First>, Last, Dist + 1>
         { };
     } // end namespace forward_iterator_detail
 

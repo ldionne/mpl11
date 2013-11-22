@@ -21,18 +21,18 @@ namespace boost { namespace mpl11 {
         struct count_pred {
             template <typename N, typename Element>
             struct apply
-                : if_<typename mpl11::apply<Predicate, Element>::type,
+                : if_t<apply_t<Predicate, Element>,
                     add<N, ulong<1>>, N
-                >::type
+                >
             { };
         };
     } // end namespace count_if_detail
 
     template <typename Sequence, typename Predicate>
     struct count_if
-        : foldl<
+        : foldl_t<
             Sequence, ulong<0>, count_if_detail::count_pred<Predicate>
-        >::type
+        >
     { };
 }} // end namespace boost::mpl11
 

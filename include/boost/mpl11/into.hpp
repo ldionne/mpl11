@@ -8,14 +8,14 @@
 
 #include <boost/mpl11/fwd/into.hpp>
 
+#include <boost/mpl11/identity.hpp>
+
 
 namespace boost { namespace mpl11 {
     template <template <typename ...> class Template>
     struct into {
         template <typename ...T>
-        struct apply {
-            using type = Template<T...>;
-        };
+        using apply = identity<Template<T...>>;
     };
 }} // end namespace boost::mpl11
 

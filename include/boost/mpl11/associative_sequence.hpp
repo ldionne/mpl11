@@ -32,8 +32,8 @@ namespace boost { namespace mpl11 {
 
         template <
             typename Seq1, typename Seq2,
-            typename First = typename begin<Seq1>::type,
-            typename Last = typename end<Seq1>::type,
+            typename First = begin_t<Seq1>,
+            typename Last = end_t<Seq1>,
             bool = equal<First, Last>::value
         >
         struct is_subset_of
@@ -42,7 +42,7 @@ namespace boost { namespace mpl11 {
 
         template <typename Seq1, typename Seq2, typename First, typename Last>
         struct lazy_next_step
-            : is_subset_of<Seq1, Seq2, typename next<First>::type, Last>
+            : is_subset_of<Seq1, Seq2, next_t<First>, Last>
         { };
 
         struct equal_to_nothing {
@@ -58,9 +58,9 @@ namespace boost { namespace mpl11 {
         template <
             typename Seq1, typename Seq2,
             typename First, typename Last,
-            typename Element = typename deref<First>::type,
-            typename Key = typename key_of<Seq1, Element>::type,
-            typename Value = typename value_of<Seq1, Element>::type
+            typename Element = deref_t<First>,
+            typename Key = key_of_t<Seq1, Element>,
+            typename Value = value_of_t<Seq1, Element>
         >
         struct is_subset_of_impl
             : and_<
@@ -69,7 +69,7 @@ namespace boost { namespace mpl11 {
                     // direction, i.e. with the potential equal_to_nothing
                     // on the left so that we use equal_to_nothing's
                     // comparison operator instead of Value's.
-                    typename at_key<Seq2, Key, equal_to_nothing>::type, Value
+                    at_key_t<Seq2, Key, equal_to_nothing>, Value
                 >,
                 lazy_next_step<Seq1, Seq2, First, Last>
             >
@@ -97,7 +97,7 @@ namespace boost { namespace mpl11 {
     template <typename S1, typename S2>
     struct AssociativeSequence::equal_impl
         : and_<
-            equal<typename size<S1>::type, typename size<S2>::type>,
+            equal<size_t<S1>, size_t<S2>>,
             associative_sequence_detail::is_subset_of<S1, S2>
         >
     { };

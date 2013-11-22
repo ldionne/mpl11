@@ -13,9 +13,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2, typename ...Tn>
-    struct max
-        : max<T1, typename max<T2, Tn...>::type>
+    template <typename T1, typename T2, typename T3, typename ...Tn>
+    struct max<T1, T2, T3, Tn...>
+        : max<T1, max_t<T2, T3, Tn...>>
     { };
 
     template <typename T1, typename T2>

@@ -52,8 +52,8 @@ namespace boost { namespace mpl11 { namespace detail {
         template <typename F1, typename L1, typename F2, typename L2>
         struct lazy_next_step
             : lexicographical_compare<
-                typename next<F1>::type, L1,
-                typename next<F2>::type, L2
+                next_t<F1>, L1,
+                next_t<F2>, L2
             >
         { };
     } // end namespace lexicographical_compare_detail
@@ -62,9 +62,9 @@ namespace boost { namespace mpl11 { namespace detail {
     template <typename F1, typename L1, typename F2, typename L2>
     struct lexicographical_compare<F1, L1, F2, L2, false, false>
         : or_<
-            less<typename deref<F1>::type, typename deref<F2>::type>,
+            less<deref_t<F1>, deref_t<F2>>,
             and_<
-                not_<less<typename deref<F2>::type, typename deref<F1>::type>>,
+                not_<less<deref_t<F2>, deref_t<F1>>>,
                 lexicographical_compare_detail::lazy_next_step<F1, L1, F2, L2>
             >
         >

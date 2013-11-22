@@ -13,9 +13,7 @@ namespace boost { namespace mpl11 {
     template <template <typename ...> class F>
     struct quote {
         template <typename ...Args>
-        struct apply
-            : F<Args...>
-        { };
+        using apply = F<Args...>;
     };
 }} // end namespace boost::mpl11
 

@@ -18,10 +18,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct none_of
-        : equal<
-            typename find_if<Sequence, Predicate>::type,
-            typename end<Sequence>::type
-        >
+        : equal<find_if_t<Sequence, Predicate>, end_t<Sequence>>
     { };
 }} // end namespace boost::mpl11
 

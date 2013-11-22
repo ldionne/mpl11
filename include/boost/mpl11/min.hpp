@@ -13,9 +13,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2, typename ...Tn>
-    struct min
-        : min<T1, typename min<T2, Tn...>::type>
+    template <typename T1, typename T2, typename T3, typename ...Tn>
+    struct min<T1, T2, T3, Tn...>
+        : min<T1, min_t<T2, T3, Tn...>>
     { };
 
     template <typename T1, typename T2>

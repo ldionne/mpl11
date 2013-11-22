@@ -20,6 +20,7 @@
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/into.hpp>
 #include <boost/mpl11/second.hpp>
 
 
@@ -106,7 +107,6 @@ namespace imap_detail {
         // Sequence
         /////////////////////////////////
         template <typename Map> struct begin_impl;
-        template <typename Map> struct end_impl;
 
         template <typename ...Elements>
         struct begin_impl<imap<Elements...>> {
@@ -114,23 +114,16 @@ namespace imap_detail {
         };
 
         template <typename Map>
-        struct end_impl {
-            using type = iterator<>;
-        };
+        using end_impl = identity<iterator<>>;
 
         /////////////////////////////////
         // AssociativeSequence
         /////////////////////////////////
-        template <
-           typename Map, typename Key, typename Default = detail::optional
-        >
+        template <typename Map, typename Key,
+                  typename Default = detail::optional>
         struct at_key_impl;
         template <typename Map, typename Key>
         struct has_key_impl;
-        template <typename Map, typename Element>
-        struct key_of_impl;
-        template <typename Map, typename Element>
-        struct value_of_impl;
 
         template <typename ...Elements, typename Key>
         struct at_key_impl<imap<Elements...>, Key>
@@ -156,34 +149,20 @@ namespace imap_detail {
         { };
 
         template <typename Map, typename Element>
-        struct key_of_impl
-            : first<Element>
-        { };
+        using key_of_impl = first<Element>;
 
         template <typename Map, typename Element>
-        struct value_of_impl
-            : second<Element>
-        { };
+        using value_of_impl = second<Element>;
 
         /////////////////////////////////
         // Container
         /////////////////////////////////
-        template <typename Map> struct new_impl;
-        template <typename Map> struct clear_impl;
-
         //! @todo Decide the semantics of new_ for `imap` and test it.
         template <typename Map>
-        struct new_impl {
-            template <typename ...Elements>
-            struct apply {
-                using type = imap<Elements...>;
-            };
-        };
+        using new_impl = into<imap>;
 
         template <typename Map>
-        struct clear_impl {
-            using type = imap<>;
-        };
+        using clear_impl = identity<imap<>>;
 
         /////////////////////////////////
         // AssociativeContainer
@@ -198,10 +177,7 @@ namespace imap_detail {
             using type = imap<
                 Element,
                 typename detail::conditional<
-                    detail::is_same<
-                        typename first<Element>::type,
-                        typename first<T>::type
-                    >::value,
+                    detail::is_same<first_t<Element>, first_t<T>>::value,
                     erased,
                     T
                 >::type...
@@ -212,9 +188,7 @@ namespace imap_detail {
         struct erase_key_impl<imap<Elements...>, Key> {
             using type = imap<
                 typename detail::conditional<
-                    detail::is_same<
-                        Key, typename first<Elements>::type
-                    >::value,
+                    detail::is_same<Key, first_t<Elements>>::value,
                     erased,
                     Elements
                 >::type...

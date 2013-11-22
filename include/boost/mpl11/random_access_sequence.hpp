@@ -23,9 +23,7 @@ namespace boost { namespace mpl11 {
         static_assert(N::value < size<S>::value,
         "Trying to access a sequence at an index beyond the last element.");
 
-        using type = typename deref<
-            typename advance<typename begin<S>::type, N>::type
-        >::type;
+        using type = deref_t<advance_t<begin_t<S>, N>>;
     };
 }} // end namespace boost::mpl11
 

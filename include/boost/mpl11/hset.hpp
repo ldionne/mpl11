@@ -38,7 +38,7 @@ namespace hset_detail {
     template <typename Next, typename ...Elements>
     struct inserted
         : Next, detail::complete<
-            Next, typename hash<Elements>::type, Elements
+            Next, hash_t<Elements>, Elements
         >...
     {
         using contents = typename detail::vector_concat<
@@ -59,7 +59,7 @@ namespace hset_detail {
     template <typename Next, typename ...Elements>
     struct erased
         : Next, detail::complete<
-            Next, typename hash<Elements>::type, Elements
+            Next, hash_t<Elements>, Elements
         >...
     {
         using mpl_class = hset_class;
@@ -117,7 +117,7 @@ namespace hset_detail {
             typename Default = detail::optional>
         struct at_key_impl
             : decltype(
-                hset_at_key<typename hash<Key>::type, Default>(
+                hset_at_key<hash_t<Key>, Default>(
                     (Set*)nullptr, (Set*)nullptr
                 )
             )
@@ -130,7 +130,7 @@ namespace hset_detail {
 
         template <typename Set, typename Key>
         using has_key_impl = decltype(
-            hset_has_key<typename hash<Key>::type>(
+            hset_has_key<hash_t<Key>>(
                 (Set*)nullptr, (Set*)nullptr
             )
         );

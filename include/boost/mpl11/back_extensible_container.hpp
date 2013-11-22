@@ -25,18 +25,16 @@ namespace boost { namespace mpl11 {
 
         template <typename C, typename Head, typename ...Tail>
         struct foldl_push_back<C, Head, Tail...>
-            : foldl_push_back<typename push_back<C, Head>::type, Tail...>
+            : foldl_push_back<push_back_t<C, Head>, Tail...>
         { };
     } // end namespace back_extensible_container_detail
 
     template <typename C>
     struct BackExtensibleContainer::new_impl {
         template <typename ...T>
-        struct apply
-            : back_extensible_container_detail::foldl_push_back<
-                typename clear<C>::type, T...
-            >
-        { };
+        using apply = back_extensible_container_detail::foldl_push_back<
+            clear_t<C>, T...
+        >;
     };
 }} // end namespace boost::mpl11
 

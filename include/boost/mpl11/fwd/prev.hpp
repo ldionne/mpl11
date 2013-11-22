@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename Iterator>
     struct prev;
+
+    template <typename Iterator>
+    using prev_t = typename prev<Iterator>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_PREV_HPP

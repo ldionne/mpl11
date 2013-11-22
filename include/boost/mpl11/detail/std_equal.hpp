@@ -48,8 +48,8 @@ namespace boost { namespace mpl11 { namespace detail {
         template <typename F1, typename L1, typename F2, typename L2>
         struct lazy_next_step
             : std_equal<
-                typename next<F1>::type, L1,
-                typename next<F2>::type, L2
+                next_t<F1>, L1,
+                next_t<F2>, L2
             >
         { };
     } // end namespace std_equal_detail
@@ -57,7 +57,7 @@ namespace boost { namespace mpl11 { namespace detail {
     template <typename F1, typename L1, typename F2, typename L2>
     struct std_equal<F1, L1, F2, L2, false, false>
         : and_<
-            equal<typename deref<F1>::type, typename deref<F2>::type>,
+            equal<deref_t<F1>, deref_t<F2>>,
             std_equal_detail::lazy_next_step<F1, L1, F2, L2>
         >
     { };
