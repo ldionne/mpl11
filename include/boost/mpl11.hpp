@@ -26,14 +26,6 @@
  */
 
 /*!
- * @defgroup views Views
- * @ingroup sequences
- *
- * Immutable sequences providing a lazily-altered presentation of one or more
- * underlying sequences.
- */
-
-/*!
  * @defgroup metafunctions Metafunctions
  *
  * Compile-time functions operating on types.

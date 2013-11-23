@@ -13,9 +13,11 @@ namespace boost { namespace mpl11 {
      * @ref MetafunctionClass returning a specialization of `Template` with
      * the provided arguments.
      *
+     * Specifically, `mpl11::apply<mpl11::into<Template>, Args...>::type`
+     * is identical to `Template<Args...>`.
      *
-     * @todo
-     * Document use cases and precise semantics.
+     *
+     * @see `mpl11::quote`
      */
     template <template <typename ...> class Template>
     struct into;

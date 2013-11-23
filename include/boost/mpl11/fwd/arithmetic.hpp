@@ -13,8 +13,17 @@ namespace boost { namespace mpl11 {
      *
      * Intrinsics representing C++ arithmetic operators.
      *
+     * Arithmetic operators can be passed more than two arguments. Like in
+     * standard C++, these operators are left-associative. Therefore, the
+     * following are equivalent:
      *
-     * @todo Document the left associativity of arithmetic operators.
+            op<A0, A1, A2, ..., An>
+     *
+     * and
+     *
+            op<op<A0, A1>::type, A2, ..., An>
+     *
+     * where `op` is any arithmetic operator.
      */
 
     /*!

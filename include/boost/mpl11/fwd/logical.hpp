@@ -14,11 +14,11 @@ namespace boost { namespace mpl11 {
      * Intrinsics representing C++ logical operators.
      *
      * Logical operators are a bit special because they are required to
-     * perform short-circuit evaluation whenever possible. They expect
-     * metafunctions returning `Logical`s as arguments instead of expecting
-     * straight `Logical`s. Whenever the evaluation of one argument allows
-     * the operator to conclude, subsequent arguments are not evaluated. Note
-     * that evaluation is made left-to-right, like one would expect.
+     * perform short-circuit evaluation whenever possible. As argument, they
+     * expect metafunctions returning `Logical`s instead of expecting straight
+     * `Logical`s. Whenever the evaluation of one argument allows the operator
+     * to conclude, subsequent arguments are not evaluated. Note that
+     * evaluation is made left-to-right, like one would expect.
      *
      * However, custom implementations of logical operators are called with
      * different conventions documented in each operator.
