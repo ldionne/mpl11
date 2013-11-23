@@ -1,5 +1,46 @@
 /*!
  * @file
+ * Defines `boost::mpl11::slice`.
+ */
+
+#ifndef BOOST_MPL11_SLICE_HPP
+#define BOOST_MPL11_SLICE_HPP
+
+#include <boost/mpl11/fwd/slice.hpp>
+
+
+namespace boost { namespace mpl11 {
+    namespace slice_detail {
+        struct slice_class final : Sequence {
+
+        };
+    } // end namespace slice_detail
+
+    template <typename Sequence, typename First, typename Last>
+    struct class_of<slice<Sequence, First, Last>> {
+        using type = slice_detail::slice_class;
+    };
+
+    template <typename Sequence, typename First, typename Last>
+    struct slice
+        : new_<Sequence, slice<Sequence, First, Last>>
+    { };
+}} // end namespace boost::mpl11
+
+#endif // !BOOST_MPL11_SLICE_HPP
+
+
+
+
+
+
+
+
+
+
+
+/*!
+ * @file
  * Defines `boost::mpl11::sliced_view`.
  */
 
