@@ -9,6 +9,7 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/fwd/advance.hpp>
+#include <boost/mpl11/fwd/associative_container.hpp>
 #include <boost/mpl11/fwd/associative_sequence.hpp>
 #include <boost/mpl11/fwd/at_key.hpp>
 #include <boost/mpl11/fwd/back_extensible_container.hpp>
@@ -24,10 +25,14 @@
 #include <boost/mpl11/fwd/distance.hpp>
 #include <boost/mpl11/fwd/end.hpp>
 #include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/fwd/erase_key.hpp>
+#include <boost/mpl11/fwd/erase_keys.hpp>
 #include <boost/mpl11/fwd/first.hpp>
 #include <boost/mpl11/fwd/forward_iterator.hpp>
 #include <boost/mpl11/fwd/front_extensible_container.hpp>
 #include <boost/mpl11/fwd/has_key.hpp>
+#include <boost/mpl11/fwd/insert_key.hpp>
+#include <boost/mpl11/fwd/insert_keys.hpp>
 #include <boost/mpl11/fwd/key_of.hpp>
 #include <boost/mpl11/fwd/less.hpp>
 #include <boost/mpl11/fwd/new.hpp>
@@ -355,6 +360,39 @@ namespace boost { namespace mpl11 { namespace test {
           FrontExtensibleContainer
     {
         using FrontExtensibleContainer::new_impl;
+    };
+
+    template <>
+    struct minimal_requirements<AssociativeContainer, false>
+        : minimal_requirements<Container, false>
+    {
+        template <typename C, typename Key>
+        struct insert_key_impl {
+            using type = typename C::template rebind<
+                typename insert_key<typename unwrap<C>::type, Key>::type
+            >;
+        };
+
+        template <typename C, typename Key>
+        struct erase_key_impl {
+            using type = typename C::template rebind<
+                typename erase_key<typename unwrap<C>::type, Key>::type
+            >;
+        };
+
+        template <typename C, typename Keys>
+        struct insert_keys_impl {
+            using type = typename C::template rebind<
+                typename insert_keys<typename unwrap<C>::type, Keys>::type
+            >;
+        };
+
+        template <typename C, typename Keys>
+        struct erase_keys_impl {
+            using type = typename C::template rebind<
+                typename erase_keys<typename unwrap<C>::type, Keys>::type
+            >;
+        };
     };
 }}} // end namespace boost::mpl11::test
 
