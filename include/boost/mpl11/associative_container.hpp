@@ -16,14 +16,14 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Container, typename Elements>
+    template <typename C, typename Elements>
     struct AssociativeContainer::insert_keys_impl
-        : foldl<Elements, Container, quote<insert_key>>
+        : foldl<Elements, C, quote<insert_key>>
     { };
 
-    template <typename Container, typename Keys>
+    template <typename C, typename Keys>
     struct AssociativeContainer::erase_keys_impl
-        : foldl<Keys, Container, quote<erase_key>>
+        : foldl<Keys, C, quote<erase_key>>
     { };
 }} // end namespace boost::mpl11
 
