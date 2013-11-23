@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 {
     template <typename Sequence, typename Key, typename Default>
     struct at_key
         : class_of<Sequence>::type::template
-            at_key_impl<Sequence, Key, Default>
+            at_key_def_impl<Sequence, Key, Default>
     { };
 
     template <typename Sequence, typename Key>

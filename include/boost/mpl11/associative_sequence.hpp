@@ -82,7 +82,7 @@ namespace boost { namespace mpl11 {
     } // end namespace associative_sequence_detail
 
     template <typename S, typename Key>
-    struct AssociativeSequence::at_key_impl<S, Key>
+    struct AssociativeSequence::at_key_impl
         : at_key<S, Key, associative_sequence_detail::not_found>
     {
         static_assert(

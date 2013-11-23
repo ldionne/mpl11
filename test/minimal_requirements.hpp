@@ -7,7 +7,6 @@
 #define BOOST_MPL11_MINIMAL_REQUIREMENTS_HPP
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/fwd/advance.hpp>
 #include <boost/mpl11/fwd/associative_container.hpp>
 #include <boost/mpl11/fwd/associative_sequence.hpp>
@@ -269,14 +268,9 @@ namespace boost { namespace mpl11 { namespace test {
             : value_of<typename unwrap<S>::type, E>
         { };
 
-        template <typename S, typename K, typename D = detail::optional>
-        struct at_key_impl
+        template <typename S, typename K, typename D>
+        struct at_key_def_impl
             : at_key<typename unwrap<S>::type, K, D>
-        { };
-
-        template <typename S, typename K>
-        struct at_key_impl<S, K>
-            : AssociativeSequence::template at_key_impl<S, K>
         { };
     };
 

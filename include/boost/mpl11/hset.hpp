@@ -15,7 +15,6 @@
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/contains.hpp>
 #include <boost/mpl11/detail/complete.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/foldl.hpp>
@@ -112,21 +111,12 @@ namespace hset_detail {
         /////////////////////////////////
         // AssociativeSequence
         /////////////////////////////////
-        template <
-            typename Set, typename Key,
-            typename Default = detail::optional>
-        struct at_key_impl
-            : decltype(
-                hset_at_key<hash_t<Key>, Default>(
-                    (Set*)nullptr, (Set*)nullptr
-                )
+        template <typename Set, typename Key, typename Default>
+        using at_key_def_impl = decltype(
+            hset_at_key<hash_t<Key>, Default>(
+                (Set*)nullptr, (Set*)nullptr
             )
-        { };
-
-        template <typename Set, typename Key>
-        struct at_key_impl<Set, Key>
-            : AssociativeSequence::template at_key_impl<Set, Key>
-        { };
+        );
 
         template <typename Set, typename Key>
         using has_key_impl = decltype(

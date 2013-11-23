@@ -14,7 +14,6 @@
 #include <boost/mpl11/detail/dependent_on.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/no_decay.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
@@ -118,19 +117,13 @@ namespace imap_detail {
         /////////////////////////////////
         // AssociativeSequence
         /////////////////////////////////
-        template <typename Map, typename Key,
-                  typename Default = detail::optional>
-        struct at_key_impl;
+        template <typename Map, typename Key, typename Default>
+        struct at_key_def_impl;
         template <typename Map, typename Key>
         struct has_key_impl;
 
-        template <typename ...Elements, typename Key>
-        struct at_key_impl<imap<Elements...>, Key>
-            : AssociativeSequence::template at_key_impl<imap<Elements...>, Key>
-        { };
-
         template <typename ...Elements, typename Key, typename Default>
-        struct at_key_impl<imap<Elements...>, Key, Default>
+        struct at_key_def_impl<imap<Elements...>, Key, Default>
             : decltype(
                 iterator<Elements...>::template at_key<Default>(
                     (detail::no_decay<Key>*)nullptr

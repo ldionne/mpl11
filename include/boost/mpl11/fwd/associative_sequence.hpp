@@ -6,8 +6,6 @@
 #ifndef BOOST_MPL11_FWD_ASSOCIATIVE_SEQUENCE_HPP
 #define BOOST_MPL11_FWD_ASSOCIATIVE_SEQUENCE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
-#include <boost/mpl11/detail/optional.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/sequence.hpp>
 
@@ -42,23 +40,18 @@ namespace boost { namespace mpl11 {
      * | `has_key<S, Key>`               | Boolean `IntegralConstant`
      */
     struct AssociativeSequence : Sequence, Comparable {
-        template <typename Sequence, typename Key,
-                  typename Default = detail::optional>
-        struct at_key_impl;
-
-        //! This operation must be provided by the user.
-        template <typename Sequence, typename Key, typename Default>
-        struct at_key_impl
-        BOOST_MPL11_DOXYGEN_ONLY(<Sequence, Key, Default> { });
-
         /*!
          * Returns `mpl11::at_key<%Sequence, Key, X>::type`, where `X` is
          * such that a compile-time assertion is triggered if `X` is returned.
          */
         template <typename Sequence, typename Key>
-        struct at_key_impl<Sequence, Key>;
+        struct at_key_impl;
 
 #ifdef BOOST_MPL11_DOXYGEN_INVOKED
+        //! This operation must be provided by the user.
+        template <typename Sequence, typename Key, typename Default>
+        struct at_key_def_impl;
+
         //! This operation must be provided by the user.
         template <typename Sequence, typename Key>
         struct has_key_impl;
