@@ -114,6 +114,9 @@ namespace imap_detail {
         template <typename Map>
         using end_impl = identity<iterator<>>;
 
+        //! @todo Remove this once Clang is fixed.
+        using AssociativeSequence::size_impl;
+
         /////////////////////////////////
         // AssociativeSequence
         /////////////////////////////////

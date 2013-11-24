@@ -72,16 +72,15 @@ namespace hset_detail {
         hset_at_key(detail::complete<Next, KeyHash, Element>*, erased*);
     };
 
+    template <typename KeyHash>
+    false_ hset_has_key(...);
+
+    template <typename KeyHash, typename Default>
+    identity<Default> hset_at_key(...);
+
     struct empty {
         using contents = vector<>;
-
         using mpl_class = hset_class;
-
-        template <typename KeyHash>
-        friend false_ hset_has_key(void*, empty*);
-
-        template <typename KeyHash, typename Default>
-        friend identity<Default> hset_at_key(void*, empty*);
     };
 
     template <typename Set>
@@ -107,6 +106,9 @@ namespace hset_detail {
 
         template <typename Set>
         using end_impl = end<contents<Set>>;
+
+        //! @todo Remove this once Clang is fixed.
+        using AssociativeSequence::size_impl;
 
         /////////////////////////////////
         // AssociativeSequence
