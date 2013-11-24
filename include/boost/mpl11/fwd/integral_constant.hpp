@@ -60,7 +60,7 @@ namespace boost { namespace mpl11 {
 
         // Arithmetic
         BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(add)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(substract)
+        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(subtract)
         BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(divide)
         BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(multiply)
         BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(modulo)

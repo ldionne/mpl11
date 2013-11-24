@@ -25,7 +25,7 @@
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>
-#include <boost/mpl11/substract.hpp>
+#include <boost/mpl11/subtract.hpp>
 
 
 using namespace boost::mpl11;
@@ -52,7 +52,7 @@ class test_one {
 
     // Arithmetic
     BOOST_MPL11_CHECK_BINOP(add, +)
-    BOOST_MPL11_CHECK_BINOP(substract, -)
+    BOOST_MPL11_CHECK_BINOP(subtract, -)
     BOOST_MPL11_CHECK_BINOP(multiply, *)
 
     static_assert(divide<

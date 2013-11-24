@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 {
 
         //! This operation must be provided by the user.
         template <typename X, typename Y>
-        struct substract_impl;
+        struct subtract_impl;
 
         //! This operation must be provided by the user.
         template <typename X, typename Y>
