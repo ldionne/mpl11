@@ -7,7 +7,6 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/vector.hpp>
 
@@ -17,26 +16,6 @@ using detail::is_same;
 
 struct a0; struct a1; struct a2;
 template <typename ...> struct f { struct type; };
-
-// test is_placeholder specialization
-static_assert(is_placeholder<args<>>::value, "");
-
-static_assert(is_placeholder<args<0>>::value, "");
-static_assert(is_placeholder<args<1>>::value, "");
-static_assert(is_placeholder<args<2>>::value, "");
-
-static_assert(is_placeholder<args<0, 1>>::value, "");
-static_assert(is_placeholder<args<0, 2>>::value, "");
-static_assert(is_placeholder<args<0, 3>>::value, "");
-
-static_assert(is_placeholder<args<1, 1>>::value, "");
-static_assert(is_placeholder<args<1, 2>>::value, "");
-static_assert(is_placeholder<args<1, 3>>::value, "");
-
-static_assert(is_placeholder<args<2, 2>>::value, "");
-static_assert(is_placeholder<args<2, 3>>::value, "");
-static_assert(is_placeholder<args<2, 4>>::value, "");
-
 
 // test args<> as a lambda placeholder
 static_assert(is_same<

@@ -10,7 +10,7 @@
 
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/vector_fill.hpp>
-#include <boost/mpl11/fwd/is_placeholder.hpp>
+#include <boost/mpl11/fwd/lambda.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
@@ -44,9 +44,10 @@ namespace boost { namespace mpl11 {
     };
 
     template <unsigned long long N>
-    struct is_placeholder<arg<N>>
-        : true_
-    { };
+    struct lambda<arg<N>> : arg<N> {
+        static constexpr bool is_multivalued = false;
+        static constexpr bool triggers_recursive_eval = true;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARG_HPP

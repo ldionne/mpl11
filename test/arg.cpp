@@ -7,7 +7,6 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/lambda.hpp>
 
 
@@ -16,13 +15,6 @@ using detail::is_same;
 
 template <typename ...> struct f { struct type; };
 struct a1; struct a2; struct a3; struct a4; struct a5; struct a6;
-
-// test is_placeholder specialization
-static_assert(is_placeholder<arg<0>>::value, "");
-static_assert(is_placeholder<arg<1>>::value, "");
-static_assert(is_placeholder<arg<2>>::value, "");
-static_assert(is_placeholder<arg<3>>::value, "");
-
 
 // test arg<> as a metafunction class
 static_assert(is_same<apply<_1, a1>::type, a1>::value, "");

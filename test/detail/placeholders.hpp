@@ -1,8 +1,7 @@
 #ifndef BOOST_MPL11_TEST_PLACEHOLDERS_HPP
 #define BOOST_MPL11_TEST_PLACEHOLDERS_HPP
 
-#include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/fwd/lambda.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -33,24 +32,36 @@ namespace boost { namespace mpl11 {
     } // end namespace test
 
     template <typename ...T>
-    struct is_placeholder<test::placeholder::variadic<T...>>
-        : true_
-    { };
+    struct lambda<test::placeholder::variadic<T...>>
+        : test::placeholder::variadic<T...>
+    {
+        static constexpr bool is_multivalued = false;
+        static constexpr bool triggers_recursive_eval = true;
+    };
 
     template <typename T>
-    struct is_placeholder<test::placeholder::unary<T>>
-        : true_
-    { };
+    struct lambda<test::placeholder::unary<T>>
+        : test::placeholder::unary<T>
+    {
+        static constexpr bool is_multivalued = false;
+        static constexpr bool triggers_recursive_eval = true;
+    };
 
     template <typename T, typename U>
-    struct is_placeholder<test::placeholder::binary<T, U>>
-        : true_
-    { };
+    struct lambda<test::placeholder::binary<T, U>>
+        : test::placeholder::binary<T, U>
+    {
+        static constexpr bool is_multivalued = false;
+        static constexpr bool triggers_recursive_eval = true;
+    };
 
     template <>
-    struct is_placeholder<test::placeholder::non_template>
-        : true_
-    { };
+    struct lambda<test::placeholder::non_template>
+        : test::placeholder::non_template
+    {
+        static constexpr bool is_multivalued = false;
+        static constexpr bool triggers_recursive_eval = true;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_TEST_PLACEHOLDERS_HPP

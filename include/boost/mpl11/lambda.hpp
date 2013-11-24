@@ -9,142 +9,117 @@
 #include <boost/mpl11/fwd/lambda.hpp>
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/detail/eager_any.hpp>
+#include <boost/mpl11/detail/tp_conditional.hpp>
 #include <boost/mpl11/detail/vector_concat.hpp>
-#include <boost/mpl11/fwd/args.hpp>
-#include <boost/mpl11/fwd/vector.hpp>
+#include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/into.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/unpack.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace lambda_detail {
-        template <
-            typename F, typename Args, bool = is_placeholder<F>::value
-        >
-        struct lambda_impl;
+namespace lambda_detail {
+    template <typename ...Args>
+    struct gather {
+        //! @todo
+        //! Use more general `join` once implemented: the result could be
+        //! something else than a `vector`.
+        template <typename State, typename T>
+        using apply_multivalued = detail::vector_concat<
+            State, apply_t<lambda<T>, Args...>
+        >;
 
-        // In case we're dealing with a placeholder, we apply the placeholder
-        // to the provided arguments.
-        template <typename F, typename ...Args>
-        struct lambda_impl<F, vector<Args...>, true> {
-            static constexpr bool is_pe = true;
-            using result = mpl11::apply<F, Args...>;
-        };
+        template <typename State, typename T>
+        using apply_single_valued = push_back<
+            State, apply_t<lambda<T>, Args...>
+        >;
 
-        // In case we're dealing with a non-template type that is not a
-        // placeholder, we return it unchanged.
-        template <typename T, typename Args>
-        struct lambda_impl<T, Args, false> {
-            static constexpr bool is_pe = false;
-            using result = identity<T>;
-        };
-
-        // In case we're dealing with `lambda` itself, we do as-if it was not
-        // a template specialization because we don't want to evaluate those
-        // recursively.
-        template <typename F, typename Args>
-        struct lambda_impl<lambda<F>, Args, false> {
-            static constexpr bool is_pe = false;
-            using result = identity<lambda<F>>;
-        };
-
-        template <
-            template <typename ...> class Result, typename Args, bool IsPe
-        >
-        struct parser;
-
-        // In case we're dealing with a template specialization, we must
-        // proceed carefully. See below.
-        template <
-            template <typename ...> class F, typename ...T,
-            typename Args
-        >
-        struct lambda_impl<F<T...>, Args, false>
-            : parser<F, Args, false>::template parse<vector<>, vector<T...>>
-        { };
-
-        template <typename Head, typename Args, typename ...Parsed>
-        struct update_parsed {
-            using type = vector<
-                Parsed...,
-                typename lambda_impl<Head, Args>::result::type
-            >;
-        };
-
-        //! @todo MEGA HACK: FIND A PROPER WAY TO DO THIS!!!
-        template <
-            unsigned long long First, unsigned long long ...Last,
-            typename ...Args, typename ...Parsed
-        >
-        struct update_parsed<args<First, Last...>, vector<Args...>, Parsed...>
-            : detail::vector_concat<
-                vector<Parsed...>,
-                apply_t<args<First, Last...>, Args...>
-            >
-        { };
-
-        // Template specializations are tricky:
-        // We won't know whether it really is a normal type or a placeholder
-        // expression until we've examined each of its template parameters.
-        // So we proceed to recursively examine them and change the token
-        // whenever we find a parameter which is a placeholder expression.
-        // When the token is changed, processing will continue in the
-        // specialization of `parser` below.
-        template <template <typename ...> class Result, typename Args>
-        struct parser<Result, Args, false> {
-            template <typename Parsed, typename Input>
-            struct parse;
-
-            template <typename ...Parsed>
-            struct parse<vector<Parsed...>, vector<>> {
-                static constexpr bool is_pe = false;
-                using result = identity<Result<Parsed...>>;
-            };
-
-            template <typename ...Parsed, typename Head, typename ...Tail>
-            struct parse<vector<Parsed...>, vector<Head, Tail...>>
-                : parser<
-                    Result,
-                    Args,
-                    lambda_impl<Head, Args>::is_pe
-                >::template parse<
-                    typename update_parsed<Head, Args, Parsed...>::type,
-                    vector<Tail...>
-                >
-            { };
-        };
-
-        // Here we're dealing with a template specialization which we know
-        // is a placeholder expression. This simplifies parsing because
-        // we don't have to check `is_placeholder` anymore.
-        template <template <typename ...> class Result, typename Args>
-        struct parser<Result, Args, true> {
-            template <typename Parsed, typename Input>
-            struct parse;
-
-            template <typename ...Parsed>
-            struct parse<vector<Parsed...>, vector<>> {
-                static constexpr bool is_pe = true;
-                using result = Result<Parsed...>;
-            };
-
-            template <typename ...Parsed, typename Head, typename ...Tail>
-            struct parse<vector<Parsed...>, vector<Head, Tail...>>
-                : parse<
-                    typename update_parsed<Head, Args, Parsed...>::type,
-                    vector<Tail...>
-                >
-            { };
-        };
-    } // end namespace lambda_detail
-
-    template <typename F>
-    struct lambda {
-        template <typename ...Args>
-        struct apply
-            : lambda_detail::lambda_impl<F, vector<Args...>>::result
-        { };
+        template <typename State, typename T>
+        using apply = typename detail::tp_conditional<
+            lambda<T>::is_multivalued,
+            apply_multivalued,
+            apply_single_valued
+        >::template type<State, T>;
     };
+
+    template <
+        bool TriggersRecursiveEval, bool IsMultiValued,
+        template <typename ...> class F, typename ...T>
+    struct lambda_impl;
+
+    template <template <typename ...> class F, typename ...T>
+    struct lambda_impl<false, false, F, T...> {
+        static constexpr bool triggers_recursive_eval = false;
+        static constexpr bool is_multivalued = false;
+
+        template <typename ...Args>
+        using apply = identity<F<apply_t<lambda<T>, Args...>...>>;
+    };
+
+    template <template <typename ...> class F, typename ...T>
+    struct lambda_impl<true, false, F, T...> {
+        static constexpr bool triggers_recursive_eval = true;
+        static constexpr bool is_multivalued = false;
+
+        template <typename ...Args>
+        using apply = F<apply_t<lambda<T>, Args...>...>;
+    };
+
+    template <template <typename ...> class F, typename ...T>
+    struct lambda_impl<false, true, F, T...> {
+        static constexpr bool triggers_recursive_eval = false;
+        static constexpr bool is_multivalued = true;
+
+        template <typename ...Args>
+        using apply = unpack<
+            foldl_t<vector<T...>, vector<>, gather<Args...>>,
+            into<F>
+        >;
+    };
+
+    template <template <typename ...> class F, typename ...T>
+    struct lambda_impl<true, true, F, T...> {
+        static constexpr bool triggers_recursive_eval = true;
+        static constexpr bool is_multivalued = true;
+
+        template <typename ...Args>
+        using apply = unpack_t<
+            foldl_t<vector<T...>, vector<>, gather<Args...>>,
+            into<F>
+        >;
+    };
+} // end namespace lambda_detail
+
+template <typename T>
+struct lambda {
+    static constexpr bool is_multivalued = false;
+    static constexpr bool triggers_recursive_eval = false;
+
+    template <typename ...>
+    using apply = identity<T>;
+};
+
+template <typename T>
+struct lambda<lambda<T>> {
+    static constexpr bool is_multivalued = false;
+    static constexpr bool triggers_recursive_eval = false;
+
+    template <typename ...>
+    using apply = identity<lambda<T>>;
+};
+
+template <template <typename ...> class F, typename ...T>
+struct lambda<F<T...>>
+    : lambda_detail::lambda_impl<
+        detail::eager_any_c<lambda<T>::triggers_recursive_eval...>::value,
+        detail::eager_any_c<lambda<T>::is_multivalued...>::value,
+        F,
+        T...
+    >
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_LAMBDA_HPP

@@ -15,82 +15,68 @@ using namespace boost::mpl11;
 using detail::is_same;
 
 struct x; struct y; struct z;
-
-// with a normal type
 struct some_type;
-static_assert(is_same<
-    apply<lambda<some_type>>::type,
-    some_type
->::value, "");
-static_assert(is_same<
-    apply<lambda<some_type>, x>::type,
-    some_type
->::value, "");
-static_assert(is_same<
-    apply<lambda<some_type>, x, y>::type,
-    some_type
->::value, "");
-static_assert(is_same<
-    apply<lambda<some_type>, x, y, z>::type,
-    some_type
->::value, "");
-
-
-// with a template specialization
 template <typename = struct anything> struct some_template;
-static_assert(is_same<
-    apply<lambda<some_template<>>>::type,
-    some_template<>
->::value, "");
-static_assert(is_same<
-    apply<lambda<some_template<>>, x>::type,
-    some_template<>
->::value, "");
-static_assert(is_same<
-    apply<lambda<some_template<>>, x, y>::type,
-    some_template<>
->::value, "");
-static_assert(is_same<
-    apply<lambda<some_template<>>, x, y, z>::type,
-    some_template<>
->::value, "");
+template <typename ...> struct f { struct type; };
 
-
-// with a placeholder
-template <typename Placeholder>
-struct test_straight_placeholder {
-    static_assert(is_same<
-        typename apply<lambda<Placeholder>>::type,
-        typename apply<Placeholder>::type
-    >::value, "");
-    static_assert(is_same<
-        typename apply<lambda<Placeholder>, x>::type,
-        typename apply<Placeholder, x>::type
-    >::value, "");
-    static_assert(is_same<
-        typename apply<lambda<Placeholder>, x, y>::type,
-        typename apply<Placeholder, x, y>::type
-    >::value, "");
-    static_assert(is_same<
-        typename apply<lambda<Placeholder>, x, y, z>::type,
-        typename apply<Placeholder, x, y, z>::type
-    >::value, "");
+template <typename Body>
+struct test_lambda {
+    template <typename ...Args>
+    struct with {
+        template <typename Result>
+        struct equals {
+            static_assert(is_same<
+                apply_t<lambda<Body>, Args...>, Result
+            >::value, "");
+        };
+    };
 };
-struct test_with_a_placeholder
-    : test_straight_placeholder<test::placeholder::non_template>,
-      test_straight_placeholder<test::placeholder::unary<x>>,
-      test_straight_placeholder<test::placeholder::binary<x, y>>,
-      test_straight_placeholder<test::placeholder::variadic<>>,
-      test_straight_placeholder<test::placeholder::variadic<x>>,
-      test_straight_placeholder<test::placeholder::variadic<x, y>>,
-      test_straight_placeholder<test::placeholder::variadic<x, y, z>>
+
+
+struct test_with_a_normal_type :
+    test_lambda<some_type>::with<>::equals<some_type>,
+    test_lambda<some_type>::with<x>::equals<some_type>,
+    test_lambda<some_type>::with<x, y>::equals<some_type>,
+    test_lambda<some_type>::with<x, y, z>::equals<some_type>
 { };
 
 
-// with various placeholder expressions
-template <typename ...> struct f { struct type; };
+struct test_with_a_template_specialization :
+    test_lambda<some_template<>>::with<>::equals<some_template<>>,
+    test_lambda<some_template<>>::with<x>::equals<some_template<>>,
+    test_lambda<some_template<>>::with<x, y>::equals<some_template<>>,
+    test_lambda<some_template<>>::with<x, y, z>::equals<some_template<>>
+{ };
+
+
+template <typename Placeholder>
+struct test_with_a_placeholder_impl {
+    static_assert(is_same<
+        apply_t<lambda<Placeholder>>, apply_t<Placeholder>
+    >::value, "");
+    static_assert(is_same<
+        apply_t<lambda<Placeholder>, x>, apply_t<Placeholder, x>
+    >::value, "");
+    static_assert(is_same<
+        apply_t<lambda<Placeholder>, x, y>, apply_t<Placeholder, x, y>
+    >::value, "");
+    static_assert(is_same<
+        apply_t<lambda<Placeholder>, x, y, z>, apply_t<Placeholder, x, y, z>
+    >::value, "");
+};
+struct test_with_a_placeholder :
+    test_with_a_placeholder_impl<test::placeholder::non_template>,
+    test_with_a_placeholder_impl<test::placeholder::unary<x>>,
+    test_with_a_placeholder_impl<test::placeholder::binary<x, y>>,
+    test_with_a_placeholder_impl<test::placeholder::variadic<>>,
+    test_with_a_placeholder_impl<test::placeholder::variadic<x>>,
+    test_with_a_placeholder_impl<test::placeholder::variadic<x, y>>,
+    test_with_a_placeholder_impl<test::placeholder::variadic<x, y, z>>
+{ };
+
+
 template <typename P>
-struct test_various_placeholder_expr {
+struct test_various_lambda_expr_impl {
     template <typename ...Args>
     struct with_args {
         static_assert(is_same<
@@ -205,14 +191,14 @@ struct test_various_placeholder_expr {
         sizeof(with_args<x, y, z, some_template<>>)
     , "");
 };
-struct test_placeholder_expr
-    : test_various_placeholder_expr<test::placeholder::non_template>,
-      test_various_placeholder_expr<test::placeholder::unary<x>>,
-      test_various_placeholder_expr<test::placeholder::binary<x, y>>,
-      test_various_placeholder_expr<test::placeholder::variadic<>>,
-      test_various_placeholder_expr<test::placeholder::variadic<x>>,
-      test_various_placeholder_expr<test::placeholder::variadic<x, y>>,
-      test_various_placeholder_expr<test::placeholder::variadic<x, y, z>>
+struct test_various_lambda_expr :
+    test_various_lambda_expr_impl<test::placeholder::non_template>,
+    test_various_lambda_expr_impl<test::placeholder::unary<x>>,
+    test_various_lambda_expr_impl<test::placeholder::binary<x, y>>,
+    test_various_lambda_expr_impl<test::placeholder::variadic<>>,
+    test_various_lambda_expr_impl<test::placeholder::variadic<x>>,
+    test_various_lambda_expr_impl<test::placeholder::variadic<x, y>>,
+    test_various_lambda_expr_impl<test::placeholder::variadic<x, y, z>>
 { };
 
 
