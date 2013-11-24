@@ -84,13 +84,13 @@ namespace filter_detail {
     };
 } // end namespace filter_detail
 
-template <typename Iterator, typename Predicate>
-struct class_of<filter_detail::filter_iterator<Iterator, Predicate>> {
+template <typename Iterator, typename Predicate, typename Default>
+struct class_of<filter_detail::filter_iterator<Iterator, Predicate>, Default> {
     using type = filter_detail::filter_iterator_class;
 };
 
-template <typename Sequence, typename Predicate>
-struct class_of<filter<Sequence, Predicate>> {
+template <typename Sequence, typename Predicate, typename Default>
+struct class_of<filter<Sequence, Predicate>, Default> {
     using type = filter_detail::filter_class;
 };
 

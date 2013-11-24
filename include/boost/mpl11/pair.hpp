@@ -14,8 +14,8 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename First, typename Second>
-    struct class_of<pair<First, Second>> {
+    template <typename First, typename Second, typename Default>
+    struct class_of<pair<First, Second>, Default> {
         struct type final : Couple {
             template <typename>
             using first_impl = identity<First>;

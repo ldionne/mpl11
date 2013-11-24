@@ -230,13 +230,13 @@ namespace vector_detail {
     };
 } // end namespace vector_detail
 
-template <typename Vector, vector_detail::IndexT Position>
-struct class_of<vector_detail::iterator<Vector, Position>> {
+template <typename Vector, vector_detail::IndexT Position, typename Default>
+struct class_of<vector_detail::iterator<Vector, Position>, Default> {
     using type = vector_detail::iterator_class;
 };
 
-template <typename ...T>
-struct class_of<vector<T...>> {
+template <typename ...T, typename Default>
+struct class_of<vector<T...>, Default> {
     using type = vector_detail::vector_class;
 };
 

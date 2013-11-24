@@ -189,8 +189,8 @@ namespace imap_detail {
     };
 } // end namespace imap_detail
 
-template <typename ...Elements>
-struct class_of<imap<Elements...>> {
+template <typename ...Elements, typename Default>
+struct class_of<imap<Elements...>, Default> {
     using type = imap_detail::imap_class;
 };
 }} // end namespace boost::mpl11

@@ -10,21 +10,21 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace slice_detail {
-        struct slice_class final : Sequence {
+namespace slice_detail {
+    struct slice_class final : Sequence {
 
-        };
-    } // end namespace slice_detail
-
-    template <typename Sequence, typename First, typename Last>
-    struct class_of<slice<Sequence, First, Last>> {
-        using type = slice_detail::slice_class;
     };
+} // end namespace slice_detail
 
-    template <typename Sequence, typename First, typename Last>
-    struct slice
-        : new_<Sequence, slice<Sequence, First, Last>>
-    { };
+template <typename Sequence, typename First, typename Last, typename Default>
+struct class_of<slice<Sequence, First, Last>, Default> {
+    using type = slice_detail::slice_class;
+};
+
+template <typename Sequence, typename First, typename Last>
+struct slice
+    : new_<Sequence, slice<Sequence, First, Last>>
+{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_SLICE_HPP
