@@ -11,7 +11,7 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/detail/tp_conditional.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/has_optimization.hpp>
@@ -83,11 +83,11 @@ namespace boost { namespace mpl11 {
 
     template <typename Sequence, typename State, typename F>
     struct foldl
-        : detail::conditional<
+        : detail::tp_conditional<
             has_optimization<Sequence, optimization::O1_size>::value,
-            foldl_detail::unrolled_foldl<Sequence, State, F>,
-            foldl_detail::normal_foldl<Sequence, State, F>
-        >::type
+            foldl_detail::unrolled_foldl,
+            foldl_detail::normal_foldl
+        >::template type<Sequence, State, F>
     { };
 }} // end namespace boost::mpl11
 
