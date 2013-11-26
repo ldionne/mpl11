@@ -9,12 +9,12 @@
 #include <boost/mpl11/fwd/lambda.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/eager_any.hpp>
 #include <boost/mpl11/detail/tp_conditional.hpp>
 #include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/or.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/unpack.hpp>
 #include <boost/mpl11/vector.hpp>
@@ -111,11 +111,12 @@ struct lambda<lambda<T>> {
     using apply = identity<lambda<T>>;
 };
 
+//! @todo Remove trailing `false`s once we're fixed on the arity of `or_`.
 template <template <typename ...> class F, typename ...T>
 struct lambda<F<T...>>
     : lambda_detail::lambda_impl<
-        detail::eager_any_c<lambda<T>::triggers_recursive_eval...>::value,
-        detail::eager_any_c<lambda<T>::is_multivalued...>::value,
+        or_c<lambda<T>::triggers_recursive_eval..., false, false>::value,
+        or_c<lambda<T>::is_multivalued..., false, false>::value,
         F,
         T...
     >

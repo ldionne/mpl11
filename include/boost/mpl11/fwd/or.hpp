@@ -27,6 +27,23 @@ namespace boost { namespace mpl11 {
 
     template <typename F1, typename F2, typename ...Fn>
     using or_t = typename or_<F1, F2, Fn...>::type;
+
+    /*!
+     * @ingroup metafunctions
+     *
+     * Returns `B1 || B2 || ...Bn`.
+     *
+     *
+     * @note
+     * This metafunction does not guarantee short-circuit evaluation, but
+     * it should be faster than `or_` in the general case because it uses
+     * some optimizations.
+     */
+    template <bool B1, bool B2, bool ...Bn>
+    struct or_c;
+
+    template <bool B1, bool B2, bool ...Bn>
+    using or_c_t = typename or_c<B1, B2, Bn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_OR_HPP

@@ -24,6 +24,17 @@ namespace boost { namespace mpl11 {
 
     template <typename F>
     using not_t = typename not_<F>::type;
+
+    /*!
+     * @ingroup metafunctions
+     *
+     * Returns `!B`.
+     */
+    template <bool B>
+    struct not_c;
+
+    template <bool B>
+    using not_c_t = typename not_c<B>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_NOT_HPP
