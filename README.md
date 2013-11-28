@@ -316,5 +316,3 @@ as the `equal` algo from the original MPL.
 
   This fails because f requires 2 arguments, but the semantics would
   otherwise be well defined and the intent is clear. How can we do?
-
-- Maybe all placeholders should be prefixed with _?

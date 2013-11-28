@@ -134,10 +134,12 @@
 #include <boost/mpl11/integral_constant.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>
+#include <boost/mpl11/let.hpp>
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/max.hpp>
 #include <boost/mpl11/min.hpp>

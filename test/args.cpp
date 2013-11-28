@@ -19,19 +19,19 @@ template <typename ...> struct f { struct type; };
 
 // test args<> as a lambda placeholder
 static_assert(is_same<
-    apply<lambda<_args>, a0, a1, a2>::type,
+    apply<lambda<_args<>>, a0, a1, a2>::type,
     vector<a0, a1, a2>
 >::value, "");
 static_assert(is_same<
-    apply<lambda<args<0, 2>>, a0, a1, a2>::type,
+    apply<lambda<_args<0, 2>>, a0, a1, a2>::type,
     vector<a0, a1>
 >::value, "");
 static_assert(is_same<
-    apply<lambda<f<_args>>, a0, a1, a2>::type,
+    apply<lambda<f<_args<>>>, a0, a1, a2>::type,
     f<a0, a1, a2>::type
 >::value, "");
 static_assert(is_same<
-    apply<lambda<f<args<1, 3>>>, a0, a1, a2>::type,
+    apply<lambda<f<_args<1, 3>>>, a0, a1, a2>::type,
     f<a1, a2>::type
 >::value, "");
 
