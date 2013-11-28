@@ -41,6 +41,38 @@ list (or something that should be on this list), __please__ open an issue so
 we can discuss.
 
 
+### Multiple-dispatch everlasting problem
+Here is approximately what they do in the current MPL.
+Let Operation be the operator that we're implementing. We have:
+
+    template <typename OperationTag, typename Tag1, typename Tag2>
+    struct dispatch<OperationTag, Tag1, Tag2> {
+        template <typename T1, typename T2>
+        struct apply
+            : if_<less<Tag1, Tag2>,
+                Operation<T1, typename cast<Tag2, Tag1>::template apply<T2>::type>,
+                Operation<typename cast<Tag1, Tag2>::template apply<T1>::type, T2>
+            >::type
+        { };
+    };
+
+Or, in a more general way (but maybe completely retarded; we'll see):
+We take for granted that all arguments are useful for dispatching, which should
+be the case for operators but not necessarily for every multimethod.
+
+    template <typename OperationTag, typename Tag1, typename ...TagN>
+    struct dispatch<OperationTag, Tag1, TagN...> {
+        template <typename T1, typename ...Tn>
+        struct apply {
+            using CommonTag = typename min<Tag1, TagN...>::type;
+            using type = typename Operation<
+                typename cast<Tag1, CommonTag>::template apply<T1>::type,
+                typename cast<TagN, CommonTag>::template apply<Tn>::type...
+            >::type;
+        };
+    };
+
+
 ### What concept should lazy sequences model?
 Maybe they should model more than just Sequence? However, if we support more
 than just sequence_adaptor, we must specialize more operations. For example,
@@ -141,38 +173,6 @@ that do not have a proper MPL class, without trying to centralize it under
 a default type that would contain all those default implementations. Believe
 me, I tried both and the default class for all stops to make sense very
 quickly.
-
-
-### Multiple-dispatch everlasting problem
-Here is approximately what they do in the current MPL.
-Let Operation be the operator that we're implementing. We have:
-
-    template <typename OperationTag, typename Tag1, typename Tag2>
-    struct dispatch<OperationTag, Tag1, Tag2> {
-        template <typename T1, typename T2>
-        struct apply
-            : if_<less<Tag1, Tag2>,
-                Operation<T1, typename cast<Tag2, Tag1>::template apply<T2>::type>,
-                Operation<typename cast<Tag1, Tag2>::template apply<T1>::type, T2>
-            >::type
-        { };
-    };
-
-Or, in a more general way (but maybe completely retarded; we'll see):
-We take for granted that all arguments are useful for dispatching, which should
-be the case for operators but not necessarily for every multimethod.
-
-    template <typename OperationTag, typename Tag1, typename ...TagN>
-    struct dispatch<OperationTag, Tag1, TagN...> {
-        template <typename T1, typename ...Tn>
-        struct apply {
-            using CommonTag = typename min<Tag1, TagN...>::type;
-            using type = typename Operation<
-                typename cast<Tag1, CommonTag>::template apply<T1>::type,
-                typename cast<TagN, CommonTag>::template apply<Tn>::type...
-            >::type;
-        };
-    };
 
 
 ## Potential features
