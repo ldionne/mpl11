@@ -14,6 +14,7 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/erase_key.hpp>
 #include <boost/mpl11/has_key.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/insert_key.hpp>
 #include <boost/mpl11/insert_keys.hpp>
 #include <boost/mpl11/key_of.hpp>
@@ -137,29 +138,29 @@ static_assert(is_same<
 // at_key (with default)
 struct default_;
 static_assert(is_same<
-    at_key<imap<>, key<0>, default_>::type,
+    at_key<imap<>, key<0>, identity<default_>>::type,
     default_
 >::value, "");
 
 static_assert(is_same<
-    at_key<imap<kv<0, 0>>, key<0>, default_>::type,
+    at_key<imap<kv<0, 0>>, key<0>, identity<default_>>::type,
     value<0>
 >::value, "");
 static_assert(is_same<
-    at_key<imap<kv<0, 0>>, key<1>, default_>::type,
+    at_key<imap<kv<0, 0>>, key<1>, identity<default_>>::type,
     default_
 >::value, "");
 
 static_assert(is_same<
-    at_key<imap<kv<0, 0>, kv<1, 1>>, key<0>, default_>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<0>, identity<default_>>::type,
     value<0>
 >::value, "");
 static_assert(is_same<
-    at_key<imap<kv<0, 0>, kv<1, 1>>, key<1>, default_>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<1>, identity<default_>>::type,
     value<1>
 >::value, "");
 static_assert(is_same<
-    at_key<imap<kv<0, 0>, kv<1, 1>>, key<2>, default_>::type,
+    at_key<imap<kv<0, 0>, kv<1, 1>>, key<2>, identity<default_>>::type,
     default_
 >::value, "");
 

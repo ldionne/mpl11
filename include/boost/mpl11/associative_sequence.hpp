@@ -19,6 +19,7 @@
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/next.hpp>
@@ -69,7 +70,7 @@ namespace boost { namespace mpl11 {
                     // direction, i.e. with the potential equal_to_nothing
                     // on the left so that we use equal_to_nothing's
                     // comparison operator instead of Value's.
-                    at_key_t<Seq2, Key, equal_to_nothing>, Value
+                    at_key_t<Seq2, Key, identity<equal_to_nothing>>, Value
                 >,
                 lazy_next_step<Seq1, Seq2, First, Last>
             >
@@ -79,20 +80,19 @@ namespace boost { namespace mpl11 {
         struct is_subset_of<Seq1, Seq2, First, Last, false>
             : is_subset_of_impl<Seq1, Seq2, First, Last>
         { };
+
+        template <bool AlwaysFalse = false>
+        struct no_such_key {
+            static_assert(AlwaysFalse,
+            "Could not find the value associated to the given key in an "
+            "associative sequence and no default return value was specified.");
+        };
     } // end namespace associative_sequence_detail
 
     template <typename S, typename Key>
     struct AssociativeSequence::at_key_impl
-        : at_key<S, Key, associative_sequence_detail::not_found>
-    {
-        static_assert(
-            !detail::is_same<
-                typename at_key_impl::type,
-                associative_sequence_detail::not_found
-            >::value,
-        "Could not find the value associated to the given key in an "
-        "associative sequence and no default return value was specified.");
-    };
+        : at_key<S, Key, associative_sequence_detail::no_such_key<>>
+    { };
 
     template <typename S1, typename S2>
     struct AssociativeSequence::equal_impl

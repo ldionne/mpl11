@@ -68,7 +68,7 @@ namespace hset_detail {
         hset_has_key(detail::complete<Next, KeyHash, Element>*, erased*);
 
         template <typename KeyHash, typename Default, typename Element>
-        friend identity<Default>
+        friend Default
         hset_at_key(detail::complete<Next, KeyHash, Element>*, erased*);
     };
 
@@ -76,7 +76,7 @@ namespace hset_detail {
     false_ hset_has_key(...);
 
     template <typename KeyHash, typename Default>
-    identity<Default> hset_at_key(...);
+    Default hset_at_key(...);
 
     struct empty {
         using contents = vector<>;

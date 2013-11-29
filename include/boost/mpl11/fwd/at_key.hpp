@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
      * `AssociativeSequence`.
      *
      * If the sequence does not contain a key `Key` and a `Default` is
-     * provided, the `Default` is returned. Otherwise, a compile-time
+     * provided, `Default::type` is returned. Otherwise, a compile-time
      * assertion is triggered.
      *
      *
@@ -37,8 +37,12 @@ namespace boost { namespace mpl11 {
     >
     struct at_key;
 
-    template <typename Sequence, typename Key, typename ...Default>
-    using at_key_t = typename at_key<Sequence, Key, Default...>::type;
+    template <
+        typename Sequence,
+        typename Key,
+        typename Default = detail::optional
+    >
+    using at_key_t = typename at_key<Sequence, Key, Default>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AT_KEY_HPP

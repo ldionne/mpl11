@@ -41,8 +41,8 @@ namespace boost { namespace mpl11 {
      */
     struct AssociativeSequence : Sequence, Comparable {
         /*!
-         * Returns `mpl11::at_key<%Sequence, Key, X>::type`, where `X` is
-         * such that a compile-time assertion is triggered if `X` is returned.
+         * Returns `mpl11::at_key<%Sequence, Key, X>::type`, where `X`
+         * triggers a compile-time assertion when instantiated.
          */
         template <typename Sequence, typename Key>
         struct at_key_impl;

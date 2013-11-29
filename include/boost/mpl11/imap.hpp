@@ -63,7 +63,7 @@ namespace imap_detail {
         friend imap_class;
 
         template <typename Default>
-        static auto at_key(...) -> identity<Default>;
+        static auto at_key(...) -> Default;
 
         static auto has_key(...) -> false_;
     };
