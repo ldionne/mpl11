@@ -202,19 +202,6 @@ using the equal intrinsic on sequences; that would make `equal` as powerful
 as the `equal` algo from the original MPL.
 
 
-### Some interesting metafunction classes
-
-- `curry`
-
-- `partial` (this is almost `bind` from the old MPL)
-
-    template <typename F, typename ...Bound>
-    struct partial {
-        template <typename ...Args>
-        using apply = mpl11::apply<F, Bound..., Args...>;
-    };
-
-
 
 ### Todo (sorted by the difficulty of the implied design choices):
 #### Minor
