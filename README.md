@@ -231,8 +231,6 @@ as the `equal` algo from the original MPL.
 
 - Consider having a detail::size_t alias.
 
-- Remove vector_concat once join<> is implemented correctly.
-
 
 #### Mid
 - add more default implementation of container operations using new_?
@@ -257,6 +255,10 @@ as the `equal` algo from the original MPL.
   (concepts, minimal requirements, dispatching, etc...).
 
 - Should we provide *_t aliases for boolean metafunctions?
+
+- Investigate major slowdown in args_take after using join<> instead of
+  vector_concat<>. Gotta keep things clean while being as fast as
+  vector_concat.
 
 
 #### Major

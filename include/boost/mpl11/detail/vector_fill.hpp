@@ -17,14 +17,14 @@ namespace boost { namespace mpl11 { namespace detail {
 }}} // end namespace boost::mpl11::detail
 
 
-#include <boost/mpl11/detail/vector_concat.hpp>
-#include <boost/mpl11/fwd/vector.hpp>
+#include <boost/mpl11/join.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
     template <unsigned long long N, typename T>
     struct vector_fill
-        : vector_concat<
+        : join<
             typename vector_fill<N/2, T>::type,
             typename vector_fill<N - N/2, T>::type
         >

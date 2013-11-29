@@ -9,11 +9,11 @@
 #include <boost/mpl11/fwd/args.hpp>
 
 #include <boost/mpl11/detail/no_decay.hpp>
-#include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/detail/vector_fill.hpp>
 #include <boost/mpl11/fwd/is_placeholder.hpp>
-#include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/join.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -63,7 +63,7 @@ namespace boost { namespace mpl11 {
 
         template <IndexT N, typename Args>
         struct take<N, Args, false>
-            : detail::vector_concat<
+            : join<
                 take_t<O1_TAKE, Args>,
                 take_t<N-O1_TAKE, drop_t<O1_TAKE, Args>>
             >

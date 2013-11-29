@@ -15,7 +15,6 @@
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/contains.hpp>
 #include <boost/mpl11/detail/complete.hpp>
-#include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/has_key.hpp>
@@ -24,6 +23,7 @@
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/insert_keys.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/push_back.hpp>
@@ -36,13 +36,11 @@ namespace hset_detail {
 
     template <typename Next, typename ...Elements>
     struct inserted
-        : Next, detail::complete<
-            Next, hash_t<Elements>, Elements
-        >...
+        : Next, detail::complete<Next, hash_t<Elements>, Elements>...
     {
-        using contents = typename detail::vector_concat<
+        using contents = join<
             vector<Elements...>, typename Next::contents
-        >::type;
+        >;
 
         using mpl_class = hset_class;
 
@@ -57,9 +55,7 @@ namespace hset_detail {
 
     template <typename Next, typename ...Elements>
     struct erased
-        : Next, detail::complete<
-            Next, hash_t<Elements>, Elements
-        >...
+        : Next, detail::complete<Next, hash_t<Elements>, Elements>...
     {
         using mpl_class = hset_class;
 

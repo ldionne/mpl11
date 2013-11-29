@@ -12,12 +12,12 @@
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/args.hpp>
 #include <boost/mpl11/at.hpp>
-#include <boost/mpl11/detail/vector_concat.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/fwd/has_optimization.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
@@ -197,7 +197,7 @@ namespace vector_detail {
         struct insert_range_impl<
             vector<T...>, iterator<vector<T...>, Pos>, Range
         >
-            : detail::vector_concat<
+            : join<
                 // [0, Pos)
                 apply_t<args<0, Pos>, T...>,
                 unpack_t<Range, into<vector>>,
@@ -215,7 +215,7 @@ namespace vector_detail {
             iterator<vector<T...>, First>,
             iterator<vector<T...>, Last>
         >
-            : detail::vector_concat<
+            : join<
                 // [0, First)
                 apply_t<args<0, First>, T...>,
                 // [Last, sizeof...(T))
