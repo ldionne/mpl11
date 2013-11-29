@@ -8,6 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
+     * @ingroup metafunction_classes
      * @ingroup container_intrinsics
      *
      * `MetafunctionClass` creating a `Container` from the `Sequence`

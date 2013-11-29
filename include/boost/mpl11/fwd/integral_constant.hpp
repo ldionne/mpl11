@@ -19,10 +19,9 @@ namespace boost { namespace mpl11 {
      *
      * Holder for a compile-time value of an integral type.
      *
-     * Every `IntegralConstant` is also a nullary @ref Metafunction
-     * returning itself. An integral constant object is implicitly
-     * convertible to the corresponding runtime value of the wrapped
-     * integral type.
+     * Every `IntegralConstant` is also a nullary `Metafunction` returning
+     * itself. An integral constant object is implicitly convertible to the
+     * corresponding runtime value of the wrapped integral type.
      *
      *
      * ## Refinement of

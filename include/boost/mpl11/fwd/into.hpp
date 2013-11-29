@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * `MetafunctionClass` returning a specialization of `Template` with
      * the provided arguments.

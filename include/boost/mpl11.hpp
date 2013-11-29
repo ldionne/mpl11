@@ -15,7 +15,7 @@
 /*!
  * @defgroup datatypes Data types
  *
- * Constructs for manipulating data at compile-time.
+ * First-class constructs for manipulating data at compile-time.
  */
 
 /*!
@@ -25,10 +25,47 @@
  * Types representing collections of other types.
  */
 
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+/*!
+ * @ingroup concepts
+ *
+ * A `Metafunction` is a class or a class template that represents a
+ * function invocable at compile-time.
+ *
+ * An non-nullary metafunction is invoked by instantiating the class
+ * template with particular template parameters (metafunction arguments);
+ * the result of the metafunction application is accessible through the
+ * instantiation's nested `type` alias. All metafunction's arguments must
+ * be types (i.e. only type template parameters are allowed). A
+ * metafunction can have a variable number of parameters. A nullary
+ * metafunction is represented as a (template) class with a nested `type`
+ * typename member.
+ *
+ *
+ * ## Notation
+ * | Expression | Description
+ * | ---------- | -----------
+ * | `F`        | A `Metafunction`
+ * | `Args...`  | An arbitrary sequence of types
+ *
+ *
+ * ## Valid expressions
+ * | Expression                      | Type
+ * | ----------                      | ----
+ * | `F<Args...>::type` or `F::type` | Any type
+ *
+ *
+ * @note
+ * This concept only lives in the documentation. There exists no such
+ * `struct` in the library.
+ */
+struct Metafunction { };
+#endif
+
 /*!
  * @defgroup metafunctions Metafunctions
  *
- * Compile-time functions operating on types.
+ * `Metafunction`s provided by the library.
  */
 
 /*!

@@ -33,7 +33,7 @@ namespace boost { namespace mpl11 {
     }
 
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * Creates a `LetExpression` with user-provided body and local variables.
      *

@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Metafunction returning its argument unchanged.
+     * `Metafunction` returning its argument unchanged.
      */
     template <typename T>
     struct identity;

@@ -8,9 +8,9 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
-     * Metafunction class always returning `T`, regardless of the
+     * `MetafunctionClass` always returning `T`, regardless of the
      * number and types of passed arguments.
      */
     template <typename T>

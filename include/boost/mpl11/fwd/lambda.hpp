@@ -11,7 +11,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * Alias to `mpl1::let<>::in<F>`; provided for convenience.
      */

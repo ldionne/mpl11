@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * `MetafunctionClass` returning a `mpl::vector` containing the arguments
      * in the range delimited by [`First`, `Last`).
@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     struct args;
 
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * `Placeholder` counterpart of `mpl11::args`.
      */

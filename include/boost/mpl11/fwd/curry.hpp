@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * Creates a [curried](http://en.wikipedia.org/wiki/Currying)
      * `MetafunctionClass` from a `MetafunctionClass` `F` and a

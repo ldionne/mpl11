@@ -8,7 +8,7 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * `MetafunctionClass` returning the `N`th of its arguments.
      */
@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
     struct arg;
 
     /*!
-     * @ingroup metafunctions
+     * @ingroup metafunction_classes
      *
      * `Placeholder` counterpart of `mpl11::arg`.
      *

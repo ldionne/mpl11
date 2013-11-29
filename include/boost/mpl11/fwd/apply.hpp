@@ -36,6 +36,12 @@ namespace boost { namespace mpl11 {
 #endif
 
     /*!
+     * @defgroup metafunction_classes Metafunction Classes
+     *
+     * `MetafunctionClass`es provided by the library.
+     */
+
+    /*!
      * @ingroup metafunctions
      *
      * Invokes a `MetafunctionClass` `F` with arguments `Args...`.
