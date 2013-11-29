@@ -133,7 +133,6 @@ struct Metafunction { };
 #include <boost/mpl11/count.hpp>
 #include <boost/mpl11/count_if.hpp>
 #include <boost/mpl11/couple.hpp>
-#include <boost/mpl11/curry.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/directional_sequence.hpp>
 #include <boost/mpl11/distance.hpp>
@@ -195,6 +194,7 @@ struct Metafunction { };
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/pop_back.hpp>
 #include <boost/mpl11/pop_front.hpp>
 #include <boost/mpl11/prev.hpp>

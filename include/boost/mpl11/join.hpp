@@ -11,7 +11,6 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/curry.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
@@ -24,6 +23,7 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/new.hpp>
+#include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/sequence.hpp>
 
 
@@ -113,13 +113,13 @@ template <typename S1, typename S2, typename S3, typename ...Sn, typename F>
 struct unpack<join<S1, S2, S3, Sn...>, F>
     : unpack<
         join<S2, S3, Sn...>,
-        unpack_t<S1, curry<into<curry>, F>>
+        unpack_t<S1, partial<into<partial>, F>>
     >
 { };
 
 template <typename S1, typename S2, typename F>
 struct unpack<join<S1, S2>, F>
-    : unpack<S2, unpack_t<S1, curry<into<curry>, F>>>
+    : unpack<S2, unpack_t<S1, partial<into<partial>, F>>>
 { };
 }} // end namespace boost::mpl11
 
