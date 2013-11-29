@@ -15,10 +15,15 @@
 #include <boost/mpl11/erase_key.hpp>
 #include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/insert_key.hpp>
+#include <boost/mpl11/insert_keys.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/next.hpp>
 #include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/vector.hpp>
+
+#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
@@ -29,6 +34,10 @@ template <int> struct key;
 template <int> struct value;
 template <int k, int v> using kv = pair<key<k>, value<v>>;
 
+template <typename ...Elements>
+using seq = test::wrapper<
+    test::minimal_requirements<Sequence>, vector<Elements...>
+>;
 
 /////////////////////
 // test the iterator
@@ -254,6 +263,38 @@ static_assert(equal<
 static_assert(equal<
     insert_key<imap<kv<0, 0>, kv<1, 1>>, kv<2, 2>>::type,
     imap<kv<0, 0>, kv<1, 1>, kv<2, 2>>
+>::value, "");
+
+
+// insert_keys
+static_assert(equal<
+    insert_keys<imap<>, seq<>>::type,
+    imap<>
+>::value, "");
+static_assert(equal<
+    insert_keys<imap<>, seq<kv<0, 0>>>::type,
+    imap<kv<0, 0>>
+>::value, "");
+static_assert(equal<
+    insert_keys<imap<>, seq<kv<0, 0>, kv<0, 0>>>::type,
+    imap<kv<0, 0>>
+>::value, "");
+static_assert(equal<
+    insert_keys<imap<>, seq<kv<0, 0>, kv<1, 1>>>::type,
+    imap<kv<0, 0>, kv<1, 1>>
+>::value, "");
+
+static_assert(equal<
+    insert_keys<imap<kv<0, 0>>, seq<>>::type,
+    imap<kv<0, 0>>
+>::value, "");
+static_assert(equal<
+    insert_keys<imap<kv<0, 0>>, seq<kv<0, 1>>>::type,
+    imap<kv<0, 1>>
+>::value, "");
+static_assert(equal<
+    insert_keys<imap<kv<0, 0>>, seq<kv<1, 1>>>::type,
+    imap<kv<0, 0>, kv<1, 1>>
 >::value, "");
 
 
