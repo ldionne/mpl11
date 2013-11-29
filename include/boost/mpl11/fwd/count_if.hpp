@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
      * ### Semantics and default implementation
      *
      * Equivalent to `foldl<Sequence, ulong<0>, Count>`, where `Count` is
-     * a @ref MetafunctionClass incrementing the counter if `Predicate`
+     * a `MetafunctionClass` incrementing the counter if `Predicate`
      * is satisfied for that element.
      */
     template <typename Sequence, typename Predicate>

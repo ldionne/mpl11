@@ -224,9 +224,6 @@ as the `equal` algo from the original MPL.
 
 - Try to reduce code duplication in unit tests using vector<>/map<>.
 
-- grep for @ref MetafunctionClass, @ref Placeholder, @ref PlaceholderExpression
-  and do something with it.
-
 - Consider having a detail::size_t alias.
 
 - Remove vector_concat once join<> is implemented correctly.

@@ -7,10 +7,38 @@
 #define BOOST_MPL11_FWD_APPLY_HPP
 
 namespace boost { namespace mpl11 {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+    /*!
+     * @ingroup concepts
+     *
+     * Compile-time invokable entity that is first-class in the C++
+     * template system.
+     *
+     *
+     * ## Notation
+     * | Expression | Description
+     * | ---------- | -----------
+     * | `F`        | A `MetafunctionClass`
+     * | `Args...`  | An arbitrary sequence of types
+     *
+     *
+     * ## Valid expressions
+     * | Expression                | Type
+     * | ----------                | ----
+     * | `apply<F, Args...>::type` | Any type
+     *
+     *
+     * @note
+     * This concept only lives in the documentation. There exists no such
+     * `struct` in the library.
+     */
+    struct MetafunctionClass { };
+#endif
+
     /*!
      * @ingroup metafunctions
      *
-     * Invokes a @ref MetafunctionClass `F` with arguments `Args...`.
+     * Invokes a `MetafunctionClass` `F` with arguments `Args...`.
      *
      * If `Args...` are provided, `apply` is just a wrapper over
      * `F::apply<Args...>`. Otherwise, `apply` is either `F::apply`

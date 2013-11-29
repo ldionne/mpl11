@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * @ref MetafunctionClass creating a `Container` from the `Sequence`
+     * `MetafunctionClass` creating a `Container` from the `Sequence`
      * passed to it.
      */
     template <typename Container>

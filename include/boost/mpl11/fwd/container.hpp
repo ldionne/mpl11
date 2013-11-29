@@ -43,7 +43,7 @@ namespace boost { namespace mpl11 {
      * ## Valid expressions
      * | Expression       | %Type
      * | ----------       | -----
-     * | `new_<C>`        | @ref MetafunctionClass
+     * | `new_<C>`        | `MetafunctionClass`
      * | `clear<C>::type` | `Container`
      */
     struct Container : Sequence {

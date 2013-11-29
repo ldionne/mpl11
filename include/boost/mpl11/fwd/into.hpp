@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * @ref MetafunctionClass returning a specialization of `Template` with
+     * `MetafunctionClass` returning a specialization of `Template` with
      * the provided arguments.
      *
      * Specifically, `mpl11::apply<mpl11::into<Template>, Args...>::type`

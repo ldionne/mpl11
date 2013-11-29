@@ -11,7 +11,7 @@ namespace boost { namespace mpl11 {
      * @ingroup metafunctions
      *
      * Higher-order primitive wrapping a @ref Metafunction to create a
-     * corresponding @ref MetafunctionClass.
+     * corresponding `MetafunctionClass`.
      *
      * Specifically, `apply<quote<F>, Args...>` is equivalent to `F<Args...>`.
      *
