@@ -10,22 +10,13 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Applies the contents of a sequence to a @ref MetafunctionClass.
+     * Applies the contents of a sequence to a `MetafunctionClass`.
      *
+     * The default implementation copies each element of `%Sequence`
+     * one by one into `mpl11::apply<F>`. This has linear time complexity.
      *
-     * @todo
-     * Document the default behavior + semantics.
-     *
-     * @todo
-     * Document the fact that this should be specialized
-     * for variadic sequences.
-     *
-     * @todo
-     * Consider making this an intrinsic or an algorithm.
-     *
-     * @todo
-     * Use a minimal sequence in the unit tests instead of vector, which
-     * could specialize unpack.
+     * Sequences whose implementation allow it should specialize this
+     * metafunction to give it a more efficient implementation.
      */
     template <typename Sequence, typename F>
     struct unpack;
