@@ -41,6 +41,24 @@ list (or something that should be on this list), __please__ open an issue so
 we can discuss.
 
 
+### How do we propagate optimizations?
+Is it possible to have those two below automatically? Using adaptors maybe?
+
+    template <typename Sequence, typename F>
+    struct has_optimization<transform<Sequence, F>, optimization::O1_size>
+        : has_optimization<Sequence, optimization::O1_size>
+    { };
+
+    template <typename Sequence, typename F>
+    struct has_optimization<transform<Sequence, F>, optimization::O1_unpack>
+        : has_optimization<Sequence, optimization::O1_unpack>
+    { };
+
+Pitfall: If we propagate the O1_unpack optimization, since unpack is not an
+intrinsic, it is not specialized by the adaptor automatically. So the adaptor
+should specialize unpack manually, which is not practical.
+
+
 ### Multiple-dispatch everlasting problem
 Here is approximately what they do in the current MPL.
 Let Operation be the operator that we're implementing. We have:

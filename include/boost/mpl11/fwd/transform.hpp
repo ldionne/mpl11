@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 {
      * of `%Sequence`.
      *
      * Additionally, `mpl11::transform` is an algorithm returning a new
-     * `Container` created with the elements `mpl11::transform`. To use
+     * `Container` created with the elements of `mpl11::transform`. To use
      * `mpl11::transform` as an algorithm, `%Sequence` must be a `Container`.
      */
     template <typename Sequence, typename F>

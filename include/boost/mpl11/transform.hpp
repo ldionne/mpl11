@@ -8,13 +8,25 @@
 
 #include <boost/mpl11/fwd/transform.hpp>
 
+#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/detail/adaptors.hpp>
+#include <boost/mpl11/detail/nested_alias.hpp>
+#include <boost/mpl11/fwd/begin.hpp>
+#include <boost/mpl11/fwd/class_of.hpp>
+#include <boost/mpl11/fwd/deref.hpp>
+#include <boost/mpl11/fwd/end.hpp>
+#include <boost/mpl11/fwd/unpack.hpp>
+#include <boost/mpl11/new.hpp>
+
 
 namespace boost { namespace mpl11 {
 namespace transform_detail {
     template <typename Iterator, typename F>
     struct transform_iterator;
 
-    struct transform_iterator_class final : random_access_iterator_adaptor {
+    struct transform_iterator_class final
+        : detail::random_access_iterator_adaptor
+    {
         template <typename Iterator>                   struct deref_impl;
         template <typename Self, typename NewIterator> struct adapt_impl;
         template <typename Iterator>                   struct adapted_impl;
@@ -35,7 +47,7 @@ namespace transform_detail {
         };
     };
 
-    struct transform_class final : sequence_adaptor {
+    struct transform_class final : detail::sequence_adaptor {
         template <typename Sequence>                   struct begin_impl;
         template <typename Sequence>                   struct end_impl;
         template <typename Self, typename NewSequence> struct adapt_impl;
@@ -53,7 +65,7 @@ namespace transform_detail {
 
         template <typename Old, typename F, typename NewSequence>
         struct adapt_impl<transform<Old, F>, NewSequence> {
-            using type = transform<Sequence, F>;
+            using type = transform<NewSequence, F>;
         };
 
         template <typename Sequence, typename F>
@@ -65,7 +77,8 @@ namespace transform_detail {
     template <typename F, typename Destination>
     struct fast_transform_into {
         template <typename ...Args>
-        using apply = mpl11::apply<Destination, apply_t<F, Args>...>;
+        BOOST_MPL11_NESTED_ALIAS(apply,
+            mpl11::apply<Destination, apply_t<F, Args>...>);
     };
 } // end namespace transform_detail
 
@@ -74,27 +87,19 @@ struct transform
     : apply<new_<Sequence>, transform<Sequence, F>>
 { };
 
+template <typename Sequence, typename F, typename Default>
+struct class_of<transform<Sequence, F>, Default> {
+    using type = transform_detail::transform_class;
+};
 
-/// Is it possible to have those two below automatically? Using adaptors maybe?
-/// Maybe they should be part of the interface of Types?
-///
-/// Pitfall: If we propagate the O1_unpack optimization, since unpack is not
-/// an intrinsic, it is not specialized by the adaptor automatically. So
-/// the adaptor should specialize unpack manually, which is not practical.
-    template <typename Sequence, typename F>
-    struct has_optimization<transform<Sequence, F>, optimization::O1_size>
-        : has_optimization<Sequence, optimization::O1_size>
-    { };
-
-    template <typename Sequence, typename F>
-    struct has_optimization<transform<Sequence, F>, optimization::O1_unpack>
-        : has_optimization<Sequence, optimization::O1_unpack>
-    { };
-///
+template <typename Iterator, typename F, typename Default>
+struct class_of<transform_detail::transform_iterator<Iterator, F>, Default> {
+    using type = transform_detail::transform_iterator_class;
+};
 
 template <typename Sequence, typename F, typename Dest>
 struct unpack<transform<Sequence, F>, Dest>
-    : unpack<Sequence, fast_transform_into<F, Dest>>
+    : unpack<Sequence, transform_detail::fast_transform_into<F, Dest>>
 { };
 }} // end namespace boost::mpl11
 
