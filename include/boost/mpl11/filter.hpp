@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/fwd/filter.hpp>
 
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/count_if.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/end.hpp>
@@ -84,8 +85,8 @@ namespace filter_detail {
     };
 } // end namespace filter_detail
 
-template <typename Iterator, typename Predicate, typename Default>
-struct class_of<filter_detail::filter_iterator<Iterator, Predicate>, Default> {
+template <typename First, typename Last, typename Predicate, typename Def>
+struct class_of<filter_detail::filter_iterator<First, Last, Predicate>, Def> {
     using type = filter_detail::filter_iterator_class;
 };
 
@@ -96,7 +97,7 @@ struct class_of<filter<Sequence, Predicate>, Default> {
 
 template <typename Sequence, typename Predicate>
 struct filter
-    : new_<Sequence, filter<Sequence, Predicate>>
+    : apply<new_<Sequence>, filter<Sequence, Predicate>>
 { };
 }} // end namespace boost::mpl11
 

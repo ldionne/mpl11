@@ -145,6 +145,7 @@ struct Metafunction { };
 #include <boost/mpl11/erase_key.hpp>
 #include <boost/mpl11/erase_keys.hpp>
 #include <boost/mpl11/erase_range.hpp>
+#include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/find.hpp>
 #include <boost/mpl11/find_if.hpp>
 #include <boost/mpl11/first.hpp>
@@ -173,6 +174,7 @@ struct Metafunction { };
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/less.hpp>

@@ -15,9 +15,8 @@ namespace boost { namespace mpl11 {
      * `Predicate`.
      *
      * Additionally, `mpl11::filter` is an algorithm returning a new
-     * `Container` containing the elements of `%Sequence` satisfying
-     * `Predicate`. To use `mpl11::filter` as an algorithm, `%Sequence`
-     * must be a `Container`.
+     * `Container` created with the elements of `mpl11::filter`. To use
+     * `mpl11::filter` as an algorithm, `%Sequence` must be a `Container`.
      */
     template <typename Sequence, typename Predicate>
     struct filter;
