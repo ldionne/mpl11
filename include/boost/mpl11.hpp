@@ -128,6 +128,7 @@ struct Metafunction { };
 #include <boost/mpl11/class_of.hpp>
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/container.hpp>
 #include <boost/mpl11/contains.hpp>
 #include <boost/mpl11/count.hpp>
