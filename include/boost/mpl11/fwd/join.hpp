@@ -15,9 +15,20 @@ namespace boost { namespace mpl11 {
      * concatenated `Sequence`s.
      *
      * Additionally, `mpl11::join` is an algorithm returning a new `Container`
-     * containing the elements of the concatenated `Sequence`s. To use
-     * `mpl11::join` as an algorithm, the first `Sequence` must be a
-     * `Container`.
+     * created with the elements of `mpl11::join`. To use `mpl11::join` as an
+     * algorithm, `Sequence1` must be a `Container`.
+     *
+     *
+     * @todo
+     * Take advantage of knowing the size of the underlying sequence in O(1)
+     * in the join_iterator.
+     *
+     * @todo
+     * Take advantage of possible fast sum in the implementation of size<>.
+     *
+     * @todo
+     * Fix the fact that a join_iterator and a random type will compare
+     * unequal instead of failing.
      */
     template <typename Sequence1, typename Sequence2, typename ...SequenceN>
     struct join;

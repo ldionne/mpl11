@@ -175,6 +175,7 @@ struct Metafunction { };
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/iterator_range.hpp>
+#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/less.hpp>
