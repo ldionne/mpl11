@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     struct args;
 
     /*!
-     * @ingroup metafunction_classes
+     * @ingroup placeholders
      *
      * `Placeholder` counterpart of `mpl11::args`.
      */

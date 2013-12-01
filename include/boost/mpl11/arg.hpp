@@ -10,7 +10,7 @@
 
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/vector_fill.hpp>
-#include <boost/mpl11/fwd/is_placeholder.hpp>
+#include <boost/mpl11/fwd/as_placeholder.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
@@ -44,14 +44,16 @@ namespace boost { namespace mpl11 {
     };
 
     template <unsigned long long N>
-    struct _arg
-        : arg<N>
-    { };
+    struct as_placeholder<_arg<N>> {
+        template <typename Context, typename ...Args>
+        using is_multivalued = false_;
 
-    template <unsigned long long N>
-    struct is_placeholder<_arg<N>>
-        : true_
-    { };
+        template <typename Context, typename ...Args>
+        using triggers_evaluation = true_;
+
+        template <typename Context, typename ...Args>
+        using apply = typename arg<N>::template apply<Args...>;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARG_HPP

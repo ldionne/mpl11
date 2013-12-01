@@ -10,7 +10,7 @@
 
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/vector_fill.hpp>
-#include <boost/mpl11/fwd/is_placeholder.hpp>
+#include <boost/mpl11/fwd/as_placeholder.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/vector.hpp>
@@ -138,15 +138,29 @@ namespace boost { namespace mpl11 {
         };
     };
 
-    template <unsigned long long First, unsigned long long ...Last>
-    struct _args
-        : args<First, Last...>
-    { };
+    template <unsigned long long First, unsigned long long Last>
+    struct as_placeholder<_args<First, Last>> {
+        template <typename Context, typename ...Args>
+        using is_multivalued = true_;
 
-    template <unsigned long long First, unsigned long long ...Last>
-    struct is_placeholder<_args<First, Last...>>
-        : true_
-    { };
+        template <typename Context, typename ...Args>
+        using triggers_evaluation = true_;
+
+        template <typename Context, typename ...Args>
+        using apply = typename args<First, Last>::template apply<Args...>;
+    };
+
+    template <unsigned long long First>
+    struct as_placeholder<_args<First>> {
+        template <typename Context, typename ...Args>
+        using is_multivalued = true_;
+
+        template <typename Context, typename ...Args>
+        using triggers_evaluation = true_;
+
+        template <typename Context, typename ...Args>
+        using apply = typename args<First>::template apply<Args...>;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARGS_HPP

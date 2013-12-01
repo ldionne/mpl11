@@ -44,13 +44,12 @@ namespace boost { namespace mpl11 {
      * Explicit local variables must be specified using `mpl11::local`.
      *
      * @todo Document the specialization of `mpl11::apply` for `let<>()`.
-     * @todo Implement support for variadic placeholders.
      * @todo Refactor the dirty implementation.
      */
-    template <typename ...Locals>
+    template <typename ...Context>
     struct let {
         template <typename Expression>
-        using in = let_detail::let_expression<imap<Locals...>, Expression>;
+        using in = let_detail::let_expression<imap<Context...>, Expression>;
     };
 
     //! Alias to `mpl11::pair` for use in `mpl11::let`.

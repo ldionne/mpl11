@@ -112,6 +112,7 @@ struct Metafunction { };
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/args.hpp>
 #include <boost/mpl11/arithmetic.hpp>
+#include <boost/mpl11/as_placeholder.hpp>
 #include <boost/mpl11/associative_container.hpp>
 #include <boost/mpl11/associative_sequence.hpp>
 #include <boost/mpl11/at.hpp>
@@ -173,7 +174,6 @@ struct Metafunction { };
 #include <boost/mpl11/integral_constant.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/is_empty.hpp>
-#include <boost/mpl11/is_placeholder.hpp>
 #include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/key_of.hpp>
