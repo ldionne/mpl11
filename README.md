@@ -185,7 +185,7 @@ The conclusion is that container creation is bounded by the complexity of
 filling the container, not by the complexity of `unpack`ing the sequence.
 
 
-### Allow a default argument in class_of, making specialization more painful
+### Allow a default argument in `class_of`, making specialization more painful
 It allows us to give a default implementation for some intrinsics to types
 that do not have a proper MPL class, without trying to centralize it under
 a default type that would contain all those default implementations. Believe
@@ -239,17 +239,25 @@ as the `equal` algo from the original MPL.
 
 ### Todo (sorted by the difficulty of the implied design choices):
 #### Minor
-- consider renaming any_of, all_of and none_of to any, all and none.
+- Optimize the 1-sized range case in `args<>` by specializing
+  `args<First, First + 1>`.
 
-- consider having insert_at, insert_range_at, erase_at
+- Implement `drop` and `take` algorithms/lazy sequences.
 
-- Try to reduce code duplication in unit tests using vector<>/map<>.
+- Consider renaming `any_of`, `all_of` and `none_of` to `any`, `all`
+  and `none`.
 
-- Consider having a detail::size_t alias.
+- Consider replacing `insert_*` by `insert_at`, `insert_range_at`, `erase_at`.
 
+- Try to reduce code duplication in unit tests using `vector<>`/`map<>`.
+
+- Consider having a `detail::size_t` alias.
+
+- Consider taking advantage of operation commutativity when folding. Must see
+  if a gain is possible.
 
 #### Mid
-- add more default implementation of container operations using new_?
+- add more default implementations of container operations using `new_`?
 
 - Consider verifying some pre/post conditions in the operations themselves.
 
@@ -288,12 +296,11 @@ as the `equal` algo from the original MPL.
   I think vectorized sum is the most basic instance of count_if:
   count_if adds 1 or 0 depending on the Predicate
 
-- detail::repeat_until ?
-  optimization: if we know the Predicate won't be true before n
-  repetitions, we can streamline those and then we start checking
-  the Predicate.
+- Consider implementing many foldls in terms of a `detail::repeat_until`:
+  If we know the Predicate won't be true before n repetitions, we can
+  streamline those and then we start checking the Predicate.
 
-- each Concept could maybe have an adaptor. then, in the views, we could
+- Each Concept could maybe have an adaptor. then, in the views, we could
   simply use the adapted sequence's adaptor. that would give us the maximal
   supported concept automatically. try to find pitfalls with this approach.
   can all concepts have adaptors? more importantly, do we need to maximize
