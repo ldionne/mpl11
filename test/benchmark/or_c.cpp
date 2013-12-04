@@ -10,15 +10,14 @@ template <typename Then, typename Else>
 struct conditional<false, Then, Else> { using type = Else; };
 
 
-#define USE_OVERLOAD
+// #define USE_OVERLOAD
 // #define USE_NOEXCEPT
 // #define USE_LINEAR_CONSTEXPR
 // #define USE_STRUCTS
+#define USE_SPECIALIZATION
 
 #if defined(USE_OVERLOAD)
 
-    // This is a large improvement over the classical method,
-    // but we lose short-circuit evaluation.
     template <typename ...T>
     constexpr bool all_pointers(T*...) { return true; }
 
@@ -39,7 +38,6 @@ struct conditional<false, Then, Else> { using type = Else; };
 
 #elif defined(USE_NOEXCEPT)
 
-    // Performance with this approach is comparable to the above solution.
     void allow_expansion(...) noexcept;
 
     struct non_throwing { non_throwing() noexcept { } };
@@ -87,6 +85,20 @@ struct conditional<false, Then, Else> { using type = Else; };
         static constexpr bool value = Head::value || or_<Tail...>::value;
     };
 
+#elif defined(USE_SPECIALIZATION)
+
+    // I don't know why I did not think of this earlier. This is clearly
+    // the simplest method and it's also the fastest. lol
+    template <typename ...T>
+    struct or_ {
+        static constexpr bool value = true;
+    };
+
+    template <template <bool> class ...Bool>
+    struct or_<Bool<false>...> {
+        static constexpr bool value = false;
+    };
+
 #endif
 
 template <bool B>
@@ -122,6 +134,7 @@ USE_OVERLOAD         |    0.03s   |         0.02s        |               0.04s  
 USE_NOEXCEPT         |    0.04s   |         0.02s        |               0.03s               |
 USE_LINEAR_CONSTEXPR |    0.17s   |         0.08s(*)     |               0.20s               |
 USE_STRUCTS          |    0.09s   |         0.05s(*)     |               0.07s               |
+USE_SPECIALIZATION   |    0.02s   |         0.02s        |               0.03s               |
 
 (*) -ftemplate-depth=500 is required to avoid hitting the recursive template instantiation limit.
 
