@@ -156,7 +156,7 @@ USE_ACCUMULATING_CONSTEXPR |    0.82s[1] |         0.34s[1]     |               
 
 /*
 #!/usr/bin/env ruby
-ints = (0..1000).collect{|i| (-1)**i * i };
+ints = (0..1000).collect{|i| (-1)**i * i }
 puts "static_assert(sum_c<#{ints.join(', ')}>::value == #{ints.reduce :+}, \"\");"
 */
 
