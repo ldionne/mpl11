@@ -8,10 +8,8 @@
 
 #include <boost/mpl11/fwd/all_of.hpp>
 
-#include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/arg.hpp>
+#include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/identity.hpp> // for default Predicate
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/quote.hpp> // for default Predicate
@@ -20,7 +18,7 @@
 namespace boost { namespace mpl11 {
     template <typename Sequence, typename Predicate>
     struct all_of
-        : none_of<Sequence, lambda<not_<apply<Predicate, _1>>>>
+        : none_of<Sequence, compose<quote<not_>, Predicate>>
     { };
 }} // end namespace boost::mpl11
 

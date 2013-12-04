@@ -5,12 +5,13 @@
 
 #include <boost/mpl11/any_of.hpp>
 
+#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/new.hpp>
+#include <boost/mpl11/partial.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
@@ -20,44 +21,44 @@ using detail::is_same;
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using container = typename apply<new_<Container>, vector<T...>>::type;
+    using container = apply_t<new_<Container>, vector<T...>>;
 
     // specify always false predicate
     static_assert(!any_of<
         container<>,
-        lambda<false_>
+        always<false_>
     >::value, "");
 
     static_assert(!any_of<
         container<true_>,
-        lambda<false_>
+        always<false_>
     >::value, "");
 
     static_assert(!any_of<
         container<true_, true_>,
-        lambda<false_>
+        always<false_>
     >::value, "");
 
 
     // specify always true predicate
     static_assert(!any_of<
         container<>,
-        lambda<true_>
+        always<true_>
     >::value, "");
 
     static_assert(any_of<
         container<false_>,
-        lambda<true_>
+        always<true_>
     >::value, "");
 
     static_assert(any_of<
         container<false_, false_>,
-        lambda<true_>
+        always<true_>
     >::value, "");
 
 
     template <typename T>
-    using same_as = lambda<is_same<T, _1>>;
+    using same_as = partial<quote<is_same>, T>;
 
     // specify a sometimes-true predicate
     static_assert(!any_of<
