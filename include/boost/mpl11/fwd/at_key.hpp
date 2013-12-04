@@ -25,10 +25,6 @@ namespace boost { namespace mpl11 {
      * When a `Default` is provided, this intrinsic is dispatched to
      * `at_key_def_impl`. Otherwise, it is dispatched in the standard
      * way, to `at_key_impl`.
-     *
-     * @todo
-     * Consider returning a `Logical` from `at_key<%Sequence, Key>`.
-     * Something like a `Maybe` would be neat.
      */
     template <
         typename Sequence,

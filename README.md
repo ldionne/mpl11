@@ -193,13 +193,29 @@ me, I tried both and the default class for all stops to make sense very
 quickly.
 
 
+### Do not return a `Maybe`-like type from `at_key`
+If we returned a `Maybe` from `at_key`, we would always have to use at_key
+like so:
+
+    if_<at_key<Map, Key>::type,
+        use the result,
+        do some default action
+    >
+
+This has several drawbacks:
+
+1. It's cumbersome
+2. You have to use `at_key<Map, Key>::type` to refer the result and then get
+   it out the the `Maybe` in some way.
+3. The default action will very surely be something that we should not perform
+   at all if the key is found in the map. Achieving lazyness might be hard in
+   this case.
+4. The `at_key<Map, Key, LazyDefaultAction>` seems superior in every way.
+
+
 ## Potential features
 This is a list of features that I'm considering. I basically dump my whole
 brain here everytime I have an idea that is not obviously stupid.
-
-### Returning a Maybe from at_key
-We could return some kind of Maybe type from `at_key`. Then, Maybe could be
-used as a `Logical` and we could use `at_key<Map, Key>::type || default_`.
 
 ### Printing MPL objects
 Could we make it possible to print objects of the library? Would this even
