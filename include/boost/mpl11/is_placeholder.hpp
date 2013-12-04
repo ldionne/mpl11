@@ -16,6 +16,11 @@ namespace boost { namespace mpl11 {
     struct is_placeholder
         : false_
     { };
+
+    template <typename T>
+    struct is_multivalued_placeholder
+        : false_
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IS_PLACEHOLDER_HPP

@@ -44,9 +44,10 @@ namespace boost { namespace mpl11 {
     };
 
     template <unsigned long long N>
-    struct _arg
-        : arg<N>
-    { };
+    struct _arg {
+        template <typename Context, typename ...Args>
+        using apply = typename arg<N>::template apply<Args...>;
+    };
 
     template <unsigned long long N>
     struct is_placeholder<_arg<N>>

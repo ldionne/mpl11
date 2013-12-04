@@ -28,8 +28,8 @@ namespace boost { namespace mpl11 {
 #endif
 
     namespace let_detail {
-        template <typename Locals, typename Expression>
-        struct let_expression;
+        template <typename Bindings, typename Expression>
+        struct let_expr;
     }
 
     /*!
@@ -47,10 +47,10 @@ namespace boost { namespace mpl11 {
      * @todo Implement support for variadic placeholders.
      * @todo Refactor the dirty implementation.
      */
-    template <typename ...Locals>
+    template <typename ...Bindings>
     struct let {
         template <typename Expression>
-        using in = let_detail::let_expression<imap<Locals...>, Expression>;
+        using in = let_detail::let_expr<imap<Bindings...>, Expression>;
     };
 
     //! Alias to `mpl11::pair` for use in `mpl11::let`.

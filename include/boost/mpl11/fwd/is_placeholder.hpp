@@ -18,6 +18,9 @@ namespace boost { namespace mpl11 {
     template <typename T>
     struct is_placeholder;
 
+    template <typename T>
+    struct is_multivalued_placeholder;
+
 #ifdef BOOST_MPL11_DOXYGEN_INVOKED
     /*!
      * @ingroup concepts

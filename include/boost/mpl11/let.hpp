@@ -8,190 +8,143 @@
 
 #include <boost/mpl11/fwd/let.hpp>
 
+#include <boost/mpl11/imap.hpp> // required by fwd/let.hpp
+#include <boost/mpl11/pair.hpp> //
+
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/detail/tp_conditional.hpp>
 #include <boost/mpl11/foldl.hpp>
-#include <boost/mpl11/has_key.hpp>
-#include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/imap.hpp>
-#include <boost/mpl11/insert_key.hpp>
 #include <boost/mpl11/insert_keys.hpp>
-#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/join.hpp>
+#include <boost/mpl11/key_of.hpp>
 #include <boost/mpl11/or.hpp>
-#include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/partial.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/transform.hpp>
+#include <boost/mpl11/unpack.hpp>
+#include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 {
 namespace let_detail {
-    //////////////////////////
-    // close_over
-    //////////////////////////
-    template <typename F, typename Locals, typename ...Args>
-    struct closure;
-
-    template <typename Locals, typename ...Args>
-    struct insert_closure {
-        template <typename Map, typename Local>
-        struct apply;
-
-        template <typename Map, typename K, typename V>
-        struct apply<Map, local<K, V>>
-            : insert_key<Map, local<K, closure<V, Locals, Args...>>>
-        { };
-    };
-
-    template <typename Locals, typename ...Args>
-    struct close_over
-        : foldl<Locals, imap<>, insert_closure<Locals, Args...>>
+    template <typename T>
+    struct is_placeholder_expr
+        : is_placeholder<T>
     { };
 
+    template <template <typename ...> class F, typename ...T>
+    struct is_placeholder_expr<F<T...>>
+        : or_c<
+            is_placeholder<F<T...>>::value,
+            is_placeholder_expr<T>::value...,
+            false
+        >
+    { };
 
-    template <typename Locals, typename F>
-    struct let_expression;
+    template <typename Context, typename Expression>
+    struct let_expr
+        : detail::conditional<is_placeholder<Expression>::value,
+            partial<Expression, Context>,
+            always<Expression>
+        >::type
+    { };
 
-    //////////////////////////
-    // if_chain
-    //////////////////////////
     template <typename Cond, typename Then, typename Else>
     struct if_chain
         : detail::conditional<Cond::value, Then, Else>::type
     { };
 
-    //////////////////////////
-    // lazy_let_expression
-    //////////////////////////
-    template <typename Locals, typename Expression>
-    struct lazy_let_expression
-        : let_expression<Locals, typename Expression::type>
-    { };
+    template <typename Context, typename F, typename ...T>
+    class bind {
+        template <typename ...Args>
+        using fast_apply = mpl11::apply<
+            F, apply_t<let_expr<Context, T>, Args...>...
+        >;
 
-    //////////////////////////
-    // is_local_expr
-    //////////////////////////
-    template <typename Locals, typename ...T>
-    struct is_local
-        : or_c<is_local<Locals, T>::value..., false, false>
-    { };
+        template <typename ...Args>
+        struct gather {
+            template <typename State, typename U>
+            using apply = typename detail::tp_conditional<
+                is_multivalued_placeholder<U>::value,
+                join,
+                push_back
+            >::template type<State, apply_t<let_expr<Context, U>, Args...>>;
+        };
 
-    template <typename Locals, typename T>
-    struct is_local<Locals, T>
-        : bool_<(is_placeholder<T>::value || has_key<Locals, T>::value)>
-    { };
+        template <typename ...Args>
+        using slow_apply = unpack<
+            foldl_t<vector<T...>, vector<>, gather<Args...>>, F
+        >;
 
-    template <typename Locals, typename ...T>
-    struct is_local_expr
-        : or_<is_local_expr<Locals, T>..., false_, false_>
-    { };
+    public:
+        template <typename ...Args>
+        using apply = typename detail::tp_conditional<
+            or_c<is_multivalued_placeholder<T>::value..., false, false>::value,
+            slow_apply,
+            fast_apply
+        >::template type<Args...>;
+    };
 
-    template <typename Locals, typename T>
-    struct is_local_expr<Locals, T>
-        : is_local<Locals, T>
-    { };
+    template <typename Outer, typename Inner, typename Expression>
+    struct let_expr<Outer, let_expr<Inner, Expression>> {
+        template <typename ...Args>
+        class apply {
+            template <typename Pair>
+            struct bind_args {
+                using type = pair<
+                    key_of_t<Outer, Pair>,
+                    mpl11::apply<value_of_t<Outer, Pair>, Args...>
+                >;
+            };
 
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct is_local_expr<Locals, F<T...>>
-        : or_<
-            is_local<Locals, F<T...>, T...>,
-            // We got some overlap here, but it should not be too wasteful.
-            // is_local will be checked twice for T..., but that does not
-            // cause more instantiations.
-            is_local_expr<Locals, T>...,
-            false_
-        >
-    { };
+        public:
+            using type = let_expr<
+                insert_keys_t<
+                    transform_t<Outer, quote<bind_args>>,
+                    Inner
+                >,
+                Expression
+            >;
+        };
+    };
 
+    template <typename Context, template <typename ...> class F, typename ...T>
+    struct let_expr<Context, F<T...>>
+        : if_chain<is_placeholder<F<T...>>,
+            partial<F<T...>, Context>,
 
-    //////////////////////////
-    // let_expression
-    //////////////////////////
-    template <typename Locals, typename F>
-    struct let_expression_impl;
+        /* else */ if_chain<is_placeholder_expr<F<T...>>,
+            bind<quote<F>, T...>,
 
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct evaluate_recursively;
-
-    template <typename F, typename Locals, typename ...Args>
-    struct closure;
-
-    template <typename Locals, typename F>
-    struct let_expression
-        : if_chain<is_placeholder<F>,
-            F,
-
-          /* else */ if_chain<has_key<Locals, F>,
-            lazy_let_expression<Locals, at_key<Locals, F>>,
-
-          /* else */
-            let_expression_impl<Locals, F>
+        /* else */
+            always<F<T...>>
         >>
     { };
 
     template <typename Outer, typename ...Inner, typename Expression>
-    struct let_expression<Outer, let<Inner...>(*)(Expression)>
-        : let_expression<
-            Outer, typename let<Inner...>::template in<Expression>
-        >
+    struct let_expr<Outer, let<Inner...>(*)(Expression)>
+        : let_expr<Outer, typename let<Inner...>::template in<Expression>>
     { };
 
     template <typename Outer, typename ...Inner, typename Expression>
-    struct let_expression<Outer, let<Inner...>(Expression)>
-        : let_expression<
-            Outer, typename let<Inner...>::template in<Expression>
-        >
+    struct let_expr<Outer, let<Inner...>(Expression)>
+        : let_expr<Outer, typename let<Inner...>::template in<Expression>>
     { };
-
-    template <typename _, typename F, typename Locals, typename ...Args>
-    struct let_expression<_, closure<F, Locals, Args...>> {
-        template <typename ...>
-        using apply = mpl11::apply<let_expression<Locals, F>, Args...>;
-    };
-
-    template <typename Outer, typename Inner, typename T>
-    struct let_expression<Outer, let_expression<Inner, T>> {
-        template <typename ...Args>
-        using apply = identity<
-            let_expression<
-                insert_keys_t<
-                    typename close_over<Outer, Args...>::type,
-                    Inner
-                >,
-                T
-            >
-        >;
-    };
-
-    template <typename Locals, typename F>
-    struct let_expression_impl {
-        template <typename ...Args>
-        using apply = identity<F>;
-    };
-
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct let_expression_impl<Locals, F<T...>>
-        : detail::conditional<is_local_expr<Locals, T...>::value,
-            evaluate_recursively<Locals, F, T...>,
-            always<F<T...>>
-        >::type
-    { };
-
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct evaluate_recursively {
-        template <typename ...Args>
-        using apply = F<apply_t<let_expression<Locals, T>, Args...>...>;
-    };
 } // end namespace let_detail
 
-template <typename ...Locals, typename Expression, typename ...Args>
-struct apply<let<Locals...>(Expression), Args...>
-    : apply<typename let<Locals...>::template in<Expression>, Args...>
+template <typename ...Bindings, typename Expression, typename ...Args>
+struct apply<let<Bindings...>(Expression), Args...>
+    : apply<typename let<Bindings...>::template in<Expression>, Args...>
 { };
 
-template <typename ...Locals, typename Expression, typename ...Args>
-struct apply<let<Locals...>(*)(Expression), Args...>
-    : apply<typename let<Locals...>::template in<Expression>, Args...>
+template <typename ...Bindings, typename Expression, typename ...Args>
+struct apply<let<Bindings...>(*)(Expression), Args...>
+    : apply<typename let<Bindings...>::template in<Expression>, Args...>
 { };
 }} // end namespace boost::mpl11
 

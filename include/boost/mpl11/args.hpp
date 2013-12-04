@@ -139,12 +139,18 @@ namespace boost { namespace mpl11 {
     };
 
     template <unsigned long long First, unsigned long long ...Last>
-    struct _args
-        : args<First, Last...>
-    { };
+    struct _args {
+        template <typename Context, typename ...Args>
+        using apply = typename args<First, Last...>::template apply<Args...>;
+    };
 
     template <unsigned long long First, unsigned long long ...Last>
     struct is_placeholder<_args<First, Last...>>
+        : true_
+    { };
+
+    template <unsigned long long First, unsigned long long ...Last>
+    struct is_multivalued_placeholder<_args<First, Last...>>
         : true_
     { };
 }} // end namespace boost::mpl11
