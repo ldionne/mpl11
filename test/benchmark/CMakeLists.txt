@@ -4,8 +4,8 @@
 add_custom_target(benchmark COMMENT "Build all the benchmarks.")
 
 function(mpl11_add_benchmark name)
-    add_executable(benchmark_${name} ${name}.cpp)
-    add_dependencies(benchmark benchmark_${name} EXCLUDE_FROM_ALL)
+    add_executable(benchmark_${name} EXCLUDE_FROM_ALL ${name}.cpp)
+    add_dependencies(benchmark benchmark_${name})
 endfunction()
 
 mpl11_add_benchmark(at)
