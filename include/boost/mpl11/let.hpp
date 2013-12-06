@@ -20,8 +20,13 @@
 #include <boost/mpl11/insert_keys.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/is_placeholder.hpp>
+#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/pair.hpp>
+#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/unpack.hpp>
+#include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -178,10 +183,37 @@ namespace let_detail {
     { };
 
     template <typename Locals, template <typename ...> class F, typename ...T>
-    struct evaluate_recursively {
+    struct fast_eval {
         template <typename ...Args>
         using apply = F<apply_t<let_expression<Locals, T>, Args...>...>;
     };
+
+    template <typename Locals, template <typename ...> class F, typename ...T>
+    struct slow_eval {
+        template <typename ...Args>
+        struct gather {
+            template <typename State, typename P>
+            using apply = typename detail::conditional<
+                is_variadic_placeholder<P>::value,
+                join<State, apply_t<let_expression<Locals, P>, Args...>>,
+                push_back<State, apply_t<let_expression<Locals, P>, Args...>>
+            >::type;
+        };
+
+        template <typename ...Args>
+        using apply = unpack<
+            foldl_t<vector<T...>, vector<>, gather<Args...>>, quote<F>
+        >;
+    };
+
+    template <typename Locals, template <typename ...> class F, typename ...T>
+    struct evaluate_recursively
+        : detail::conditional<
+            or_c<is_variadic_placeholder<T>::value..., false, false>::value,
+            slow_eval<Locals, F, T...>,
+            fast_eval<Locals, F, T...>
+        >::type
+    { };
 } // end namespace let_detail
 
 template <typename ...Locals, typename Expression, typename ...Args>

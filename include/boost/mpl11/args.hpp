@@ -147,6 +147,11 @@ namespace boost { namespace mpl11 {
     struct is_placeholder<_args<First, Last...>>
         : true_
     { };
+
+    template <unsigned long long First, unsigned long long ...Last>
+    struct is_variadic_placeholder<_args<First, Last...>>
+        : true_
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARGS_HPP
