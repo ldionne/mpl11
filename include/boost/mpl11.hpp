@@ -212,5 +212,6 @@ struct Metafunction { };
 #include <boost/mpl11/unpack.hpp>
 #include <boost/mpl11/value_of.hpp>
 #include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/zip.hpp>
 
 #endif // !BOOST_MPL11_HPP
