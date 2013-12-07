@@ -5,12 +5,13 @@
 
 #include <boost/mpl11/count_if.hpp>
 
+#include <boost/mpl11/always.hpp>
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/new.hpp>
+#include <boost/mpl11/partial.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
@@ -22,15 +23,15 @@ struct x; struct y; struct z;
 template <typename Container>
 struct test_one {
     template <typename ...T>
-    using sequence = typename apply<new_<Container>, vector<T...>>::type;
+    using sequence = apply_t<new_<Container>, vector<T...>>;
 
-    static_assert(count_if<sequence<>, lambda<true_>>::value == 0, "");
-    static_assert(count_if<sequence<x>, lambda<true_>>::value == 1, "");
-    static_assert(count_if<sequence<x, y>, lambda<true_>>::value == 2, "");
-    static_assert(count_if<sequence<x, y, z>, lambda<true_>>::value == 3, "");
+    static_assert(count_if<sequence<>, always<true_>>::value == 0, "");
+    static_assert(count_if<sequence<x>, always<true_>>::value == 1, "");
+    static_assert(count_if<sequence<x, y>, always<true_>>::value == 2, "");
+    static_assert(count_if<sequence<x, y, z>, always<true_>>::value == 3, "");
 
     template <typename T>
-    using same_as = lambda<is_same<T, _1>>;
+    using same_as = partial<quote<is_same>, T>;
     static_assert(count_if<sequence<x>, same_as<x>>::value == 1, "");
     static_assert(count_if<sequence<x, x>, same_as<x>>::value == 2, "");
     static_assert(count_if<sequence<x, x, x>, same_as<x>>::value == 3, "");
