@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::let` and `boost::mpl11::local`.
+ * Forward declares `boost::mpl11::let` and defines `boost::mpl11::binding`.
  */
 
 #ifndef BOOST_MPL11_FWD_LET_HPP
@@ -11,51 +11,42 @@
 
 
 namespace boost { namespace mpl11 {
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
-    /*!
-     * @ingroup concepts
-     *
-     * `MetafunctionClass` with support for scoped local variables.
-     *
-     * @todo Document this thoroughly.
-     *
-     *
-     * @note
-     * This concept only lives in the documentation. There exists no such
-     * `struct` in the library.
-     */
-    struct LetExpression { };
-#endif
-
     namespace let_detail {
-        template <typename Locals, typename Expression>
-        struct let_expression;
+        template <typename Bindings, typename Body>
+        struct let_expr;
     }
 
     /*!
      * @ingroup metafunction_classes
      *
-     * Creates a `LetExpression` with user-provided body and local variables.
+     * Creates a `MetafunctionClass` with a user-provided body, optionally
+     * capturing variables in the enclosing scope.
      *
-     * Specifically, `mpl11::let` provides a nested template named `in` that
-     * must be instantiated with the expression that will be evaluated when
-     * `mpl11::let` is invoked.
+     * The body of `mpl11::let` must be specified by a `PlaceholderExpression`
+     * provided by instantiating the nested `in` template with it:
+     * `mpl11::let<Bindings...>::in<Body>`.
      *
-     * Explicit local variables must be specified using `mpl11::local`.
+     * `Bindings...` must be an arbitrary sequence of specializations of
+     * `mpl11::as` representing the context used when evaluating the body.
      *
-     * @todo Document the specialization of `mpl11::apply` for `let<>()`.
-     * @todo Implement support for variadic placeholders.
-     * @todo Refactor the dirty implementation.
+     * Evaluation of the body and bindings is performed as documented in the
+     * `PlaceholderExpression` concept.
+     *
+     *
+     * @note
+     * To avoid potentially cumbersome invocations of `mpl11::let` in
+     * dependent contexts, `mpl11::let<Bindings...>(Body)` is a valid
+     * `MetafunctionClass` equivalent to `mpl11::let<Bindings...>::in<Body>`.
      */
-    template <typename ...Locals>
+    template <typename ...Bindings>
     struct let {
-        template <typename Expression>
-        using in = let_detail::let_expression<imap<Locals...>, Expression>;
+        template <typename Body>
+        using in = let_detail::let_expr<imap<Bindings...>, Body>;
     };
 
-    //! Alias to `mpl11::pair` for use in `mpl11::let`.
-    template <typename Binding, typename Expression>
-    using local = pair<Binding, Expression>;
+    //!
+    template <typename Name, typename Expression>
+    using as = pair<Name, Expression>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_LET_HPP

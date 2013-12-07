@@ -12,7 +12,9 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/detail/nested_alias.hpp>
 #include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/fwd/pair.hpp>
 #include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/imap.hpp>
@@ -27,9 +29,158 @@
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/unpack.hpp>
 #include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/flip.hpp>
 
 
 namespace boost { namespace mpl11 {
+namespace let_detail {
+    //! @todo Replace this by `if_` once it supports multiple branches.
+    template <typename Cond, typename Then, typename Else>
+    struct if_chain
+        : detail::conditional<Cond::value, Then, Else>::type
+    { };
+
+    template <typename Outer, typename ...Inner, typename Expression>
+    struct let_expr<Outer, let<Inner...>(*)(Expression)>
+        : let_expr<Outer, typename let<Inner...>::template in<Expression>>
+    { };
+
+    template <typename Outer, typename ...Inner, typename Expression>
+    struct let_expr<Outer, let<Inner...>(Expression)>
+        : let_expr<Outer, typename let<Inner...>::template in<Expression>>
+    { };
+
+    template <typename Bindings, typename F, typename ...>
+    struct bind_impl;
+
+    struct join_variadics_and_push_back_the_rest {
+        template <typename State, typename X>
+        struct apply;
+
+        template <typename State, typename T>
+        struct apply<State, pair<true_, T>>
+            : join<State, T>
+        { };
+
+        template <typename State, typename T>
+        struct apply<State, pair<false_, T>>
+            : push_back<State, T>
+        { };
+    };
+
+    // At least one of the Ts is a variadic placeholder.
+    template <
+        typename Bindings, typename F,
+        typename ...IsVariadicPlaceholder, typename ...T
+    >
+    struct bind_impl<Bindings, F, pair<IsVariadicPlaceholder, T>...> {
+        template <typename ...Args>
+        BOOST_MPL11_NESTED_ALIAS(apply, unpack<
+            foldl_t<
+                vector<
+                    pair<
+                        IsVariadicPlaceholder,
+                        apply_t<let_expr<Bindings, T>, Args...>
+                    >...
+                >,
+                vector<>,
+                join_variadics_and_push_back_the_rest
+            >,
+            F
+        >);
+    };
+
+    // None of the Ts is a variadic placeholder.
+    template <typename Bindings, typename F, typename ...T>
+    struct bind_impl<Bindings, F, pair<false_, T>...> {
+        template <typename ...Args>
+        BOOST_MPL11_NESTED_ALIAS(apply, mpl11::apply<
+            F, apply_t<let_expr<Bindings, T>, Args...>...
+        >);
+    };
+
+    template <typename Bindings, typename F, typename ...T>
+    struct bind
+        : bind_impl<
+            Bindings,
+            F,
+            pair<bool_<is_variadic_placeholder<T>::value>, T>...
+        >
+    { };
+} // end namespace let_detail
+
+template <typename ...Bindings, typename Expression, typename ...Args>
+struct apply<let<Bindings...>(Expression), Args...>
+    : apply<typename let<Bindings...>::template in<Expression>, Args...>
+{ };
+
+template <typename ...Bindings, typename Expression, typename ...Args>
+struct apply<let<Bindings...>(*)(Expression), Args...>
+    : apply<typename let<Bindings...>::template in<Expression>, Args...>
+{ };
+
+
+#if 0
+namespace let_detail {
+    template <typename T>
+    struct is_placeholder_expr
+        : is_placeholder<T>
+    { };
+
+    template <template <typename ...> class F, typename ...T>
+    struct is_placeholder_expr<F<T...>>
+        : or_c<
+            is_placeholder<F<T...>>::value,
+            is_placeholder_expr<T>::value...,
+            false
+        >
+    { };
+
+    template <typename Context, typename Expression>
+    struct let_expr
+        : detail::conditional<is_placeholder<Expression>::value,
+            partial<Expression, Context>,
+            always<Expression>
+        >::type
+    { };
+
+    template <typename Outer, typename Inner, typename Expression>
+    struct let_expr<Outer, let_expr<Inner, Expression>> {
+        template <typename ...Args>
+        class apply {
+            template <typename Pair>
+            struct bind_args {
+                using type = pair<
+                    key_of_t<Outer, Pair>,
+                    mpl11::apply<value_of_t<Outer, Pair>, Args...>
+                >;
+            };
+
+        public:
+            using type = let_expr<
+                insert_keys_t<
+                    transform_t<Outer, quote<bind_args>>,
+                    Inner
+                >,
+                Expression
+            >;
+        };
+    };
+
+    template <typename Context, template <typename ...> class F, typename ...T>
+    struct let_expr<Context, F<T...>>
+        : if_chain<is_placeholder<F<T...>>,
+            partial<F<T...>, Context>,
+
+        /* else */ if_chain<is_placeholder_expr<F<T...>>,
+            bind<quote<F>, T...>,
+
+        /* else */
+            always<F<T...>>
+        >>
+    { };
+} // end namespace let_detail
+#endif
 namespace let_detail {
     //////////////////////////
     // close_over
@@ -53,24 +204,12 @@ namespace let_detail {
         : foldl<Locals, imap<>, insert_closure<Locals, Args...>>
     { };
 
-
-    template <typename Locals, typename F>
-    struct let_expression;
-
-    //////////////////////////
-    // if_chain
-    //////////////////////////
-    template <typename Cond, typename Then, typename Else>
-    struct if_chain
-        : detail::conditional<Cond::value, Then, Else>::type
-    { };
-
     //////////////////////////
     // lazy_let_expression
     //////////////////////////
     template <typename Locals, typename Expression>
-    struct lazy_let_expression
-        : let_expression<Locals, typename Expression::type>
+    struct lazy_let_expr
+        : let_expr<Locals, typename Expression::type>
     { };
 
     //////////////////////////
@@ -113,118 +252,59 @@ namespace let_detail {
     // let_expression
     //////////////////////////
     template <typename Locals, typename F>
-    struct let_expression_impl;
-
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct evaluate_recursively;
+    struct let_expr_impl;
 
     template <typename F, typename Locals, typename ...Args>
     struct closure;
 
     template <typename Locals, typename F>
-    struct let_expression
+    struct let_expr
         : if_chain<is_placeholder<F>,
             F,
 
           /* else */ if_chain<has_key<Locals, F>,
-            lazy_let_expression<Locals, at_key<Locals, F>>,
+            lazy_let_expr<Locals, at_key<Locals, F>>,
 
           /* else */
-            let_expression_impl<Locals, F>
+            let_expr_impl<Locals, F>
         >>
     { };
 
-    template <typename Outer, typename ...Inner, typename Expression>
-    struct let_expression<Outer, let<Inner...>(*)(Expression)>
-        : let_expression<
-            Outer, typename let<Inner...>::template in<Expression>
-        >
-    { };
-
-    template <typename Outer, typename ...Inner, typename Expression>
-    struct let_expression<Outer, let<Inner...>(Expression)>
-        : let_expression<
-            Outer, typename let<Inner...>::template in<Expression>
-        >
-    { };
-
     template <typename _, typename F, typename Locals, typename ...Args>
-    struct let_expression<_, closure<F, Locals, Args...>> {
+    struct let_expr<_, closure<F, Locals, Args...>> {
         template <typename ...>
-        using apply = mpl11::apply<let_expression<Locals, F>, Args...>;
+        BOOST_MPL11_NESTED_ALIAS(apply,
+            mpl11::apply<let_expr<Locals, F>, Args...>);
     };
 
     template <typename Outer, typename Inner, typename T>
-    struct let_expression<Outer, let_expression<Inner, T>> {
+    struct let_expr<Outer, let_expr<Inner, T>> {
         template <typename ...Args>
-        using apply = identity<
-            let_expression<
+        BOOST_MPL11_NESTED_ALIAS(apply, identity<
+            let_expr<
                 insert_keys_t<
                     typename close_over<Outer, Args...>::type,
                     Inner
                 >,
                 T
             >
-        >;
+        >);
     };
 
     template <typename Locals, typename F>
-    struct let_expression_impl {
+    struct let_expr_impl {
         template <typename ...Args>
         using apply = identity<F>;
     };
 
     template <typename Locals, template <typename ...> class F, typename ...T>
-    struct let_expression_impl<Locals, F<T...>>
+    struct let_expr_impl<Locals, F<T...>>
         : detail::conditional<is_local_expr<Locals, T...>::value,
-            evaluate_recursively<Locals, F, T...>,
+            bind<Locals, quote<F>, T...>,
             always<F<T...>>
         >::type
     { };
-
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct fast_eval {
-        template <typename ...Args>
-        using apply = F<apply_t<let_expression<Locals, T>, Args...>...>;
-    };
-
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct slow_eval {
-        template <typename ...Args>
-        struct gather {
-            template <typename State, typename P>
-            using apply = typename detail::conditional<
-                is_variadic_placeholder<P>::value,
-                join<State, apply_t<let_expression<Locals, P>, Args...>>,
-                push_back<State, apply_t<let_expression<Locals, P>, Args...>>
-            >::type;
-        };
-
-        template <typename ...Args>
-        using apply = unpack<
-            foldl_t<vector<T...>, vector<>, gather<Args...>>, quote<F>
-        >;
-    };
-
-    template <typename Locals, template <typename ...> class F, typename ...T>
-    struct evaluate_recursively
-        : detail::conditional<
-            or_c<is_variadic_placeholder<T>::value..., false, false>::value,
-            slow_eval<Locals, F, T...>,
-            fast_eval<Locals, F, T...>
-        >::type
-    { };
 } // end namespace let_detail
-
-template <typename ...Locals, typename Expression, typename ...Args>
-struct apply<let<Locals...>(Expression), Args...>
-    : apply<typename let<Locals...>::template in<Expression>, Args...>
-{ };
-
-template <typename ...Locals, typename Expression, typename ...Args>
-struct apply<let<Locals...>(*)(Expression), Args...>
-    : apply<typename let<Locals...>::template in<Expression>, Args...>
-{ };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_LET_HPP
