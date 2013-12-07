@@ -9,22 +9,20 @@
 #include <boost/mpl11/fwd/hset.hpp>
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/associative_container.hpp>
 #include <boost/mpl11/associative_sequence.hpp>
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/contains.hpp>
 #include <boost/mpl11/detail/complete.hpp>
+#include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/has_key.hpp>
 #include <boost/mpl11/hash.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/insert_keys.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/join.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/vector.hpp>
@@ -80,15 +78,18 @@ namespace hset_detail {
     };
 
     template <typename Set>
+    struct add_contents {
+        template <typename Contents, typename Key>
+        using apply = typename detail::conditional<
+            and_<has_key<Set, Key>, not_<contains<Contents, Key>>>::value,
+            push_back<Contents, Key>,
+            identity<Contents>
+        >::type;
+    };
+
+    template <typename Set>
     using contents = foldl_t<
-        typename Set::contents,
-        vector<>,
-        lambda<
-            if_<and_<has_key<Set, _2>, not_<contains<_1, _2>>>,
-                push_back<_1, _2>,
-                _1
-            >
-        >
+        typename Set::contents, vector<>, add_contents<Set>
     >;
 
     //! @todo

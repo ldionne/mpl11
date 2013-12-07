@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
      *
      * ### Semantics and default implementation
      *
-     * Equivalent to `any_of<%Sequence, lambda<equal<Element, _1>>>`.
+     * Equivalent to `any_of<%Sequence, partial<quote<equal>, Element>>`.
      */
     template <typename Sequence, typename Element>
     struct contains;

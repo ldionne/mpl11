@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::args` and `boost::mpl11::_args`.
+ * Defines `boost::mpl11::args`.
  */
 
 #ifndef BOOST_MPL11_ARGS_HPP
@@ -10,8 +10,6 @@
 
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/vector_fill.hpp>
-#include <boost/mpl11/fwd/is_placeholder.hpp>
-#include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/vector.hpp>
 
@@ -137,21 +135,6 @@ namespace boost { namespace mpl11 {
             >::type;
         };
     };
-
-    template <unsigned long long First, unsigned long long ...Last>
-    struct _args
-        : args<First, Last...>
-    { };
-
-    template <unsigned long long First, unsigned long long ...Last>
-    struct is_placeholder<_args<First, Last...>>
-        : true_
-    { };
-
-    template <unsigned long long First, unsigned long long ...Last>
-    struct is_variadic_placeholder<_args<First, Last...>>
-        : true_
-    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARGS_HPP

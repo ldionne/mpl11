@@ -13,7 +13,7 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Placeholder used to signal that a template parameter is optional.
+     * Dummy type used to signal that a template parameter is optional.
      */
     struct optional BOOST_MPL11_DOXYGEN_ONLY({ });
 }}} // end namespace boost::mpl11::detail

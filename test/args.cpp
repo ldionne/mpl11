@@ -7,37 +7,13 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
 using namespace boost::mpl11;
 using detail::is_same;
 
-struct a0; struct a1; struct a2;
-template <typename ...> struct f { struct type; };
-
-// test args<> as a lambda placeholder
-static_assert(is_same<
-    apply<lambda<_args<>>, a0, a1, a2>::type,
-    vector<a0, a1, a2>
->::value, "");
-static_assert(is_same<
-    apply<lambda<_args<0, 2>>, a0, a1, a2>::type,
-    vector<a0, a1>
->::value, "");
-static_assert(is_same<
-    apply<lambda<f<_args<>>>, a0, a1, a2>::type,
-    f<a0, a1, a2>::type
->::value, "");
-static_assert(is_same<
-    apply<lambda<f<_args<1, 3>>>, a0, a1, a2>::type,
-    f<a1, a2>::type
->::value, "");
-
-
-// test args<> as a metafunction class.
-template <int> struct t;
+template <int> struct x;
 template <int ...sequence>
 struct slicing {
     template <unsigned int ...indices>
@@ -45,8 +21,8 @@ struct slicing {
         template <int ...sliced>
         struct gives {
             static_assert(is_same<
-                typename apply<args<indices...>, t<sequence>...>::type,
-                vector<t<sliced>...>
+                apply_t<args<indices...>, x<sequence>...>,
+                vector<x<sliced>...>
             >::value, "");
         };
     };

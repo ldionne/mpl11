@@ -6,7 +6,6 @@
 #include <boost/mpl11/hset.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/at_key.hpp>
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/comparable.hpp>
@@ -20,7 +19,6 @@
 #include <boost/mpl11/insert_key.hpp>
 #include <boost/mpl11/insert_keys.hpp>
 #include <boost/mpl11/key_of.hpp>
-#include <boost/mpl11/lambda.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/sequence.hpp>
@@ -334,10 +332,20 @@ struct test_one {
     >::value, "");
 };
 
+struct use_insert_keys {
+    template <typename Keys>
+    using apply = insert_keys<hset<>, Keys>;
+};
+
+struct use_insert_key {
+    template <typename Keys>
+    using apply = foldl<Keys, hset<>, quote<insert_key>>;
+};
+
 struct test_all
     : test_one<new_<hset<>>>,
-      test_one<lambda<insert_keys<hset<>, _1>>>,
-      test_one<lambda<foldl<_1, hset<>, quote<insert_key>>>>
+      test_one<use_insert_keys>,
+      test_one<use_insert_key>
 { };
 
 
