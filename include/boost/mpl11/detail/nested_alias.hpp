@@ -6,15 +6,16 @@
 #ifndef BOOST_MPL11_DETAIL_NESTED_ALIAS_HPP
 #define BOOST_MPL11_DETAIL_NESTED_ALIAS_HPP
 
-#if defined(__clang__) || defined(BOOST_MPL11_DOXYGEN_INVOKED)
+#if defined(__clang__) || defined(__GNUC__) || \
+    defined(BOOST_MPL11_DOXYGEN_INVOKED)
     /*!
      * @ingroup details
      *
-     * Workaround for a bug in Clang.
+     * Workaround for a bug in Clang and GCC.
      *
      *
      * @todo
-     * Remove this as soon as it's fixed in Clang.
+     * Remove this as soon as it's fixed.
      */
 #   define BOOST_MPL11_NESTED_ALIAS(name, ...)  \
         struct name : __VA_ARGS__ { }           \
