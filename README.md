@@ -251,8 +251,6 @@ as the `equal` algo from the original MPL.
 
 - Try to reduce code duplication in unit tests using `vector<>`/`map<>`.
 
-- Consider having a `detail::size_t` alias.
-
 - Consider taking advantage of operation commutativity when folding. Must see
   if a gain is possible.
 
