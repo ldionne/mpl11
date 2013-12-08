@@ -8,7 +8,9 @@
 #include <boost/mpl11/advance.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/at.hpp>
+#include <boost/mpl11/back.hpp>
 #include <boost/mpl11/begin.hpp>
+#include <boost/mpl11/class_of.hpp>
 #include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
@@ -17,10 +19,12 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/erase.hpp>
 #include <boost/mpl11/erase_range.hpp>
+#include <boost/mpl11/front.hpp>
 #include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/insert.hpp>
 #include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/next.hpp>
@@ -114,10 +118,14 @@ namespace test_less {
     static_assert(!less<iterator<V, 2>, iterator<V, 2>>::value, "");
 }
 
-/////////////////////////////////
-// test the vector
-/////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+// Vector
+//////////////////////////////////////////////////////////////////////////////
 
+
+/////////////////////////////////
+// Sequence
+/////////////////////////////////
 // begin
 static_assert(is_same<
     begin<vector<>>::type, iterator<vector<>, 0>
@@ -152,6 +160,28 @@ static_assert(size<vector<x>>::value == 1, "");
 static_assert(size<vector<x, y>>::value == 2, "");
 static_assert(size<vector<x, y, z>>::value == 3, "");
 
+
+/////////////////////////////////
+// DirectionalSequence
+/////////////////////////////////
+// front
+static_assert(is_same<front_t<vector<x>>, x>::value, "");
+static_assert(is_same<front_t<vector<x, y>>, x>::value, "");
+static_assert(is_same<front_t<vector<x, y, z>>, x>::value, "");
+
+
+/////////////////////////////////
+// BidirectionalSequence
+/////////////////////////////////
+// back
+static_assert(is_same<back_t<vector<x>>, x>::value, "");
+static_assert(is_same<back_t<vector<x, y>>, y>::value, "");
+static_assert(is_same<back_t<vector<x, y, z>>, z>::value, "");
+
+
+/////////////////////////////////
+// RandomAccessSequence
+/////////////////////////////////
 // at
 static_assert(is_same<at_c<vector<x>, 0>::type, x>::value, "");
 
@@ -162,6 +192,10 @@ static_assert(is_same<at_c<vector<x, y, z>, 0>::type, x>::value, "");
 static_assert(is_same<at_c<vector<x, y, z>, 1>::type, y>::value, "");
 static_assert(is_same<at_c<vector<x, y, z>, 2>::type, z>::value, "");
 
+
+/////////////////////////////////
+// Container
+/////////////////////////////////
 // new_
 template <typename ...T>
 using seq = test::wrapper<test::minimal_requirements<Sequence>, vector<T...>>;
@@ -169,7 +203,7 @@ using seq = test::wrapper<test::minimal_requirements<Sequence>, vector<T...>>;
 template <typename V>
 struct check_new {
     template <typename ...T>
-    using New = typename apply<new_<V>, seq<T...>>::type;
+    using New = apply_t<new_<V>, seq<T...>>;
     static_assert(is_same<New<>, vector<>>::value, "");
     static_assert(is_same<New<x>, vector<x>>::value, "");
     static_assert(is_same<New<x, y>, vector<x, y>>::value, "");
@@ -188,6 +222,10 @@ static_assert(is_same<clear<vector<x>>::type, vector<>>::value, "");
 static_assert(is_same<clear<vector<x, y>>::type, vector<>>::value, "");
 static_assert(is_same<clear<vector<x, y, z>>::type, vector<>>::value, "");
 
+
+/////////////////////////////////
+// BackExtensibleContainer
+/////////////////////////////////
 // pop_back
 static_assert(is_same<pop_back<vector<x>>::type, vector<>>::value, "");
 static_assert(is_same<pop_back<vector<x, y>>::type, vector<x>>::value, "");
@@ -198,24 +236,32 @@ static_assert(is_same<push_back<vector<>, x>::type, vector<x>>::value, "");
 static_assert(is_same<push_back<vector<x>, y>::type, vector<x, y>>::value, "");
 static_assert(is_same<push_back<vector<x, y>, z>::type, vector<x, y, z>>::value, "");
 
+
+/////////////////////////////////
+// FrontExtensibleContainer
+/////////////////////////////////
 // pop_front
-static_assert(is_same<pop_front<vector<x>>::type, vector<>>::value, "");
-static_assert(is_same<pop_front<vector<x, y>>::type, vector<y>>::value, "");
-static_assert(is_same<pop_front<vector<x, y, z>>::type, vector<y, z>>::value, "");
+static_assert(is_same<pop_front_t<vector<x>>, vector<>>::value, "");
+static_assert(is_same<pop_front_t<vector<x, y>>, vector<y>>::value, "");
+static_assert(is_same<pop_front_t<vector<x, y, z>>, vector<y, z>>::value, "");
 
 // push_front
-static_assert(is_same<push_front<vector<>, x>::type, vector<x>>::value, "");
-static_assert(is_same<push_front<vector<x>, y>::type, vector<y, x>>::value, "");
-static_assert(is_same<push_front<vector<y, x>, z>::type, vector<z, y, x>>::value, "");
+static_assert(is_same<push_front_t<vector<>, x>, vector<x>>::value, "");
+static_assert(is_same<push_front_t<vector<x>, y>, vector<y, x>>::value, "");
+static_assert(is_same<push_front_t<vector<y, x>, z>, vector<z, y, x>>::value, "");
 
+
+/////////////////////////////////
+// RandomExtensibleContainer
+/////////////////////////////////
 template <typename V, unsigned long I>
 using iter_at = typename advance_c<typename begin<V>::type, I>::type;
 
 // insert_range
 static_assert(is_same<
-    insert_range<
+    insert_range_t<
         vector<>, iter_at<vector<>, 0>, vector<>
-    >::type,
+    >,
     vector<>
 >::value, "");
 static_assert(is_same<
@@ -332,24 +378,55 @@ namespace test_erase {
     >::value, "");
 }
 
+
+/////////////////////////////////
+// Other specializations
+/////////////////////////////////
+// unpack
+struct f { template <typename ...> struct apply { struct type; }; };
+static_assert(is_same<
+    unpack_t<vector<>, f>, f::apply<>::type
+>::value, "");
+static_assert(is_same<
+    unpack_t<vector<x>, f>, f::apply<x>::type
+>::value, "");
+static_assert(is_same<
+    unpack_t<vector<x, y>, f>, f::apply<x, y>::type
+>::value, "");
+static_assert(is_same<
+    unpack_t<vector<x, y, z>, f>, f::apply<x, y, z>::type
+>::value, "");
+
+// join
+static_assert(is_same<
+    join_t<vector<>, vector<>>,
+    vector<>
+>::value, "");
+static_assert(is_same<
+    join_t<vector<>, vector<x>>,
+    vector<x>
+>::value, "");
+static_assert(is_same<
+    join_t<vector<>, vector<x, y>>,
+    vector<x, y>
+>::value, "");
+
+static_assert(is_same<
+    join_t<vector<x>, vector<>>,
+    vector<x>
+>::value, "");
+static_assert(is_same<
+    join_t<vector<x>, vector<y>>,
+    vector<x, y>
+>::value, "");
+static_assert(is_same<
+    join_t<vector<x>, vector<y, z>>,
+    vector<x, y, z>
+>::value, "");
+
 // has_optimization
 static_assert(has_optimization<vector<>, optimization::O1_size>::value, "");
 static_assert(has_optimization<vector<>, optimization::O1_unpack>::value, "");
-
-// unpack (optimization)
-struct f { template <typename ...> struct apply { struct type; }; };
-static_assert(is_same<
-    unpack<vector<>, f>::type, f::apply<>::type
->::value, "");
-static_assert(is_same<
-    unpack<vector<x>, f>::type, f::apply<x>::type
->::value, "");
-static_assert(is_same<
-    unpack<vector<x, y>, f>::type, f::apply<x, y>::type
->::value, "");
-static_assert(is_same<
-    unpack<vector<x, y, z>, f>::type, f::apply<x, y, z>::type
->::value, "");
 
 
 int main() { }

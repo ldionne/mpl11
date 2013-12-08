@@ -11,13 +11,39 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/args.hpp>
-#include <boost/mpl11/at.hpp>
+#include <boost/mpl11/detail/dependent_on.hpp>
+#include <boost/mpl11/detail/nested_alias.hpp>
+#include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/advance.hpp>
+#include <boost/mpl11/fwd/at.hpp>
+#include <boost/mpl11/fwd/back.hpp>
+#include <boost/mpl11/fwd/begin.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
+#include <boost/mpl11/fwd/clear.hpp>
+#include <boost/mpl11/fwd/deref.hpp>
+#include <boost/mpl11/fwd/distance.hpp>
+#include <boost/mpl11/fwd/end.hpp>
+#include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/fwd/erase.hpp>
+#include <boost/mpl11/fwd/erase_range.hpp>
+#include <boost/mpl11/fwd/front.hpp>
 #include <boost/mpl11/fwd/has_optimization.hpp>
-#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/fwd/insert.hpp>
+#include <boost/mpl11/fwd/insert_range.hpp>
+#include <boost/mpl11/fwd/is_empty.hpp>
+#include <boost/mpl11/fwd/join.hpp>
+#include <boost/mpl11/fwd/less.hpp>
+#include <boost/mpl11/fwd/new.hpp>
+#include <boost/mpl11/fwd/next.hpp>
+#include <boost/mpl11/fwd/pop_back.hpp>
+#include <boost/mpl11/fwd/pop_front.hpp>
+#include <boost/mpl11/fwd/prev.hpp>
+#include <boost/mpl11/fwd/push_back.hpp>
+#include <boost/mpl11/fwd/push_front.hpp>
+#include <boost/mpl11/fwd/size.hpp>
+#include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
-#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
@@ -26,232 +52,299 @@
 
 
 namespace boost { namespace mpl11 {
+//////////////////////////////////////////////////////////////////////////////
+// Vector iterator
+//////////////////////////////////////////////////////////////////////////////
 namespace vector_detail {
-    using IndexT = unsigned long long;
-
-    template <typename Vector, IndexT Pos>
+    template <typename Vector, detail::std_size_t Pos>
     struct iterator;
+}
 
-    struct iterator_class final : RandomAccessIterator {
-        /////////////////////////////////
-        // ForwardIterator
-        /////////////////////////////////
-        template <typename Iterator>             struct next_impl;
-        template <typename Iterator>             struct deref_impl;
-        template <typename Self, typename Other> struct equal_impl;
-
-        template <typename Vector, IndexT Pos>
-        struct next_impl<iterator<Vector, Pos>> {
-            using type = iterator<Vector, Pos + 1>;
-        };
-
-        template <typename Vector, IndexT Pos>
-        struct deref_impl<iterator<Vector, Pos>>
-            : at_c<Vector, Pos>
-        { };
-
-        template <typename Vector, IndexT Self, IndexT Other>
-        struct equal_impl<iterator<Vector, Self>, iterator<Vector, Other>>
-            : bool_<Self == Other>
-        { };
-
-        /////////////////////////////////
-        // BidirectionalIterator
-        /////////////////////////////////
-        template <typename Iterator> struct prev_impl;
-
-        template <typename Vector, IndexT Pos>
-        struct prev_impl<iterator<Vector, Pos>> {
-            using type = iterator<Vector, Pos - 1>;
-        };
-
-        /////////////////////////////////
-        // RandomAccessIterator
-        /////////////////////////////////
-        template <typename Iterator, typename N> struct advance_impl;
-        template <typename First, typename Last> struct distance_impl;
-        template <typename Self, typename Other> struct less_impl;
-
-        template <typename Vector, IndexT Pos, typename N>
-        struct advance_impl<iterator<Vector, Pos>, N> {
-            using type = iterator<Vector, Pos + N::value>;
-        };
-
-        template <typename Vector, IndexT First, IndexT Last>
-        struct distance_impl<iterator<Vector, First>, iterator<Vector, Last>>
-            : integral_c<decltype(Last - First), Last - First>
-        { };
-
-        template <typename Vector, IndexT Self, IndexT Other>
-        struct less_impl<iterator<Vector, Self>, iterator<Vector, Other>>
-            : bool_<(Self < Other)>
-        { };
-    };
-
-    struct vector_class final
-        : RandomAccessSequence, RandomExtensibleContainer
-    {
-        /////////////////////////////////
-        // Sequence
-        /////////////////////////////////
-        template <typename Vector> struct begin_impl;
-        template <typename Vector> struct end_impl;
-        template <typename Vector> struct is_empty_impl;
-        template <typename Vector> struct size_impl;
-
-        template <typename Vector>
-        struct begin_impl {
-            using type = iterator<Vector, 0>;
-        };
-
-        template <typename ...T>
-        struct end_impl<vector<T...>> {
-            using type = iterator<vector<T...>, sizeof...(T)>;
-        };
-
-        template <typename ...T>
-        struct is_empty_impl<vector<T...>>
-            : bool_<sizeof...(T) == 0>
-        { };
-
-        template <typename ...T>
-        struct size_impl<vector<T...>>
-            : integral_c<decltype(sizeof...(T)), sizeof...(T)>
-        { };
-
-        /////////////////////////////////
-        // RandomAccessSequence
-        /////////////////////////////////
-        template <typename Vector, typename N> struct at_impl;
-
-        template <typename ...T, typename N>
-        struct at_impl<vector<T...>, N>
-            : apply<arg<N::value>, T...>
-        {
-            static_assert(N::value >= 0,
-            "Accessing a `vector` at a negative index.");
-        };
-
-        /////////////////////////////////
-        // Container
-        /////////////////////////////////
-        template <typename Vector>
-        using clear_impl = identity<vector<>>;
-
-        //! @todo
-        //! Check whether there are other places in the library where we can
-        //! make a similar optimization.
-        struct new_impl_actual {
-            template <typename Sequence>
-            using apply = unpack<Sequence, into<vector>>;
-        };
-
-        // We defer to `new_impl_actual` because we don't need `Vector` and
-        // we don't want to have different instantiations where unnecessary.
-        template <typename Vector>
-        using new_impl = new_impl_actual;
-
-        /////////////////////////////////
-        // BackExtensibleContainer
-        /////////////////////////////////
-        template <typename Vector>             struct pop_back_impl;
-        template <typename Vector, typename X> struct push_back_impl;
-
-        template <typename ...T>
-        struct pop_back_impl<vector<T...>>
-            : apply<args<0, sizeof...(T) - 1>, T...>
-        { };
-
-        template <typename ...T, typename X>
-        struct push_back_impl<vector<T...>, X> {
-            using type = vector<T..., X>;
-        };
-
-        /////////////////////////////////
-        // FrontExtensibleContainer
-        /////////////////////////////////
-        template <typename Vector>             struct pop_front_impl;
-        template <typename Vector, typename X> struct push_front_impl;
-
-        template <typename Head, typename ...Tail>
-        struct pop_front_impl<vector<Head, Tail...>> {
-            using type = vector<Tail...>;
-        };
-
-        template <typename ...T, typename X>
-        struct push_front_impl<vector<T...>, X> {
-            using type = vector<X, T...>;
-        };
-
-        /////////////////////////////////
-        // RandomExtensibleContainer
-        /////////////////////////////////
-        template <typename Vector, typename Pos, typename Range>
-        struct insert_range_impl;
-        template <typename Vector, typename First, typename Last>
-        struct erase_range_impl;
-        template <typename Vector, typename Pos>
-        struct erase_impl;
-
-        template <typename ...T, IndexT Pos, typename Range>
-        struct insert_range_impl<
-            vector<T...>, iterator<vector<T...>, Pos>, Range
-        >
-            : join<
-                // [0, Pos)
-                apply_t<args<0, Pos>, T...>,
-                unpack_t<Range, into<vector>>,
-                // [Pos, sizeof...(T))
-                apply_t<args<Pos, sizeof...(T)>, T...>
-            >
-        { };
-
-        template <typename Vector, typename Pos, typename X>
-        using insert_impl = insert_range_impl<Vector, Pos, vector<X>>;
-
-        template <typename ...T, IndexT First, IndexT Last>
-        struct erase_range_impl<
-            vector<T...>,
-            iterator<vector<T...>, First>,
-            iterator<vector<T...>, Last>
-        >
-            : join<
-                // [0, First)
-                apply_t<args<0, First>, T...>,
-                // [Last, sizeof...(T))
-                apply_t<args<Last, sizeof...(T)>, T...>
-            >
-        { };
-
-        template <typename V, IndexT Pos>
-        struct erase_impl<V, iterator<V, Pos>>
-            : erase_range_impl<V, iterator<V, Pos>, iterator<V, Pos + 1>>
-        { };
-    };
-} // end namespace vector_detail
-
-template <typename Vector, vector_detail::IndexT Position, typename Default>
-struct class_of<vector_detail::iterator<Vector, Position>, Default> {
-    using type = vector_detail::iterator_class;
+template <typename V, detail::std_size_t Pos, typename Default>
+struct class_of<vector_detail::iterator<V, Pos>, Default> {
+    using type = RandomAccessIterator;
 };
 
+/////////////////////////////////
+// ForwardIterator
+/////////////////////////////////
+template <typename V, detail::std_size_t Pos>
+struct next<vector_detail::iterator<V, Pos>> {
+    using type = vector_detail::iterator<V, Pos + 1>;
+};
+
+template <typename ...T>
+struct next<vector_detail::iterator<vector<T...>, sizeof...(T)>> {
+    struct type;
+
+    static_assert(detail::dependent_on<type>::template value<bool, false>(),
+    "Invalid usage of `next`: "
+    "Incrementing a past-the-end iterator of a `vector`.");
+};
+
+template <typename Vector, detail::std_size_t Pos>
+struct deref<vector_detail::iterator<Vector, Pos>>
+    : at_c<Vector, Pos>
+{ };
+
+template <typename ...T>
+struct deref<vector_detail::iterator<vector<T...>, sizeof...(T)>> {
+    struct type;
+
+    static_assert(detail::dependent_on<type>::template value<bool, false>(),
+    "Invalid usage of `deref`: "
+    "Dereferencing a past-the-end iterator of a `vector`.");
+};
+
+template <typename V, detail::std_size_t Self, detail::std_size_t Other>
+struct equal<
+    vector_detail::iterator<V, Self>,
+    vector_detail::iterator<V, Other>
+>
+    : bool_<Self == Other>
+{ };
+
+/////////////////////////////////
+// BidirectionalIterator
+/////////////////////////////////
+template <typename V>
+struct prev<vector_detail::iterator<V, 0>> {
+    struct type;
+
+    static_assert(detail::dependent_on<type>::template value<bool, false>(),
+    "Invalid usage of `prev`: "
+    "Decrementing an iterator to the beginning of a `vector`.");
+};
+
+template <typename V, detail::std_size_t Pos>
+struct prev<vector_detail::iterator<V, Pos>> {
+    using type = vector_detail::iterator<V, Pos - 1>;
+};
+
+/////////////////////////////////
+// RandomAccessIterator
+/////////////////////////////////
+template <typename V, detail::std_size_t Pos, typename N>
+struct advance<vector_detail::iterator<V, Pos>, N> {
+    using type = vector_detail::iterator<V, Pos + N::value>;
+};
+
+template <typename V, detail::std_size_t First, detail::std_size_t Last>
+struct distance<
+    vector_detail::iterator<V, First>,
+    vector_detail::iterator<V, Last>
+>
+    : integral_c<decltype(Last - First), Last - First>
+{ };
+
+template <typename V, detail::std_size_t Self, detail::std_size_t Other>
+struct less<
+    vector_detail::iterator<V, Self>,
+    vector_detail::iterator<V, Other>
+>
+    : bool_<(Self < Other)>
+{ };
+
+
+//////////////////////////////////////////////////////////////////////////////
+// Vector
+//////////////////////////////////////////////////////////////////////////////
 template <typename ...T, typename Default>
-struct class_of<vector<T...>, Default> {
-    using type = vector_detail::vector_class;
+struct class_of<vector<T...>, Default>
+    : inherit<RandomAccessSequence, RandomExtensibleContainer>
+{ };
+
+/////////////////////////////////
+// Sequence
+/////////////////////////////////
+template <typename ...T>
+struct begin<vector<T...>> {
+    using type = vector_detail::iterator<vector<T...>, 0>;
 };
 
+template <typename ...T>
+struct end<vector<T...>> {
+    using type = vector_detail::iterator<vector<T...>, sizeof...(T)>;
+};
+
+template <typename ...T>
+struct is_empty<vector<T...>>
+    : false_
+{ };
+
+template <>
+struct is_empty<vector<>>
+    : true_
+{ };
+
+template <typename ...T>
+struct size<vector<T...>>
+    : integral_c<detail::std_size_t, sizeof...(T)>
+{ };
+
+/////////////////////////////////
+// DirectionalSequence
+/////////////////////////////////
+template <typename ...T>
+struct front<vector<T...>> {
+    static_assert(sizeof...(T) > 0,
+    "Invalid usage of `front`: Using `front` on an empty `vector`.");
+
+    struct type;
+};
+
+template <typename Head, typename ...Tail>
+struct front<vector<Head, Tail...>> {
+    using type = Head;
+};
+
+/////////////////////////////////
+// BidirectionalSequence
+/////////////////////////////////
+template <typename ...T>
+struct back<vector<T...>> {
+    static_assert(sizeof...(T) > 0,
+    "Invalid usage of `back`: Using `back` on an empty `vector`.");
+
+    using type = apply_t<arg<sizeof...(T) - 1>, T...>;
+};
+
+/////////////////////////////////
+// RandomAccessSequence
+/////////////////////////////////
+template <typename ...T, typename N>
+struct at<vector<T...>, N> {
+    static_assert(N::value >= 0,
+    "Invalid usage of `at`: Accessing a `vector` at a negative index.");
+
+    using type = apply_t<arg<N::value>, T...>;
+};
+
+/////////////////////////////////
+// Container
+/////////////////////////////////
+template <typename ...T>
+struct clear<vector<T...>> {
+    using type = vector<>;
+};
+
+template <typename ...T>
+struct new_<vector<T...>> {
+    template <typename Sequence>
+    BOOST_MPL11_NESTED_ALIAS(apply, unpack<Sequence, into<vector>>);
+};
+
+/////////////////////////////////
+// BackExtensibleContainer
+/////////////////////////////////
+template <typename ...T>
+struct pop_back<vector<T...>>
+    : apply<args<0, sizeof...(T) - 1>, T...>
+{ };
+
+template <typename ...T, typename X>
+struct push_back<vector<T...>, X> {
+    using type = vector<T..., X>;
+};
+
+/////////////////////////////////
+// FrontExtensibleContainer
+/////////////////////////////////
+template <typename ...Empty>
+struct pop_front<Empty...> {
+    static_assert(sizeof...(Empty) > 0,
+    "Invalid usage of `pop_front`: "
+    "Can't use `pop_front` on an empty `vector`.");
+
+    struct type;
+};
+
+template <typename Head, typename ...Tail>
+struct pop_front<vector<Head, Tail...>> {
+    using type = vector<Tail...>;
+};
+
+template <typename ...T, typename X>
+struct push_front<vector<T...>, X> {
+    using type = vector<X, T...>;
+};
+
+/////////////////////////////////
+// RandomExtensibleContainer
+/////////////////////////////////
+template <typename ...T, detail::std_size_t Pos, typename Range>
+struct insert_range<
+    vector<T...>,
+    vector_detail::iterator<vector<T...>, Pos>,
+    Range
+>
+    : join<
+        // [0, Pos)
+        apply_t<args<0, Pos>, T...>,
+        // [begin<Range>, end<Range>)
+        unpack_t<Range, into<vector>>,
+        // [Pos, sizeof...(T))
+        apply_t<args<Pos, sizeof...(T)>, T...>
+    >
+{ };
+
+template <typename ...T, detail::std_size_t Pos, typename X>
+struct insert<vector<T...>, vector_detail::iterator<vector<T...>, Pos>, X>
+    : join<
+        push_back_t<apply_t<args<0, Pos>, T...>, X>, // [0, Pos) ++ X
+        apply_t<args<Pos, sizeof...(T)>, T...>       // [Pos, sizeof...(T))
+    >
+{ };
+
+template <typename ...T, detail::std_size_t First, detail::std_size_t Last>
+struct erase_range<
+    vector<T...>,
+    vector_detail::iterator<vector<T...>, First>,
+    vector_detail::iterator<vector<T...>, Last>
+>
+    : join<
+        // [0, First)
+        apply_t<args<0, First>, T...>,
+        // [Last, sizeof...(T))
+        apply_t<args<Last, sizeof...(T)>, T...>
+    >
+{ };
+
+template <typename ...T, detail::std_size_t Pos>
+struct erase<vector<T...>, vector_detail::iterator<vector<T...>, Pos>>
+    : join<
+        // [0, Pos)
+        apply_t<args<0, Pos>, T...>,
+        // [Pos + 1, sizeof...(T))
+        apply_t<args<Pos + 1, sizeof...(T)>, T...>
+    >
+{ };
+
+/////////////////////////////////
+// Other specializations
+/////////////////////////////////
 template <typename ...T, typename F>
 struct unpack<vector<T...>, F>
     : apply<F, T...>
 { };
 
+template <typename ...T, typename ...U, typename ...More>
+struct join<vector<T...>, vector<U...>, More...>
+    : join<vector<T..., U...>, More...>
+{ };
+
+template <typename ...T, typename ...U>
+struct join<vector<T...>, vector<U...>> {
+    using type = vector<T..., U...>;
+};
+
 template <typename ...T>
-struct has_optimization<vector<T...>, optimization::O1_unpack>
+struct has_optimization<vector<T...>, optimization::O1_size>
     : true_
 { };
 
 template <typename ...T>
-struct has_optimization<vector<T...>, optimization::O1_size>
+struct has_optimization<vector<T...>, optimization::O1_unpack>
     : true_
 { };
 }} // end namespace boost::mpl11
