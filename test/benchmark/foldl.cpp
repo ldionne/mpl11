@@ -8,6 +8,7 @@
 // #define USE_NORMAL_RECURSION
 
 #ifdef USE_ALIASES
+
     template <bool Done>
     struct until {
         template <typename F, typename State, typename Head, typename ...Tail>

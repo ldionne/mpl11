@@ -14,7 +14,7 @@ Commands were ran 5 times and the average was taken.
 
           | clang v3.4  | Apple LLVM clang 5.0 | GCC 4.9.0 20131201 (experimental) |
 ------------------------------------------------------------------------------------
-USE_MPL11 |    0.32s    |         0.14s        |               0.16s               |
+USE_MPL11 |    0.12s    |         0.07s        |               0.09s               |
 USE_MPL   |    0.26s    |         0.15s        |               0.25s               |
 
 */

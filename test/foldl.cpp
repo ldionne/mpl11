@@ -5,6 +5,9 @@
 
 #include <boost/mpl11/foldl.hpp>
 
+#include <boost/mpl11/detail/foldl/normal.hpp>
+#include <boost/mpl11/detail/foldl/unpacked.hpp>
+#include <boost/mpl11/detail/foldl/unrolled.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/quote.hpp>
@@ -18,42 +21,46 @@ using namespace boost::mpl11;
 
 template <int> struct x;
 
-template <template <int ...i> class seq>
-struct test_one {
-    static_assert(equal<
-        typename foldl<seq<>, vector<>, quote<push_back>>::type,
-        vector<>
-    >::value, "");
-
-    static_assert(equal<
-        typename foldl<seq<0>, vector<>, quote<push_back>>::type,
-        vector<x<0>>
-    >::value, "");
-
-    static_assert(equal<
-        typename foldl<seq<0, 1>, vector<>, quote<push_back>>::type,
-        vector<x<0>, x<1>>
-    >::value, "");
-
-    static_assert(equal<
-        typename foldl<seq<0, 1, 2>, vector<>, quote<push_back>>::type,
-        vector<x<0>, x<1>, x<2>>
-    >::value, "");
-
-    static_assert(equal<
-        typename foldl<seq<0, 1, 2, 3>, vector<>, quote<push_back>>::type,
-        vector<x<0>, x<1>, x<2>, x<3>>
-    >::value, "");
-};
-
-//! @todo Find a way to test the optimized algorithm.
 template <int ...i>
-using no_opt = test::wrapper<
+using sequence = test::wrapper<
     test::minimal_requirements<Sequence>, vector<x<i>...>
 >;
 
-struct test_all
-    : test_one<no_opt>
+template <template <typename ...> class Foldl>
+struct test_foldl {
+    template <typename ...Args>
+    using Foldl_t = typename Foldl<Args...>::type;
+
+    template <int ...i>
+    struct test_it_impl {
+        static_assert(equal<
+            Foldl_t<sequence<i...>, vector<>, quote<push_back>>,
+            vector<x<i>...>
+        >::value, "");
+    };
+
+    struct test_it :
+        test_it_impl<>,
+        test_it_impl<0>,
+        test_it_impl<0, 1>,
+        test_it_impl<0, 1, 2>,
+        test_it_impl<0, 1, 2, 3>,
+        test_it_impl<0, 1, 2, 3, 4>,
+        test_it_impl<0, 1, 2, 3, 4, 5>,
+        test_it_impl<0, 1, 2, 3, 4, 5, 6>,
+        test_it_impl<0, 1, 2, 3, 4, 5, 6, 7>,
+        test_it_impl<0, 1, 2, 3, 4, 5, 6, 7, 8>,
+        test_it_impl<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>
+    { };
+
+    static_assert(sizeof(test_it), "");
+};
+
+struct test_all :
+    test_foldl<detail::normal_foldl>,
+    test_foldl<detail::unpacked_foldl>,
+    test_foldl<detail::unrolled_foldl>,
+    test_foldl<foldl>
 { };
 
 

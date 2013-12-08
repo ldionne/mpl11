@@ -42,6 +42,9 @@ namespace boost { namespace mpl11 {
         };
     } // end namespace foldr_detail
 
+    //! @todo
+    //! Optimize `foldr` like `foldl`. We might be able to share some
+    //! implementation details.
     template <typename Sequence, typename State, typename F>
     struct foldr
         : foldr_detail::foldr_impl<
