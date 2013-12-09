@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_FWD_VECTOR_HPP
 #define BOOST_MPL11_FWD_VECTOR_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
 #include <boost/mpl11/fwd/integral_c.hpp>
 
 
@@ -18,13 +17,9 @@ namespace boost { namespace mpl11 {
      *
      * `mpl11::vector` is a `RandomAccessSequence` and a
      * `RandomExtensibleContainer`.
-     *
-     *
-     * @todo
-     * Consider adding a custom implementation of `equal` using variadics.
      */
     template <typename ...Elements>
-    struct vector BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct vector;
 
     //! @ingroup containers
     //! Alias to `vector<integral_c<T, v>...>`; provided for convenience.

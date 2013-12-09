@@ -9,9 +9,9 @@
 #include <boost/mpl11/fwd/vector.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/args.hpp>
 #include <boost/mpl11/detail/dependent_on.hpp>
+#include <boost/mpl11/detail/index_sequence.hpp>
 #include <boost/mpl11/detail/nested_alias.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/advance.hpp>
@@ -41,6 +41,7 @@
 #include <boost/mpl11/fwd/push_back.hpp>
 #include <boost/mpl11/fwd/push_front.hpp>
 #include <boost/mpl11/fwd/size.hpp>
+#include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
@@ -58,7 +59,21 @@ namespace boost { namespace mpl11 {
 namespace vector_detail {
     template <typename Vector, detail::std_size_t Pos>
     struct iterator;
-}
+
+    template <detail::std_size_t Index, typename Value>
+    struct index_holder { };
+
+    template <typename Indices, typename ...T>
+    struct index_based_lookup;
+
+    template <detail::std_size_t ...Indices, typename ...T>
+    struct index_based_lookup<detail::index_sequence<Indices...>, T...>
+        : index_holder<Indices, T>...
+    { };
+
+    template <detail::std_size_t Index, typename Value>
+    identity<Value> at_index(index_holder<Index, Value>*);
+} // end namespace vector_detail
 
 template <typename V, detail::std_size_t Pos, typename Default>
 struct class_of<vector_detail::iterator<V, Pos>, Default> {
@@ -84,7 +99,7 @@ struct next<vector_detail::iterator<vector<T...>, sizeof...(T)>> {
 
 template <typename Vector, detail::std_size_t Pos>
 struct deref<vector_detail::iterator<Vector, Pos>>
-    : at_c<Vector, Pos>
+    : decltype(vector_detail::at_index<Pos>((Vector*)nullptr))
 { };
 
 template <typename ...T>
@@ -154,6 +169,13 @@ struct class_of<vector<T...>, Default>
     : inherit<RandomAccessSequence, RandomExtensibleContainer>
 { };
 
+template <typename ...T>
+struct vector
+    : vector_detail::index_based_lookup<
+        typename detail::make_index_sequence<sizeof...(T)>::type, T...
+    >
+{ };
+
 /////////////////////////////////
 // Sequence
 /////////////////////////////////
@@ -206,18 +228,22 @@ struct back<vector<T...>> {
     static_assert(sizeof...(T) > 0,
     "Invalid usage of `back`: Using `back` on an empty `vector`.");
 
-    using type = apply_t<arg<sizeof...(T) - 1>, T...>;
+    using type = typename decltype(
+        vector_detail::at_index<sizeof...(T) - 1>((vector<T...>*)nullptr)
+    )::type;
 };
 
 /////////////////////////////////
 // RandomAccessSequence
 /////////////////////////////////
-template <typename ...T, typename N>
-struct at<vector<T...>, N> {
-    static_assert(N::value >= 0,
+template <typename ...T, typename Index>
+struct at<vector<T...>, Index> {
+    static_assert(Index::value >= 0,
     "Invalid usage of `at`: Accessing a `vector` at a negative index.");
 
-    using type = apply_t<arg<N::value>, T...>;
+    using type = typename decltype(
+        vector_detail::at_index<Index::value>((vector<T...>*)nullptr)
+    )::type;
 };
 
 /////////////////////////////////
