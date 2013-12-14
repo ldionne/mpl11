@@ -6,7 +6,15 @@
 #ifndef BOOST_MPL11_FWD_TRANSFORM_HPP
 #define BOOST_MPL11_FWD_TRANSFORM_HPP
 
+#include <boost/mpl11/detail/fast_sequence_adaptor_fwd.hpp>
+
+
 namespace boost { namespace mpl11 {
+    namespace transform_detail {
+        template <typename F>
+        struct transform_with;
+    }
+
     /*!
      * @ingroup algorithms
      * @ingroup sequences
@@ -19,7 +27,9 @@ namespace boost { namespace mpl11 {
      * `mpl11::transform` as an algorithm, `%Sequence` must be a `Container`.
      */
     template <typename Sequence, typename F>
-    struct transform;
+    using transform = detail::fast_sequence_adaptor<
+        Sequence, transform_detail::transform_with<F>
+    >;
 
     template <typename Sequence, typename F>
     using transform_t = typename transform<Sequence, F>::type;

@@ -8,7 +8,9 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/container.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/vector.hpp>
 
 #include "minimal_requirements.hpp"
@@ -30,17 +32,19 @@ struct f { template <typename ...> struct apply { struct type; }; };
 
 template <typename ...T>
 struct test_one {
+    using Lazy = transform<sequence<T...>, f>;
+    using Eager = transform_t<container<T...>, f>;
+
     // We use vector to dispatch the equal<> because transform<> is not
     // a DirectionalSequence.
-    static_assert(equal<
-        vector<apply_t<f, T>...>,
-        transform<sequence<T...>, f>
-    >::value, "");
+    static_assert(equal<vector<apply_t<f, T>...>, Lazy>::value, "");
+    static_assert(equal<vector<apply_t<f, T>...>, Eager>::value, "");
 
-    static_assert(equal<
-        vector<apply_t<f, T>...>,
-        transform_t<container<T...>, f>
-    >::value, "");
+    static_assert(size<Lazy>::value == sizeof...(T), "");
+    static_assert(size<Eager>::value == sizeof...(T), "");
+
+    static_assert(is_empty<Lazy>::value == (sizeof...(T) == 0), "");
+    static_assert(is_empty<Eager>::value == (sizeof...(T) == 0), "");
 };
 
 struct w; struct x; struct y; struct z;
