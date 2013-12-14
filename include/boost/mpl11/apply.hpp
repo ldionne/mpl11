@@ -8,22 +8,35 @@
 
 #include <boost/mpl11/fwd/apply.hpp>
 
-#include <boost/mpl11/detail/no_decay.hpp>
-
 
 namespace boost { namespace mpl11 {
     namespace apply_detail {
+        template <bool HasArgs>
+        struct apply_impl;
+
+        template <>
+        struct apply_impl<true> {
+            template <typename F, typename ...Args>
+            using nested_apply = typename F::template apply<Args...>;
+        };
+
         template <typename F>
         auto pick() -> typename F::apply;
 
-        template <typename F, typename ...Args>
-        auto pick(detail::no_decay<Args>*...) ->
-            typename F::template apply<Args...>;
+        template <typename F>
+        auto pick() -> typename F::template apply<>;
+
+        template <>
+        struct apply_impl<false> {
+            template <typename F>
+            using nested_apply = decltype(pick<F>());
+        };
     } // end namespace apply_detail
 
     template <typename F, typename ...Args>
     struct apply
-        : decltype(apply_detail::pick<F>((detail::no_decay<Args>*)nullptr...))
+        : apply_detail::apply_impl<sizeof...(Args) != 0>::
+            template nested_apply<F, Args...>
     { };
 }} // end namespace boost::mpl11
 
