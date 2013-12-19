@@ -8,4 +8,5 @@ function(mpl11_add_benchmark name source)
     add_dependencies(benchmarks benchmark_${name})
 endfunction()
 
-mpl11_add_benchmark(vector vector.cpp)
+mpl11_add_benchmark(partial_specializations partial_specializations.cpp)
+mpl11_add_benchmark(vector                  vector.cpp)
