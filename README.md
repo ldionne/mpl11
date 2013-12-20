@@ -239,8 +239,6 @@ as the `equal` algo from the original MPL.
 
 ### Todo (sorted by the difficulty of the implied design choices):
 #### Minor
-- Implement `drop` and `take` algorithms/lazy sequences.
-
 - Consider renaming `any_of`, `all_of` and `none_of` to `any`, `all`
   and `none`.
 

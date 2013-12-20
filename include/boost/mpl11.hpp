@@ -138,6 +138,7 @@ struct Metafunction { };
 #include <boost/mpl11/directional_sequence.hpp>
 #include <boost/mpl11/distance.hpp>
 #include <boost/mpl11/divide.hpp>
+#include <boost/mpl11/drop.hpp>
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
@@ -210,6 +211,7 @@ struct Metafunction { };
 #include <boost/mpl11/shift_right.hpp>
 #include <boost/mpl11/size.hpp>
 #include <boost/mpl11/subtract.hpp>
+#include <boost/mpl11/take.hpp>
 #include <boost/mpl11/transform.hpp>
 #include <boost/mpl11/unpack.hpp>
 #include <boost/mpl11/value_of.hpp>
