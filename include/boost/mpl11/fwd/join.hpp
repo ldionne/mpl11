@@ -28,7 +28,9 @@ namespace boost { namespace mpl11 {
      *
      * @todo
      * Fix the fact that a join_iterator and a random type will compare
-     * unequal instead of failing.
+     * unequal instead of failing. Also, make sure two join iterators can
+     * be compared like equal<X, Y> or equal<Y, X>, which is not the case
+     * right now. This issue is also related to multiple dispatch.
      */
     template <typename Sequence1, typename Sequence2, typename ...SequenceN>
     struct join;

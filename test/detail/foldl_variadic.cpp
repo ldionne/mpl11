@@ -1,32 +1,25 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::foldl`.
+ * Contains unit tests for `boost::mpl11::detail::foldl_variadic`.
  */
 
-#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/detail/foldl_variadic.hpp>
 
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/vector.hpp>
-
-#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
+using detail::foldl_variadic;
 
 template <int> struct x;
 
 template <int ...i>
-using sequence = test::wrapper<
-    test::minimal_requirements<Sequence>, vector<x<i>...>
->;
-
-template <int ...i>
 struct test_with {
     static_assert(equal<
-        foldl_t<sequence<i...>, vector<>, quote<push_back>>,
+        typename foldl_variadic<vector<>, quote<push_back>, x<i>...>::type,
         vector<x<i>...>
     >::value, "");
 };
