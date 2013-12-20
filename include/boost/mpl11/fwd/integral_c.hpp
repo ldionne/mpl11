@@ -64,12 +64,12 @@ namespace boost { namespace mpl11 {
     //! @ingroup datatypes
     //! Alias to `integral_c<long long, N>`; provided for convenience.
     template <long long N>
-    using longlong = integral_c<long long, N>;
+    using llong = integral_c<long long, N>;
 
     //! @ingroup datatypes
     //! Alias to `integral_c<unsigned long long, N>`; provided for convenience.
     template <unsigned long long N>
-    using ulonglong = integral_c<unsigned long long, N>;
+    using ullong = integral_c<unsigned long long, N>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INTEGRAL_C_HPP
