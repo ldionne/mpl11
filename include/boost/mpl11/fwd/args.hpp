@@ -6,17 +6,20 @@
 #ifndef BOOST_MPL11_FWD_ARGS_HPP
 #define BOOST_MPL11_FWD_ARGS_HPP
 
+#include <boost/mpl11/detail/std_size_t.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunction_classes
      *
-     * `MetafunctionClass` returning a `mpl::vector` containing the arguments
+     * `MetafunctionClass` returning a `vector` containing the arguments
      * in the range delimited by [`First`, `Last`).
      *
      * If `Last` is not provided, it defaults to `sizeof...(Args)`, where
-     * `Args...` are the arguments applied to `mpl11::args`.
+     * `Args...` are the arguments `args` is invoked with.
      */
-    template <unsigned long long First = 0, unsigned long long ...Last>
+    template <detail::std_size_t First = 0, detail::std_size_t ...Last>
     struct args;
 }} // end namespace boost::mpl11
 

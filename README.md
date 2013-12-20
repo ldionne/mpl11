@@ -239,9 +239,6 @@ as the `equal` algo from the original MPL.
 
 ### Todo (sorted by the difficulty of the implied design choices):
 #### Minor
-- Optimize the 1-sized range case in `args<>` by specializing
-  `args<First, First + 1>`.
-
 - Implement `drop` and `take` algorithms/lazy sequences.
 
 - Consider renaming `any_of`, `all_of` and `none_of` to `any`, `all`
