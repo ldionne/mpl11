@@ -266,10 +266,6 @@ as the `equal` algo from the original MPL.
   One argument in favor of making it a metafunction class is to make it
   a more generally useful type constructor.
 
-- implement a repeating sequence? it repeats the same type a certain
-  number of time. or would we be better with a way of filling arbitrary
-  sequences with a single type?
-
 - Consider defining more defaults, even if they are sometimes in a circular
   dependency. Document those well.
 

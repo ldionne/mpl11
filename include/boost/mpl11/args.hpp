@@ -10,7 +10,7 @@
 
 #include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/join.hpp>
-#include <boost/mpl11/replicate.hpp>
+#include <boost/mpl11/repeat.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
@@ -38,7 +38,7 @@ namespace boost { namespace mpl11 {
         struct drop<N, vector<Args...>> {
             using type = decltype(
                 drop_impl<
-                    replicate_c_t<N, void*>
+                    repeat_c_t<void*, N>
                 >::apply((detail::no_decay<Args>*)nullptr...)
             );
         };
