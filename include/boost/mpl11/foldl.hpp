@@ -14,11 +14,10 @@
 #include <boost/mpl11/detail/foldl_n.hpp>
 #include <boost/mpl11/detail/foldl_until.hpp>
 #include <boost/mpl11/detail/foldl_variadic.hpp>
+#include <boost/mpl11/detail/optim.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/flip.hpp>
-#include <boost/mpl11/has_optimization.hpp>
-#include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/size.hpp>

@@ -11,17 +11,16 @@
 #include <boost/mpl11/advance.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/no_decay.hpp>
+#include <boost/mpl11/detail/optim.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/fwd/begin.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
 #include <boost/mpl11/fwd/unpack.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
-#include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/integral_c.hpp> // required for fwd/drop.hpp
 #include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/new.hpp>
-#include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/repeat.hpp>
 #include <boost/mpl11/size.hpp>
 
@@ -95,7 +94,8 @@ struct is_empty<drop<N, Sequence>>
 namespace drop_detail {
     template <
         detail::std_size_t N, typename Sequence, typename F,
-        bool = has_optimization<Sequence, optimization::O1_unpack>::value
+        detail::optim =
+            detail::optims_of<Sequence>::value & detail::optim::O1_unpack
     >
     struct unpack_impl;
 
@@ -115,7 +115,7 @@ namespace drop_detail {
     };
 
     template <detail::std_size_t N, typename Sequence, typename F>
-    struct unpack_impl<N, Sequence, F, true>
+    struct unpack_impl<N, Sequence, F, detail::optim::O1_unpack>
         : unpack<
             Sequence,
             variadic_unpack<F, typename repeat_c<void*, N>::type>
@@ -123,7 +123,7 @@ namespace drop_detail {
     { };
 
     template <detail::std_size_t N, typename Sequence, typename F>
-    struct unpack_impl<N, Sequence, F, false>
+    struct unpack_impl<N, Sequence, F, detail::optim::none>
         : unpack<
             iterator_range<
                 typename begin_impl<N, Sequence>::type,
