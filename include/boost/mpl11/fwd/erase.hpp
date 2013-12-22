@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Removes an element at a position in a `RandomExtensibleContainer`.
+     * Removes an element at a position in an `ExtensibleContainer`.
      */
     template <typename Container, typename Position>
     struct erase;

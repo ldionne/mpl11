@@ -252,7 +252,7 @@ static_assert(is_same<push_front_t<vector<y, x>, z>, vector<z, y, x>>::value, ""
 
 
 /////////////////////////////////
-// RandomExtensibleContainer
+// ExtensibleContainer
 /////////////////////////////////
 template <typename V, unsigned long I>
 using iter_at = typename advance_c<typename begin<V>::type, I>::type;

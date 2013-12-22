@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup container_intrinsics
      *
-     * Removes several adjacent elements in a `RandomExtensibleContainer`,
+     * Removes several adjacent elements in an `ExtensibleContainer`,
      * starting from an arbitrary position.
      */
     template <typename Container, typename First, typename Last>

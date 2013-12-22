@@ -146,6 +146,7 @@ struct Metafunction { };
 #include <boost/mpl11/erase_key.hpp>
 #include <boost/mpl11/erase_keys.hpp>
 #include <boost/mpl11/erase_range.hpp>
+#include <boost/mpl11/extensible_container.hpp>
 #include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/find.hpp>
 #include <boost/mpl11/find_if.hpp>
@@ -205,7 +206,6 @@ struct Metafunction { };
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
-#include <boost/mpl11/random_extensible_container.hpp>
 #include <boost/mpl11/repeat.hpp>
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>

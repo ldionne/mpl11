@@ -1,10 +1,10 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::RandomExtensibleContainer`.
+ * Forward declares `boost::mpl11::ExtensibleContainer`.
  */
 
-#ifndef BOOST_MPL11_FWD_RANDOM_EXTENSIBLE_CONTAINER_HPP
-#define BOOST_MPL11_FWD_RANDOM_EXTENSIBLE_CONTAINER_HPP
+#ifndef BOOST_MPL11_FWD_EXTENSIBLE_CONTAINER_HPP
+#define BOOST_MPL11_FWD_EXTENSIBLE_CONTAINER_HPP
 
 #include <boost/mpl11/fwd/back_extensible_container.hpp>
 #include <boost/mpl11/fwd/front_extensible_container.hpp>
@@ -24,18 +24,18 @@ namespace boost { namespace mpl11 {
      * ## Notation
      * | Expression | Description
      * | ---------- | -----------
-     * | `C`        | A `RandomExtensibleContainer`
+     * | `C`        | An `ExtensibleContainer`
      *
      *
      * ## Valid expressions
-     * | Expression                          | %Type
-     * | ----------                          | -----
-     * | `mpl11::insert<C, Pos, T>::type`    | `RandomExtensibleContainer`
-     * | `insert_range<C, Pos, R>::type`     | `RandomExtensibleContainer`
-     * | `mpl11::erase<C, Pos>::type`        | `RandomExtensibleContainer`
-     * | `erase_range<C, First, Last>::type` | `RandomExtensibleContainer`
+     * | Expression                          | Type
+     * | ----------                          | ----
+     * | `insert<C, Pos, T>::type`           | `ExtensibleContainer`
+     * | `insert_range<C, Pos, R>::type`     | `ExtensibleContainer`
+     * | `erase<C, Pos>::type`               | `ExtensibleContainer`
+     * | `erase_range<C, First, Last>::type` | `ExtensibleContainer`
      */
-    struct RandomExtensibleContainer
+    struct ExtensibleContainer
         : FrontExtensibleContainer, BackExtensibleContainer
     {
         // We have to disambiguate.
@@ -61,4 +61,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FWD_RANDOM_EXTENSIBLE_CONTAINER_HPP
+#endif // !BOOST_MPL11_FWD_EXTENSIBLE_CONTAINER_HPP

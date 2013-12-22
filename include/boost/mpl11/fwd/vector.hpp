@@ -15,8 +15,8 @@ namespace boost { namespace mpl11 {
      *
      * Contiguous sequence of types accessed by index.
      *
-     * `mpl11::vector` is a `RandomAccessSequence` and a
-     * `RandomExtensibleContainer`.
+     * `mpl11::vector` is a `RandomAccessSequence` and an
+     * `ExtensibleContainer`.
      */
     template <typename ...Elements>
     struct vector;

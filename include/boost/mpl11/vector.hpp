@@ -14,6 +14,7 @@
 #include <boost/mpl11/detail/index_sequence.hpp>
 #include <boost/mpl11/detail/nested_alias.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/extensible_container.hpp>
 #include <boost/mpl11/fwd/advance.hpp>
 #include <boost/mpl11/fwd/at.hpp>
 #include <boost/mpl11/fwd/back.hpp>
@@ -48,7 +49,6 @@
 #include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
-#include <boost/mpl11/random_extensible_container.hpp>
 #include <boost/mpl11/unpack.hpp>
 
 
@@ -166,7 +166,7 @@ struct less<
 //////////////////////////////////////////////////////////////////////////////
 template <typename ...T, typename Default>
 struct class_of<vector<T...>, Default>
-    : inherit<RandomAccessSequence, RandomExtensibleContainer>
+    : inherit<RandomAccessSequence, ExtensibleContainer>
 { };
 
 template <typename ...T>
