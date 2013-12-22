@@ -164,6 +164,7 @@ struct Metafunction { };
 #include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/hash.hpp>
 #include <boost/mpl11/hashable.hpp>
+#include <boost/mpl11/head.hpp>
 #include <boost/mpl11/hset.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
@@ -211,6 +212,7 @@ struct Metafunction { };
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>
 #include <boost/mpl11/subtract.hpp>
+#include <boost/mpl11/tail.hpp>
 #include <boost/mpl11/take.hpp>
 #include <boost/mpl11/transform.hpp>
 #include <boost/mpl11/unpack.hpp>
