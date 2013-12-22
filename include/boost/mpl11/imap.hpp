@@ -37,7 +37,7 @@ namespace imap_detail {
             template <typename Self>
             struct deref_impl {
                 static_assert(
-                detail::dependent_on<Self>::template value<bool, false>(),
+                detail::dependent_on<Self>::value(false),
                 "Trying to dereference a past-the-end `imap` iterator.");
 
                 struct type;
@@ -46,7 +46,7 @@ namespace imap_detail {
             template <typename Self>
             struct next_impl {
                 static_assert(
-                detail::dependent_on<Self>::template value<bool, false>(),
+                detail::dependent_on<Self>::value(false),
                 "Trying to increment a past-the-end `imap` iterator.");
 
                 struct type;

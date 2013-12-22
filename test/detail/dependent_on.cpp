@@ -14,19 +14,17 @@ using detail::is_same;
 
 template <typename T>
 struct never_instantiated {
-    static_assert(dependent_on<T>::template value<bool, false>(), "");
+    static_assert(dependent_on<T>::value(false), "");
     using would_fail = typename dependent_on<T>::template
                             type<int>::because_int_has_no_such_member_type;
 };
 
-static_assert(is_same<
-    dependent_on<struct anything>::type<struct some_type>,
-    struct some_type
->::value, "");
+struct x; struct y;
+static_assert(is_same<dependent_on<x>::type<y>, y>::value, "");
 
-static_assert(dependent_on<struct anything>::value<int, 0>() == 0, "");
-static_assert(dependent_on<struct anything>::value<int, 1>() == 1, "");
-static_assert(dependent_on<struct anything>::value<int, 2>() == 2, "");
+static_assert(dependent_on<x>::value(0) == 0, "");
+static_assert(dependent_on<x>::value(1) == 1, "");
+static_assert(dependent_on<x>::value(2) == 2, "");
 
 
 int main() { }

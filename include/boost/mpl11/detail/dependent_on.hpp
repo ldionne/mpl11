@@ -12,8 +12,8 @@ namespace boost { namespace mpl11 { namespace detail {
         template <typename T>
         using type = T;
 
-        template <typename T, T x>
-        static constexpr T value() { return x; }
+        template <typename T>
+        static constexpr T value(T x) { return x; }
     };
 }}} // end namespace boost::mpl11::detail
 

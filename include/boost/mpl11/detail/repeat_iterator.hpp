@@ -35,7 +35,7 @@ namespace boost { namespace mpl11 { namespace detail {
 namespace boost { namespace mpl11 {
     template <typename T>
     struct next<detail::repeat_iterator<T, 0>> {
-        static_assert(detail::dependent_on<T>::template value<bool, false>(),
+        static_assert(detail::dependent_on<T>::value(false),
         "Invalid usage of `next`: "
         "Incrementing a past-the-end `repeat_iterator`.");
 
@@ -49,7 +49,7 @@ namespace boost { namespace mpl11 {
 
     template <typename T>
     struct deref<detail::repeat_iterator<T, 0>> {
-        static_assert(detail::dependent_on<T>::template value<bool, false>(),
+        static_assert(detail::dependent_on<T>::value(false),
         "Invalid usage of `next`: "
         "Dereferencing a past-the-end `repeat_iterator`.");
 

@@ -92,7 +92,7 @@ template <typename ...T>
 struct next<vector_detail::iterator<vector<T...>, sizeof...(T)>> {
     struct type;
 
-    static_assert(detail::dependent_on<type>::template value<bool, false>(),
+    static_assert(detail::dependent_on<type>::value(false),
     "Invalid usage of `next`: "
     "Incrementing a past-the-end iterator of a `vector`.");
 };
@@ -106,7 +106,7 @@ template <typename ...T>
 struct deref<vector_detail::iterator<vector<T...>, sizeof...(T)>> {
     struct type;
 
-    static_assert(detail::dependent_on<type>::template value<bool, false>(),
+    static_assert(detail::dependent_on<type>::value(false),
     "Invalid usage of `deref`: "
     "Dereferencing a past-the-end iterator of a `vector`.");
 };
@@ -126,7 +126,7 @@ template <typename V>
 struct prev<vector_detail::iterator<V, 0>> {
     struct type;
 
-    static_assert(detail::dependent_on<type>::template value<bool, false>(),
+    static_assert(detail::dependent_on<type>::value(false),
     "Invalid usage of `prev`: "
     "Decrementing an iterator to the beginning of a `vector`.");
 };
