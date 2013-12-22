@@ -10,10 +10,10 @@
 
 #include <boost/mpl11/advance.hpp>
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/fwd/begin.hpp>
+#include <boost/mpl11/fwd/identity.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
 #include <boost/mpl11/fwd/unpack.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
@@ -103,12 +103,12 @@ namespace drop_detail {
     template <typename F, typename ...Head>
     struct variadic_unpack<F, vector<Head...>> {
         template <typename ...Tail>
-        static auto apply_tail(Head..., detail::no_decay<Tail>*...)
+        static auto apply_tail(Head..., identity<Tail>*...)
             -> mpl11::apply<F, Tail...>;
 
         template <typename ...Args>
         using apply = decltype(
-            apply_tail((detail::no_decay<Args>*)nullptr...)
+            apply_tail((identity<Args>*)nullptr...)
         );
     };
 

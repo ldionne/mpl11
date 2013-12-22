@@ -13,7 +13,6 @@
 #include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/detail/dependent_on.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/forward_iterator.hpp>
 #include <boost/mpl11/fwd/class_of.hpp>
@@ -94,10 +93,10 @@ namespace imap_detail {
 
         using iterator<Rest...>::at_key;
         template <typename Default>
-        static auto at_key(detail::no_decay<Key>*) -> second<Current>;
+        static auto at_key(identity<Key>*) -> second<Current>;
 
         using iterator<Rest...>::has_key;
-        static auto has_key(detail::no_decay<Key>*) -> true_;
+        static auto has_key(identity<Key>*) -> true_;
     };
 
     struct imap_class final : AssociativeSequence, AssociativeContainer {
@@ -129,7 +128,7 @@ namespace imap_detail {
         struct at_key_def_impl<imap<Elements...>, Key, Default>
             : decltype(
                 iterator<Elements...>::template at_key<Default>(
-                    (detail::no_decay<Key>*)nullptr
+                    (identity<Key>*)nullptr
                 )
             )
         { };
@@ -138,7 +137,7 @@ namespace imap_detail {
         struct has_key_impl<imap<Elements...>, Key>
             : decltype(
                 iterator<Elements...>::has_key(
-                    (detail::no_decay<Key>*)nullptr
+                    (identity<Key>*)nullptr
                 )
             )
         { };

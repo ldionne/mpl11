@@ -8,8 +8,8 @@
 
 #include <boost/mpl11/fwd/args.hpp>
 
-#include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/identity.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/repeat.hpp>
 #include <boost/mpl11/vector.hpp>
@@ -32,7 +32,7 @@ namespace args_detail {
     template <typename ...Head>
     struct drop_impl<vector<Head...>> {
         template <typename ...Tail>
-        static vector<Tail...> apply(Head..., detail::no_decay<Tail>*...);
+        static vector<Tail...> apply(Head..., identity<Tail>*...);
     };
 
     template <std_size_t N, typename ...Args>
@@ -40,7 +40,7 @@ namespace args_detail {
         using type = decltype(
             drop_impl<
                 repeat_c_t<void*, N>
-            >::apply((detail::no_decay<Args>*)nullptr...)
+            >::apply((identity<Args>*)nullptr...)
         );
     };
 

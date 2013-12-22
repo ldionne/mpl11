@@ -8,8 +8,8 @@
 
 #include <boost/mpl11/fwd/arg.hpp>
 
-#include <boost/mpl11/detail/no_decay.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/identity.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/repeat.hpp>
 
@@ -22,7 +22,7 @@ namespace boost { namespace mpl11 {
         template <typename ...Ignore>
         struct arg_impl<vector<Ignore...>> {
             template <typename Nth>
-            static Nth apply(Ignore..., detail::no_decay<Nth>*, ...);
+            static Nth apply(Ignore..., identity<Nth>*, ...);
         };
     } // end namespace arg_detail
 
@@ -36,8 +36,8 @@ namespace boost { namespace mpl11 {
 
             using type = decltype(
                 arg_detail::arg_impl<
-                    repeat_c_t<void*, N>
-                >::apply((detail::no_decay<Args>*)nullptr...)
+                    typename repeat_c<void*, N>::type
+                >::apply((identity<Args>*)nullptr...)
             );
         };
     };
