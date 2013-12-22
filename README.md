@@ -154,8 +154,16 @@ This is a list of rationales for some design decisions that I made. If you
 have a good reason to think that I made a bad decision, __please__ open an
 issue so we can discuss.
 
+### Why do we provide a *_t alias even for integral metafunctions?
+This question amounts to asking whether it might be desirable to use
+integral metafunctions eagerly. If the answer is yes, then we should
+definitely provide *_t aliases like for normal metafunctions. It turns
+out that the answer is yes, because some operations (like logical operations)
+can be optimized when we operate on `integral_c`s directly, i.e. when we
+operate on `is_empty<S>::type` instead of `is_empty<S>`, for example.
 
-### `new_` takes a sequence instead of variadic arguments
+
+### Why does `new_` take a sequence instead of variadic arguments?
 The usefulness of the variadic `new_` for containers was first questioned
 when I noticed that it was very easy to emulate it by doing
 
@@ -249,6 +257,11 @@ as the `equal` algo from the original MPL.
 - Consider taking advantage of operation commutativity when folding. Must see
   if a gain is possible.
 
+- Rename IntegralConstant to Integral.
+
+- Consider renaming the Couple concept.
+
+
 #### Mid
 - add more default implementations of container operations using `new_`?
 
@@ -266,8 +279,6 @@ as the `equal` algo from the original MPL.
 
 - Rename class_of to typeclass or similar, and document the whole thing
   (concepts, minimal requirements, dispatching, etc...).
-
-- Should we provide *_t aliases for boolean metafunctions?
 
 - Investigate major slowdown in args_take after using join<> instead of
   vector_concat<>. Gotta keep things clean while being as fast as
