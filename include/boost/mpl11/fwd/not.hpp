@@ -10,14 +10,11 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup logical_operators
      *
-     * Returns `!F::type`.
+     * Boolean `Integral` representing the logical negation of `F::type`.
      *
      *
      * @note
      * Custom implementations are called with `F::type` instead of `F`.
-     *
-     * @todo
-     * Make it clearer that `not_` is a boolean `IntegralConstant`.
      */
     template <typename F>
     struct not_;

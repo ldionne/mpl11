@@ -25,12 +25,12 @@ namespace boost { namespace mpl11 {
      * | Expression | Description
      * | ---------- | -----------
      * | `S`        | A `RandomAccessSequence`
-     * | `N`        | An `IntegralConstant`
+     * | `N`        | An `Integral`
      *
      *
      * ## Valid expressions
-     * | Expression              | %Type
-     * | ----------              | -----
+     * | Expression              | Type
+     * | ----------              | ----
      * | `mpl11::begin<S>::type` | `RandomAccessIterator`
      * | `mpl11::end<S>::type`   | `RandomAccessIterator`
      * | `mpl11::at<S, N>::type` | Any type

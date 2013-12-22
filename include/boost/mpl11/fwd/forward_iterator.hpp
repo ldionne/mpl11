@@ -35,7 +35,7 @@ namespace boost { namespace mpl11 {
      * | Expression | Description
      * | ---------- | -----------
      * | `I`, `J`   | `ForwardIterator`s
-     * | `N`        | A positive `IntegralConstant`
+     * | `N`        | A non-negative `Integral`
      *
      *
      * ## Definitions
@@ -59,11 +59,11 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression             | %Type
-     * | ----------             | -----
+     * | Expression             | Type
+     * | ----------             | ----
      * | `deref<I>::type`       | Any type
      * | `next<I>::type`        | A `ForwardIterator`
-     * | `distance<I, J>`       | An `IntegralConstant`
+     * | `distance<I, J>`       | An `Integral`
      * | `advance<I, N>::type`  | A `ForwardIterator`
      *
      *

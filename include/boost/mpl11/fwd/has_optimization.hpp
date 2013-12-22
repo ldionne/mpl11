@@ -10,12 +10,10 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Returns whether a given `Optimization` is applicable to a given type.
+     * Boolean `Integral` representing whether the given `Optimization` is
+     * applicable to the given type.
      *
-     * By default, this is equivalent to `mpl11::false_`.
-     *
-     *
-     * @todo Document the fact that this is a Boolean `IntegralConstant`.
+     * By default, this is equivalent to `false_`.
      */
     template <typename T, typename Optimization>
     struct has_optimization;

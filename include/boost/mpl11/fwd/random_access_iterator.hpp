@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
      * | Expression | Description
      * | ---------- | -----------
      * | `I`, `J`   | `RandomAccessIterator`s
-     * | `N`        | An `IntegralConstant`
+     * | `N`        | An `Integral`
      *
      *
      * ## Valid expressions
@@ -35,7 +35,7 @@ namespace boost { namespace mpl11 {
      * | `mpl11::next<I>::type`       | `RandomAccessIterator` | O(1) time
      * | `mpl11::prev<I>::type`       | `RandomAccessIterator` | O(1) time
      * | `mpl11::advance<I, N>::type` | `RandomAccessIterator` | O(1) time
-     * | `mpl11::distance<I, J>`      | `IntegralConstant`     | O(1) time
+     * | `mpl11::distance<I, J>`      | `Integral`             | O(1) time
      *
      *
      * ## Invariants

@@ -38,8 +38,8 @@ namespace boost { namespace mpl11 {
      * | ----------       | -----
      * | `begin<S>::type` | `ForwardIterator`
      * | `end<S>::type`   | `ForwardIterator`
-     * | `length<S>`      | `IntegralConstant`
-     * | `is_empty<S>`    | Boolean `IntegralConstant`
+     * | `length<S>`      | `Integral`
+     * | `is_empty<S>`    | Boolean `Integral`
      *
      *
      * ## Invariants
@@ -58,25 +58,25 @@ namespace boost { namespace mpl11 {
     struct Sequence {
 
 #ifdef BOOST_MPL11_DOXYGEN_INVOKED
-          //! This operation must be provided by the user.
-          template <typename Sequence>
-          struct begin_impl;
+        //! This operation must be provided by the user.
+        template <typename Sequence>
+        struct begin_impl;
 
-          //! This operation must be provided by the user.
-          template <typename Sequence>
-          struct end_impl;
+        //! This operation must be provided by the user.
+        template <typename Sequence>
+        struct end_impl;
 #endif
 
-          //! Returns the distance between both ends of the sequence.
-          template <typename Sequence>
-          struct length_impl;
+        //! Returns the distance between both ends of the sequence.
+        template <typename Sequence>
+        struct length_impl;
 
-          /*!
-           * Returns whether `begin<%Sequence>::type` is equal to
-           * `end<%Sequence>::type`.
-           */
-          template <typename Sequence>
-          struct is_empty_impl;
+        /*!
+         * Returns whether `begin<%Sequence>::type` is equal to
+         * `end<%Sequence>::type`.
+         */
+        template <typename Sequence>
+        struct is_empty_impl;
     };
 }} // end namespace boost::mpl11
 

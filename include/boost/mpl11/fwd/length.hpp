@@ -12,7 +12,7 @@ namespace boost { namespace mpl11 {
      *
      * Returns the number of elements contained in a `Sequence`.
      *
-     * The length of a sequence is a non-negative `IntegralConstant`.
+     * The length of a sequence is a non-negative `Integral`.
      */
     template <typename Sequence>
     struct length;

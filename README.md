@@ -257,8 +257,6 @@ as the `equal` algo from the original MPL.
 - Consider taking advantage of operation commutativity when folding. Must see
   if a gain is possible.
 
-- Rename IntegralConstant to Integral.
-
 - Consider renaming the Couple concept.
 
 
@@ -292,7 +290,7 @@ as the `equal` algo from the original MPL.
   filter could be used? if count was optimized for filter, we could have
   the same effect?
 
-- find a way to have fast arithmetic operations on sequences of IntegralConstants.
+- find a way to have fast arithmetic operations on sequences of Integrals.
   I think vectorized sum is the most basic instance of count_if:
   count_if adds 1 or 0 depending on the Predicate
 

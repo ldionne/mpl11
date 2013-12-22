@@ -15,8 +15,8 @@ namespace boost { namespace mpl11 {
      *
      * Moves `Iterator` by the distance `N`.
      *
-     * `N` must be an `IntegralConstant`. The sign of `N` depends on the
-     * concept modeled by `Iterator`; see the concept-specific documentation.
+     * `N` must be an `Integral`. The sign of `N` depends on the concept
+     * modeled by `Iterator`; see the concept-specific documentation.
      */
     template <typename Iterator, typename N>
     struct advance;

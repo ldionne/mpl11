@@ -22,15 +22,14 @@ namespace boost { namespace mpl11 {
      * Two metatypes are said to be compatible w.r.t. comparison operators if
      * it makes sense to compare them. For example, it makes sense to compare
      * two `Couple`s, but it might not make sense to compare a `Couple` with
-     * an `IntegralConstant`.
+     * an `Integral`.
      *
      * Comparison operators are more than mere metafunctions: they are full-
-     * fledged boolean `IntegralConstant`s returning the result of the
-     * comparison. Enforcing this convention has proven to increase the
-     * usability of these operators. Because of this, when writing custom
-     * comparison operators, one must make sure to provide a valid boolean
-     * `IntegralConstant` instead of a simple metafunction returning a
-     * boolean `IntegralConstant`.
+     * fledged boolean `Integral`s returning the result of the comparison.
+     * Enforcing this convention has proven to increase the usability of
+     * these operators. Because of this, when writing custom comparison
+     * operators, one must make sure to provide a valid boolean `Integral`
+     * instead of a simple metafunction returning a boolean `Integral`.
      *
      * Unlike in normal C++, comparison operators may be chained (as seen
      * in mathematics and in Python). Therefore, for any comparison operator
@@ -51,7 +50,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * %Type implementing the `==` and `!=` C++ operators.
+     * Type implementing the `==` and `!=` C++ operators.
      *
      *
      * ## Notation
@@ -61,10 +60,10 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression               | %Type
-     * | ----------               | -----
-     * | `mpl11::equal<T, U>`     | Boolean `IntegralConstant`
-     * | `mpl11::not_equal<T, U>` | Boolean `IntegralConstant`
+     * | Expression               | Type
+     * | ----------               | ----
+     * | `mpl11::equal<T, U>`     | Boolean `Integral`
+     * | `mpl11::not_equal<T, U>` | Boolean `Integral`
      */
     struct Comparable {
 

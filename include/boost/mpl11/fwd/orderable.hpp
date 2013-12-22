@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup concepts
      *
-     * %Type implementing the `<`, `<=`, `>` and `>=` C++ operators.
+     * Type implementing the `<`, `<=`, `>` and `>=` C++ operators.
      *
      *
      * ## Notation
@@ -20,12 +20,12 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression                          | %Type
-     * | ----------                          | -----
-     * | `mpl11::less<A0, ..., An>`          | Boolean `IntegralConstant`
-     * | `mpl11::less_equal<A0, ..., An>`    | Boolean `IntegralConstant`
-     * | `mpl11::greater<A0, ..., An>`       | Boolean `IntegralConstant`
-     * | `mpl11::greater_equal<A0, ..., An>` | Boolean `IntegralConstant`
+     * | Expression                   | Type
+     * | ----------                   | ----
+     * | `less<A0, ..., An>`          | Boolean `Integral`
+     * | `less_equal<A0, ..., An>`    | Boolean `Integral`
+     * | `greater<A0, ..., An>`       | Boolean `Integral`
+     * | `greater_equal<A0, ..., An>` | Boolean `Integral`
      */
     struct Orderable {
 
@@ -35,15 +35,15 @@ namespace boost { namespace mpl11 {
         struct less_impl;
 #endif
 
-        //! Equivalent to `not_<mpl11::less<Y, X>>`.
+        //! Equivalent to `not_<less<Y, X>>`.
         template <typename X, typename Y>
         struct less_equal_impl;
 
-        //! Equivalent to `mpl11::less<Y, X>`.
+        //! Equivalent to `less<Y, X>`.
         template <typename X, typename Y>
         struct greater_impl;
 
-        //! Equivalent to `not_<mpl11::less<X, Y>>`.
+        //! Equivalent to `not_<less<X, Y>>`.
         template <typename X, typename Y>
         struct greater_equal_impl;
     };

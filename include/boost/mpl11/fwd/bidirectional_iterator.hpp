@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 {
      * | Expression | Description
      * | ---------- | -----------
      * | `I`        | A `BidirectionalIterator`
-     * | `N`        | An `IntegralConstant`
+     * | `N`        | An `Integral`
      *
      *
      * ## Definitions
@@ -35,8 +35,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Valid expressions
-     * | Expression            | %Type
-     * | ----------            | -----
+     * | Expression            | Type
+     * | ----------            | ----
      * | `next<I>::type`       | A `BidirectionalIterator`
      * | `prev<I>::type`       | A `BidirectionalIterator`
      * | `advance<I, N>::type` | A `BidirectionalIterator`

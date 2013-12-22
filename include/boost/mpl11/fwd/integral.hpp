@@ -1,10 +1,10 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::IntegralConstant`.
+ * Forward declares `boost::mpl11::Integral`.
  */
 
-#ifndef BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP
-#define BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP
+#ifndef BOOST_MPL11_FWD_INTEGRAL_HPP
+#define BOOST_MPL11_FWD_INTEGRAL_HPP
 
 #include <boost/mpl11/fwd/arithmetic.hpp>
 #include <boost/mpl11/fwd/bitwise.hpp>
@@ -19,9 +19,9 @@ namespace boost { namespace mpl11 {
      *
      * Holder for a compile-time value of an integral type.
      *
-     * Every `IntegralConstant` is also a nullary `Metafunction` returning
-     * itself. An integral constant object is implicitly convertible to the
-     * corresponding runtime value of the wrapped integral type.
+     * Every `Integral` is also a nullary `Metafunction` returning itself.
+     * An integral object is implicitly convertible to the corresponding
+     * runtime value of the wrapped integral type.
      *
      *
      * ## Refinement of
@@ -31,7 +31,7 @@ namespace boost { namespace mpl11 {
      * ## Notation
      * | Expression | Description
      * | ---------- | -----------
-     * | `N`        | An `IntegralConstant`
+     * | `N`        | An `Integral`
      *
      *
      * ## Valid expressions
@@ -42,37 +42,37 @@ namespace boost { namespace mpl11 {
      * | `N::type`                         | `N`
      * | `constexpr N::value_type c = N{}` |
      */
-    struct IntegralConstant
+    struct Integral
         : Arithmetic, Bitwise, Comparable, Logical, Orderable
     {
         // Logical
         template <typename N> struct not_impl;
 
-#define BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(NAME) \
+#define BOOST_MPL11_INTEGRAL_BINOP(NAME) \
     template <typename M, typename N> struct NAME ## _impl;
 
         // Comparable
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(equal)
+        BOOST_MPL11_INTEGRAL_BINOP(equal)
 
         // Orderable
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(less)
+        BOOST_MPL11_INTEGRAL_BINOP(less)
 
         // Arithmetic
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(add)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(subtract)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(divide)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(multiply)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(modulo)
+        BOOST_MPL11_INTEGRAL_BINOP(add)
+        BOOST_MPL11_INTEGRAL_BINOP(subtract)
+        BOOST_MPL11_INTEGRAL_BINOP(divide)
+        BOOST_MPL11_INTEGRAL_BINOP(multiply)
+        BOOST_MPL11_INTEGRAL_BINOP(modulo)
 
         // Bitwise
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(shift_left)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(shift_right)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(bitxor)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(bitor)
-        BOOST_MPL11_INTEGRAL_CONSTANT_BINOP(bitand)
+        BOOST_MPL11_INTEGRAL_BINOP(shift_left)
+        BOOST_MPL11_INTEGRAL_BINOP(shift_right)
+        BOOST_MPL11_INTEGRAL_BINOP(bitxor)
+        BOOST_MPL11_INTEGRAL_BINOP(bitor)
+        BOOST_MPL11_INTEGRAL_BINOP(bitand)
 
-#undef BOOST_MPL11_INTEGRAL_CONSTANT_BINOP
+#undef BOOST_MPL11_INTEGRAL_BINOP
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FWD_INTEGRAL_CONSTANT_HPP
+#endif // !BOOST_MPL11_FWD_INTEGRAL_HPP
