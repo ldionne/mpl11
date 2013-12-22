@@ -5,9 +5,8 @@
 
 #include <boost/mpl11/detail/foldl_n.hpp>
 
-#include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/head.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/sequence.hpp>
@@ -30,14 +29,14 @@ template <int ...i>
 struct gather {
     template <int n>
     struct first_n {
-        template <typename Gathered, typename Iter>
+        template <typename Gathered, typename Tail>
         struct Accumulator
-            : push_back<Gathered, deref_t<Iter>>
+            : push_back<Gathered, head_t<Tail>>
         { };
 
         using Gathered = typename foldl_n<
             n,
-            begin_t<sequence<i...>>,
+            sequence<i...>,
             vector<>,
             quote<Accumulator>
         >::type;

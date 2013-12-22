@@ -31,18 +31,12 @@ namespace boost { namespace mpl11 {
 
     template <typename S1, typename S2>
     struct DirectionalSequence::equal_impl
-        : detail::std_equal<
-            begin_t<S1>, end_t<S1>,
-            begin_t<S2>, end_t<S2>
-        >
+        : detail::std_equal<S1, S2>
     { };
 
     template <typename S1, typename S2>
     struct DirectionalSequence::less_impl
-        : detail::lexicographical_compare<
-            begin_t<S1>, end_t<S1>,
-            begin_t<S2>, end_t<S2>
-        >
+        : detail::lexicographical_compare<S1, S2>
     { };
 }} // end namespace boost::mpl11
 

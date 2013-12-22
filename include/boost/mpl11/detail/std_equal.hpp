@@ -6,59 +6,51 @@
 #ifndef BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 #define BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 
-#include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/fwd/is_empty.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Returns whether two iterator-delimited ranges are equal by comparing
-     * their elements side-by-side.
+     * Returns whether two sequences are equal by comparing their
+     * elements side-by-side.
+     *
+     * @todo implement this with fold
      */
     template <
-        typename F1, typename L1,
-        typename F2, typename L2,
-        bool = equal<F1, L1>::value,
-        bool = equal<F2, L2>::value
+        typename S1, typename S2,
+        bool = is_empty<S1>::value,
+        bool = is_empty<S2>::value
     >
     struct std_equal;
 }}} // end namespace boost::mpl11::detail
 
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/head.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/next.hpp>
+#include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/tail.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
-    template <typename F1, typename L1, typename F2, typename L2, bool, bool>
+    template <typename S1, typename S2, bool, bool>
     struct std_equal
         : false_
     { };
 
-    template <typename F1, typename L1, typename F2, typename L2>
-    struct std_equal<F1, L1, F2, L2, true, true>
+    template <typename S1, typename S2>
+    struct std_equal<S1, S2, true, true>
         : true_
     { };
 
-    namespace std_equal_detail {
-        template <typename F1, typename L1, typename F2, typename L2>
-        struct lazy_next_step
-            : std_equal<
-                next_t<F1>, L1,
-                next_t<F2>, L2
-            >
-        { };
-    } // end namespace std_equal_detail
-
-    template <typename F1, typename L1, typename F2, typename L2>
-    struct std_equal<F1, L1, F2, L2, false, false>
+    template <typename S1, typename S2>
+    struct std_equal<S1, S2, false, false>
         : and_<
-            equal<deref_t<F1>, deref_t<F2>>,
-            std_equal_detail::lazy_next_step<F1, L1, F2, L2>
+            equal<head_t<S1>, head_t<S2>>,
+            std_equal<tail_t<S1>, tail_t<S2>>
         >
     { };
 }}} // end namespace boost::mpl11::detail

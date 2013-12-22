@@ -6,10 +6,9 @@
 #include <boost/mpl11/detail/foldl_until.hpp>
 
 #include <boost/mpl11/always.hpp>
-#include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/head.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/quote.hpp>
@@ -34,14 +33,14 @@ template <int ...i>
 struct gather {
     template <typename Predicate>
     struct until_pred {
-        template <typename Gathered, typename Iter>
+        template <typename Gathered, typename ToFold>
         struct Accumulator
-            : push_back<Gathered, deref_t<Iter>>
+            : push_back<Gathered, head_t<ToFold>>
         { };
 
         using Gathered = typename foldl_until<
             Predicate,
-            begin_t<sequence<i...>>,
+            sequence<i...>,
             vector<>,
             quote<Accumulator>
         >::type;
@@ -54,9 +53,9 @@ struct gather {
 
     template <int n>
     struct Predicate {
-        template <typename Iter>
+        template <typename ToFold>
         struct apply
-            : is_same<deref_t<Iter>, x<n>>
+            : is_same<head_t<ToFold>, x<n>>
         { };
     };
 
