@@ -27,12 +27,12 @@ namespace boost { namespace mpl11 {
      * a `Metafunction` when the sequence is infinite.
      */
     template <typename T, typename N =
-        integral_c<detail::std_size_t, static_cast<detail::std_size_t>(-1)>
+        size_t<static_cast<detail::std_size_t>(-1)>
     >
     struct repeat;
 
     template <typename T, typename N =
-        integral_c<detail::std_size_t, static_cast<detail::std_size_t>(-1)>
+        size_t<static_cast<detail::std_size_t>(-1)>
     >
     using repeat_t = typename repeat<T, N>::type;
 
@@ -40,11 +40,10 @@ namespace boost { namespace mpl11 {
      * @ingroup metafunctions
      * @ingroup sequences
      *
-     * Alias to `repeat<T, integral_c<std::size_t, N>>`; provided
-     * for convenience.
+     * Alias to `repeat<T, size_t<N>>`; provided for convenience.
      */
     template <typename T, detail::std_size_t N>
-    using repeat_c = repeat<T, integral_c<detail::std_size_t, N>>;
+    using repeat_c = repeat<T, size_t<N>>;
 
     template <typename T, detail::std_size_t N>
     using repeat_c_t = typename repeat_c<T, N>::type;

@@ -6,13 +6,16 @@
 #ifndef BOOST_MPL11_FWD_ARG_HPP
 #define BOOST_MPL11_FWD_ARG_HPP
 
+#include <boost/mpl11/detail/std_size_t.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunction_classes
      *
      * `MetafunctionClass` returning the `N`th of its arguments.
      */
-    template <unsigned long long N>
+    template <detail::std_size_t N>
     struct arg;
 }} // end namespace boost::mpl11
 

@@ -67,13 +67,12 @@ struct end<take<N, Sequence>>
 template <typename N, typename Sequence>
 struct length<take<N, Sequence>>
     : take_detail::assert_usage<N>,
-      integral_c<detail::std_size_t,
-        (   // min(N, length<Sequence>)
+      size_t<(
+            // min(N, length<Sequence>)
             N::value < length<Sequence>::value
                 ? N::value
                 : length<Sequence>::value
-        )
-      >
+      )>
 { };
 
 template <typename N, typename Sequence>

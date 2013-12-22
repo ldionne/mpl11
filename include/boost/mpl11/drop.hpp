@@ -74,13 +74,11 @@ struct end<drop<N, Sequence>>
 template <typename N, typename Sequence>
 struct length<drop<N, Sequence>>
     : drop_detail::assert_usage<N>,
-      integral_c<detail::std_size_t,
-        (
-            N::value >= length<Sequence>::value
-                ? 0
-                : length<Sequence>::value - N::value
-        )
-      >
+      size_t<(
+        N::value >= length<Sequence>::value
+            ? 0
+            : length<Sequence>::value - N::value
+      )>
 { };
 
 template <typename N, typename Sequence>

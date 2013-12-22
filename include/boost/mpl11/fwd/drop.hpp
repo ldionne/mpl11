@@ -37,11 +37,11 @@ namespace boost { namespace mpl11 {
      * @ingroup algorithms
      * @ingroup sequences
      *
-     * Alias to `drop<integral_c<std::size_t, N>, %Sequence>`; provided
+     * Alias to `drop<size_t<N>, %Sequence>`; provided
      * for convenience.
      */
     template <detail::std_size_t N, typename Sequence>
-    using drop_c = drop<integral_c<detail::std_size_t, N>, Sequence>;
+    using drop_c = drop<size_t<N>, Sequence>;
 
     template <detail::std_size_t N, typename Sequence>
     using drop_c_t = typename drop_c<N, Sequence>::type;

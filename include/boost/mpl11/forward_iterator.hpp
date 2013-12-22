@@ -10,6 +10,7 @@
 
 #include <boost/mpl11/comparable.hpp> // Required by fwd/forward_iterator.hpp
 #include <boost/mpl11/detail/move.hpp>
+#include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/next.hpp>
@@ -29,20 +30,17 @@ namespace boost { namespace mpl11 {
     };
 
     namespace forward_iterator_detail {
-        //! @todo Use a generic size/distance type.
-        using DistanceT = unsigned long long;
-
         template <
-            typename First, typename Last, DistanceT Dist,
+            typename First, typename Last, detail::std_size_t Dist,
             bool Done = equal<First, Last>::value>
         struct count_between;
 
-        template <typename First, typename Last, DistanceT Dist>
+        template <typename First, typename Last, detail::std_size_t Dist>
         struct count_between<First, Last, Dist, true>
             : integral_c<decltype(Dist), Dist>
         { };
 
-        template <typename First, typename Last, DistanceT Dist>
+        template <typename First, typename Last, detail::std_size_t Dist>
         struct count_between<First, Last, Dist, false>
             : count_between<next_t<First>, Last, Dist + 1>
         { };

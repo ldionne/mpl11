@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/arg.hpp>
 
 #include <boost/mpl11/detail/no_decay.hpp>
+#include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/vector.hpp>
 #include <boost/mpl11/repeat.hpp>
 
@@ -25,7 +26,7 @@ namespace boost { namespace mpl11 {
         };
     } // end namespace arg_detail
 
-    template <unsigned long long N>
+    template <detail::std_size_t N>
     struct arg {
         template <typename ...Args>
         struct apply {

@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_INTEGRAL_C_HPP
 #define BOOST_MPL11_FWD_INTEGRAL_C_HPP
 
+#include <boost/mpl11/detail/std_size_t.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup datatypes
@@ -70,6 +73,11 @@ namespace boost { namespace mpl11 {
     //! Alias to `integral_c<unsigned long long, N>`; provided for convenience.
     template <unsigned long long N>
     using ullong = integral_c<unsigned long long, N>;
+
+    //! @ingroup datatypes
+    //! Alias to `integral_c<std::size_t, N>`; provided for convenience.
+    template <detail::std_size_t N>
+    using size_t = integral_c<detail::std_size_t, N>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INTEGRAL_C_HPP

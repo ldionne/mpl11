@@ -8,10 +8,8 @@
 
 #include <boost/mpl11/fwd/count_if.hpp>
 
-#include <boost/mpl11/add.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/foldl.hpp>
-#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
 
@@ -19,19 +17,28 @@ namespace boost { namespace mpl11 {
     namespace count_if_detail {
         template <typename Predicate>
         struct count_pred {
+            template <typename N, typename Element,
+                bool = mpl11::apply<Predicate, Element>::type::value
+            >
+            struct apply;
+
             template <typename N, typename Element>
-            using apply =
-                typename if_<typename mpl11::apply<Predicate, Element>::type,
-                    add<N, ulong<1>>, N
-                >::type;
+            struct apply<N, Element, false> {
+                using type = N;
+            };
+
+            template <typename N, typename Element>
+            struct apply<N, Element, true> {
+                using type = size_t<N::value + 1>;
+            };
         };
     } // end namespace count_if_detail
 
     template <typename Sequence, typename Predicate>
     struct count_if
-        : foldl_t<
-            Sequence, ulong<0>, count_if_detail::count_pred<Predicate>
-        >
+        : foldl<
+            Sequence, size_t<0>, count_if_detail::count_pred<Predicate>
+        >::type
     { };
 }} // end namespace boost::mpl11
 

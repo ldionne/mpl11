@@ -36,11 +36,11 @@ namespace boost { namespace mpl11 {
      * @ingroup algorithms
      * @ingroup sequences
      *
-     * Alias to `take<integral_c<std::size_t, N>, %Sequence>`; provided
+     * Alias to `take<size_t<N>, %Sequence>`; provided
      * for convenience.
      */
     template <detail::std_size_t N, typename Sequence>
-    using take_c = take<integral_c<detail::std_size_t, N>, Sequence>;
+    using take_c = take<size_t<N>, Sequence>;
 
     template <detail::std_size_t N, typename Sequence>
     using take_c_t = typename take_c<N, Sequence>::type;

@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_DETAIL_MOVE_HPP
 #define BOOST_MPL11_DETAIL_MOVE_HPP
 
+#include <boost/mpl11/detail/std_size_t.hpp>
+
+
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
@@ -15,7 +18,7 @@ namespace boost { namespace mpl11 { namespace detail {
     template <
         template <typename ...> class Next,
         typename Iterator,
-        unsigned long long N
+        detail::std_size_t N
     >
     struct move
         : move<Next, typename Next<Iterator>::type, N - 1>

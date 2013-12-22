@@ -201,7 +201,7 @@ struct is_empty<vector<>>
 
 template <typename ...T>
 struct length<vector<T...>>
-    : integral_c<detail::std_size_t, sizeof...(T)>
+    : size_t<sizeof...(T)>
 { };
 
 /////////////////////////////////
