@@ -115,7 +115,7 @@ namespace imap_detail {
         using end_impl = identity<iterator<>>;
 
         //! @todo Remove this once Clang is fixed.
-        using AssociativeSequence::size_impl;
+        using AssociativeSequence::length_impl;
 
         /////////////////////////////////
         // AssociativeSequence

@@ -10,8 +10,8 @@
 #include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/optimization.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/unpack.hpp>
 #include <boost/mpl11/vector.hpp>
 
@@ -28,8 +28,8 @@ struct test_repeat {
         static_assert(is_empty<repeat_c<T, N>>::value == (sizeof...(U) == 0), "");
         static_assert(is_empty<repeat_c_t<T, N>>::value == (sizeof...(U) == 0), "");
 
-        static_assert(size<repeat_c<T, N>>::value == sizeof...(U), "");
-        static_assert(size<repeat_c_t<T, N>>::value == sizeof...(U), "");
+        static_assert(length<repeat_c<T, N>>::value == sizeof...(U), "");
+        static_assert(length<repeat_c_t<T, N>>::value == sizeof...(U), "");
 
         static_assert(equal<
             vector<U...>,
@@ -37,7 +37,7 @@ struct test_repeat {
         >::value, "");
 
         static_assert(has_optimization<
-            repeat_c<T, N>, optimization::O1_size
+            repeat_c<T, N>, optimization::O1_length
         >::value, "");
     };
 };

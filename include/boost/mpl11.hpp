@@ -179,6 +179,7 @@ struct Metafunction { };
 #include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/key_of.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>
 #include <boost/mpl11/logical.hpp>
@@ -209,7 +210,6 @@ struct Metafunction { };
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/subtract.hpp>
 #include <boost/mpl11/take.hpp>
 #include <boost/mpl11/transform.hpp>

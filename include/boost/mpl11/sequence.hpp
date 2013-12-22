@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename S>
-    struct Sequence::size_impl
+    struct Sequence::length_impl
         : distance<begin_t<S>, end_t<S>>
     { };
 

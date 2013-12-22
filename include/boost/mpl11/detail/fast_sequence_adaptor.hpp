@@ -11,7 +11,7 @@
 #include <boost/mpl11/fwd/begin.hpp>
 #include <boost/mpl11/fwd/end.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
-#include <boost/mpl11/fwd/size.hpp>
+#include <boost/mpl11/fwd/length.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -26,8 +26,8 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename Sequence, typename Tag>
-    struct size<detail::fast_sequence_adaptor<Sequence, Tag>>
-        : size<Sequence>
+    struct length<detail::fast_sequence_adaptor<Sequence, Tag>>
+        : length<Sequence>
     { };
 
     template <typename Sequence, typename Tag>

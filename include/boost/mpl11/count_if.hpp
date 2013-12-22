@@ -20,11 +20,10 @@ namespace boost { namespace mpl11 {
         template <typename Predicate>
         struct count_pred {
             template <typename N, typename Element>
-            struct apply
-                : if_t<apply_t<Predicate, Element>,
+            using apply =
+                typename if_<typename mpl11::apply<Predicate, Element>::type,
                     add<N, ulong<1>>, N
-                >
-            { };
+                >::type;
         };
     } // end namespace count_if_detail
 

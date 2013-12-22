@@ -18,10 +18,10 @@
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/flip.hpp>
 #include <boost/mpl11/has_optimization.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/unpack.hpp>
 
 
@@ -30,7 +30,7 @@ namespace foldl_detail {
     template <
         typename Sequence, typename State, typename F,
         bool = has_optimization<Sequence, optimization::O1_unpack>::value,
-        bool = has_optimization<Sequence, optimization::O1_size>::value>
+        bool = has_optimization<Sequence, optimization::O1_length>::value>
     struct foldl_dispatch;
 
     template <typename Sequence, typename State, typename F, bool Any>
@@ -50,7 +50,7 @@ namespace foldl_detail {
     template <typename Sequence, typename State, typename F>
     struct foldl_dispatch<Sequence, State, F, false, true>
         : detail::foldl_n<
-            size<Sequence>::value,
+            length<Sequence>::value,
             typename begin<Sequence>::type,
             State,
             deref_iter<F>

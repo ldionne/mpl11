@@ -21,10 +21,10 @@ namespace boost { namespace mpl11 {
      *
      *
      * ## Definitions
-     * - The size of a sequence is the number of elements it contains.
-     *   The size is a non-negative number.
+     * - The length of a sequence is the number of elements it contains.
+     *   The length is a non-negative number.
      *
-     * - A sequence is empty if its size is zero.
+     * - A sequence is empty if its length is zero.
      *
      *
      * ## Notation
@@ -38,7 +38,7 @@ namespace boost { namespace mpl11 {
      * | ----------       | -----
      * | `begin<S>::type` | `ForwardIterator`
      * | `end<S>::type`   | `ForwardIterator`
-     * | `size<S>`        | `IntegralConstant`
+     * | `length<S>`      | `IntegralConstant`
      * | `is_empty<S>`    | Boolean `IntegralConstant`
      *
      *
@@ -69,7 +69,7 @@ namespace boost { namespace mpl11 {
 
           //! Returns the distance between both ends of the sequence.
           template <typename Sequence>
-          struct size_impl;
+          struct length_impl;
 
           /*!
            * Returns whether `begin<%Sequence>::type` is equal to

@@ -15,8 +15,8 @@
 #include <boost/mpl11/fwd/end.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
 #include <boost/mpl11/integral_c.hpp> // required for fwd/take.hpp
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/new.hpp>
-#include <boost/mpl11/size.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -29,7 +29,7 @@ namespace take_detail {
 
     template <
         detail::std_size_t N, typename Sequence,
-        bool = (N >= size<Sequence>::value)
+        bool = (N >= length<Sequence>::value)
     >
     struct end_impl;
 
@@ -65,13 +65,13 @@ struct end<take<N, Sequence>>
 { };
 
 template <typename N, typename Sequence>
-struct size<take<N, Sequence>>
+struct length<take<N, Sequence>>
     : take_detail::assert_usage<N>,
       integral_c<detail::std_size_t,
-        (   // min(N, size<Sequence>)
-            N::value < size<Sequence>::value
+        (   // min(N, length<Sequence>)
+            N::value < length<Sequence>::value
                 ? N::value
-                : size<Sequence>::value
+                : length<Sequence>::value
         )
       >
 { };

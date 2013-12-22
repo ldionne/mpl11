@@ -9,8 +9,8 @@
 #include <boost/mpl11/container.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/sequence.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/vector.hpp>
 
 #include "minimal_requirements.hpp"
@@ -40,8 +40,8 @@ struct test_one {
     static_assert(equal<vector<apply_t<f, T>...>, Lazy>::value, "");
     static_assert(equal<vector<apply_t<f, T>...>, Eager>::value, "");
 
-    static_assert(size<Lazy>::value == sizeof...(T), "");
-    static_assert(size<Eager>::value == sizeof...(T), "");
+    static_assert(length<Lazy>::value == sizeof...(T), "");
+    static_assert(length<Eager>::value == sizeof...(T), "");
 
     static_assert(is_empty<Lazy>::value == (sizeof...(T) == 0), "");
     static_assert(is_empty<Eager>::value == (sizeof...(T) == 0), "");

@@ -32,6 +32,7 @@
 #include <boost/mpl11/fwd/insert_range.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
 #include <boost/mpl11/fwd/join.hpp>
+#include <boost/mpl11/fwd/length.hpp>
 #include <boost/mpl11/fwd/less.hpp>
 #include <boost/mpl11/fwd/new.hpp>
 #include <boost/mpl11/fwd/next.hpp>
@@ -40,7 +41,6 @@
 #include <boost/mpl11/fwd/prev.hpp>
 #include <boost/mpl11/fwd/push_back.hpp>
 #include <boost/mpl11/fwd/push_front.hpp>
-#include <boost/mpl11/fwd/size.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
@@ -200,7 +200,7 @@ struct is_empty<vector<>>
 { };
 
 template <typename ...T>
-struct size<vector<T...>>
+struct length<vector<T...>>
     : integral_c<detail::std_size_t, sizeof...(T)>
 { };
 
@@ -365,7 +365,7 @@ struct join<vector<T...>, vector<U...>> {
 };
 
 template <typename ...T>
-struct has_optimization<vector<T...>, optimization::O1_size>
+struct has_optimization<vector<T...>, optimization::O1_length>
     : true_
 { };
 

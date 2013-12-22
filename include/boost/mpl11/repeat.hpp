@@ -14,7 +14,7 @@
 #include <boost/mpl11/fwd/end.hpp>
 #include <boost/mpl11/fwd/has_optimization.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
-#include <boost/mpl11/fwd/size.hpp>
+#include <boost/mpl11/fwd/length.hpp>
 #include <boost/mpl11/fwd/unpack.hpp>
 #include <boost/mpl11/integral_c.hpp> // required by fwd/repeat.hpp
 #include <boost/mpl11/join.hpp>
@@ -71,7 +71,7 @@ struct is_empty<repeat<T, N>>
 { };
 
 template <typename T, typename N>
-struct size<repeat<T, N>>
+struct length<repeat<T, N>>
     : repeat_detail::assert_usage<N>,
       N
 { };
@@ -85,7 +85,7 @@ struct unpack<repeat<T, N>, F>
 { };
 
 template <typename T, typename N>
-struct has_optimization<repeat<T, N>, optimization::O1_size>
+struct has_optimization<repeat<T, N>, optimization::O1_length>
     : true_
 { };
 }} // end namespace boost::mpl11

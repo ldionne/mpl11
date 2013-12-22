@@ -12,7 +12,7 @@
 #include <boost/mpl11/begin.hpp>
 #include <boost/mpl11/bidirectional_sequence.hpp> // required by fwd decl
 #include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/size.hpp>
+#include <boost/mpl11/length.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     struct RandomAccessSequence::at_impl {
         static_assert(N::value >= 0,
         "Trying to access a sequence at a negative index.");
-        static_assert(N::value < size<S>::value,
+        static_assert(N::value < length<S>::value,
         "Trying to access a sequence at an index beyond the last element.");
 
         using type = deref_t<advance_t<begin_t<S>, N>>;

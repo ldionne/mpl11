@@ -15,8 +15,8 @@
 #include <boost/mpl11/fwd/deref.hpp>
 #include <boost/mpl11/fwd/end.hpp>
 #include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/fwd/length.hpp>
 #include <boost/mpl11/fwd/next.hpp>
-#include <boost/mpl11/fwd/size.hpp>
 #include <boost/mpl11/min.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/or.hpp>
@@ -53,7 +53,7 @@ namespace zip_detail {
     struct zip_class final : Sequence {
         template <typename Zip> struct begin_impl;
         template <typename Zip> struct end_impl;
-        template <typename Zip> struct size_impl;
+        template <typename Zip> struct length_impl;
 
         template <typename ...Sn>
         struct begin_impl<zip<Sn...>> {
@@ -66,8 +66,8 @@ namespace zip_detail {
         };
 
         template <typename ...Sn>
-        struct size_impl<zip<Sn...>>
-            : min_t<size_t<Sn>...>
+        struct length_impl<zip<Sn...>>
+            : min_t<length_t<Sn>...>
         { };
     };
 } // end namespace zip_detail

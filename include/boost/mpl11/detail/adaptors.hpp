@@ -22,12 +22,12 @@
 #include <boost/mpl11/fwd/has_key.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
 #include <boost/mpl11/fwd/key_of.hpp>
+#include <boost/mpl11/fwd/length.hpp>
 #include <boost/mpl11/fwd/less.hpp>
 #include <boost/mpl11/fwd/less_equal.hpp>
 #include <boost/mpl11/fwd/next.hpp>
 #include <boost/mpl11/fwd/not_equal.hpp>
 #include <boost/mpl11/fwd/prev.hpp>
-#include <boost/mpl11/fwd/size.hpp>
 #include <boost/mpl11/fwd/value_of.hpp>
 
 
@@ -119,7 +119,7 @@ namespace boost { namespace mpl11 { namespace detail {
         using end_impl = end<adapted_t<Sequence>>;
 
         template <typename Sequence>
-        using size_impl = size<adapted_t<Sequence>>;
+        using length_impl = length<adapted_t<Sequence>>;
 
         template <typename Sequence>
         using is_empty_impl = is_empty<adapted_t<Sequence>>;

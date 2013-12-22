@@ -8,8 +8,8 @@
 #include <boost/mpl11/container.hpp>
 #include <boost/mpl11/equal.hpp>
 #include <boost/mpl11/is_empty.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/sequence.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/vector.hpp>
 
 #include "minimal_requirements.hpp"
@@ -39,7 +39,7 @@ struct do_drop {
             struct assertions {
                 static_assert(equal<vector<x<kept>...>, Kept>::value, "");
                 static_assert(is_empty<Kept>::value == (sizeof...(kept) == 0), "");
-                static_assert(size<Kept>::value == sizeof...(kept), "");
+                static_assert(length<Kept>::value == sizeof...(kept), "");
             };
 
             static constexpr auto trigger_assertions =

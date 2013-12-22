@@ -23,10 +23,10 @@ namespace boost { namespace mpl11 {
         /*!
          * @ingroup optimizations
          *
-         * Optimization for `Sequence`s whose `mpl11::size` operation
+         * Optimization for `Sequence`s whose `mpl11::length` operation
          * returns in O(1).
          */
-        struct O1_size BOOST_MPL11_DOXYGEN_ONLY({ });
+        struct O1_length BOOST_MPL11_DOXYGEN_ONLY({ });
 
         /*!
          * @ingroup optimizations

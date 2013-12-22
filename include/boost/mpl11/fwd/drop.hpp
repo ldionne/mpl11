@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 {
      * `Sequence` containing the suffix of another sequence after
      * the first `N` elements.
      *
-     * If `N` is greater than the size of the sequence, `drop` is an empty
+     * If `N` is greater than the length of the sequence, `drop` is an empty
      * `Sequence`. Additionally, `drop` is an algorithm returning a new
      * `Container` created with the elements of `drop`. To use `drop` as
      * an algorithm, `%Sequence` must be a `Container`.

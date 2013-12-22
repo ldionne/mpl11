@@ -20,10 +20,10 @@
 #include <boost/mpl11/has_optimization.hpp>
 #include <boost/mpl11/integral_c.hpp> // required for fwd/drop.hpp
 #include <boost/mpl11/iterator_range.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/repeat.hpp>
-#include <boost/mpl11/size.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -36,7 +36,7 @@ namespace drop_detail {
 
     template <
         detail::std_size_t N, typename Sequence,
-        bool = N >= size<Sequence>::value
+        bool = N >= length<Sequence>::value
     >
     struct begin_impl;
 
@@ -72,13 +72,13 @@ struct end<drop<N, Sequence>>
 { };
 
 template <typename N, typename Sequence>
-struct size<drop<N, Sequence>>
+struct length<drop<N, Sequence>>
     : drop_detail::assert_usage<N>,
       integral_c<detail::std_size_t,
         (
-            N::value >= size<Sequence>::value
+            N::value >= length<Sequence>::value
                 ? 0
-                : size<Sequence>::value - N::value
+                : length<Sequence>::value - N::value
         )
       >
 { };
@@ -86,7 +86,7 @@ struct size<drop<N, Sequence>>
 template <typename N, typename Sequence>
 struct is_empty<drop<N, Sequence>>
     : drop_detail::assert_usage<N>,
-      bool_<(N::value >= size<Sequence>::value)>
+      bool_<(N::value >= length<Sequence>::value)>
 { };
 
 /////////////////////////////////

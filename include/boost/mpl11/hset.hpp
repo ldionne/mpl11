@@ -105,7 +105,7 @@ namespace hset_detail {
         using end_impl = end<contents<Set>>;
 
         //! @todo Remove this once Clang is fixed.
-        using AssociativeSequence::size_impl;
+        using AssociativeSequence::length_impl;
 
         /////////////////////////////////
         // AssociativeSequence

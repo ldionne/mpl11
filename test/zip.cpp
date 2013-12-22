@@ -7,8 +7,8 @@
 
 #include <boost/mpl11/container.hpp>
 #include <boost/mpl11/equal.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/sequence.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/vector.hpp>
 
 #include "minimal_requirements.hpp"
@@ -44,8 +44,8 @@ struct test_zip<sequence<First...>, Rest...> {
         static_assert(equal<vector<Elements...>, Lazy>::value, "");
         static_assert(equal<vector<Elements...>, Eager>::value, "");
 
-        static_assert(size<Lazy>::value == sizeof...(Elements), "");
-        static_assert(size<Eager>::value == sizeof...(Elements), "");
+        static_assert(length<Lazy>::value == sizeof...(Elements), "");
+        static_assert(length<Eager>::value == sizeof...(Elements), "");
     };
 };
 

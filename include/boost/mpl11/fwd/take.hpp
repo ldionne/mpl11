@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
      *
      * `Sequence` containing the first `N` elements of another `Sequence`.
      *
-     * If `N` is greater than the size of the sequence, `take` contains the
+     * If `N` is greater than the length of the sequence, `take` contains the
      * all the elements of the sequence. Additionally, `take` is an algorithm
      * returning a new `Container` created with the elements of `take`. To
      * use `take` as an algorithm, `%Sequence` must be a `Container`.

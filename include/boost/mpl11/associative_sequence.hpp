@@ -22,8 +22,8 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/key_of.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/next.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/value_of.hpp>
 
 
@@ -97,7 +97,7 @@ namespace boost { namespace mpl11 {
     template <typename S1, typename S2>
     struct AssociativeSequence::equal_impl
         : and_<
-            equal<size_t<S1>, size_t<S2>>,
+            equal<length_t<S1>, length_t<S2>>,
             associative_sequence_detail::is_subset_of<S1, S2>
         >
     { };

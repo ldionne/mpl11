@@ -25,6 +25,7 @@
 #include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/join.hpp>
+#include <boost/mpl11/length.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/next.hpp>
@@ -35,7 +36,6 @@
 #include <boost/mpl11/push_back.hpp>
 #include <boost/mpl11/push_front.hpp>
 #include <boost/mpl11/sequence.hpp>
-#include <boost/mpl11/size.hpp>
 #include <boost/mpl11/unpack.hpp>
 
 #include "minimal_requirements.hpp"
@@ -154,11 +154,11 @@ static_assert(!is_empty<vector<x>>::value, "");
 static_assert(!is_empty<vector<x, y>>::value, "");
 static_assert(!is_empty<vector<x, y, z>>::value, "");
 
-// size
-static_assert(size<vector<>>::value == 0, "");
-static_assert(size<vector<x>>::value == 1, "");
-static_assert(size<vector<x, y>>::value == 2, "");
-static_assert(size<vector<x, y, z>>::value == 3, "");
+// length
+static_assert(length<vector<>>::value == 0, "");
+static_assert(length<vector<x>>::value == 1, "");
+static_assert(length<vector<x, y>>::value == 2, "");
+static_assert(length<vector<x, y, z>>::value == 3, "");
 
 
 /////////////////////////////////
@@ -425,7 +425,7 @@ static_assert(is_same<
 >::value, "");
 
 // has_optimization
-static_assert(has_optimization<vector<>, optimization::O1_size>::value, "");
+static_assert(has_optimization<vector<>, optimization::O1_length>::value, "");
 static_assert(has_optimization<vector<>, optimization::O1_unpack>::value, "");
 
 

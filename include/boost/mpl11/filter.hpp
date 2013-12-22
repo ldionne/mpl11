@@ -17,8 +17,8 @@
 #include <boost/mpl11/fwd/class_of.hpp>
 #include <boost/mpl11/fwd/deref.hpp>
 #include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/fwd/length.hpp>
 #include <boost/mpl11/fwd/next.hpp>
-#include <boost/mpl11/fwd/size.hpp>
 #include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/new.hpp>
 #include <boost/mpl11/sequence.hpp>
@@ -93,7 +93,7 @@ struct end<filter<Sequence, Predicate>> {
 };
 
 template <typename Sequence, typename Predicate>
-struct size<filter<Sequence, Predicate>>
+struct length<filter<Sequence, Predicate>>
     : count_if<Sequence, Predicate>
 { };
 }} // end namespace boost::mpl11

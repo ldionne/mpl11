@@ -20,8 +20,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * @todo
-     * Take advantage of knowing the size of the underlying sequence in O(1)
-     * in the join_iterator.
+     * Take advantage of knowing the length of the underlying sequence in
+     * O(1) in the join_iterator.
      *
      * @todo
      * Take advantage of possible fast sum in the implementation of size<>.

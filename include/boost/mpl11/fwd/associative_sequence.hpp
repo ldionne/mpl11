@@ -66,7 +66,7 @@ namespace boost { namespace mpl11 {
 #endif
 
         /*!
-         * Returns whether both sequences have the same size and the same
+         * Returns whether both sequences have the same length and the same
          * keys mapping to equal values.
          */
         template <typename Sequence1, typename Sequence2>
