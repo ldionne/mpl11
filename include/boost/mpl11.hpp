@@ -212,6 +212,7 @@ struct Metafunction { };
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
 #include <boost/mpl11/repeat.hpp>
+#include <boost/mpl11/reverse.hpp>
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>
