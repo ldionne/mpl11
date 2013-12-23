@@ -5,52 +5,36 @@
 
 #include <boost/mpl11/contains.hpp>
 
-#include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/new.hpp>
+#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/vector.hpp>
+
+#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
 
-//! @todo Use an archetype class instead of this.
-template <int>
-struct t {
-    struct mpl_class : Comparable {
-        template <typename T, typename U>
-        struct equal_impl
-            : detail::is_same<T, U>
-        { };
-    };
-};
+template <typename ...T>
+using sequence = test::wrapper<
+    test::minimal_requirements<Sequence>, vector<T...>
+>;
 
-template <typename Container>
-struct test_one {
-    template <typename ..T>
-    using container = typename apply<new_<Container>, vector<T...>>::type;
+static_assert(!contains<sequence<>, t<0>>::value, "");
 
-    static_assert(!contains<container<>, t<0>>::value, "");
+static_assert( contains<sequence<t<0>>, t<0>>::value, "");
+static_assert(!contains<sequence<t<0>>, t<1>>::value, "");
 
-    static_assert( contains<container<t<0>>, t<0>>::value, "");
-    static_assert(!contains<container<t<0>>, t<1>>::value, "");
+static_assert( contains<sequence<t<0>, t<1>>, t<0>>::value, "");
+static_assert( contains<sequence<t<0>, t<1>>, t<1>>::value, "");
+static_assert(!contains<sequence<t<0>, t<1>>, t<2>>::value, "");
 
-    static_assert( contains<container<t<0>, t<1>>, t<0>>::value, "");
-    static_assert( contains<container<t<0>, t<1>>, t<1>>::value, "");
-    static_assert(!contains<container<t<0>, t<1>>, t<2>>::value, "");
+static_assert( contains<sequence<t<0>, t<1>, t<2>>, t<0>>::value, "");
+static_assert( contains<sequence<t<0>, t<1>, t<2>>, t<1>>::value, "");
+static_assert( contains<sequence<t<0>, t<1>, t<2>>, t<2>>::value, "");
+static_assert(!contains<sequence<t<0>, t<1>, t<2>>, t<3>>::value, "");
 
-    static_assert( contains<container<t<0>, t<1>, t<2>>, t<0>>::value, "");
-    static_assert( contains<container<t<0>, t<1>, t<2>>, t<1>>::value, "");
-    static_assert( contains<container<t<0>, t<1>, t<2>>, t<2>>::value, "");
-    static_assert(!contains<container<t<0>, t<1>, t<2>>, t<3>>::value, "");
-
-    static_assert(contains<container<t<0>, t<0>, t<2>>, t<0>>::value, "");
-    static_assert(contains<container<t<1>, t<1>, t<2>>, t<1>>::value, "");
-    static_assert(contains<container<t<0>, t<2>, t<2>>, t<2>>::value, "");
-};
-
-struct test_all
-    : test_one<vector<>>
-{ };
+static_assert(contains<sequence<t<0>, t<0>, t<2>>, t<0>>::value, "");
+static_assert(contains<sequence<t<1>, t<1>, t<2>>, t<1>>::value, "");
+static_assert(contains<sequence<t<0>, t<2>, t<2>>, t<2>>::value, "");
 
 
 int main() { }
