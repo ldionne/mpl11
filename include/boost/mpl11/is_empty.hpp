@@ -12,9 +12,9 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Sequence>
+    template <typename S>
     struct is_empty
-        : class_of<Sequence>::type::template is_empty_impl<Sequence>
+        : class_of<S>::type::template is_empty_impl<S>
     { };
 }} // end namespace boost::mpl11
 

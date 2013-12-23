@@ -10,18 +10,16 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup sequence_intrinsics
      *
-     * Returns whether a `Sequence` is empty.
+     * Returns whether a `ForwardSequence` is empty.
      *
-     *
-     * @warning
-     * This intrinsic replaces the `mpl::empty` intrinsic from the
-     * original MPL.
+     * Specifically, `is_empty<S>` is a boolean `Integral`
+     * representing whether `S` is empty.
      */
-    template <typename Sequence>
+    template <typename S>
     struct is_empty;
 
-    template <typename Sequence>
-    using is_empty_t = typename is_empty<Sequence>::type;
+    template <typename S>
+    using is_empty_t = typename is_empty<S>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IS_EMPTY_HPP

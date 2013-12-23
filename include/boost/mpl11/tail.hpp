@@ -1,3 +1,7 @@
+/*!
+ * @file
+ * Defines `boost::mpl11::tail`.
+ */
 
 #ifndef BOOST_MPL11_TAIL_HPP
 #define BOOST_MPL11_TAIL_HPP

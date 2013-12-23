@@ -1,3 +1,7 @@
+/*!
+ * @file
+ * Defines `boost::mpl11::head`.
+ */
 
 #ifndef BOOST_MPL11_HEAD_HPP
 #define BOOST_MPL11_HEAD_HPP
