@@ -8,21 +8,24 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup algorithms
      * @ingroup sequences
      *
-     * `Sequence` containing the elements of a `%Sequence` satisfying
-     * `Predicate`.
+     * Sequence whose elements are those of another sequence for which the
+     * `Predicate` returns `true`.
      *
-     * Additionally, `mpl11::filter` is an algorithm returning a new
-     * `Container` created with the elements of `mpl11::filter`. To use
-     * `mpl11::filter` as an algorithm, `%Sequence` must be a `Container`.
+     * The sequence operations supported by `filter` are the same as that
+     * of the underlying sequence, except that `filter` is never a
+     * `RandomAccessSequence`.
+     *
+     *
+     * @todo
+     * The implementation is temporary; it is very naive.
+     *
+     * @todo
+     * Use minimal sequences in the unit tests.
      */
-    template <typename Sequence, typename Predicate>
+    template <typename Predicate, typename Sequence>
     struct filter;
-
-    template <typename Sequence, typename Predicate>
-    using filter_t = typename filter<Sequence, Predicate>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_FILTER_HPP

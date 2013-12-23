@@ -8,94 +8,77 @@
 
 #include <boost/mpl11/fwd/filter.hpp>
 
-#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/count_if.hpp>
-#include <boost/mpl11/end.hpp>
-#include <boost/mpl11/find_if.hpp>
-#include <boost/mpl11/forward_iterator.hpp>
-#include <boost/mpl11/fwd/begin.hpp>
-#include <boost/mpl11/fwd/class_of.hpp>
-#include <boost/mpl11/fwd/deref.hpp>
-#include <boost/mpl11/fwd/equal.hpp>
-#include <boost/mpl11/fwd/length.hpp>
-#include <boost/mpl11/fwd/next.hpp>
-#include <boost/mpl11/iterator_range.hpp>
-#include <boost/mpl11/new.hpp>
-#include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/detail/default_unpack.hpp>
+#include <boost/mpl11/drop_while.hpp>
+#include <boost/mpl11/fwd/init.hpp>
+#include <boost/mpl11/fwd/is_empty.hpp>
+#include <boost/mpl11/fwd/last.hpp>
+#include <boost/mpl11/fwd/unpack.hpp>
+#include <boost/mpl11/head.hpp>
+#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/length.hpp>
+#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/reverse.hpp>
+#include <boost/mpl11/tail.hpp>
 
 
 namespace boost { namespace mpl11 {
-//////////////////////////////////////////////////////////////////////////////
-// filter iterator
-//////////////////////////////////////////////////////////////////////////////
-namespace filter_detail {
-    template <typename First, typename Last, typename Predicate>
-    struct filter_iterator;
-}
+    /////////////////////////////////
+    // ForwardSequence
+    /////////////////////////////////
+    template <typename Predicate, typename Sequence>
+    struct head<filter<Predicate, Sequence>>
+        : head<drop_while<compose<quote<not_>, Predicate>, Sequence>>
+    { };
 
-template <typename First, typename Last, typename Predicate, typename Def>
-struct class_of<filter_detail::filter_iterator<First, Last, Predicate>, Def> {
-    using type = ForwardIterator;
-};
+    template <typename Predicate, typename Sequence>
+    struct tail<filter<Predicate, Sequence>> {
+        using type = filter<
+            Predicate,
+            typename tail<
+                drop_while<compose<quote<not_>, Predicate>, Sequence>
+            >::type
+        >;
+    };
 
-template <typename First, typename Last, typename Predicate>
-struct next<filter_detail::filter_iterator<First, Last, Predicate>> {
-    using type = filter_detail::filter_iterator<
-        find_if_t<iterator_range<next_t<First>, Last>, Predicate>,
-        Last,
-        Predicate
-    >;
-};
-
-template <typename First, typename Last, typename Predicate>
-struct deref<filter_detail::filter_iterator<First, Last, Predicate>>
-    : deref<First>
-{ };
-
-template <typename F1, typename F2, typename Last, typename Pred>
-struct equal<
-    filter_detail::filter_iterator<F1, Last, Pred>,
-    filter_detail::filter_iterator<F2, Last, Pred>
->
-    : equal<F1, F2>
-{ };
+    template <typename Predicate, typename Sequence>
+    struct is_empty<filter<Predicate, Sequence>>
+        : bool_<length<filter<Predicate, Sequence>>::value == 0>
+    { };
 
 
-//////////////////////////////////////////////////////////////////////////////
-// filter
-//////////////////////////////////////////////////////////////////////////////
-template <typename Sequence, typename Predicate>
-struct filter
-    : apply<new_<Sequence>, filter<Sequence, Predicate>>
-{ };
+    /////////////////////////////////
+    // FiniteSequence
+    /////////////////////////////////
+    template <typename Predicate, typename Sequence>
+    struct length<filter<Predicate, Sequence>>
+        : count_if<Sequence, Predicate>
+    { };
 
-template <typename Seq, typename Pred, typename Default>
-struct class_of<filter<Seq, Pred>, Default> {
-    using type = Sequence;
-};
+    template <typename Predicate, typename Sequence, typename F>
+    struct unpack<filter<Predicate, Sequence>, F>
+        : detail::default_unpack<filter<Predicate, Sequence>, F>
+    { };
 
-template <typename Sequence, typename Predicate>
-struct begin<filter<Sequence, Predicate>> {
-    using type = filter_detail::filter_iterator<
-        find_if_t<Sequence, Predicate>,
-        end_t<Sequence>,
-        Predicate
-    >;
-};
 
-template <typename Sequence, typename Predicate>
-struct end<filter<Sequence, Predicate>> {
-    using type = filter_detail::filter_iterator<
-        end_t<Sequence>,
-        end_t<Sequence>,
-        Predicate
-    >;
-};
+    /////////////////////////////////
+    // BidirectionalSequence
+    /////////////////////////////////
+    template <typename Predicate, typename Sequence>
+    struct last<filter<Predicate, Sequence>>
+        : head<drop_while<compose<quote<not_>, Predicate>, reverse<Sequence>>>
+    { };
 
-template <typename Sequence, typename Predicate>
-struct length<filter<Sequence, Predicate>>
-    : count_if<Sequence, Predicate>
-{ };
+    template <typename Predicate, typename Sequence>
+    struct init<filter<Predicate, Sequence>> {
+        using type = filter<
+            Predicate,
+            reverse<tail_t<drop_while<compose<quote<not_>, Predicate>, reverse<Sequence>>>>
+        >;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FILTER_HPP
