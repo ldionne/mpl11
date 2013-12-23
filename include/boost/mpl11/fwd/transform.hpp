@@ -6,33 +6,30 @@
 #ifndef BOOST_MPL11_FWD_TRANSFORM_HPP
 #define BOOST_MPL11_FWD_TRANSFORM_HPP
 
-#include <boost/mpl11/detail/fast_sequence_adaptor_fwd.hpp>
-
-
 namespace boost { namespace mpl11 {
-    namespace transform_detail {
-        template <typename F>
-        struct transform_with;
-    }
-
     /*!
-     * @ingroup algorithms
      * @ingroup sequences
      *
-     * `Sequence` containing the result of applying `F` to each element
-     * of `%Sequence`.
+     * Sequence containing the result of invoking `F` with each element of
+     * another sequence.
      *
-     * Additionally, `mpl11::transform` is an algorithm returning a new
-     * `Container` created with the elements of `mpl11::transform`. To use
-     * `mpl11::transform` as an algorithm, `%Sequence` must be a `Container`.
+     * Specifically, the i-th element of `transform<F, S>` is the result of
+     * invoking `F` with the i-th element of `S`.
+     *
+     * The sequence operations supported by `transform` are exactly those of
+     * the underlying sequence.
+     *
+     *
+     * @todo
+     * Consider allowing several sequences as arguments. What semantics
+     * should that have? Transform each sequence or transform the zip
+     * of all the sequences?
+     *
+     * @todo
+     * Use minimal sequences in the unit tests.
      */
-    template <typename Sequence, typename F>
-    using transform = detail::fast_sequence_adaptor<
-        Sequence, transform_detail::transform_with<F>
-    >;
-
-    template <typename Sequence, typename F>
-    using transform_t = typename transform<Sequence, F>::type;
+    template <typename F, typename Sequence>
+    struct transform;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_TRANSFORM_HPP

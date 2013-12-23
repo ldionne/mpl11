@@ -9,61 +9,87 @@
 #include <boost/mpl11/fwd/transform.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/fast_random_access_iterator_adaptor.hpp>
-#include <boost/mpl11/detail/fast_sequence_adaptor.hpp>
-#include <boost/mpl11/detail/nested_alias.hpp>
-#include <boost/mpl11/fwd/begin.hpp>
-#include <boost/mpl11/fwd/deref.hpp>
-#include <boost/mpl11/fwd/end.hpp>
+#include <boost/mpl11/fwd/at.hpp>
+#include <boost/mpl11/fwd/head.hpp>
+#include <boost/mpl11/fwd/init.hpp>
+#include <boost/mpl11/fwd/is_empty.hpp>
+#include <boost/mpl11/fwd/last.hpp>
+#include <boost/mpl11/fwd/length.hpp>
+#include <boost/mpl11/fwd/slice.hpp>
+#include <boost/mpl11/fwd/tail.hpp>
 #include <boost/mpl11/fwd/unpack.hpp>
-#include <boost/mpl11/new.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace transform_detail {
-    template <typename Iterator, typename F>
-    using transform_iterator = detail::fast_random_access_iterator_adaptor<
-        Iterator, transform_with<F>
-    >;
-
-    template <typename F, typename Dest>
-    struct fast_transform_into {
-        template <typename ...Args>
-        BOOST_MPL11_NESTED_ALIAS(apply,
-            mpl11::apply<Dest, typename mpl11::apply<F, Args>::type...>);
-    };
-} // end namespace transform_detail
-
-template <typename Iterator, typename F>
-struct deref<transform_detail::transform_iterator<Iterator, F>>
-    : apply<F, typename deref<Iterator>::type>
-{ };
-
-namespace detail {
-    template <typename Sequence, typename F>
-    struct fast_sequence_adaptor<Sequence, transform_detail::transform_with<F>>
-        : apply<new_<Sequence>, transform<Sequence, F>>
+    /////////////////////////////////
+    // ForwardSequence
+    /////////////////////////////////
+    template <typename F, typename S>
+    struct is_empty<transform<F, S>>
+        : is_empty<S>
     { };
-}
 
-template <typename Sequence, typename F>
-struct begin<transform<Sequence, F>> {
-    using type = transform_detail::transform_iterator<
-        typename begin<Sequence>::type, F
-    >;
-};
+    template <typename F, typename S>
+    struct head<transform<F, S>>
+        : apply<F, typename head<S>::type>
+    { };
 
-template <typename Sequence, typename F>
-struct end<transform<Sequence, F>> {
-    using type = transform_detail::transform_iterator<
-        typename end<Sequence>::type, F
-    >;
-};
+    template <typename F, typename S>
+    struct tail<transform<F, S>> {
+        using type = transform<F, typename tail<S>::type>;
+    };
 
-template <typename Sequence, typename F, typename Dest>
-struct unpack<transform<Sequence, F>, Dest>
-    : unpack<Sequence, transform_detail::fast_transform_into<F, Dest>>
-{ };
+
+    /////////////////////////////////
+    // FiniteSequence
+    /////////////////////////////////
+    template <typename F, typename S>
+    struct length<transform<F, S>>
+        : length<S>
+    { };
+
+    namespace transform_detail {
+        template <typename F, typename Dest>
+        struct fast_map {
+            template <typename ...Args>
+            using apply = mpl11::apply<
+                Dest, typename mpl11::apply<F, Args>::type...
+            >;
+        };
+    }
+
+    template <typename S, typename F, typename Dest>
+    struct unpack<transform<F, S>, Dest>
+        : unpack<S, transform_detail::fast_map<F, Dest>>
+    { };
+
+
+    /////////////////////////////////
+    // BidirectionalSequence
+    /////////////////////////////////
+    template <typename F, typename S>
+    struct last<transform<F, S>>
+        : apply<F, typename last<S>::type>
+    { };
+
+    template <typename F, typename S>
+    struct init<transform<F, S>> {
+        using type = transform<F, typename init<S>::type>;
+    };
+
+
+    /////////////////////////////////
+    // RandomAccessSequence
+    /////////////////////////////////
+    template <typename F, typename S, typename Index>
+    struct at<transform<F, S>, Index>
+        : apply<F, typename at<S, Index>::type>
+    { };
+
+    template <typename F, typename S, typename Start, typename Stop>
+    struct slice<transform<F, S>, Start, Stop> {
+        using type = transform<F, typename slice<S, Start, Stop>::type>;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_TRANSFORM_HPP

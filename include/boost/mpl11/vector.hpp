@@ -29,10 +29,12 @@
 #include <boost/mpl11/fwd/erase_range.hpp>
 #include <boost/mpl11/fwd/front.hpp>
 #include <boost/mpl11/fwd/has_optimization.hpp>
+#include <boost/mpl11/fwd/init.hpp>
 #include <boost/mpl11/fwd/insert.hpp>
 #include <boost/mpl11/fwd/insert_range.hpp>
 #include <boost/mpl11/fwd/is_empty.hpp>
 #include <boost/mpl11/fwd/join.hpp>
+#include <boost/mpl11/fwd/last.hpp>
 #include <boost/mpl11/fwd/length.hpp>
 #include <boost/mpl11/fwd/less.hpp>
 #include <boost/mpl11/fwd/new.hpp>
@@ -234,6 +236,16 @@ struct back<vector<T...>> {
         vector_detail::at_index<sizeof...(T) - 1>((vector<T...>*)nullptr)
     )::type;
 };
+
+template <typename ...T>
+struct last<vector<T...>>
+    : back<vector<T...>>
+{ };
+
+template <typename ...T>
+struct init<vector<T...>>
+    : pop_back<vector<T...>>
+{ };
 
 /////////////////////////////////
 // RandomAccessSequence
