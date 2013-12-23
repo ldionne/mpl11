@@ -10,15 +10,16 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup sequence_intrinsics
      *
-     * Returns the number of elements contained in a `Sequence`.
+     * Returns the number of elements of a `FiniteSequence`.
      *
-     * The length of a sequence is a non-negative `Integral`.
+     * Specifically, `length<S>` is an `IntegralConstant` of unsigned type.
+     * Therefore, the length is always (obviously) non-negative.
      */
-    template <typename Sequence>
+    template <typename S>
     struct length;
 
-    template <typename Sequence>
-    using length_t = typename length<Sequence>::type;
+    template <typename S>
+    using length_t = typename length<S>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_LENGTH_HPP

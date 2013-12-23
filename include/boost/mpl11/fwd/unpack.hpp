@@ -8,21 +8,19 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup metafunctions
+     * @ingroup sequence_intrinsics
      *
-     * Applies the contents of a sequence to a `MetafunctionClass`.
+     * Invokes a `MetafunctionClass` with the contents of a `FiniteSequence`.
      *
-     * The default implementation copies each element of `%Sequence`
-     * one by one into `mpl11::apply<F>`. This has linear time complexity.
-     *
-     * Sequences whose implementation allow it should specialize this
-     * metafunction to give it a more efficient implementation.
+     * Specifically, `unpack<S, F>` is a nullary `Metafunction` equivalent
+     * to `apply<F, a0, ..., an>`, where `a0`, ...,`an` are the elements
+     * in the sequence.
      */
-    template <typename Sequence, typename F>
+    template <typename S, typename F>
     struct unpack;
 
-    template <typename Sequence, typename F>
-    using unpack_t = typename unpack<Sequence, F>::type;
+    template <typename S, typename F>
+    using unpack_t = typename unpack<S, F>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_UNPACK_HPP

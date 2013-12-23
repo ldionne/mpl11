@@ -150,6 +150,7 @@ struct Metafunction { };
 #include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/find.hpp>
 #include <boost/mpl11/find_if.hpp>
+#include <boost/mpl11/finite_sequence.hpp>
 #include <boost/mpl11/first.hpp>
 #include <boost/mpl11/flatten_if.hpp>
 #include <boost/mpl11/flip.hpp>
