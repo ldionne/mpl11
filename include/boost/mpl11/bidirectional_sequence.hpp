@@ -14,6 +14,8 @@
 #include <boost/mpl11/is_empty.hpp>
 #include <boost/mpl11/prev.hpp>
 
+#include <boost/mpl11/forward_sequence.hpp> // required by forward decl
+
 
 namespace boost { namespace mpl11 {
     template <typename S>

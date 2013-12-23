@@ -7,6 +7,7 @@
 #define BOOST_MPL11_FWD_BIDIRECTIONAL_SEQUENCE_HPP
 
 #include <boost/mpl11/fwd/directional_sequence.hpp>
+#include <boost/mpl11/fwd/forward_sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -48,6 +49,33 @@ namespace boost { namespace mpl11 {
          */
         template <typename Sequence>
         struct back_impl;
+    };
+
+    /*!
+     * @ingroup concepts
+     *
+     * Collection of types that can be traversed in both directions.
+     *
+     *
+     * ## Refinement of
+     * `ForwardSequence`
+     *
+     * ## Intrinsics
+     * - `mpl11::last`
+     * - `mpl11::init`
+     *
+     * The minimal complete definition for `BidirectionalSequence` is all of
+     * the intrinsics, plus the minimal complete definition for
+     * `ForwardSequence`.
+     */
+    struct BidirectionalSequence2 : ForwardSequence {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+        template <typename S>
+        struct last_impl;
+
+        template <typename S>
+        struct init_impl;
+#endif
     };
 }} // end namespace boost::mpl11
 

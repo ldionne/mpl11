@@ -213,6 +213,7 @@ struct Metafunction { };
 #include <boost/mpl11/second.hpp>
 #include <boost/mpl11/shift_left.hpp>
 #include <boost/mpl11/shift_right.hpp>
+#include <boost/mpl11/slice.hpp>
 #include <boost/mpl11/subtract.hpp>
 #include <boost/mpl11/tail.hpp>
 #include <boost/mpl11/take.hpp>

@@ -12,7 +12,7 @@ namespace boost { namespace mpl11 {
      *
      * Returns the number of elements of a `FiniteSequence`.
      *
-     * Specifically, `length<S>` is an `IntegralConstant` of unsigned type.
+     * Specifically, `length<S>` is an `Integral` of unsigned type.
      * Therefore, the length is always (obviously) non-negative.
      */
     template <typename S>

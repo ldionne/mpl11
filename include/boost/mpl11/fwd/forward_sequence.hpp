@@ -30,6 +30,7 @@ namespace boost { namespace mpl11 {
      * intrinsics introduced by the concept.
      */
     struct ForwardSequence {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         template <typename S>
         struct is_empty_impl;
 
@@ -38,6 +39,7 @@ namespace boost { namespace mpl11 {
 
         template <typename S>
         struct tail_impl;
+#endif
     };
 }} // end namespace boost::mpl11
 

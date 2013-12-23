@@ -7,6 +7,7 @@
 #define BOOST_MPL11_FWD_RANDOM_ACCESS_SEQUENCE_HPP
 
 #include <boost/mpl11/fwd/bidirectional_sequence.hpp>
+#include <boost/mpl11/fwd/forward_sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -42,6 +43,34 @@ namespace boost { namespace mpl11 {
          */
         template <typename Sequence, typename N>
         struct at_impl;
+    };
+
+    /*!
+     * @ingroup concepts
+     *
+     * Collection of types providing efficient access to elements
+     * anywhere in the sequence.
+     *
+     *
+     * ## Refinement of
+     * `ForwardSequence`
+     *
+     * ## Intrinsics
+     * - `mpl11::at`
+     * - `mpl11::slice`
+     *
+     * The minimal complete definition for `RandomAccessSequence` is all
+     * of the intrinsics, plus the minimal complete definition for
+     * `ForwardSequence`.
+     */
+    struct RandomAccessSequence2 : ForwardSequence {
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+        template <typename S, typename Index>
+        struct at_impl;
+
+        template <typename S, typename Start, typename Stop>
+        struct slice_impl;
+#endif
     };
 }} // end namespace boost::mpl11
 

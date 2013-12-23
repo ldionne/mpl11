@@ -14,6 +14,8 @@
 #include <boost/mpl11/deref.hpp>
 #include <boost/mpl11/length.hpp>
 
+#include <boost/mpl11/forward_sequence.hpp> // required by fwd decl
+
 
 namespace boost { namespace mpl11 {
     template <typename S, typename N>
