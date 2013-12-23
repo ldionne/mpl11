@@ -17,6 +17,10 @@ namespace boost { namespace mpl11 {
      *
      * `mpl11::vector` is a `RandomAccessSequence` and an
      * `ExtensibleContainer`.
+     *
+     *
+     * @todo
+     * Consider making two element `vector`s models of `Couple`.
      */
     template <typename ...Elements>
     struct vector;

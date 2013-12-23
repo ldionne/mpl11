@@ -42,10 +42,12 @@
 #include <boost/mpl11/fwd/prev.hpp>
 #include <boost/mpl11/fwd/push_back.hpp>
 #include <boost/mpl11/fwd/push_front.hpp>
+#include <boost/mpl11/fwd/slice.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral_c.hpp> // for vector_c
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
@@ -244,6 +246,19 @@ struct at<vector<T...>, Index> {
     using type = typename decltype(
         vector_detail::at_index<Index::value>((vector<T...>*)nullptr)
     )::type;
+};
+
+template <typename ...T, typename Start, typename Stop>
+struct slice<vector<T...>, Start, Stop> {
+private:
+    using Start_ = advance_t<begin_t<vector<T...>>, Start>;
+    using Stop_ = advance_t<begin_t<vector<T...>>, Stop>;
+
+public:
+    using type = typename unpack<
+        iterator_range<Start_, Stop_>,
+        into<vector>
+    >::type;
 };
 
 /////////////////////////////////

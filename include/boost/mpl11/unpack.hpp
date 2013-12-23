@@ -8,31 +8,13 @@
 
 #include <boost/mpl11/fwd/unpack.hpp>
 
-#include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/detail/default_unpack.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace unpack_detail {
-        struct variadic_push_back {
-            template <typename Variadic, typename X>
-            struct apply;
-
-            template <
-                template <typename ...> class Variadic, typename ...T,
-                typename X
-            >
-            struct apply<Variadic<T...>, X> {
-                using type = Variadic<T..., X>;
-            };
-        };
-    } // end namespace unpack_detail
-
-    template <typename Sequence, typename F>
+    template <typename S, typename F>
     struct unpack
-        : foldl_t<
-            Sequence, apply<F>, unpack_detail::variadic_push_back
-        >
+        : detail::default_unpack<S, F>
     { };
 }} // end namespace boost::mpl11
 

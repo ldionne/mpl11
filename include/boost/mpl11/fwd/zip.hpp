@@ -8,29 +8,42 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup algorithms
      * @ingroup sequences
      *
-     * `Sequence` containing the transpose of two or more `Sequence`s.
+     * Sequence aggregating elements from two or more sequences.
      *
-     * Specifically, each element of `mpl11::zip` is a `Sequence` containing
-     * the elements of each zipped sequence at that position. The number of
-     * elements in `mpl11::zip` is equal to the number of elements of the
-     * smallest zipped sequence.
+     * Specifically, the i-th element of `zip` is a `RandomAccessSequence`
+     * containing the i-th element of each zipped sequence. The `zip`
+     * sequence stops when the shortest zipped sequence is exhausted.
+     * Therefore, the length of `zip` is that of the shortest zipped sequence.
      *
-     * Additionally, `mpl11::zip` is an algorithm returning a new `Container`
-     * created with the elements of `mpl11::zip`. To use `mpl11::zip` as an
-     * algorithm, `Sequence1` must be a `Container`.
+     * The sequence operations supported by `zip` is the intersection of the
+     * sequence operations supported by all the zipped sequences.
      *
+     *
+     * @warning
+     * `zip` is never a `BidirectionalSequence`; this has to be implemented.
      *
      * @todo
-     * Consider optimizing `mpl11::unpack`. The gain, if any, isn't obvious.
+     * Implement `BidirectionalSequence` for `zip`. This is less trivial
+     * than it seems because we have to deal with infinite sequences
+     * and other stuff in the `last` method.
+     *
+     * @todo
+     * Consider implementing a `zip_longest` with the obvious semantics.
+     *
+     * @todo
+     * Should we allow 0 and 1 sequences to be zipped?
+     *
+     * @todo
+     * Consider implementing a custom `unpack`. Is it possible to be more
+     * clever than the default implementation?
+     *
+     * @todo
+     * Use minimal sequences in the unit test.
      */
     template <typename Sequence1, typename Sequence2, typename ...SequenceN>
     struct zip;
-
-    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
-    using zip_t = typename zip<Sequence1, Sequence2, SequenceN...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ZIP_HPP

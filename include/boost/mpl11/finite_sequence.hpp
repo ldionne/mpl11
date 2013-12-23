@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/finite_sequence.hpp>
 
-#include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/detail/default_unpack.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/forward_sequence.hpp> // for fwd/finite_sequence.hpp
 #include <boost/mpl11/integral_c.hpp>
@@ -16,19 +16,6 @@
 
 namespace boost { namespace mpl11 {
     namespace finite_sequence_detail {
-        struct fill_apply {
-            template <typename Variadic, typename X>
-            struct apply;
-
-            template <
-                template <typename ...> class Variadic, typename ...T,
-                typename X
-            >
-            struct apply<Variadic<T...>, X> {
-                using type = Variadic<T..., X>;
-            };
-        };
-
         struct increment {
             template <typename Size, typename>
             using apply = size_t<Size::value + 1>;
@@ -37,7 +24,7 @@ namespace boost { namespace mpl11 {
 
     template <typename S, typename F>
     struct FiniteSequence::unpack_impl
-        : foldl<S, apply<F>, finite_sequence_detail::fill_apply>::type
+        : detail::default_unpack<S, F>
     { };
 
     template <typename S>

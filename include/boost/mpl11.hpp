@@ -172,6 +172,7 @@ struct Metafunction { };
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/imap.hpp>
 #include <boost/mpl11/inherit.hpp>
+#include <boost/mpl11/init.hpp>
 #include <boost/mpl11/insert.hpp>
 #include <boost/mpl11/insert_key.hpp>
 #include <boost/mpl11/insert_keys.hpp>
@@ -183,6 +184,7 @@ struct Metafunction { };
 #include <boost/mpl11/iterator_range.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/key_of.hpp>
+#include <boost/mpl11/last.hpp>
 #include <boost/mpl11/length.hpp>
 #include <boost/mpl11/less.hpp>
 #include <boost/mpl11/less_equal.hpp>

@@ -8,84 +8,83 @@
 
 #include <boost/mpl11/fwd/zip.hpp>
 
-#include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/forward_iterator.hpp>
-#include <boost/mpl11/fwd/begin.hpp>
-#include <boost/mpl11/fwd/class_of.hpp>
-#include <boost/mpl11/fwd/deref.hpp>
-#include <boost/mpl11/fwd/end.hpp>
-#include <boost/mpl11/fwd/equal.hpp>
+#include <boost/mpl11/detail/default_unpack.hpp>
+#include <boost/mpl11/fwd/at.hpp>
+#include <boost/mpl11/fwd/head.hpp>
+#include <boost/mpl11/fwd/init.hpp>
+#include <boost/mpl11/fwd/is_empty.hpp>
+#include <boost/mpl11/fwd/last.hpp>
 #include <boost/mpl11/fwd/length.hpp>
-#include <boost/mpl11/fwd/next.hpp>
+#include <boost/mpl11/fwd/slice.hpp>
+#include <boost/mpl11/fwd/tail.hpp>
+#include <boost/mpl11/fwd/unpack.hpp>
 #include <boost/mpl11/min.hpp>
-#include <boost/mpl11/new.hpp>
 #include <boost/mpl11/or.hpp>
-#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/vector.hpp>
 
 
 namespace boost { namespace mpl11 {
-namespace zip_detail {
-    template <typename ...Iterators>
-    struct zip_iterator;
-
-    struct zip_iterator_class final : ForwardIterator {
-        template <typename Iterator>             struct deref_impl;
-        template <typename Iterator>             struct next_impl;
-        template <typename Self, typename Other> struct equal_impl;
-
-        template <typename ...Iterators>
-        struct deref_impl<zip_iterator<Iterators...>> {
-            using type = vector<deref_t<Iterators>...>;
-        };
-
-        template <typename ...Iterators>
-        struct next_impl<zip_iterator<Iterators...>> {
-            using type = zip_iterator<next_t<Iterators>...>;
-        };
-
-        template <typename ...I1, typename ...I2>
-        struct equal_impl<zip_iterator<I1...>, zip_iterator<I2...>>
-            : or_c<equal<I1, I2>::value...>
-        { };
+    /////////////////////////////////
+    // ForwardSequence
+    /////////////////////////////////
+    template <typename ...Sn>
+    struct head<zip<Sn...>> {
+        using type = vector<typename head<Sn>::type...>;
     };
 
-    struct zip_class final : Sequence {
-        template <typename Zip> struct begin_impl;
-        template <typename Zip> struct end_impl;
-        template <typename Zip> struct length_impl;
-
-        template <typename ...Sn>
-        struct begin_impl<zip<Sn...>> {
-            using type = zip_iterator<begin_t<Sn>...>;
-        };
-
-        template <typename ...Sn>
-        struct end_impl<zip<Sn...>> {
-            using type = zip_iterator<end_t<Sn>...>;
-        };
-
-        template <typename ...Sn>
-        struct length_impl<zip<Sn...>>
-            : min_t<length_t<Sn>...>
-        { };
+    template <typename ...Sn>
+    struct tail<zip<Sn...>> {
+        using type = zip<typename tail<Sn>::type...>;
     };
-} // end namespace zip_detail
 
-template <typename ...In, typename Default>
-struct class_of<zip_detail::zip_iterator<In...>, Default> {
-    using type = zip_detail::zip_iterator_class;
-};
+    template <typename ...Sn>
+    struct is_empty<zip<Sn...>>
+        : or_<typename is_empty<Sn>::type...>
+    { };
 
-template <typename ...Sn, typename Default>
-struct class_of<zip<Sn...>, Default> {
-    using type = zip_detail::zip_class;
-};
 
-template <typename S1, typename S2, typename ...Sn>
-struct zip
-    : apply<new_<S1>, zip<S1, S2, Sn...>>
-{ };
+    /////////////////////////////////
+    // FiniteSequence
+    /////////////////////////////////
+    template <typename ...Sn>
+    struct length<zip<Sn...>>
+        : min<typename length<Sn>::type...>::type
+    { };
+
+    template <typename ...Sn, typename F>
+    struct unpack<zip<Sn...>, F>
+        : detail::default_unpack<zip<Sn...>, F>
+    { };
+
+
+#if 0
+    /////////////////////////////////
+    // BidirectionalSequence
+    /////////////////////////////////
+    template <typename ...Sn>
+    struct last<zip<Sn...>> {
+
+    };
+
+    template <typename ...Sn>
+    struct init<zip<Sn...>> {
+        using type = zip<typename init<Sn>::type...>;
+    };
+#endif
+
+
+    /////////////////////////////////
+    // RandomAccessSequence
+    /////////////////////////////////
+    template <typename ...Sn, typename Index>
+    struct at<zip<Sn...>, Index> {
+        using type = vector<typename at<Sn, Index>::type...>;
+    };
+
+    template <typename ...Sn, typename Start, typename Stop>
+    struct slice<zip<Sn...>, Start, Stop> {
+        using type = zip<typename slice<Sn, Start, Stop>::type...>;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ZIP_HPP
