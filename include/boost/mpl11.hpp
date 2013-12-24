@@ -139,6 +139,7 @@ struct Metafunction { };
 #include <boost/mpl11/distance.hpp>
 #include <boost/mpl11/divide.hpp>
 #include <boost/mpl11/drop.hpp>
+#include <boost/mpl11/drop_while.hpp>
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/end.hpp>
 #include <boost/mpl11/equal.hpp>
