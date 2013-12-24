@@ -8,35 +8,28 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup algorithms
      * @ingroup sequences
      *
-     * `Sequence` containing the elements of two or more
-     * concatenated `Sequence`s.
+     * Sequence containing the elements of two or more concatenated sequences.
      *
-     * Additionally, `mpl11::join` is an algorithm returning a new `Container`
-     * created with the elements of `mpl11::join`. To use `mpl11::join` as an
-     * algorithm, `Sequence1` must be a `Container`.
+     * The sequence operations supported by `join` is the intersection of the
+     * sequence operations supported by the joined sequences. However, in
+     * order for `join` to be a `RandomAccessSequence`, all the sequences must
+     * also be `FiniteSequence`s.
      *
-     *
-     * @todo
-     * Take advantage of knowing the length of the underlying sequence in
-     * O(1) in the join_iterator.
      *
      * @todo
-     * Take advantage of possible fast sum in the implementation of size<>.
+     * Consider allowing 0 or 1 sequence to be joined.
      *
      * @todo
-     * Fix the fact that a join_iterator and a random type will compare
-     * unequal instead of failing. Also, make sure two join iterators can
-     * be compared like equal<X, Y> or equal<Y, X>, which is not the case
-     * right now. This issue is also related to multiple dispatch.
+     * Consider creating a similar sequence that takes a sequence of
+     * sequences.
+     *
+     * @todo
+     * Use folds instead of hand-crafted recursion in the implementation.
      */
     template <typename Sequence1, typename Sequence2, typename ...SequenceN>
     struct join;
-
-    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
-    using join_t = typename join<Sequence1, Sequence2, SequenceN...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_JOIN_HPP

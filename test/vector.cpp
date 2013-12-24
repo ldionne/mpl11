@@ -399,28 +399,28 @@ static_assert(is_same<
 
 // join
 static_assert(is_same<
-    join_t<vector<>, vector<>>,
+    join<vector<>, vector<>>::type,
     vector<>
 >::value, "");
 static_assert(is_same<
-    join_t<vector<>, vector<x>>,
+    join<vector<>, vector<x>>::type,
     vector<x>
 >::value, "");
 static_assert(is_same<
-    join_t<vector<>, vector<x, y>>,
+    join<vector<>, vector<x, y>>::type,
     vector<x, y>
 >::value, "");
 
 static_assert(is_same<
-    join_t<vector<x>, vector<>>,
+    join<vector<x>, vector<>>::type,
     vector<x>
 >::value, "");
 static_assert(is_same<
-    join_t<vector<x>, vector<y>>,
+    join<vector<x>, vector<y>>::type,
     vector<x, y>
 >::value, "");
 static_assert(is_same<
-    join_t<vector<x>, vector<y, z>>,
+    join<vector<x>, vector<y, z>>::type,
     vector<x, y, z>
 >::value, "");
 
