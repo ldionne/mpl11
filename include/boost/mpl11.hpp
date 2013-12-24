@@ -168,10 +168,8 @@ struct Metafunction { };
 #include <boost/mpl11/hash.hpp>
 #include <boost/mpl11/hashable.hpp>
 #include <boost/mpl11/head.hpp>
-#include <boost/mpl11/hset.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/imap.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/init.hpp>
 #include <boost/mpl11/insert.hpp>

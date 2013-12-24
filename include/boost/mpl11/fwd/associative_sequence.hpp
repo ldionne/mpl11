@@ -40,14 +40,11 @@ namespace boost { namespace mpl11 {
      * | `has_key<S, Key>`               | Boolean `Integral`
      */
     struct AssociativeSequence : Sequence, Comparable {
-        /*!
-         * Returns `mpl11::at_key<%Sequence, Key, X>::type`, where `X`
-         * triggers a compile-time assertion when instantiated.
-         */
+#ifdef BOOST_MPL11_DOXYGEN_INVOKED
+        //! This operation must be provided by the user.
         template <typename Sequence, typename Key>
         struct at_key_impl;
 
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
         //! This operation must be provided by the user.
         template <typename Sequence, typename Key, typename Default>
         struct at_key_def_impl;
@@ -64,13 +61,6 @@ namespace boost { namespace mpl11 {
         template <typename Sequence, typename Element>
         struct value_of_impl;
 #endif
-
-        /*!
-         * Returns whether both sequences have the same length and the same
-         * keys mapping to equal values.
-         */
-        template <typename Sequence1, typename Sequence2>
-        struct equal_impl;
     };
 }} // end namespace boost::mpl11
 
