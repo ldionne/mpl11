@@ -33,15 +33,6 @@ namespace boost { namespace mpl11 {
     //! Tag for types that are foreign to the library.
     struct foreign_tag;
 
-    //! Tag representing the `ForwardSequence` typeclass.
-    struct forward_sequence_tag;
-
-    //! Tag representing the `BidirectionalSequence` typeclass.
-    struct bidirectional_sequence_tag;
-
-    //! Tag representing the `RandomAccessSequence` typeclass.
-    struct random_access_sequence_tag;
-
     //! Tag representing the `Integral` typeclass.
     struct integral_tag;
 

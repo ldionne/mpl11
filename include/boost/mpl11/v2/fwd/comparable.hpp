@@ -44,6 +44,36 @@ namespace boost { namespace mpl11 {
      */
     template <typename TagL, typename TagR>
     struct Comparable;
+
+    /*!
+     * @ingroup Comparable
+     * @ingroup comparison_methods
+     * @{
+     *
+     * Boolean `Integral` representing whether the given objects are equal.
+     */
+    template <typename T1, typename T2, typename ...Tn>
+    struct equal;
+
+    template <typename T1, typename T2, typename ...Tn>
+    using equal_t = typename equal<T1, T2, Tn...>::type;
+
+    /*!
+     * Boolean `Integral` representing whether the given objects are unequal.
+     *
+     *
+     * @warning
+     * Using this method with several arguments can be confusing. It does not
+     * return whether `T1`, `T2`, ...`Tn` are all unequal, but whether `T1`
+     * is different from `T2`, `T2` different from `T3`, and so on.
+     */
+    template <typename T1, typename T2, typename ...Tn>
+    struct not_equal;
+
+    template <typename T1, typename T2, typename ...Tn>
+    using not_equal_t = typename not_equal<T1, T2, Tn...>::type;
+
+    //! @}
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COMPARABLE_HPP

@@ -38,6 +38,50 @@ namespace boost { namespace mpl11 {
     struct ForwardSequence;
 
     /*!
+     * @ingroup ForwardSequence
+     * @ingroup methods
+     * @{
+     *
+     * Returns the first element of a non-empty `ForwardSequence`.
+     */
+    template <typename S>
+    struct head;
+
+    template <typename S>
+    using head_t = typename head<S>::type;
+
+    /*!
+     * Extract the elements after the head of a non-empty `ForwardSequence`.
+     *
+     * Specifically, returns a concept-identical sequence containing all the
+     * elements of the original sequence except the first one.
+     */
+    template <typename S>
+    struct tail;
+
+    template <typename S>
+    using tail_t = typename tail<S>::type;
+
+    /*!
+     * Boolean `Integral` representing whether the given `ForwardSequence`
+     * is empty.
+     */
+    template <typename S>
+    struct is_empty;
+
+    template <typename S>
+    using is_empty_t = typename is_empty<S>::type;
+
+    //! @}
+
+    /*!
+     * @ingroup tags
+     *
+     * Tag representing the `ForwardSequence` typeclass.
+     */
+    struct forward_sequence_tag;
+
+    /*!
      * Default instantiation of the `Comparable` typeclass for
      * `ForwardSequence`s.
      *
