@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_TAG_OF_HPP
 #define BOOST_MPL11_TAG_OF_HPP
 
-#include <boost/mpl11/v2/tags.hpp>
+#include <boost/mpl11/fwd/tag_of.hpp>
 
 
 namespace boost { namespace mpl11 {

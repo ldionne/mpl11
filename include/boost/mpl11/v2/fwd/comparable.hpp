@@ -30,8 +30,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Methods
-     * - `equal`
-     * - `not_equal`
+     * `equal` and `not_equal`.
      *
      * ### Minimal complete definition
      * Either `equal` or `not_equal`.

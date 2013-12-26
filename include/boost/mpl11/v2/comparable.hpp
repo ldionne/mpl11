@@ -6,12 +6,12 @@
 #ifndef BOOST_MPL11_COMPARABLE_HPP
 #define BOOST_MPL11_COMPARABLE_HPP
 
-#include <boost/mpl11/v2/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
 
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/detail/comparison_operator.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/not.hpp>
-#include <boost/mpl11/v2/equal.hpp>
-#include <boost/mpl11/v2/not_equal.hpp>
+#include <boost/mpl11/tag_of.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -36,23 +36,44 @@ namespace boost { namespace mpl11 {
             using not_equal_impl = typename Comparable<TagR, TagL>::
                                    template not_equal_impl<R, L>;
         };
+
+        template <>
+        struct comparison_operator<true, equal> {
+            template <typename T1, typename T2>
+            using apply = typename Comparable<
+                typename tag_of<T1>::type, typename tag_of<T2>::type
+            >::template equal_impl<T1, T2>;
+        };
+
+        template <>
+        struct comparison_operator<true, not_equal> {
+            template <typename T1, typename T2>
+            using apply = typename Comparable<
+                typename tag_of<T1>::type, typename tag_of<T2>::type
+            >::template not_equal_impl<T1, T2>;
+        };
     } // end namespace detail
 
     template <typename TagL, typename TagR>
     struct Comparable {
         template <typename L, typename R>
-        struct equal_impl : false_ { };
-
-        template <typename T>
-        struct equal_impl<T, T> : true_ { };
-
+        using equal_impl = detail::is_same<L, R>;
 
         template <typename L, typename R>
-        struct not_equal_impl : true_ { };
-
-        template <typename T>
-        struct not_equal_impl<T, T> : false_ { };
+        using not_equal_impl = detail::is_not_same<L, R>;
     };
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct equal
+        : detail::comparison_operator<sizeof...(Tn) == 0, equal>::
+            template apply<T1, T2, Tn...>
+    { };
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct not_equal
+        : detail::comparison_operator<sizeof...(Tn) == 0, not_equal>::
+            template apply<T1, T2, Tn...>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_COMPARABLE_HPP

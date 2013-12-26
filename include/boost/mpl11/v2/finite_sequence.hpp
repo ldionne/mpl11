@@ -6,11 +6,12 @@
 #ifndef BOOST_MPL11_FINITE_SEQUENCE_HPP
 #define BOOST_MPL11_FINITE_SEQUENCE_HPP
 
-#include <boost/mpl11/v2/fwd/finite_sequence.hpp>
+#include <boost/mpl11/fwd/finite_sequence.hpp>
 
 #include <boost/mpl11/detail/default_unpack.hpp>
+#include <boost/mpl11/detail/raw_foldl.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/v2/detail/raw_foldl.hpp>
+#include <boost/mpl11/tag_of.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -32,6 +33,16 @@ namespace boost { namespace mpl11 {
             using unpack_impl = detail::default_unpack<S, F>;
         };
     } // end namespace defaults
+
+    template <typename S>
+    struct length
+        : FiniteSequence<typename tag_of<S>::type>::template length_impl<S>
+    { };
+
+    template <typename S, typename F>
+    struct unpack
+        : FiniteSequence<typename tag_of<S>::type>::template unpack_impl<S, F>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FINITE_SEQUENCE_HPP

@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 {
      * `ForwardSequence`
      *
      * ### Methods
-     * `last`, `init`
+     * `last` and `init`
      *
      * ### Minimal complete definition
      * `last` and `init`.
