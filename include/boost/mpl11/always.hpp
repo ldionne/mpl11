@@ -8,14 +8,14 @@
 
 #include <boost/mpl11/fwd/always.hpp>
 
-#include <boost/mpl11/identity.hpp>
-
 
 namespace boost { namespace mpl11 {
     template <typename T>
     struct always {
         template <typename ...>
-        using apply = identity<T>;
+        struct apply {
+            using type = T;
+        };
     };
 }} // end namespace boost::mpl11
 
