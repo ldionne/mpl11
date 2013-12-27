@@ -14,6 +14,9 @@ namespace boost { namespace mpl11 {
      * @ingroup metafunction_classes
      *
      * `MetafunctionClass` returning the `N`th of its arguments.
+     *
+     * Indexing starts at 1, so that `arg<1>` returns the 1st argument,
+     * `arg<2>` the 2nd and so on. Using `arg<0>` is an error.
      */
     template <detail::std_size_t N>
     struct arg;
