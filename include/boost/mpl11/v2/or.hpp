@@ -38,10 +38,14 @@ namespace boost { namespace mpl11 {
     } // end namespace or_detail
 
     //! @todo Use a generic fold instead.
-    template <typename F1, typename F2, typename ...Fn>
+    template <typename ...Fn>
     struct or_
-        : or_detail::or_impl<F1::type::value, false>::
-            template apply<F2, Fn...>
+        : or_detail::or_impl<false, false>::template apply<Fn...>
+    { };
+
+    template <>
+    struct or_<>
+        : false_
     { };
 }} // end namespace boost::mpl11
 

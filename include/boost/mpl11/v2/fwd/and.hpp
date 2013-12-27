@@ -15,13 +15,14 @@ namespace boost { namespace mpl11 {
      *
      * Specifically, its arguments must be `Metafunction`s returning
      * `Integral` datatypes. Arguments are then evaluated from left
-     * to write in a short-circuiting fashion.
+     * to right in a short-circuiting fashion. If no arguments are
+     * provided, `and_` is equivalent to `true_`.
      */
-    template <typename F1, typename F2, typename ...Fn>
+    template <typename ...Fn>
     struct and_;
 
-    template <typename F1, typename F2, typename ...Fn>
-    using and_t = typename and_<F1, F2, Fn...>::type;
+    template <typename ...Fn>
+    using and_t = typename and_<Fn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_AND_HPP

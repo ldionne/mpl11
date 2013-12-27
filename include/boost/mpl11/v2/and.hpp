@@ -38,10 +38,14 @@ namespace boost { namespace mpl11 {
     } // end namespace and_detail
 
     //! @todo Use a generic fold instead.
-    template <typename F1, typename F2, typename ...Fn>
+    template <typename ...Fn>
     struct and_
-        : and_detail::and_impl<F1::type::value, false>::
-            template apply<F2, Fn...>
+        : and_detail::and_impl<true, false>::template apply<Fn...>
+    { };
+
+    template <>
+    struct and_<>
+        : true_
     { };
 }} // end namespace boost::mpl11
 

@@ -15,13 +15,14 @@ namespace boost { namespace mpl11 {
      *
      * Specifically, its arguments must be `Metafunction`s returning
      * `Integral` datatypes. Arguments are then evaluated from left
-     * to write in a short-circuiting fashion.
+     * to right in a short-circuiting fashion. If no arguments are
+     * provided, `or_` is equivalent to `false_`.
      */
-    template <typename F1, typename F2, typename ...Fn>
+    template <typename ...Fn>
     struct or_;
 
-    template <typename F1, typename F2, typename ...Fn>
-    using or_t = typename or_<F1, F2, Fn...>::type;
+    template <typename ...Fn>
+    using or_t = typename or_<Fn...>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_OR_HPP
