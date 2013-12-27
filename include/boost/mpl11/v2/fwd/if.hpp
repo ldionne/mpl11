@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::if_` and defines `boost::mpl11::if_c`.
+ * Forward declares `boost::mpl11::if_` and `boost::mpl11::if_c`.
  */
 
 #ifndef BOOST_MPL11_FWD_IF_HPP
@@ -13,9 +13,10 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Select one of two types based on a `Logical` condition.
+     * Select one of two types based on an `Integral` condition.
      *
-     * If `not_<identity<Condition>>::value` is `false`, `Then` is returned.
+     * Specifically, `Condition` must be a `Metafunction` returning an
+     * `Integral`. If `Condition::type::value` is `true`, `Then` is returned.
      * Otherwise, `Else` is returned.
      */
     template <typename Condition, typename Then, typename Else>
@@ -24,13 +25,16 @@ namespace boost { namespace mpl11 {
     template <typename Condition, typename Then, typename Else>
     using if_t = typename if_<Condition, Then, Else>::type;
 
-    //! @ingroup metafunctions
-    //! Alias to `if_<bool_<Condition>, Then, Else>`; provided for convenience.
+    /*!
+     * @ingroup metafunctions
+     *
+     * Alias to `if_<bool_<Condition>, Then, Else>`; provided for convenience.
+     */
     template <bool Condition, typename Then, typename Else>
     using if_c = if_<bool_<Condition>, Then, Else>;
 
     template <bool Condition, typename Then, typename Else>
-    using if_c_t = typename if_c<Condition, Then, Else>::type;
+    using if_c_t = typename if_<bool_<Condition>, Then, Else>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IF_HPP

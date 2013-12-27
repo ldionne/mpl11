@@ -13,8 +13,8 @@ namespace boost { namespace mpl11 {
      * `MetafunctionClass` returning a specialization of `Template` with
      * the provided arguments.
      *
-     * Specifically, `mpl11::apply<mpl11::into<Template>, Args...>::type`
-     * is identical to `Template<Args...>`.
+     * Specifically, `apply<into<Template>, Args...>::type` is identical
+     * to `Template<Args...>`.
      *
      *
      * @see `mpl11::quote`

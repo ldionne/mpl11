@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
     struct identity;
 
     template <typename T>
-    using identity_t = typename identity<T>::type;
+    using identity_t = T;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IDENTITY_HPP

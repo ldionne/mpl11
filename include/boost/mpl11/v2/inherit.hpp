@@ -12,10 +12,11 @@
 namespace boost { namespace mpl11 {
     template <typename ...Bases>
     struct inherit {
-        struct type
-            : Bases...
-        { };
+        using type = inherit_t<Bases...>;
     };
+
+    template <typename ...Bases>
+    struct inherit_t : Bases... { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_INHERIT_HPP

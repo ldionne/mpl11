@@ -18,9 +18,9 @@ namespace boost { namespace mpl11 {
      *
      *
      * @note
-     * `mpl11::partial` is specialized for `mpl11::quote` and `mpl11::into`
-     * so that patterns like `partial<quote<equal>, X...>` are as efficient
-     * as writing a custom `MetafunctionClass`.
+     * `partial` is specialized for `quote` and `into` so that patterns like
+     * `partial<quote<equal>, X...>` are as efficient as writing a custom
+     * `MetafunctionClass`.
      */
     template <typename F, typename ...X>
     struct partial;
