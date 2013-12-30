@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/forward_sequence.hpp>
 
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/detail/check_usage.hpp>
 #include <boost/mpl11/detail/lexicographical_compare.hpp>
 #include <boost/mpl11/detail/std_equal.hpp>
 #include <boost/mpl11/orderable.hpp>
@@ -18,10 +19,25 @@
 namespace boost { namespace mpl11 {
     namespace defaults { struct ForwardSequence { }; }
 
+    namespace detail {
+        template <typename S>
+        struct check_usage<head<S>> {
+            static_assert(!is_empty<S>::value,
+            "Invalid usage of `head` on an empty sequence.");
+        };
+
+        template <typename S>
+        struct check_usage<tail<S>> {
+            static_assert(!is_empty<S>::value,
+            "Invalid usage of `tail` on an empty sequence.");
+        };
+    } // end namespace detail
+
     template <typename S>
-    struct head
-        : ForwardSequence<typename tag_of<S>::type>::template head_impl<S>
-    { };
+    struct head : private BOOST_MPL11_CHECK_USAGE(head<S>) {
+        using type = typename ForwardSequence<typename tag_of<S>::type>::
+                     template head_impl<S>::type;
+    };
 
     template <typename S>
     struct is_empty
@@ -29,9 +45,10 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename S>
-    struct tail
-        : ForwardSequence<typename tag_of<S>::type>::template tail_impl<S>
-    { };
+    struct tail : private BOOST_MPL11_CHECK_USAGE(tail<S>) {
+        using type = typename ForwardSequence<typename tag_of<S>::type>::
+                     template tail_impl<S>::type;
+    };
 
     template <>
     struct Comparable<forward_sequence_tag, forward_sequence_tag>

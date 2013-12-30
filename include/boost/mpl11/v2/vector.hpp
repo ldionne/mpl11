@@ -6,28 +6,22 @@
 #ifndef BOOST_MPL11_VECTOR_HPP
 #define BOOST_MPL11_VECTOR_HPP
 
-#include <boost/mpl11/v2/fwd/vector.hpp>
+#include <boost/mpl11/fwd/vector.hpp>
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/bidirectional_sequence.hpp>
 #include <boost/mpl11/detail/index_sequence.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
-#include <boost/mpl11/fwd/at.hpp>
-#include <boost/mpl11/fwd/head.hpp>
-#include <boost/mpl11/fwd/init.hpp>
-#include <boost/mpl11/fwd/is_empty.hpp>
-#include <boost/mpl11/fwd/last.hpp>
-#include <boost/mpl11/fwd/length.hpp>
-#include <boost/mpl11/fwd/slice.hpp>
-#include <boost/mpl11/fwd/tail.hpp>
-#include <boost/mpl11/fwd/unpack.hpp>
+#include <boost/mpl11/detail/variadic_drop.hpp>
+#include <boost/mpl11/detail/variadic_take.hpp>
+#include <boost/mpl11/forward_sequence.hpp>
+#include <boost/mpl11/fwd/finite_sequence.hpp>
+#include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/identity.hpp>
-#include <boost/mpl11/integral_c.hpp> // for vector_c
-
-#include <boost/mpl11/v2/forward_sequence.hpp> // for Comparable and Orderable
-#include <boost/mpl11/v2/fwd/comparable.hpp>
-#include <boost/mpl11/v2/fwd/orderable.hpp>
-#include <boost/mpl11/v2/fwd/tag_of.hpp>
-#include <boost/mpl11/v2/tags.hpp>
+#include <boost/mpl11/integral_c.hpp> // required for forward declaration
+#include <boost/mpl11/into.hpp>
+#include <boost/mpl11/random_access_sequence.hpp>
+#include <boost/mpl11/sequence_traits.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -56,6 +50,12 @@ struct tag_of<vector<T...>> {
     using type = random_access_sequence_tag;
 };
 
+template <typename ...T>
+struct sequence_traits<vector<T...>> : defaults::sequence_traits {
+    static constexpr bool has_O1_size = true;
+    static constexpr bool has_O1_unpack = true;
+    static constexpr bool is_finite = true;
+};
 
 /////////////////////////////////
 // ForwardSequence
@@ -65,23 +65,9 @@ struct head<vector<Head, Tail...>> {
     using type = Head;
 };
 
-template <typename ...T>
-struct head<vector<T...>> {
-    static_assert(sizeof...(T) > 0,
-    "Invalid usage of `head` on an empty `vector`.");
-    struct type;
-};
-
 template <typename Head, typename ...Tail>
 struct tail<vector<Head, Tail...>> {
     using type = vector<Tail...>;
-};
-
-template <typename ...T>
-struct tail<vector<T...>> {
-    static_assert(sizeof...(T) > 0,
-    "Invalid usage of `tail` on an empty `vector`.");
-    struct type;
 };
 
 template <typename ...T>
@@ -117,30 +103,13 @@ struct last<vector<Head, Tail...>>
     : detail::variadic_last<Head, Tail...>
 { };
 
-template <typename ...T>
-struct last<vector<T...>> {
-    static_assert(sizeof...(T) > 0,
-    "Invalid usage of `last` on an empty `vector`.");
-    struct type;
-};
-
 template <typename Head, typename ...Tail>
 struct init<vector<Head, Tail...>>
-#if 0
     : apply<
-        detail::take_args<sizeof...(Tail), into<vector>>,
+        detail::variadic_take<sizeof...(Tail), into<vector>>,
         Head, Tail...
     >
-#endif
-    : apply<args<0, sizeof...(Tail)>, Head, Tail...>
 { };
-
-template <typename ...T>
-struct init<vector<T...>> {
-    static_assert(sizeof...(T) > 0,
-    "Invalid usage of `init` on an empty `vector`.");
-    struct type;
-};
 
 
 /////////////////////////////////
@@ -152,13 +121,9 @@ namespace vector_detail {
 }
 
 template <typename ...T, typename Index>
-struct at<vector<T...>, Index> {
-    static_assert(Index::value >= 0,
-    "Invalid usage of `at`: Accessing a `vector` at a negative index.");
-
-    static_assert(Index::value < sizeof...(T),
-    "Invalid usage of `at`: Accessing a `vector` at an out-of-bounds index.");
-
+struct at<vector<T...>, Index>
+    : private BOOST_MPL11_CHECK_USAGE(at<vector<T...>, Index>)
+{
     using type = typename decltype(
         vector_detail::at_index<Index::value>((vector<T...>*)nullptr)
     )::type;
@@ -166,25 +131,15 @@ struct at<vector<T...>, Index> {
 
 template <typename ...T, typename Start, typename Stop>
 struct slice<vector<T...>, Start, Stop>
-#if 0
-        detail::drop_args<Start::value,
-            detail::take_args<Stop::value - Start::value,
+    : private BOOST_MPL11_CHECK_USAGE(slice<vector<T...>, Start, Stop>)
+{
+    using type = typename apply<
+        detail::variadic_drop<Start::value,
+            detail::variadic_take<Stop::value - Start::value,
                 into<vector>
             >
-        >
-#endif
-{
-    static_assert(Start::value >= 0,
-    "Invalid usage of `slice`: Start and Stop indexes must be non-negative.");
-
-    static_assert(Start::value <= Stop::value,
-    "Invalid usage of `slice`: Start index greater than the Stop index.");
-
-    static_assert(Start::value <= sizeof...(T),
-    "Invalid usage of `slice`: Start index out-of-bounds of the `vector`.");
-
-    using type = typename apply<
-        args<Start::value, Stop::value>, T...
+        >,
+        T...
     >::type;
 };
 }} // end namespace boost::mpl11
