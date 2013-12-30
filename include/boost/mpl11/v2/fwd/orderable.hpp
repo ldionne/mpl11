@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * `less`
      */
-    template <typename TagL, typename TagR>
+    template <typename TagL, typename TagR = TagL>
     struct Orderable;
 
     /*!

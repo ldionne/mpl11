@@ -41,7 +41,7 @@ namespace boost { namespace mpl11 {
      * instances of it. For convenience, equality and inequality for
      * arbitrary types is defined in terms of `std::is_same`.
      */
-    template <typename TagL, typename TagR>
+    template <typename TagL, typename TagR = TagL>
     struct Comparable;
 
     /*!

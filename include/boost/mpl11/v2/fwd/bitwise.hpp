@@ -30,7 +30,7 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * All of the above methods.
      */
-    template <typename TagL, typename TagR>
+    template <typename TagL, typename TagR = TagL>
     struct Bitwise;
 
     /*!
