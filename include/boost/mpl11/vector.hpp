@@ -10,16 +10,15 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/bidirectional_sequence.hpp>
+#include <boost/mpl11/detail/check_usage.hpp>
 #include <boost/mpl11/detail/index_sequence.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
-#include <boost/mpl11/detail/variadic_drop.hpp>
-#include <boost/mpl11/detail/variadic_take.hpp>
+#include <boost/mpl11/detail/variadic_last.hpp>
 #include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/fwd/finite_sequence.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/integral_c.hpp> // required for forward declaration
-#include <boost/mpl11/into.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 
@@ -52,7 +51,7 @@ namespace boost { namespace mpl11 {
 
     template <typename ...T>
     struct sequence_traits<vector<T...>> : defaults::sequence_traits {
-        static constexpr bool has_O1_size = true;
+        static constexpr bool has_O1_length = true;
         static constexpr bool has_O1_unpack = true;
         static constexpr bool is_finite = true;
     };
@@ -105,10 +104,7 @@ namespace boost { namespace mpl11 {
 
     template <typename Head, typename ...Tail>
     struct init<vector<Head, Tail...>>
-        : apply<
-            detail::variadic_take<sizeof...(Tail), into<vector>>,
-            Head, Tail...
-        >
+        : slice_c<vector<Head, Tail...>, 0, sizeof...(Tail)>
     { };
 
 
@@ -129,17 +125,65 @@ namespace boost { namespace mpl11 {
         )::type;
     };
 
+    namespace vector_detail {
+        template <detail::std_size_t N, typename Vector>
+        struct drop_n;
+
+        template <detail::std_size_t N, typename Head, typename ...Tail>
+        struct drop_n<N, vector<Head, Tail...>>
+            : drop_n<N - 1, vector<Tail...>>
+        { };
+
+        template <typename Head, typename ...Tail>
+        struct drop_n<0, vector<Head, Tail...>> {
+            using type = vector<Head, Tail...>;
+        };
+
+        template <typename V>
+        struct drop_n<0, V> {
+            using type = V;
+        };
+
+        template <typename S1, typename S2>
+        struct concat;
+
+        template <typename ...T, typename ...U>
+        struct concat<vector<T...>, vector<U...>> {
+            using type = vector<T..., U...>;
+        };
+
+
+        template <detail::std_size_t N, typename Vector>
+        struct take_n;
+
+        template <detail::std_size_t N, typename Head, typename ...Tail>
+        struct take_n<N, vector<Head, Tail...>>
+            : concat<
+                vector<Head>,
+                typename take_n<N - 1, vector<Tail...>>::type
+            >
+        { };
+
+        template <typename Head, typename ...Tail>
+        struct take_n<0, vector<Head, Tail...>> {
+            using type = vector<>;
+        };
+
+        template <typename V>
+        struct take_n<0, V> {
+            using type = vector<>;
+        };
+    } // end namespace vector_detail
+
+    //! @todo Use an O(1) algorithm.
     template <typename ...T, typename Start, typename Stop>
     struct slice<vector<T...>, Start, Stop>
         : private BOOST_MPL11_CHECK_USAGE(slice<vector<T...>, Start, Stop>)
     {
-        using type = typename apply<
-            detail::variadic_drop<Start::value,
-                detail::variadic_take<Stop::value - Start::value,
-                    into<vector>
-                >
-            >,
-            T...
+        using type = typename vector_detail::take_n<Stop::value - Start::value,
+            typename vector_detail::drop_n<Start::value,
+                vector<T...>
+            >::type
         >::type;
     };
 }} // end namespace boost::mpl11

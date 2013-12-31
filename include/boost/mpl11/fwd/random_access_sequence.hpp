@@ -16,8 +16,8 @@ namespace boost { namespace mpl11 {
      * @ingroup typeclasses
      * @defgroup RandomAccessSequence RandomAccessSequence
      *
-     * Collection of types providing efficient access to elements
-     * anywhere in the sequence.
+     * Collection of types providing access to elements anywhere in
+     * the sequence.
      *
      *
      * ### Refines
