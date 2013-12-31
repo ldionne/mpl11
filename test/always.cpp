@@ -12,25 +12,13 @@
 using namespace boost::mpl11;
 using detail::is_same;
 
-static_assert(is_same<
-    apply<always<struct anything>>::type,
-    struct anything
->::value, "");
+struct a;
+struct x; struct y; struct z;
 
-static_assert(is_same<
-    apply<always<struct anything>, struct x>::type,
-    struct anything
->::value, "");
-
-static_assert(is_same<
-    apply<always<struct anything>, struct x, struct y>::type,
-    struct anything
->::value, "");
-
-static_assert(is_same<
-    apply<always<struct anything>, struct x, struct y, struct z>::type,
-    struct anything
->::value, "");
+static_assert(is_same<a, apply_t<always<a>>>::value, "");
+static_assert(is_same<a, apply_t<always<a>, x>>::value, "");
+static_assert(is_same<a, apply_t<always<a>, x, y>>::value, "");
+static_assert(is_same<a, apply_t<always<a>, x, y, z>>::value, "");
 
 
 int main() { }

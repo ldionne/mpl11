@@ -1,6 +1,6 @@
 /*!
  * @file
- * Includes the whole _mpl11_ library.
+ * Includes the whole library.
  */
 
 #ifndef BOOST_MPL11_HPP
@@ -13,215 +13,125 @@
  */
 
 /*!
- * @defgroup datatypes Data types
+ * @defgroup typeclasses Type classes
  *
- * First-class constructs for manipulating data at compile-time.
+ * General purpose type classes provided by the library.
+ *
+ *
+ * @todo Explain what are type classes and methods.
  */
 
 /*!
- * @defgroup sequences Sequences
- * @ingroup datatypes
+ * @defgroup tags Tags
  *
- * Types representing collections of other types.
+ * Tags are types used to dispatch methods.
+ *
+ * Tags come in two flavors (the difference is only conceptual):
+ *
+ * ### Typeclass tags
+ * A typeclass tag is a tag representing a single typeclass. For example,
+ * the `forward_sequence_tag` is a typeclass tag because it represents
+ * the `ForwardSequence` typeclass. These tags are used as a meeting
+ * point between different datatype tags.
+ *
+ *
+ * ### Datatype tags
+ * A datatype tag represents a specific datatype. For example,
+ * `vector_tag` is a datatype tag because it only represents the
+ * `vector` datatype. These tags are only used to make datatypes
+ * instances of typeclasses.
  */
 
-#ifdef BOOST_MPL11_DOXYGEN_INVOKED
 /*!
- * @ingroup concepts
+ * @defgroup datatypes Data Types
  *
- * A `Metafunction` is a class or a class template that represents a
+ * Data types provided by the library.
+ *
+ *
+ * @todo Explain what are data types.
+ */
+
+/*!
+ * @defgroup metafunctions Metafunctions
+ *
+ * Metafunctions provided by the library.
+ *
+ * A metafunction is a class or a class template that represents a
  * function invocable at compile-time.
  *
  * An non-nullary metafunction is invoked by instantiating the class
  * template with particular template parameters (metafunction arguments);
  * the result of the metafunction application is accessible through the
- * instantiation's nested `type` alias. All metafunction's arguments must
- * be types (i.e. only type template parameters are allowed). A
+ * instantiation's nested `type` alias. All of a metafunction's arguments
+ * must be types (i.e. only type template parameters are allowed). A
  * metafunction can have a variable number of parameters. A nullary
  * metafunction is represented as a (template) class with a nested `type`
  * typename member.
  *
  *
- * ## Notation
+ * ### Notation
  * | Expression | Description
  * | ---------- | -----------
- * | `F`        | A `Metafunction`
+ * | `F`        | A metafunction
  * | `Args...`  | An arbitrary sequence of types
  *
  *
- * ## Valid expressions
- * | Expression                      | Type
- * | ----------                      | ----
- * | `F<Args...>::type` or `F::type` | Any type
- *
- *
- * @note
- * This concept only lives in the documentation. There exists no such
- * `struct` in the library.
- */
-struct Metafunction { };
-#endif
-
-/*!
- * @defgroup metafunctions Metafunctions
- *
- * `Metafunction`s provided by the library.
+ * ### Valid expressions
+ * | Expression                       | Type
+ * | ----------                       | ----
+ * | `F<Args...>::%type` or `F::type` | Any type
  */
 
 /*!
- * @defgroup algorithms Algorithms
- * @ingroup metafunctions
+ * @defgroup metafunction_classes Metafunctions Classes
  *
- * Generic algorithms manipulating @ref datatypes through their intrinsics.
+ * Metafunction classes provided by the library.
+ *
+ * A metafunction class is a compile-time invokable entity that is
+ * first-class in the C++ template system.
+ *
+ *
+ * ### Notation
+ * | Expression | Description
+ * | ---------- | -----------
+ * | `F`        | A metafunction class
+ * | `Args...`  | An arbitrary sequence of types
+ *
+ *
+ * ### Valid expressions
+ * | Expression                 | Type
+ * | ----------                 | ----
+ * | `apply<F, Args...>::%type` | Any type
  */
 
-/*!
- * @defgroup intrinsics Intrinsics
- * @ingroup metafunctions
- *
- * Metafunctions forming the essential interface of @ref datatypes.
- *
- * Intrinsics use a special dispatching system to allow their behavior to
- * be customized easily.
- *
- *
- * @todo Document the dispatching system.
- */
 
-/*!
- * @defgroup concepts Concepts
- *
- * Concepts upon which the library is built.
- *
- * In this library, concepts are more than just documented syntaxic and
- * semantic requirements about types. Each concept is also a C++ class
- * that can be used as mixin to ease the implementation of the concept.
- *
- *
- * @todo
- * Expand upon the usage and composition of concepts as mixins.
- */
-
-#include <boost/mpl11/add.hpp>
-#include <boost/mpl11/advance.hpp>
-#include <boost/mpl11/all_of.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/any_of.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/args.hpp>
 #include <boost/mpl11/arithmetic.hpp>
-#include <boost/mpl11/associative_container.hpp>
-#include <boost/mpl11/associative_sequence.hpp>
-#include <boost/mpl11/at.hpp>
-#include <boost/mpl11/at_key.hpp>
-#include <boost/mpl11/back.hpp>
-#include <boost/mpl11/back_extensible_container.hpp>
-#include <boost/mpl11/begin.hpp>
-#include <boost/mpl11/bidirectional_iterator.hpp>
 #include <boost/mpl11/bidirectional_sequence.hpp>
-#include <boost/mpl11/bitand.hpp>
-#include <boost/mpl11/bitor.hpp>
 #include <boost/mpl11/bitwise.hpp>
-#include <boost/mpl11/bitxor.hpp>
-#include <boost/mpl11/class_of.hpp>
-#include <boost/mpl11/clear.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/compose.hpp>
-#include <boost/mpl11/container.hpp>
-#include <boost/mpl11/contains.hpp>
-#include <boost/mpl11/count.hpp>
-#include <boost/mpl11/count_if.hpp>
-#include <boost/mpl11/couple.hpp>
-#include <boost/mpl11/deref.hpp>
-#include <boost/mpl11/directional_sequence.hpp>
-#include <boost/mpl11/distance.hpp>
-#include <boost/mpl11/divide.hpp>
-#include <boost/mpl11/drop.hpp>
-#include <boost/mpl11/drop_while.hpp>
 #include <boost/mpl11/empty_base.hpp>
-#include <boost/mpl11/end.hpp>
-#include <boost/mpl11/equal.hpp>
-#include <boost/mpl11/erase.hpp>
-#include <boost/mpl11/erase_key.hpp>
-#include <boost/mpl11/erase_keys.hpp>
-#include <boost/mpl11/erase_range.hpp>
-#include <boost/mpl11/extensible_container.hpp>
-#include <boost/mpl11/filter.hpp>
-#include <boost/mpl11/find.hpp>
-#include <boost/mpl11/find_if.hpp>
 #include <boost/mpl11/finite_sequence.hpp>
-#include <boost/mpl11/first.hpp>
 #include <boost/mpl11/flip.hpp>
-#include <boost/mpl11/foldl.hpp>
-#include <boost/mpl11/foldr.hpp>
-#include <boost/mpl11/forward_iterator.hpp>
 #include <boost/mpl11/forward_sequence.hpp>
-#include <boost/mpl11/front.hpp>
-#include <boost/mpl11/front_extensible_container.hpp>
-#include <boost/mpl11/greater.hpp>
-#include <boost/mpl11/greater_equal.hpp>
-#include <boost/mpl11/has_key.hpp>
-#include <boost/mpl11/has_optimization.hpp>
-#include <boost/mpl11/hash.hpp>
-#include <boost/mpl11/hashable.hpp>
-#include <boost/mpl11/head.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>
-#include <boost/mpl11/init.hpp>
-#include <boost/mpl11/insert.hpp>
-#include <boost/mpl11/insert_key.hpp>
-#include <boost/mpl11/insert_keys.hpp>
-#include <boost/mpl11/insert_range.hpp>
 #include <boost/mpl11/integral.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
-#include <boost/mpl11/is_empty.hpp>
-#include <boost/mpl11/iterator_range.hpp>
-#include <boost/mpl11/join.hpp>
-#include <boost/mpl11/key_of.hpp>
-#include <boost/mpl11/last.hpp>
-#include <boost/mpl11/length.hpp>
-#include <boost/mpl11/less.hpp>
-#include <boost/mpl11/less_equal.hpp>
-#include <boost/mpl11/logical.hpp>
-#include <boost/mpl11/max.hpp>
-#include <boost/mpl11/min.hpp>
-#include <boost/mpl11/modulo.hpp>
-#include <boost/mpl11/multiply.hpp>
-#include <boost/mpl11/new.hpp>
-#include <boost/mpl11/next.hpp>
-#include <boost/mpl11/none_of.hpp>
 #include <boost/mpl11/not.hpp>
-#include <boost/mpl11/not_equal.hpp>
-#include <boost/mpl11/optimization.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/orderable.hpp>
-#include <boost/mpl11/pair.hpp>
 #include <boost/mpl11/partial.hpp>
-#include <boost/mpl11/pop_back.hpp>
-#include <boost/mpl11/pop_front.hpp>
-#include <boost/mpl11/prev.hpp>
-#include <boost/mpl11/push_back.hpp>
-#include <boost/mpl11/push_front.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/random_access_iterator.hpp>
 #include <boost/mpl11/random_access_sequence.hpp>
-#include <boost/mpl11/repeat.hpp>
-#include <boost/mpl11/reverse.hpp>
-#include <boost/mpl11/second.hpp>
-#include <boost/mpl11/shift_left.hpp>
-#include <boost/mpl11/shift_right.hpp>
-#include <boost/mpl11/slice.hpp>
-#include <boost/mpl11/subtract.hpp>
-#include <boost/mpl11/tail.hpp>
-#include <boost/mpl11/take.hpp>
-#include <boost/mpl11/transform.hpp>
-#include <boost/mpl11/unpack.hpp>
-#include <boost/mpl11/value_of.hpp>
+#include <boost/mpl11/sequence_traits.hpp>
+#include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/vector.hpp>
-#include <boost/mpl11/zip.hpp>
 
 #endif // !BOOST_MPL11_HPP

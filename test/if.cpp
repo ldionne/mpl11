@@ -11,13 +11,17 @@
 using namespace boost::mpl11;
 using detail::is_same;
 
-static_assert(is_same<
-    if_c<true, struct Then, struct Else>::type, struct Then
->::value, "");
+struct Then; struct Else;
 
-static_assert(is_same<
-    if_c<false, struct Then, struct Else>::type, struct Else
->::value, "");
+// test if_
+struct yes { struct type { static constexpr bool value = true; }; };
+struct no { struct type { static constexpr bool value = false; }; };
+static_assert(is_same<if_<yes, Then, Else>::type, Then>::value, "");
+static_assert(is_same<if_<no, Then, Else>::type, Else>::value, "");
+
+// test if_c
+static_assert(is_same<if_c<true, Then, Else>::type, Then>::value, "");
+static_assert(is_same<if_c<false, Then, Else>::type, Else>::value, "");
 
 
 int main() { }

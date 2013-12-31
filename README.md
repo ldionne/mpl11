@@ -45,7 +45,7 @@ integral metafunctions eagerly. If the answer is yes, then we should
 definitely provide *_t aliases like for normal metafunctions. It turns
 out that the answer is yes, because some operations (like logical operations)
 can be optimized when we operate on `integral_c`s directly, i.e. when we
-operate on `is_empty<S>::type` instead of `is_empty<S>`, for example.
+operate on `is_empty<S>::%type` instead of `is_empty<S>`, for example.
 
 
 ### Why does `new_` take a sequence instead of variadic arguments?
@@ -96,7 +96,7 @@ like so:
 This has several drawbacks:
 
 1. It's cumbersome
-2. You have to use `at_key<Map, Key>::type` to refer the result and then get
+2. You have to use `at_key<Map, Key>::%type` to refer the result and then get
    it out the the `Maybe` in some way.
 3. The default action will very surely be something that we should not perform
    at all if the key is found in the map. Achieving lazyness might be hard in

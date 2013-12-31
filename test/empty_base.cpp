@@ -9,8 +9,9 @@
 
 
 using namespace boost::mpl11;
+using namespace detail;
 
-static_assert(!detail::is_specialization<empty_base>::value, "");
+static_assert(!is_specialization<empty_base>::value, "");
 
 struct not_derived { int i; };
 struct derived : empty_base { int i; };

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::not_c`.
+ * Contains unit tests for `boost::mpl11::not_`.
  */
 
 #include <boost/mpl11/not.hpp>
@@ -8,8 +8,10 @@
 
 using namespace boost::mpl11;
 
-static_assert(!not_c<true>::value, "");
-static_assert( not_c<false>::value, "");
+struct yes { struct type { static constexpr bool value = true; }; };
+struct no { struct type { static constexpr bool value = false; }; };
+static_assert(!not_<yes>::value, "");
+static_assert( not_<no>::value, "");
 
 
 int main() { }

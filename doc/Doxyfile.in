@@ -733,7 +733,8 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = @mpl11_SOURCE_DIR@/include \
+INPUT                  = @mpl11_SOURCE_DIR@/include/boost/mpl11 \
+                         @mpl11_SOURCE_DIR@/include/boost/mpl11.hpp \
                          @mpl11_SOURCE_DIR@/test \
                          @mpl11_SOURCE_DIR@/README.md
 

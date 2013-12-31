@@ -16,22 +16,22 @@ struct a0; struct a1; struct a2;
 template <typename ...> struct f { struct type; };
 
 static_assert(is_same<
-    apply<quote<f>>::type,
+    apply_t<quote<f>>,
     f<>::type
 >::value, "");
 
 static_assert(is_same<
-    apply<quote<f>, a0>::type,
+    apply_t<quote<f>, a0>,
     f<a0>::type
 >::value, "");
 
 static_assert(is_same<
-    apply<quote<f>, a0, a1>::type,
+    apply_t<quote<f>, a0, a1>,
     f<a0, a1>::type
 >::value, "");
 
 static_assert(is_same<
-    apply<quote<f>, a0, a1, a2>::type,
+    apply_t<quote<f>, a0, a1, a2>,
     f<a0, a1, a2>::type
 >::value, "");
 
