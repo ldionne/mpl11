@@ -6,14 +6,14 @@
 #ifndef BOOST_MPL11_DETAIL_OPTIONAL_HPP
 #define BOOST_MPL11_DETAIL_OPTIONAL_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/doxygen.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Dummy type used to signal that a template parameter is optional.
+     * Dummy type used to signal optional metafunction arguments.
      */
     struct optional BOOST_MPL11_DOXYGEN_ONLY({ });
 }}} // end namespace boost::mpl11::detail
