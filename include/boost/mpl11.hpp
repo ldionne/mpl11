@@ -133,6 +133,7 @@
 #include <boost/mpl11/repeat.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 #include <boost/mpl11/tag_of.hpp>
+#include <boost/mpl11/take.hpp>
 #include <boost/mpl11/vector.hpp>
 
 #endif // !BOOST_MPL11_HPP
