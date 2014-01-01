@@ -15,12 +15,18 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Methods
-     * `less`, `less_equal`, `greater` and `greater_equal`.
+     * `less`, `less_equal`, `greater`, `greater_equal`, `min` and `max`.
      *
-     * Those methods can be invoked with more than two elements.
-     * Specifically, `method<T1, ..., Tn>` is equivalent to
-     * `and_<method<T1, T2>, method<T2, ..., Tn>>`, and `method<T1, T2>`
-     * uses the usual tag dispatching technique.
+     * All those methods can be invoked with two arguments or more.
+     * Specifically:
+     * - If `m` is one of `less`, `less_equal`, `greater` or `greater_equal`,
+     *   then `m<T1, ..., Tn>` is equivalent to
+     *   `and_<m<T1, T2>, m<T2, ..., Tn>>`, and `m<T1, T2>` uses the usual
+     *   tag dispatching technique.
+     *
+     * - If `m` is `min` or `max`, then `m<T1, ..., Tn>` is equivalent to
+     *   `m<m<T1, T2>::%type, ..., Tn>`, and `m<T1, T2>` uses the usual
+     *   tag dispatching technique.
      *
      * ### Minimal complete definition
      * `less`
@@ -73,6 +79,26 @@ namespace boost { namespace mpl11 {
 
     template <typename T1, typename T2>
     using greater_equal_t = typename greater_equal<T1, T2>::type;
+
+    /*!
+     * Returns the smallest of its arguments according to the ordering
+     * induced by `less`.
+     */
+    template <typename T1, typename T2>
+    struct min;
+
+    template <typename T1, typename T2>
+    using min_t = typename min<T1, T2>::type;
+
+    /*!
+     * Returns the largest of its arguments according to the ordering
+     * induced by `less`.
+     */
+    template <typename T1, typename T2>
+    struct max;
+
+    template <typename T1, typename T2>
+    using max_t = typename max<T1, T2>::type;
 
     //! @}
 }} // end namespace boost::mpl11
