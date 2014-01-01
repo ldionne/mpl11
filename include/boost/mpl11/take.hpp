@@ -54,7 +54,9 @@ namespace boost { namespace mpl11 {
     struct last<take<N, Sequence>>
         : private BOOST_MPL11_CHECK_USAGE(last<take<N, Sequence>>)
     {
-        using type = typename head<drop_c<N::value - 1, Sequence>>::type;
+        using type = typename head<
+            typename drop_c<N::value - 1, Sequence>::type
+        >::type;
     };
 
     template <typename N, typename Sequence>
@@ -79,7 +81,8 @@ namespace boost { namespace mpl11 {
     template <typename N, typename Sequence, typename F>
     struct unpack<take<N, Sequence>, F>
         : unpack<
-            take_c<N::value - N::value/2, drop_c<N::value/2, Sequence>>,
+            take_c<N::value - N::value/2,
+                typename drop_c<N::value/2, Sequence>::type>,
             typename unpack<
                 take_c<N::value/2, Sequence>,
                 partial<into<partial>, F>
