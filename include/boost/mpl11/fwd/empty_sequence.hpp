@@ -6,13 +6,18 @@
 #ifndef BOOST_MPL11_FWD_EMPTY_SEQUENCE_HPP
 #define BOOST_MPL11_FWD_EMPTY_SEQUENCE_HPP
 
-#include <boost/mpl11/detail/doxygen_only.hpp>
+#include <boost/mpl11/detail/doxygen.hpp>
 
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup views
-     * @ref RandomAccessSequence containing no elements.
+     * @ingroup datatypes
+     *
+     * Sequence containing no elements at all.
+     *
+     * `empty_sequence` is a `FiniteSequence`, a `RandomAccessSequence` and
+     * a `BidirectionalSequence`. However, using any method that requires the
+     * sequence to be non-empty will result in an error.
      */
     struct empty_sequence BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11

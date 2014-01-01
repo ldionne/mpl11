@@ -115,6 +115,7 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/empty_base.hpp>
+#include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/finite_sequence.hpp>
 #include <boost/mpl11/flip.hpp>
 #include <boost/mpl11/forward_sequence.hpp>
