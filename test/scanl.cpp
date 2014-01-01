@@ -1,0 +1,54 @@
+/*!
+ * @file
+ * Contains unit tests for `boost::mpl11::scanl`.
+ */
+
+#include <boost/mpl11/scanl.hpp>
+
+#include <boost/mpl11/detail/is_same.hpp>
+
+
+using namespace boost::mpl11;
+using detail::is_same;
+
+/////////////////////////////////
+// ForwardSequence
+/////////////////////////////////
+// head
+
+
+// tail
+
+
+// is_empty
+
+
+/////////////////////////////////
+// FiniteSequence
+/////////////////////////////////
+// length
+
+// unpack
+
+
+/////////////////////////////////
+// BidirectionalSequence
+/////////////////////////////////
+// last
+
+
+// init
+
+
+
+/////////////////////////////////
+// RandomAccessSequence
+/////////////////////////////////
+// at
+
+
+// slice
+
+
+
+int main() { }
