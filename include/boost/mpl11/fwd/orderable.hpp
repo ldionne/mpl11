@@ -25,6 +25,10 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * `less`
      *
+     *
+     * @todo
+     * Implement multiple arguments for the methods, as documented.
+     *
      * @{
      */
     template <typename TagL, typename TagR = TagL>
@@ -34,41 +38,41 @@ namespace boost { namespace mpl11 {
      * Boolean `Integral` representing whether the given objects are ordered
      * according to the `<` ordering.
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct less;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using less_t = typename less<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using less_t = typename less<T1, T2>::type;
 
     /*!
      * Boolean `Integral` representing whether the given objects are ordered
      * according to the `<=` ordering.
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct less_equal;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using less_equal_t = typename less_equal<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using less_equal_t = typename less_equal<T1, T2>::type;
 
     /*!
      * Boolean `Integral` representing whether the given objects are ordered
      * according to the `>` ordering.
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct greater;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using greater_t = typename greater<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using greater_t = typename greater<T1, T2>::type;
 
     /*!
      * Boolean `Integral` representing whether the given objects are ordered
      * according to the `>=` ordering.
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct greater_equal;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using greater_equal_t = typename greater_equal<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using greater_equal_t = typename greater_equal<T1, T2>::type;
 
     //! @}
 }} // end namespace boost::mpl11

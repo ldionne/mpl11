@@ -18,10 +18,10 @@ namespace boost { namespace mpl11 {
      * `ForwardSequence`
      *
      * ### Methods
-     * `unpack`, `length`
+     * `unpack` and `length`.
      *
      * ### Minimal complete definition
-     * Nothing; everything is provided using the methods of `ForwardSequence`.
+     * `unpack` and `length`.
      *
      * @{
      */

@@ -27,6 +27,10 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * All of the above methods.
      *
+     *
+     * @todo
+     * Implement multiple arguments as documented.
+     *
      * @{
      */
     template <typename TagL, typename TagR = TagL>
@@ -35,38 +39,38 @@ namespace boost { namespace mpl11 {
     /*!
      * Returns the sum of the given objects (`T1 + T2 + ...Tn`).
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct add;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using add_t = typename add<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using add_t = typename add<T1, T2>::type;
 
     /*!
      * Returns the subtraction of the given objects (`T1 - T2 - ...Tn`).
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct subtract;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using subtract_t = typename subtract<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using subtract_t = typename subtract<T1, T2>::type;
 
     /*!
      * Returns the product of the given objects (`T1 * T2 * ...Tn`).
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct multiply;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using multiply_t = typename multiply<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using multiply_t = typename multiply<T1, T2>::type;
 
     /*!
      * Returns the division of the given objects (`T1 / T2 / ...Tn`).
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename T1, typename T2>
     struct divide;
 
-    template <typename T1, typename T2, typename ...Tn>
-    using divide_t = typename divide<T1, T2, Tn...>::type;
+    template <typename T1, typename T2>
+    using divide_t = typename divide<T1, T2>::type;
 
     /*!
      * Returns the modulo of the given objects (`T1 % T2`).

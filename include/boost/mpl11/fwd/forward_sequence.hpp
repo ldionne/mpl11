@@ -87,6 +87,10 @@ namespace boost { namespace mpl11 {
      * compared side-by-side, and if both sequences run out of elements
      * at the same time, i.e. if they have the same length. The inequality
      * of two `ForwardSequence`s is defined in terms of their equality.
+     *
+     *
+     * @todo
+     * Actually implement this.
      */
     template <>
     struct Comparable<forward_sequence_tag, forward_sequence_tag>;
@@ -98,6 +102,10 @@ namespace boost { namespace mpl11 {
      * Less-than comparison for `ForwardSequence`s is defined as the
      * lexicographical comparison of their elements. Other comparison
      * operators are defined in terms of the less-than comparison.
+     *
+     *
+     * @todo
+     * Actually implement this.
      */
     template <>
     struct Orderable<forward_sequence_tag, forward_sequence_tag>;
