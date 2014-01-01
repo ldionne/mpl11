@@ -1,11 +1,12 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::if_` and `boost::mpl11::if_c`.
+ * Forward declares `boost::mpl11::if_`.
  */
 
 #ifndef BOOST_MPL11_FWD_IF_HPP
 #define BOOST_MPL11_FWD_IF_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/fwd/integral_c.hpp>
 
 
@@ -31,7 +32,7 @@ namespace boost { namespace mpl11 {
      * Alias to `if_<bool_<Condition>, Then, Else>`; provided for convenience.
      */
     template <bool Condition, typename Then, typename Else>
-    using if_c = if_<bool_<Condition>, Then, Else>;
+    BOOST_MPL11_DOXYGEN_ALIAS(if_c, if_<bool_<Condition>, Then, Else>);
 
     template <bool Condition, typename Then, typename Else>
     using if_c_t = typename if_<bool_<Condition>, Then, Else>::type;
