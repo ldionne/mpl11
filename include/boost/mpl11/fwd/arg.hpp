@@ -17,6 +17,10 @@ namespace boost { namespace mpl11 {
      *
      * Indexing starts at 1, so that `arg<1>` returns the 1st argument,
      * `arg<2>` the 2nd and so on. Using `arg<0>` is an error.
+     *
+     *
+     * @todo
+     * Implement this in O(1).
      */
     template <detail::std_size_t N>
     struct arg;
