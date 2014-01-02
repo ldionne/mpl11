@@ -10,7 +10,10 @@
 
 #include <boost/mpl11/detail/check_usage.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/forward_sequence.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/finite_sequence.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
 #include <boost/mpl11/integral_c.hpp> // required by the forward declaration
 #include <boost/mpl11/sequence_traits.hpp>
 #include <boost/mpl11/tag_of.hpp>
@@ -70,6 +73,16 @@ namespace boost { namespace mpl11 {
         using type = typename RandomAccessSequence<typename tag_of<S>::type>
                      ::template at_impl<S, Index>::type;
     };
+
+    template <typename Tag>
+    struct Comparable<random_access_sequence_tag, Tag>
+        : Comparable<forward_sequence_tag, Tag>
+    { };
+
+    template <typename Tag>
+    struct Orderable<random_access_sequence_tag, Tag>
+        : Orderable<forward_sequence_tag, Tag>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_RANDOM_ACCESS_SEQUENCE_HPP

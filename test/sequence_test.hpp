@@ -8,9 +8,9 @@
 
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/fwd/bidirectional_sequence.hpp>
 #include <boost/mpl11/fwd/finite_sequence.hpp>
-#include <boost/mpl11/fwd/forward_sequence.hpp>
 #include <boost/mpl11/fwd/random_access_sequence.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/vector.hpp>

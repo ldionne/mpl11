@@ -9,7 +9,9 @@
 #include <boost/mpl11/fwd/bidirectional_sequence.hpp>
 
 #include <boost/mpl11/detail/check_usage.hpp>
-#include <boost/mpl11/fwd/forward_sequence.hpp>
+#include <boost/mpl11/forward_sequence.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
 
@@ -41,6 +43,16 @@ namespace boost { namespace mpl11 {
         using type = typename BidirectionalSequence<typename tag_of<S>::type>
                      ::template last_impl<S>::type;
     };
+
+    template <typename Tag>
+    struct Comparable<bidirectional_sequence_tag, Tag>
+        : Comparable<forward_sequence_tag, Tag>
+    { };
+
+    template <typename Tag>
+    struct Orderable<bidirectional_sequence_tag, Tag>
+        : Orderable<forward_sequence_tag, Tag>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_BIDIRECTIONAL_SEQUENCE_HPP

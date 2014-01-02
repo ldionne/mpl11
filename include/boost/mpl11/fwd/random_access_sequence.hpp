@@ -29,6 +29,11 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * `at` and `slice`.
      *
+     *
+     * @note
+     * Instances of this typeclass can also instantiate `Comparable` and
+     * `Orderable` for free by using `random_access_sequence_tag`.
+     *
      * @{
      */
     template <typename Tag>

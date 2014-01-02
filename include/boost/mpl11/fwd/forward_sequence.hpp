@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
      * - `Orderable` when the elements in the sequence are `Orderable`.
      *
      * ### Methods
-     * `head`, `tail`, `is_empty`
+     * `head`, `tail` and `is_empty`.
      *
      * ### Minimal complete definition
      * `head`, `tail` and `is_empty`.

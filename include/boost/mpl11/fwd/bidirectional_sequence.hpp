@@ -21,10 +21,15 @@ namespace boost { namespace mpl11 {
      * `ForwardSequence`
      *
      * ### Methods
-     * `last` and `init`
+     * `last` and `init`.
      *
      * ### Minimal complete definition
      * `last` and `init`.
+     *
+     *
+     * @note
+     * Instances of this typeclass can also instantiate `Comparable` and
+     * `Orderable` for free by using `bidirectional_sequence_tag`.
      *
      * @{
      */
