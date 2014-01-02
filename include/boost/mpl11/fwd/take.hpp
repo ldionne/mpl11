@@ -6,9 +6,7 @@
 #ifndef BOOST_MPL11_FWD_TAKE_HPP
 #define BOOST_MPL11_FWD_TAKE_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
-#include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -32,13 +30,19 @@ namespace boost { namespace mpl11 {
     template <typename N, typename Sequence>
     struct take;
 
+    template <typename N, typename Sequence>
+    using take_t = typename take<N, Sequence>::type;
+
     /*!
      * @ingroup datatypes
      *
-     * Alias to `take<size_t<N>, Sequence>`; provided for convenience.
+     * Equivalent to `take<size_t<N>, Sequence>`.
      */
     template <detail::std_size_t N, typename Sequence>
-    BOOST_MPL11_DOXYGEN_ALIAS(take_c, take<size_t<N>, Sequence>);
+    struct take_c;
+
+    template <detail::std_size_t N, typename Sequence>
+    using take_c_t = typename take_c<N, Sequence>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_TAKE_HPP
