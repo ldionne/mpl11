@@ -119,6 +119,7 @@
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/finite_sequence.hpp>
 #include <boost/mpl11/flip.hpp>
+#include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>

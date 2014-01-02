@@ -18,6 +18,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename F, typename State, typename Sequence>
     struct scanl;
+
+    template <typename F, typename State, typename Sequence>
+    using scanl_t = scanl<F, State, Sequence>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SCANL_HPP

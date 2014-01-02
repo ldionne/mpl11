@@ -5,29 +5,26 @@
 
 #include <boost/mpl11/foldl.hpp>
 
-#include <boost/mpl11/equal.hpp>
-#include <boost/mpl11/push_back.hpp>
+#include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/vector.hpp>
-
-#include "minimal_requirements.hpp"
 
 
 using namespace boost::mpl11;
+using detail::is_same;
 
 template <int> struct x;
+template <int ...> struct state;
 
-template <int ...i>
-using sequence = test::wrapper<
-    test::minimal_requirements<Sequence>, vector<x<i>...>
->;
+template <typename, typename> struct fold_state;
+template <int ...S, int X>
+struct fold_state<state<S...>, x<X>> { using type = state<S..., X>; };
 
 template <int ...i>
 struct test_with {
-    static_assert(equal<
-        foldl_t<sequence<i...>, vector<>, quote<push_back>>,
-        vector<x<i>...>
+    static_assert(is_same<
+        foldl_t<quote<fold_state>, state<>, vector<x<i>...>>,
+        state<i...>
     >::value, "");
 };
 
