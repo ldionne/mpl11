@@ -47,7 +47,7 @@ namespace boost { namespace mpl11 {
         template <bool IsEmpty>
         struct tail_impl {
             template <typename F, typename State, typename S>
-            using result = empty_sequence;
+            using result = empty_sequence_t;
         };
 
         template <>
@@ -126,7 +126,7 @@ namespace boost { namespace mpl11 {
         template <>
         struct init_impl<true> {
             template <typename F, typename State, typename S>
-            using result = empty_sequence;
+            using result = empty_sequence_t;
         };
 
         template <>

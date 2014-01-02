@@ -167,7 +167,7 @@ namespace boost { namespace mpl11 {
                 detail::std_size_t N, typename S,
                 typename Start, typename Stop
             >
-            using result = empty_sequence;
+            using result = empty_sequence_t;
         };
 
         template <>

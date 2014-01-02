@@ -20,6 +20,8 @@
 
 
 namespace boost { namespace mpl11 {
+    struct empty_sequence { using type = empty_sequence; };
+
     template <>
     struct tag_of<empty_sequence> {
         using type = random_access_sequence_tag;

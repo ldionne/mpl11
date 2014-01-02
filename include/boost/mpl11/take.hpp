@@ -38,7 +38,7 @@ namespace boost { namespace mpl11 {
     struct take_c { using type = take_c; };
 
     template <typename Sequence>
-    struct take_c<0, Sequence> { using type = empty_sequence; };
+    struct take_c<0, Sequence> { using type = empty_sequence_t; };
 
     template <detail::std_size_t N, typename Sequence>
     struct tag_of<take_c<N, Sequence>> {
