@@ -17,6 +17,9 @@ namespace boost { namespace mpl11 {
      */
     template <typename T>
     struct repeat;
+
+    template <typename T>
+    using repeat_t = repeat<T>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_REPEAT_HPP

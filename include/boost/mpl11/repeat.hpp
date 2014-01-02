@@ -61,7 +61,9 @@ namespace boost { namespace mpl11 {
     struct slice<repeat<T>, Start, Stop>
         : private BOOST_MPL11_CHECK_USAGE(slice<repeat<T>, Start, Stop>)
     {
-        using type = take_c<Stop::value - Start::value, repeat<T>>;
+        using type = typename take_c<
+            Stop::value - Start::value, repeat<T>
+        >::type;
     };
 }} // end namespace boost::mpl11
 
