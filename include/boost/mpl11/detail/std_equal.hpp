@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 #define BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 
-#include <boost/mpl11/fwd/is_empty.hpp>
+#include <boost/mpl11/fwd/forward_sequence.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
@@ -28,11 +28,8 @@ namespace boost { namespace mpl11 { namespace detail {
 
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/equal.hpp>
-#include <boost/mpl11/head.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/is_empty.hpp>
-#include <boost/mpl11/tail.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {

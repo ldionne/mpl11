@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_DETAIL_LEXICOGRAPHICAL_COMPARE_HPP
 #define BOOST_MPL11_DETAIL_LEXICOGRAPHICAL_COMPARE_HPP
 
-#include <boost/mpl11/fwd/is_empty.hpp>
+#include <boost/mpl11/fwd/forward_sequence.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
@@ -27,13 +27,10 @@ namespace boost { namespace mpl11 { namespace detail {
 
 
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/head.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/is_empty.hpp>
-#include <boost/mpl11/less.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/or.hpp>
-#include <boost/mpl11/tail.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
