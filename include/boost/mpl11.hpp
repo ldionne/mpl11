@@ -127,6 +127,7 @@
 #include <boost/mpl11/integral.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/iterate.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/orderable.hpp>
