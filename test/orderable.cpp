@@ -65,9 +65,11 @@ namespace boost { namespace mpl11 {
     { };
 }}
 
+using Default = Orderable<orderable_tag, orderable_tag>;
+
 // less_equal
 template <typename X, typename Y>
-using leq = defaults::Orderable::less_equal_impl<X, Y>;
+using leq = Default::less_equal_impl<X, Y>;
 static_assert(leq<x<0>, x<0>>::value, "");
 static_assert(leq<x<0>, x<1>>::value, "");
 static_assert(leq<x<0>, x<2>>::value, "");
@@ -82,7 +84,7 @@ static_assert( leq<x<2>,  x<2>>::value, "");
 
 // greater
 template <typename X, typename Y>
-using gt = defaults::Orderable::greater_impl<X, Y>;
+using gt = Default::greater_impl<X, Y>;
 static_assert(!gt<x<0>, x<0>>::value, "");
 static_assert( gt<x<1>,  x<0>>::value, "");
 static_assert( gt<x<2>,  x<0>>::value, "");
@@ -97,7 +99,7 @@ static_assert(!gt<x<2>, x<2>>::value, "");
 
 // greater_equal
 template <typename X, typename Y>
-using geq = defaults::Orderable::greater_equal_impl<X, Y>;
+using geq = Default::greater_equal_impl<X, Y>;
 static_assert(geq<x<0>,  x<0>>::value, "");
 static_assert(geq<x<1>,  x<0>>::value, "");
 static_assert(geq<x<2>,  x<0>>::value, "");
@@ -112,14 +114,14 @@ static_assert( geq<x<2>,  x<2>>::value, "");
 
 // min
 template <typename X, typename Y>
-using def_min = typename defaults::Orderable::min_impl<X, Y>::type;
+using def_min = typename Default::min_impl<X, Y>::type;
 static_assert(is_same<def_min<x<0>, x<0>>, x<0>>::value, "");
 static_assert(is_same<def_min<x<0>, x<1>>, x<0>>::value, "");
 static_assert(is_same<def_min<x<1>, x<0>>, x<0>>::value, "");
 
 // max
 template <typename X, typename Y>
-using def_max = typename defaults::Orderable::max_impl<X, Y>::type;
+using def_max = typename Default::max_impl<X, Y>::type;
 static_assert(is_same<def_max<x<0>, x<0>>, x<0>>::value, "");
 static_assert(is_same<def_max<x<0>, x<1>>, x<1>>::value, "");
 static_assert(is_same<def_max<x<1>, x<0>>, x<1>>::value, "");

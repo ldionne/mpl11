@@ -5,7 +5,7 @@
 
 #include <boost/mpl11/take.hpp>
 
-#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/list.hpp>
 #include "sequence_test.hpp"
 
 
@@ -20,10 +20,10 @@ struct taking {
     struct from {
         template <int ...Taken>
         struct is :
-            forward_sequence_test<      take_c_t<N, vector<x<Seq>...>>, x<Taken>...>,
-            finite_sequence_test<       take_c_t<N, vector<x<Seq>...>>, x<Taken>...>,
-            bidirectional_sequence_test<take_c_t<N, vector<x<Seq>...>>, x<Taken>...>,
-            random_access_sequence_test<take_c_t<N, vector<x<Seq>...>>, x<Taken>...>
+            forward_sequence_test<      take_c_t<N, list<x<Seq>...>>, x<Taken>...>,
+            finite_sequence_test<       take_c_t<N, list<x<Seq>...>>, x<Taken>...>,
+            bidirectional_sequence_test<take_c_t<N, list<x<Seq>...>>, x<Taken>...>,
+            random_access_sequence_test<take_c_t<N, list<x<Seq>...>>, x<Taken>...>
         { };
     };
 };

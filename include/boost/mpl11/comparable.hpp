@@ -14,16 +14,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace defaults {
-        struct Comparable {
-            template <typename L, typename R>
-            using equal_impl = not_<not_equal<L, R>>;
-
-            template <typename L, typename R>
-            using not_equal_impl = not_<equal<L, R>>;
-        };
-    } // end namespace defaults
-
     namespace detail {
         template <typename TagL, typename TagR>
         struct flip_Comparable {
@@ -49,6 +39,15 @@ namespace boost { namespace mpl11 {
 
     template <typename TagL, typename TagR>
     struct Comparable : comparable_detail::Comparable_base { };
+
+    template <>
+    struct Comparable<comparable_tag> {
+        template <typename L, typename R>
+        using equal_impl = not_<not_equal<L, R>>;
+
+        template <typename L, typename R>
+        using not_equal_impl = not_<equal<L, R>>;
+    };
 
     template <typename T1, typename T2>
     struct equal

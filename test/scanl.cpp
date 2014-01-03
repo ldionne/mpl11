@@ -5,8 +5,8 @@
 
 #include <boost/mpl11/scanl.hpp>
 
+#include <boost/mpl11/list.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/vector.hpp>
 #include "sequence_test.hpp"
 
 
@@ -28,10 +28,10 @@ template <int First, int ...I>
 struct scanning {
     template <typename ...States>
     struct is :
-        forward_sequence_test<      scanl_t<quote<state_append>, state<First>, vector<x<I>...>>, States...>,
-        finite_sequence_test<       scanl_t<quote<state_append>, state<First>, vector<x<I>...>>, States...>,
-        bidirectional_sequence_test<scanl_t<quote<state_append>, state<First>, vector<x<I>...>>, States...>,
-        random_access_sequence_test<scanl_t<quote<state_append>, state<First>, vector<x<I>...>>, States...>
+        forward_sequence_test<      scanl_t<quote<state_append>, state<First>, list<x<I>...>>, States...>,
+        finite_sequence_test<       scanl_t<quote<state_append>, state<First>, list<x<I>...>>, States...>,
+        bidirectional_sequence_test<scanl_t<quote<state_append>, state<First>, list<x<I>...>>, States...>,
+        random_access_sequence_test<scanl_t<quote<state_append>, state<First>, list<x<I>...>>, States...>
     { };
 };
 

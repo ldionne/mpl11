@@ -8,13 +8,10 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
-     * Sequence containing successive reduced values from `foldl`.
-     *
-     * `scanl` is a `RandomAccessSequence` and a `BidirectionalSequence`.
-     * If the underlying sequence is finite, then `scanl` is a
-     * `FiniteSequence` too.
+     * `scanl` is similar to `foldl`, but returns a `Sequence` of successive
+     * reduced values from the left.
      */
     template <typename F, typename State, typename Sequence>
     struct scanl;

@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Default implementation of the `unpack` intrinsic for `FiniteSequence`s.
+     * Default implementation of the `unpack` method for `Sequence`s.
      */
     template <typename S, typename F>
     struct default_unpack;
@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 { namespace detail {
 
     template <typename S, typename F>
     struct default_unpack
-        : foldl<S, apply<F>, default_unpack_detail::fill_apply>::type
+        : foldl<default_unpack_detail::fill_apply, apply<F>, S>::type
     { };
 }}} // end namespace boost::mpl11::detail
 

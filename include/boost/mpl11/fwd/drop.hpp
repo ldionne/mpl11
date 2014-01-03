@@ -11,21 +11,14 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
-     * Sequence containing the suffix of another sequence after
+     * Returns a sequence containing the suffix of another sequence after
      * the first `N` elements.
      *
      * `N` must be a non-negative `Integral` representing the number of
      * elements to be dropped from the underlying sequence. If `N` is greater
-     * than the length of the sequence, `drop` is empty.
-     *
-     * The sequence operations supported by `drop` are those supported by
-     * the underlying sequence.
-     *
-     *
-     * @todo
-     * Use a minimal sequence in the unit test.
+     * than the length of the sequence, the returned sequence is empty.
      */
     template <typename N, typename Sequence>
     struct drop;
@@ -34,7 +27,7 @@ namespace boost { namespace mpl11 {
     using drop_t = typename drop<N, Sequence>::type;
 
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
      * Equivalent to `drop<size_t<N>, Sequence>`.
      */

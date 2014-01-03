@@ -11,21 +11,14 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
-     * Sequence containing the first `N` elements of another sequence.
+     * Returns a `Sequence` containing the first `N` elements of
+     * another sequence.
      *
      * `N` must be a non-negative `Integral` representing the number of
-     * elements kept in the underlying sequence. If `N` is greater than
+     * elements to keep in the underlying sequence. If `N` is greater than
      * the length of the sequence, all of its elements are kept.
-     *
-     * The sequence operations supported by `take` are those supported by
-     * the underlying sequence, except that `take` is always a
-     * `FiniteSequence`.
-     *
-     *
-     * @todo
-     * Use a minimal sequence in the unit test.
      */
     template <typename N, typename Sequence>
     struct take;
@@ -34,7 +27,7 @@ namespace boost { namespace mpl11 {
     using take_t = typename take<N, Sequence>::type;
 
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
      * Equivalent to `take<size_t<N>, Sequence>`.
      */

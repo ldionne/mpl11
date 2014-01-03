@@ -13,8 +13,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace defaults { struct Bitwise { }; }
-
     #define BOOST_MPL11_BITWISE_METHOD(METHOD, METHOD_IMPL)                 \
         template <typename T1, typename T2>                                 \
         struct METHOD                                                       \

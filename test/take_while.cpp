@@ -6,7 +6,7 @@
 #include <boost/mpl11/take_while.hpp>
 
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/vector.hpp>
+#include <boost/mpl11/list.hpp>
 #include "sequence_test.hpp"
 
 
@@ -20,7 +20,7 @@ struct nonzero_prefix {
     template <int ...Prefix>
     struct is :
         forward_sequence_test<
-            take_while_t<nonzero, vector_c<int, Seq...>>,
+            take_while_t<nonzero, list<int_<Seq>...>>,
             int_<Prefix>...
         >
     { };

@@ -9,7 +9,7 @@
 #include <boost/mpl11/fwd/foldl.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/fwd/forward_sequence.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {

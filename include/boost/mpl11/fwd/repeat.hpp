@@ -8,12 +8,9 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
-     * Sequence containing copies of the given type.
-     *
-     * `repeat` is an infinite `RandomAccessSequence` and
-     * `BidirectionalSequence`.
+     * Returns an infinite `Sequence` containing copies of the given type.
      */
     template <typename T>
     struct repeat;

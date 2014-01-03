@@ -6,7 +6,7 @@
 #ifndef BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 #define BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 
-#include <boost/mpl11/fwd/forward_sequence.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {

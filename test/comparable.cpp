@@ -46,10 +46,11 @@ static_assert(!not_equal<x, x>::value, "");
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-static_assert( defaults::Comparable::equal_impl<x, x>::value, "");
-static_assert(!defaults::Comparable::equal_impl<x, y>::value, "");
-static_assert( defaults::Comparable::not_equal_impl<x, y>::value, "");
-static_assert(!defaults::Comparable::not_equal_impl<x, x>::value, "");
+using Default = Comparable<comparable_tag, comparable_tag>;
+static_assert( Default::equal_impl<x, x>::value, "");
+static_assert(!Default::equal_impl<x, y>::value, "");
+static_assert( Default::not_equal_impl<x, y>::value, "");
+static_assert(!Default::not_equal_impl<x, x>::value, "");
 
 
 int main() { }

@@ -8,12 +8,10 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup datatypes
+     * @ingroup metafunctions
      *
      * Returns the longest prefix of a sequence in which all elements satisfy
      * the given `Predicate`.
-     *
-     * `take_while` is a `ForwardSequence`.
      */
     template <typename Predicate, typename Sequence>
     struct take_while;

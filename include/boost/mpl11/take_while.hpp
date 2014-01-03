@@ -10,8 +10,8 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/check_usage.hpp>
-#include <boost/mpl11/forward_sequence.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
+#include <boost/mpl11/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -19,12 +19,10 @@ namespace boost { namespace mpl11 {
     struct take_while { using type = take_while; };
 
     template <typename P, typename S>
-    struct tag_of<take_while<P, S>> {
-        using type = forward_sequence_tag;
-    };
+    struct tag_of<take_while<P, S>> { using type = sequence_tag; };
 
     /////////////////////////////////
-    // ForwardSequence
+    // Minimal complete definition
     /////////////////////////////////
     template <typename P, typename S>
     struct head<take_while<P, S>>

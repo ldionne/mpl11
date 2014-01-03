@@ -12,8 +12,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace defaults { struct Arithmetic { }; }
-
     #define BOOST_MPL11_ARITHMETIC_METHOD(METHOD)                           \
         template <typename T1, typename T2>                                 \
         struct METHOD                                                       \

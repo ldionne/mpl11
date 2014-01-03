@@ -14,25 +14,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace defaults {
-        struct Orderable {
-            template <typename L, typename R>
-            using less_equal_impl = not_<less<R, L>>;
-
-            template <typename L, typename R>
-            using greater_impl = less<R, L>;
-
-            template <typename L, typename R>
-            using greater_equal_impl = not_<less<L, R>>;
-
-            template <typename L, typename R>
-            using min_impl = detail::conditional<less<L, R>::value, L, R>;
-
-            template <typename L, typename R>
-            using max_impl = detail::conditional<less<L, R>::value, R, L>;
-        };
-    } // end namespace defaults
-
     namespace detail {
         template <typename TagL, typename TagR>
         struct flip_Orderable {
@@ -61,6 +42,24 @@ namespace boost { namespace mpl11 {
                              template max_impl<R, L>;
         };
     } // end namespace detail
+
+    template <>
+    struct Orderable<orderable_tag, orderable_tag> {
+        template <typename L, typename R>
+        using less_equal_impl = not_<less<R, L>>;
+
+        template <typename L, typename R>
+        using greater_impl = less<R, L>;
+
+        template <typename L, typename R>
+        using greater_equal_impl = not_<less<L, R>>;
+
+        template <typename L, typename R>
+        using min_impl = detail::conditional<less<L, R>::value, L, R>;
+
+        template <typename L, typename R>
+        using max_impl = detail::conditional<less<L, R>::value, R, L>;
+    };
 
     #define BOOST_MPL11_ORDERABLE_METHOD(METHOD)                            \
         template <typename T1, typename T2>                                 \

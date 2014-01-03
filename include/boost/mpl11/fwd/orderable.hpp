@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_ORDERABLE_HPP
 #define BOOST_MPL11_FWD_ORDERABLE_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -101,6 +104,13 @@ namespace boost { namespace mpl11 {
     using max_t = typename max<T1, T2>::type;
 
     //! @}
+
+    /*!
+     * @ingroup tags
+     *
+     * Tag representing the `Orderable` typeclass.
+     */
+    struct orderable_tag BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ORDERABLE_HPP

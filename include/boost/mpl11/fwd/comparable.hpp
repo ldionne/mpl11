@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_COMPARABLE_HPP
 #define BOOST_MPL11_FWD_COMPARABLE_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -66,6 +69,13 @@ namespace boost { namespace mpl11 {
     using not_equal_t = typename not_equal<T1, T2>::type;
 
     //! @}
+
+    /*!
+     * @ingroup tags
+     *
+     * Tag representing the `Comparable` typeclass.
+     */
+    struct comparable_tag BOOST_MPL11_DOXYGEN_ONLY({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COMPARABLE_HPP

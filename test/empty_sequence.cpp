@@ -9,13 +9,13 @@
 
 
 using namespace mpl11_test;
-using boost::mpl11::empty_sequence_t;
+using boost::mpl11::empty_sequence;
 
 struct tests :
-    forward_sequence_test<empty_sequence_t>,
-    finite_sequence_test<empty_sequence_t>,
-    bidirectional_sequence_test<empty_sequence_t>,
-    random_access_sequence_test<empty_sequence_t>
+    forward_sequence_test<empty_sequence>,
+    finite_sequence_test<empty_sequence>,
+    bidirectional_sequence_test<empty_sequence>,
+    random_access_sequence_test<empty_sequence>
 { };
 
 

@@ -10,17 +10,11 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace defaults {
-        struct sequence_traits {
-            static constexpr bool has_O1_size = false;
-            static constexpr bool has_O1_unpack = false;
-            static constexpr bool is_finite = false;
-        };
-    }
-
     template <typename S>
-    struct sequence_traits : defaults::sequence_traits {
-
+    struct sequence_traits {
+        static constexpr bool has_O1_size = false;
+        static constexpr bool has_O1_unpack = false;
+        static constexpr bool is_finite = false;
     };
 }} // end namespace boost::mpl11
 
