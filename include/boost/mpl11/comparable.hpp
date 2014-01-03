@@ -49,19 +49,21 @@ namespace boost { namespace mpl11 {
         using not_equal_impl = not_<equal<L, R>>;
     };
 
-    template <typename T1, typename T2>
-    struct equal
-        : Comparable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template equal_impl<T1, T2>
-    { };
+    namespace unchecked {
+        template <typename T1, typename T2>
+        struct equal
+            : Comparable<
+                typename tag_of<T1>::type, typename tag_of<T2>::type
+            >::template equal_impl<T1, T2>
+        { };
 
-    template <typename T1, typename T2>
-    struct not_equal
-        : Comparable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template not_equal_impl<T1, T2>
-    { };
+        template <typename T1, typename T2>
+        struct not_equal
+            : Comparable<
+                typename tag_of<T1>::type, typename tag_of<T2>::type
+            >::template not_equal_impl<T1, T2>
+        { };
+    } // end namespace unchecked
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_COMPARABLE_HPP

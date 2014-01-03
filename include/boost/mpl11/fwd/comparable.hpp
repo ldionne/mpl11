@@ -7,6 +7,7 @@
 #define BOOST_MPL11_FWD_COMPARABLE_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/detail/methods.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -44,14 +45,15 @@ namespace boost { namespace mpl11 {
     template <typename TagL, typename TagR = TagL>
     struct Comparable;
 
+#ifndef BOOST_MPL11_DOXYGEN_INVOKED
+    namespace unchecked {
+#endif
+
     /*!
      * Boolean `Integral` representing whether the given objects are equal.
      */
     template <typename T1, typename T2>
     struct equal;
-
-    template <typename T1, typename T2>
-    using equal_t = typename equal<T1, T2>::type;
 
     /*!
      * Boolean `Integral` representing whether the given objects are unequal.
@@ -64,6 +66,21 @@ namespace boost { namespace mpl11 {
      */
     template <typename T1, typename T2>
     struct not_equal;
+
+#ifndef BOOST_MPL11_DOXYGEN_INVOKED
+    } // end namespace unchecked
+
+    namespace checked {
+        using unchecked::equal;
+        using unchecked::not_equal;
+    }
+
+    using methods::equal;
+    using methods::not_equal;
+#endif
+
+    template <typename T1, typename T2>
+    using equal_t = typename equal<T1, T2>::type;
 
     template <typename T1, typename T2>
     using not_equal_t = typename not_equal<T1, T2>::type;

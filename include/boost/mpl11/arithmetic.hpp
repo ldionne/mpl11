@@ -12,6 +12,7 @@
 
 
 namespace boost { namespace mpl11 {
+namespace unchecked {
     #define BOOST_MPL11_ARITHMETIC_METHOD(METHOD)                           \
         template <typename T1, typename T2>                                 \
         struct METHOD                                                       \
@@ -26,6 +27,7 @@ namespace boost { namespace mpl11 {
     BOOST_MPL11_ARITHMETIC_METHOD(multiply)
     BOOST_MPL11_ARITHMETIC_METHOD(modulo)
     #undef BOOST_MPL11_ARITHMETIC_METHOD
+} // end namespace unchecked
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARITHMETIC_HPP

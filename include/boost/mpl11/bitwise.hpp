@@ -8,11 +8,12 @@
 
 #include <boost/mpl11/fwd/bitwise.hpp>
 
-#include <boost/mpl11/integral_c.hpp> // required by forward declaration
+#include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
 
 namespace boost { namespace mpl11 {
+namespace unchecked {
     #define BOOST_MPL11_BITWISE_METHOD(METHOD, METHOD_IMPL)                 \
         template <typename T1, typename T2>                                 \
         struct METHOD                                                       \
@@ -28,15 +29,40 @@ namespace boost { namespace mpl11 {
 
     template <typename T, typename Shift>
     struct shift_left
-        : Bitwise<typename tag_of<T>::type>::
-          template shift_left_impl<T, Shift>
+        : mpl11::shift_left_c<T, Shift::value>
     { };
 
     template <typename T, typename Shift>
     struct shift_right
-        : Bitwise<typename tag_of<T>::type>::
-          template shift_right_impl<T, Shift>
+        : mpl11::shift_right_c<T, Shift::value>
     { };
+
+    template <typename T, detail::std_size_t Shift>
+    struct shift_left_c
+        : Bitwise<typename tag_of<T>::type>::
+          template shift_left_c_impl<T, Shift>
+    { };
+
+    template <typename T, detail::std_size_t Shift>
+    struct shift_right_c
+        : Bitwise<typename tag_of<T>::type>::
+          template shift_right_c_impl<T, Shift>
+    { };
+} // end namespace unchecked
+
+namespace checked {
+    template <typename T, typename Shift>
+    struct shift_left : unchecked::shift_left<T, Shift> {
+        static_assert(Shift::value >= 0,
+        "Invalid usage of `shift_left` with a negative `Shift`.");
+    };
+
+    template <typename T, typename Shift>
+    struct shift_right : unchecked::shift_right<T, Shift> {
+        static_assert(Shift::value >= 0,
+        "Invalid usage of `shift_right` with a negative `Shift`.");
+    };
+} // end namespace checked
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_BITWISE_HPP
