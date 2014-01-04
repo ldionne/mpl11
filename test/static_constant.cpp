@@ -23,6 +23,10 @@ struct test_static_constant {
     template <Y v>
     using y = minimal_static_constant<Y, v>;
 
+    // Enumerable
+    static_assert(succ_t<x<0>>::value == x<0>::value + 1, "");
+    static_assert(pred_t<x<1>>::value == x<1>::value - 1, "");
+
     // Comparable
     static_assert( equal<x<0>, y<0>>::value, "");
     static_assert(!equal<x<0>, y<1>>::value, "");

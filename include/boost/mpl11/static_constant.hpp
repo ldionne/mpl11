@@ -10,6 +10,7 @@
 
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/enumerable.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/orderable.hpp>
 
@@ -37,6 +38,15 @@ namespace boost { namespace mpl11 {
 
         template <typename X, typename Y>
         using greater_equal_impl = bool_<(X::value >= Y::value)>;
+    };
+
+    template <>
+    struct Enumerable<static_constant_tag> {
+        template <typename X>
+        using succ_impl = integral_c<decltype(X::value + 1), X::value + 1>;
+
+        template <typename X>
+        using pred_impl = integral_c<decltype(X::value - 1), X::value - 1>;
     };
 
     template <>

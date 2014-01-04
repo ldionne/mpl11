@@ -9,6 +9,7 @@
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/fwd/bitwise.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/enumerable.hpp>
 #include <boost/mpl11/fwd/orderable.hpp>
 
 
@@ -21,7 +22,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Provides
-     * `Comparable`, `Orderable` and `Bitwise`.
+     * `Comparable`, `Orderable`, `Enumerable` and `Bitwise`.
      *
      * ### Valid expressions
      * In the following table, `N` is a `StaticConstant`, and `n` is an
@@ -50,6 +51,10 @@ namespace boost { namespace mpl11 {
      * @ingroup tags
      */
     struct static_constant_tag BOOST_MPL11_IF_DOXYGEN({ });
+
+    //! Default instantiation of `Enumerable` for `StaticConstant`s.
+    template <>
+    struct Enumerable<static_constant_tag>;
 
     //! Default instantiation of `Comparable` for `StaticConstant`s.
     template <>
