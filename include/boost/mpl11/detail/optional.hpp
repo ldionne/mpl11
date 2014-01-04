@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 { namespace detail {
      *
      * Dummy type used to signal optional metafunction arguments.
      */
-    struct optional BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct optional BOOST_MPL11_IF_DOXYGEN({ });
 }}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_OPTIONAL_HPP

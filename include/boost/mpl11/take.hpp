@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/fwd/take.hpp>
 
+#include <boost/mpl11/detail/assertion.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
@@ -19,9 +20,11 @@
 namespace boost { namespace mpl11 {
     template <typename N, typename Sequence>
     struct take {
-        static_assert(N::value >= 0,
-        "Invalid usage of `take`: "
-        "The number of elements to take must be non-negative.");
+        BOOST_MPL11_ASSERTION(
+            static_assert(N::value >= 0,
+            "Invalid usage of `take`: "
+            "The number of elements to take must be non-negative.");
+        )
 
         using type = typename take_c<N::value, Sequence>::type;
     };

@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      * Using any method that requires the sequence to be non-empty will
      * result in an error.
      */
-    struct empty_sequence BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct empty_sequence BOOST_MPL11_IF_DOXYGEN({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_EMPTY_SEQUENCE_HPP

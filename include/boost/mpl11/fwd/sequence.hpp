@@ -57,7 +57,7 @@ namespace boost { namespace mpl11 {
     template <typename Tag>
     struct Sequence;
 
-#ifdef BOOST_MPL11_NO_CHECKED_METHODS
+#if !defined(BOOST_MPL11_ENABLE_ASSERTIONS)
 
     template <typename S>                       using head = head_impl<S>;
     template <typename S>                       using last = last_impl<S>;
@@ -158,7 +158,7 @@ namespace boost { namespace mpl11 {
      *
      * Tag representing the `Sequence` typeclass.
      */
-    struct sequence_tag BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct sequence_tag BOOST_MPL11_IF_DOXYGEN({ });
 
     /*!
      * Default instantiation of the `Sequence` typeclass for `Sequence`s.

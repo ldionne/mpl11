@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
     // Minimal complete definition
     /////////////////////////////////
     template <typename P, typename S>
-    struct head<take_while<P, S>> {
+    struct head_impl<take_while<P, S>> {
         using type = typename head<S>::type;
     };
 

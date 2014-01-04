@@ -34,12 +34,12 @@ namespace boost { namespace mpl11 { namespace detail {
      * Create an `index_sequence` with indices from `0` to `N`.
      */
     template <std_size_t N>
-    struct make_index_sequence
-        : index_sequence_detail::concat<
+    struct make_index_sequence {
+        using type = typename index_sequence_detail::concat<
             typename make_index_sequence<N / 2>::type,
             typename make_index_sequence<N - N / 2>::type
-        >
-    { };
+        >::type;
+    };
 
     template <>
     struct make_index_sequence<0> {

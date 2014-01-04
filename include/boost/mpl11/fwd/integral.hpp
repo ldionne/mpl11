@@ -37,7 +37,7 @@ namespace boost { namespace mpl11 {
      *
      * Tag representing the `Integral` typeclass.
      */
-    struct integral_tag BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct integral_tag BOOST_MPL11_IF_DOXYGEN({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INTEGRAL_HPP

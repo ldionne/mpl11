@@ -22,6 +22,7 @@ namespace boost { namespace mpl11 { namespace detail {
 }}} // end namespace boost::mpl11::detail
 
 
+#include <boost/mpl11/detail/assertion.hpp>
 #include <boost/mpl11/fwd/sequence.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
@@ -32,8 +33,10 @@ namespace boost { namespace mpl11 {
     namespace detail {
         template <typename S>
         struct lazy_init {
-            static_assert(!is_empty<S>::value,
-            "Invalid usage of `detail::lazy_init` on an empty sequence.");
+            BOOST_MPL11_ASSERTION(
+                static_assert(!is_empty<S>::value,
+                "Invalid usage of `detail::lazy_init` on an empty sequence.");
+            )
 
             using type = lazy_init;
         };
@@ -48,9 +51,9 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename S>
-    struct head_impl<detail::lazy_init<S>>
-        : head<S>
-    { };
+    struct head_impl<detail::lazy_init<S>> {
+        using type = typename head<S>::type;
+    };
 
     template <typename S>
     struct tail_impl<detail::lazy_init<S>> {
@@ -68,9 +71,9 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename S, detail::std_size_t Index>
-    struct at_c_impl<detail::lazy_init<S>, Index>
-        : at_c<S, Index>
-    { };
+    struct at_c_impl<detail::lazy_init<S>, Index> {
+        using type = typename at_c<S, Index>::type;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_DETAIL_LAZY_INIT_HPP

@@ -13,7 +13,7 @@
      * Macro expanding to its argument(s) when generating the
      * documentation with Doxygen and to nothing otherwise.
      */
-#   define BOOST_MPL11_DOXYGEN_ONLY(...) __VA_ARGS__
+#   define BOOST_MPL11_IF_DOXYGEN(...) __VA_ARGS__
 
     /*!
      * @ingroup details
@@ -21,7 +21,6 @@
      * Macro expanding to its argument(s) unless when generating the
      * documentation with Doxygen, where it expands to nothing.
      */
-
 #   define BOOST_MPL11_UNLESS_DOXYGEN(...) /* nothing */
 
     /*!
@@ -35,7 +34,7 @@
      */
 #   define BOOST_MPL11_DOXYGEN_ALIAS(NAME, ...) struct NAME : __VA_ARGS__ { }
 #else
-#   define BOOST_MPL11_DOXYGEN_ONLY(...) /* nothing */
+#   define BOOST_MPL11_IF_DOXYGEN(...) /* nothing */
 #   define BOOST_MPL11_UNLESS_DOXYGEN(...) __VA_ARGS__
 #   define BOOST_MPL11_DOXYGEN_ALIAS(NAME, ...) using NAME = __VA_ARGS__
 #endif

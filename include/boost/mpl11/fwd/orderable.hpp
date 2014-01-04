@@ -117,7 +117,7 @@ namespace boost { namespace mpl11 {
      *
      * Tag representing the `Orderable` typeclass.
      */
-    struct orderable_tag BOOST_MPL11_DOXYGEN_ONLY({ });
+    struct orderable_tag BOOST_MPL11_IF_DOXYGEN({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ORDERABLE_HPP

@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/fwd/bitwise.hpp>
 
+#include <boost/mpl11/detail/assertion.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
@@ -15,18 +16,18 @@
 namespace boost { namespace mpl11 {
     template <typename T, typename Shift>
     struct shift_left : shift_left_c<T, Shift::value> {
-#ifndef BOOST_MPL11_NO_CHECKED_METHODS
-        static_assert(Shift::value >= 0,
-        "Invalid usage of `shift_left` with a negative `Shift`.");
-#endif
+        BOOST_MPL11_ASSERTION(
+            static_assert(Shift::value >= 0,
+            "Invalid usage of `shift_left` with a negative `Shift`.");
+        )
     };
 
     template <typename T, typename Shift>
     struct shift_right : shift_right_c<T, Shift::value> {
-#ifndef BOOST_MPL11_NO_CHECKED_METHODS
-        static_assert(Shift::value >= 0,
-        "Invalid usage of `shift_right` with a negative `Shift`.");
-#endif
+        BOOST_MPL11_ASSERTION(
+            static_assert(Shift::value >= 0,
+            "Invalid usage of `shift_right` with a negative `Shift`.");
+        )
     };
 
     #define BOOST_MPL11_BITWISE_METHOD(METHOD_IMPL)                         \
