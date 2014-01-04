@@ -144,7 +144,6 @@
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/arithmetic.hpp>
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/compose.hpp>
