@@ -4,7 +4,21 @@
 add_custom_target(unit COMMENT "Build all the unit tests.")
 
 function(mpl11_add_test name sources)
-    add_executable(${name} ${sources})
+    # For each unit test, we compile with and without the assertions.
+    # Since I'm not a CMake pro, I currently create two different targets.
+    add_executable(${name}_without_assertions ${sources})
+
+    add_executable(${name}_with_assertions ${sources})
+    set_target_properties(
+        ${name}_with_assertions PROPERTIES
+            COMPILE_DEFINITIONS BOOST_MPL11_ENABLE_ASSERTIONS
+    )
+
+    add_custom_target(${name})
+    add_dependencies(${name}
+        ${name}_with_assertions
+        ${name}_without_assertions
+    )
     add_dependencies(unit ${name})
 endfunction()
 
