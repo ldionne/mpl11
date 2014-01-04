@@ -134,6 +134,7 @@
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/compose.hpp>
+#include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/drop.hpp>
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
