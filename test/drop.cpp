@@ -5,24 +5,24 @@
 
 #include <boost/mpl11/drop.hpp>
 
+#include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/list.hpp>
-#include "sequence_test.hpp"
 
 
-using namespace mpl11_test;
+using namespace boost::mpl11;
 
 template <int> struct x;
 
 template <unsigned long N>
 struct dropping {
-    template <int ...Seq>
+    template <int ...All>
     struct from {
-        template <int ...Dropped>
-        struct is :
-            forward_sequence_test<      drop_c_t<N, list<x<Seq>...>>, x<Dropped>...>,
-            finite_sequence_test<       drop_c_t<N, list<x<Seq>...>>, x<Dropped>...>,
-            bidirectional_sequence_test<drop_c_t<N, list<x<Seq>...>>, x<Dropped>...>,
-            random_access_sequence_test<drop_c_t<N, list<x<Seq>...>>, x<Dropped>...>
+        template <int ...Remaining>
+        struct is
+            : detail::sequence_test<
+                drop_c_t<N, list<x<All>...>>,
+                x<Remaining>...
+            >
         { };
     };
 };

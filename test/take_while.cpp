@@ -5,22 +5,21 @@
 
 #include <boost/mpl11/take_while.hpp>
 
+#include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/list.hpp>
-#include "sequence_test.hpp"
 
 
-using namespace mpl11_test;
 using namespace boost::mpl11;
 
 struct nonzero { template <typename N> using apply = bool_<N::value != 0>; };
 
-template <int ...Seq>
+template <int ...All>
 struct nonzero_prefix {
     template <int ...Prefix>
-    struct is :
-        forward_sequence_test<
-            take_while_t<nonzero, list<int_<Seq>...>>,
+    struct is
+        : detail::sequence_test<
+            take_while_t<nonzero, list<int_<All>...>>,
             int_<Prefix>...
         >
     { };

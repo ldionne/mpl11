@@ -6,12 +6,29 @@
 #include <boost/mpl11/list.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/detail/sequence_test.hpp>
 
 
 using namespace boost::mpl11;
 using detail::is_same;
 
 struct x; struct y; struct z;
+
+template <typename ...T>
+struct list_of
+    : detail::sequence_test<list<T...>, T...>
+{ };
+
+struct tests :
+    list_of<>,
+    list_of<x>,
+    list_of<x, y>,
+    list_of<x, y, z>,
+    list_of<x, y, z, x, y, z>
+{ };
+
+// We also need to perform manual tests here because `sequence_test` uses
+// `list` in its implementation.
 
 // head
 static_assert(is_same<head_t<list<x>>, x>::value, "");

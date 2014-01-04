@@ -5,21 +5,20 @@
 
 #include <boost/mpl11/cons.hpp>
 
+#include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/list.hpp>
-#include "sequence_test.hpp"
 
 
-using namespace mpl11_test;
 using namespace boost::mpl11;
 
 template <int> struct x;
 
 template <int Head, int ...Tail>
-struct test_cons :
-    forward_sequence_test<      cons_t<x<Head>, list<x<Tail>...>>, x<Head>, x<Tail>...>,
-    finite_sequence_test<       cons_t<x<Head>, list<x<Tail>...>>, x<Head>, x<Tail>...>,
-    bidirectional_sequence_test<cons_t<x<Head>, list<x<Tail>...>>, x<Head>, x<Tail>...>,
-    random_access_sequence_test<cons_t<x<Head>, list<x<Tail>...>>, x<Head>, x<Tail>...>
+struct test_cons
+    : detail::sequence_test<
+        cons_t<x<Head>, list<x<Tail>...>>,
+        x<Head>, x<Tail>...
+    >
 { };
 
 struct tests :

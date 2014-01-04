@@ -5,25 +5,24 @@
 
 #include <boost/mpl11/take.hpp>
 
+#include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/list.hpp>
-#include "sequence_test.hpp"
 
 
-using namespace mpl11_test;
-using boost::mpl11::take_c;
+using namespace boost::mpl11;
 
 template <int> struct x;
 
 template <unsigned long N>
 struct taking {
-    template <int ...Seq>
+    template <int ...All>
     struct from {
         template <int ...Taken>
         struct is :
-            forward_sequence_test<      take_c_t<N, list<x<Seq>...>>, x<Taken>...>,
-            finite_sequence_test<       take_c_t<N, list<x<Seq>...>>, x<Taken>...>,
-            bidirectional_sequence_test<take_c_t<N, list<x<Seq>...>>, x<Taken>...>,
-            random_access_sequence_test<take_c_t<N, list<x<Seq>...>>, x<Taken>...>
+            detail::sequence_test<
+                take_c_t<N, list<x<All>...>>,
+                x<Taken>...
+            >
         { };
     };
 };

@@ -5,17 +5,13 @@
 
 #include <boost/mpl11/empty_sequence.hpp>
 
-#include "sequence_test.hpp"
+#include <boost/mpl11/detail/sequence_test.hpp>
 
 
-using namespace mpl11_test;
-using boost::mpl11::empty_sequence;
+using namespace boost::mpl11;
 
 struct tests :
-    forward_sequence_test<empty_sequence>,
-    finite_sequence_test<empty_sequence>,
-    bidirectional_sequence_test<empty_sequence>,
-    random_access_sequence_test<empty_sequence>
+    detail::sequence_test<empty_sequence>
 { };
 
 
