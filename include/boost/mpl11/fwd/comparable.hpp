@@ -7,10 +7,15 @@
 #define BOOST_MPL11_FWD_COMPARABLE_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
-#include <boost/mpl11/detail/methods.hpp>
 
 
 namespace boost { namespace mpl11 {
+    template <typename T1, typename T2>
+    struct equal_impl;
+
+    template <typename T1, typename T2>
+    struct not_equal_impl;
+
     /*!
      * @ingroup typeclasses
      * @defgroup Comparable Comparable
@@ -45,15 +50,12 @@ namespace boost { namespace mpl11 {
     template <typename TagL, typename TagR = TagL>
     struct Comparable;
 
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    namespace unchecked {
-#endif
-
-    /*!
-     * Boolean `Integral` representing whether the given objects are equal.
-     */
+    //! Boolean `Integral` representing whether the given objects are equal.
     template <typename T1, typename T2>
-    struct equal;
+    BOOST_MPL11_DOXYGEN_ALIAS(equal, equal_impl<T1, T2>);
+
+    template <typename T1, typename T2>
+    using equal_t = typename equal<T1, T2>::type;
 
     /*!
      * Boolean `Integral` representing whether the given objects are unequal.
@@ -65,22 +67,7 @@ namespace boost { namespace mpl11 {
      * is different from `T2`, `T2` different from `T3`, and so on.
      */
     template <typename T1, typename T2>
-    struct not_equal;
-
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    } // end namespace unchecked
-
-    namespace checked {
-        using unchecked::equal;
-        using unchecked::not_equal;
-    }
-
-    using methods::equal;
-    using methods::not_equal;
-#endif
-
-    template <typename T1, typename T2>
-    using equal_t = typename equal<T1, T2>::type;
+    BOOST_MPL11_DOXYGEN_ALIAS(not_equal, not_equal_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using not_equal_t = typename not_equal<T1, T2>::type;

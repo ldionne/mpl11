@@ -61,20 +61,20 @@ namespace boost { namespace mpl11 {
         using max_impl = detail::conditional<less<L, R>::value, R, L>;
     };
 
-    #define BOOST_MPL11_ORDERABLE_METHOD(METHOD)                            \
+    #define BOOST_MPL11_ORDERABLE_METHOD(METHOD_IMPL)                       \
         template <typename T1, typename T2>                                 \
-        struct METHOD                                                       \
+        struct METHOD_IMPL                                                  \
             : Orderable<                                                    \
                 typename tag_of<T1>::type, typename tag_of<T2>::type        \
-            >::template METHOD ## _impl<T1, T2>                             \
+            >::template METHOD_IMPL<T1, T2>                                 \
         { };                                                                \
     /**/
-    BOOST_MPL11_ORDERABLE_METHOD(less)
-    BOOST_MPL11_ORDERABLE_METHOD(less_equal)
-    BOOST_MPL11_ORDERABLE_METHOD(greater)
-    BOOST_MPL11_ORDERABLE_METHOD(greater_equal)
-    BOOST_MPL11_ORDERABLE_METHOD(min)
-    BOOST_MPL11_ORDERABLE_METHOD(max)
+    BOOST_MPL11_ORDERABLE_METHOD(less_impl)
+    BOOST_MPL11_ORDERABLE_METHOD(less_equal_impl)
+    BOOST_MPL11_ORDERABLE_METHOD(greater_impl)
+    BOOST_MPL11_ORDERABLE_METHOD(greater_equal_impl)
+    BOOST_MPL11_ORDERABLE_METHOD(min_impl)
+    BOOST_MPL11_ORDERABLE_METHOD(max_impl)
     #undef BOOST_MPL11_ORDERABLE_METHOD
 }} // end namespace boost::mpl11
 

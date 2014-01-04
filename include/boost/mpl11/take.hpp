@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/fwd/take.hpp>
 
-#include <boost/mpl11/detail/check_usage.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
@@ -23,6 +22,7 @@ namespace boost { namespace mpl11 {
         static_assert(N::value >= 0,
         "Invalid usage of `take`: "
         "The number of elements to take must be non-negative.");
+
         using type = typename take_c<N::value, Sequence>::type;
     };
 
@@ -49,26 +49,22 @@ namespace boost { namespace mpl11 {
     // Minimal complete definition
     /////////////////////////////////
     template <detail::std_size_t N, typename Sequence>
-    struct head<take_c<N, Sequence>>
-        : private BOOST_MPL11_CHECK_USAGE(head<take_c<N, Sequence>>)
-    {
+    struct head_impl<take_c<N, Sequence>> {
         using type = typename head<Sequence>::type;
     };
 
     template <detail::std_size_t N, typename Sequence>
-    struct tail<take_c<N, Sequence>>
-        : private BOOST_MPL11_CHECK_USAGE(tail<take_c<N, Sequence>>)
-    {
+    struct tail_impl<take_c<N, Sequence>> {
         using type = take_c<N - 1, typename tail<Sequence>::type>;
     };
 
     template <detail::std_size_t N, typename Sequence>
-    struct is_empty<take_c<N, Sequence>>
+    struct is_empty_impl<take_c<N, Sequence>>
         : is_empty<Sequence>
     { };
 
     template <typename Sequence>
-    struct is_empty<take_c<0, Sequence>>
+    struct is_empty_impl<take_c<0, Sequence>>
         : true_
     { };
 
@@ -94,21 +90,17 @@ namespace boost { namespace mpl11 {
     } // end namespace take_detail
 
     template <detail::std_size_t N, typename S>
-    struct init<take_c<N, S>>
-        : private BOOST_MPL11_CHECK_USAGE(init<take_c<N, S>>)
-    {
+    struct init_impl<take_c<N, S>> {
         using type = take_c<take_detail::length_impl<N, S>::value - 1, S>;
     };
 
     template <detail::std_size_t N, typename S>
-    struct length<take_c<N, S>>
+    struct length_impl<take_c<N, S>>
         : size_t<take_detail::length_impl<N, S>::value>
     { };
 
     template <detail::std_size_t N, typename S, detail::std_size_t Index>
-    struct at_c<take_c<N, S>, Index>
-        : private BOOST_MPL11_CHECK_USAGE(at_c<take_c<N, S>, Index>)
-    {
+    struct at_c_impl<take_c<N, S>, Index> {
         using type = typename at_c<S, Index>::type;
     };
 }} // end namespace boost::mpl11

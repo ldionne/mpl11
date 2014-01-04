@@ -23,82 +23,85 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace unchecked {
-        #define BOOST_MPL11_SEQUENCE_METHOD(METHOD)                         \
-            template <typename S>                                           \
-            struct METHOD                                                   \
-                : Sequence<typename tag_of<S>::type>::                      \
-                  template METHOD ## _impl<S>                               \
-            { };                                                            \
-        /**/
-        BOOST_MPL11_SEQUENCE_METHOD(head)
-        BOOST_MPL11_SEQUENCE_METHOD(tail)
-        BOOST_MPL11_SEQUENCE_METHOD(is_empty)
-        BOOST_MPL11_SEQUENCE_METHOD(init)
-        BOOST_MPL11_SEQUENCE_METHOD(last)
-        BOOST_MPL11_SEQUENCE_METHOD(length)
-        #undef BOOST_MPL11_SEQUENCE_METHOD
+    #define BOOST_MPL11_SEQUENCE_METHOD(METHOD_IMPL)                        \
+        template <typename S>                                               \
+        struct METHOD_IMPL {                                                \
+            using type = typename Sequence<typename tag_of<S>::type>::      \
+                         template METHOD_IMPL<S>::type;                     \
+        };                                                                  \
+    /**/
+    BOOST_MPL11_SEQUENCE_METHOD(head_impl)
+    BOOST_MPL11_SEQUENCE_METHOD(tail_impl)
+    BOOST_MPL11_SEQUENCE_METHOD(init_impl)
+    BOOST_MPL11_SEQUENCE_METHOD(last_impl)
+    #undef BOOST_MPL11_SEQUENCE_METHOD
 
-        template <typename S, typename Index>
-        struct at {
-            using type = typename mpl11::at_c<S, Index::value>::type;
-        };
+    template <typename S>
+    struct is_empty_impl
+        : Sequence<typename tag_of<S>::type>::template is_empty_impl<S>
+    { };
 
-        template <typename S, detail::std_size_t Index>
-        struct at_c {
-            using type = typename Sequence<typename tag_of<S>::type>::
-                         template at_c_impl<S, Index>::type;
-        };
+    template <typename S>
+    struct length_impl
+        : Sequence<typename tag_of<S>::type>::template length_impl<S>
+    { };
 
-        template <typename S, typename F>
-        struct unpack {
-            using type = typename Sequence<typename tag_of<S>::type>::
-                         template unpack_impl<S, F>::type;
-        };
-    } // end namespace unchecked
+    template <typename S, detail::std_size_t Index>
+    struct at_c_impl {
+        using type = typename Sequence<typename tag_of<S>::type>::
+                     template at_c_impl<S, Index>::type;
+    };
 
-    namespace checked {
-        template <typename S>
-        struct head : unchecked::head<S> {
-            static_assert(!mpl11::is_empty<S>::value,
-            "Invalid usage of `head` on an empty sequence.");
-        };
+    template <typename S, typename F>
+    struct unpack_impl {
+        using type = typename Sequence<typename tag_of<S>::type>::
+                     template unpack_impl<S, F>::type;
+    };
 
-        template <typename S>
-        struct tail : unchecked::tail<S> {
-            static_assert(!mpl11::is_empty<S>::value,
-            "Invalid usage of `tail` on an empty sequence.");
-        };
+    template <typename S, typename Index>
+    struct at : at_c<S, Index::value> {
+        static_assert(Index::value >= 0,
+        "Invalid usage of `at` with a negative index.");
+    };
 
-        template <typename S>
-        struct init : unchecked::init<S> {
-            static_assert(!mpl11::is_empty<S>::value,
-            "Invalid usage of `init` on an empty sequence.");
-        };
+#ifndef BOOST_MPL11_NO_CHECKED_METHODS
+    template <typename S>
+    struct head : head_impl<S> {
+        static_assert(!is_empty<S>::value,
+        "Invalid usage of `head` on an empty sequence.");
+    };
 
-        template <typename S>
-        struct last : unchecked::last<S> {
-            static_assert(!mpl11::is_empty<S>::value,
-            "Invalid usage of `last` on an empty sequence.");
-        };
+    template <typename S>
+    struct tail : tail_impl<S> {
+        static_assert(!is_empty<S>::value,
+        "Invalid usage of `tail` on an empty sequence.");
+    };
 
-        template <typename S, typename Index>
-        struct at : unchecked::at<S, Index> {
-            static_assert(Index::value >= 0,
-            "Invalid usage of `at` with a negative index.");
-        };
+    template <typename S>
+    struct init : init_impl<S> {
+        static_assert(!is_empty<S>::value,
+        "Invalid usage of `init` on an empty sequence.");
+    };
 
-        template <typename S, detail::std_size_t Index>
-        struct at_c : unchecked::at_c<S, Index> {
-        private:
-            using Length = typename conditional<sequence_traits<S>::is_finite,
-                mpl11::length<S>, size_t<Index + 1>
-            >::type;
+    template <typename S>
+    struct last : last_impl<S> {
+        static_assert(!is_empty<S>::value,
+        "Invalid usage of `last` on an empty sequence.");
+    };
 
-            static_assert(Index < Length::value,
-            "Invalid usage of `at_c` with an out-of-bounds index.");
-        };
-    } // end namespace checked
+    template <typename S, detail::std_size_t Index>
+    struct at_c : at_c_impl<S, Index> {
+    private:
+        using Length = typename detail::conditional<
+            sequence_traits<S>::is_finite,
+            length<S>,
+            size_t<Index + 1>
+        >::type;
+
+        static_assert(Index < Length::value,
+        "Invalid usage of `at_c` with an out-of-bounds index.");
+    };
+#endif
 
     //////////////////////
     // Instantiations

@@ -27,19 +27,19 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct is_empty<empty_sequence>
+    struct is_empty_impl<empty_sequence>
         : true_
     { };
 
     template <>
-    struct length<empty_sequence>
+    struct length_impl<empty_sequence>
         : size_t<0>
     { };
 
     template <typename F>
-    struct unpack<empty_sequence, F>
-        : apply<F>
-    { };
+    struct unpack_impl<empty_sequence, F> {
+        using type = typename apply<F>::type;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_EMPTY_SEQUENCE_HPP

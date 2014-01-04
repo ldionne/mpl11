@@ -32,7 +32,7 @@ namespace boost { namespace mpl11 {
     // Minimal complete definition
     /////////////////////////////////
     template <typename F, typename State, typename S>
-    struct head<scanl<F, State, S>> {
+    struct head_impl<scanl<F, State, S>> {
         using type = State;
     };
 
@@ -64,19 +64,19 @@ namespace boost { namespace mpl11 {
     } // end namespace scanl_detail
 
     template <typename F, typename State, typename S>
-    struct tail<scanl<F, State, S>> {
+    struct tail_impl<scanl<F, State, S>> {
         using type = typename scanl_detail::scanl_helper<
             is_empty<S>::value
         >::template tail_impl<F, State, S>;
     };
 
     template <typename F, typename State, typename S>
-    struct is_empty<scanl<F, State, S>>
+    struct is_empty_impl<scanl<F, State, S>>
         : false_
     { };
 
     template <typename F, typename State, typename S>
-    struct length<scanl<F, State, S>>
+    struct length_impl<scanl<F, State, S>>
         : size_t<length<S>::value + 1>
     { };
 
@@ -85,12 +85,12 @@ namespace boost { namespace mpl11 {
     // Optimizations
     /////////////////////////////////
     template <typename F, typename State, typename S>
-    struct last<scanl<F, State, S>> {
+    struct last_impl<scanl<F, State, S>> {
         using type = typename foldl<F, State, S>::type;
     };
 
     template <typename F, typename State, typename S>
-    struct init<scanl<F, State, S>> {
+    struct init_impl<scanl<F, State, S>> {
         using type = typename scanl_detail::scanl_helper<
             is_empty<S>::value
         >::template init_impl<F, State, S>;

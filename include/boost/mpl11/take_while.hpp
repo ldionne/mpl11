@@ -9,7 +9,6 @@
 #include <boost/mpl11/fwd/take_while.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/check_usage.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/sequence.hpp>
 
@@ -25,16 +24,12 @@ namespace boost { namespace mpl11 {
     // Minimal complete definition
     /////////////////////////////////
     template <typename P, typename S>
-    struct head<take_while<P, S>>
-        : private BOOST_MPL11_CHECK_USAGE(head<take_while<P, S>>)
-    {
+    struct head<take_while<P, S>> {
         using type = typename head<S>::type;
     };
 
     template <typename P, typename S>
-    struct tail<take_while<P, S>>
-        : private BOOST_MPL11_CHECK_USAGE(tail<take_while<P, S>>)
-    {
+    struct tail_impl<take_while<P, S>> {
         using type = take_while<P, typename tail<S>::type>;
     };
 
@@ -58,7 +53,7 @@ namespace boost { namespace mpl11 {
     } // end namespace take_while_detail
 
     template <typename P, typename S>
-    struct is_empty<take_while<P, S>>
+    struct is_empty_impl<take_while<P, S>>
         : take_while_detail::is_empty_impl<
             is_empty<S>::value
         >::template result<P, S>

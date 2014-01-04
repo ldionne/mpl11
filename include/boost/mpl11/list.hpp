@@ -9,7 +9,6 @@
 #include <boost/mpl11/fwd/list.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/check_usage.hpp>
 #include <boost/mpl11/detail/index_sequence.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/detail/variadic_last.hpp>
@@ -35,22 +34,22 @@ namespace boost { namespace mpl11 {
     // Minimal complete definition
     /////////////////////////////////
     template <typename Head, typename ...Tail>
-    struct head<list<Head, Tail...>> {
+    struct head_impl<list<Head, Tail...>> {
         using type = Head;
     };
 
     template <typename Head, typename ...Tail>
-    struct tail<list<Head, Tail...>> {
+    struct tail_impl<list<Head, Tail...>> {
         using type = list<Tail...>;
     };
 
     template <typename ...T>
-    struct is_empty<list<T...>>
+    struct is_empty_impl<list<T...>>
         : false_
     { };
 
     template <>
-    struct is_empty<list<>>
+    struct is_empty_impl<list<>>
         : true_
     { };
 
@@ -59,19 +58,19 @@ namespace boost { namespace mpl11 {
     // Optimizations
     /////////////////////////////////
     template <typename ...T>
-    struct length<list<T...>>
+    struct length_impl<list<T...>>
         : size_t<sizeof...(T)>
     { };
 
     template <typename ...T, typename F>
-    struct unpack<list<T...>, F>
-        : apply<F, T...>
-    { };
+    struct unpack_impl<list<T...>, F> {
+        using type = typename apply<F, T...>::type;
+    };
 
     template <typename Head, typename ...Tail>
-    struct last<list<Head, Tail...>>
-        : detail::variadic_last<Head, Tail...>
-    { };
+    struct last_impl<list<Head, Tail...>> {
+        using type = typename detail::variadic_last<Head, Tail...>::type;
+    };
 
     namespace list_detail {
         using namespace detail;
@@ -99,9 +98,7 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename ...T, detail::std_size_t Index>
-    struct at_c<list<T...>, Index>
-        : private BOOST_MPL11_CHECK_USAGE(at_c<list<T...>, Index>)
-    {
+    struct at_c_impl<list<T...>, Index> {
         using type = typename decltype(
             list_detail::at_index<Index>((list<T...>*)nullptr)
         )::type;

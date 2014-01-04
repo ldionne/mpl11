@@ -6,10 +6,16 @@
 #ifndef BOOST_MPL11_FWD_ARITHMETIC_HPP
 #define BOOST_MPL11_FWD_ARITHMETIC_HPP
 
-#include <boost/mpl11/detail/methods.hpp>
+#include <boost/mpl11/detail/doxygen.hpp>
 
 
 namespace boost { namespace mpl11 {
+    template <typename T1, typename T2> struct add_impl;
+    template <typename T1, typename T2> struct subtract_impl;
+    template <typename T1, typename T2> struct multiply_impl;
+    template <typename T1, typename T2> struct divide_impl;
+    template <typename T1, typename T2> struct modulo_impl;
+
     /*!
      * @ingroup typeclasses
      * @defgroup Arithmetic Arithmetic
@@ -39,54 +45,41 @@ namespace boost { namespace mpl11 {
     template <typename TagL, typename TagR = TagL>
     struct Arithmetic;
 
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    namespace unchecked {
-#endif
-
     //! Returns the sum of the given objects (`T1 + T2 + ...Tn`).
-    template <typename T1, typename T2> struct add;
-
-    //! Returns the subtraction of the given objects (`T1 - T2 - ...Tn`).
-    template <typename T1, typename T2> struct subtract;
-
-    //! Returns the product of the given objects (`T1 * T2 * ...Tn`).
-    template <typename T1, typename T2> struct multiply;
-
-    //! Returns the division of the given objects (`T1 / T2 / ...Tn`).
-    template <typename T1, typename T2> struct divide;
-
-    //! Returns the modulo of the given objects (`T1 % T2`).
-    template <typename T1, typename T2> struct modulo;
-
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    } // end namespace unchecked
-
-    namespace checked {
-        using unchecked::add;
-        using unchecked::subtract;
-        using unchecked::multiply;
-        using unchecked::divide;
-        using unchecked::modulo;
-    }
-
-    using methods::add;
-    using methods::subtract;
-    using methods::multiply;
-    using methods::divide;
-    using methods::modulo;
-#endif
+    template <typename T1, typename T2>
+    BOOST_MPL11_DOXYGEN_ALIAS(add, add_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using add_t = typename add<T1, T2>::type;
 
+
+    //! Returns the subtraction of the given objects (`T1 - T2 - ...Tn`).
+    template <typename T1, typename T2>
+    BOOST_MPL11_DOXYGEN_ALIAS(subtract, subtract_impl<T1, T2>);
+
     template <typename T1, typename T2>
     using subtract_t = typename subtract<T1, T2>::type;
+
+
+    //! Returns the product of the given objects (`T1 * T2 * ...Tn`).
+    template <typename T1, typename T2>
+    BOOST_MPL11_DOXYGEN_ALIAS(multiply, multiply_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using multiply_t = typename multiply<T1, T2>::type;
 
+
+    //! Returns the division of the given objects (`T1 / T2 / ...Tn`).
+    template <typename T1, typename T2>
+    BOOST_MPL11_DOXYGEN_ALIAS(divide, divide_impl<T1, T2>);
+
     template <typename T1, typename T2>
     using divide_t = typename divide<T1, T2>::type;
+
+
+    //! Returns the modulo of the given objects (`T1 % T2`).
+    template <typename T1, typename T2>
+    BOOST_MPL11_DOXYGEN_ALIAS(modulo, modulo_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using modulo_t = typename modulo<T1, T2>::type;

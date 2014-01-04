@@ -25,17 +25,17 @@ namespace boost { namespace mpl11 {
     // Minimal complete definition
     /////////////////////////////////
     template <typename F, typename X>
-    struct head<iterate<F, X>> {
+    struct head_impl<iterate<F, X>> {
         using type = X;
     };
 
     template <typename F, typename X>
-    struct tail<iterate<F, X>> {
+    struct tail_impl<iterate<F, X>> {
         using type = iterate<F, typename apply<F, X>::type>;
     };
 
     template <typename F, typename X>
-    struct is_empty<iterate<F, X>>
+    struct is_empty_impl<iterate<F, X>>
         : false_
     { };
 }} // end namespace boost::mpl11

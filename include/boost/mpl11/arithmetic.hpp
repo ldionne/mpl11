@@ -12,22 +12,20 @@
 
 
 namespace boost { namespace mpl11 {
-namespace unchecked {
-    #define BOOST_MPL11_ARITHMETIC_METHOD(METHOD)                           \
+    #define BOOST_MPL11_ARITHMETIC_METHOD(METHOD_IMPL)                      \
         template <typename T1, typename T2>                                 \
-        struct METHOD                                                       \
+        struct METHOD_IMPL                                                  \
             : Arithmetic<                                                   \
                 typename tag_of<T1>::type, typename tag_of<T2>::type        \
-            >::template METHOD ## _impl<T1, T2>                             \
+            >::template METHOD_IMPL<T1, T2>                                 \
         { };                                                                \
     /**/
-    BOOST_MPL11_ARITHMETIC_METHOD(add)
-    BOOST_MPL11_ARITHMETIC_METHOD(subtract)
-    BOOST_MPL11_ARITHMETIC_METHOD(divide)
-    BOOST_MPL11_ARITHMETIC_METHOD(multiply)
-    BOOST_MPL11_ARITHMETIC_METHOD(modulo)
+    BOOST_MPL11_ARITHMETIC_METHOD(add_impl)
+    BOOST_MPL11_ARITHMETIC_METHOD(subtract_impl)
+    BOOST_MPL11_ARITHMETIC_METHOD(divide_impl)
+    BOOST_MPL11_ARITHMETIC_METHOD(multiply_impl)
+    BOOST_MPL11_ARITHMETIC_METHOD(modulo_impl)
     #undef BOOST_MPL11_ARITHMETIC_METHOD
-} // end namespace unchecked
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ARITHMETIC_HPP

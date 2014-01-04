@@ -28,19 +28,27 @@ struct unpack_tag;
 namespace boost { namespace mpl11 {
     template <>
     struct Sequence<archetype::mpl_tag> {
-        template <typename> struct head_impl { using type = head_tag; };
-        template <typename> struct tail_impl { using type = tail_tag; };
+        template <typename> struct head_impl
+        { using type = head_tag; };
+
+        template <typename> struct tail_impl
+        { using type = tail_tag; };
 
         template <typename> struct is_empty_impl : false_
         { using type = is_empty_tag; };
 
-        template <typename> struct last_impl { using type = last_tag; };
-        template <typename> struct init_impl { using type = init_tag; };
+        template <typename> struct last_impl
+        { using type = last_tag; };
 
-        template <typename, detail::std_size_t>
-        struct at_c_impl { using type = at_c_tag; };
+        template <typename> struct init_impl
+        { using type = init_tag; };
 
-        template <typename> struct length_impl { using type = length_tag; };
+        template <typename, detail::std_size_t> struct at_c_impl
+        { using type = at_c_tag; };
+
+        template <typename> struct length_impl
+        { using type = length_tag; };
+
         template <typename, typename>
         struct unpack_impl { using type = unpack_tag; };
     };

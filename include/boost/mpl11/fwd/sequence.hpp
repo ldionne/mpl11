@@ -7,13 +7,21 @@
 #define BOOST_MPL11_FWD_SEQUENCE_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
-#include <boost/mpl11/detail/methods.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/orderable.hpp>
 
 
 namespace boost { namespace mpl11 {
+    template <typename>                     struct head_impl;
+    template <typename>                     struct last_impl;
+    template <typename>                     struct tail_impl;
+    template <typename>                     struct init_impl;
+    template <typename>                     struct is_empty_impl;
+    template <typename>                     struct length_impl;
+    template <typename, typename>           struct unpack_impl;
+    template <typename, detail::std_size_t> struct at_c_impl;
+
     /*!
      * @ingroup typeclasses
      * @defgroup Sequence Sequence
@@ -49,12 +57,19 @@ namespace boost { namespace mpl11 {
     template <typename Tag>
     struct Sequence;
 
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    namespace unchecked {
-#endif
+#ifdef BOOST_MPL11_NO_CHECKED_METHODS
+
+    template <typename S>                       using head = head_impl<S>;
+    template <typename S>                       using last = last_impl<S>;
+    template <typename S>                       using tail = tail_impl<S>;
+    template <typename S>                       using init = init_impl<S>;
+    template <typename S, detail::std_size_t I> using at_c = at_c_impl<S, I>;
+
+#else
 
     //! Returns the first element of a non-empty `Sequence`.
-    template <typename S>                           struct head;
+    template <typename S>
+    struct head;
 
     /*!
      * Extract the elements after the head of a non-empty `Sequence`.
@@ -62,13 +77,12 @@ namespace boost { namespace mpl11 {
      * Specifically, returns a sequence containing all the elements of the
      * original sequence except the first one.
      */
-    template <typename S>                           struct tail;
-
-    //! Boolean `Integral` representing whether the given `Sequence` is empty.
-    template <typename S>                           struct is_empty;
+    template <typename S>
+    struct tail;
 
     //! Returns the last element of a non-empty `Sequence`.
-    template <typename S>                           struct last;
+    template <typename S>
+    struct last;
 
     /*!
      * Extract the elements before the last of a non-empty `Sequence`.
@@ -76,18 +90,28 @@ namespace boost { namespace mpl11 {
      * Specifically, returns a sequence containing all the elements of the
      * original sequence except the last one.
      */
-    template <typename S>                           struct init;
+    template <typename S>
+    struct init;
 
     //! Returns the element of a `Sequence` at the given index.
-    template <typename S, detail::std_size_t Index> struct at_c;
+    template <typename S, detail::std_size_t Index>
+    struct at_c;
+
+#endif
+
+    //! Boolean `Integral` representing whether the given `Sequence` is empty.
+    template <typename S>
+    BOOST_MPL11_DOXYGEN_ALIAS(is_empty, is_empty_impl<S>);
 
     //! Equivalent to `at_c<S, Index::value>`;
     //! requires a non-negative `Index`.
-    template <typename S, typename Index>           struct at;
+    template <typename S, typename Index>
+    struct at;
 
     //! `Integral` of unsigned type representing the number of elements in
     //! a finite `Sequence`.
-    template <typename S>                           struct length;
+    template <typename S>
+    BOOST_MPL11_DOXYGEN_ALIAS(length, length_impl<S>);
 
     /*!
      * Invokes a metafunction class with the contents of a finite `Sequence`.
@@ -96,33 +120,9 @@ namespace boost { namespace mpl11 {
      * to `apply<F, a0, ..., an>`, where `a0`, ...,`an` are the elements
      * in the sequence.
      */
-    template <typename S, typename F>               struct unpack;
+    template <typename S, typename F>
+    BOOST_MPL11_DOXYGEN_ALIAS(unpack, unpack_impl<S, F>);
 
-#ifndef BOOST_MPL11_DOXYGEN_INVOKED
-    } // end namespace unchecked
-
-    namespace checked {
-        template <typename S>                           struct head;
-        template <typename S>                           struct tail;
-        template <typename S>                           struct last;
-        template <typename S>                           struct init;
-        template <typename S, detail::std_size_t Index> struct at_c;
-        template <typename S, typename Index>           struct at;
-        using unchecked::is_empty;
-        using unchecked::length;
-        using unchecked::unpack;
-    }
-
-    using methods::head;
-    using methods::tail;
-    using methods::last;
-    using methods::init;
-    using methods::is_empty;
-    using methods::at_c;
-    using methods::at;
-    using methods::length;
-    using methods::unpack;
-#endif // !BOOST_MPL11_DOXYGEN_INVOKED
 
     template <typename S>
     using head_t = typename head<S>::type;

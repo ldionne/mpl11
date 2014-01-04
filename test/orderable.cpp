@@ -60,7 +60,7 @@ static_assert(is_same<max_t<archetype, archetype>, max_tag>::value, "");
 template <int i> struct x;
 namespace boost { namespace mpl11 {
     template <int i, int j>
-    struct less<x<i>, x<j>>
+    struct less_impl<x<i>, x<j>>
         : bool_<(i < j)>
     { };
 }}

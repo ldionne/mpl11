@@ -10,6 +10,13 @@
 
 
 namespace boost { namespace mpl11 {
+    template <typename, typename> struct less_impl;
+    template <typename, typename> struct less_equal_impl;
+    template <typename, typename> struct greater_impl;
+    template <typename, typename> struct greater_equal_impl;
+    template <typename, typename> struct max_impl;
+    template <typename, typename> struct min_impl;
+
     /*!
      * @ingroup typeclasses
      * @defgroup Orderable Orderable
@@ -48,7 +55,7 @@ namespace boost { namespace mpl11 {
      * according to the `<` ordering.
      */
     template <typename T1, typename T2>
-    struct less;
+    BOOST_MPL11_DOXYGEN_ALIAS(less, less_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using less_t = typename less<T1, T2>::type;
@@ -58,7 +65,7 @@ namespace boost { namespace mpl11 {
      * according to the `<=` ordering.
      */
     template <typename T1, typename T2>
-    struct less_equal;
+    BOOST_MPL11_DOXYGEN_ALIAS(less_equal, less_equal_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using less_equal_t = typename less_equal<T1, T2>::type;
@@ -68,7 +75,7 @@ namespace boost { namespace mpl11 {
      * according to the `>` ordering.
      */
     template <typename T1, typename T2>
-    struct greater;
+    BOOST_MPL11_DOXYGEN_ALIAS(greater, greater_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using greater_t = typename greater<T1, T2>::type;
@@ -78,7 +85,7 @@ namespace boost { namespace mpl11 {
      * according to the `>=` ordering.
      */
     template <typename T1, typename T2>
-    struct greater_equal;
+    BOOST_MPL11_DOXYGEN_ALIAS(greater_equal, greater_equal_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using greater_equal_t = typename greater_equal<T1, T2>::type;
@@ -88,7 +95,7 @@ namespace boost { namespace mpl11 {
      * induced by `less`.
      */
     template <typename T1, typename T2>
-    struct min;
+    BOOST_MPL11_DOXYGEN_ALIAS(min, min_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using min_t = typename min<T1, T2>::type;
@@ -98,7 +105,7 @@ namespace boost { namespace mpl11 {
      * induced by `less`.
      */
     template <typename T1, typename T2>
-    struct max;
+    BOOST_MPL11_DOXYGEN_ALIAS(max, max_impl<T1, T2>);
 
     template <typename T1, typename T2>
     using max_t = typename max<T1, T2>::type;
