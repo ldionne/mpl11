@@ -24,18 +24,29 @@
 
 
 namespace boost { namespace mpl11 {
-    #define BOOST_MPL11_SEQUENCE_METHOD(METHOD_IMPL)                        \
-        template <typename S>                                               \
-        struct METHOD_IMPL {                                                \
-            using type = typename Sequence<typename tag_of<S>::type>::      \
-                         template METHOD_IMPL<S>::type;                     \
-        };                                                                  \
-    /**/
-    BOOST_MPL11_SEQUENCE_METHOD(head_impl)
-    BOOST_MPL11_SEQUENCE_METHOD(tail_impl)
-    BOOST_MPL11_SEQUENCE_METHOD(init_impl)
-    BOOST_MPL11_SEQUENCE_METHOD(last_impl)
-    #undef BOOST_MPL11_SEQUENCE_METHOD
+    template <typename S>
+    struct head_impl {
+        using type = typename Sequence<typename tag_of<S>::type>::
+                     template head_impl<S>::type;
+    };
+
+    template <typename S>
+    struct tail_impl {
+        using type = typename Sequence<typename tag_of<S>::type>::
+                     template tail_impl<S>::type;
+    };
+
+    template <typename S>
+    struct init_impl {
+        using type = typename Sequence<typename tag_of<S>::type>::
+                     template init_impl<S>::type;
+    };
+
+    template <typename S>
+    struct last_impl {
+        using type = typename Sequence<typename tag_of<S>::type>::
+                     template last_impl<S>::type;
+    };
 
     template <typename S>
     struct is_empty_impl
@@ -69,31 +80,35 @@ namespace boost { namespace mpl11 {
 
 #if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
     template <typename S>
-    struct head : head_impl<S> {
+    struct head {
         static_assert(!is_empty<S>::value,
         "Invalid usage of `head` on an empty sequence.");
+        using type = typename head_impl<S>::type;
     };
 
     template <typename S>
-    struct tail : tail_impl<S> {
+    struct tail {
         static_assert(!is_empty<S>::value,
         "Invalid usage of `tail` on an empty sequence.");
+        using type = typename tail_impl<S>::type;
     };
 
     template <typename S>
-    struct init : init_impl<S> {
+    struct init {
         static_assert(!is_empty<S>::value,
         "Invalid usage of `init` on an empty sequence.");
+        using type = typename init_impl<S>::type;
     };
 
     template <typename S>
-    struct last : last_impl<S> {
+    struct last {
         static_assert(!is_empty<S>::value,
         "Invalid usage of `last` on an empty sequence.");
+        using type = typename last_impl<S>::type;
     };
 
     template <typename S, detail::std_size_t Index>
-    struct at_c : at_c_impl<S, Index> {
+    struct at_c {
     private:
         using Length = typename detail::conditional<
             sequence_traits<S>::is_finite,
@@ -103,6 +118,9 @@ namespace boost { namespace mpl11 {
 
         static_assert(Index < Length::value,
         "Invalid usage of `at_c` with an out-of-bounds index.");
+
+    public:
+        using type = typename at_c_impl<S, Index>::type;
     };
 #endif
 
