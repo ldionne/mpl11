@@ -50,7 +50,8 @@ namespace boost { namespace mpl11 {
     template <typename TagL, typename TagR = TagL>
     struct Comparable;
 
-    //! Boolean `Integral` representing whether the given objects are equal.
+    //! Boolean `StaticConstant` representing whether the given objects
+    //! are equal.
     template <typename T1, typename T2>
     BOOST_MPL11_DOXYGEN_ALIAS(equal, equal_impl<T1, T2>);
 
@@ -58,7 +59,8 @@ namespace boost { namespace mpl11 {
     using equal_t = typename equal<T1, T2>::type;
 
     /*!
-     * Boolean `Integral` representing whether the given objects are unequal.
+     * Boolean `StaticConstant` representing whether the given objects
+     * are unequal.
      *
      *
      * @warning

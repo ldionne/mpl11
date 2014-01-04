@@ -10,12 +10,11 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Boolean `Integral` representing the logical negation (`!`) of its
-     * argument.
+     * Boolean `StaticConstant` representing the logical negation (`!`) of
+     * its argument.
      *
-     * Its argument `F` must be a metafunction returning an `Integral`
-     * datatype. Specifically, `not_<F>` is equivalent to
-     * `bool_<!F::%type::value>`.
+     * Its argument `F` must be a metafunction returning a `StaticConstant`.
+     * Specifically, `not_<F>` is equivalent to `bool_<!F::%type::value>`.
      */
     template <typename F>
     struct not_;

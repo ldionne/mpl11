@@ -10,12 +10,12 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Boolean `Integral` representing the result of short-circuit logical
-     * or (`||`) on its arguments.
+     * Boolean `StaticConstant` representing the result of short-circuit
+     * logical or (`||`) on its arguments.
      *
      * Specifically, its arguments must be metafunctions returning
-     * `Integral` datatypes. Arguments are then evaluated from left
-     * to right in a short-circuiting fashion. If no arguments are
+     * `StaticConstant`s. Arguments are then evaluated from left to
+     * right in a short-circuiting fashion. If no arguments are
      * provided, `or_` is equivalent to `false_`.
      */
     template <typename ...Fn>

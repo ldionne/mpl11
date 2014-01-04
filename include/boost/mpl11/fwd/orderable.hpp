@@ -51,8 +51,8 @@ namespace boost { namespace mpl11 {
     struct Orderable;
 
     /*!
-     * Boolean `Integral` representing whether the given objects are ordered
-     * according to the `<` ordering.
+     * Boolean `StaticConstant` representing whether the given objects are
+     * ordered according to the `<` ordering.
      */
     template <typename T1, typename T2>
     BOOST_MPL11_DOXYGEN_ALIAS(less, less_impl<T1, T2>);
@@ -61,8 +61,8 @@ namespace boost { namespace mpl11 {
     using less_t = typename less<T1, T2>::type;
 
     /*!
-     * Boolean `Integral` representing whether the given objects are ordered
-     * according to the `<=` ordering.
+     * Boolean `StaticConstant` representing whether the given objects are
+     * ordered according to the `<=` ordering.
      */
     template <typename T1, typename T2>
     BOOST_MPL11_DOXYGEN_ALIAS(less_equal, less_equal_impl<T1, T2>);
@@ -71,8 +71,8 @@ namespace boost { namespace mpl11 {
     using less_equal_t = typename less_equal<T1, T2>::type;
 
     /*!
-     * Boolean `Integral` representing whether the given objects are ordered
-     * according to the `>` ordering.
+     * Boolean `StaticConstant` representing whether the given objects are
+     * ordered according to the `>` ordering.
      */
     template <typename T1, typename T2>
     BOOST_MPL11_DOXYGEN_ALIAS(greater, greater_impl<T1, T2>);
@@ -81,8 +81,8 @@ namespace boost { namespace mpl11 {
     using greater_t = typename greater<T1, T2>::type;
 
     /*!
-     * Boolean `Integral` representing whether the given objects are ordered
-     * according to the `>=` ordering.
+     * Boolean `StaticConstant` representing whether the given objects are
+     * ordered according to the `>=` ordering.
      */
     template <typename T1, typename T2>
     BOOST_MPL11_DOXYGEN_ALIAS(greater_equal, greater_equal_impl<T1, T2>);

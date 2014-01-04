@@ -1,9 +1,9 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::Integral`.
+ * Contains unit tests for `boost::mpl11::StaticConstant`.
  */
 
-#include <boost/mpl11/integral.hpp>
+#include <boost/mpl11/static_constant.hpp>
 
 #include <boost/mpl11/integral_c.hpp>
 
@@ -11,17 +11,17 @@
 using namespace boost::mpl11;
 
 template <typename T, T v>
-struct minimal_integral : integral_c<T, v> {
-    using mpl_tag = integral_tag;
+struct minimal_static_constant : integral_c<T, v> {
+    using mpl_tag = static_constant_tag;
 };
 
 template <typename X, typename Y = X>
-struct test_integral {
+struct test_static_constant {
     template <X v>
-    using x = minimal_integral<X, v>;
+    using x = minimal_static_constant<X, v>;
 
     template <Y v>
-    using y = minimal_integral<Y, v>;
+    using y = minimal_static_constant<Y, v>;
 
     // Comparable
     static_assert( equal<x<0>, y<0>>::value, "");
@@ -79,21 +79,21 @@ struct test_integral {
 };
 
 struct tests :
-    test_integral<bool>,
-    test_integral<char>,
-    test_integral<short>,
-    test_integral<int>,
-    test_integral<long>,
-    test_integral<long long>,
+    test_static_constant<bool>,
+    test_static_constant<char>,
+    test_static_constant<short>,
+    test_static_constant<int>,
+    test_static_constant<long>,
+    test_static_constant<long long>,
 
-    test_integral<unsigned char>,
-    test_integral<unsigned short>,
-    test_integral<unsigned int>,
-    test_integral<unsigned long>,
-    test_integral<unsigned long long>,
+    test_static_constant<unsigned char>,
+    test_static_constant<unsigned short>,
+    test_static_constant<unsigned int>,
+    test_static_constant<unsigned long>,
+    test_static_constant<unsigned long long>,
 
-    test_integral<char, short>,
-    test_integral<bool, long long> // could test more, but meh
+    test_static_constant<char, short>,
+    test_static_constant<bool, long long> // could test more, but meh
 { };
 
 

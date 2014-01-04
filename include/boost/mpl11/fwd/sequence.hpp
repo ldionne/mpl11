@@ -99,7 +99,8 @@ namespace boost { namespace mpl11 {
 
 #endif
 
-    //! Boolean `Integral` representing whether the given `Sequence` is empty.
+    //! Boolean `StaticConstant` representing whether the given `Sequence`
+    //! is empty.
     template <typename S>
     BOOST_MPL11_DOXYGEN_ALIAS(is_empty, is_empty_impl<S>);
 
@@ -108,8 +109,8 @@ namespace boost { namespace mpl11 {
     template <typename S, typename Index>
     struct at;
 
-    //! `Integral` of unsigned type representing the number of elements in
-    //! a finite `Sequence`.
+    //! `StaticConstant` of unsigned type representing the number of
+    //! elements in a finite `Sequence`.
     template <typename S>
     BOOST_MPL11_DOXYGEN_ALIAS(length, length_impl<S>);
 

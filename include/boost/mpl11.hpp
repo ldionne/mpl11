@@ -158,7 +158,6 @@
 #include <boost/mpl11/identity.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>
-#include <boost/mpl11/integral.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/iterate.hpp>
@@ -172,6 +171,7 @@
 #include <boost/mpl11/scanl.hpp>
 #include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
+#include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/take.hpp>
 #include <boost/mpl11/take_while.hpp>

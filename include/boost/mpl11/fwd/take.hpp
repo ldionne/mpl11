@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
      * Returns a `Sequence` containing the first `N` elements of
      * another sequence.
      *
-     * `N` must be a non-negative `Integral` representing the number of
+     * `N` must be a non-negative `StaticConstant` representing the number of
      * elements to keep in the underlying sequence. If `N` is greater than
      * the length of the sequence, all of its elements are kept.
      */

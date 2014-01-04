@@ -14,7 +14,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup datatypes
      *
-     * Wrapper over a static constant of the specified integral type.
+     * `StaticConstant` wrapping a value of the specified integral type.
      */
     template <typename T, T v>
     struct integral_c;

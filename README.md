@@ -156,9 +156,9 @@ as the `equal` algo from the original MPL.
   filter could be used? if count was optimized for filter, we could have
   the same effect?
 
-- find a way to have fast arithmetic operations on sequences of Integrals.
-  I think vectorized sum is the most basic instance of count_if:
-  count_if adds 1 or 0 depending on the Predicate
+- find a way to have fast arithmetic operations on sequences of
+  StaticConstants. I think vectorized sum is the most basic instance
+  of count_if: count_if adds 1 or 0 depending on the Predicate
 
 - Consider implementing many foldls in terms of a `detail::repeat_until`:
   If we know the Predicate won't be true before n repetitions, we can

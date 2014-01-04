@@ -14,11 +14,11 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Select one of two types based on an `Integral` condition.
+     * Select one of two types based on an `StaticConstant` condition.
      *
-     * Specifically, `Condition` must be a metafunction returning an
-     * `Integral`. If `Condition::type::value` is `true`, `Then` is returned.
-     * Otherwise, `Else` is returned.
+     * Specifically, `Condition` must be a metafunction returning a
+     * `StaticConstant`. If `Condition::type::value` is `true`, `Then`
+     * is returned. Otherwise, `Else` is returned.
      */
     template <typename Condition, typename Then, typename Else>
     struct if_;

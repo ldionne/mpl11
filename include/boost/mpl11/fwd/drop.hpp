@@ -16,7 +16,7 @@ namespace boost { namespace mpl11 {
      * Returns a sequence containing the suffix of another sequence after
      * the first `N` elements.
      *
-     * `N` must be a non-negative `Integral` representing the number of
+     * `N` must be a non-negative `StaticConstant` representing the number of
      * elements to be dropped from the underlying sequence. If `N` is greater
      * than the length of the sequence, the returned sequence is empty.
      */

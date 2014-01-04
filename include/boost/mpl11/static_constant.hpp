@@ -1,12 +1,12 @@
 /*!
  * @file
- * Defines `boost::mpl11::Integral`.
+ * Defines the instances of `boost::mpl11::StaticConstant`.
  */
 
-#ifndef BOOST_MPL11_INTEGRAL_HPP
-#define BOOST_MPL11_INTEGRAL_HPP
+#ifndef BOOST_MPL11_STATIC_CONSTANT_HPP
+#define BOOST_MPL11_STATIC_CONSTANT_HPP
 
-#include <boost/mpl11/fwd/integral.hpp>
+#include <boost/mpl11/fwd/static_constant.hpp>
 
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
@@ -16,7 +16,7 @@
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Comparable<integral_tag, integral_tag> {
+    struct Comparable<static_constant_tag, static_constant_tag> {
         template <typename X, typename Y>
         using equal_impl = bool_<X::value == Y::value>;
 
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Orderable<integral_tag, integral_tag> {
+    struct Orderable<static_constant_tag, static_constant_tag> {
         template <typename X, typename Y>
         using less_impl = bool_<(X::value < Y::value)>;
 
@@ -40,7 +40,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Bitwise<integral_tag, integral_tag> {
+    struct Bitwise<static_constant_tag, static_constant_tag> {
         template <typename X, typename Y>
         using bitand_impl = integral_c<
             decltype(X::value & Y::value), X::value & Y::value
@@ -73,4 +73,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_INTEGRAL_HPP
+#endif // !BOOST_MPL11_STATIC_CONSTANT_HPP
