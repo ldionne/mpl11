@@ -119,7 +119,6 @@ namespace boost { namespace mpl11 {
 
     template <typename T>
     using compl_t = typename compl_<T>::type;
-
     //! @}
 }} // end namespace boost::mpl11
 

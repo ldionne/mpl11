@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      * Holder for a compile-time value of an integral type.
      *
      *
-     * ### Refines
+     * ### Provides
      * `Comparable`, `Orderable` and `Bitwise`.
      *
      * ### Valid expressions
@@ -39,24 +39,33 @@ namespace boost { namespace mpl11 {
      * @note
      * This typeclass is only provided for consistency with the rest
      * of the library, because it does not define any new methods.
+     *
+     * @{
      */
     struct StaticConstant;
 
     /*!
-     * @ingroup tags
-     *
      * Tag representing the `StaticConstant` typeclass.
+     *
+     * @ingroup tags
      */
     struct static_constant_tag BOOST_MPL11_IF_DOXYGEN({ });
 
+    //! Default instantiation of `Comparable` for `StaticConstant`s.
     template <>
-    struct Comparable<static_constant_tag, static_constant_tag>;
+    struct Comparable<static_constant_tag, static_constant_tag>
+    BOOST_MPL11_IF_DOXYGEN({ });
 
+    //! Default instantiation of `Orderable` for `StaticConstant`s.
     template <>
-    struct Orderable<static_constant_tag, static_constant_tag>;
+    struct Orderable<static_constant_tag, static_constant_tag>
+    BOOST_MPL11_IF_DOXYGEN({ });
 
+    //! Default instantiation of `Bitwise` for `StaticConstant`s.
     template <>
-    struct Bitwise<static_constant_tag, static_constant_tag>;
+    struct Bitwise<static_constant_tag, static_constant_tag>
+    BOOST_MPL11_IF_DOXYGEN({ });
+    //! @}
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_STATIC_CONSTANT_HPP

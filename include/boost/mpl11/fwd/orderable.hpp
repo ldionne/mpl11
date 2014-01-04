@@ -51,6 +51,13 @@ namespace boost { namespace mpl11 {
     struct Orderable;
 
     /*!
+     * Tag representing the `Orderable` typeclass.
+     *
+     * @ingroup tags
+     */
+    struct orderable_tag BOOST_MPL11_IF_DOXYGEN({ });
+
+    /*!
      * Boolean `StaticConstant` representing whether the given objects are
      * ordered according to the `<` ordering.
      */
@@ -109,15 +116,7 @@ namespace boost { namespace mpl11 {
 
     template <typename T1, typename T2>
     using max_t = typename max<T1, T2>::type;
-
     //! @}
-
-    /*!
-     * @ingroup tags
-     *
-     * Tag representing the `Orderable` typeclass.
-     */
-    struct orderable_tag BOOST_MPL11_IF_DOXYGEN({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ORDERABLE_HPP

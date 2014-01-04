@@ -89,7 +89,6 @@ namespace boost { namespace mpl11 {
 
     template <typename N>
     using sign_t = typename sign<N>::type;
-
     //! @}
 }} // end namespace boost::mpl11
 

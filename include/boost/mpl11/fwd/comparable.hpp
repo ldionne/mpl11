@@ -50,6 +50,13 @@ namespace boost { namespace mpl11 {
     template <typename TagL, typename TagR = TagL>
     struct Comparable;
 
+    /*!
+     * Tag representing the `Comparable` typeclass.
+     *
+     * @ingroup tags
+     */
+    struct comparable_tag BOOST_MPL11_IF_DOXYGEN({ });
+
     //! Boolean `StaticConstant` representing whether the given objects
     //! are equal.
     template <typename T1, typename T2>
@@ -73,15 +80,7 @@ namespace boost { namespace mpl11 {
 
     template <typename T1, typename T2>
     using not_equal_t = typename not_equal<T1, T2>::type;
-
     //! @}
-
-    /*!
-     * @ingroup tags
-     *
-     * Tag representing the `Comparable` typeclass.
-     */
-    struct comparable_tag BOOST_MPL11_IF_DOXYGEN({ });
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COMPARABLE_HPP

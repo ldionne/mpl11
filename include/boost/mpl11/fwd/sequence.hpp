@@ -31,10 +31,6 @@ namespace boost { namespace mpl11 {
      * @todo Write more information about this.
      *
      *
-     * ### Refines
-     * - `Comparable` when the elements in the sequence are `Comparable`.
-     * - `Orderable` when the elements in the sequence are `Orderable`.
-     *
      * ### Methods
      * `head`, `tail`, `is_empty`, `last`, `init`, `at_c`, `at`,
      * `length` and `unpack`.
@@ -44,6 +40,10 @@ namespace boost { namespace mpl11 {
      *
      * ### Minimal complete definition
      * `head`, `tail` and `is_empty`.
+     *
+     * ### Provides
+     * - `Comparable` when the elements in the sequence are `Comparable`.
+     * - `Orderable` when the elements in the sequence are `Orderable`.
      *
      *
      * @note
@@ -56,6 +56,13 @@ namespace boost { namespace mpl11 {
      */
     template <typename Tag>
     struct Sequence;
+
+    /*!
+     * Tag representing the `Sequence` typeclass.
+     *
+     * @ingroup tags
+     */
+    struct sequence_tag BOOST_MPL11_IF_DOXYGEN({ });
 
 #if !defined(BOOST_MPL11_ENABLE_ASSERTIONS)
 
@@ -152,20 +159,9 @@ namespace boost { namespace mpl11 {
     template <typename S, typename F>
     using unpack_t = typename unpack<S, F>::type;
 
-    //! @}
-
-    /*!
-     * @ingroup tags
-     *
-     * Tag representing the `Sequence` typeclass.
-     */
-    struct sequence_tag BOOST_MPL11_IF_DOXYGEN({ });
-
-    /*!
-     * Default instantiation of the `Sequence` typeclass for `Sequence`s.
-     */
+    //! Defines the default operations for `Sequence`s.
     template <>
-    struct Sequence<sequence_tag>;
+    struct Sequence<sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
 
     /*!
      * Default instantiation of the `Comparable` typeclass for `Sequence`s.
@@ -176,7 +172,7 @@ namespace boost { namespace mpl11 {
      * `Sequence`s is defined in terms of their equality.
      */
     template <>
-    struct Comparable<sequence_tag, sequence_tag>;
+    struct Comparable<sequence_tag, sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
 
     /*!
      * Default instantiation of the `Orderable` typeclass for `Sequence`s.
@@ -186,7 +182,8 @@ namespace boost { namespace mpl11 {
      * in terms of the less-than comparison.
      */
     template <>
-    struct Orderable<sequence_tag, sequence_tag>;
+    struct Orderable<sequence_tag, sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
+    //! @}
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_SEQUENCE_HPP

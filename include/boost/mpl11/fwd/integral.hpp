@@ -54,7 +54,6 @@ namespace boost { namespace mpl11 {
 
     template <typename M, typename N>
     using rem_t = typename rem<M, N>::type;
-
     //! @}
 }} // end namespace boost::mpl11
 

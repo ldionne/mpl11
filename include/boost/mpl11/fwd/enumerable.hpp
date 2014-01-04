@@ -46,7 +46,6 @@ namespace boost { namespace mpl11 {
 
     template <typename E>
     using pred_t = typename pred<E>::type;
-
     //! @}
 }} // end namespace boost::mpl11
 
