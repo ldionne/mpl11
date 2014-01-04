@@ -22,10 +22,6 @@ namespace boost { namespace mpl11 {
      * @note
      * This is equivalent to the `fold` metafunction from the original MPL.
      * However, the order of the arguments has changed.
-     *
-     *
-     * @todo
-     * Use a minimal sequence in the unit test.
      */
     template <typename F, typename State, typename Sequence>
     struct foldl;

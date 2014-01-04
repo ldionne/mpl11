@@ -5,9 +5,7 @@
 
 #include <boost/mpl11/scanl.hpp>
 
-#include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/detail/sequence_test.hpp>
-#include <boost/mpl11/list.hpp>
 
 
 using namespace boost::mpl11;
@@ -15,15 +13,15 @@ using namespace boost::mpl11;
 template <int> struct x;
 
 template <int ...I>
-using ilist = list<x<I>...>;
+using ilist = detail::minimal_sequence<x<I>...>;
 
 struct append {
     template <typename Seq, typename X>
     struct apply;
 
     template <typename ...T, typename X>
-    struct apply<list<T...>, X> {
-        using type = list<T..., X>;
+    struct apply<detail::minimal_sequence<T...>, X> {
+        using type = detail::minimal_sequence<T..., X>;
     };
 };
 

@@ -6,7 +6,6 @@
 #include <boost/mpl11/cons.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
-#include <boost/mpl11/list.hpp>
 
 
 using namespace boost::mpl11;
@@ -16,7 +15,7 @@ template <int> struct x;
 template <int Head, int ...Tail>
 struct test_cons
     : detail::sequence_test<
-        cons_t<x<Head>, list<x<Tail>...>>,
+        cons_t<x<Head>, detail::minimal_sequence<x<Tail>...>>,
         x<Head>, x<Tail>...
     >
 { };

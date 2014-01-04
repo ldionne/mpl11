@@ -1,6 +1,7 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::sequence_test`.
+ * Defines `boost::mpl11::detail::sequence_test` and
+ * `boost::mpl11::detail::minimal_sequence`.
  */
 
 #ifndef BOOST_MPL11_DETAIL_SEQUENCE_TEST_HPP
@@ -18,16 +19,34 @@ namespace boost { namespace mpl11 { namespace detail {
      */
     template <typename Sequence, typename ...Elements>
     struct sequence_test;
+
+    /*!
+     * @ingroup details
+     *
+     * Minimal `Sequence` for testing purposes.
+     *
+     * When testing your own sequences, always use this sequence instead
+     * of, say, `list`, because `list` could specialize some operations
+     * for efficiency reasons. `minimal_sequence` is guaranteed not to
+     * specialize anything unnecessary, i.e. to have the most default
+     * behavior possible.
+     */
+    template <typename ...>
+    struct minimal_sequence;
 }}} // end namespace boost::mpl11::detail
 
 
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/integral_c.hpp>
 #include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/sequence_traits.hpp>
+#include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/list.hpp>
 
 
-namespace boost { namespace mpl11 { namespace detail {
+namespace boost { namespace mpl11 {
+namespace detail {
     template <typename Sequence, typename ...Elements>
     struct sequence_test {
         // head
@@ -86,6 +105,34 @@ namespace boost { namespace mpl11 { namespace detail {
         static_assert(is_empty<Sequence>::value, "");
         static_assert(length<Sequence>::value == 0, "");
     };
-}}} // end namespace boost::mpl11::detail
+} // end namespace detail
+
+template <typename ...T>
+struct tag_of<detail::minimal_sequence<T...>> {
+    using type = sequence_tag;
+};
+
+template <typename ...T>
+struct sequence_traits<detail::minimal_sequence<T...>> {
+    static constexpr bool has_O1_length = false;
+    static constexpr bool has_O1_unpack = false;
+    static constexpr bool is_finite = true;
+};
+
+template <typename Head, typename ...Tail>
+struct head_impl<detail::minimal_sequence<Head, Tail...>> {
+    using type = Head;
+};
+
+template <typename Head, typename ...Tail>
+struct tail_impl<detail::minimal_sequence<Head, Tail...>> {
+    using type = detail::minimal_sequence<Tail...>;
+};
+
+template <typename ...T>
+struct is_empty_impl<detail::minimal_sequence<T...>>
+    : bool_<sizeof...(T) == 0>
+{ };
+}} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_DETAIL_SEQUENCE_TEST_HPP

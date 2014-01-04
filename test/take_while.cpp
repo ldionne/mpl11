@@ -7,7 +7,6 @@
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/list.hpp>
 
 
 using namespace boost::mpl11;
@@ -19,7 +18,7 @@ struct nonzero_prefix {
     template <int ...Prefix>
     struct is
         : detail::sequence_test<
-            take_while_t<nonzero, list<int_<All>...>>,
+            take_while_t<nonzero, detail::minimal_sequence<int_<All>...>>,
             int_<Prefix>...
         >
     { };

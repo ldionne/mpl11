@@ -6,7 +6,6 @@
 #include <boost/mpl11/take.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
-#include <boost/mpl11/list.hpp>
 
 
 using namespace boost::mpl11;
@@ -20,7 +19,7 @@ struct taking {
         template <int ...Taken>
         struct is :
             detail::sequence_test<
-                take_c_t<N, list<x<All>...>>,
+                take_c_t<N, detail::minimal_sequence<x<All>...>>,
                 x<Taken>...
             >
         { };

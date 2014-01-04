@@ -6,7 +6,6 @@
 #include <boost/mpl11/drop.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
-#include <boost/mpl11/list.hpp>
 
 
 using namespace boost::mpl11;
@@ -20,7 +19,7 @@ struct dropping {
         template <int ...Remaining>
         struct is
             : detail::sequence_test<
-                drop_c_t<N, list<x<All>...>>,
+                drop_c_t<N, detail::minimal_sequence<x<All>...>>,
                 x<Remaining>...
             >
         { };

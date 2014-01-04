@@ -6,7 +6,7 @@
 #include <boost/mpl11/foldl.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/list.hpp>
+#include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/quote.hpp>
 
 
@@ -23,7 +23,7 @@ struct fold_state<state<S...>, x<X>> { using type = state<S..., X>; };
 template <int ...i>
 struct test_with {
     static_assert(is_same<
-        foldl_t<quote<fold_state>, state<>, list<x<i>...>>,
+        foldl_t<quote<fold_state>, state<>, detail::minimal_sequence<x<i>...>>,
         state<i...>
     >::value, "");
 };
