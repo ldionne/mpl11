@@ -22,7 +22,6 @@ namespace boost { namespace mpl11 { namespace detail {
 }}} // end namespace boost::mpl11::detail
 
 
-#include <boost/mpl11/detail/assertion.hpp>
 #include <boost/mpl11/fwd/sequence.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
@@ -33,10 +32,10 @@ namespace boost { namespace mpl11 {
     namespace detail {
         template <typename S>
         struct lazy_init {
-            BOOST_MPL11_ASSERTION(
-                static_assert(!is_empty<S>::value,
-                "Invalid usage of `detail::lazy_init` on an empty sequence.");
-            )
+#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
+            static_assert(!is_empty<S>::value,
+            "Invalid usage of `detail::lazy_init` on an empty sequence.");
+#endif
 
             using type = lazy_init;
         };

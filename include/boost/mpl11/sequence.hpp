@@ -9,7 +9,6 @@
 #include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/comparable.hpp>
-#include <boost/mpl11/detail/assertion.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/detail/default_unpack.hpp>
 #include <boost/mpl11/detail/lazy_init.hpp>
@@ -71,11 +70,12 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename S, typename Index>
-    struct at : at_c<S, Index::value> {
-        BOOST_MPL11_ASSERTION(
-            static_assert(Index::value >= 0,
-            "Invalid usage of `at` with a negative index.");
-        )
+    struct at {
+#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
+        static_assert(Index::value >= 0,
+        "Invalid usage of `at` with a negative index.");
+#endif
+        using type = typename at_c<S, Index::value>::type;
     };
 
 #if defined(BOOST_MPL11_ENABLE_ASSERTIONS)

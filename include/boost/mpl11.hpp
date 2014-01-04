@@ -125,6 +125,20 @@
  * | `apply<F, Args...>::%type` | Any type
  */
 
+#if defined(BOOST_MPL11_DOXYGEN_INVOKED)
+    /*!
+     * @ingroup details
+     *
+     * When defined, optional assertions and consistency checks are
+     * performed by the library.
+     *
+     * Since this can have a negative impact on compile-time performance,
+     * it is disabled by default. However, it is strongly recommended to
+     * enable this when debugging template code.
+     */
+#   define BOOST_MPL11_ENABLE_ASSERTIONS
+#endif
+
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/and.hpp>

@@ -8,7 +8,6 @@
 
 #include <boost/mpl11/fwd/drop.hpp>
 
-#include <boost/mpl11/detail/assertion.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
@@ -20,11 +19,11 @@
 namespace boost { namespace mpl11 {
     template <typename N, typename Sequence>
     struct drop {
-        BOOST_MPL11_ASSERTION(
-            static_assert(N::value >= 0,
-            "Invalid usage of `drop`: "
-            "The number of elements to drop must be non-negative.");
-        )
+#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
+        static_assert(N::value >= 0,
+        "Invalid usage of `drop`: "
+        "The number of elements to drop must be non-negative.");
+#endif
 
         using type = typename drop_c<N::value, Sequence>::type;
     };
