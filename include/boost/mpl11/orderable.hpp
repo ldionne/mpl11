@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/orderable.hpp>
 
-#include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
@@ -55,10 +55,10 @@ namespace boost { namespace mpl11 {
         using greater_equal_impl = not_<less<L, R>>;
 
         template <typename L, typename R>
-        using min_impl = detail::conditional<less<L, R>::value, L, R>;
+        using min_impl = if_c<less<L, R>::value, L, R>;
 
         template <typename L, typename R>
-        using max_impl = detail::conditional<less<L, R>::value, R, L>;
+        using max_impl = if_c<less<L, R>::value, R, L>;
     };
 
     #define BOOST_MPL11_ORDERABLE_METHOD(METHOD_IMPL)                       \

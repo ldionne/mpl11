@@ -7,7 +7,6 @@
 #define BOOST_MPL11_FWD_IF_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
-#include <boost/mpl11/fwd/integral_c.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,19 +22,19 @@ namespace boost { namespace mpl11 {
     template <typename Condition, typename Then, typename Else>
     struct if_;
 
-    template <typename Condition, typename Then, typename Else>
-    using if_t = typename if_<Condition, Then, Else>::type;
-
     /*!
      * @ingroup metafunctions
      *
-     * Alias to `if_<bool_<Condition>, Then, Else>`; provided for convenience.
+     * Equivalent to `if_<bool_<Condition>, Then, Else>`.
      */
     template <bool Condition, typename Then, typename Else>
-    BOOST_MPL11_DOXYGEN_ALIAS(if_c, if_<bool_<Condition>, Then, Else>);
+    struct if_c;
+
+    template <typename Condition, typename Then, typename Else>
+    using if_t = typename if_c<Condition::type::value, Then, Else>::type;
 
     template <bool Condition, typename Then, typename Else>
-    using if_c_t = typename if_<bool_<Condition>, Then, Else>::type;
+    using if_c_t = typename if_c<Condition, Then, Else>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IF_HPP

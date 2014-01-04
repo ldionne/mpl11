@@ -9,13 +9,13 @@
 #include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/comparable.hpp>
-#include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/detail/default_unpack.hpp>
 #include <boost/mpl11/detail/lazy_init.hpp>
 #include <boost/mpl11/detail/lexicographical_compare.hpp>
 #include <boost/mpl11/detail/std_equal.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
@@ -110,8 +110,7 @@ namespace boost { namespace mpl11 {
     template <typename S, detail::std_size_t Index>
     struct at_c {
     private:
-        using Length = typename detail::conditional<
-            sequence_traits<S>::is_finite,
+        using Length = typename if_c<sequence_traits<S>::is_finite,
             length<S>,
             size_t<Index + 1>
         >::type;
@@ -130,7 +129,7 @@ namespace boost { namespace mpl11 {
     template <>
     struct Sequence<sequence_tag> {
         template <typename S>
-        using last_impl = typename detail::conditional<
+        using last_impl = typename if_c<
             is_empty<typename tail<S>::type>::value,
             head<S>,
             last<typename tail<S>::type>
