@@ -7,6 +7,9 @@
 #define BOOST_MPL11_FWD_INTEGRAL_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/fwd/bitwise.hpp>
+#include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -16,6 +19,9 @@ namespace boost { namespace mpl11 {
      *
      * Holder for a compile-time value of an integral type.
      *
+     *
+     * ### Refines
+     * `Comparable`, `Orderable` and `Bitwise`.
      *
      * ### Valid expressions
      * In the following table, `N` is an `Integral` datatype, and `n` is an
@@ -38,6 +44,15 @@ namespace boost { namespace mpl11 {
      * Tag representing the `Integral` typeclass.
      */
     struct integral_tag BOOST_MPL11_IF_DOXYGEN({ });
+
+    template <>
+    struct Comparable<integral_tag, integral_tag>;
+
+    template <>
+    struct Orderable<integral_tag, integral_tag>;
+
+    template <>
+    struct Bitwise<integral_tag, integral_tag>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_INTEGRAL_HPP

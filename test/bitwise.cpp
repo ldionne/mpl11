@@ -21,6 +21,7 @@ struct bitor_tag;
 struct bitxor_tag;
 struct shift_left_c_tag;
 struct shift_right_c_tag;
+struct compl_tag;
 
 namespace boost { namespace mpl11 {
     template <>
@@ -39,6 +40,9 @@ namespace boost { namespace mpl11 {
 
         template <typename, detail::std_size_t>
         struct shift_right_c_impl { using type = shift_right_c_tag; };
+
+        template <typename>
+        struct compl_impl { using type = compl_tag; };
     };
 }} // end namespace boost::mpl11
 
@@ -47,6 +51,7 @@ static_assert(is_same<bitor_t<archetype, archetype>, bitor_tag>::value, "");
 static_assert(is_same<bitxor_t<archetype, archetype>, bitxor_tag>::value, "");
 static_assert(is_same<shift_left_c_t<archetype, 0>, shift_left_c_tag>::value, "");
 static_assert(is_same<shift_right_c_t<archetype, 0>, shift_right_c_tag>::value, "");
+static_assert(is_same<compl_t<archetype>, compl_tag>::value, "");
 
 static_assert(is_same<shift_right_t<archetype, size_t<0>>, shift_right_c_tag>::value, "");
 static_assert(is_same<shift_left_t<archetype, size_t<0>>,  shift_left_c_tag>::value, "");

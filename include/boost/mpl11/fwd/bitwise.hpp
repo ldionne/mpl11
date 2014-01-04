@@ -16,6 +16,7 @@ namespace boost { namespace mpl11 {
     template <typename, typename>           struct bitxor_impl;
     template <typename, detail::std_size_t> struct shift_left_c_impl;
     template <typename, detail::std_size_t> struct shift_right_c_impl;
+    template <typename>                     struct compl_impl;
 
     /*!
      * @ingroup typeclasses
@@ -26,7 +27,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Methods
-     * `bitand_`, `bitor_`, `bitxor`, `shift_left_c`, `shift_left`,
+     * `bitand_`, `bitor_`, `bitxor`,`compl_`,  `shift_left_c`, `shift_left`,
      * `shift_right_c` and `shift_right`.
      *
      * The `bitand_`, `bitor_` and `bitxor` methods can be invoked with more
@@ -35,9 +36,8 @@ namespace boost { namespace mpl11 {
      * to `method<method<T1, T2>::%type, ..., Tn>`, and `method<T1, T2>` uses
      * the usual tag dispatching technique.
      *
-     * The `shift_right_c` and `shift_left_c` methods are dispatched in a
-     * special way. The tag of their first operand is used both as `TagL`
-     * and `TagR`.
+     * The `compl_` and `shift_*` methods are dispatched in a special way.
+     * The tag of their first operand is used both as `TagL` and `TagR`.
      *
      * The `shift_right` and `shift_left` methods are simple wrappers over
      * their `*_c` counterpart. They are provided for convenience but they
@@ -111,6 +111,14 @@ namespace boost { namespace mpl11 {
 
     template <typename T, typename Shift>
     using shift_left_t = typename shift_left<T, Shift>::type;
+
+
+    //! Returns the bitwise complement of the given object (`~T`).
+    template <typename T>
+    BOOST_MPL11_DOXYGEN_ALIAS(compl_, compl_impl<T>);
+
+    template <typename T>
+    using compl_t = typename compl_<T>::type;
 
     //! @}
 }} // end namespace boost::mpl11

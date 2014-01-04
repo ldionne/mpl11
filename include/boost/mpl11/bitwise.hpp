@@ -29,18 +29,31 @@ namespace boost { namespace mpl11 {
 #endif
     };
 
-    #define BOOST_MPL11_BITWISE_METHOD(METHOD_IMPL)                         \
-        template <typename T1, typename T2>                                 \
-        struct METHOD_IMPL                                                  \
-            : Bitwise<                                                      \
-                typename tag_of<T1>::type, typename tag_of<T2>::type        \
-            >::template METHOD_IMPL<T1, T2>                                 \
-        { };                                                                \
-    /**/
-    BOOST_MPL11_BITWISE_METHOD(bitand_impl)
-    BOOST_MPL11_BITWISE_METHOD(bitor_impl)
-    BOOST_MPL11_BITWISE_METHOD(bitxor_impl)
-    #undef BOOST_MPL11_BITWISE_METHOD
+    template <typename T1, typename T2>
+    struct bitand_impl
+        : Bitwise<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template bitand_impl<T1, T2>
+    { };
+
+    template <typename T1, typename T2>
+    struct bitor_impl
+        : Bitwise<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template bitor_impl<T1, T2>
+    { };
+
+    template <typename T1, typename T2>
+    struct bitxor_impl
+        : Bitwise<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template bitxor_impl<T1, T2>
+    { };
+
+    template <typename T>
+    struct compl_impl
+        : Bitwise<typename tag_of<T>::type>::template compl_impl<T>
+    { };
 
     template <typename T, typename Shift>
     struct shift_left_impl
