@@ -149,6 +149,7 @@
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/drop.hpp>
+#include <boost/mpl11/drop_while.hpp>
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/enumerable.hpp>
