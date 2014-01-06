@@ -40,6 +40,38 @@ namespace boost { namespace mpl11 {
         template <typename Couple1, typename Couple2>
         struct equal_impl;
     };
+
+    /*!
+     * @ingroup intrinsics
+     *
+     * Returns the second element of a pair.
+     *
+     *
+     * @warning
+     * In the original MPL, `mpl11::second` was a trivial metafunction
+     * fetching `Pair::second`. `mpl11::second` is now an intrinsic.
+     */
+    template <typename Pair>
+    struct second;
+
+    template <typename Pair>
+    using second_t = typename second<Pair>::type;
+
+    /*!
+     * @ingroup intrinsics
+     *
+     * Returns the first element of a pair.
+     *
+     *
+     * @warning
+     * In the original MPL, `mpl11::first` was a trivial metafunction
+     * fetching `Pair::first`. `mpl11::first` is now an intrinsic.
+     */
+    template <typename Pair>
+    struct first;
+
+    template <typename Pair>
+    using first_t = typename first<Pair>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_COUPLE_HPP

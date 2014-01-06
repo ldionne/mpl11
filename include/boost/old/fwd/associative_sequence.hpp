@@ -62,6 +62,72 @@ namespace boost { namespace mpl11 {
         struct value_of_impl;
 #endif
     };
+
+    /*!
+     * @ingroup sequence_intrinsics
+     *
+     * Returns the value associated with the given `Key` in an
+     * `AssociativeSequence`.
+     *
+     * If the sequence does not contain a key `Key` and a `Default` is
+     * provided, `Default::type` is returned. Otherwise, a compile-time
+     * assertion is triggered.
+     *
+     *
+     * @note
+     * When a `Default` is provided, this intrinsic is dispatched to
+     * `at_key_def_impl`. Otherwise, it is dispatched in the standard
+     * way, to `at_key_impl`.
+     */
+    template <
+        typename Sequence,
+        typename Key,
+        typename Default = detail::optional
+    >
+    struct at_key;
+
+    template <
+        typename Sequence,
+        typename Key,
+        typename Default = detail::optional
+    >
+    using at_key_t = typename at_key<Sequence, Key, Default>::type;
+
+    /*!
+     * @ingroup sequence_intrinsics
+     *
+     * Returns whether an `AssociativeSequence` contains one or more
+     * elements with key `Key`.
+     */
+    template <typename Sequence, typename Key>
+    struct has_key;
+
+    template <typename Sequence, typename Key>
+    using has_key_t = typename has_key<Sequence, Key>::type;
+
+    /*!
+     * @ingroup sequence_intrinsics
+     *
+     * Returns the value that _would_ be used for an element
+     * in an `AssociativeSequence`.
+     */
+    template <typename Sequence, typename Element>
+    struct value_of;
+
+    template <typename Sequence, typename Element>
+    using value_of_t = typename value_of<Sequence, Element>::type;
+
+    /*!
+     * @ingroup sequence_intrinsics
+     *
+     * Returns the key that _would_ be used for an element
+     * in an `AssociativeSequence`.
+     */
+    template <typename Sequence, typename Element>
+    struct key_of;
+
+    template <typename Sequence, typename Element>
+    using key_of_t = typename key_of<Sequence, Element>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ASSOCIATIVE_SEQUENCE_HPP

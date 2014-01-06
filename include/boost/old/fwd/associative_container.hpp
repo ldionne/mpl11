@@ -62,6 +62,50 @@ namespace boost { namespace mpl11 {
         template <typename Container, typename Keys>
         struct erase_keys_impl;
     };
+
+    /*!
+     * @ingroup container_intrinsics
+     *
+     * Removes the given `Key` from an `AssociativeContainer`.
+     */
+    template <typename Container, typename Key>
+    struct erase_key;
+
+    template <typename Container, typename Key>
+    using erase_key_t = typename erase_key<Container, Key>::type;
+
+    /*!
+     * @ingroup container_intrinsics
+     *
+     * Removes a `Sequence` of keys from an `AssociativeContainer`.
+     */
+    template <typename Container, typename Keys>
+    struct erase_keys;
+
+    template <typename Container, typename Keys>
+    using erase_keys_t = typename erase_keys<Container, Keys>::type;
+
+    /*!
+     * @ingroup container_intrinsics
+     *
+     * Inserts an element in an `AssociativeContainer`.
+     */
+    template <typename Container, typename Element>
+    struct insert_key;
+
+    template <typename Container, typename Element>
+    using insert_key_t = typename insert_key<Container, Element>::type;
+
+    /*!
+     * @ingroup container_intrinsics
+     *
+     * Inserts a `Sequence` of elements in an `AssociativeContainer`.
+     */
+    template <typename Container, typename Elements>
+    struct insert_keys;
+
+    template <typename Container, typename Elements>
+    using insert_keys_t = typename insert_keys<Container, Elements>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ASSOCIATIVE_CONTAINER_HPP

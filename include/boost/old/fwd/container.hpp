@@ -59,6 +59,27 @@ namespace boost { namespace mpl11 {
 #endif
 
     };
+
+    /*!
+     * @ingroup container_intrinsics
+     *
+     * Erases all the elements of a `Container`.
+     */
+    template <typename Container>
+    struct clear;
+
+    template <typename Container>
+    using clear_t = typename clear<Container>::type;
+
+    /*!
+     * @ingroup metafunction_classes
+     * @ingroup container_intrinsics
+     *
+     * `MetafunctionClass` creating a `Container` from the `Sequence`
+     * passed to it.
+     */
+    template <typename Container>
+    struct new_;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_CONTAINER_HPP
