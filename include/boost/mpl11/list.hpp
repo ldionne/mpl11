@@ -14,7 +14,7 @@
 #include <boost/mpl11/detail/variadic_last.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
-#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/id.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/sequence.hpp>
 
@@ -87,7 +87,7 @@ namespace boost { namespace mpl11 {
         { };
 
         template <std_size_t Index, typename Value>
-        identity<Value> at_index(index_holder<Index, Value>*);
+        id<Value> at_index(index_holder<Index, Value>*);
     } // end namespace list_detail
 
     template <typename ...T>

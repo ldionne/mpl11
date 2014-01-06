@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::identity`.
+ * Forward declares `boost::mpl11::id`.
  */
 
 #ifndef BOOST_MPL11_FWD_IDENTITY_HPP
@@ -10,13 +10,13 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Metafunction returning its argument unchanged.
+     * The identity metafunction - returns its argument unchanged.
      */
     template <typename T>
-    struct identity;
+    struct id;
 
     template <typename T>
-    using identity_t = T;
+    using id_t = T;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IDENTITY_HPP

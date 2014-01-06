@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 { namespace detail {
 }}}
 
 
-#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/id.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 { namespace detail {
         template <typename ...Head>
         struct impl {
             template <typename Last>
-            static identity<Last> apply(Head..., identity<Last>*);
+            static id<Last> apply(Head..., id<Last>*);
         };
     }
 
@@ -34,7 +34,7 @@ namespace boost { namespace mpl11 { namespace detail {
         : decltype(
             variadic_last_detail::impl<
                 decltype((void*)(Tail*)nullptr)...
-            >::apply((identity<Head>*)nullptr, (identity<Tail>*)nullptr...)
+            >::apply((id<Head>*)nullptr, (id<Tail>*)nullptr...)
         )
     { };
 }}} // end namespace boost::mpl11::detail

@@ -156,7 +156,7 @@
 #include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/flip.hpp>
 #include <boost/mpl11/foldl.hpp>
-#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/id.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/inherit.hpp>
 #include <boost/mpl11/integral.hpp>

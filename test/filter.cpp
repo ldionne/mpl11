@@ -6,7 +6,9 @@
 #include <boost/mpl11/filter.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/id.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 using namespace boost::mpl11;
@@ -16,7 +18,7 @@ struct nonzeros {
     template <int ...Filtered>
     struct are
         : detail::sequence_test<
-            filter_t<quote<identity>, detail::minimal_sequence<int_<All>...>>,
+            filter_t<quote<id>, detail::minimal_sequence<int_<All>...>>,
             int_<Filtered>...
         >
     { };

@@ -11,7 +11,7 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
-#include <boost/mpl11/identity.hpp>
+#include <boost/mpl11/id.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/sequence.hpp>
 
@@ -43,7 +43,7 @@ namespace boost { namespace mpl11 {
             : if_c<
                 apply<Predicate, typename head<Sequence>::type>::type::value,
                 consume<Predicate, typename tail<Sequence>::type>,
-                identity<Sequence>
+                id<Sequence>
             >::type
         { };
 
