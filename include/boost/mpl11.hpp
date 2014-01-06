@@ -176,6 +176,7 @@
 #include <boost/mpl11/scanl.hpp>
 #include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
+#include <boost/mpl11/snoc.hpp>
 #include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/take.hpp>
