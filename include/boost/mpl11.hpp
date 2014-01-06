@@ -170,6 +170,7 @@
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/repeat.hpp>
+#include <boost/mpl11/reverse.hpp>
 #include <boost/mpl11/scanl.hpp>
 #include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
