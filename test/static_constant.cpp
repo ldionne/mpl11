@@ -27,6 +27,7 @@ struct test_static_constant {
     static_assert(succ_t<x<0>>::value == x<0>::value + 1, "");
     static_assert(pred_t<x<1>>::value == x<1>::value - 1, "");
 
+
     // Comparable
     static_assert( equal<x<0>, y<0>>::value, "");
     static_assert(!equal<x<0>, y<1>>::value, "");
@@ -51,6 +52,13 @@ struct test_static_constant {
     static_assert(!greater_equal<x<0>, y<1>>::value, "");
     static_assert( greater_equal<x<1>, y<1>>::value, "");
     static_assert( greater_equal<x<1>, y<0>>::value, "");
+
+    static_assert(min<x<0>, y<1>>::value == x<0>::value, "");
+    static_assert(min<x<1>, y<0>>::value == y<0>::value, "");
+
+    static_assert(max<x<0>, y<1>>::value == y<1>::value, "");
+    static_assert(max<x<1>, y<0>>::value == x<1>::value, "");
+
 
     // Bitwise
     static constexpr Y max_y = static_cast<Y>(10);

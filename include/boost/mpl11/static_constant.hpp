@@ -11,6 +11,7 @@
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/enumerable.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/orderable.hpp>
 
@@ -38,6 +39,12 @@ namespace boost { namespace mpl11 {
 
         template <typename X, typename Y>
         using greater_equal_impl = bool_<(X::value >= Y::value)>;
+
+        template <typename X, typename Y>
+        using max_impl = if_c_t<(X::value < Y::value), Y, X>;
+
+        template <typename X, typename Y>
+        using min_impl = if_c_t<(X::value < Y::value), X, Y>;
     };
 
     template <>
