@@ -23,6 +23,7 @@ function(mpl11_add_test name sources)
 endfunction()
 
 
+mpl11_add_test(all_any_none             all_any_none.cpp)
 mpl11_add_test(always                   always.cpp)
 mpl11_add_test(and_or                   and_or.cpp)
 mpl11_add_test(apply                    apply.cpp)
