@@ -153,6 +153,7 @@
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/enumerable.hpp>
+#include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/flip.hpp>
 #include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/identity.hpp>
