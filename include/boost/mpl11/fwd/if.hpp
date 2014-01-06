@@ -30,11 +30,15 @@ namespace boost { namespace mpl11 {
     template <bool Condition, typename Then, typename Else>
     struct if_c;
 
+    namespace if_detail { template <bool Condition> struct if_impl; }
+
     template <typename Condition, typename Then, typename Else>
-    using if_t = typename if_c<Condition::type::value, Then, Else>::type;
+    using if_t = typename if_detail::if_impl<Condition::type::value>::
+                 template result<Then, Else>;
 
     template <bool Condition, typename Then, typename Else>
-    using if_c_t = typename if_c<Condition, Then, Else>::type;
+    using if_c_t = typename if_detail::if_impl<Condition>::
+                   template result<Then, Else>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_IF_HPP

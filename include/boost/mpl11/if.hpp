@@ -24,6 +24,16 @@ namespace boost { namespace mpl11 {
     struct if_c<false, Then, Else> {
         using type = Else;
     };
+
+    namespace if_detail {
+        template <bool Condition> struct if_impl;
+
+        template <> struct if_impl<true>
+        { template <typename Then, typename Else> using result = Then; };
+
+        template <> struct if_impl<false>
+        { template <typename Then, typename Else> using result = Else; };
+    } // end namespace if_detail
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IF_HPP
