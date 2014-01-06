@@ -163,6 +163,7 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/iterate.hpp>
+#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/numeric.hpp>
