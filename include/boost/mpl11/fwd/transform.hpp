@@ -8,28 +8,21 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * @ingroup sequences
+     * @ingroup metafunctions
      *
-     * Sequence containing the result of invoking `F` with each element of
-     * another sequence.
-     *
-     * Specifically, the i-th element of `transform<F, S>` is the result of
-     * invoking `F` with the i-th element of `S`.
-     *
-     * The sequence operations supported by `transform` are exactly those of
-     * the underlying sequence.
+     * Returns the result of applying `F` to each element of a sequence.
      *
      *
      * @todo
      * Consider allowing several sequences as arguments. What semantics
      * should that have? Transform each sequence or transform the zip
      * of all the sequences?
-     *
-     * @todo
-     * Use minimal sequences in the unit tests.
      */
     template <typename F, typename Sequence>
     struct transform;
+
+    template <typename F, typename Sequence>
+    using transform_t = transform<F, Sequence>;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_TRANSFORM_HPP

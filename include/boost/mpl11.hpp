@@ -179,6 +179,7 @@
 #include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/take.hpp>
 #include <boost/mpl11/take_while.hpp>
+#include <boost/mpl11/transform.hpp>
 #include <boost/mpl11/zip.hpp>
 
 #endif // !BOOST_MPL11_HPP
