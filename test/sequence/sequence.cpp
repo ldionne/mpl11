@@ -1,9 +1,9 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::Sequence`.
+ * Contains unit tests for the `boost::mpl11::Sequence` typeclass.
  */
 
-#include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/sequence/sequence.hpp>
 
 #include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/detail/is_same.hpp>

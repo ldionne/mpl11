@@ -23,7 +23,7 @@
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {

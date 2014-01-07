@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::drop`.
  */
 
-#include <boost/mpl11/drop.hpp>
+#include <boost/mpl11/sequence/drop.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 

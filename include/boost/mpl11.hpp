@@ -150,8 +150,6 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/cons.hpp>
-#include <boost/mpl11/drop.hpp>
-#include <boost/mpl11/drop_while.hpp>
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/enumerable.hpp>
@@ -183,8 +181,6 @@
 #include <boost/mpl11/sort_by.hpp>
 #include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>
-#include <boost/mpl11/take.hpp>
-#include <boost/mpl11/take_while.hpp>
 #include <boost/mpl11/transform.hpp>
 #include <boost/mpl11/zip.hpp>
 

@@ -3,16 +3,16 @@
  * Defines `boost::mpl11::take`.
  */
 
-#ifndef BOOST_MPL11_TAKE_HPP
-#define BOOST_MPL11_TAKE_HPP
+#ifndef BOOST_MPL11_SEQUENCE_TAKE_HPP
+#define BOOST_MPL11_SEQUENCE_TAKE_HPP
 
-#include <boost/mpl11/fwd/take.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/sequence/sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 
 
@@ -107,4 +107,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_TAKE_HPP
+#endif // !BOOST_MPL11_SEQUENCE_TAKE_HPP

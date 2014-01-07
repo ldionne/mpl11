@@ -16,7 +16,7 @@
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/partial.hpp>
-#include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {

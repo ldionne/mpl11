@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Sequence`.
+ * Forward declares the `boost::mpl11::Sequence` module.
  */
 
 #ifndef BOOST_MPL11_FWD_SEQUENCE_HPP
@@ -225,6 +225,80 @@ namespace boost { namespace mpl11 {
      */
     template <>
     struct Foldable<sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
+
+
+    /*!
+     * Returns a sequence containing the suffix of another sequence after
+     * the first `N` elements.
+     *
+     * `N` must be a non-negative `StaticConstant` representing the number of
+     * elements to be dropped from the underlying sequence. If `N` is greater
+     * than the length of the sequence, the returned sequence is empty.
+     */
+    template <typename N, typename Sequence>
+    struct drop;
+
+    template <typename N, typename Sequence>
+    using drop_t = typename drop<N, Sequence>::type;
+
+    //! Equivalent to `drop<size_t<N>, Sequence>`.
+    template <detail::std_size_t N, typename Sequence>
+    struct drop_c;
+
+    template <detail::std_size_t N, typename Sequence>
+    using drop_c_t = typename drop_c<N, Sequence>::type;
+
+    /*!
+     * Drops elements from a sequence up to, but not including, the first
+     * element for which the `Predicate` returns `false`.
+     *
+     * Specifically, `drop_while` returns a sequence containing all the
+     * elements of the underlying sequence except for those in the range
+     * delimited by [`head`, `e`), where `head` is the first element of
+     * the sequence and `e` is the first element for which the `Predicate`
+     * returns `false`.
+     *
+     *
+     * @todo
+     * Use a less naive `consume` implementation.
+     */
+    template <typename Predicate, typename Sequence>
+    struct drop_while;
+
+    template <typename Predicate, typename Sequence>
+    using drop_while_t = typename drop_while<Predicate, Sequence>::type;
+
+
+    /*!
+     * Returns a `Sequence` containing the first `N` elements of
+     * another sequence.
+     *
+     * `N` must be a non-negative `StaticConstant` representing the number of
+     * elements to keep in the underlying sequence. If `N` is greater than
+     * the length of the sequence, all of its elements are kept.
+     */
+    template <typename N, typename Sequence>
+    struct take;
+
+    template <typename N, typename Sequence>
+    using take_t = typename take<N, Sequence>::type;
+
+    //! Equivalent to `take<size_t<N>, Sequence>`.
+    template <detail::std_size_t N, typename Sequence>
+    struct take_c;
+
+    template <detail::std_size_t N, typename Sequence>
+    using take_c_t = typename take_c<N, Sequence>::type;
+
+    /*!
+     * Returns the longest prefix of a sequence in which all elements
+     * satisfy the given `Predicate`.
+     */
+    template <typename Predicate, typename Sequence>
+    struct take_while;
+
+    template <typename Predicate, typename Sequence>
+    using take_while_t = take_while<Predicate, Sequence>;
     //! @}
 }} // end namespace boost::mpl11
 

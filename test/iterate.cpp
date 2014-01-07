@@ -8,7 +8,7 @@
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/take.hpp>
+#include <boost/mpl11/sequence/take.hpp>
 
 
 using namespace boost::mpl11;

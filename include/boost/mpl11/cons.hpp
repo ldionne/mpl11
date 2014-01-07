@@ -11,7 +11,7 @@
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/partial.hpp>
-#include <boost/mpl11/sequence.hpp>
+#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {

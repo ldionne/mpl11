@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::drop_while`.
  */
 
-#include <boost/mpl11/drop_while.hpp>
+#include <boost/mpl11/sequence/drop_while.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -18,7 +18,7 @@ struct dropping_leading_zeros {
     template <int ...Suffix>
     struct is
         : detail::sequence_test<
-            drop_while<quote<not_>, detail::minimal_sequence<int_<All>...>>,
+            drop_while_t<quote<not_>, detail::minimal_sequence<int_<All>...>>,
             int_<Suffix>...
         >
     { };

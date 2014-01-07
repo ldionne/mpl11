@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::take_while`.
  */
 
-#include <boost/mpl11/take_while.hpp>
+#include <boost/mpl11/sequence/take_while.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>

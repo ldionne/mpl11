@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/all.hpp>
 
-#include <boost/mpl11/drop_while.hpp>
+#include <boost/mpl11/sequence/drop_while.hpp>
 
 
 namespace boost { namespace mpl11 {

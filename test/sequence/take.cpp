@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::take`.
  */
 
-#include <boost/mpl11/take.hpp>
+#include <boost/mpl11/sequence/take.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 
