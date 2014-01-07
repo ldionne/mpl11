@@ -10,13 +10,16 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Accumulates the elements of a sequence from an initial state using a
-     * custom operation.
+     * Reduces a sequence using a binary operation, from left to right.
      *
      * Specifically, returns the result of the successive application of the
      * binary operation `F` to the result of the previous `F` invocation (or
      * `State` for the first application) and every element of the sequence
      * in order.
+     *
+     * Visually, with `Sequence = x1, x2, ..., xn`:
+     *
+            foldl(F, State, Sequence) == F(...F(F(State, x1), x2)..., xn)
      *
      *
      * @note

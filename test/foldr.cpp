@@ -1,13 +1,13 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::foldl`.
+ * Contains unit tests for `boost::mpl11::foldr`.
  */
 
-#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/foldr.hpp>
 
+#include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/snoc.hpp>
 
 
 using namespace boost::mpl11;
@@ -17,8 +17,8 @@ template <int> struct x;
 template <int ...i>
 struct test_with {
     static_assert(equal<
-        foldl_t<
-            quote<snoc>,
+        foldr_t<
+            quote<cons>,
             detail::minimal_sequence<>,
             detail::minimal_sequence<x<i>...>
         >,
