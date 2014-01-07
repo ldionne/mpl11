@@ -1,11 +1,17 @@
-# mpl11 - a C++11 remake of the Boost.MPL
-
+# mpl11 - A C++11 replacement for the Boost.MPL
 
 ## Disclaimer
 This is not an official Boost library. It might be proposed as a replacement
 for the MPL in the future, but there is no guarantee.
 
 The code is unstable at the moment; do not use for production.
+
+This was initially meant to be a reimplementation of the Boost.MPL. However,
+after implementing almost all of the MPL in C++11, I realized some limitations
+of the initial design and decided to rewrite it with Haskell in mind. Hence,
+while it does not look like the original MPL (at all), it aims to provide the
+same functionality (and more in the future). See
+tags/redesign_with_haskell_in_mind for details.
 
 
 ## Requirements
