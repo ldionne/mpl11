@@ -13,7 +13,6 @@
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/filter.hpp>
-#include <boost/mpl11/foldl.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/id.hpp>

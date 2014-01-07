@@ -9,6 +9,7 @@
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
+#include <boost/mpl11/fwd/foldable.hpp>
 #include <boost/mpl11/fwd/orderable.hpp>
 
 
@@ -44,6 +45,7 @@ namespace boost { namespace mpl11 {
      * ### Provides
      * - `Comparable` when the elements in the sequence are `Comparable`.
      * - `Orderable` when the elements in the sequence are `Orderable`.
+     * - `Foldable`
      *
      *
      * @note
@@ -183,6 +185,46 @@ namespace boost { namespace mpl11 {
      */
     template <>
     struct Orderable<sequence_tag, sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
+
+    /*!
+     * Default instantiation of the `Foldable` typeclass for `Sequence`s.
+     *
+     *
+     * ### `foldl<F, State, Seq>`
+     * Reduces a sequence using a binary operation, from left to right.
+     *
+     * Specifically, returns the result of the successive application of the
+     * binary operation `F` to the result of the previous `F` invocation (or
+     * `State` for the first application) and every element of the sequence
+     * in order.
+     *
+     * Visually, with a sequence `Seq = x1, x2, ..., xn`:
+     *
+            foldl(F, State, Seq) == F(...F(F(State, x1), x2)..., xn)
+     *
+     *
+     *
+     * ### `foldr<F, State, Seq>`
+     * Reduces a sequence using a binary operator, from right to left.
+     *
+     * Specifically, returns the result of the successive application of the
+     * binary operation `F` to every element of the sequence and the result
+     * of the next `F` invocation (or `State` for the last application).
+     *
+     * Visually, with `Seq = x1, x2, ..., xn`:
+     *
+            foldr(F, State, Seq) == F(x1, F(x2, ...F(xn, State)...))
+     *
+     *
+     * @note
+     * `foldl` is equivalent to the `fold` metafunction from the original MPL.
+     * However, the order of the arguments has changed.
+     *
+     * @todo
+     * Improve the implementations.
+     */
+    template <>
+    struct Foldable<sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
     //! @}
 }} // end namespace boost::mpl11
 

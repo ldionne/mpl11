@@ -8,13 +8,14 @@
 
 #include <boost/mpl11/fwd/sequence.hpp>
 
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/detail/default_unpack.hpp>
 #include <boost/mpl11/detail/lazy_init.hpp>
 #include <boost/mpl11/detail/lexicographical_compare.hpp>
 #include <boost/mpl11/detail/std_equal.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
-#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/orderable.hpp>
@@ -191,6 +192,49 @@ namespace boost { namespace mpl11 {
     struct Orderable<sequence_tag, Tag>
         : detail::flip_Orderable<sequence_tag, Tag>
     { };
+
+    template <>
+    struct Foldable<sequence_tag> {
+        template <
+            typename F, typename State, typename S,
+            bool = is_empty<S>::value
+        >
+        struct foldl_impl;
+
+        template <typename F, typename State, typename S>
+        struct foldl_impl<F, State, S, true> {
+            using type = State;
+        };
+
+        template <typename F, typename State, typename S>
+        struct foldl_impl<F, State, S, false> {
+            using type = typename foldl_impl<
+                F,
+                typename apply<F, State, typename head<S>::type>::type,
+                typename tail<S>::type
+            >::type;
+        };
+
+        template <
+            typename F, typename State, typename S,
+            bool = is_empty<S>::value
+        >
+        struct foldr_impl;
+
+        template <typename F, typename State, typename S>
+        struct foldr_impl<F, State, S, true> {
+            using type = State;
+        };
+
+        template <typename F, typename State, typename S>
+        struct foldr_impl<F, State, S, false> {
+            using type = typename apply<
+                F,
+                typename head<S>::type,
+                typename foldr_impl<F, State ,typename tail<S>::type>::type
+            >::type;
+        };
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_SEQUENCE_HPP

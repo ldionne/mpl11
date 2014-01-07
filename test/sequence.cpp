@@ -5,8 +5,12 @@
 
 #include <boost/mpl11/sequence.hpp>
 
+#include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/snoc.hpp>
 
 
 using namespace boost::mpl11;
@@ -61,7 +65,46 @@ static_assert(is_same<last_t<archetype>,             last_tag>::value, "");
 static_assert(is_same<init_t<archetype>,             init_tag>::value, "");
 static_assert(is_same<at_c_t<archetype, 0>,          at_c_tag>::value, "");
 static_assert(is_same<length_t<archetype>,           length_tag>::value, "");
-static_assert(is_same<unpack_t<archetype, struct x>, unpack_tag>::value, "");
+static_assert(is_same<unpack_t<archetype, struct f>, unpack_tag>::value, "");
+
+
+// Test the Foldable instantiation
+template <int ...i>
+struct test_folds {
+    template <int> struct x;
+
+    static_assert(equal<
+        foldl_t<
+            quote<snoc>,
+            detail::minimal_sequence<>,
+            detail::minimal_sequence<x<i>...>
+        >,
+        detail::minimal_sequence<x<i>...>
+    >::value, "");
+
+    static_assert(equal<
+        foldr_t<
+            quote<cons>,
+            detail::minimal_sequence<>,
+            detail::minimal_sequence<x<i>...>
+        >,
+        detail::minimal_sequence<x<i>...>
+    >::value, "");
+};
+
+struct test_foldable :
+    test_folds<>,
+    test_folds<0>,
+    test_folds<0, 1>,
+    test_folds<0, 1, 2>,
+    test_folds<0, 1, 2, 3>,
+    test_folds<0, 1, 2, 3, 4>,
+    test_folds<0, 1, 2, 3, 4, 5>,
+    test_folds<0, 1, 2, 3, 4, 5, 6>,
+    test_folds<0, 1, 2, 3, 4, 5, 6, 7>,
+    test_folds<0, 1, 2, 3, 4, 5, 6, 7, 8>,
+    test_folds<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>
+{ };
 
 
 int main() { }

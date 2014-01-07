@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 { namespace detail {
 
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/foldl.hpp>
+#include <boost/mpl11/fwd/foldable.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
