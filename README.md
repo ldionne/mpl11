@@ -10,8 +10,8 @@ This was initially meant to be a reimplementation of the Boost.MPL. However,
 after implementing almost all of the MPL in C++11, I realized some limitations
 of the initial design and decided to rewrite it with Haskell in mind. Hence,
 while it does not look like the original MPL (at all), it aims to provide the
-same functionality (and more in the future). See
-tags/redesign_with_haskell_in_mind for details.
+same functionality (and more in the future). See the
+archive/redesign_with_haskell_in_mind tag for details.
 
 
 ## Requirements
