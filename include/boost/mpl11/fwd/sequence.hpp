@@ -10,6 +10,7 @@
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/foldable.hpp>
+#include <boost/mpl11/fwd/functor.hpp>
 #include <boost/mpl11/fwd/orderable.hpp>
 
 
@@ -46,6 +47,7 @@ namespace boost { namespace mpl11 {
      * - `Comparable` when the elements in the sequence are `Comparable`.
      * - `Orderable` when the elements in the sequence are `Orderable`.
      * - `Foldable`
+     * - `Functor`
      *
      *
      * @note
@@ -225,6 +227,15 @@ namespace boost { namespace mpl11 {
      */
     template <>
     struct Foldable<sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
+
+    /*!
+     * Default instantiation of the `Functor` typeclass for `Sequence`s.
+     *
+     * ### `map<F, Seq>`
+     * Returns the result of applying `F` to each element of the sequence.
+     */
+    template <>
+    struct Functor<sequence_tag> BOOST_MPL11_IF_DOXYGEN({ });
 
 
     /*!

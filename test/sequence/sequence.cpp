@@ -29,6 +29,9 @@ struct at_c_tag;
 struct length_tag;
 struct unpack_tag;
 
+struct f { template <typename ...> struct apply { struct type; }; };
+template <int> struct x;
+
 namespace boost { namespace mpl11 {
     template <>
     struct Sequence<archetype::mpl_tag> {
@@ -58,21 +61,19 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-static_assert(is_same<head_t<archetype>,             head_tag>::value, "");
-static_assert(is_same<tail_t<archetype>,             tail_tag>::value, "");
-static_assert(is_same<is_empty_t<archetype>,         is_empty_tag>::value, "");
-static_assert(is_same<last_t<archetype>,             last_tag>::value, "");
-static_assert(is_same<init_t<archetype>,             init_tag>::value, "");
-static_assert(is_same<at_c_t<archetype, 0>,          at_c_tag>::value, "");
-static_assert(is_same<length_t<archetype>,           length_tag>::value, "");
-static_assert(is_same<unpack_t<archetype, struct f>, unpack_tag>::value, "");
+static_assert(is_same<head_t<archetype>,      head_tag>::value, "");
+static_assert(is_same<tail_t<archetype>,      tail_tag>::value, "");
+static_assert(is_same<is_empty_t<archetype>,  is_empty_tag>::value, "");
+static_assert(is_same<last_t<archetype>,      last_tag>::value, "");
+static_assert(is_same<init_t<archetype>,      init_tag>::value, "");
+static_assert(is_same<at_c_t<archetype, 0>,   at_c_tag>::value, "");
+static_assert(is_same<length_t<archetype>,    length_tag>::value, "");
+static_assert(is_same<unpack_t<archetype, f>, unpack_tag>::value, "");
 
 
 // Test the Foldable instantiation
 template <int ...i>
 struct test_folds {
-    template <int> struct x;
-
     template <typename X, typename Seq>
     using lazy_cons = cons<X, typename Seq::type>;
 
@@ -116,6 +117,26 @@ struct test_foldable :
     test_folds<0, 1, 2, 3, 4, 5, 6, 7>,
     test_folds<0, 1, 2, 3, 4, 5, 6, 7, 8>,
     test_folds<0, 1, 2, 3, 4, 5, 6, 7, 8, 9>
+{ };
+
+
+// Test the Functor instantiation
+template <int ...Seq>
+struct test_map
+    : detail::sequence_test<
+        map_t<f, detail::minimal_sequence<x<Seq>...>>,
+        typename f::template apply<x<Seq>>::type...
+    >
+{ };
+
+struct test_functor :
+    test_map<>,
+    test_map<0>,
+    test_map<0, 1>,
+    test_map<0, 1, 2>,
+    test_map<0, 1, 2, 3>,
+    test_map<0, 1, 2, 3, 4>,
+    test_map<0, 1, 2, 3, 4, 5>
 { };
 
 

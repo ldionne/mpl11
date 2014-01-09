@@ -172,6 +172,5 @@
 #include <boost/mpl11/sequence_traits.hpp>
 #include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>
-#include <boost/mpl11/transform.hpp>
 
 #endif // !BOOST_MPL11_HPP

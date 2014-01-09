@@ -13,9 +13,11 @@
 #include <boost/mpl11/detail/default_unpack.hpp>
 #include <boost/mpl11/detail/lazy_init.hpp>
 #include <boost/mpl11/detail/lexicographical_compare.hpp>
+#include <boost/mpl11/detail/sequence_map.hpp>
 #include <boost/mpl11/detail/std_equal.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldable.hpp>
+#include <boost/mpl11/functor.hpp>
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/orderable.hpp>
@@ -253,6 +255,14 @@ namespace boost { namespace mpl11 {
                 typename head<S>::type,
                 lazy_foldr_impl<F, State ,typename tail<S>::type>
             >::type;
+        };
+    };
+
+    template <>
+    struct Functor<sequence_tag> {
+        template <typename F, typename S>
+        struct map_impl {
+            using type = detail::sequence_map<F, S>;
         };
     };
 }} // end namespace boost::mpl11
