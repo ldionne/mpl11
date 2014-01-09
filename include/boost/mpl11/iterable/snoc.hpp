@@ -9,9 +9,9 @@
 #include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
+#include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
-#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/iterable/iterable.hpp>
@@ -22,7 +22,9 @@
 namespace boost { namespace mpl11 {
     template <typename S, typename X>
     struct snoc {
-        using type = typename if_c<is_empty<S>::value, list<X>, snoc>::type;
+        using type = typename detail::conditional<
+            is_empty<S>::value, list<X>, snoc
+        >::type;
     };
 
     template <typename S, typename X>

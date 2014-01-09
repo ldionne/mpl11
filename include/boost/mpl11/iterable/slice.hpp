@@ -38,10 +38,10 @@ namespace boost { namespace mpl11 {
         "Invalid usage of `slice_c`: "
         "The start index must be less-than or equal to the stop index.");
 
-        using Length = typename if_c<sequence_traits<It>::is_finite,
+        using Length = if_c<sequence_traits<It>::is_finite,
             length<It>,
             size_t<Stop>
-        >::type;
+        >;
 
         static_assert(Stop <= Length::value,
         "Invalid usage of `slice_c`: "

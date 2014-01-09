@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
                 apply<Pred, typename head<Seq>::type>::type::value,
                 consume<Pred, typename tail<Seq>::type>,
                 id<Seq>
-            >::type
+            >
         { };
     } // end namespace drop_while_detail
 

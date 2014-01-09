@@ -41,7 +41,7 @@ namespace boost { namespace mpl11 {
         using type = typename if_c<is_empty<NonEmpty>::value,
             id<empty_sequence>,
             unpack<NonEmpty, into<mpl11::join>>
-        >::type::type;
+        >::type;
     };
 
     template <>           struct join<> { using type = empty_sequence; };

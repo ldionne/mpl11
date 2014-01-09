@@ -113,10 +113,10 @@ namespace boost { namespace mpl11 {
     template <typename S, detail::std_size_t Index>
     struct at_c {
     private:
-        using Length = typename if_c<sequence_traits<S>::is_finite,
+        using Length = if_c<sequence_traits<S>::is_finite,
             length<S>,
             size_t<Index + 1>
-        >::type;
+        >;
 
         static_assert(Index < Length::value,
         "Invalid usage of `at_c` with an out-of-bounds index.");
@@ -132,11 +132,11 @@ namespace boost { namespace mpl11 {
     template <>
     struct Iterable<iterable_tag> {
         template <typename S>
-        using last_impl = typename if_c<
+        using last_impl = if_c<
             is_empty<typename tail<S>::type>::value,
             head<S>,
             last<typename tail<S>::type>
-        >::type;
+        >;
 
         template <typename S>
         using init_impl = detail::lazy_init<S>;

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::if_`.
+ * Defines `boost::mpl11::if_` et al.
  */
 
 #ifndef BOOST_MPL11_IF_HPP
@@ -11,29 +11,15 @@
 
 namespace boost { namespace mpl11 {
     template <typename Condition, typename Then, typename Else>
-    struct if_ {
-        using type = typename if_c<Condition::type::value, Then, Else>::type;
-    };
+    struct if_
+        : if_c<static_cast<bool>(Condition::type::value), Then, Else>
+    { };
 
     template <typename Then, typename Else>
-    struct if_c<true, Then, Else> {
-        using type = Then;
-    };
+    struct if_c<true, Then, Else> : Then { };
 
     template <typename Then, typename Else>
-    struct if_c<false, Then, Else> {
-        using type = Else;
-    };
-
-    namespace if_detail {
-        template <bool Condition> struct if_impl;
-
-        template <> struct if_impl<true>
-        { template <typename Then, typename Else> using result = Then; };
-
-        template <> struct if_impl<false>
-        { template <typename Then, typename Else> using result = Else; };
-    } // end namespace if_detail
+    struct if_c<false, Then, Else> : Else { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_IF_HPP
