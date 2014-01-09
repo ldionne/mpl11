@@ -6,8 +6,8 @@
 #include <boost/mpl11/repeat.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/sequence_test.hpp>
-#include <boost/mpl11/sequence/take.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
+#include <boost/mpl11/iterable/take.hpp>
 
 
 using namespace boost::mpl11;
@@ -40,7 +40,7 @@ template <unsigned long N, typename T>
 struct repeating_n {
     template <typename ...Contents>
     struct is
-        : detail::sequence_test<
+        : detail::iterable_test<
             take_c_t<N, repeat<T>>,
             Contents...
         >

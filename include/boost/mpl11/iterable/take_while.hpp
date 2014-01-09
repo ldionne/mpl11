@@ -3,14 +3,14 @@
  * Defines `boost::mpl11::take_while`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_TAKE_WHILE_HPP
-#define BOOST_MPL11_SEQUENCE_TAKE_WHILE_HPP
+#ifndef BOOST_MPL11_ITERABLE_TAKE_WHILE_HPP
+#define BOOST_MPL11_ITERABLE_TAKE_WHILE_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -18,7 +18,7 @@ namespace boost { namespace mpl11 {
     struct take_while { using type = take_while; };
 
     template <typename P, typename S>
-    struct tag_of<take_while<P, S>> { using type = sequence_tag; };
+    struct tag_of<take_while<P, S>> { using type = iterable_tag; };
 
     /////////////////////////////////
     // Minimal complete definition
@@ -60,4 +60,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_TAKE_WHILE_HPP
+#endif // !BOOST_MPL11_ITERABLE_TAKE_WHILE_HPP

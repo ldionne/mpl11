@@ -6,14 +6,14 @@
 #ifndef BOOST_MPL11_DETAIL_LEXICOGRAPHICAL_COMPARE_HPP
 #define BOOST_MPL11_DETAIL_LEXICOGRAPHICAL_COMPARE_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Performs a lexicographical ordering of the two sequences.
+     * Performs a lexicographical ordering of the two iterables.
      *
      *
      * @todo implement this with fold

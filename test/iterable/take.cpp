@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::take`.
  */
 
-#include <boost/mpl11/sequence/take.hpp>
+#include <boost/mpl11/iterable/take.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 
 
 using namespace boost::mpl11;
@@ -18,8 +18,8 @@ struct taking {
     struct from {
         template <int ...Taken>
         struct is :
-            detail::sequence_test<
-                take_c_t<N, detail::minimal_sequence<x<All>...>>,
+            detail::iterable_test<
+                take_c_t<N, detail::minimal_iterable<x<All>...>>,
                 x<Taken>...
             >
         { };

@@ -8,11 +8,11 @@
 
 namespace boost { namespace mpl11 {
     /*!
-     * Traits providing additional information about the given sequence.
+     * Traits providing additional information about the given iterable.
      *
      * Specifically, these traits provide optional information that can be
      * used by the library to perform optimizations or to enable features
-     * that are only usable with some types of sequences.
+     * that are only usable with some types of iterables.
      */
     template <typename S>
     struct sequence_traits;

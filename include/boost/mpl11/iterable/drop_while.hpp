@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::drop_while`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_DROP_WHILE_HPP
-#define BOOST_MPL11_SEQUENCE_DROP_WHILE_HPP
+#ifndef BOOST_MPL11_ITERABLE_DROP_WHILE_HPP
+#define BOOST_MPL11_ITERABLE_DROP_WHILE_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/id.hpp>
@@ -36,4 +36,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_DROP_WHILE_HPP
+#endif // !BOOST_MPL11_ITERABLE_DROP_WHILE_HPP

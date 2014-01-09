@@ -11,7 +11,7 @@
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -19,7 +19,7 @@ namespace boost { namespace mpl11 {
     struct iterate { using type = iterate; };
 
     template <typename F, typename X>
-    struct tag_of<iterate<F, X>> { using type = sequence_tag; };
+    struct tag_of<iterate<F, X>> { using type = iterable_tag; };
 
     /////////////////////////////////
     // Minimal complete definition

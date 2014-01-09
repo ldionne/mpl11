@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::join`.
  */
 
-#include <boost/mpl11/sequence/join.hpp>
+#include <boost/mpl11/iterable/join.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 
 
 using namespace boost::mpl11;
@@ -13,14 +13,14 @@ using namespace boost::mpl11;
 template <int> struct x;
 
 template <int ...i>
-using seq = detail::minimal_sequence<x<i>...>;
+using seq = detail::minimal_iterable<x<i>...>;
 
-template <typename ...Sequences>
+template <typename ...Iterables>
 struct joining {
     template <int ...Joined>
     struct is
-        : detail::sequence_test<
-            join_t<Sequences...>,
+        : detail::iterable_test<
+            join_t<Iterables...>,
             x<Joined>...
         >
     { };

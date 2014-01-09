@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::zip`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_ZIP_HPP
-#define BOOST_MPL11_SEQUENCE_ZIP_HPP
+#ifndef BOOST_MPL11_ITERABLE_ZIP_HPP
+#define BOOST_MPL11_ITERABLE_ZIP_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
@@ -14,9 +14,9 @@
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/or.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -24,7 +24,7 @@ namespace boost { namespace mpl11 {
     struct zip { using type = zip; };
 
     template <typename ...Sn>
-    struct tag_of<zip<Sn...>> { using type = sequence_tag; };
+    struct tag_of<zip<Sn...>> { using type = iterable_tag; };
 
     template <typename ...Sn>
     struct sequence_traits<zip<Sn...>> {
@@ -70,7 +70,7 @@ namespace boost { namespace mpl11 {
     { };
 
     //! @todo
-    //! Knowing whether `at_c` is fast for the zipped sequences could
+    //! Knowing whether `at_c` is fast for the zipped iterables could
     //! allow us to use this implementation only if it's faster than
     //! iterating to the given index.
     template <typename ...Sn, detail::std_size_t Index>
@@ -79,4 +79,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_ZIP_HPP
+#endif // !BOOST_MPL11_ITERABLE_ZIP_HPP

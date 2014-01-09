@@ -3,16 +3,16 @@
  * Defines `boost::mpl11::scanl`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_SCANL_HPP
-#define BOOST_MPL11_SEQUENCE_SCANL_HPP
+#ifndef BOOST_MPL11_ITERABLE_SCANL_HPP
+#define BOOST_MPL11_ITERABLE_SCANL_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
     struct scanl { using type = scanl; };
 
     template <typename F, typename State, typename S>
-    struct tag_of<scanl<F, State, S>> { using type = sequence_tag; };
+    struct tag_of<scanl<F, State, S>> { using type = iterable_tag; };
 
     template <typename F, typename State, typename S>
     struct sequence_traits<scanl<F, State, S>> : sequence_traits<S> {
@@ -96,4 +96,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_SCANL_HPP
+#endif // !BOOST_MPL11_ITERABLE_SCANL_HPP

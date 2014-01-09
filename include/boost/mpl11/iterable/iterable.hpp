@@ -1,12 +1,12 @@
 /*!
  * @file
- * Defines the methods of the @ref Sequence typeclass.
+ * Defines the methods of the @ref Iterable typeclass.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_SEQUENCE_HPP
-#define BOOST_MPL11_SEQUENCE_SEQUENCE_HPP
+#ifndef BOOST_MPL11_ITERABLE_ITERABLE_HPP
+#define BOOST_MPL11_ITERABLE_ITERABLE_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/comparable.hpp>
@@ -28,47 +28,47 @@
 namespace boost { namespace mpl11 {
     template <typename S>
     struct head_impl {
-        using type = typename Sequence<typename tag_of<S>::type>::
+        using type = typename Iterable<typename tag_of<S>::type>::
                      template head_impl<S>::type;
     };
 
     template <typename S>
     struct tail_impl {
-        using type = typename Sequence<typename tag_of<S>::type>::
+        using type = typename Iterable<typename tag_of<S>::type>::
                      template tail_impl<S>::type;
     };
 
     template <typename S>
     struct init_impl {
-        using type = typename Sequence<typename tag_of<S>::type>::
+        using type = typename Iterable<typename tag_of<S>::type>::
                      template init_impl<S>::type;
     };
 
     template <typename S>
     struct last_impl {
-        using type = typename Sequence<typename tag_of<S>::type>::
+        using type = typename Iterable<typename tag_of<S>::type>::
                      template last_impl<S>::type;
     };
 
     template <typename S>
     struct is_empty_impl
-        : Sequence<typename tag_of<S>::type>::template is_empty_impl<S>
+        : Iterable<typename tag_of<S>::type>::template is_empty_impl<S>
     { };
 
     template <typename S>
     struct length_impl
-        : Sequence<typename tag_of<S>::type>::template length_impl<S>
+        : Iterable<typename tag_of<S>::type>::template length_impl<S>
     { };
 
     template <typename S, detail::std_size_t Index>
     struct at_c_impl {
-        using type = typename Sequence<typename tag_of<S>::type>::
+        using type = typename Iterable<typename tag_of<S>::type>::
                      template at_c_impl<S, Index>::type;
     };
 
     template <typename S, typename F>
     struct unpack_impl {
-        using type = typename Sequence<typename tag_of<S>::type>::
+        using type = typename Iterable<typename tag_of<S>::type>::
                      template unpack_impl<S, F>::type;
     };
 
@@ -85,28 +85,28 @@ namespace boost { namespace mpl11 {
     template <typename S>
     struct head {
         static_assert(!is_empty<S>::value,
-        "Invalid usage of `head` on an empty sequence.");
+        "Invalid usage of `head` on an empty iterable.");
         using type = typename head_impl<S>::type;
     };
 
     template <typename S>
     struct tail {
         static_assert(!is_empty<S>::value,
-        "Invalid usage of `tail` on an empty sequence.");
+        "Invalid usage of `tail` on an empty iterable.");
         using type = typename tail_impl<S>::type;
     };
 
     template <typename S>
     struct init {
         static_assert(!is_empty<S>::value,
-        "Invalid usage of `init` on an empty sequence.");
+        "Invalid usage of `init` on an empty iterable.");
         using type = typename init_impl<S>::type;
     };
 
     template <typename S>
     struct last {
         static_assert(!is_empty<S>::value,
-        "Invalid usage of `last` on an empty sequence.");
+        "Invalid usage of `last` on an empty iterable.");
         using type = typename last_impl<S>::type;
     };
 
@@ -130,7 +130,7 @@ namespace boost { namespace mpl11 {
     // Instantiations
     //////////////////////
     template <>
-    struct Sequence<sequence_tag> {
+    struct Iterable<iterable_tag> {
         template <typename S>
         using last_impl = typename if_c<
             is_empty<typename tail<S>::type>::value,
@@ -170,7 +170,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Comparable<sequence_tag, sequence_tag>
+    struct Comparable<iterable_tag, iterable_tag>
         : Comparable<comparable_tag>
     {
         template <typename S1, typename S2>
@@ -178,12 +178,12 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename Tag>
-    struct Comparable<sequence_tag, Tag>
-        : detail::flip_Comparable<sequence_tag, Tag>
+    struct Comparable<iterable_tag, Tag>
+        : detail::flip_Comparable<iterable_tag, Tag>
     { };
 
     template <>
-    struct Orderable<sequence_tag, sequence_tag>
+    struct Orderable<iterable_tag, iterable_tag>
         : Orderable<orderable_tag>
     {
         template <typename S1, typename S2>
@@ -191,12 +191,12 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename Tag>
-    struct Orderable<sequence_tag, Tag>
-        : detail::flip_Orderable<sequence_tag, Tag>
+    struct Orderable<iterable_tag, Tag>
+        : detail::flip_Orderable<iterable_tag, Tag>
     { };
 
     template <>
-    struct Foldable<sequence_tag> {
+    struct Foldable<iterable_tag> {
         template <
             typename F, typename State, typename S,
             bool = is_empty<S>::value
@@ -259,7 +259,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Functor<sequence_tag> {
+    struct Functor<iterable_tag> {
         template <typename F, typename S>
         struct map_impl {
             using type = detail::sequence_map<F, S>;
@@ -267,4 +267,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_SEQUENCE_HPP
+#endif // !BOOST_MPL11_ITERABLE_ITERABLE_HPP

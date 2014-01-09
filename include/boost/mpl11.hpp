@@ -29,10 +29,9 @@
  * Tags come in two flavors (the difference is only their purpose):
  *
  * ### Typeclass tags
- * A typeclass tag represents a single typeclass. For example, the
- * `sequence_tag` is a typeclass tag because it represents the `Sequence`
- * typeclass. These tags are used as a meeting point to dispatch multi-ary
- * methods with different datatype tags by using the following technique:
+ * A typeclass tag represents a single typeclass. These tags are used as a
+ * meeting point to dispatch multi-ary methods with different datatype tags
+ * by using the following technique:
  *
  * The typeclass must be user-specialized on the left datatype tag and
  * that specialization must be of the form:
@@ -159,6 +158,7 @@
 #include <boost/mpl11/integral.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/iterable.hpp>
 #include <boost/mpl11/iterate.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/not.hpp>
@@ -168,7 +168,6 @@
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/repeat.hpp>
-#include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 #include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>

@@ -3,14 +3,14 @@
  * Defines `boost::mpl11::reverse`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_REVERSE_HPP
-#define BOOST_MPL11_SEQUENCE_REVERSE_HPP
+#ifndef BOOST_MPL11_ITERABLE_REVERSE_HPP
+#define BOOST_MPL11_ITERABLE_REVERSE_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 
 
@@ -19,7 +19,7 @@ namespace boost { namespace mpl11 {
     struct reverse { using type = reverse; };
 
     template <typename S>
-    struct tag_of<reverse<S>> { using type = sequence_tag; };
+    struct tag_of<reverse<S>> { using type = iterable_tag; };
 
     template <typename S>
     struct sequence_traits<reverse<S>> : sequence_traits<S> {
@@ -72,7 +72,7 @@ namespace boost { namespace mpl11 {
         template <>
         struct at_c_impl<false> {
             template <typename S, detail::std_size_t Index>
-            using result = typename Sequence<sequence_tag>::
+            using result = typename Iterable<iterable_tag>::
                            template at_c_impl<reverse<S>, Index>::type;
         };
     } // end namespace reverse_detail
@@ -86,4 +86,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_REVERSE_HPP
+#endif // !BOOST_MPL11_ITERABLE_REVERSE_HPP

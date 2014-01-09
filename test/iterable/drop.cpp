@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::drop`.
  */
 
-#include <boost/mpl11/sequence/drop.hpp>
+#include <boost/mpl11/iterable/drop.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 
 
 using namespace boost::mpl11;
@@ -18,8 +18,8 @@ struct dropping {
     struct from {
         template <int ...Remaining>
         struct is
-            : detail::sequence_test<
-                drop_c_t<N, detail::minimal_sequence<x<All>...>>,
+            : detail::iterable_test<
+                drop_c_t<N, detail::minimal_iterable<x<All>...>>,
                 x<Remaining>...
             >
         { };

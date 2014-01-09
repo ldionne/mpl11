@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::snoc`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_SNOC_HPP
-#define BOOST_MPL11_SEQUENCE_SNOC_HPP
+#ifndef BOOST_MPL11_ITERABLE_SNOC_HPP
+#define BOOST_MPL11_ITERABLE_SNOC_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
@@ -14,9 +14,9 @@
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/partial.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename S, typename X>
-    struct tag_of<snoc<S, X>> { using type = sequence_tag; };
+    struct tag_of<snoc<S, X>> { using type = iterable_tag; };
 
     template <typename S, typename X>
     struct sequence_traits<snoc<S, X>> : sequence_traits<S> { };
@@ -71,4 +71,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_SNOC_HPP
+#endif // !BOOST_MPL11_ITERABLE_SNOC_HPP

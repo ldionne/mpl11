@@ -13,11 +13,11 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup datatypes
      *
-     * `Sequence` containing no elements at all.
+     * Iterable containing no elements at all.
      *
      *
      * @note
-     * Using any method that requires the sequence to be non-empty will
+     * Using any method that requires the iterable to be non-empty will
      * result in an error.
      */
     struct empty_sequence BOOST_MPL11_IF_DOXYGEN({ });

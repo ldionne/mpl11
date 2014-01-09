@@ -9,13 +9,12 @@
 #include <boost/mpl11/fwd/repeat.hpp>
 
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
-#include <boost/mpl11/sequence/take.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename T>
-    struct tag_of<repeat<T>> { using type = sequence_tag; };
+    struct tag_of<repeat<T>> { using type = iterable_tag; };
 
     /////////////////////////////////
     // Minimal complete definition

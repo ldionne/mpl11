@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup datatypes
      *
-     * Canonical `Sequence` of types.
+     * Canonical Iterable containing types.
      *
      *
      * @todo

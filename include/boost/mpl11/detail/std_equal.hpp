@@ -6,14 +6,14 @@
 #ifndef BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 #define BOOST_MPL11_DETAIL_STD_EQUAL_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Returns whether two sequences are equal by comparing their
+     * Returns whether two iterables are equal by comparing their
      * elements side-by-side.
      *
      * @todo implement this with fold

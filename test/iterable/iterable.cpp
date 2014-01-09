@@ -1,16 +1,16 @@
 /*!
  * @file
- * Contains unit tests for the @ref Sequence typeclass.
+ * Contains unit tests for the @ref Iterable typeclass.
  */
 
-#include <boost/mpl11/sequence/sequence.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/iterable/cons.hpp>
+#include <boost/mpl11/iterable/snoc.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence/cons.hpp>
-#include <boost/mpl11/sequence/snoc.hpp>
 
 
 using namespace boost::mpl11;
@@ -34,7 +34,7 @@ template <int> struct x;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Sequence<archetype::mpl_tag> {
+    struct Iterable<archetype::mpl_tag> {
         template <typename> struct head_impl
         { using type = head_tag; };
 
@@ -80,28 +80,28 @@ struct test_folds {
     static_assert(equal<
         foldl_t<
             quote<snoc>,
-            detail::minimal_sequence<>,
-            detail::minimal_sequence<x<i>...>
+            detail::minimal_iterable<>,
+            detail::minimal_iterable<x<i>...>
         >,
-        detail::minimal_sequence<x<i>...>
+        detail::minimal_iterable<x<i>...>
     >::value, "");
 
     static_assert(equal<
         lazy_foldr_t<
             quote<lazy_cons>,
-            detail::minimal_sequence<>,
-            detail::minimal_sequence<x<i>...>
+            detail::minimal_iterable<>,
+            detail::minimal_iterable<x<i>...>
         >,
-        detail::minimal_sequence<x<i>...>
+        detail::minimal_iterable<x<i>...>
     >::value, "");
 
     static_assert(equal<
         foldr_t<
             quote<cons>,
-            detail::minimal_sequence<>,
-            detail::minimal_sequence<x<i>...>
+            detail::minimal_iterable<>,
+            detail::minimal_iterable<x<i>...>
         >,
-        detail::minimal_sequence<x<i>...>
+        detail::minimal_iterable<x<i>...>
     >::value, "");
 };
 
@@ -123,8 +123,8 @@ struct test_foldable :
 // Test the Functor instantiation
 template <int ...Seq>
 struct test_map
-    : detail::sequence_test<
-        map_t<f, detail::minimal_sequence<x<Seq>...>>,
+    : detail::iterable_test<
+        map_t<f, detail::minimal_iterable<x<Seq>...>>,
         typename f::template apply<x<Seq>>::type...
     >
 { };

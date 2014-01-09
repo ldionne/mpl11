@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Lazy sequence mapping a metafunction class over another sequence.
+     * Lazy iterable mapping a metafunction class over another iterable.
      */
     template <typename F, typename S>
     struct sequence_map;
@@ -21,13 +21,13 @@ namespace boost { namespace mpl11 { namespace detail {
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename F, typename S>
     struct tag_of<detail::sequence_map<F, S>> {
-        using type = sequence_tag;
+        using type = iterable_tag;
     };
 
     template <typename F, typename S>

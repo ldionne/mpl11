@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::take_while`.
  */
 
-#include <boost/mpl11/sequence/take_while.hpp>
+#include <boost/mpl11/iterable/take_while.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
 
@@ -17,8 +17,8 @@ template <int ...All>
 struct nonzero_prefix {
     template <int ...Prefix>
     struct is
-        : detail::sequence_test<
-            take_while_t<nonzero, detail::minimal_sequence<int_<All>...>>,
+        : detail::iterable_test<
+            take_while_t<nonzero, detail::minimal_iterable<int_<All>...>>,
             int_<Prefix>...
         >
     { };

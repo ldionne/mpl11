@@ -3,20 +3,20 @@
  * Contains unit tests for `boost::mpl11::sort_by`.
  */
 
-#include <boost/mpl11/sequence/sort_by.hpp>
+#include <boost/mpl11/iterable/sort_by.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
 
 using namespace boost::mpl11;
 
-template <typename Pred, int ...Sequence>
+template <typename Pred, int ...It>
 struct sorting_by {
     template <int ...Sorted>
     struct is
-        : detail::sequence_test<
-            sort_by_t<Pred, detail::minimal_sequence<int_<Sequence>...>>,
+        : detail::iterable_test<
+            sort_by_t<Pred, detail::minimal_iterable<int_<It>...>>,
             int_<Sorted>...
         >
     { };

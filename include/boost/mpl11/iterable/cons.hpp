@@ -3,15 +3,15 @@
  * Defines `boost::mpl11::cons`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_CONS_HPP
-#define BOOST_MPL11_SEQUENCE_CONS_HPP
+#ifndef BOOST_MPL11_ITERABLE_CONS_HPP
+#define BOOST_MPL11_ITERABLE_CONS_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/partial.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -19,7 +19,7 @@ namespace boost { namespace mpl11 {
     struct cons { using type = cons; };
 
     template <typename Head, typename Tail>
-    struct tag_of<cons<Head, Tail>> { using type = sequence_tag; };
+    struct tag_of<cons<Head, Tail>> { using type = iterable_tag; };
 
     template <typename Head, typename Tail>
     struct sequence_traits<cons<Head, Tail>>
@@ -52,4 +52,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_CONS_HPP
+#endif // !BOOST_MPL11_ITERABLE_CONS_HPP

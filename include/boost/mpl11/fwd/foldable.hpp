@@ -40,7 +40,7 @@ namespace boost { namespace mpl11 {
      *
      * @todo
      * Rewrite `all`, `any` and `none`'s unit test using a `Foldable`
-     * instead of a `Sequence`.
+     * instead of an iterable.
      *
      * @{
      */

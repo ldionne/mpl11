@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::zip`.
  */
 
-#include <boost/mpl11/sequence/zip.hpp>
+#include <boost/mpl11/iterable/zip.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 #include <boost/mpl11/list.hpp>
 
 
@@ -15,7 +15,7 @@ template <typename ...Sn>
 struct zipping {
     template <typename ...Zipped>
     struct is :
-        detail::sequence_test<
+        detail::iterable_test<
             zip_t<Sn...>,
             Zipped...
         >
@@ -23,7 +23,7 @@ struct zipping {
 };
 
 template <typename ...T>
-using seq = detail::minimal_sequence<T...>;
+using seq = detail::minimal_iterable<T...>;
 
 struct w0; struct w1; struct w2; struct w3; struct w4;
 struct x0; struct x1; struct x2; struct x3; struct x4;
@@ -31,7 +31,7 @@ struct y0; struct y1; struct y2; struct y3; struct y4;
 struct z0; struct z1; struct z2; struct z3; struct z4;
 
 struct tests :
-   // zip 2 sequences
+   // zip 2 iterables
     zipping<seq<>, seq<>>::is<>,
     zipping<seq<>, seq<x0>>::is<>,
     zipping<seq<>, seq<x0, x1>>::is<>,
@@ -44,7 +44,7 @@ struct tests :
     zipping<seq<w0, w1>, seq<x0>>::is<list<w0, x0>>,
     zipping<seq<w0, w1>, seq<x0, x1>>::is<list<w0, x0>, list<w1, x1>>,
 
-    // zip 3 sequences
+    // zip 3 iterables
     zipping<seq<>, seq<>, seq<y0>>::is<>,
     zipping<seq<>, seq<x0>, seq<>>::is<>,
     zipping<seq<>, seq<x0>, seq<y0>>::is<>,
@@ -53,7 +53,7 @@ struct tests :
     zipping<seq<w0>, seq<x0>, seq<>>::is<>,
     zipping<seq<w0>, seq<x0>, seq<y0>>::is<list<w0, x0, y0>>,
 
-    // zip 4 sequences with (sometimes) different sizes
+    // zip 4 iterables with (sometimes) different sizes
     zipping<
         seq<w0, w1, w2, w3>,
         seq<x0, x1, x2, x3, x4>,

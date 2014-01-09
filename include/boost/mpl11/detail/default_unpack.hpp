@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Default implementation of the `unpack` method for `Sequence`s.
+     * Default implementation of the `unpack` method for iterables.
      */
     template <typename S, typename F>
     struct default_unpack;

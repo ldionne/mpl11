@@ -6,9 +6,9 @@
 #include <boost/mpl11/iterate.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
+#include <boost/mpl11/iterable/take.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence/take.hpp>
 
 
 using namespace boost::mpl11;
@@ -28,7 +28,7 @@ template <unsigned long N>
 struct iterating_n {
     template <typename ...Values>
     struct is
-        : detail::sequence_test<
+        : detail::iterable_test<
             take_c_t<N,
                 iterate_t<quote<F>, X>
             >,

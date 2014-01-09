@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Returns an infinite `Sequence` containing repeated applications of a
+     * Returns an infinite iterable containing repeated applications of a
      * metafunction class to an initial argument.
      */
     template <typename F, typename X>

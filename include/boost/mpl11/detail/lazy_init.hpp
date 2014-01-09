@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Returns a lazy sequence implementing the default behavior
+     * Returns a lazy iterable implementing the default behavior
      * of the `init` method.
      *
      *
@@ -22,7 +22,7 @@ namespace boost { namespace mpl11 { namespace detail {
 }}} // end namespace boost::mpl11::detail
 
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/integral_c.hpp>
@@ -32,17 +32,12 @@ namespace boost { namespace mpl11 {
     namespace detail {
         template <typename S>
         struct lazy_init {
-#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
-            static_assert(!is_empty<S>::value,
-            "Invalid usage of `detail::lazy_init` on an empty sequence.");
-#endif
-
             using type = lazy_init;
         };
     } // end namespace detail
 
     template <typename S>
-    struct tag_of<detail::lazy_init<S>> { using type = sequence_tag; };
+    struct tag_of<detail::lazy_init<S>> { using type = iterable_tag; };
 
     template <typename S>
     struct sequence_traits<detail::lazy_init<S>> : sequence_traits<S> {

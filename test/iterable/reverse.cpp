@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::reverse`.
  */
 
-#include <boost/mpl11/sequence/reverse.hpp>
+#include <boost/mpl11/iterable/reverse.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 
 
 using namespace boost::mpl11;
@@ -16,8 +16,8 @@ template <int ...Seq>
 struct in_reverse_order {
     template <int ...Reversed>
     struct is
-        : detail::sequence_test<
-            reverse_t<detail::minimal_sequence<x<Seq>...>>,
+        : detail::iterable_test<
+            reverse_t<detail::minimal_iterable<x<Seq>...>>,
             x<Reversed>...
         >
     { };

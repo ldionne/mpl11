@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::filter`.
  */
 
-#include <boost/mpl11/sequence/filter.hpp>
+#include <boost/mpl11/iterable/filter.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 #include <boost/mpl11/id.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/quote.hpp>
@@ -17,8 +17,8 @@ template <int ...All>
 struct nonzeros {
     template <int ...Filtered>
     struct are
-        : detail::sequence_test<
-            filter_t<quote<id>, detail::minimal_sequence<int_<All>...>>,
+        : detail::iterable_test<
+            filter_t<quote<id>, detail::minimal_iterable<int_<All>...>>,
             int_<Filtered>...
         >
     { };

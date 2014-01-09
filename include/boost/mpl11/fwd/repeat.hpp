@@ -10,7 +10,7 @@ namespace boost { namespace mpl11 {
     /*!
      * @ingroup metafunctions
      *
-     * Returns an infinite `Sequence` containing copies of the given type.
+     * Returns an infinite Iterable containing copies of the given type.
      */
     template <typename T>
     struct repeat;

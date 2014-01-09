@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::join`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_JOIN_HPP
-#define BOOST_MPL11_SEQUENCE_JOIN_HPP
+#ifndef BOOST_MPL11_ITERABLE_JOIN_HPP
+#define BOOST_MPL11_ITERABLE_JOIN_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/compose.hpp>
@@ -18,17 +18,17 @@
 #include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
+#include <boost/mpl11/iterable/filter.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence/filter.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
     //! @internal
-    //! After the lazy `join` is created, it never contains  empty sequences.
+    //! After the lazy `join` is created, it never contains empty iterables.
     //! We make sure to preserve that invariant in the methods below because
     //! it makes the implementation much easier.
     template <typename S1, typename ...Sn>
@@ -48,7 +48,7 @@ namespace boost { namespace mpl11 {
     template <typename S> struct join<S> { using type = S; };
 
     template <typename ...Sn>
-    struct tag_of<join<Sn...>> { using type = sequence_tag; };
+    struct tag_of<join<Sn...>> { using type = iterable_tag; };
 
     template <typename ...Sn>
     struct sequence_traits<join<Sn...>> {
@@ -139,4 +139,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_JOIN_HPP
+#endif // !BOOST_MPL11_ITERABLE_JOIN_HPP

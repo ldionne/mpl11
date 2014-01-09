@@ -3,18 +3,18 @@
  * Defines `boost::mpl11::filter`.
  */
 
-#ifndef BOOST_MPL11_SEQUENCE_FILTER_HPP
-#define BOOST_MPL11_SEQUENCE_FILTER_HPP
+#ifndef BOOST_MPL11_ITERABLE_FILTER_HPP
+#define BOOST_MPL11_ITERABLE_FILTER_HPP
 
-#include <boost/mpl11/fwd/sequence.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
+#include <boost/mpl11/iterable/drop_while.hpp>
+#include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence/drop_while.hpp>
-#include <boost/mpl11/sequence/sequence.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -22,7 +22,7 @@ namespace boost { namespace mpl11 {
     struct filter { using type = filter; };
 
     template <typename Pred, typename S>
-    struct tag_of<filter<Pred, S>> { using type = sequence_tag; };
+    struct tag_of<filter<Pred, S>> { using type = iterable_tag; };
 
     template <typename Pred, typename S>
     struct sequence_traits<filter<Pred, S>> {
@@ -54,4 +54,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SEQUENCE_FILTER_HPP
+#endif // !BOOST_MPL11_ITERABLE_FILTER_HPP

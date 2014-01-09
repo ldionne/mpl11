@@ -3,9 +3,9 @@
  * Contains unit tests for `boost::mpl11::cons`.
  */
 
-#include <boost/mpl11/sequence/cons.hpp>
+#include <boost/mpl11/iterable/cons.hpp>
 
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 
 
 using namespace boost::mpl11;
@@ -14,8 +14,8 @@ template <int> struct x;
 
 template <int Head, int ...Tail>
 struct test_cons
-    : detail::sequence_test<
-        cons_t<x<Head>, detail::minimal_sequence<x<Tail>...>>,
+    : detail::iterable_test<
+        cons_t<x<Head>, detail::minimal_iterable<x<Tail>...>>,
         x<Head>, x<Tail>...
     >
 { };

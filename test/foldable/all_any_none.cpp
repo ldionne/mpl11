@@ -10,7 +10,7 @@
 
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/detail/sequence_test.hpp>
+#include <boost/mpl11/detail/iterable_test.hpp>
 #include <boost/mpl11/id.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/partial.hpp>
@@ -25,7 +25,7 @@ template <typename T>
 using same_as = partial<quote<detail::is_same>, T>;
 
 template <typename ...T>
-using seq = detail::minimal_sequence<T...>;
+using seq = detail::minimal_iterable<T...>;
 
 // test all
 static_assert( all<always<false_>, seq<>>::value, "");
