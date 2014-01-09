@@ -1,6 +1,6 @@
 /*!
  * @file
- * Includes all the `boost::mpl11::Sequence` module.
+ * Includes all the @ref Sequence module.
  */
 
 #ifndef BOOST_MPL11_SEQUENCE_HPP

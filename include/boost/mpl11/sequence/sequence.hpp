@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the methods of `boost::mpl11::Sequence`.
+ * Defines the methods of the @ref Sequence typeclass.
  */
 
 #ifndef BOOST_MPL11_SEQUENCE_SEQUENCE_HPP
@@ -232,6 +232,26 @@ namespace boost { namespace mpl11 {
                 F,
                 typename head<S>::type,
                 typename foldr_impl<F, State ,typename tail<S>::type>::type
+            >::type;
+        };
+
+        template <
+            typename F, typename State, typename S,
+            bool = is_empty<S>::value
+        >
+        struct lazy_foldr_impl;
+
+        template <typename F, typename State, typename S>
+        struct lazy_foldr_impl<F, State, S, true> {
+            using type = State;
+        };
+
+        template <typename F, typename State, typename S>
+        struct lazy_foldr_impl<F, State, S, false> {
+            using type = typename apply<
+                F,
+                typename head<S>::type,
+                lazy_foldr_impl<F, State ,typename tail<S>::type>
             >::type;
         };
     };

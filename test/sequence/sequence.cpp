@@ -1,6 +1,6 @@
 /*!
  * @file
- * Contains unit tests for the `boost::mpl11::Sequence` typeclass.
+ * Contains unit tests for the @ref Sequence typeclass.
  */
 
 #include <boost/mpl11/sequence/sequence.hpp>
@@ -73,9 +73,21 @@ template <int ...i>
 struct test_folds {
     template <int> struct x;
 
+    template <typename X, typename Seq>
+    using lazy_cons = cons<X, typename Seq::type>;
+
     static_assert(equal<
         foldl_t<
             quote<snoc>,
+            detail::minimal_sequence<>,
+            detail::minimal_sequence<x<i>...>
+        >,
+        detail::minimal_sequence<x<i>...>
+    >::value, "");
+
+    static_assert(equal<
+        lazy_foldr_t<
+            quote<lazy_cons>,
             detail::minimal_sequence<>,
             detail::minimal_sequence<x<i>...>
         >,

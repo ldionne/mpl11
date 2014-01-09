@@ -140,10 +140,8 @@
 #endif
 
 
-#include <boost/mpl11/all.hpp>
 #include <boost/mpl11/always.hpp>
 #include <boost/mpl11/and.hpp>
-#include <boost/mpl11/any.hpp>
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/arg.hpp>
 #include <boost/mpl11/bitwise.hpp>
@@ -166,7 +164,6 @@
 #include <boost/mpl11/iterate.hpp>
 #include <boost/mpl11/join.hpp>
 #include <boost/mpl11/list.hpp>
-#include <boost/mpl11/none.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/numeric.hpp>
 #include <boost/mpl11/or.hpp>
