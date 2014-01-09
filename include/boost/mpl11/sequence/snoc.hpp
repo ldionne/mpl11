@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::snoc`.
  */
 
-#ifndef BOOST_MPL11_SNOC_HPP
-#define BOOST_MPL11_SNOC_HPP
+#ifndef BOOST_MPL11_SEQUENCE_SNOC_HPP
+#define BOOST_MPL11_SEQUENCE_SNOC_HPP
 
-#include <boost/mpl11/fwd/snoc.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
@@ -71,4 +71,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SNOC_HPP
+#endif // !BOOST_MPL11_SEQUENCE_SNOC_HPP

@@ -3,20 +3,19 @@
  * Defines `boost::mpl11::sort_by`.
  */
 
-#ifndef BOOST_MPL11_SORT_BY_HPP
-#define BOOST_MPL11_SORT_BY_HPP
+#ifndef BOOST_MPL11_SEQUENCE_SORT_BY_HPP
+#define BOOST_MPL11_SEQUENCE_SORT_BY_HPP
 
-#include <boost/mpl11/fwd/sort_by.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/compose.hpp>
-#include <boost/mpl11/cons.hpp>
-#include <boost/mpl11/filter.hpp>
-#include <boost/mpl11/fwd/sequence.hpp>
-#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/or.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/sequence/cons.hpp>
+#include <boost/mpl11/sequence/filter.hpp>
+#include <boost/mpl11/sequence/join.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -63,4 +62,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SORT_BY_HPP
+#endif // !BOOST_MPL11_SEQUENCE_SORT_BY_HPP

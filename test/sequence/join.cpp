@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::join`.
  */
 
-#include <boost/mpl11/join.hpp>
+#include <boost/mpl11/sequence/join.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 

@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::filter`.
  */
 
-#ifndef BOOST_MPL11_FILTER_HPP
-#define BOOST_MPL11_FILTER_HPP
+#ifndef BOOST_MPL11_SEQUENCE_FILTER_HPP
+#define BOOST_MPL11_SEQUENCE_FILTER_HPP
 
-#include <boost/mpl11/fwd/filter.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
@@ -54,4 +54,4 @@ namespace boost { namespace mpl11 {
     { };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_FILTER_HPP
+#endif // !BOOST_MPL11_SEQUENCE_FILTER_HPP

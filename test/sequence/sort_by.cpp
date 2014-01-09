@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::sort_by`.
  */
 
-#include <boost/mpl11/sort_by.hpp>
+#include <boost/mpl11/sequence/sort_by.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>

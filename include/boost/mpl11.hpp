@@ -147,11 +147,9 @@
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/compose.hpp>
-#include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/empty_base.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
 #include <boost/mpl11/enumerable.hpp>
-#include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/flip.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functor.hpp>
@@ -162,7 +160,6 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/iterate.hpp>
-#include <boost/mpl11/join.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/numeric.hpp>
@@ -171,15 +168,10 @@
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/repeat.hpp>
-#include <boost/mpl11/reverse.hpp>
-#include <boost/mpl11/scanl.hpp>
 #include <boost/mpl11/sequence.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
-#include <boost/mpl11/snoc.hpp>
-#include <boost/mpl11/sort_by.hpp>
 #include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>
 #include <boost/mpl11/transform.hpp>
-#include <boost/mpl11/zip.hpp>
 
 #endif // !BOOST_MPL11_HPP

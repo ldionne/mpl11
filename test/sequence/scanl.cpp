@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::scanl`.
  */
 
-#include <boost/mpl11/scanl.hpp>
+#include <boost/mpl11/sequence/scanl.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 

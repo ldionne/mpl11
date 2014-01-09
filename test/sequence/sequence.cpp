@@ -5,12 +5,12 @@
 
 #include <boost/mpl11/sequence/sequence.hpp>
 
-#include <boost/mpl11/cons.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/snoc.hpp>
+#include <boost/mpl11/sequence/cons.hpp>
+#include <boost/mpl11/sequence/snoc.hpp>
 
 
 using namespace boost::mpl11;

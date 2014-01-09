@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::reverse`.
  */
 
-#ifndef BOOST_MPL11_REVERSE_HPP
-#define BOOST_MPL11_REVERSE_HPP
+#ifndef BOOST_MPL11_SEQUENCE_REVERSE_HPP
+#define BOOST_MPL11_SEQUENCE_REVERSE_HPP
 
-#include <boost/mpl11/fwd/reverse.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
@@ -86,4 +86,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_REVERSE_HPP
+#endif // !BOOST_MPL11_SEQUENCE_REVERSE_HPP

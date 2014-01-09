@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::zip`.
  */
 
-#ifndef BOOST_MPL11_ZIP_HPP
-#define BOOST_MPL11_ZIP_HPP
+#ifndef BOOST_MPL11_SEQUENCE_ZIP_HPP
+#define BOOST_MPL11_SEQUENCE_ZIP_HPP
 
-#include <boost/mpl11/fwd/zip.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
@@ -79,4 +79,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_ZIP_HPP
+#endif // !BOOST_MPL11_SEQUENCE_ZIP_HPP

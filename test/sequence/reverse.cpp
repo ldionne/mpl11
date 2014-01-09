@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::reverse`.
  */
 
-#include <boost/mpl11/reverse.hpp>
+#include <boost/mpl11/sequence/reverse.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 

@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::scanl`.
  */
 
-#ifndef BOOST_MPL11_SCANL_HPP
-#define BOOST_MPL11_SCANL_HPP
+#ifndef BOOST_MPL11_SEQUENCE_SCANL_HPP
+#define BOOST_MPL11_SEQUENCE_SCANL_HPP
 
-#include <boost/mpl11/fwd/scanl.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
@@ -96,4 +96,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_SCANL_HPP
+#endif // !BOOST_MPL11_SEQUENCE_SCANL_HPP

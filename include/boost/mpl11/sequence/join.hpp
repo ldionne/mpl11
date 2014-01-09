@@ -3,16 +3,15 @@
  * Defines `boost::mpl11::join`.
  */
 
-#ifndef BOOST_MPL11_JOIN_HPP
-#define BOOST_MPL11_JOIN_HPP
+#ifndef BOOST_MPL11_SEQUENCE_JOIN_HPP
+#define BOOST_MPL11_SEQUENCE_JOIN_HPP
 
-#include <boost/mpl11/fwd/join.hpp>
+#include <boost/mpl11/fwd/sequence.hpp>
 
 #include <boost/mpl11/and.hpp>
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
-#include <boost/mpl11/filter.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/id.hpp>
@@ -23,6 +22,7 @@
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
+#include <boost/mpl11/sequence/filter.hpp>
 #include <boost/mpl11/sequence/sequence.hpp>
 
 
@@ -139,4 +139,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_JOIN_HPP
+#endif // !BOOST_MPL11_SEQUENCE_JOIN_HPP

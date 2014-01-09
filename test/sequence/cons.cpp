@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::cons`.
  */
 
-#include <boost/mpl11/cons.hpp>
+#include <boost/mpl11/sequence/cons.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 

@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::snoc`.
  */
 
-#include <boost/mpl11/snoc.hpp>
+#include <boost/mpl11/sequence/snoc.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 

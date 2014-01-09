@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::zip`.
  */
 
-#include <boost/mpl11/zip.hpp>
+#include <boost/mpl11/sequence/zip.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/list.hpp>

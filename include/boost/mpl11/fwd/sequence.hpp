@@ -248,6 +248,7 @@ namespace boost { namespace mpl11 {
     template <detail::std_size_t N, typename Sequence>
     using drop_c_t = typename drop_c<N, Sequence>::type;
 
+
     /*!
      * Drops elements from a sequence up to, but not including, the first
      * element for which the `Predicate` returns `false`.
@@ -290,6 +291,7 @@ namespace boost { namespace mpl11 {
     template <detail::std_size_t N, typename Sequence>
     using take_c_t = typename take_c<N, Sequence>::type;
 
+
     /*!
      * Returns the longest prefix of a sequence in which all elements
      * satisfy the given `Predicate`.
@@ -299,6 +301,117 @@ namespace boost { namespace mpl11 {
 
     template <typename Predicate, typename Sequence>
     using take_while_t = take_while<Predicate, Sequence>;
+
+
+    //! Prepends an element to a `Sequence`.
+    template <typename Head, typename Tail>
+    struct cons;
+
+    template <typename Head, typename Tail>
+    using cons_t = typename cons<Head, Tail>::type;
+
+
+    /*!
+     * Returns a sequence containing those elements that
+     * satisfy the `Predicate`.
+     *
+     * If the underlying sequence is infinite, the sequence returned by
+     * `filter` is finite if and only if the `Predicate` is `false` for
+     * an infinite suffix of the sequence. However, since this is hard to
+     * determine without actually performing the computation and should
+     * be rare anyways, the returned sequence is trait-wise infinite when
+     * the underlying sequence is infinite.
+     */
+    template <typename Predicate, typename Sequence>
+    struct filter;
+
+    template <typename Predicate, typename Sequence>
+    using filter_t = typename filter<Predicate, Sequence>::type;
+
+
+    /*!
+     * Concatenate several sequences.
+     *
+     * When invoked with `0` sequences, `join` returns an empty sequence.
+     * When invoked with `1` sequence, `join` returns the sequence itself.
+     *
+     *
+     * @todo
+     * Improve the implementation:
+     * - Use folds instead of hand-crafted recursion in the implementation.
+     * - Use a fold to implement `at_c`.
+     * - Handle the infinite sequence case in `at_c`.
+     * - Implement `init` in an efficient way.
+     * - Improve the filtration of sequences when creating `join`.
+     * - Don't reconstruct `join` in `unpack_impl`.
+     */
+    template <typename ...Sequences>
+    struct join;
+
+    template <typename ...Sequences>
+    using join_t = typename join<Sequences...>::type;
+
+
+    //! Returns the elements of a sequence in reverse order.
+    template <typename Sequence>
+    struct reverse;
+
+    template <typename Sequence>
+    using reverse_t = typename reverse<Sequence>::type;
+
+
+    /*!
+     * `scanl` is similar to `foldl`, but returns a `Sequence` of successive
+     * reduced values from the left.
+     */
+    template <typename F, typename State, typename Sequence>
+    struct scanl;
+
+    template <typename F, typename State, typename Sequence>
+    using scanl_t = typename scanl<F, State, Sequence>::type;
+
+
+    /*!
+     * Appends an element to a `Sequence`.
+     *
+     *
+     * @todo
+     * If the sequence is infinite, `snoc` could be `id`.
+     */
+    template <typename Sequence, typename Element>
+    struct snoc;
+
+    template <typename Sequence, typename Element>
+    using snoc_t = typename snoc<Sequence, Element>::type;
+
+
+    //! Returns a `Sequence` sorted with the `Predicate`.
+    template <typename Predicate, typename Sequence>
+    struct sort_by;
+
+    template <typename Predicate, typename Sequence>
+    using sort_by_t = typename sort_by<Predicate, Sequence>::type;
+
+
+    /*!
+     * Returns a sequence that aggregates elements from two or more sequences.
+     *
+     * Specifically, the i-th element of the sequence is a `list` containing
+     * the i-th element of each zipped sequence. The sequence stops when the
+     * shortest zipped sequence is exhausted.
+     *
+     *
+     * @todo
+     * Consider implementing a `zip_longest` with the obvious semantics.
+     *
+     * @todo
+     * Should we allow 0 and 1 sequences to be zipped?
+     */
+    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
+    struct zip;
+
+    template <typename Sequence1, typename Sequence2, typename ...SequenceN>
+    using zip_t = typename zip<Sequence1, Sequence2, SequenceN...>::type;
     //! @}
 }} // end namespace boost::mpl11
 

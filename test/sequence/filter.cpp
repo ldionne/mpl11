@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::filter`.
  */
 
-#include <boost/mpl11/filter.hpp>
+#include <boost/mpl11/sequence/filter.hpp>
 
 #include <boost/mpl11/detail/sequence_test.hpp>
 #include <boost/mpl11/id.hpp>
