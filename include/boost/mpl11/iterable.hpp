@@ -13,6 +13,7 @@
 #include <boost/mpl11/iterable/iterable.hpp>
 #include <boost/mpl11/iterable/join.hpp>
 #include <boost/mpl11/iterable/reverse.hpp>
+#include <boost/mpl11/iterable/slice.hpp>
 #include <boost/mpl11/iterable/snoc.hpp>
 #include <boost/mpl11/iterable/sort_by.hpp>
 #include <boost/mpl11/iterable/take.hpp>

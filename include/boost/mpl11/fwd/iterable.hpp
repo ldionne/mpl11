@@ -247,7 +247,7 @@ namespace boost { namespace mpl11 {
     template <typename N, typename It>
     using drop_t = typename drop<N, It>::type;
 
-    //! Equivalent to `drop<size_t<N>, It>`.
+    //! Equivalent to `drop<size_t<N>, It>`; requires a non-negative `N`.
     template <detail::std_size_t N, typename It>
     struct drop_c;
 
@@ -290,7 +290,7 @@ namespace boost { namespace mpl11 {
     template <typename N, typename It>
     using take_t = typename take<N, It>::type;
 
-    //! Equivalent to `take<size_t<N>, It>`.
+    //! Equivalent to `take<size_t<N>, It>`; requires a non-negative `N`.
     template <detail::std_size_t N, typename It>
     struct take_c;
 
@@ -419,6 +419,34 @@ namespace boost { namespace mpl11 {
 
     template <typename It1, typename It2, typename ...ItN>
     using zip_t = typename zip<It1, It2, ItN...>::type;
+
+
+    /*!
+     * Returns a subrange of an iterable.
+     *
+     * Specifically, `slice` returns the elements in the subrange delimited
+     * by [`Start`, `Stop`). In all cases, `Start` must be less-than or equal
+     * to `Stop`. If the iterable is finite, the slice must also be included
+     * in or equal to [`0`, `length<It>::%value`).
+     *
+     *
+     * @todo
+     * Reintroduce optimizations that were lost when using a single
+     * typeclass for iterables.
+     */
+    template <typename It, detail::std_size_t Start, detail::std_size_t Stop>
+    struct slice_c;
+
+    template <typename It, detail::std_size_t Start, detail::std_size_t Stop>
+    using slice_c_t = typename slice_c<It, Start, Stop>::type;
+
+    //! Equivalent to `slice_c<It, Start::value, Stop::value>`; requires
+    //! non-negative `Start` and `Stop`.
+    template <typename It, typename Start, typename Stop>
+    struct slice;
+
+    template <typename It, typename Start, typename Stop>
+    using slice_t = typename slice<It, Start, Stop>::type;
     //! @}
 }} // end namespace boost::mpl11
 
