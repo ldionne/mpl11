@@ -10,6 +10,8 @@
 #include <boost/mpl11/fwd/bitwise.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/enumerable.hpp>
+#include <boost/mpl11/fwd/integral.hpp>
+#include <boost/mpl11/fwd/numeric.hpp>
 #include <boost/mpl11/fwd/orderable.hpp>
 
 
@@ -22,7 +24,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Provides
-     * `Comparable`, `Orderable`, `Enumerable` and `Bitwise`.
+     * `Comparable`, `Orderable`, `Enumerable`, `Bitwise`, `Numeric` and
+     * `Integral`.
      *
      * ### Valid expressions
      * In the following table, `N` is a `StaticConstant`, and `n` is an
@@ -35,11 +38,6 @@ namespace boost { namespace mpl11 {
      * | `N::type`                         | `N`
      * | `constexpr N::value_type c = N{}` | n/a
      * | `constexpr N::value_type c = n()` | n/a
-     *
-     *
-     * @note
-     * This typeclass is only provided for consistency with the rest
-     * of the library, because it does not define any new methods.
      *
      * @{
      */
@@ -69,6 +67,16 @@ namespace boost { namespace mpl11 {
     //! Default instantiation of `Bitwise` for `StaticConstant`s.
     template <>
     struct Bitwise<static_constant_tag, static_constant_tag>
+    BOOST_MPL11_IF_DOXYGEN({ });
+
+    //! Default instantiation of `Numeric` for `StaticConstant`s.
+    template <>
+    struct Numeric<static_constant_tag, static_constant_tag>
+    BOOST_MPL11_IF_DOXYGEN({ });
+
+    //! Default instantiation of `Integral` for `StaticConstant`s.
+    template <>
+    struct Integral<static_constant_tag, static_constant_tag>
     BOOST_MPL11_IF_DOXYGEN({ });
     //! @}
 }} // end namespace boost::mpl11

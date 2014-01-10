@@ -12,6 +12,7 @@
 #include <boost/mpl11/compose.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/empty_sequence.hpp>
+#include <boost/mpl11/fwd/numeric.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
 #include <boost/mpl11/fwd/tag_of.hpp>
 #include <boost/mpl11/id.hpp>
@@ -80,9 +81,19 @@ namespace boost { namespace mpl11 {
         : false_
     { };
 
+    template <>
+    struct length_impl<join<>>
+        : size_t<0>
+    { };
+
+    template <typename S>
+    struct length_impl<join<S>>
+        : length<S>
+    { };
+
     template <typename ...Sn>
     struct length_impl<join<Sn...>>
-        : add<typename length<Sn>::type...>::type
+        : plus<typename length<Sn>::type...>::type
     { };
 
     template <typename S1, typename ...Sn, typename F>

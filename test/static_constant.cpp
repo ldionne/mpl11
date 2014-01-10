@@ -60,34 +60,48 @@ struct test_static_constant {
     static_assert(max<x<1>, y<0>>::value == x<1>::value, "");
 
 
-    // Bitwise
+    // Test with many different values
     static constexpr Y max_y = static_cast<Y>(10);
     static constexpr X max_x = static_cast<X>(10);
 
     template <typename, typename, typename Dummy = void>
-    struct bitwise_tests;
+    struct iterate_tests;
 
     template <X a, typename Dummy>
-    struct bitwise_tests<x<a>, y<max_y>, Dummy>
-        : bitwise_tests<x<a + 1>, y<0>>
+    struct iterate_tests<x<a>, y<max_y>, Dummy>
+        : iterate_tests<x<a + 1>, y<0>>
     { };
 
     template <typename Dummy>
-    struct bitwise_tests<x<max_x>, y<max_y>, Dummy> { };
+    struct iterate_tests<x<max_x>, y<max_y>, Dummy> { };
 
     template <X a, Y b, typename Dummy>
-    struct bitwise_tests<x<a>, y<b>, Dummy> : bitwise_tests<x<a>, y<b + 1>> {
+    struct iterate_tests<x<a>, y<b>, Dummy> : iterate_tests<x<a>, y<b + 1>> {
+        // Bitwise
         static_assert(bitand_<x<a>, y<b>>::value == (a & b), "");
         static_assert(bitor_<x<a>, y<b>>::value == (a | b), "");
         static_assert(bitxor<x<a>, y<b>>::value == (a ^ b), "");
         static_assert(compl_<x<a>>::value == ~a, "");
         static_assert(compl_<y<b>>::value == ~b, "");
+        static_assert(shift_left_c<x<(X)1>, 3>::value == ((X)1 << 3), "");
+        static_assert(shift_right_c<x<(X)8>, 3>::value == ((X)8 >> 3), "");
+
+        // Numeric
+        static constexpr X neg_a = -a;
+        static_assert(plus<x<a>, y<b>>::value == a + b, "");
+        static_assert(minus<x<a>, y<b>>::value == a - b, "");
+        static_assert(times<x<a>, y<b>>::value == a * b, "");
+        static_assert(negate<x<a>>::value == -a, "");
+        static_assert(negate<x<neg_a>>::value == -neg_a, "");
+        static_assert(abs<x<a>>::value == a, "");
+
+        // Integral
+        static constexpr Y nonzero_b = b == 0 ? 1 : b;
+        static_assert(quot<x<a>, y<nonzero_b>>::value == a / nonzero_b, "");
+        static_assert(rem<x<a>, y<nonzero_b>>::value == a % nonzero_b, "");
     };
 
-    static constexpr auto instantiate = sizeof(bitwise_tests<x<0>, y<0>>);
-
-    static_assert(shift_left_c<x<(X)1>, 3>::value == ((X)1 << 3), "");
-    static_assert(shift_right_c<x<(X)8>, 3>::value == ((X)8 >> 3), "");
+    static constexpr auto instantiate = sizeof(iterate_tests<x<0>, y<0>>);
 };
 
 struct tests :

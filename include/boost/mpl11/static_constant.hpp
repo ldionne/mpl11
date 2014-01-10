@@ -12,7 +12,9 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/enumerable.hpp>
+#include <boost/mpl11/integral.hpp>
 #include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/numeric.hpp>
 #include <boost/mpl11/orderable.hpp>
 
 
@@ -90,6 +92,46 @@ namespace boost { namespace mpl11 {
         template <typename X>
         using compl_impl = integral_c<
             decltype(~X::value), ~X::value
+        >;
+    };
+
+    template <>
+    struct Numeric<static_constant_tag, static_constant_tag> {
+        template <typename X, typename Y>
+        using plus_impl = integral_c<
+            decltype(X::value + Y::value), X::value + Y::value
+        >;
+
+        template <typename X, typename Y>
+        using minus_impl = integral_c<
+            decltype(X::value - Y::value), X::value - Y::value
+        >;
+
+        template <typename X, typename Y>
+        using times_impl = integral_c<
+            decltype(X::value * Y::value), X::value * Y::value
+        >;
+
+        template <typename X>
+        using negate_impl = integral_c<decltype(-X::value), -X::value>;
+
+        template <typename X>
+        using abs_impl = integral_c<
+            decltype(X::value < 0 ? -X::value : X::value),
+            (X::value < 0 ? -X::value : X::value)
+        >;
+    };
+
+    template <>
+    struct Integral<static_constant_tag, static_constant_tag> {
+        template <typename X, typename Y>
+        using quot_impl = integral_c<
+            decltype(X::value / Y::value), X::value / Y::value
+        >;
+
+        template <typename X, typename Y>
+        using rem_impl = integral_c<
+            decltype(X::value % Y::value), X::value % Y::value
         >;
     };
 }} // end namespace boost::mpl11
