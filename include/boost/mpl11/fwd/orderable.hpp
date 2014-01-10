@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Orderable`.
+ * Forward declares the @ref Orderable typeclass.
  */
 
 #ifndef BOOST_MPL11_FWD_ORDERABLE_HPP
@@ -10,13 +10,6 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename, typename> struct less_impl;
-    template <typename, typename> struct less_equal_impl;
-    template <typename, typename> struct greater_impl;
-    template <typename, typename> struct greater_equal_impl;
-    template <typename, typename> struct max_impl;
-    template <typename, typename> struct min_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Orderable Orderable
@@ -41,10 +34,6 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * `less`
      *
-     *
-     * @todo
-     * Implement multiple arguments for the methods, as documented.
-     *
      * @{
      */
     template <typename TagL, typename TagR = TagL>
@@ -61,61 +50,61 @@ namespace boost { namespace mpl11 {
      * Boolean `StaticConstant` representing whether the given objects are
      * ordered according to the `<` ordering.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(less, less_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct less;
 
-    template <typename T1, typename T2>
-    using less_t = typename less<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using less_t = typename less<T1, T2, Tn...>::type;
 
     /*!
      * Boolean `StaticConstant` representing whether the given objects are
      * ordered according to the `<=` ordering.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(less_equal, less_equal_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct less_equal;
 
-    template <typename T1, typename T2>
-    using less_equal_t = typename less_equal<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using less_equal_t = typename less_equal<T1, T2, Tn...>::type;
 
     /*!
      * Boolean `StaticConstant` representing whether the given objects are
      * ordered according to the `>` ordering.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(greater, greater_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct greater;
 
-    template <typename T1, typename T2>
-    using greater_t = typename greater<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using greater_t = typename greater<T1, T2, Tn...>::type;
 
     /*!
      * Boolean `StaticConstant` representing whether the given objects are
      * ordered according to the `>=` ordering.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(greater_equal, greater_equal_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct greater_equal;
 
-    template <typename T1, typename T2>
-    using greater_equal_t = typename greater_equal<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using greater_equal_t = typename greater_equal<T1, T2, Tn...>::type;
 
     /*!
      * Returns the smallest of its arguments according to the ordering
      * induced by `less`.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(min, min_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct min;
 
-    template <typename T1, typename T2>
-    using min_t = typename min<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using min_t = typename min<T1, T2, Tn...>::type;
 
     /*!
      * Returns the largest of its arguments according to the ordering
      * induced by `less`.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(max, max_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct max;
 
-    template <typename T1, typename T2>
-    using max_t = typename max<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using max_t = typename max<T1, T2, Tn...>::type;
     //! @}
 }} // end namespace boost::mpl11
 

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::Orderable`.
+ * Defines the @ref Orderable typeclass.
  */
 
 #ifndef BOOST_MPL11_ORDERABLE_HPP
@@ -8,8 +8,11 @@
 
 #include <boost/mpl11/fwd/orderable.hpp>
 
+#include <boost/mpl11/and.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/not.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
 
@@ -61,21 +64,83 @@ namespace boost { namespace mpl11 {
         using max_impl = detail::conditional<less<L, R>::value, R, L>;
     };
 
-    #define BOOST_MPL11_ORDERABLE_METHOD(METHOD_IMPL)                       \
-        template <typename T1, typename T2>                                 \
-        struct METHOD_IMPL                                                  \
-            : Orderable<                                                    \
-                typename tag_of<T1>::type, typename tag_of<T2>::type        \
-            >::template METHOD_IMPL<T1, T2>                                 \
-        { };                                                                \
-    /**/
-    BOOST_MPL11_ORDERABLE_METHOD(less_impl)
-    BOOST_MPL11_ORDERABLE_METHOD(less_equal_impl)
-    BOOST_MPL11_ORDERABLE_METHOD(greater_impl)
-    BOOST_MPL11_ORDERABLE_METHOD(greater_equal_impl)
-    BOOST_MPL11_ORDERABLE_METHOD(min_impl)
-    BOOST_MPL11_ORDERABLE_METHOD(max_impl)
-    #undef BOOST_MPL11_ORDERABLE_METHOD
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct less
+        : and_<less<T1, T2>, less<T2, Tn...>>
+    { };
+
+    template <typename T1, typename T2>
+    struct less<T1, T2>
+        : Orderable<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template less_impl<T1, T2>
+    { };
+
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct less_equal
+        : and_<less_equal<T1, T2>, less_equal<T2, Tn...>>
+    { };
+
+    template <typename T1, typename T2>
+    struct less_equal<T1, T2>
+        : Orderable<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template less_equal_impl<T1, T2>
+    { };
+
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct greater
+        : and_<greater<T1, T2>, greater<T2, Tn...>>
+    { };
+
+    template <typename T1, typename T2>
+    struct greater<T1, T2>
+        : Orderable<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template greater_impl<T1, T2>
+    { };
+
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct greater_equal
+        : and_<greater_equal<T1, T2>, greater_equal<T2, Tn...>>
+    { };
+
+    template <typename T1, typename T2>
+    struct greater_equal<T1, T2>
+        : Orderable<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template greater_equal_impl<T1, T2>
+    { };
+
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct min
+        : detail::strict_variadic_foldl<quote<min>, T1, T2, Tn...>
+    { };
+
+    template <typename T1, typename T2>
+    struct min<T1, T2>
+        : Orderable<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template min_impl<T1, T2>
+    { };
+
+
+    template <typename T1, typename T2, typename ...Tn>
+    struct max
+        : detail::strict_variadic_foldl<quote<max>, T1, T2, Tn...>
+    { };
+
+    template <typename T1, typename T2>
+    struct max<T1, T2>
+        : Orderable<
+            typename tag_of<T1>::type, typename tag_of<T2>::type
+        >::template max_impl<T1, T2>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ORDERABLE_HPP

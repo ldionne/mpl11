@@ -10,12 +10,6 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename T1, typename T2>
-    struct equal_impl;
-
-    template <typename T1, typename T2>
-    struct not_equal_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Comparable Comparable
@@ -40,11 +34,6 @@ namespace boost { namespace mpl11 {
      * instances of it. For convenience, equality and inequality for
      * arbitrary types is defined in terms of `std::is_same`.
      *
-     *
-     * @todo
-     * Implement multiple arguments for `equal` and `not_equal`,
-     * as documented.
-     *
      * @{
      */
     template <typename TagL, typename TagR = TagL>
@@ -59,11 +48,11 @@ namespace boost { namespace mpl11 {
 
     //! Boolean `StaticConstant` representing whether the given objects
     //! are equal.
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(equal, equal_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct equal;
 
-    template <typename T1, typename T2>
-    using equal_t = typename equal<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using equal_t = typename equal<T1, T2, Tn...>::type;
 
     /*!
      * Boolean `StaticConstant` representing whether the given objects
@@ -75,11 +64,11 @@ namespace boost { namespace mpl11 {
      * return whether `T1`, `T2`, ...`Tn` are all unequal, but whether `T1`
      * is different from `T2`, `T2` different from `T3`, and so on.
      */
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(not_equal, not_equal_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct not_equal;
 
-    template <typename T1, typename T2>
-    using not_equal_t = typename not_equal<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using not_equal_t = typename not_equal<T1, T2, Tn...>::type;
     //! @}
 }} // end namespace boost::mpl11
 

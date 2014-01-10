@@ -54,19 +54,9 @@ namespace boost { namespace mpl11 {
         : or_<typename is_empty<Sn>::type...>
     { };
 
-    //! @todo
-    //! Use `min` with multiple arguments once supported.
-    template <typename S1, typename S2>
-    struct length_impl<zip<S1, S2>>
-        : min<typename length<S1>::type, typename length<S2>::type>::type
-    { };
-
-    template <typename S1, typename S2, typename ...Sn>
-    struct length_impl<zip<S1, S2, Sn...>>
-        : min<
-            typename length<S1>::type,
-            typename length<zip<S2, Sn...>>::type
-        >::type
+    template <typename ...Sn>
+    struct length_impl<zip<Sn...>>
+        : min<typename length<Sn>::type...>::type
     { };
 
     //! @todo

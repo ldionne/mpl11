@@ -80,22 +80,9 @@ namespace boost { namespace mpl11 {
         : false_
     { };
 
-    namespace join_detail {
-        template <typename X, typename Y>
-        using add = integral_c<
-            decltype(X::value + Y::value),
-            X::value + Y::value
-        >;
-    }
-
-    //! @todo Use the variadic `add` here when ready.
     template <typename ...Sn>
     struct length_impl<join<Sn...>>
-        : foldl<
-            quote<join_detail::add>,
-            size_t<0>,
-            list<typename length<Sn>::type...>
-        >::type
+        : add<typename length<Sn>::type...>::type
     { };
 
     template <typename S1, typename ...Sn, typename F>

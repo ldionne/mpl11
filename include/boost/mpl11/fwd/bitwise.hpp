@@ -11,13 +11,6 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename, typename>           struct bitand_impl;
-    template <typename, typename>           struct bitor_impl;
-    template <typename, typename>           struct bitxor_impl;
-    template <typename, detail::std_size_t> struct shift_left_c_impl;
-    template <typename, detail::std_size_t> struct shift_right_c_impl;
-    template <typename>                     struct compl_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Bitwise Bitwise
@@ -46,42 +39,38 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * All of the above, except `shift_left` and `shift_right`.
      *
-     *
-     * @todo
-     * Implement multiple arguments as documented.
-     *
      * @{
      */
     template <typename TagL, typename TagR = TagL>
     struct Bitwise;
 
     //! Returns the bitwise `and` of the given objects (`T1 & T2 & ...Tn`).
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(bitand_, bitand_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitand_;
 
-    template <typename T1, typename T2>
-    using bitand_t = typename bitand_<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using bitand_t = typename bitand_<T1, T2, Tn...>::type;
 
 
     //! Returns the bitwise `or` of the given objects (`T1 | T2 | ...Tn`).
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(bitor_, bitor_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitor_;
 
-    template <typename T1, typename T2>
-    using bitor_t = typename bitor_<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using bitor_t = typename bitor_<T1, T2, Tn...>::type;
 
 
     //! Returns the bitwise `xor` of the given objects (`T1 ^ T2 ^ ...Tn`).
-    template <typename T1, typename T2>
-    BOOST_MPL11_DOXYGEN_ALIAS(bitxor, bitxor_impl<T1, T2>);
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitxor;
 
-    template <typename T1, typename T2>
-    using bitxor_t = typename bitxor<T1, T2>::type;
+    template <typename T1, typename T2, typename ...Tn>
+    using bitxor_t = typename bitxor<T1, T2, Tn...>::type;
 
 
     //! Returns the result of bitwise right shift (`>>`) on the given object.
     template <typename T, detail::std_size_t Shift>
-    BOOST_MPL11_DOXYGEN_ALIAS(shift_right_c, shift_right_c_impl<T, Shift>);
+    struct shift_right_c;
 
     template <typename T, detail::std_size_t Shift>
     using shift_right_c_t = typename shift_right_c<T, Shift>::type;
@@ -98,7 +87,7 @@ namespace boost { namespace mpl11 {
 
     //! Returns the result of bitwise left shift (`<<`) on the given object.
     template <typename T, detail::std_size_t Shift>
-    BOOST_MPL11_DOXYGEN_ALIAS(shift_left_c, shift_left_c_impl<T, Shift>);
+    struct shift_left_c;
 
     template <typename T, detail::std_size_t Shift>
     using shift_left_c_t = typename shift_left_c<T, Shift>::type;
@@ -115,7 +104,7 @@ namespace boost { namespace mpl11 {
 
     //! Returns the bitwise complement of the given object (`~T`).
     template <typename T>
-    BOOST_MPL11_DOXYGEN_ALIAS(compl_, compl_impl<T>);
+    struct compl_;
 
     template <typename T>
     using compl_t = typename compl_<T>::type;

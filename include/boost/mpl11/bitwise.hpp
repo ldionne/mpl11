@@ -9,6 +9,8 @@
 #include <boost/mpl11/fwd/bitwise.hpp>
 
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/detail/strict_variadic_foldl.hpp>
+#include <boost/mpl11/quote.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
 
@@ -29,50 +31,55 @@ namespace boost { namespace mpl11 {
 #endif
     };
 
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitand_
+        : detail::strict_variadic_foldl<quote<bitand_>, T1, T2, Tn...>
+    { };
+
     template <typename T1, typename T2>
-    struct bitand_impl
+    struct bitand_<T1, T2>
         : Bitwise<
             typename tag_of<T1>::type, typename tag_of<T2>::type
         >::template bitand_impl<T1, T2>
     { };
 
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitor_
+        : detail::strict_variadic_foldl<quote<bitor_>, T1, T2, Tn...>
+    { };
+
     template <typename T1, typename T2>
-    struct bitor_impl
+    struct bitor_<T1, T2>
         : Bitwise<
             typename tag_of<T1>::type, typename tag_of<T2>::type
         >::template bitor_impl<T1, T2>
     { };
 
+    template <typename T1, typename T2, typename ...Tn>
+    struct bitxor
+        : detail::strict_variadic_foldl<quote<bitxor>, T1, T2, Tn...>
+    { };
+
     template <typename T1, typename T2>
-    struct bitxor_impl
+    struct bitxor<T1, T2>
         : Bitwise<
             typename tag_of<T1>::type, typename tag_of<T2>::type
         >::template bitxor_impl<T1, T2>
     { };
 
     template <typename T>
-    struct compl_impl
+    struct compl_
         : Bitwise<typename tag_of<T>::type>::template compl_impl<T>
     { };
 
-    template <typename T, typename Shift>
-    struct shift_left_impl
-        : shift_left_c<T, Shift::value>
-    { };
-
-    template <typename T, typename Shift>
-    struct shift_right_impl
-        : shift_right_c<T, Shift::value>
-    { };
-
     template <typename T, detail::std_size_t Shift>
-    struct shift_left_c_impl
+    struct shift_left_c
         : Bitwise<typename tag_of<T>::type>::
           template shift_left_c_impl<T, Shift>
     { };
 
     template <typename T, detail::std_size_t Shift>
-    struct shift_right_c_impl
+    struct shift_right_c
         : Bitwise<typename tag_of<T>::type>::
           template shift_right_c_impl<T, Shift>
     { };
