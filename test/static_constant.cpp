@@ -69,14 +69,16 @@ struct test_static_constant {
 
     template <X a, typename Dummy>
     struct iterate_tests<x<a>, y<max_y>, Dummy>
-        : iterate_tests<x<a + 1>, y<0>>
+        : iterate_tests<x<(X)(a+1)>, y<0>>
     { };
 
     template <typename Dummy>
     struct iterate_tests<x<max_x>, y<max_y>, Dummy> { };
 
     template <X a, Y b, typename Dummy>
-    struct iterate_tests<x<a>, y<b>, Dummy> : iterate_tests<x<a>, y<b + 1>> {
+    struct iterate_tests<x<a>, y<b>, Dummy>
+        : iterate_tests<x<a>, y<(Y)(b+1)>>
+    {
         // Bitwise
         static_assert(bitand_<x<a>, y<b>>::value == (a & b), "");
         static_assert(bitor_<x<a>, y<b>>::value == (a | b), "");
@@ -93,7 +95,10 @@ struct test_static_constant {
         static_assert(times<x<a>, y<b>>::value == a * b, "");
         static_assert(negate<x<a>>::value == -a, "");
         static_assert(negate<x<neg_a>>::value == -neg_a, "");
-        static_assert(abs<x<a>>::value == a, "");
+        static_assert(abs<x<a>>::value == (a < 0 ? -a : a), "");
+        static_assert(sign<x<a>>::value == (a <  0 ? -1 :
+                                            a == 0 ?  0 :
+                                            a >  0 ?  1 : throw), "");
 
         // Integral
         static constexpr Y nonzero_b = b == 0 ? 1 : b;
@@ -101,7 +106,7 @@ struct test_static_constant {
         static_assert(rem<x<a>, y<nonzero_b>>::value == a % nonzero_b, "");
     };
 
-    static constexpr auto instantiate = sizeof(iterate_tests<x<0>, y<0>>);
+    static constexpr auto instantiate = sizeof(iterate_tests<x<(X)-3>, y<0>>);
 };
 
 struct tests :

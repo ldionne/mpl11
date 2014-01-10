@@ -120,6 +120,11 @@ namespace boost { namespace mpl11 {
             decltype(X::value < 0 ? -X::value : X::value),
             (X::value < 0 ? -X::value : X::value)
         >;
+
+        template <typename X>
+        using sign_impl = int_<
+            (X::value < 0) ? -1 : (X::value > 0)
+        >;
     };
 
     template <>
