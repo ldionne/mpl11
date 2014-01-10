@@ -9,9 +9,9 @@
 #include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/detail/box.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
-#include <boost/mpl11/fwd/tag_of.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/iterable/iterable.hpp>
@@ -20,57 +20,81 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename S, typename X>
-    struct snoc {
-        using type = typename detail::conditional<
-            is_empty<S>::value, list<X>, snoc
-        >::type;
-    };
+    namespace detail { struct snoc_tag; }
 
-    template <typename S, typename X>
-    struct tag_of<snoc<S, X>> { using type = iterable_tag; };
+    template <typename Init, typename Last>
+    struct snoc
+        : if_<is_empty<Init>,
+            list<Last>
 
-    template <typename S, typename X>
-    struct sequence_traits<snoc<S, X>> : sequence_traits<S> { };
+        , else_<
+            detail::box<snoc<Init, Last>>
+        >>
+    { using mpl_tag = detail::snoc_tag; };
 
-    template <typename S, typename X>
-    struct head_impl<snoc<S, X>> {
-        using type = typename head<S>::type;
-    };
-
-    template <typename S, typename X>
-    struct tail_impl<snoc<S, X>> {
-        using type = typename snoc<
-            typename tail<S>::type, X
-        >::type;
-    };
-
-    template <typename S, typename X>
-    struct is_empty_impl<snoc<S, X>>
-        : false_
+    template <typename Tag>
+    struct Comparable<detail::snoc_tag, Tag>
+        : Comparable<iterable_tag, Tag>
     { };
 
-    template <typename S, typename X>
-    struct length_impl<snoc<S, X>>
-        : size_t<length<S>::value + 1>
+    template <typename Tag>
+    struct Orderable<detail::snoc_tag, Tag>
+        : Orderable<iterable_tag, Tag>
     { };
 
-    template <typename S, typename X, typename F>
-    struct unpack_impl<snoc<S, X>, F> {
-        using type = typename apply<
-            typename unpack<S, partial<into<partial>, F>>::type, X
-        >::type;
+    template <>
+    struct Functor<detail::snoc_tag>
+        : Functor<iterable_tag>
+    { };
+
+    template <>
+    struct Foldable<detail::snoc_tag>
+        : Foldable<iterable_tag>
+    { };
+
+    template <>
+    struct Iterable<detail::snoc_tag> : Iterable<iterable_tag> {
+        template <typename>            struct head_impl;
+        template <typename>            struct tail_impl;
+        template <typename>            struct length_impl;
+        template <typename>            struct last_impl;
+        template <typename>            struct init_impl;
+        template <typename, typename > struct unpack_impl;
+
+        template <typename Init, typename Last>
+        struct head_impl<snoc<Init, Last>>
+            : head<Init>
+        { };
+
+        template <typename Init, typename Last>
+        struct tail_impl<snoc<Init, Last>>
+            : snoc<tail<Init>, Last>
+        { };
+
+        template <typename>
+        using is_empty_impl = false_;
+
+        template <typename Init, typename Last>
+        struct length_impl<snoc<Init, Last>>
+            : size_t<length<Init>::value + 1>
+        { };
+
+        template <typename Init, typename Last, typename F>
+        struct unpack_impl<snoc<Init, Last>, F>
+            : apply<unpack<Init, partial<into<partial>, F>>, Last>
+        { };
+
+        template <typename Init, typename Last>
+        struct init_impl<snoc<Init, Last>> : Init { };
+
+        template <typename Init, typename Last>
+        struct last_impl<snoc<Init, Last>> : Last { };
     };
 
-    template <typename S, typename X>
-    struct init_impl<snoc<S, X>> {
-        using type = S;
-    };
-
-    template <typename S, typename X>
-    struct last_impl<snoc<S, X>> {
-        using type = X;
-    };
+    template <typename Init, typename Last>
+    struct sequence_traits<snoc<Init, Last>>
+        : sequence_traits<typename Init::type>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ITERABLE_SNOC_HPP

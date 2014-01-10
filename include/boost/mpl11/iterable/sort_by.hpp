@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/compose.hpp>
+#include <boost/mpl11/if.hpp>
 #include <boost/mpl11/iterable/cons.hpp>
 #include <boost/mpl11/iterable/filter.hpp>
 #include <boost/mpl11/iterable/join.hpp>
@@ -20,46 +21,29 @@
 
 namespace boost { namespace mpl11 {
     namespace sort_by_detail {
-        template <typename S>
-        struct is_unary
-            : is_empty<typename tail<S>::type>
-        { };
-
-        template <bool MustBeSorted> struct sort_by_impl;
-
-        template <>
-        struct sort_by_impl<false> {
-            template <typename Pred, typename Seq>
-            using result = Seq;
-        };
-
-        template <>
-        struct sort_by_impl<true> {
-            template <
-                typename Pred,
-                typename Seq,
-                typename Pivot = head_t<Seq>,
-                typename Rest = tail_t<Seq>,
-                typename IsGreater = partial<Pred, Pivot>,
-                typename IsSmallerEq = compose<quote<not_>, IsGreater>,
-                typename SmallerEq = filter_t<IsSmallerEq, Rest>,
-                typename Greater = filter_t<IsGreater, Rest>
-            >
-            using result = typename join<
-                typename sort_by<Pred, SmallerEq>::type,
-                typename cons<Pivot,
-                    typename sort_by<Pred, Greater>::type
-                >::type
-            >::type;
-        };
+        template <
+            typename Pred,
+            typename Iter,
+            typename Pivot = head<Iter>,
+            typename Rest = tail<Iter>,
+            typename IsGreater = partial<Pred, Pivot>,
+            typename IsSmallerEq = compose<quote<not_>, IsGreater>,
+            typename SmallerEq = filter<IsSmallerEq, Rest>,
+            typename Greater = filter<IsGreater, Rest>
+        >
+        using sort_by_impl = join<
+            sort_by<Pred, SmallerEq>,
+            cons<Pivot, sort_by<Pred, Greater>>
+        >;
     } // end namespace sort_by_detail
 
-    template <typename Pred, typename Seq>
-    struct sort_by {
-        using type = typename sort_by_detail::sort_by_impl<
-            !or_<is_empty<Seq>, sort_by_detail::is_unary<Seq>>::value
-        >::template result<Pred, Seq>;
-    };
+    template <typename Pred, typename Iter>
+    struct sort_by
+        : if_<or_<is_empty<Iter>, is_empty<tail<Iter>>>,
+            Iter,
+            sort_by_detail::sort_by_impl<Pred, Iter>
+        >
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ITERABLE_SORT_BY_HPP

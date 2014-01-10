@@ -14,7 +14,7 @@ using detail::is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct mpl_tag; };
+struct archetype { struct type { struct mpl_tag; }; };
 struct plus_tag;
 struct minus_tag;
 struct times_tag;
@@ -24,7 +24,7 @@ struct sign_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Numeric<archetype::mpl_tag, archetype::mpl_tag> {
+    struct Numeric<archetype::type::mpl_tag, archetype::type::mpl_tag> {
         template <typename, typename>
         struct plus_impl { using type = plus_tag; };
 

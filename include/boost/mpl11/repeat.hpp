@@ -8,49 +8,36 @@
 
 #include <boost/mpl11/fwd/repeat.hpp>
 
-#include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/iterable/iterable.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
+#include <boost/mpl11/fwd/sequence_traits.hpp>
+#include <boost/mpl11/iterable/cons.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename T>
-    struct tag_of<repeat<T>> { using type = iterable_tag; };
-
-    /////////////////////////////////
-    // Minimal complete definition
-    /////////////////////////////////
-    template <typename T>
-    struct head_impl<repeat<T>> {
-        using type = T;
-    };
-
-    template <typename T>
-    struct tail_impl<repeat<T>> {
-        using type = repeat<T>;
-    };
-
-    template <typename T>
-    struct is_empty_impl<repeat<T>>
-        : false_
+    struct repeat
+        : cons<T, repeat<T>>
     { };
 
-    /////////////////////////////////
-    // Optimizations
-    /////////////////////////////////
+    //! @todo
+    //! This is a workaround. This may break if `cons` changes.
     template <typename T>
-    struct last_impl<repeat<T>> {
-        using type = T;
+    struct sequence_traits<cons<T, repeat<T>>> {
+        static constexpr bool has_O1_length = false;
+        static constexpr bool has_O1_unpack = false;
+        static constexpr bool is_finite = false;
     };
 
-    template <typename T>
-    struct init_impl<repeat<T>> {
-        using type = repeat<T>;
-    };
+    namespace rules {
+        template <typename T, typename Index>
+        struct at_impl<repeat<T>, Index> : T { };
 
-    template <typename T, detail::std_size_t Index>
-    struct at_c_impl<repeat<T>, Index> {
-        using type = T;
-    };
+        template <typename T>
+        struct last_impl<repeat<T>> : T { };
+
+        template <typename T>
+        struct init_impl<repeat<T>> : repeat<T> { };
+    }
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_REPEAT_HPP

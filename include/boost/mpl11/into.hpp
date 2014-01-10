@@ -12,6 +12,8 @@
 namespace boost { namespace mpl11 {
     template <template <typename ...> class Template>
     struct into {
+        using type = into;
+
         template <typename ...T>
         struct apply {
             using type = Template<T...>;

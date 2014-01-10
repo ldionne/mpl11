@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 {
     struct iterate;
 
     template <typename F, typename X>
-    using iterate_t = iterate<F, X>;
+    using iterate_t = typename iterate<F, X>::type;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_ITERATE_HPP

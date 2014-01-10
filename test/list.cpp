@@ -5,14 +5,18 @@
 
 #include <boost/mpl11/list.hpp>
 
+#include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/iterable_test.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 using namespace boost::mpl11;
 using detail::is_same;
 
-struct x; struct y; struct z;
+struct x { struct type; };
+struct y { struct type; };
+struct z { struct type; };
 
 template <typename ...T>
 struct list_of
@@ -31,14 +35,14 @@ struct tests :
 // `list` in its implementation.
 
 // head
-static_assert(is_same<head_t<list<x>>, x>::value, "");
-static_assert(is_same<head_t<list<x, y>>, x>::value, "");
-static_assert(is_same<head_t<list<x, y, z>>, x>::value, "");
+static_assert(is_same<head_t<list<x>>, x::type>::value, "");
+static_assert(is_same<head_t<list<x, y>>, x::type>::value, "");
+static_assert(is_same<head_t<list<x, y, z>>, x::type>::value, "");
 
 // tail
-static_assert(is_same<tail_t<list<x>>, list<>>::value, "");
-static_assert(is_same<tail_t<list<x, y>>, list<y>>::value, "");
-static_assert(is_same<tail_t<list<x, y, z>>, list<y, z>>::value, "");
+static_assert(is_same<tail_t<list<x>>, list<>::type>::value, "");
+static_assert(is_same<tail_t<list<x, y>>, list<y>::type>::value, "");
+static_assert(is_same<tail_t<list<x, y, z>>, list<y, z>::type>::value, "");
 
 // is_empty
 static_assert( is_empty<list<>>::value, "");
@@ -55,12 +59,12 @@ static_assert(length<list<x, y, z>>::value == 3, "");
 // unpack
 template <int ...i>
 struct test_unpack_impl {
-    struct f { template <typename ...> struct apply { struct type; }; };
+    template <typename ...> struct f_ { struct type; }; using f = quote<f_>;
     template <int> struct v;
 
     static_assert(is_same<
         unpack_t<list<v<i>...>, f>,
-        typename f::template apply<v<i>...>::type
+        apply_t<f, v<i>...>
     >::value, "");
 };
 struct test_unpack :
@@ -72,14 +76,18 @@ struct test_unpack :
 { };
 
 // last
-static_assert(is_same<last_t<list<x>>, x>::value, "");
-static_assert(is_same<last_t<list<x, y>>, y>::value, "");
-static_assert(is_same<last_t<list<x, y, z>>, z>::value, "");
+static_assert(is_same<last_t<list<x>>, x::type>::value, "");
+static_assert(is_same<last_t<list<x, y>>, y::type>::value, "");
+static_assert(is_same<last_t<list<x, y, z>>, z::type>::value, "");
 
 // at
 template <unsigned long Index, typename ...T> struct at_index {
-    template <typename X> struct is
-    { static_assert(is_same<at_c_t<list<T...>, Index>, X>::value, ""); };
+    template <typename X> struct is {
+        static_assert(is_same<
+            at_c_t<list<T...>, Index>,
+            typename X::type
+        >::value, "");
+    };
 };
 struct test_at :
     at_index<0, x>::is<x>,

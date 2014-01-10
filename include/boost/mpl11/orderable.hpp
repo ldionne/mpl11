@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/orderable.hpp>
 
 #include <boost/mpl11/and.hpp>
+#include <boost/mpl11/detail/box.hpp>
 #include <boost/mpl11/detail/conditional.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/not.hpp>
@@ -49,19 +50,23 @@ namespace boost { namespace mpl11 {
     template <>
     struct Orderable<orderable_tag, orderable_tag> {
         template <typename L, typename R>
-        using less_equal_impl = not_<less<R, L>>;
+        using less_equal_impl = not_<less<detail::box<R>, detail::box<L>>>;
 
         template <typename L, typename R>
-        using greater_impl = less<R, L>;
+        using greater_impl = less<detail::box<R>, detail::box<L>>;
 
         template <typename L, typename R>
-        using greater_equal_impl = not_<less<L, R>>;
+        using greater_equal_impl = not_<less<detail::box<L>, detail::box<R>>>;
 
         template <typename L, typename R>
-        using min_impl = detail::conditional<less<L, R>::value, L, R>;
+        using min_impl = detail::conditional<
+            less<detail::box<L>, detail::box<R>>::value, L, R
+        >;
 
         template <typename L, typename R>
-        using max_impl = detail::conditional<less<L, R>::value, R, L>;
+        using max_impl = detail::conditional<
+            less<detail::box<L>, detail::box<R>>::value, R, L
+        >;
     };
 
 
@@ -73,8 +78,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct less<T1, T2>
         : Orderable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template less_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template less_impl<typename T1::type, typename T2::type>
     { };
 
 
@@ -86,8 +92,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct less_equal<T1, T2>
         : Orderable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template less_equal_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template less_equal_impl<typename T1::type, typename T2::type>
     { };
 
 
@@ -99,8 +106,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct greater<T1, T2>
         : Orderable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template greater_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template greater_impl<typename T1::type, typename T2::type>
     { };
 
 
@@ -112,8 +120,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct greater_equal<T1, T2>
         : Orderable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template greater_equal_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template greater_equal_impl<typename T1::type, typename T2::type>
     { };
 
 
@@ -125,8 +134,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct min<T1, T2>
         : Orderable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template min_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template min_impl<typename T1::type, typename T2::type>
     { };
 
 
@@ -138,8 +148,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct max<T1, T2>
         : Orderable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template max_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template max_impl<typename T1::type, typename T2::type>
     { };
 }} // end namespace boost::mpl11
 

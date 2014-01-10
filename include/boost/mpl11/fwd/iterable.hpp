@@ -11,18 +11,53 @@
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/foldable.hpp>
 #include <boost/mpl11/fwd/functor.hpp>
+#include <boost/mpl11/fwd/integral_c.hpp>
 #include <boost/mpl11/fwd/orderable.hpp>
+
+// For drop_until and take_until
+#include <boost/mpl11/fwd/compose.hpp>
+#include <boost/mpl11/fwd/not.hpp>
+#include <boost/mpl11/fwd/quote.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename>                     struct head_impl;
-    template <typename>                     struct last_impl;
-    template <typename>                     struct tail_impl;
-    template <typename>                     struct init_impl;
-    template <typename>                     struct is_empty_impl;
-    template <typename>                     struct length_impl;
-    template <typename, typename>           struct unpack_impl;
-    template <typename, detail::std_size_t> struct at_c_impl;
+    namespace rules {
+        template <typename, typename = true_>
+        struct head_impl;
+
+        template <typename, typename = true_>
+        struct last_impl;
+
+        template <typename, typename = true_>
+        struct tail_impl;
+
+        template <typename, typename = true_>
+        struct init_impl;
+
+        template <typename, typename = true_>
+        struct is_empty_impl;
+
+        template <typename, typename = true_>
+        struct length_impl;
+
+        template <typename, typename, typename = true_>
+        struct unpack_impl;
+
+        template <typename, typename, typename = true_>
+        struct at_impl;
+
+        template <typename, typename, typename = true_>
+        struct drop_impl;
+
+        template <typename, typename, typename = true_>
+        struct filter_impl;
+
+        template <typename, typename = true_>
+        struct reverse_impl;
+
+        template <typename, typename, typename = true_>
+        struct take_impl;
+    } // end namespace rules
 
     /*!
      * @ingroup typeclasses
@@ -35,8 +70,8 @@ namespace boost { namespace mpl11 {
      * `head`, `tail`, `is_empty`, `last`, `init`, `at_c`, `at`,
      * `length` and `unpack`.
      *
-     * `at` is only a wrapper over `at_c`. It is provided for convenience but
-     * it is not implemented inside the typeclass.
+     * `at_c` is only a wrapper over `at`. It is provided for convenience
+     * but it is not implemented inside the typeclass.
      *
      * ### Minimal complete definition
      * `head`, `tail` and `is_empty`.
@@ -54,6 +89,9 @@ namespace boost { namespace mpl11 {
      * well-defined. The well-definedness of some other methods such as
      * `init` and `last` depends on the particular iterable.
      *
+     * @todo
+     * Support lazy sequence traits.
+     *
      * @{
      */
     template <typename Tag>
@@ -68,16 +106,25 @@ namespace boost { namespace mpl11 {
 
 #if !defined(BOOST_MPL11_ENABLE_ASSERTIONS)
 
-    template <typename I>                       using head = head_impl<I>;
-    template <typename I>                       using last = last_impl<I>;
-    template <typename I>                       using tail = tail_impl<I>;
-    template <typename I>                       using init = init_impl<I>;
-    template <typename I, detail::std_size_t N> using at_c = at_c_impl<I, N>;
+    template <typename Iter>
+    using head = rules::head_impl<Iter>;
+
+    template <typename Iter>
+    using last = rules::last_impl<Iter>;
+
+    template <typename Iter>
+    using tail = rules::tail_impl<Iter>;
+
+    template <typename Iter>
+    using init = rules::init_impl<Iter>;
+
+    template <typename Iter, typename Index>
+    using at = rules::at_impl<Iter, Index>;
 
 #else
 
     //! Returns the first element of a non-empty iterable.
-    template <typename I>
+    template <typename Iter>
     struct head;
 
     /*!
@@ -86,11 +133,11 @@ namespace boost { namespace mpl11 {
      * Specifically, returns an iterable containing all the elements of the
      * original iterable except the first one.
      */
-    template <typename I>
+    template <typename Iter>
     struct tail;
 
     //! Returns the last element of a non-empty iterable.
-    template <typename I>
+    template <typename Iter>
     struct last;
 
     /*!
@@ -99,66 +146,65 @@ namespace boost { namespace mpl11 {
      * Specifically, returns an iterable containing all the elements of the
      * original iterable except the last one.
      */
-    template <typename I>
+    template <typename Iter>
     struct init;
 
     //! Returns the element of an iterable at the given index.
-    template <typename I, detail::std_size_t Index>
-    struct at_c;
+    template <typename Iter, typename Index>
+    struct at;
 
 #endif
 
     //! Boolean `StaticConstant` representing whether the iterable is empty.
-    template <typename I>
-    BOOST_MPL11_DOXYGEN_ALIAS(is_empty, is_empty_impl<I>);
+    template <typename Iter>
+    BOOST_MPL11_DOXYGEN_ALIAS(is_empty, rules::is_empty_impl<Iter>);
 
-    //! Equivalent to `at_c<S, Index::value>`;
-    //! requires a non-negative `Index`.
-    template <typename I, typename Index>
-    struct at;
+    //! Equivalent to `at_c<Iter, size_t<Index>>`.
+    template <typename Iter, detail::std_size_t Index>
+    BOOST_MPL11_DOXYGEN_ALIAS(at_c, at<Iter, size_t<Index>>);
 
     //! `StaticConstant` of unsigned type representing the number of
     //! elements in a finite iterable.
-    template <typename I>
-    BOOST_MPL11_DOXYGEN_ALIAS(length, length_impl<I>);
+    template <typename Iter>
+    BOOST_MPL11_DOXYGEN_ALIAS(length, rules::length_impl<Iter>);
 
     /*!
      * Invokes a metafunction class with the contents of a finite iterable.
      *
-     * Specifically, `unpack<I, F>` is a nullary metafunction equivalent
+     * Specifically, `unpack<Iter, F>` is a nullary metafunction equivalent
      * to `apply<F, a0, ..., an>`, where `a0`, ...,`an` are the elements
      * in the iterable.
      */
-    template <typename I, typename F>
-    BOOST_MPL11_DOXYGEN_ALIAS(unpack, unpack_impl<I, F>);
+    template <typename Iter, typename F>
+    BOOST_MPL11_DOXYGEN_ALIAS(unpack, rules::unpack_impl<Iter, F>);
 
 
-    template <typename I>
-    using head_t = typename head<I>::type;
+    template <typename Iter>
+    using head_t = typename head<Iter>::type;
 
-    template <typename I>
-    using tail_t = typename tail<I>::type;
+    template <typename Iter>
+    using tail_t = typename tail<Iter>::type;
 
-    template <typename I>
-    using is_empty_t = typename is_empty<I>::type;
+    template <typename Iter>
+    using is_empty_t = typename is_empty<Iter>::type;
 
-    template <typename I>
-    using last_t = typename last<I>::type;
+    template <typename Iter>
+    using last_t = typename last<Iter>::type;
 
-    template <typename I>
-    using init_t = typename init<I>::type;
+    template <typename Iter>
+    using init_t = typename init<Iter>::type;
 
-    template <typename I, detail::std_size_t Index>
-    using at_c_t = typename at_c<I, Index>::type;
+    template <typename Iter, detail::std_size_t Index>
+    using at_c_t = typename at_c<Iter, Index>::type;
 
-    template <typename I, typename Index>
-    using at_t = typename at<I, Index>::type;
+    template <typename Iter, typename Index>
+    using at_t = typename at<Iter, Index>::type;
 
-    template <typename I>
-    using length_t = typename length<I>::type;
+    template <typename Iter>
+    using length_t = typename length<Iter>::type;
 
-    template <typename I, typename F>
-    using unpack_t = typename unpack<I, F>::type;
+    template <typename Iter, typename F>
+    using unpack_t = typename unpack<Iter, F>::type;
 
     //! Defines the default operations for iterables.
     template <>
@@ -187,7 +233,7 @@ namespace boost { namespace mpl11 {
      * Default instantiation of the `Foldable` typeclass for iterables.
      *
      *
-     * ### `foldl<F, State, It>`
+     * ### `foldl<F, State, Iter>`
      * Reduces an iterable using a binary operation, from left to right.
      *
      * Specifically, returns the result of the successive application of the
@@ -195,22 +241,22 @@ namespace boost { namespace mpl11 {
      * `State` for the first application) and every element of the iterable
      * in order.
      *
-     * Visually, with `It = x1, x2, ..., xn`:
+     * Visually, with `Iter = x1, x2, ..., xn`:
      *
-            foldl(F, State, It) == F(...F(F(State, x1), x2)..., xn)
+            foldl(F, State, Iter) == F(...F(F(State, x1), x2)..., xn)
      *
      *
      *
-     * ### `foldr<F, State, It>`
+     * ### `foldr<F, State, Iter>`
      * Reduces an iterable using a binary operator, from right to left.
      *
      * Specifically, returns the result of the successive application of the
      * binary operation `F` to every element of the iterable and the result
      * of the next `F` invocation (or `State` for the last application).
      *
-     * Visually, with `It = x1, x2, ..., xn`:
+     * Visually, with `Iter = x1, x2, ..., xn`:
      *
-            foldr(F, State, It) == F(x1, F(x2, ...F(xn, State)...))
+            foldr(F, State, Iter) == F(x1, F(x2, ...F(xn, State)...))
      *
      *
      * @note
@@ -226,11 +272,19 @@ namespace boost { namespace mpl11 {
     /*!
      * Default instantiation of the `Functor` typeclass for iterables.
      *
-     * ### `fmap<F, It>`
+     * ### `fmap<F, Iter>`
      * Returns the result of applying `F` to each element of the iterable.
      */
     template <>
     struct Functor<iterable_tag> BOOST_MPL11_IF_DOXYGEN({ });
+
+
+    //! Returns an iterable with an element prepended to it.
+    template <typename Head, typename Tail>
+    struct cons;
+
+    template <typename Head, typename Tail>
+    using cons_t = typename cons<Head, Tail>::type;
 
 
     /*!
@@ -240,19 +294,28 @@ namespace boost { namespace mpl11 {
      * `N` must be a non-negative `StaticConstant` representing the number of
      * elements to be dropped from the underlying iterable. If `N` is greater
      * than the length of the iterable, the returned iterable is empty.
+     *
+     *
+     * @todo
+     * Try optimizing the recursion in the implementation.
      */
-    template <typename N, typename It>
+#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
+    template <typename N, typename Iter>
     struct drop;
+#else
+    template <typename N, typename Iter>
+    using drop = rules::drop_impl<N, Iter>;
+#endif
 
-    template <typename N, typename It>
-    using drop_t = typename drop<N, It>::type;
+    template <typename N, typename Iter>
+    using drop_t = typename drop<N, Iter>::type;
 
-    //! Equivalent to `drop<size_t<N>, It>`; requires a non-negative `N`.
-    template <detail::std_size_t N, typename It>
-    struct drop_c;
+    //! Equivalent to `drop<size_t<N>, Iter>`; provided for convenience.
+    template <detail::std_size_t N, typename Iter>
+    using drop_c = drop<size_t<N>, Iter>;
 
-    template <detail::std_size_t N, typename It>
-    using drop_c_t = typename drop_c<N, It>::type;
+    template <detail::std_size_t N, typename Iter>
+    using drop_c_t = typename drop<size_t<N>, Iter>::type;
 
 
     /*!
@@ -267,54 +330,21 @@ namespace boost { namespace mpl11 {
      *
      *
      * @todo
-     * Use a less naive `consume` implementation.
+     * Try optimizing the recursion in the implementation.
      */
-    template <typename Predicate, typename It>
+    template <typename Predicate, typename Iter>
     struct drop_while;
 
-    template <typename Predicate, typename It>
-    using drop_while_t = typename drop_while<Predicate, It>::type;
+    template <typename Predicate, typename Iter>
+    using drop_while_t = typename drop_while<Predicate, Iter>::type;
 
 
-    /*!
-     * Returns an iterable containing the first `N` elements of
-     * another iterable.
-     *
-     * `N` must be a non-negative `StaticConstant` representing the number of
-     * elements to keep in the underlying iterable. If `N` is greater than
-     * the length of the iterable, all of its elements are kept.
-     */
-    template <typename N, typename It>
-    struct take;
+    //! Equivalent to `drop_while` with a negated `Predicate`.
+    template <typename Predicate, typename Iter>
+    using drop_until = drop_while<compose<quote<not_>, Predicate>, Iter>;
 
-    template <typename N, typename It>
-    using take_t = typename take<N, It>::type;
-
-    //! Equivalent to `take<size_t<N>, It>`; requires a non-negative `N`.
-    template <detail::std_size_t N, typename It>
-    struct take_c;
-
-    template <detail::std_size_t N, typename It>
-    using take_c_t = typename take_c<N, It>::type;
-
-
-    /*!
-     * Returns the longest prefix of an iterable in which all elements
-     * satisfy the `Predicate`.
-     */
-    template <typename Predicate, typename It>
-    struct take_while;
-
-    template <typename Predicate, typename It>
-    using take_while_t = take_while<Predicate, It>;
-
-
-    //! Returns an iterable with an element prepended to it.
-    template <typename Head, typename Tail>
-    struct cons;
-
-    template <typename Head, typename Tail>
-    using cons_t = typename cons<Head, Tail>::type;
+    template <typename Predicate, typename Iter>
+    using drop_until_t = typename drop_until<Predicate, Iter>::type;
 
 
     /*!
@@ -328,53 +358,76 @@ namespace boost { namespace mpl11 {
      * be rare anyways, the returned iterable is trait-wise infinite whenever
      * the underlying iterable is infinite.
      */
-    template <typename Predicate, typename It>
-    struct filter;
+    template <typename Predicate, typename Iter>
+    using filter = rules::filter_impl<Predicate, Iter>;
 
-    template <typename Predicate, typename It>
-    using filter_t = typename filter<Predicate, It>::type;
+    template <typename Predicate, typename Iter>
+    using filter_t = typename filter<Predicate, Iter>::type;
 
 
     /*!
-     * Concatenate several iterable.
+     * Concatenate several iterables.
      *
      * When invoked with `0` iterables, `join` returns an empty iterable.
      * When invoked with `1` iterables, `join` returns the iterable itself.
      *
      *
      * @todo
-     * Improve the implementation:
-     * - Use folds instead of hand-crafted recursion in the implementation.
-     * - Use a fold to implement `at_c`.
-     * - Handle the infinite iterable case in `at_c`.
-     * - Implement `init` in an efficient way.
-     * - Improve the filtration of iterables when creating `join`.
-     * - Don't reconstruct `join` in `unpack_impl`.
+     * - Optimize last, init and at.
+     * - Should we receive variadic arguments or an iterable of iterables?
+     * - Consider using drop_while instead of hand-written recursion.
      */
-    template <typename ...Iterables>
+    template <typename ...Iters>
     struct join;
 
-    template <typename ...Iterables>
-    using join_t = typename join<Iterables...>::type;
+    template <typename ...Iters>
+    using join_t = typename join<Iters...>::type;
 
 
     //! Returns the elements of an iterable in reverse order.
-    template <typename It>
-    struct reverse;
+    template <typename Iter>
+    using reverse = rules::reverse_impl<Iter>;
 
-    template <typename It>
-    using reverse_t = typename reverse<It>::type;
+    template <typename Iter>
+    using reverse_t = typename reverse<Iter>::type;
 
 
     /*!
      * `scanl` is similar to `foldl`, but returns an iterable of successive
      * reduced values from the left.
      */
-    template <typename F, typename State, typename It>
+    template <typename F, typename State, typename Iter>
     struct scanl;
 
-    template <typename F, typename State, typename It>
-    using scanl_t = typename scanl<F, State, It>::type;
+    template <typename F, typename State, typename Iter>
+    using scanl_t = typename scanl<F, State, Iter>::type;
+
+
+    /*!
+     * Returns a subrange of an iterable.
+     *
+     * Specifically, `slice` returns the elements in the subrange delimited
+     * by [`Start`, `Stop`). In all cases, `Start` must be non-negative and
+     * less-than or equal to `Stop`. If the iterable is finite, `Stop` must
+     * always be less-than or equal to `length<Iter>`.
+     *
+     *
+     * @todo
+     * Reintroduce optimizations that were lost when using a single
+     * typeclass for iterables.
+     */
+    template <typename Iter, typename Start, typename Stop>
+    struct slice;
+
+    template <typename Iter, typename Start, typename Stop>
+    using slice_t = typename slice<Iter, Start, Stop>::type;
+
+    //! Equivalent to `slice<Iter, size_t<Start>, size_t<Stop>>`.
+    template <typename Iter, detail::std_size_t Start, detail::std_size_t Stop>
+    using slice_c = slice<Iter, size_t<Start>, size_t<Stop>>;
+
+    template <typename Iter, detail::std_size_t Start, detail::std_size_t Stop>
+    using slice_c_t = typename slice<Iter, size_t<Start>, size_t<Stop>>::type;
 
 
     /*!
@@ -392,61 +445,77 @@ namespace boost { namespace mpl11 {
 
 
     //! Returns an iterable sorted with the `Predicate`.
-    template <typename Predicate, typename It>
+    template <typename Predicate, typename Iter>
     struct sort_by;
 
-    template <typename Predicate, typename It>
-    using sort_by_t = typename sort_by<Predicate, It>::type;
+    template <typename Predicate, typename Iter>
+    using sort_by_t = typename sort_by<Predicate, Iter>::type;
 
 
     /*!
-     * Returns an iterable that aggregates elements from two or
-     * more iterables.
+     * Returns an iterable containing the first `N` elements of
+     * another iterable.
+     *
+     * `N` must be a non-negative `StaticConstant` representing the number of
+     * elements to keep in the underlying iterable. If `N` is greater than
+     * the length of the iterable, all of its elements are kept.
+     */
+#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
+    template <typename N, typename Iter>
+    struct take;
+#else
+    template <typename N, typename Iter>
+    using take = rules::take_impl<N, Iter>;
+#endif
+
+    template <typename N, typename Iter>
+    using take_t = typename take<N, Iter>::type;
+
+    //! Equivalent to `take<size_t<N>, Iter>`.
+    template <detail::std_size_t N, typename Iter>
+    using take_c = take<size_t<N>, Iter>;
+
+    template <detail::std_size_t N, typename Iter>
+    using take_c_t = typename take<size_t<N>, Iter>::type;
+
+
+    /*!
+     * Returns the longest prefix of an iterable in which all elements
+     * satisfy the `Predicate`.
+     */
+    template <typename Predicate, typename Iter>
+    struct take_while;
+
+    template <typename Predicate, typename Iter>
+    using take_while_t = typename take_while<Predicate, Iter>::type;
+
+
+    //! Equivalent to `take_while` with a negated `Predicate`.
+    template <typename Predicate, typename Iter>
+    using take_until = take_while<compose<quote<not_>, Predicate>, Iter>;
+
+    template <typename Predicate, typename Iter>
+    using take_until_t = typename take_until<Predicate, Iter>::type;
+
+
+    /*!
+     * Returns an iterable that aggregates elements from several iterables.
      *
      * Specifically, the i-th element of the iterable is a `list` containing
      * the i-th element of each zipped iterable. The iterable stops when the
-     * shortest zipped iterable is exhausted.
+     * shortest zipped iterable is exhausted. When invoked with 0 iterables,
+     * `zip` returns an empty iterable. When invoked with 1 iterable, `zip`
+     * returns an iterable of 1-element `list`s.
      *
      *
      * @todo
      * Consider implementing a `zip_longest` with the obvious semantics.
-     *
-     * @todo
-     * Should we allow 0 and 1 iterable to be zipped?
      */
-    template <typename It1, typename It2, typename ...ItN>
+    template <typename ...Iters>
     struct zip;
 
-    template <typename It1, typename It2, typename ...ItN>
-    using zip_t = typename zip<It1, It2, ItN...>::type;
-
-
-    /*!
-     * Returns a subrange of an iterable.
-     *
-     * Specifically, `slice` returns the elements in the subrange delimited
-     * by [`Start`, `Stop`). In all cases, `Start` must be less-than or equal
-     * to `Stop`. If the iterable is finite, the slice must also be included
-     * in or equal to [`0`, `length<It>::%value`).
-     *
-     *
-     * @todo
-     * Reintroduce optimizations that were lost when using a single
-     * typeclass for iterables.
-     */
-    template <typename It, detail::std_size_t Start, detail::std_size_t Stop>
-    struct slice_c;
-
-    template <typename It, detail::std_size_t Start, detail::std_size_t Stop>
-    using slice_c_t = typename slice_c<It, Start, Stop>::type;
-
-    //! Equivalent to `slice_c<It, Start::value, Stop::value>`; requires
-    //! non-negative `Start` and `Stop`.
-    template <typename It, typename Start, typename Stop>
-    struct slice;
-
-    template <typename It, typename Start, typename Stop>
-    using slice_t = typename slice<It, Start, Stop>::type;
+    template <typename ...Iters>
+    using zip_t = typename zip<Iters...>::type;
     //! @}
 }} // end namespace boost::mpl11
 

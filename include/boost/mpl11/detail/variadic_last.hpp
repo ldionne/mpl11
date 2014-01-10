@@ -14,18 +14,12 @@ namespace boost { namespace mpl11 { namespace detail {
      */
     template <typename Head, typename ...Tail>
     struct variadic_last;
-}}}
 
-
-#include <boost/mpl11/id.hpp>
-
-
-namespace boost { namespace mpl11 { namespace detail {
     namespace variadic_last_detail {
         template <typename ...Head>
         struct impl {
             template <typename Last>
-            static id<Last> apply(Head..., id<Last>*);
+            static Last apply(Head..., Last*);
         };
     }
 
@@ -34,7 +28,7 @@ namespace boost { namespace mpl11 { namespace detail {
         : decltype(
             variadic_last_detail::impl<
                 decltype((void*)(Tail*)nullptr)...
-            >::apply((id<Head>*)nullptr, (id<Tail>*)nullptr...)
+            >::apply((Head*)nullptr, (Tail*)nullptr...)
         )
     { };
 }}} // end namespace boost::mpl11::detail

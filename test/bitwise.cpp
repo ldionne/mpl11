@@ -15,7 +15,7 @@ using detail::is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct mpl_tag; };
+struct archetype { struct type { struct mpl_tag; }; };
 struct bitand_tag;
 struct bitor_tag;
 struct bitxor_tag;
@@ -25,7 +25,7 @@ struct compl_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Bitwise<archetype::mpl_tag, archetype::mpl_tag> {
+    struct Bitwise<archetype::type::mpl_tag, archetype::type::mpl_tag> {
         template <typename, typename>
         struct bitand_impl { using type = bitand_tag; };
 

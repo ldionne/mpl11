@@ -18,7 +18,7 @@ struct nonzeros {
     template <int ...Filtered>
     struct are
         : detail::iterable_test<
-            filter_t<quote<id>, detail::minimal_iterable<int_<All>...>>,
+            filter<quote<id>, detail::minimal_iterable<int_<All>...>>,
             int_<Filtered>...
         >
     { };

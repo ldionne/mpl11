@@ -19,10 +19,16 @@
 
 using namespace boost::mpl11;
 
-struct x; struct y; struct z; struct undefined;
+struct x { struct type; };
+struct y { struct type; };
+struct z { struct type; };
+struct undefined;
+
+template <typename T1, typename T2>
+using lazy_is_same = detail::is_same<typename T1::type, typename T2::type>;
 
 template <typename T>
-using same_as = partial<quote<detail::is_same>, T>;
+using same_as = partial<quote<lazy_is_same>, T>;
 
 template <typename ...T>
 using seq = detail::minimal_iterable<T...>;

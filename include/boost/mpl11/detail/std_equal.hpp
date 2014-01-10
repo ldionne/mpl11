@@ -46,8 +46,8 @@ namespace boost { namespace mpl11 { namespace detail {
     template <typename S1, typename S2>
     struct std_equal<S1, S2, false, false>
         : and_<
-            equal<head_t<S1>, head_t<S2>>,
-            std_equal<tail_t<S1>, tail_t<S2>>
+            equal<head<S1>, head<S2>>,
+            std_equal<tail<S1>, tail<S2>>
         >
     { };
 }}} // end namespace boost::mpl11::detail

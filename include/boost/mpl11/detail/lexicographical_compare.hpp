@@ -49,10 +49,10 @@ namespace boost { namespace mpl11 { namespace detail {
     template <typename S1, typename S2>
     struct lexicographical_compare<S1, S2, false, false>
         : or_<
-            less<head_t<S1>, head_t<S2>>,
+            less<head<S1>, head<S2>>,
             and_<
-                not_<less<head_t<S2>, head_t<S1>>>,
-                lexicographical_compare<tail_t<S1>, tail_t<S2>>
+                not_<less<head<S2>, head<S1>>>,
+                lexicographical_compare<tail<S1>, tail<S2>>
             >
         >
     { };

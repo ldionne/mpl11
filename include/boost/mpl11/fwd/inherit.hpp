@@ -11,13 +11,13 @@ namespace boost { namespace mpl11 {
      * @ingroup metafunctions
      *
      * Returns an unspecified non-template type publicly
-     * derived from `Bases...`.
+     * derived from `Bases::type...`.
      *
      *
      * @warning
      * Differences from the original MPL:
      * - No special treatment is provided to `empty_base`.
-     * - The result is never a simple alias to one of the `Bases...`.
+     * - The result is never a simple alias to one of the `Bases::type...`.
      */
     template <typename ...Bases>
     struct inherit;

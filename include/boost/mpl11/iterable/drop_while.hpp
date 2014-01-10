@@ -9,31 +9,26 @@
 #include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/id.hpp>
+#include <boost/mpl11/foldable/all.hpp>
 #include <boost/mpl11/if.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace drop_while_detail {
-        template <typename Pred, typename Seq, bool = is_empty<Seq>::value>
-        struct consume {
-            using type = Seq;
-        };
+    template <typename Pred, typename Iter>
+    struct drop_while :
+        if_<is_empty<Iter>,
+            Iter,
+        else_if<apply<Pred, head<Iter>>,
+            drop_while<Pred, tail<Iter>>,
+        else_<
+            Iter
+        >>>
+    { };
 
-        template <typename Pred, typename Seq>
-        struct consume<Pred, Seq, false>
-            : if_c<
-                apply<Pred, typename head<Seq>::type>::type::value,
-                consume<Pred, typename tail<Seq>::type>,
-                id<Seq>
-            >
-        { };
-    } // end namespace drop_while_detail
-
-    template <typename Pred, typename Seq>
-    struct drop_while {
-        using type = typename drop_while_detail::consume<Pred, Seq>::type;
-    };
+    namespace rules {
+        template <typename Pred, typename Iter>
+        struct is_empty_impl<drop_while<Pred, Iter>> : all<Pred, Iter> { };
+    }
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_ITERABLE_DROP_WHILE_HPP

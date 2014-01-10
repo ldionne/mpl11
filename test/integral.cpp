@@ -14,13 +14,13 @@ using detail::is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct mpl_tag; };
+struct archetype { struct type { struct mpl_tag; }; };
 struct quot_tag;
 struct rem_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Integral<archetype::mpl_tag, archetype::mpl_tag> {
+    struct Integral<archetype::type::mpl_tag, archetype::type::mpl_tag> {
         template <typename, typename>
         struct quot_impl { using type = quot_tag; };
 

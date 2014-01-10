@@ -6,13 +6,7 @@
 #ifndef BOOST_MPL11_FWD_INTEGRAL_HPP
 #define BOOST_MPL11_FWD_INTEGRAL_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
-
-
 namespace boost { namespace mpl11 {
-    template <typename, typename> struct quot_impl;
-    template <typename, typename> struct rem_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Integral Integral
@@ -42,7 +36,7 @@ namespace boost { namespace mpl11 {
 
     //! Integer division truncated towards zero.
     template <typename M, typename N>
-    BOOST_MPL11_DOXYGEN_ALIAS(quot, quot_impl<M, N>);
+    struct quot;
 
     template <typename M, typename N>
     using quot_t = typename quot<M, N>::type;
@@ -50,7 +44,7 @@ namespace boost { namespace mpl11 {
 
     //! Integer remainder.
     template <typename M, typename N>
-    BOOST_MPL11_DOXYGEN_ALIAS(rem, rem_impl<M, N>);
+    struct rem;
 
     template <typename M, typename N>
     using rem_t = typename rem<M, N>::type;

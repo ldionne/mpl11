@@ -10,163 +10,161 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/detail/box.hpp>
 #include <boost/mpl11/detail/default_unpack.hpp>
-#include <boost/mpl11/detail/lazy_init.hpp>
 #include <boost/mpl11/detail/lexicographical_compare.hpp>
-#include <boost/mpl11/detail/sequence_map.hpp>
 #include <boost/mpl11/detail/std_equal.hpp>
-#include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functor.hpp>
 #include <boost/mpl11/if.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integral_c.hpp> // required by rules
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 #include <boost/mpl11/tag_of.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename S>
-    struct head_impl {
-        using type = typename Iterable<typename tag_of<S>::type>::
-                     template head_impl<S>::type;
-    };
+    namespace rules {
+        template <typename Iter, typename>
+        struct head_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template head_impl<typename Iter::type>
+        { };
 
-    template <typename S>
-    struct tail_impl {
-        using type = typename Iterable<typename tag_of<S>::type>::
-                     template tail_impl<S>::type;
-    };
+        template <typename Iter, typename>
+        struct tail_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template tail_impl<typename Iter::type>
+        { };
 
-    template <typename S>
-    struct init_impl {
-        using type = typename Iterable<typename tag_of<S>::type>::
-                     template init_impl<S>::type;
-    };
+        template <typename Iter, typename>
+        struct init_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template init_impl<typename Iter::type>
+        { };
 
-    template <typename S>
-    struct last_impl {
-        using type = typename Iterable<typename tag_of<S>::type>::
-                     template last_impl<S>::type;
-    };
+        template <typename Iter, typename>
+        struct last_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template last_impl<typename Iter::type>
+        { };
 
-    template <typename S>
-    struct is_empty_impl
-        : Iterable<typename tag_of<S>::type>::template is_empty_impl<S>
-    { };
+        template <typename Iter, typename>
+        struct is_empty_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template is_empty_impl<typename Iter::type>
+        { };
 
-    template <typename S>
-    struct length_impl
-        : Iterable<typename tag_of<S>::type>::template length_impl<S>
-    { };
+        template <typename Iter, typename>
+        struct length_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template length_impl<typename Iter::type>
+        { };
 
-    template <typename S, detail::std_size_t Index>
-    struct at_c_impl {
-        using type = typename Iterable<typename tag_of<S>::type>::
-                     template at_c_impl<S, Index>::type;
-    };
+        template <typename Iter, typename Index, typename>
+        struct at_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template at_impl<typename Iter::type, typename Index::type>
+        { };
 
-    template <typename S, typename F>
-    struct unpack_impl {
-        using type = typename Iterable<typename tag_of<S>::type>::
-                     template unpack_impl<S, F>::type;
-    };
-
-    template <typename S, typename Index>
-    struct at {
-#if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
-        static_assert(Index::value >= 0,
-        "Invalid usage of `at` with a negative index.");
-#endif
-        using type = typename at_c<S, Index::value>::type;
-    };
+        template <typename Iter, typename F, typename>
+        struct unpack_impl
+            : Iterable<typename tag_of<typename Iter::type>::type>::
+              template unpack_impl<typename Iter::type, typename F::type>
+        { };
+    } // end namespace rules
 
 #if defined(BOOST_MPL11_ENABLE_ASSERTIONS)
-    template <typename S>
+    template <typename Iter>
     struct head {
-        static_assert(!is_empty<S>::value,
+        static_assert(!is_empty<Iter>::value,
         "Invalid usage of `head` on an empty iterable.");
-        using type = typename head_impl<S>::type;
+        using type = typename rules::head_impl<Iter>::type;
     };
 
-    template <typename S>
+    template <typename Iter>
     struct tail {
-        static_assert(!is_empty<S>::value,
+        static_assert(!is_empty<Iter>::value,
         "Invalid usage of `tail` on an empty iterable.");
-        using type = typename tail_impl<S>::type;
+        using type = typename rules::tail_impl<Iter>::type;
     };
 
-    template <typename S>
+    template <typename Iter>
     struct init {
-        static_assert(!is_empty<S>::value,
+        static_assert(!is_empty<Iter>::value,
         "Invalid usage of `init` on an empty iterable.");
-        using type = typename init_impl<S>::type;
+        using type = typename rules::init_impl<Iter>::type;
     };
 
-    template <typename S>
+    template <typename Iter>
     struct last {
-        static_assert(!is_empty<S>::value,
+        static_assert(!is_empty<Iter>::value,
         "Invalid usage of `last` on an empty iterable.");
-        using type = typename last_impl<S>::type;
+        using type = typename rules::last_impl<Iter>::type;
     };
 
-    template <typename S, detail::std_size_t Index>
-    struct at_c {
+    template <typename Iter, typename Index_>
+    struct at {
     private:
-        using Length = if_c<sequence_traits<S>::is_finite,
-            length<S>,
+        static constexpr auto Index = Index_::type::value;
+        static_assert(Index >= 0,
+        "Invalid usage of `at` with a negative index.");
+
+        using Length = if_c<sequence_traits<typename Iter::type>::is_finite,
+            length<Iter>,
             size_t<Index + 1>
         >;
 
         static_assert(Index < Length::value,
-        "Invalid usage of `at_c` with an out-of-bounds index.");
+        "Invalid usage of `at` with an out-of-bounds index.");
 
     public:
-        using type = typename at_c_impl<S, Index>::type;
+        using type = typename rules::at_impl<Iter, Index_>::type;
     };
 #endif
 
     //////////////////////
     // Instantiations
     //////////////////////
+    namespace detail { template <typename> struct lazy_init; }
+
     template <>
     struct Iterable<iterable_tag> {
-        template <typename S>
-        using last_impl = if_c<
-            is_empty<typename tail<S>::type>::value,
-            head<S>,
-            last<typename tail<S>::type>
+        template <typename Iter>
+        using last_impl = if_c<is_empty<tail<detail::box<Iter>>>::value,
+            head<detail::box<Iter>>,
+            last<tail<detail::box<Iter>>>
         >;
 
-        template <typename S>
-        using init_impl = detail::lazy_init<S>;
+        template <typename Iter>
+        using init_impl = detail::lazy_init<detail::box<Iter>>;
 
-        template <typename S, detail::std_size_t Index>
-        struct at_c_impl {
-            using type = typename at_c<
-                typename tail<S>::type, Index - 1
-            >::type;
-        };
-
-        template <typename S>
-        struct at_c_impl<S, 0> {
-            using type = typename head<S>::type;
-        };
+        template <typename Iter, typename Index>
+        struct at_impl
+            : if_c<Index::value == 0,
+                head<detail::box<Iter>>,
+                at<tail<detail::box<Iter>>, pred<detail::box<Index>>>
+            >
+        { };
 
     private:
-        //! @todo Create a proper `succ` metafunction.
+        //! @todo Remove this ad-hoc implementation.
         struct succ {
+            using type = succ;
             template <typename N, typename>
-            using apply = size_t<N::value + 1>;
+            using apply = size_t<N::type::value + 1>;
         };
 
     public:
-        //! @todo We uselessly call `head` on each step. Fix this.
-        template <typename S>
-        using length_impl = typename foldl<succ, size_t<0>, S>::type;
+        template <typename Iter>
+        using length_impl = typename foldl<
+            succ, size_t<0>, detail::box<Iter>
+        >::type;
 
-        template <typename S, typename F>
-        using unpack_impl = detail::default_unpack<S, F>;
+        template <typename Iter, typename F>
+        using unpack_impl = detail::default_unpack<
+            detail::box<Iter>, detail::box<F>
+        >;
     };
 
     template <>
@@ -174,7 +172,7 @@ namespace boost { namespace mpl11 {
         : Comparable<comparable_tag>
     {
         template <typename S1, typename S2>
-        using equal_impl = detail::std_equal<S1, S2>;
+        using equal_impl = detail::std_equal<detail::box<S1>, detail::box<S2>>;
     };
 
     template <typename Tag>
@@ -197,74 +195,49 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct Foldable<iterable_tag> {
-        template <
-            typename F, typename State, typename S,
-            bool = is_empty<S>::value
-        >
-        struct foldl_impl;
+        template <typename F, typename State, typename Iter>
+        struct foldl_impl
+            : if_<is_empty<detail::box<Iter>>,
+                detail::box<State>,
+                foldl<
+                    detail::box<F>,
+                    apply<
+                        detail::box<F>,
+                        detail::box<State>,
+                        head<detail::box<Iter>>
+                    >,
+                    tail<detail::box<Iter>>
+                >
+            >
+        { };
 
-        template <typename F, typename State, typename S>
-        struct foldl_impl<F, State, S, true> {
-            using type = State;
-        };
-
-        template <typename F, typename State, typename S>
-        struct foldl_impl<F, State, S, false> {
-            using type = typename foldl_impl<
-                F,
-                typename apply<F, State, typename head<S>::type>::type,
-                typename tail<S>::type
-            >::type;
-        };
-
-        template <
-            typename F, typename State, typename S,
-            bool = is_empty<S>::value
-        >
-        struct foldr_impl;
-
-        template <typename F, typename State, typename S>
-        struct foldr_impl<F, State, S, true> {
-            using type = State;
-        };
-
-        template <typename F, typename State, typename S>
-        struct foldr_impl<F, State, S, false> {
-            using type = typename apply<
-                F,
-                typename head<S>::type,
-                typename foldr_impl<F, State ,typename tail<S>::type>::type
-            >::type;
-        };
-
-        template <
-            typename F, typename State, typename S,
-            bool = is_empty<S>::value
-        >
-        struct lazy_foldr_impl;
-
-        template <typename F, typename State, typename S>
-        struct lazy_foldr_impl<F, State, S, true> {
-            using type = State;
-        };
-
-        template <typename F, typename State, typename S>
-        struct lazy_foldr_impl<F, State, S, false> {
-            using type = typename apply<
-                F,
-                typename head<S>::type,
-                lazy_foldr_impl<F, State ,typename tail<S>::type>
-            >::type;
-        };
+        template <typename F, typename State, typename Iter>
+        struct foldr_impl
+            : if_<is_empty<detail::box<Iter>>,
+                detail::box<State>,
+                apply<
+                    detail::box<F>,
+                    head<detail::box<Iter>>,
+                    foldr<
+                        detail::box<F>,
+                        detail::box<State>,
+                        tail<detail::box<Iter>>
+                    >
+                >
+            >
+        { };
     };
+
+    namespace detail { template <typename, typename> struct lazy_fmap; }
 
     template <>
     struct Functor<iterable_tag> {
-        template <typename F, typename S>
-        struct fmap_impl {
-            using type = detail::sequence_map<F, S>;
-        };
+        template <typename F, typename Iter>
+        using fmap_impl = detail::lazy_fmap<detail::box<F>, detail::box<Iter>>;
     };
 }} // end namespace boost::mpl11
+
+#include <boost/mpl11/detail/lazy_fmap.hpp>
+#include <boost/mpl11/detail/lazy_init.hpp>
 
 #endif // !BOOST_MPL11_ITERABLE_ITERABLE_HPP

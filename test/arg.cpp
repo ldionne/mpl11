@@ -12,13 +12,14 @@
 using namespace boost::mpl11;
 using detail::is_same;
 
-template <int> struct x;
+template <int> struct x { struct type; };
+
 template <unsigned long N> struct arg_number {
     template <int ...Args> struct of {
         template <int X> struct is {
             static_assert(is_same<
                 apply_t<arg<N>, x<Args>...>,
-                x<X>
+                typename x<X>::type
             >::value, "");
         };
     };

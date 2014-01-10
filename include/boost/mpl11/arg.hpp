@@ -17,14 +17,16 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct arg<1> {
+        using type = arg;
+
         template <typename A1, typename ...An>
-        struct apply {
-            using type = A1;
-        };
+        using apply = A1;
     };
 
     template <detail::std_size_t N>
     struct arg {
+        using type = arg;
+
         template <typename A1, typename ...An>
         struct apply
             : arg<N - 1>::template apply<An...>

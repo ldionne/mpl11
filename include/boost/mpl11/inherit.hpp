@@ -12,7 +12,7 @@
 namespace boost { namespace mpl11 {
     template <typename ...Bases>
     struct inherit {
-        struct type : Bases... { };
+        struct type : Bases::type... { };
     };
 }} // end namespace boost::mpl11
 

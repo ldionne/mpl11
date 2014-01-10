@@ -12,6 +12,9 @@ using namespace boost::mpl11;
 
 template <typename T, T v>
 struct minimal_static_constant : integral_c<T, v> {
+    // ::type must point to minimal_static_constant, otherwise the test
+    // is useless because we'll be testing integral_c instead.
+    using type = minimal_static_constant;
     using mpl_tag = static_constant_tag;
 };
 

@@ -5,12 +5,19 @@
 
 #include <boost/mpl11/apply.hpp>
 
+#include <boost/mpl11/detail/box.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 
 
-using namespace boost::mpl11;
-using detail::is_same;
+namespace mpl11 = boost::mpl11;
+using mpl11::detail::is_same;
 
+// Make our life easier below.
+template <typename F, typename ...Args>
+using apply = mpl11::apply<mpl11::detail::box<F>, Args...>;
+
+
+// We leave those undefined voluntarily. They should not be evaluated.
 struct x; struct y;
 
 struct variadic {

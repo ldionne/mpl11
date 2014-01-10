@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_FWD_BITWISE_HPP
 #define BOOST_MPL11_FWD_BITWISE_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 
 
@@ -76,7 +75,7 @@ namespace boost { namespace mpl11 {
     using shift_right_c_t = typename shift_right_c<T, Shift>::type;
 
 
-    //! Equivalent to `shift_right_c<T, Shift::value>`;
+    //! Equivalent to `shift_right_c<T, Shift::type::value>`;
     //! requires a non-negative `Shift`.
     template <typename T, typename Shift>
     struct shift_right;
@@ -93,7 +92,7 @@ namespace boost { namespace mpl11 {
     using shift_left_c_t = typename shift_left_c<T, Shift>::type;
 
 
-    //! Equivalent to `shift_left_c<T, Shift::value>`;
+    //! Equivalent to `shift_left_c<T, Shift::type::value>`;
     //! requires a non-negative `Shift`.
     template <typename T, typename Shift>
     struct shift_left;

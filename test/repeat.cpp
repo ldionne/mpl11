@@ -13,27 +13,21 @@
 using namespace boost::mpl11;
 using detail::is_same;
 
-struct X;
+struct X { struct type; };
 
 // head
-static_assert(is_same<head_t<repeat_t<X>>, X>::value, "");
-
-// tail
-static_assert(is_same<tail_t<repeat_t<X>>, repeat_t<X>>::value, "");
+static_assert(is_same<head_t<repeat<X>>, X::type>::value, "");
 
 // is_empty
-static_assert(!is_empty<repeat_t<X>>::value, "");
+static_assert(!is_empty<repeat<X>>::value, "");
 
 // last
-static_assert(is_same<last_t<repeat_t<X>>, X>::value, "");
-
-// init
-static_assert(is_same<init_t<repeat_t<X>>, repeat_t<X>>::value, "");
+static_assert(is_same<last_t<repeat<X>>, X::type>::value, "");
 
 // at
-static_assert(is_same<at_c_t<repeat_t<X>, 0>, X>::value, "");
-static_assert(is_same<at_c_t<repeat_t<X>, 1>, X>::value, "");
-static_assert(is_same<at_c_t<repeat_t<X>, 2>, X>::value, "");
+static_assert(is_same<at_c_t<repeat<X>, 0>, X::type>::value, "");
+static_assert(is_same<at_c_t<repeat<X>, 1>, X::type>::value, "");
+static_assert(is_same<at_c_t<repeat<X>, 2>, X::type>::value, "");
 
 
 template <unsigned long N, typename T>
@@ -41,7 +35,7 @@ struct repeating_n {
     template <typename ...Contents>
     struct is
         : detail::iterable_test<
-            take_c_t<N, repeat<T>>,
+            take_c<N, repeat<T>>,
             Contents...
         >
     { };

@@ -14,6 +14,8 @@
 namespace boost { namespace mpl11 {
     template <typename F>
     struct flip {
+        using type = flip;
+
         template <typename A0, typename A1, typename ...An>
         using apply = mpl11::apply<F, A1, A0, An...>;
     };

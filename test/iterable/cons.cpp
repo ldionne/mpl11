@@ -10,12 +10,12 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <int Head, int ...Tail>
 struct test_cons
     : detail::iterable_test<
-        cons_t<x<Head>, detail::minimal_iterable<x<Tail>...>>,
+        cons<x<Head>, detail::minimal_iterable<x<Tail>...>>,
         x<Head>, x<Tail>...
     >
 { };

@@ -12,7 +12,7 @@ using namespace boost::mpl11;
 using detail::is_same;
 
 struct with_nested_tag { struct mpl_tag; };
-struct without_nested_tag;
+struct without_nested_tag { };
 
 static_assert(is_same<
     tag_of_t<with_nested_tag>, with_nested_tag::mpl_tag

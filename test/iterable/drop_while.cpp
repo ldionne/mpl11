@@ -18,7 +18,7 @@ struct dropping_leading_zeros {
     template <int ...Suffix>
     struct is
         : detail::iterable_test<
-            drop_while_t<quote<not_>, detail::minimal_iterable<int_<All>...>>,
+            drop_while<quote<not_>, detail::minimal_iterable<int_<All>...>>,
             int_<Suffix>...
         >
     { };

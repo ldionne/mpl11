@@ -12,13 +12,14 @@
 using namespace boost::mpl11;
 using detail::is_same;
 
-struct a;
+struct a { struct type; };
+// these are undefined cause they should not be evaluated anyway
 struct x; struct y; struct z;
 
-static_assert(is_same<a, apply_t<always<a>>>::value, "");
-static_assert(is_same<a, apply_t<always<a>, x>>::value, "");
-static_assert(is_same<a, apply_t<always<a>, x, y>>::value, "");
-static_assert(is_same<a, apply_t<always<a>, x, y, z>>::value, "");
+static_assert(is_same<a::type, apply_t<always<a>>>::value, "");
+static_assert(is_same<a::type, apply_t<always<a>, x>>::value, "");
+static_assert(is_same<a::type, apply_t<always<a>, x, y>>::value, "");
+static_assert(is_same<a::type, apply_t<always<a>, x, y, z>>::value, "");
 
 
 int main() { }

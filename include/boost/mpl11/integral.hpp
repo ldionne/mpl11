@@ -13,17 +13,19 @@
 
 namespace boost { namespace mpl11 {
     template <typename M, typename N>
-    struct quot_impl
+    struct quot
         : Integral<
-            typename tag_of<M>::type, typename tag_of<N>::type
-        >::template quot_impl<M, N>
+            typename tag_of<typename M::type>::type,
+            typename tag_of<typename N::type>::type
+        >::template quot_impl<typename M::type, typename N::type>
     { };
 
     template <typename M, typename N>
-    struct rem_impl
+    struct rem
         : Integral<
-            typename tag_of<M>::type, typename tag_of<N>::type
-        >::template rem_impl<M, N>
+            typename tag_of<typename M::type>::type,
+            typename tag_of<typename N::type>::type
+        >::template rem_impl<typename M::type, typename N::type>
     { };
 }} // end namespace boost::mpl11
 

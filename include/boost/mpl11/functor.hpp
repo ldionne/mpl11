@@ -13,10 +13,10 @@
 
 namespace boost { namespace mpl11 {
     template <typename function, typename functor>
-    struct fmap {
-        using type = typename Functor<typename tag_of<functor>::type>::
-                     template fmap_impl<function, functor>::type;
-    };
+    struct fmap
+        : Functor<typename tag_of<typename functor::type>::type>::
+          template fmap_impl<typename function::type, typename functor::type>
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTOR_HPP

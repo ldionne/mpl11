@@ -10,12 +10,12 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <int Last, int ...Init>
 struct test_snoc
     : detail::iterable_test<
-        snoc_t<detail::minimal_iterable<x<Init>...>, x<Last>>,
+        snoc<detail::minimal_iterable<x<Init>...>, x<Last>>,
         x<Init>..., x<Last>
     >
 { };

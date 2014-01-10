@@ -23,23 +23,31 @@ namespace boost { namespace mpl11 { namespace detail {
 
 namespace boost { namespace mpl11 { namespace detail {
     namespace default_unpack_detail {
-        struct fill_apply {
-            template <typename Variadic, typename X>
-            struct apply;
+        template <typename ...T>
+        struct holder {
+            using type = holder;
 
-            template <
-                template <typename ...> class Variadic, typename ...T,
-                typename X
-            >
-            struct apply<Variadic<T...>, X> {
-                using type = Variadic<T..., X>;
-            };
+            template <typename X>
+            using append = holder<T..., X>;
+
+            template <template <typename ...> class F>
+            using into = F<T...>;
         };
-    } // end namespace unpack_detail
 
-    template <typename S, typename F>
+        struct fill_holder {
+            using type = fill_holder;
+            template <typename Holder, typename X>
+            using apply = typename Holder::type::template append<X>;
+        };
+    } // end namespace default_unpack_detail
+
+    template <typename Iter, typename F>
     struct default_unpack
-        : foldl<default_unpack_detail::fill_apply, apply<F>, S>::type
+        : foldl<
+            default_unpack_detail::fill_holder,
+            default_unpack_detail::holder<F>,
+            Iter
+        >::type::template into<apply>
     { };
 }}} // end namespace boost::mpl11::detail
 

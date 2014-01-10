@@ -12,10 +12,10 @@
 namespace boost { namespace mpl11 {
     template <typename T>
     struct always {
+        using type = always;
+
         template <typename ...>
-        struct apply {
-            using type = T;
-        };
+        using apply = T;
     };
 }} // end namespace boost::mpl11
 

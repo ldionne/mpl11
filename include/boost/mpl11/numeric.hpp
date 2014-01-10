@@ -22,8 +22,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct plus<T1, T2>
         : Numeric<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template plus_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template plus_impl<typename T1::type, typename T2::type>
     { };
 
     template <typename T1, typename T2, typename ...Tn>
@@ -34,8 +35,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct minus<T1, T2>
         : Numeric<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template minus_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template minus_impl<typename T1::type, typename T2::type>
     { };
 
     template <typename T1, typename T2, typename ...Tn>
@@ -46,23 +48,27 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct times<T1, T2>
         : Numeric<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template times_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template times_impl<typename T1::type, typename T2::type>
     { };
 
     template <typename N>
     struct negate
-        : Numeric<typename tag_of<N>::type>::template negate_impl<N>
+        : Numeric<typename tag_of<typename N::type>::type>::
+          template negate_impl<typename N::type>
     { };
 
     template <typename N>
     struct abs
-        : Numeric<typename tag_of<N>::type>::template abs_impl<N>
+        : Numeric<typename tag_of<typename N::type>::type>::
+          template abs_impl<typename N::type>
     { };
 
     template <typename N>
     struct sign
-        : Numeric<typename tag_of<N>::type>::template sign_impl<N>
+        : Numeric<typename tag_of<typename N::type>::type>::
+          template sign_impl<typename N::type>
     { };
 }} // end namespace boost::mpl11
 

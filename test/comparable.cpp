@@ -14,13 +14,13 @@ using detail::is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct mpl_tag; };
+struct archetype { struct type { struct mpl_tag; }; };
 struct equal_tag;
 struct not_equal_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Comparable<archetype::mpl_tag, archetype::mpl_tag> {
+    struct Comparable<archetype::type::mpl_tag, archetype::type::mpl_tag> {
         template <typename, typename>
         struct equal_impl { using type = equal_tag; };
 
@@ -36,7 +36,8 @@ static_assert(is_same<not_equal_t<archetype, archetype>, not_equal_tag>::value, 
 ///////////////////////////////////////////////////////////////////
 // Test comparison for foreign or incompatible types (aka is_same)
 ///////////////////////////////////////////////////////////////////
-struct x; struct y;
+struct x { struct type; };
+struct y { struct type; };
 static_assert(!equal<x, y>::value, "");
 static_assert( equal<x, x>::value, "");
 static_assert( not_equal<x, y>::value, "");
@@ -47,10 +48,10 @@ static_assert(!not_equal<x, x>::value, "");
 // Test provided defaults
 ///////////////////////////
 using Default = Comparable<comparable_tag, comparable_tag>;
-static_assert( Default::equal_impl<x, x>::value, "");
-static_assert(!Default::equal_impl<x, y>::value, "");
-static_assert( Default::not_equal_impl<x, y>::value, "");
-static_assert(!Default::not_equal_impl<x, x>::value, "");
+static_assert( Default::equal_impl<x::type, x::type>::value, "");
+static_assert(!Default::equal_impl<x::type, y::type>::value, "");
+static_assert( Default::not_equal_impl<x::type, y::type>::value, "");
+static_assert(!Default::not_equal_impl<x::type, x::type>::value, "");
 
 
 int main() { }

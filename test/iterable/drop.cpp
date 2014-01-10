@@ -10,7 +10,7 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <unsigned long N>
 struct dropping {
@@ -19,7 +19,7 @@ struct dropping {
         template <int ...Remaining>
         struct is
             : detail::iterable_test<
-                drop_c_t<N, detail::minimal_iterable<x<All>...>>,
+                drop_c<N, detail::minimal_iterable<x<All>...>>,
                 x<Remaining>...
             >
         { };

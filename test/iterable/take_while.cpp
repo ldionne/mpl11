@@ -11,14 +11,18 @@
 
 using namespace boost::mpl11;
 
-struct nonzero { template <typename N> using apply = bool_<N::value != 0>; };
+struct nonzero {
+    using type = nonzero;
+    template <typename N>
+    using apply = bool_<N::type::value != 0>;
+};
 
 template <int ...All>
 struct nonzero_prefix {
     template <int ...Prefix>
     struct is
         : detail::iterable_test<
-            take_while_t<nonzero, detail::minimal_iterable<int_<All>...>>,
+            take_while<nonzero, detail::minimal_iterable<int_<All>...>>,
             int_<Prefix>...
         >
     { };

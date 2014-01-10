@@ -7,12 +7,13 @@
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/quote.hpp>
 
 
 using namespace boost::mpl11;
 using detail::is_same;
 
-struct f { template <typename ...> struct apply { struct type; }; };
+template <typename ...> struct f_ { struct type; }; using f = quote<f_>;
 struct a0; struct a1; struct a2; struct a3; struct a4; struct a5;
 
 static_assert(is_same<

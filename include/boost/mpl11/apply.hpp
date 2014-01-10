@@ -36,7 +36,7 @@ namespace boost { namespace mpl11 {
     template <typename F, typename ...Args>
     struct apply
         : apply_detail::apply_impl<sizeof...(Args) != 0>::
-            template nested_apply<F, Args...>
+            template nested_apply<typename F::type, Args...>
     { };
 }} // end namespace boost::mpl11
 

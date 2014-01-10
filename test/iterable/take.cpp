@@ -10,7 +10,7 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <unsigned long N>
 struct taking {
@@ -19,7 +19,7 @@ struct taking {
         template <int ...Taken>
         struct is :
             detail::iterable_test<
-                take_c_t<N, detail::minimal_iterable<x<All>...>>,
+                take_c<N, detail::minimal_iterable<x<All>...>>,
                 x<Taken>...
             >
         { };

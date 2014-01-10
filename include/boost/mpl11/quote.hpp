@@ -12,6 +12,8 @@
 namespace boost { namespace mpl11 {
     template <template <typename ...> class F>
     struct quote {
+        using type = quote;
+
         template <typename ...Args>
         using apply = F<Args...>;
     };

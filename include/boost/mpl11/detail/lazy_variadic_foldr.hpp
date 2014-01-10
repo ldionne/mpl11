@@ -12,9 +12,6 @@ namespace boost { namespace mpl11 { namespace detail {
      *
      * Lazy right-fold algorithm processing a variadic parameter pack.
      *
-     * The binary operation is invoked with the current element and a
-     * metafunction returning the current state.
-     *
      *
      * @todo
      * Optimize this and make it able to process _huge_ sequences.

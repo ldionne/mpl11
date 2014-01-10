@@ -10,7 +10,7 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <int ...i>
 using seq = detail::minimal_iterable<x<i>...>;
@@ -20,7 +20,7 @@ struct joining {
     template <int ...Joined>
     struct is
         : detail::iterable_test<
-            join_t<Iterables...>,
+            join<Iterables...>,
             x<Joined>...
         >
     { };

@@ -11,10 +11,10 @@
 using namespace boost::mpl11;
 using namespace detail;
 
-static_assert(!is_specialization<empty_base>::value, "");
+static_assert(!is_specialization<empty_base::type>::value, "");
 
 struct not_derived { int i; };
-struct derived : empty_base { int i; };
+struct derived : empty_base::type { int i; };
 static_assert(sizeof(not_derived) == sizeof(derived),
 "Deriving from empty_base should trigger the empty base class optimization.");
 

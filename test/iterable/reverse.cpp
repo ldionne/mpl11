@@ -10,14 +10,14 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <int ...Seq>
 struct in_reverse_order {
     template <int ...Reversed>
     struct is
         : detail::iterable_test<
-            reverse_t<detail::minimal_iterable<x<Seq>...>>,
+            reverse<detail::minimal_iterable<x<Seq>...>>,
             x<Reversed>...
         >
     { };

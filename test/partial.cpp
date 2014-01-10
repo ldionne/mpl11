@@ -15,7 +15,11 @@ using namespace boost::mpl11;
 using detail::is_same;
 
 struct a0; struct a1; struct a2; struct a3;
-struct f { template <typename ...> struct apply { struct type; }; };
+struct f {
+    using type = f;
+    template <typename ...>
+    struct apply { struct type; };
+};
 template <typename ...> struct g { struct type; };
 template <typename ...> struct h;
 

@@ -24,7 +24,7 @@ struct test_one {
     template <typename Base, typename ...Rest>
     struct all_different<Base, Rest...> : all_different<Rest...> {
         static_assert(!is_same<
-            typename inherit<Bases...>::type, Base
+            typename inherit<Bases...>::type, typename Base::type
         >::value, "");
     };
 

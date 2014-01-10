@@ -10,7 +10,7 @@
 
 
 namespace boost { namespace mpl11 {
-    struct empty_base { };
+    struct empty_base { struct type { }; };
 }}
 
 #endif // !BOOST_MPL11_EMPTY_BASE_HPP

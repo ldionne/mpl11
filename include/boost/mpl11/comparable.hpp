@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/comparable.hpp>
 
 #include <boost/mpl11/and.hpp>
+#include <boost/mpl11/detail/box.hpp>
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/tag_of.hpp>
@@ -44,10 +45,14 @@ namespace boost { namespace mpl11 {
     template <>
     struct Comparable<comparable_tag, comparable_tag> {
         template <typename L, typename R>
-        using equal_impl = not_<not_equal<L, R>>;
+        using equal_impl = not_<
+            not_equal<detail::box<L>, detail::box<R>>
+        >;
 
         template <typename L, typename R>
-        using not_equal_impl = not_<equal<L, R>>;
+        using not_equal_impl = not_<
+            equal<detail::box<L>, detail::box<R>>
+        >;
     };
 
     template <typename T1, typename T2, typename ...Tn>
@@ -58,8 +63,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct equal<T1, T2>
         : Comparable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template equal_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template equal_impl<typename T1::type, typename T2::type>
     { };
 
     template <typename T1, typename T2, typename ...Tn>
@@ -70,8 +76,9 @@ namespace boost { namespace mpl11 {
     template <typename T1, typename T2>
     struct not_equal<T1, T2>
         : Comparable<
-            typename tag_of<T1>::type, typename tag_of<T2>::type
-        >::template not_equal_impl<T1, T2>
+            typename tag_of<typename T1::type>::type,
+            typename tag_of<typename T2::type>::type
+        >::template not_equal_impl<typename T1::type, typename T2::type>
     { };
 }} // end namespace boost::mpl11
 

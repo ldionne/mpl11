@@ -14,14 +14,18 @@
 namespace boost { namespace mpl11 {
     template <typename F1, typename ...Fn>
     struct compose {
+        using type = compose;
+
         template <typename ...Args>
         using apply = mpl11::apply<F1,
-            typename compose<Fn...>::template apply<Args...>::type
+            typename compose<Fn...>::template apply<Args...>
         >;
     };
 
     template <typename F>
     struct compose<F> {
+        using type = compose;
+
         template <typename ...Args>
         using apply = mpl11::apply<F, Args...>;
     };

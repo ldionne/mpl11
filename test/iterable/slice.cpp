@@ -10,7 +10,7 @@
 
 using namespace boost::mpl11;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
 template <int ...i>
 using seq = detail::minimal_iterable<x<i>...>;
@@ -22,7 +22,7 @@ struct slicing {
         template <int ...Sliced>
         struct is
             : detail::iterable_test<
-                slice_c_t<seq<All...>, Start, Stop>,
+                slice_c<seq<All...>, Start, Stop>,
                 x<Sliced>...
             >
         { };

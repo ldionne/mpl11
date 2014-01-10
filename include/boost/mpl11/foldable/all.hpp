@@ -17,6 +17,8 @@ namespace boost { namespace mpl11 {
     namespace all_detail {
         template <typename Predicate>
         struct all_pred {
+            using type = all_pred;
+
             template <typename Elem, typename LazyState>
             using apply = and_<mpl11::apply<Predicate, Elem>, LazyState>;
         };
@@ -24,7 +26,7 @@ namespace boost { namespace mpl11 {
 
     template <typename Predicate, typename Structure>
     struct all
-        : lazy_foldr<all_detail::all_pred<Predicate>, true_, Structure>::type
+        : foldr<all_detail::all_pred<Predicate>, true_, Structure>::type
     { };
 }} // end namespace boost::mpl11
 

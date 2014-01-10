@@ -10,9 +10,6 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename> struct succ_impl;
-    template <typename> struct pred_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Enumerable Enumerable
@@ -34,7 +31,7 @@ namespace boost { namespace mpl11 {
 
     //! Returns the successor of the given object.
     template <typename E>
-    BOOST_MPL11_DOXYGEN_ALIAS(succ, succ_impl<E>);
+    struct succ;
 
     template <typename E>
     using succ_t = typename succ<E>::type;
@@ -42,7 +39,7 @@ namespace boost { namespace mpl11 {
 
     //! Returns the predecessor of the given object.
     template <typename E>
-    BOOST_MPL11_DOXYGEN_ALIAS(pred, pred_impl<E>);
+    struct pred;
 
     template <typename E>
     using pred_t = typename pred<E>::type;

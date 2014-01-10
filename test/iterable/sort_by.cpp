@@ -16,7 +16,7 @@ struct sorting_by {
     template <int ...Sorted>
     struct is
         : detail::iterable_test<
-            sort_by_t<Pred, detail::minimal_iterable<int_<It>...>>,
+            sort_by<Pred, detail::minimal_iterable<int_<It>...>>,
             int_<Sorted>...
         >
     { };

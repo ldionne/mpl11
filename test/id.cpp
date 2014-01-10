@@ -11,17 +11,18 @@
 using namespace boost::mpl11;
 using namespace detail;
 
-struct t;
+struct t { struct type; };
 
-static_assert(is_same<t, id<t>::type>::value, "");
-static_assert(is_same<t, id_t<t>>::value, "");
+static_assert(is_same<t::type, id<t>::type>::value, "");
+static_assert(is_same<t::type, id_t<t>>::value, "");
 
-// Make sure identity_t can be passed as a template template argument.
-template <template <typename ...> class Id>
-struct apply_to_t {
-    using type = Id<t>;
+// Make sure id and id_t can be passed as template template arguments.
+template <template <typename ...> class Id, typename T>
+struct specialize_with {
+    using type = Id<T>;
 };
-static_assert(is_same<apply_to_t<id_t>::type, t>::value, "");
+static_assert(is_same<specialize_with<id_t, t>::type, id_t<t>>::value, "");
+static_assert(is_same<specialize_with<id, t>::type, id<t>>::value, "");
 
 
 int main() { }

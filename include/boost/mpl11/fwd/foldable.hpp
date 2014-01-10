@@ -13,10 +13,6 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename, typename, typename> struct lazy_foldr_impl;
-    template <typename, typename, typename> struct foldr_impl;
-    template <typename, typename, typename> struct foldl_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Foldable Foldable
@@ -26,7 +22,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Methods
-     * `foldl`, `lazy_foldr` and `foldr`.
+     * `foldl` and `foldr`.
      *
      * ### Minimal complete definition
      * All the methods.
@@ -49,28 +45,15 @@ namespace boost { namespace mpl11 {
 
     //! Right-associative fold of a structure using a binary operator.
     template <typename F, typename State, typename Structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(foldr, foldr_impl<F, State, Structure>);
+    struct foldr;
 
     template <typename F, typename State, typename Structure>
     using foldr_t = typename foldr<F, State, Structure>::type;
 
-    /*!
-     * Lazy right-associative fold of a structure using a binary operator.
-     *
-     * In `lazy_foldr`, the state is passed to the binary operator as a
-     * metafunction that should be evaluated to get the actual state.
-     * This allows `lazy_foldr` to process infinite data structures,
-     * to short-circuit and other useful tricks.
-     */
-    template <typename F, typename State, typename Structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(lazy_foldr, lazy_foldr_impl<F,State,Structure>);
-
-    template <typename F, typename State, typename Structure>
-    using lazy_foldr_t = typename lazy_foldr<F, State, Structure>::type;
 
     //! Left-associative fold of a structure using a binary operator.
     template <typename F, typename State, typename Structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(foldl, foldl_impl<F, State, Structure>);
+    struct foldl;
 
     template <typename F, typename State, typename Structure>
     using foldl_t = typename foldl<F, State, Structure>::type;

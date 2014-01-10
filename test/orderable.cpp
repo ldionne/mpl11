@@ -15,7 +15,7 @@ using detail::is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct mpl_tag; };
+struct archetype { struct type { struct mpl_tag; }; };
 struct less_tag;
 struct less_equal_tag;
 struct greater_tag;
@@ -25,7 +25,7 @@ struct max_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<archetype::mpl_tag, archetype::mpl_tag> {
+    struct Orderable<archetype::type::mpl_tag, archetype::type::mpl_tag> {
         template <typename, typename>
         struct less_impl { using type = less_tag; };
 
@@ -57,19 +57,27 @@ static_assert(is_same<max_t<archetype, archetype>, max_tag>::value, "");
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-template <int i> struct x;
+struct x_tag;
+template <int i>
+struct x {
+    struct type {
+        static constexpr int value = i;
+        using mpl_tag = x_tag;
+    };
+};
 namespace boost { namespace mpl11 {
-    template <int i, int j>
-    struct less<x<i>, x<j>>
-        : bool_<(i < j)>
-    { };
+    template <>
+    struct Orderable<x_tag, x_tag> : Orderable<orderable_tag> {
+        template <typename X, typename Y>
+        using less_impl = bool_<(X::value < Y::value)>;
+    };
 }}
 
 using Default = Orderable<orderable_tag, orderable_tag>;
 
 // less_equal
 template <typename X, typename Y>
-using leq = Default::less_equal_impl<X, Y>;
+using leq = less_equal<X, Y>;
 static_assert(leq<x<0>, x<0>>::value, "");
 static_assert(leq<x<0>, x<1>>::value, "");
 static_assert(leq<x<0>, x<2>>::value, "");
@@ -84,7 +92,7 @@ static_assert( leq<x<2>,  x<2>>::value, "");
 
 // greater
 template <typename X, typename Y>
-using gt = Default::greater_impl<X, Y>;
+using gt = greater<X, Y>;
 static_assert(!gt<x<0>, x<0>>::value, "");
 static_assert( gt<x<1>,  x<0>>::value, "");
 static_assert( gt<x<2>,  x<0>>::value, "");
@@ -99,7 +107,7 @@ static_assert(!gt<x<2>, x<2>>::value, "");
 
 // greater_equal
 template <typename X, typename Y>
-using geq = Default::greater_equal_impl<X, Y>;
+using geq = greater_equal<X, Y>;
 static_assert(geq<x<0>,  x<0>>::value, "");
 static_assert(geq<x<1>,  x<0>>::value, "");
 static_assert(geq<x<2>,  x<0>>::value, "");
@@ -113,18 +121,14 @@ static_assert(!geq<x<1>, x<2>>::value, "");
 static_assert( geq<x<2>,  x<2>>::value, "");
 
 // min
-template <typename X, typename Y>
-using def_min = typename Default::min_impl<X, Y>::type;
-static_assert(is_same<def_min<x<0>, x<0>>, x<0>>::value, "");
-static_assert(is_same<def_min<x<0>, x<1>>, x<0>>::value, "");
-static_assert(is_same<def_min<x<1>, x<0>>, x<0>>::value, "");
+static_assert(is_same<min_t<x<0>, x<0>>, x<0>::type>::value, "");
+static_assert(is_same<min_t<x<0>, x<1>>, x<0>::type>::value, "");
+static_assert(is_same<min_t<x<1>, x<0>>, x<0>::type>::value, "");
 
 // max
-template <typename X, typename Y>
-using def_max = typename Default::max_impl<X, Y>::type;
-static_assert(is_same<def_max<x<0>, x<0>>, x<0>>::value, "");
-static_assert(is_same<def_max<x<0>, x<1>>, x<1>>::value, "");
-static_assert(is_same<def_max<x<1>, x<0>>, x<1>>::value, "");
+static_assert(is_same<max_t<x<0>, x<0>>, x<0>::type>::value, "");
+static_assert(is_same<max_t<x<0>, x<1>>, x<1>::type>::value, "");
+static_assert(is_same<max_t<x<1>, x<0>>, x<1>::type>::value, "");
 
 
 int main() { }

@@ -12,15 +12,15 @@ using namespace boost::mpl11;
 using detail::is_same;
 using detail::variadic_last;
 
-template <int> struct x;
+template <int> struct x { struct type; };
 
-template <int ...Seq>
+template <int ...All>
 struct last_of {
     template <int Last>
     struct is {
         static_assert(is_same<
-            typename variadic_last<x<Seq>...>::type,
-            x<Last>
+            typename variadic_last<x<All>...>::type,
+            typename x<Last>::type
         >::value, "");
     };
 };

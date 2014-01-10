@@ -20,7 +20,7 @@ namespace boost { namespace mpl11 {
      * Using any method that requires the iterable to be non-empty will
      * result in an error.
      */
-    struct empty_sequence BOOST_MPL11_IF_DOXYGEN({ });
+    struct empty_sequence;
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FWD_EMPTY_SEQUENCE_HPP
