@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Comparable`.
+ * Forward declares the @ref Comparable typeclass.
  */
 
 #ifndef BOOST_MPL11_FWD_COMPARABLE_HPP

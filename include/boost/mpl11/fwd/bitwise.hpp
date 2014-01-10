@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Bitwise`.
+ * Forward declares the @ref Bitwise typeclass.
  */
 
 #ifndef BOOST_MPL11_FWD_BITWISE_HPP

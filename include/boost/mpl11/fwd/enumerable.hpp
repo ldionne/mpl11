@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Enumerable`.
+ * Forward declares the @ref Enumerable typeclass.
  */
 
 #ifndef BOOST_MPL11_FWD_ENUMERABLE_HPP

@@ -1,6 +1,6 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Integral`.
+ * Forward declares the @ref Integral typeclass.
  */
 
 #ifndef BOOST_MPL11_FWD_INTEGRAL_HPP

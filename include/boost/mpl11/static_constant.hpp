@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines the instances of `boost::mpl11::StaticConstant`.
+ * Defines the instantiations of the @ref StaticConstant typeclass.
  */
 
 #ifndef BOOST_MPL11_STATIC_CONSTANT_HPP

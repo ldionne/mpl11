@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::Numeric`.
+ * Defines the methods of the @ref Numeric typeclass.
  */
 
 #ifndef BOOST_MPL11_NUMERIC_HPP
