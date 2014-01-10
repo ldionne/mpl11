@@ -122,21 +122,21 @@ struct test_foldable :
 
 // Test the Functor instantiation
 template <int ...Seq>
-struct test_map
+struct test_fmap
     : detail::iterable_test<
-        map_t<f, detail::minimal_iterable<x<Seq>...>>,
+        fmap_t<f, detail::minimal_iterable<x<Seq>...>>,
         typename f::template apply<x<Seq>>::type...
     >
 { };
 
 struct test_functor :
-    test_map<>,
-    test_map<0>,
-    test_map<0, 1>,
-    test_map<0, 1, 2>,
-    test_map<0, 1, 2, 3>,
-    test_map<0, 1, 2, 3, 4>,
-    test_map<0, 1, 2, 3, 4, 5>
+    test_fmap<>,
+    test_fmap<0>,
+    test_fmap<0, 1>,
+    test_fmap<0, 1, 2>,
+    test_fmap<0, 1, 2, 3>,
+    test_fmap<0, 1, 2, 3, 4>,
+    test_fmap<0, 1, 2, 3, 4, 5>
 { };
 
 

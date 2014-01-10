@@ -13,9 +13,9 @@
 
 namespace boost { namespace mpl11 {
     template <typename function, typename functor>
-    struct map_impl {
+    struct fmap {
         using type = typename Functor<typename tag_of<functor>::type>::
-                     template map_impl<function, functor>::type;
+                     template fmap_impl<function, functor>::type;
     };
 }} // end namespace boost::mpl11
 

@@ -226,7 +226,7 @@ namespace boost { namespace mpl11 {
     /*!
      * Default instantiation of the `Functor` typeclass for iterables.
      *
-     * ### `map<F, It>`
+     * ### `fmap<F, It>`
      * Returns the result of applying `F` to each element of the iterable.
      */
     template <>

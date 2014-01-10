@@ -1,14 +1,12 @@
 /*!
  * @file
- * Forward declares `boost::mpl11::Functor`.
+ * Forward declares the @ref Functor typeclass.
  */
 
 #ifndef BOOST_MPL11_FWD_FUNCTOR_HPP
 #define BOOST_MPL11_FWD_FUNCTOR_HPP
 
 namespace boost { namespace mpl11 {
-    template <typename, typename> struct map_impl;
-
     /*!
      * @ingroup typeclasses
      * @defgroup Functor Functor
@@ -17,12 +15,12 @@ namespace boost { namespace mpl11 {
      *
      * Instances of `Functor` must satisfy the following laws:
      *
-            map id == id
-            map (f . g) == map f . map g
+            fmap id == id
+            fmap (f . g) == fmap f . fmap g
      *
      *
      * ### Methods
-     * `map`
+     * `fmap`
      *
      * @{
      */
@@ -30,10 +28,10 @@ namespace boost { namespace mpl11 {
     struct Functor;
 
     template <typename Function, typename Functor>
-    using map = map_impl<Function, Functor>;
+    struct fmap;
 
     template <typename Function, typename Functor>
-    using map_t = typename map<Function, Functor>::type;
+    using fmap_t = typename fmap<Function, Functor>::type;
     //! @}
 }} // end namespace boost::mpl11
 

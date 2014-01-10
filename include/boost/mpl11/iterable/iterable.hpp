@@ -261,7 +261,7 @@ namespace boost { namespace mpl11 {
     template <>
     struct Functor<iterable_tag> {
         template <typename F, typename S>
-        struct map_impl {
+        struct fmap_impl {
             using type = detail::sequence_map<F, S>;
         };
     };
