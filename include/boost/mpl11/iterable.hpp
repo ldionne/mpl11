@@ -12,7 +12,9 @@
 #include <boost/mpl11/iterable/drop_while.hpp>
 #include <boost/mpl11/iterable/filter.hpp>
 #include <boost/mpl11/iterable/iterable.hpp>
+#include <boost/mpl11/iterable/iterate.hpp>
 #include <boost/mpl11/iterable/join.hpp>
+#include <boost/mpl11/iterable/repeat.hpp>
 #include <boost/mpl11/iterable/reverse.hpp>
 #include <boost/mpl11/iterable/slice.hpp>
 #include <boost/mpl11/iterable/snoc.hpp>

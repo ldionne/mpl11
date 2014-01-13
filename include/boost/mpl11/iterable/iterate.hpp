@@ -3,10 +3,10 @@
  * Defines `boost::mpl11::iterate`.
  */
 
-#ifndef BOOST_MPL11_ITERATE_HPP
-#define BOOST_MPL11_ITERATE_HPP
+#ifndef BOOST_MPL11_ITERABLE_ITERATE_HPP
+#define BOOST_MPL11_ITERABLE_ITERATE_HPP
 
-#include <boost/mpl11/fwd/iterate.hpp>
+#include <boost/mpl11/fwd/iterable.hpp>
 
 #include <boost/mpl11/apply.hpp>
 #include <boost/mpl11/fwd/sequence_traits.hpp>
@@ -29,4 +29,4 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-#endif // !BOOST_MPL11_ITERATE_HPP
+#endif // !BOOST_MPL11_ITERABLE_ITERATE_HPP

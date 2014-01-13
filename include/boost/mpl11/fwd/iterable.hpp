@@ -366,6 +366,17 @@ namespace boost { namespace mpl11 {
 
 
     /*!
+     * Returns an infinite iterable containing repeated applications of a
+     * metafunction class to an initial argument.
+     */
+    template <typename F, typename X>
+    struct iterate;
+
+    template <typename F, typename X>
+    using iterate_t = typename iterate<F, X>::type;
+
+
+    /*!
      * Concatenate several iterables.
      *
      * When invoked with `0` iterables, `join` returns an empty iterable.
@@ -382,6 +393,14 @@ namespace boost { namespace mpl11 {
 
     template <typename ...Iters>
     using join_t = typename join<Iters...>::type;
+
+
+    //! Returns an infinite iterable containing copies of the given type.
+    template <typename T>
+    struct repeat;
+
+    template <typename T>
+    using repeat_t = typename repeat<T>::type;
 
 
     //! Returns the elements of an iterable in reverse order.

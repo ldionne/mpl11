@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::repeat`.
  */
 
-#include <boost/mpl11/repeat.hpp>
+#include <boost/mpl11/iterable/repeat.hpp>
 
 #include <boost/mpl11/detail/is_same.hpp>
 #include <boost/mpl11/detail/iterable_test.hpp>

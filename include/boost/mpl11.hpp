@@ -159,7 +159,6 @@
 #include <boost/mpl11/integral_c.hpp>
 #include <boost/mpl11/into.hpp>
 #include <boost/mpl11/iterable.hpp>
-#include <boost/mpl11/iterate.hpp>
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/not.hpp>
 #include <boost/mpl11/numeric.hpp>
@@ -167,7 +166,6 @@
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/partial.hpp>
 #include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/repeat.hpp>
 #include <boost/mpl11/sequence_traits.hpp>
 #include <boost/mpl11/static_constant.hpp>
 #include <boost/mpl11/tag_of.hpp>
