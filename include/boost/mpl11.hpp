@@ -16,9 +16,6 @@
  * @defgroup typeclasses Type classes
  *
  * General purpose type classes provided by the library.
- *
- *
- * @todo Explain what are type classes and methods.
  */
 
 /*!
@@ -66,62 +63,18 @@
  * @defgroup datatypes Data Types
  *
  * Data types provided by the library.
- *
- *
- * @todo Explain what are data types.
  */
 
 /*!
  * @defgroup metafunctions Metafunctions
  *
  * Metafunctions provided by the library.
- *
- * A metafunction is a class or a class template that represents a
- * function invocable at compile-time.
- *
- * An non-nullary metafunction is invoked by instantiating the class
- * template with particular template parameters (metafunction arguments);
- * the result of the metafunction application is accessible through the
- * instantiation's nested `type` alias. All of a metafunction's arguments
- * must be types (i.e. only type template parameters are allowed). A
- * metafunction can have a variable number of parameters. A nullary
- * metafunction is represented as a (template) class with a nested `type`
- * typename member.
- *
- *
- * ### Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `F`        | A metafunction
- * | `Args...`  | An arbitrary sequence of types
- *
- *
- * ### Valid expressions
- * | Expression                       | Type
- * | ----------                       | ----
- * | `F<Args...>::%type` or `F::type` | Any type
  */
 
 /*!
  * @defgroup metafunction_classes Metafunctions Classes
  *
  * Metafunction classes provided by the library.
- *
- * A metafunction class is a compile-time invokable entity that is
- * first-class in the C++ template system.
- *
- *
- * ### Notation
- * | Expression | Description
- * | ---------- | -----------
- * | `F`        | A metafunction class
- * | `Args...`  | An arbitrary sequence of types
- *
- *
- * ### Valid expressions
- * | Expression                 | Type
- * | ----------                 | ----
- * | `apply<F, Args...>::%type` | Any type
  */
 
 #if defined(BOOST_MPL11_DOXYGEN_INVOKED)
