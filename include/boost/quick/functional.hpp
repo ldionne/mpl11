@@ -132,6 +132,30 @@ namespace boost { namespace mpl11 {
 
     template <typename f>
     struct on<f> : f { };
+
+    ////////////////////
+    // bind!
+    ////////////////////
+    template <typename f, typename ...fs>
+    struct bind! {
+        using type = bind!;
+
+        template <typename ...x>
+        using apply = typename f::type::template apply<
+            typename fs::type::template apply<x>...
+        >;
+    };
+
+    template <
+        template <typename ...> class f,
+        template <typename ...> class ...fs
+    >
+    struct bind!<quote<f>, quote<fs>...> {
+        using type = bind!;
+
+        template <typename ...x>
+        using apply = f<fs<x>...>;
+    };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTIONAL_HPP

@@ -111,6 +111,22 @@ namespace boost { namespace mpl11 {
      */
     template <typename f, typename ...fs>
     struct on;
+
+    /*!
+     * Invokes `f` with the result of invoking `fs...` on each corresponding
+     * argument.
+     *
+     * Let `f(x)` denote `apply<f, x>` to lighten the notation. Then,
+     * `bind!<f, fs...>(x...)` is equivalent to `f(fs(x)...)`.
+     *
+     * @note
+     * The number of `fs...` must match exactly the number of arguments
+     * passed to the resulting metafunction class.
+     *
+     * @todo Find a new name for this.
+     */
+    template <typename f, typename ...fs>
+    struct bind!;
     //! @}
 }} // end namespace boost::mpl11
 
