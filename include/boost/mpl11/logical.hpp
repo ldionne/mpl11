@@ -40,6 +40,21 @@ namespace boost { namespace mpl11 {
                 (bool)x::type::value, sizeof...(xs) == 0
             >::template result<xs...>;
         };
+
+        template <bool cond>
+        struct if_impl;
+
+        template <>
+        struct if_impl<true> {
+            template <typename Then, typename Else>
+            using result = Then;
+        };
+
+        template <>
+        struct if_impl<false> {
+            template <typename Then, typename Else>
+            using result = Else;
+        };
     } // end namespace logical_detail
 
     template <typename ...xs>
@@ -60,6 +75,12 @@ namespace boost { namespace mpl11 {
     template <typename b>
     struct not_
         : bool_<!b::type::value>
+    { };
+
+    template <typename Condition, typename Then, typename Else>
+    struct if_ :
+        logical_detail::if_impl<(bool)Condition::type::value>::
+        template result<Then, Else>
     { };
 }} // end namespace boost::mpl11
 

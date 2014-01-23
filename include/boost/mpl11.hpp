@@ -1,6 +1,6 @@
 /*!
  * @file
- * Includes the whole library.
+ * Includes all the modules of the library.
  */
 
 #ifndef BOOST_MPL11_HPP
@@ -91,36 +91,14 @@
 #   define BOOST_MPL11_ENABLE_ASSERTIONS
 #endif
 
-
-#include <boost/mpl11/always.hpp>
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/apply.hpp>
-#include <boost/mpl11/arg.hpp>
-#include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
-#include <boost/mpl11/compose.hpp>
-#include <boost/mpl11/empty_base.hpp>
-#include <boost/mpl11/empty_sequence.hpp>
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/enumerable.hpp>
-#include <boost/mpl11/flip.hpp>
 #include <boost/mpl11/foldable.hpp>
+#include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/functor.hpp>
-#include <boost/mpl11/id.hpp>
-#include <boost/mpl11/if.hpp>
-#include <boost/mpl11/inherit.hpp>
-#include <boost/mpl11/integral.hpp>
 #include <boost/mpl11/integral_c.hpp>
-#include <boost/mpl11/into.hpp>
-#include <boost/mpl11/iterable.hpp>
-#include <boost/mpl11/list.hpp>
-#include <boost/mpl11/not.hpp>
-#include <boost/mpl11/numeric.hpp>
-#include <boost/mpl11/or.hpp>
+#include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/orderable.hpp>
-#include <boost/mpl11/partial.hpp>
-#include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/sequence_traits.hpp>
-#include <boost/mpl11/static_constant.hpp>
-#include <boost/mpl11/tag_of.hpp>
 
 #endif // !BOOST_MPL11_HPP

@@ -5,21 +5,21 @@
 
 #include <boost/mpl11/integral_c.hpp>
 
-#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/detail/std_is_same.hpp>
 
 
 using namespace boost::mpl11;
-using detail::is_same;
+using detail::std_is_same;
 
 template <typename T, T v = T{}>
 struct test_one {
     using I = integral_c<T, v>;
 
-    static_assert(is_same<typename I::value_type, T>::value, "");
+    static_assert(std_is_same<typename I::value_type, T>::value, "");
 
     static_assert(I::value == v, "");
 
-    static_assert(is_same<typename I::type, I>::value, "");
+    static_assert(std_is_same<typename I::type, I>::value, "");
 
     static constexpr typename I::value_type c1 = I{};
     static_assert(c1 == v, "");

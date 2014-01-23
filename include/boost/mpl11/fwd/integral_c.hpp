@@ -19,6 +19,9 @@ namespace boost { namespace mpl11 {
      *
      * @todo
      * Move this to the proper documentation section.
+     *
+     * @todo
+     * Make this a model of `StaticConstant`, or whatever this has become.
      */
     template <typename T, T v>
     struct integral_c;

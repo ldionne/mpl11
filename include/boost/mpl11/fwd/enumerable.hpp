@@ -23,7 +23,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Tag>
+    template <typename Datatype>
     struct Enumerable;
 
     //! Returns the successor of the given object.

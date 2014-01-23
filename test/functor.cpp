@@ -5,28 +5,32 @@
 
 #include <boost/mpl11/functor.hpp>
 
-#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/std_is_same.hpp>
 
 
 using namespace boost::mpl11;
-using detail::is_same;
+using detail::std_is_same;
 
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct type { struct mpl_tag; }; };
+struct FunctorArchetype;
+struct archetype { struct type { using mpl_datatype = FunctorArchetype; }; };
 struct fmap_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Functor<archetype::type::mpl_tag> {
+    struct Functor<FunctorArchetype> {
         template <typename, typename>
         struct fmap_impl { using type = fmap_tag; };
     };
 }} // end namespace boost::mpl11
 
-struct F { struct type; };
-static_assert(is_same<fmap_t<F, archetype>, fmap_tag>::value, "");
+static_assert(std_is_same<
+    fmap<undefined, archetype>::type,
+    fmap_tag
+>::value, "");
 
 
 int main() { }

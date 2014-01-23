@@ -38,7 +38,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename datatype>
+    template <typename Datatype>
     struct Foldable;
 
     //! Right-associative fold of a structure using a binary operator.
@@ -57,7 +57,7 @@ namespace boost { namespace mpl11 {
      */
     template <typename predicate, typename structure>
     using all = foldr<
-        bind!<quote<and_>, predicate, quote<id>>,
+        compose<quote<and_>, predicate>,
         true_,
         structure
     >;

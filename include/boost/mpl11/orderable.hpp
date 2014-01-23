@@ -8,149 +8,147 @@
 
 #include <boost/mpl11/fwd/orderable.hpp>
 
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/detail/box.hpp>
-#include <boost/mpl11/detail/conditional.hpp>
+#include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/std_conditional.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
-#include <boost/mpl11/not.hpp>
-#include <boost/mpl11/quote.hpp>
-#include <boost/mpl11/tag_of.hpp>
+#include <boost/mpl11/functional.hpp>
+#include <boost/mpl11/logical.hpp>
 
 
 namespace boost { namespace mpl11 {
     namespace detail {
-        template <typename TagL, typename TagR>
+        template <typename Left, typename Right>
         struct flip_Orderable {
-            template <typename L, typename R>
-            using less_impl = typename Orderable<TagR, TagL>::
-                              template less_impl<R, L>;
+            template <typename left, typename right>
+            using less_impl = typename Orderable<Right, Left>::
+                              template less_impl<right, left>;
 
-            template <typename L, typename R>
-            using less_equal_impl = typename Orderable<TagR, TagL>::
-                                    template less_equal_impl<R, L>;
+            template <typename left, typename right>
+            using less_equal_impl = typename Orderable<Right, Left>::
+                                    template less_equal_impl<right, left>;
 
-            template <typename L, typename R>
-            using greater_impl = typename Orderable<TagR, TagL>::
-                                 template greater_impl<R, L>;
+            template <typename left, typename right>
+            using greater_impl = typename Orderable<Right, Left>::
+                                 template greater_impl<right, left>;
 
-            template <typename L, typename R>
-            using greater_equal_impl = typename Orderable<TagR, TagL>::
-                                       template greater_equal_impl<R, L>;
+            template <typename left, typename right>
+            using greater_equal_impl = typename Orderable<Right, Left>::
+                                    template greater_equal_impl<right, left>;
 
-            template <typename L, typename R>
-            using min_impl = typename Orderable<TagR, TagL>::
-                             template min_impl<R, L>;
+            template <typename left, typename right>
+            using min_impl = typename Orderable<Right, Left>::
+                             template min_impl<right, left>;
 
-            template <typename L, typename R>
-            using max_impl = typename Orderable<TagR, TagL>::
-                             template max_impl<R, L>;
+            template <typename left, typename right>
+            using max_impl = typename Orderable<Right, Left>::
+                             template max_impl<right, left>;
         };
     } // end namespace detail
 
     template <>
-    struct Orderable<orderable_tag, orderable_tag> {
-        template <typename L, typename R>
-        using less_equal_impl = not_<less<detail::box<R>, detail::box<L>>>;
+    struct Orderable<typeclass<Orderable>, typeclass<Orderable>> {
+        template <typename left, typename right>
+        using less_equal_impl = not_<less<box<right>, box<left>>>;
 
-        template <typename L, typename R>
-        using greater_impl = less<detail::box<R>, detail::box<L>>;
+        template <typename left, typename right>
+        using greater_impl = less<box<right>, box<left>>;
 
-        template <typename L, typename R>
-        using greater_equal_impl = not_<less<detail::box<L>, detail::box<R>>>;
+        template <typename left, typename right>
+        using greater_equal_impl = not_<less<box<left>, box<right>>>;
 
-        template <typename L, typename R>
-        using min_impl = detail::conditional<
-            less<detail::box<L>, detail::box<R>>::value, L, R
+        template <typename left, typename right>
+        using min_impl = detail::std_conditional<
+            less<box<left>, box<right>>::value, left, right
         >;
 
-        template <typename L, typename R>
-        using max_impl = detail::conditional<
-            less<detail::box<L>, detail::box<R>>::value, R, L
+        template <typename left, typename right>
+        using max_impl = detail::std_conditional<
+            less<box<left>, box<right>>::value, right, left
         >;
     };
 
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct less
-        : and_<less<T1, T2>, less<T2, Tn...>>
+        : and_<less<x1, x2>, less<x2, xs...>>
     { };
 
     template <typename T1, typename T2>
-    struct less<T1, T2>
-        : Orderable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template less_impl<typename T1::type, typename T2::type>
+    struct less<x1, x2> :
+        Orderable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template less_impl<typename x1::type, typename x2::type>
     { };
 
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct less_equal
-        : and_<less_equal<T1, T2>, less_equal<T2, Tn...>>
+        : and_<less_equal<x1, x2>, less_equal<x2, xs...>>
     { };
 
     template <typename T1, typename T2>
-    struct less_equal<T1, T2>
-        : Orderable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template less_equal_impl<typename T1::type, typename T2::type>
+    struct less_equal<x1, x2> :
+        Orderable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template less_equal_impl<typename x1::type, typename x2::type>
     { };
 
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct greater
-        : and_<greater<T1, T2>, greater<T2, Tn...>>
+        : and_<greater<x1, x2>, greater<x2, xs...>>
     { };
 
     template <typename T1, typename T2>
-    struct greater<T1, T2>
-        : Orderable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template greater_impl<typename T1::type, typename T2::type>
+    struct greater<x1, x2> :
+        Orderable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template greater_impl<typename x1::type, typename x2::type>
     { };
 
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct greater_equal
-        : and_<greater_equal<T1, T2>, greater_equal<T2, Tn...>>
+        : and_<greater_equal<x1, x2>, greater_equal<x2, xs...>>
     { };
 
     template <typename T1, typename T2>
-    struct greater_equal<T1, T2>
-        : Orderable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template greater_equal_impl<typename T1::type, typename T2::type>
+    struct greater_equal<x1, x2> :
+        Orderable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template greater_equal_impl<typename x1::type, typename x2::type>
     { };
 
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct min
-        : detail::strict_variadic_foldl<quote<min>, T1, T2, Tn...>
+        : detail::strict_variadic_foldl<quote<min>, x1, x2, xs...>
     { };
 
     template <typename T1, typename T2>
-    struct min<T1, T2>
-        : Orderable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template min_impl<typename T1::type, typename T2::type>
+    struct min<x1, x2> :
+        Orderable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template min_impl<typename x1::type, typename x2::type>
     { };
 
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct max
-        : detail::strict_variadic_foldl<quote<max>, T1, T2, Tn...>
+        : detail::strict_variadic_foldl<quote<max>, x1, x2, xs...>
     { };
 
     template <typename T1, typename T2>
-    struct max<T1, T2>
-        : Orderable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template max_impl<typename T1::type, typename T2::type>
+    struct max<x1, x2> :
+        Orderable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template max_impl<typename x1::type, typename x2::type>
     { };
 }} // end namespace boost::mpl11
 

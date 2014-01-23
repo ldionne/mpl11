@@ -1,26 +1,29 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::Enumerable`.
+ * Contains unit tests for the @ref Enumerable typeclass.
  */
 
 #include <boost/mpl11/enumerable.hpp>
 
-#include <boost/mpl11/detail/is_same.hpp>
+#include <boost/mpl11/detail/std_is_same.hpp>
 
 
 using namespace boost::mpl11;
-using detail::is_same;
+using detail::std_is_same;
 
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct archetype { struct type { struct mpl_tag; }; };
+struct EnumerableArchetype;
+struct archetype {
+    struct type { using mpl_datatype = EnumerableArchetype; };
+};
 struct succ_tag;
 struct pred_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Enumerable<archetype::type::mpl_tag> {
+    struct Enumerable<EnumerableArchetype> {
         template <typename>
         struct succ_impl { using type = succ_tag; };
 
@@ -29,8 +32,15 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-static_assert(is_same<succ_t<archetype>, succ_tag>::value, "");
-static_assert(is_same<pred_t<archetype>, pred_tag>::value, "");
+static_assert(std_is_same<
+    succ<archetype>::type,
+    succ_tag
+>::value, "");
+
+static_assert(std_is_same<
+    pred<archetype>::type,
+    pred_tag
+>::value, "");
 
 
 int main() { }

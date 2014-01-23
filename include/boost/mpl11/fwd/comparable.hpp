@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_COMPARABLE_HPP
 #define BOOST_MPL11_FWD_COMPARABLE_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -20,10 +17,6 @@ namespace boost { namespace mpl11 {
      * ### Methods
      * `equal` and `not_equal`.
      *
-     * Those methods can be invoked with more than two elements.
-     * Specifically, `method<T1, ..., Tn>` is equivalent to
-     * `and_<method<T1, T2>, method<T2, ..., Tn>>`, and `method<T1, T2>`
-     * uses the usual tag dispatching technique.
      *
      * ### Minimal complete definition
      * Either `equal` or `not_equal`.
@@ -36,39 +29,32 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename TagL, typename TagR = TagL>
+    template <typename Left, typename Right = Left>
     struct Comparable;
 
     /*!
-     * Tag representing the `Comparable` typeclass.
+     * Boolean `StaticConstant` representing whether the given objects
+     * are equal.
      *
-     * @ingroup tags
+     * This method can be invoked with more than two arguments. Specifically,
+     * `equal<x1, x2, xs...>` is equivalent to
+     * `and_<equal<x1, x2>, equal<x2, xs...>>`, and `equal<x1, x2>`
+     * uses the usual dispatching technique.
      */
-    struct comparable_tag BOOST_MPL11_IF_DOXYGEN({ });
-
-    //! Boolean `StaticConstant` representing whether the given objects
-    //! are equal.
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct equal;
-
-    template <typename T1, typename T2, typename ...Tn>
-    using equal_t = typename equal<T1, T2, Tn...>::type;
 
     /*!
      * Boolean `StaticConstant` representing whether the given objects
      * are unequal.
      *
-     *
-     * @warning
-     * Using this method with several arguments can be confusing. It does not
-     * return whether `T1`, `T2`, ...`Tn` are all unequal, but whether `T1`
-     * is different from `T2`, `T2` different from `T3`, and so on.
+     * Unlike `equal`, this method can't be invoked with more than two
+     * arguments. The reason is that `not_equal` is not transitive and
+     * its behavior with more than two arguments is not equivalent to
+     * `not_<equal<...>>`, which is confusing.
      */
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x, typename y>
     struct not_equal;
-
-    template <typename T1, typename T2, typename ...Tn>
-    using not_equal_t = typename not_equal<T1, T2, Tn...>::type;
     //! @}
 }} // end namespace boost::mpl11
 

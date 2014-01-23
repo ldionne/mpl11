@@ -8,17 +8,10 @@
 
 #include <boost/mpl11/fwd/integral_c.hpp>
 
-#include <boost/mpl11/fwd/core.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
-#include <boost/mpl11/fwd/static_constant.hpp>
 
 
 namespace boost { namespace mpl11 {
-    template <typename T, T v>
-    struct datatype<integral_c<T, v>> {
-        using type = typeclass<StaticConstant>;
-    };
-
     template <typename T, T v>
     struct integral_c {
         using value_type = T;
@@ -44,16 +37,13 @@ namespace boost { namespace mpl11 {
 
     template <typename T, T ...v>
     struct or_<integral_c<T, v>...>
-        : integral_c_detail::or_impl<bool_<(bool)v...>
+        : integral_c_detail::or_impl<bool_<(bool)v...>>
     { };
 
     template <typename T, T ...v>
     struct and_<integral_c<T, v>...>
-        : integral_c_detail::and_impl<bool_<(bool)v...>
+        : integral_c_detail::and_impl<bool_<(bool)v...>>
     { };
 }} // end namespace boost::mpl11
-
-// We need to include it, but we include it once `integral_c` is complete.
-#include <boost/mpl11/static_constant.hpp>
 
 #endif // !BOOST_MPL11_INTEGRAL_C_HPP

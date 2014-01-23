@@ -15,8 +15,10 @@ namespace boost { namespace mpl11 {
      *
      * Instances of `Functor` must satisfy the following laws:
      *
+        @code
             fmap id == id
             fmap (f . g) == fmap f . fmap g
+        @endcode
      *
      *
      * ### Methods

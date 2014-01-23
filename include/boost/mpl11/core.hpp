@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_CORE_HPP
 #define BOOST_MPL11_CORE_HPP
 
+#include <boost/mpl11/fwd/core.hpp>
+
+
 namespace boost { namespace mpl11 {
     template <typename x>
     struct box {

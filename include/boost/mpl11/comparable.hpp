@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::Comparable`.
+ * Defines the @ref Comparable typeclass.
  */
 
 #ifndef BOOST_MPL11_COMPARABLE_HPP
@@ -8,77 +8,66 @@
 
 #include <boost/mpl11/fwd/comparable.hpp>
 
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/detail/box.hpp>
-#include <boost/mpl11/detail/is_same.hpp>
-#include <boost/mpl11/not.hpp>
-#include <boost/mpl11/tag_of.hpp>
+#include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/std_is_same.hpp>
+#include <boost/mpl11/logical.hpp>
 
 
 namespace boost { namespace mpl11 {
     namespace detail {
-        template <typename TagL, typename TagR>
+        template <typename Left, typename Right>
         struct flip_Comparable {
-            template <typename L, typename R>
-            using equal_impl = typename Comparable<TagR, TagL>::
-                               template equal_impl<R, L>;
+            template <typename left, typename right>
+            using equal_impl = typename Comparable<Right, Left>::
+                               template equal_impl<right, left>;
 
-            template <typename L, typename R>
-            using not_equal_impl = typename Comparable<TagR, TagL>::
-                                   template not_equal_impl<R, L>;
+            template <typename left, typename right>
+            using not_equal_impl = typename Comparable<Right, Left>::
+                                   template not_equal_impl<right, left>;
         };
     } // end namespace detail
 
     namespace comparable_detail {
         struct Comparable_base {
-            template <typename L, typename R>
-            using equal_impl = detail::is_same<L, R>;
+            template <typename left, typename right>
+            using equal_impl = detail::std_is_same<left, right>;
 
-            template <typename L, typename R>
-            using not_equal_impl = not_<detail::is_same<L, R>>;
+            template <typename left, typename right>
+            using not_equal_impl = not_<detail::std_is_same<left, right>>;
         };
     } // end namespace comparable_detail
 
-    template <typename TagL, typename TagR>
+    template <typename Left, typename Right>
     struct Comparable : comparable_detail::Comparable_base { };
 
     template <>
-    struct Comparable<comparable_tag, comparable_tag> {
-        template <typename L, typename R>
-        using equal_impl = not_<
-            not_equal<detail::box<L>, detail::box<R>>
-        >;
+    struct Comparable<typeclass<Comparable>, typeclass<Comparable>> {
+        template <typename left, typename right>
+        using equal_impl = not_<not_equal<box<left>, box<right>>>;
 
-        template <typename L, typename R>
-        using not_equal_impl = not_<
-            equal<detail::box<L>, detail::box<R>>
-        >;
+        template <typename left, typename right>
+        using not_equal_impl = not_<equal<box<left>, box<right>>>;
     };
 
-    template <typename T1, typename T2, typename ...Tn>
+    template <typename x1, typename x2, typename ...xs>
     struct equal
-        : and_<equal<T1, T2>, equal<T2, Tn...>>
+        : and_<equal<x1, x2>, equal<x2, xs...>>
     { };
 
-    template <typename T1, typename T2>
-    struct equal<T1, T2>
-        : Comparable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template equal_impl<typename T1::type, typename T2::type>
+    template <typename x1, typename x2>
+    struct equal<x1, x2> :
+        Comparable<
+            typename datatype<typename x1::type>::type,
+            typename datatype<typename x2::type>::type
+        >::template equal_impl<typename x1::type, typename x2::type>
     { };
 
-    template <typename T1, typename T2, typename ...Tn>
-    struct not_equal
-        : and_<not_equal<T1, T2>, not_equal<T2, Tn...>>
-    { };
-
-    template <typename T1, typename T2>
-    struct not_equal<T1, T2>
-        : Comparable<
-            typename tag_of<typename T1::type>::type,
-            typename tag_of<typename T2::type>::type
-        >::template not_equal_impl<typename T1::type, typename T2::type>
+    template <typename x, typename y>
+    struct not_equal :
+        Comparable<
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template not_equal_impl<typename x::type, typename y::type>
     { };
 }} // end namespace boost::mpl11
 
