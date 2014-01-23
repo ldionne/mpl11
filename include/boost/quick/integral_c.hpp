@@ -8,15 +8,16 @@
 
 #include <boost/mpl11/fwd/integral_c.hpp>
 
-#include <boost/mpl11/fwd/and.hpp>
-#include <boost/mpl11/fwd/or.hpp>
+#include <boost/mpl11/fwd/core.hpp>
+#include <boost/mpl11/fwd/logical.hpp>
 #include <boost/mpl11/fwd/static_constant.hpp>
-#include <boost/mpl11/fwd/tag_of.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename T, T v>
-    struct tag_of<integral_c<T, v>> { using type = static_constant_tag; };
+    struct datatype<integral_c<T, v>> {
+        using type = typeclass<StaticConstant>;
+    };
 
     template <typename T, T v>
     struct integral_c {
@@ -43,12 +44,12 @@ namespace boost { namespace mpl11 {
 
     template <typename T, T ...v>
     struct or_<integral_c<T, v>...>
-        : integral_c_detail::or_impl<bool_<static_cast<bool>(v)>...>
+        : integral_c_detail::or_impl<bool_<(bool)v...>
     { };
 
     template <typename T, T ...v>
     struct and_<integral_c<T, v>...>
-        : integral_c_detail::and_impl<bool_<static_cast<bool>(v)>...>
+        : integral_c_detail::and_impl<bool_<(bool)v...>
     { };
 }} // end namespace boost::mpl11
 

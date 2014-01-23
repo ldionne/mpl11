@@ -24,14 +24,12 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Tag>
+    template <typename Datatype>
     struct Functor;
 
-    template <typename Function, typename Functor>
+    //! Returns the result of mapping a metafunction class over a `Functor`.
+    template <typename f, typename structure>
     struct fmap;
-
-    template <typename Function, typename Functor>
-    using fmap_t = typename fmap<Function, Functor>::type;
     //! @}
 }} // end namespace boost::mpl11
 

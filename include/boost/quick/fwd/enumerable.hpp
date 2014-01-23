@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_ENUMERABLE_HPP
 #define BOOST_MPL11_FWD_ENUMERABLE_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -30,19 +27,12 @@ namespace boost { namespace mpl11 {
     struct Enumerable;
 
     //! Returns the successor of the given object.
-    template <typename E>
+    template <typename e>
     struct succ;
 
-    template <typename E>
-    using succ_t = typename succ<E>::type;
-
-
     //! Returns the predecessor of the given object.
-    template <typename E>
+    template <typename e>
     struct pred;
-
-    template <typename E>
-    using pred_t = typename pred<E>::type;
     //! @}
 }} // end namespace boost::mpl11
 
