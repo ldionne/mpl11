@@ -17,16 +17,16 @@ namespace boost { namespace mpl11 {
      * ### Methods
      * `less`, `less_equal`, `greater`, `greater_equal`, `min` and `max`.
      *
-     * All of these methods can be invoked with two arguments or more.
-     * Specifically:
-     * - If `m` is one of `less`, `less_equal`, `greater` or `greater_equal`,
-     *   then `m<x1, ..., xN>` is equivalent to
-     *   `and_<m<x1, x2>, m<x2, ..., xN>>`, and `m<x1, x2>` uses the usual
-     *   dispatching technique.
+     * The `less`, `less_equal`, `greater` and `greater_equal` methods can
+     * all be invoked with more than two arguments, in which case the method's
+     * behavior conforms to the usual mathematical usage. Specifically,
+     * `less<x1, x2, xs...>` is equivalent to
+     * `and_<less<x1, x2>, less<x2, xs...>>`.
      *
-     * - If `m` is `min` or `max`, then `m<x1, ..., xN>` is equivalent to
-     *   `m<m<x1, x2>, x3, ..., xN>`, and `m<x1, x2>` uses the usual
-     *   dispatching technique.
+     * The `min` and `max` methods can also be invoked with more than two
+     * arguments. Specifically, `min<x1, x2, xs...>` is equivalent to
+     * `min<min<x1, x2>, xs...>`.
+     *
      *
      * ### Minimal complete definition
      * `less`

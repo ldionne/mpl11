@@ -37,12 +37,12 @@ namespace boost { namespace mpl11 {
 
     template <typename T, T ...v>
     struct or_<integral_c<T, v>...>
-        : integral_c_detail::or_impl<bool_<(bool)v...>>
+        : integral_c_detail::or_impl<bool_<(bool)v>...>
     { };
 
     template <typename T, T ...v>
     struct and_<integral_c<T, v>...>
-        : integral_c_detail::and_impl<bool_<(bool)v...>>
+        : integral_c_detail::and_impl<bool_<(bool)v>...>
     { };
 }} // end namespace boost::mpl11
 

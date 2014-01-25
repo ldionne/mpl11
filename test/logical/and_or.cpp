@@ -3,18 +3,16 @@
  * Contains unit tests for `boost::mpl11::and_` and `boost::mpl11::or_`.
  */
 
-#include <boost/mpl11/and.hpp>
-#include <boost/mpl11/or.hpp>
+#include <boost/mpl11/logical.hpp>
 
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
 
 using namespace boost::mpl11;
 
 template <typename T, typename F>
-struct test_one {
-    struct invalid;
-
+struct test_and_or {
     // test and_
     static_assert( and_<>::value, "");
 
@@ -25,7 +23,7 @@ struct test_one {
     static_assert(!and_<T, F>::value, "");
     static_assert(!and_<F, T>::value, "");
     static_assert(!and_<F, F>::value, "");
-    static_assert(!and_<F, invalid>::value, "");
+    static_assert(!and_<F, undefined>::value, "");
 
     static_assert( and_<T, T, T>::value, "");
     static_assert(!and_<T, T, F>::value, "");
@@ -35,9 +33,9 @@ struct test_one {
     static_assert(!and_<F, T, F>::value, "");
     static_assert(!and_<F, F, T>::value, "");
     static_assert(!and_<F, F, F>::value, "");
-    static_assert(!and_<T, F, invalid>::value, "");
-    static_assert(!and_<F, T, invalid>::value, "");
-    static_assert(!and_<F, F, invalid>::value, "");
+    static_assert(!and_<T, F, undefined>::value, "");
+    static_assert(!and_<F, T, undefined>::value, "");
+    static_assert(!and_<F, F, undefined>::value, "");
 
 
     // test or_
@@ -50,7 +48,7 @@ struct test_one {
     static_assert( or_<T, F>::value, "");
     static_assert( or_<F, T>::value, "");
     static_assert(!or_<F, F>::value, "");
-    static_assert( or_<T, invalid>::value, "");
+    static_assert( or_<T, undefined>::value, "");
 
     static_assert( or_<T, T, T>::value, "");
     static_assert( or_<T, T, F>::value, "");
@@ -60,9 +58,9 @@ struct test_one {
     static_assert( or_<F, T, F>::value, "");
     static_assert( or_<F, F, T>::value, "");
     static_assert(!or_<F, F, F>::value, "");
-    static_assert( or_<T, F, invalid>::value, "");
-    static_assert( or_<F, T, invalid>::value, "");
-    static_assert( or_<T, T, invalid>::value, "");
+    static_assert( or_<T, F, undefined>::value, "");
+    static_assert( or_<F, T, undefined>::value, "");
+    static_assert( or_<T, T, undefined>::value, "");
 };
 
 template <typename T, T v>
@@ -70,15 +68,15 @@ struct yes { struct type { static constexpr T value = v; }; };
 struct no { struct type { static constexpr bool value = false; }; };
 
 struct tests :
-    test_one<yes<bool, true>, no>,
-    test_one<yes<int, 1>, no>,
-    test_one<yes<int, 2>, no>,
+    test_and_or<yes<bool, true>, no>,
+    test_and_or<yes<int, 1>, no>,
+    test_and_or<yes<int, 2>, no>,
 
     // test integral_c specialization
-    test_one<true_, false_>,
-    test_one<int_<2>, false_>,
-    test_one<int_<2>, int_<0>>,
-    test_one<int_<2>, long_<0>>
+    test_and_or<true_, false_>,
+    test_and_or<int_<2>, false_>,
+    test_and_or<int_<2>, int_<0>>,
+    test_and_or<int_<2>, long_<0>>
 { };
 
 

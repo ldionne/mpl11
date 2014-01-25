@@ -6,9 +6,6 @@
 #ifndef BOOST_MPL11_FWD_LOGICAL_HPP
 #define BOOST_MPL11_FWD_LOGICAL_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
-
-
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup Logical Logical
@@ -20,73 +17,70 @@ namespace boost { namespace mpl11 {
 
     /*!
      * Boolean `StaticConstant` representing the result of short-circuit
-     * logical and (`&&`) on its arguments.
+     * _logical and_ (`&&`) on its arguments.
      *
-     * Specifically, its arguments must be metafunctions returning
-     * `StaticConstant`s. Arguments are then evaluated from left to
-     * right in a short-circuiting fashion. If no arguments are
-     * provided, `and_` is equivalent to `true_`.
+     * Arguments must be `StaticConstant`s that will be unboxed from left to
+     * right in a short-circuiting fashion. If no arguments are provided,
+     * `and_` is equivalent to `true_`.
      *
      *
      * @todo
      * - Consider using folds in the implementation of `and_` and `or_`.
-     * - Reformulate the documentation for all the logical metafunctions.
      */
     template <typename ...xs>
     struct and_;
 
     /*!
      * Boolean `StaticConstant` representing the result of short-circuit
-     * logical or (`||`) on its arguments.
+     * _logical or_ (`||`) on its arguments.
      *
-     * Specifically, its arguments must be metafunctions returning
-     * `StaticConstant`s. Arguments are then evaluated from left to
-     * right in a short-circuiting fashion. If no arguments are
-     * provided, `or_` is equivalent to `false_`.
+     * Arguments must be `StaticConstant`s that will be unboxed from left to
+     * right in a short-circuiting fashion. If no arguments are provided,
+     * `or_` is equivalent to `false_`.
      */
     template <typename ...xs>
     struct or_;
 
     /*!
-     * Boolean `StaticConstant` representing the logical negation (`!`) of
+     * Boolean `StaticConstant` representing the _logical negation_ (`!`) of
      * its argument.
      *
-     * Specifically, `not_<b>` is equivalent to `bool_<!b::%type::value>`.
+     * Specifically, `not_<x>` is equivalent to `bool_<!x::%type::value>`.
      */
-    template <typename b>
+    template <typename x>
     struct not_;
 
     namespace logical_detail { template <bool> struct if_impl; }
 
-    //! Equivalent to `if_<bool_<Condition>, Then, Else>`.
-    template <bool Condition, typename Then, typename Else>
-    using if_c = typename logical_detail::if_impl<Condition>::
-                 template result<Then, Else>;
+    //! Equivalent to `if_<bool_<condition>, then_branch, else_branch>`.
+    template <bool condition, typename then_branch, typename else_branch>
+    using if_c = typename logical_detail::if_impl<condition>::
+                 template result<then_branch, else_branch>;
 
-    //! Equivalent to `else_if<bool_<Condition>, Then, Else>`.
-    template <bool Condition, typename Then, typename Else>
-    BOOST_MPL11_DOXYGEN_ALIAS(else_if_c, if_c<Condition, Then, Else>);
+    //! Equivalent to `else_if<bool_<condition>, then_branch, else_branch>`.
+    template <bool condition, typename then_branch, typename else_branch>
+    using else_if_c = if_c<condition, then_branch, else_branch>;
 
     /*!
-     * Evaluate one of two metafunctions based on a lazy condition.
+     * Evaluates one of two branches based on a `StaticConstant` condition.
      *
-     * Specifically, `Condition` must be a nullary metafunction returning
-     * a `StaticConstant`. If `Condition::type::value` is `true`, `if_`
-     * inherits from `Then`, otherwise it inherits from `Else`.
+     * Specifically, `if_<condition, then_branch, else_branch>` is equivalent
+     * to `then_branch` if `condition` evaluates to `true`, and to
+     * `else_branch` otherwise.
      *
-     * `if_` can be combined with `else_if` and `else_` to form a small DSL
-     * that greatly improves readability.
+     * `if_` can be combined with `else_if` and `else_` to improve
+     * readability.
      */
-    template <typename Condition, typename Then, typename Else>
+    template <typename condition, typename then_branch, typename else_branch>
     struct if_;
 
-    //! Alias to `if_`; provided for the added semantics when used with `if_`.
-    template <typename Condition, typename Then, typename Else>
-    BOOST_MPL11_DOXYGEN_ALIAS(else_if, if_<Condition, Then, Else>);
+    //! Equivalent to `if_`; provided for use with `if_`.
+    template <typename condition, typename then_branch, typename else_branch>
+    using else_if = if_<condition, then_branch, else_branch>;
 
     //! Transparent alias to its argument; provided for use with `if_`.
-    template <typename Else>
-    BOOST_MPL11_DOXYGEN_ALIAS(else_, Else);
+    template <typename else_branch>
+    using else_ = else_branch;
     //! @}
 }} // end namespace boost::mpl11
 

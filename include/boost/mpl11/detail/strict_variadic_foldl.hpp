@@ -16,30 +16,20 @@ namespace boost { namespace mpl11 { namespace detail {
      * @todo
      * Optimize this and make it able to process _huge_ sequences.
      */
-    template <typename F, typename State, typename ...T>
-    struct strict_variadic_foldl;
-}}} // end namespace boost::mpl11::detail
+    template <typename f, typename state, typename ...xs>
+    struct strict_variadic_foldl : state { };
 
-
-#include <boost/mpl11/apply.hpp>
-
-
-namespace boost { namespace mpl11 { namespace detail {
-    template <typename F, typename State, typename Head, typename ...Tail>
-    struct strict_variadic_foldl<F, State, Head, Tail...> {
+    template <typename f, typename state, typename x, typename ...xs>
+    struct strict_variadic_foldl<f, state, x, xs...> {
     private:
-        static constexpr auto instantiate = sizeof(apply<F, State, Head>);
+        using new_state = typename f::type::template apply<state, x>;
+        static constexpr auto make_strict = sizeof(new_state);
 
     public:
         using type = typename strict_variadic_foldl<
-            F, apply<F, State, Head>, Tail...
+            f, new_state, xs...
         >::type;
     };
-
-    template <typename F, typename State>
-    struct strict_variadic_foldl<F, State>
-        : State
-    { };
 }}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_STRICT_VARIADIC_FOLDL_HPP

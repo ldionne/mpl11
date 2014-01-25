@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines logical metafunctions.
+ * Defines the @ref Logical module.
  */
 
 #ifndef BOOST_MPL11_LOGICAL_HPP
@@ -72,9 +72,9 @@ namespace boost { namespace mpl11 {
     template <> struct and_<> : true_ { };
     template <> struct or_<>  : false_ { };
 
-    template <typename b>
+    template <typename x>
     struct not_
-        : bool_<!b::type::value>
+        : bool_<!x::type::value>
     { };
 
     template <typename Condition, typename Then, typename Else>

@@ -73,12 +73,12 @@ namespace boost { namespace mpl11 {
         : and_<less<x1, x2>, less<x2, xs...>>
     { };
 
-    template <typename T1, typename T2>
-    struct less<x1, x2> :
+    template <typename x, typename y>
+    struct less<x, y> :
         Orderable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template less_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template less_impl<typename x::type, typename y::type>
     { };
 
 
@@ -87,12 +87,12 @@ namespace boost { namespace mpl11 {
         : and_<less_equal<x1, x2>, less_equal<x2, xs...>>
     { };
 
-    template <typename T1, typename T2>
-    struct less_equal<x1, x2> :
+    template <typename x, typename y>
+    struct less_equal<x, y> :
         Orderable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template less_equal_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template less_equal_impl<typename x::type, typename y::type>
     { };
 
 
@@ -101,12 +101,12 @@ namespace boost { namespace mpl11 {
         : and_<greater<x1, x2>, greater<x2, xs...>>
     { };
 
-    template <typename T1, typename T2>
-    struct greater<x1, x2> :
+    template <typename x, typename y>
+    struct greater<x, y> :
         Orderable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template greater_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template greater_impl<typename x::type, typename y::type>
     { };
 
 
@@ -115,12 +115,12 @@ namespace boost { namespace mpl11 {
         : and_<greater_equal<x1, x2>, greater_equal<x2, xs...>>
     { };
 
-    template <typename T1, typename T2>
-    struct greater_equal<x1, x2> :
+    template <typename x, typename y>
+    struct greater_equal<x, y> :
         Orderable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template greater_equal_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template greater_equal_impl<typename x::type, typename y::type>
     { };
 
 
@@ -129,12 +129,12 @@ namespace boost { namespace mpl11 {
         : detail::strict_variadic_foldl<quote<min>, x1, x2, xs...>
     { };
 
-    template <typename T1, typename T2>
-    struct min<x1, x2> :
+    template <typename x, typename y>
+    struct min<x, y> :
         Orderable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template min_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template min_impl<typename x::type, typename y::type>
     { };
 
 
@@ -143,12 +143,12 @@ namespace boost { namespace mpl11 {
         : detail::strict_variadic_foldl<quote<max>, x1, x2, xs...>
     { };
 
-    template <typename T1, typename T2>
-    struct max<x1, x2> :
+    template <typename x, typename y>
+    struct max<x, y> :
         Orderable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template max_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template max_impl<typename x::type, typename y::type>
     { };
 }} // end namespace boost::mpl11
 

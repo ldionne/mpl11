@@ -3,7 +3,7 @@
  * Contains unit tests for `boost::mpl11::not_`.
  */
 
-#include <boost/mpl11/not.hpp>
+#include <boost/mpl11/logical.hpp>
 
 
 using namespace boost::mpl11;
