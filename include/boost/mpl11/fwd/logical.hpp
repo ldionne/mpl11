@@ -25,7 +25,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * @todo
-     * - Consider using folds in the implementation of `and_` and `or_`.
+     * Consider using folds in the implementation of `and_` and `or_`.
      */
     template <typename ...xs>
     struct and_;

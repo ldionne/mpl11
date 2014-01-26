@@ -31,11 +31,6 @@ namespace boost { namespace mpl11 {
      * `Foldable` is currently weak compared to its Haskell counterpart
      * because I have not found a suitable way to implement a Monoid yet.
      *
-     *
-     * @todo
-     * Rewrite `all`, `any` and `none`'s unit test using a `Foldable`
-     * instead of an `Iterable`.
-     *
      * @{
      */
     template <typename Datatype>
@@ -62,6 +57,10 @@ namespace boost { namespace mpl11 {
         structure
     >;
 
+    //! Equivalent to `all<quote<id>, structure>`.
+    template <typename structure>
+    using all_of = all<quote<id>, structure>;
+
     /*!
      * Boolean `StaticConstant` representing whether none of the elements
      * of the structure satisfy the `predicate`.
@@ -69,12 +68,20 @@ namespace boost { namespace mpl11 {
     template <typename predicate, typename structure>
     using none = all<compose<quote<not_>, predicate>, structure>;
 
+    //! Equivalent to `none<quote<id>, structure>`.
+    template <typename structure>
+    using none_of = none<quote<id>, structure>;
+
     /*!
      * Boolean `StaticConstant` representing whether any element of the
      * structure satisfies the `predicate`.
      */
     template <typename predicate, typename structure>
     using any = not_<none<predicate, structure>>;
+
+    //! Equivalent to `any<quote<id>, structure>`.
+    template <typename structure>
+    using any_of = any<quote<id>, structure>;
     //! @}
 }} // end namespace boost::mpl11
 
