@@ -16,35 +16,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace detail {
-        template <typename Left, typename Right>
-        struct flip_Orderable {
-            template <typename left, typename right>
-            using less_impl = typename Orderable<Right, Left>::
-                              template less_impl<right, left>;
-
-            template <typename left, typename right>
-            using less_equal_impl = typename Orderable<Right, Left>::
-                                    template less_equal_impl<right, left>;
-
-            template <typename left, typename right>
-            using greater_impl = typename Orderable<Right, Left>::
-                                 template greater_impl<right, left>;
-
-            template <typename left, typename right>
-            using greater_equal_impl = typename Orderable<Right, Left>::
-                                    template greater_equal_impl<right, left>;
-
-            template <typename left, typename right>
-            using min_impl = typename Orderable<Right, Left>::
-                             template min_impl<right, left>;
-
-            template <typename left, typename right>
-            using max_impl = typename Orderable<Right, Left>::
-                             template max_impl<right, left>;
-        };
-    } // end namespace detail
-
     template <>
     struct Orderable<typeclass<Orderable>, typeclass<Orderable>> {
         template <typename left, typename right>

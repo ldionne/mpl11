@@ -16,16 +16,14 @@ using detail::std_is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct ComparableArchetype;
-struct archetype {
-    struct type { using mpl_datatype = ComparableArchetype; };
-};
+struct Archetype;
+struct archetype { struct type { using mpl_datatype = Archetype; }; };
 struct equal_tag;
 struct not_equal_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Comparable<ComparableArchetype, ComparableArchetype> {
+    struct Comparable<Archetype> {
         template <typename, typename>
         struct equal_impl {
             struct type : true_ { using tag = equal_tag; };
@@ -49,9 +47,9 @@ static_assert(std_is_same<
 >::value, "");
 
 
-/////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 // Test comparison for foreign and incompatible types
-/////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 template <bool eq, typename ...x>
 struct assert_eq {
     static_assert(eq == equal<x...>::value, "");
@@ -91,7 +89,7 @@ struct tests :
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-using Default = Comparable<typeclass<Comparable>, typeclass<Comparable>>;
+using Default = Comparable<typeclass<Comparable>>;
 static_assert( Default::equal_impl<x::type, x::type>::value, "");
 static_assert(!Default::equal_impl<x::type, y::type>::value, "");
 static_assert( Default::not_equal_impl<x::type, y::type>::value, "");

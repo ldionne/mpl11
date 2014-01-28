@@ -14,19 +14,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace detail {
-        template <typename Left, typename Right>
-        struct flip_Comparable {
-            template <typename left, typename right>
-            using equal_impl = typename Comparable<Right, Left>::
-                               template equal_impl<right, left>;
-
-            template <typename left, typename right>
-            using not_equal_impl = typename Comparable<Right, Left>::
-                                   template not_equal_impl<right, left>;
-        };
-    } // end namespace detail
-
     namespace comparable_detail {
         struct Comparable_base {
             template <typename left, typename right>
