@@ -25,6 +25,9 @@ namespace boost { namespace mpl11 {
     /*!
      * Datatype for data constructors that are foreign to the library.
      *
+     * Any datatype can be converted to `Foreign`; conversion to `Foreign` is
+     * just the identity transformation.
+     *
      * @ingroup datatypes
      */
     struct Foreign;
@@ -57,6 +60,12 @@ namespace boost { namespace mpl11 {
     template <typename x>
     struct box;
 
+    /*!
+     * Returns a datatype to which instances of both `Left` and `Right` may
+     * be converted.
+     */
+    template <typename Left, typename Right>
+    struct common_datatype;
     //! @}
 }} // end namespace boost::mpl11
 
