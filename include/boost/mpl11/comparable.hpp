@@ -9,26 +9,31 @@
 #include <boost/mpl11/fwd/comparable.hpp>
 
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/logical.hpp>
 
 
 namespace boost { namespace mpl11 {
-    namespace comparable_detail {
-        struct Comparable_base {
-            template <typename left, typename right>
-            using equal_impl = detail::std_is_same<left, right>;
-
-            template <typename left, typename right>
-            using not_equal_impl = not_<detail::std_is_same<left, right>>;
-        };
-    } // end namespace comparable_detail
-
     template <typename Left, typename Right>
-    struct Comparable : comparable_detail::Comparable_base { };
+    struct Comparable {
+    private:
+        using Common = Comparable<typename common_datatype<Left, Right>::type>;
+
+    public:
+        template <typename x, typename y>
+        using equal_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template equal_impl, x, y>;
+
+        template <typename x, typename y>
+        using not_equal_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template not_equal_impl, x, y>;
+    };
 
     template <>
-    struct Comparable<typeclass<Comparable>, typeclass<Comparable>> {
+    struct Comparable<typeclass<Comparable>> {
         template <typename left, typename right>
         using equal_impl = not_<not_equal<box<left>, box<right>>>;
 

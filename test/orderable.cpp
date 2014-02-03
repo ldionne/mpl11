@@ -7,6 +7,7 @@
 
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
+#include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integral_c.hpp>
 
 
@@ -16,10 +17,12 @@ using detail::std_is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct OrderableArchetype;
-struct archetype {
-    struct type { using mpl_datatype = OrderableArchetype; };
-};
+struct Archetype1 { template <typename> using from = quote<id>; };
+struct archetype1 { struct type { using mpl_datatype = Archetype1; }; };
+
+struct Archetype2;
+struct archetype2 { struct type { using mpl_datatype = Archetype2; }; };
+
 struct less_tag;
 struct less_equal_tag;
 struct greater_tag;
@@ -29,7 +32,12 @@ struct max_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<OrderableArchetype, OrderableArchetype> {
+    struct common_datatype<Archetype1, Archetype2> {
+        using type = Archetype1;
+    };
+
+    template <>
+    struct Orderable<Archetype1> {
         template <typename, typename>
         struct less_impl { using type = less_tag; };
 
@@ -50,53 +58,60 @@ namespace boost { namespace mpl11 {
     };
 }} // end namespace boost::mpl11
 
-static_assert(std_is_same<
-    less<archetype, archetype>::type,
-    less_tag
->::value, "");
+template <typename x, typename y>
+struct dispatch_with {
+    static_assert(std_is_same<
+        typename less<x, y>::type,
+        less_tag
+    >::value, "");
 
-static_assert(std_is_same<
-    less_equal<archetype, archetype>::type,
-    less_equal_tag
->::value, "");
+    static_assert(std_is_same<
+        typename less_equal<x, y>::type,
+        less_equal_tag
+    >::value, "");
 
-static_assert(std_is_same<
-    greater<archetype, archetype>::type,
-    greater_tag
->::value, "");
+    static_assert(std_is_same<
+        typename greater<x, y>::type,
+        greater_tag
+    >::value, "");
 
-static_assert(std_is_same<
-    greater_equal<archetype, archetype>::type,
-    greater_equal_tag
->::value, "");
+    static_assert(std_is_same<
+        typename greater_equal<x, y>::type,
+        greater_equal_tag
+    >::value, "");
 
-static_assert(std_is_same<
-    min<archetype, archetype>::type,
-    min_tag
->::value, "");
+    static_assert(std_is_same<
+        typename min<x, y>::type,
+        min_tag
+    >::value, "");
 
-static_assert(std_is_same<
-    max<archetype, archetype>::type,
-    max_tag
->::value, "");
+    static_assert(std_is_same<
+        typename max<x, y>::type,
+        max_tag
+    >::value, "");
+};
+
+struct dispatch_tests :
+    dispatch_with<archetype1, archetype1>,
+    dispatch_with<archetype1, archetype2>,
+    dispatch_with<archetype2, archetype1>
+{ };
 
 
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-struct x_datatype;
+struct Integer;
 template <int i>
 struct x {
     struct type {
         static constexpr int value = i;
-        using mpl_datatype = x_datatype;
+        using mpl_datatype = Integer;
     };
 };
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<x_datatype, x_datatype>
-        : Orderable<typeclass<Orderable>, typeclass<Orderable>>
-    {
+    struct Orderable<Integer> : Orderable<typeclass<Orderable>> {
         template <typename x, typename y>
         using less_impl = bool_<(x::value < y::value)>;
     };

@@ -28,6 +28,9 @@ namespace boost { namespace mpl11 {
      * Any datatype can be converted to `Foreign`; conversion to `Foreign` is
      * just the identity transformation.
      *
+     * Also, `Foreign` types can be compared; equality and inequality for
+     * `Foreign` types is defined in terms of `std::is_same`.
+     *
      * @ingroup datatypes
      */
     struct Foreign;

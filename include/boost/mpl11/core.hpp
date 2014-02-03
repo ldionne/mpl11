@@ -8,7 +8,10 @@
 
 #include <boost/mpl11/fwd/core.hpp>
 
+#include <boost/mpl11/comparable.hpp>
+#include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
+#include <boost/mpl11/logical.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -42,6 +45,15 @@ namespace boost { namespace mpl11 {
     template <typename Datatype>
     struct common_datatype<Foreign, Datatype> {
         using type = Foreign;
+    };
+
+    template <>
+    struct Comparable<Foreign> {
+        template <typename x, typename y>
+        using equal_impl = detail::std_is_same<x, y>;
+
+        template <typename x, typename y>
+        using not_equal_impl = not_<detail::std_is_same<x, y>>;
     };
 }} // end namespace boost::mpl11
 

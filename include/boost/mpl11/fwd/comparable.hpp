@@ -21,12 +21,6 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * Either `equal` or `not_equal`.
      *
-     *
-     * @note
-     * This typeclass is a bit special because all C++ types are implicitly
-     * instances of it. For convenience, equality and inequality for
-     * arbitrary types is defined in terms of `std::is_same`.
-     *
      * @{
      */
     template <typename Left, typename Right = Left>

@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/orderable.hpp>
 
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/std_conditional.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
@@ -16,8 +17,46 @@
 
 
 namespace boost { namespace mpl11 {
+    template <typename Left, typename Right>
+    struct Orderable {
+    private:
+        using Common = Orderable<typename common_datatype<Left, Right>::type>;
+
+    public:
+        template <typename x, typename y>
+        using less_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template less_impl, x, y>;
+
+        template <typename x, typename y>
+        using less_equal_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template less_equal_impl, x, y>;
+
+        template <typename x, typename y>
+        using greater_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template greater_impl, x, y>;
+
+        template <typename x, typename y>
+        using greater_equal_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template greater_equal_impl, x, y>;
+
+        template <typename x, typename y>
+        using min_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template min_impl, x, y>;
+
+        template <typename x, typename y>
+        using max_impl =
+            typename detail::common_method<Left, Right>::
+            template apply<Common::template max_impl, x, y>;
+    };
+
+
     template <>
-    struct Orderable<typeclass<Orderable>, typeclass<Orderable>> {
+    struct Orderable<typeclass<Orderable>> {
         template <typename left, typename right>
         using less_equal_impl = not_<less<box<right>, box<left>>>;
 
