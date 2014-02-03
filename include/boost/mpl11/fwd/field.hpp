@@ -22,11 +22,11 @@ namespace boost { namespace mpl11 {
      * `recip` and `div`
      *
      * ### Minimal complete definition
-     * All the methods.
+     * Either `recip` or `div`.
      *
      *
      * @todo
-     * Provide default implementations for `recip` and `div`.
+     * Test the default implementations.
      *
      * @{
      */

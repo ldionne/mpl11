@@ -85,7 +85,7 @@ namespace boost { namespace mpl11 {
         using not_equal_impl = bool_<(x::type::value != y::type::value)>;
     };
 }}
-using Default = Comparable<typeclass<Comparable>>;
+using Default = Comparable<default_<Integer>>;
 static_assert( Default::equal_impl<x<0>, x<0>>::value, "");
 static_assert(!Default::equal_impl<x<0>, x<1>>::value, "");
 static_assert( Default::not_equal_impl<x<0>, x<1>>::value, "");

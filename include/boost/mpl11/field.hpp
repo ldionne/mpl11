@@ -10,6 +10,7 @@
 
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/common_method.hpp>
+#include <boost/mpl11/fwd/ring.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -22,6 +23,15 @@ namespace boost { namespace mpl11 {
                 Field<typename common_datatype<Left, Right>::type>::
                 template div_impl, x, y
             >;
+    };
+
+    template <typename Datatype>
+    struct Field<default_<Datatype>> {
+        template <typename x, typename y>
+        using div_impl = mult<x, recip<y>>;
+
+        template <typename x>
+        using recip_impl = div<one<Datatype>, x>;
     };
 
     template <typename x, typename y>

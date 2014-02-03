@@ -11,8 +11,7 @@ namespace boost { namespace mpl11 {
      * @ingroup typeclasses
      * @defgroup Group Group
      *
-     * The `Group` typeclass is used for `Monoid`s where all objects have
-     * an inverse w.r.t. the `Monoid` operation.
+     * `Monoid` where all objects have an inverse w.r.t. the binary operation.
      *
      * Instances of `Group` must satisfy the following laws:
      *
@@ -24,18 +23,11 @@ namespace boost { namespace mpl11 {
      * The method names refer to the group of numbers under addition.
      *
      *
-     * ### Refines
-     * `Monoid`
-     *
      * ### Methods
      * `minus` and `negate`
      *
      * ### Minimal complete definition
-     * All the methods.
-     *
-     *
-     * @todo
-     * Provide default implementations for `minus` and `negate`.
+     * Either `minus` or `negate`.
      *
      * @{
      */

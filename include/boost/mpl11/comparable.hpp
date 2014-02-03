@@ -32,8 +32,8 @@ namespace boost { namespace mpl11 {
             template apply<Common::template not_equal_impl, x, y>;
     };
 
-    template <>
-    struct Comparable<typeclass<Comparable>> {
+    template <typename Datatype>
+    struct Comparable<default_<Datatype>> {
         template <typename x, typename y>
         using equal_impl = not_<not_equal<x, y>>;
 
