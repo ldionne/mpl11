@@ -66,10 +66,14 @@ namespace boost { namespace mpl11 {
     template <>
     struct Comparable<Foreign> {
         template <typename x, typename y>
-        using equal_impl = detail::std_is_same<x, y>;
+        using equal_impl = detail::std_is_same<
+            typename x::type, typename y::type
+        >;
 
         template <typename x, typename y>
-        using not_equal_impl = not_<detail::std_is_same<x, y>>;
+        using not_equal_impl = not_<detail::std_is_same<
+            typename x::type, typename y::type
+        >>;
     };
 }} // end namespace boost::mpl11
 

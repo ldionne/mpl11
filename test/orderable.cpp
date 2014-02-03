@@ -113,7 +113,7 @@ namespace boost { namespace mpl11 {
     template <>
     struct Orderable<Integer> : Orderable<typeclass<Orderable>> {
         template <typename x, typename y>
-        using less_impl = bool_<(x::value < y::value)>;
+        using less_impl = bool_<(x::type::value < y::type::value)>;
     };
 }}
 

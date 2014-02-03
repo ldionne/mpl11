@@ -14,16 +14,14 @@ using detail::std_is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct EnumerableArchetype;
-struct archetype {
-    struct type { using mpl_datatype = EnumerableArchetype; };
-};
+struct Archetype;
+struct archetype { struct type { using mpl_datatype = Archetype; }; };
 struct succ_tag;
 struct pred_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Enumerable<EnumerableArchetype> {
+    struct Enumerable<Archetype> {
         template <typename>
         struct succ_impl { using type = succ_tag; };
 

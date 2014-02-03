@@ -18,13 +18,13 @@ namespace boost { namespace mpl11 {
     template <typename f, typename state, typename structure>
     struct foldr :
         Foldable<typename datatype<typename structure::type>::type>::
-        template foldr_impl<f, state, typename structure::type>
+        template foldr_impl<f, state, structure>
     { };
 
     template <typename f, typename state, typename structure>
     struct foldl :
         Foldable<typename datatype<typename structure::type>::type>::
-        template foldl_impl<f, state, typename structure::type>
+        template foldl_impl<f, state, structure>
     { };
 }} // end namespace boost::mpl11
 

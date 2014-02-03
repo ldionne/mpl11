@@ -67,13 +67,29 @@ struct dispatch_tests :
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-struct x { struct type; };
-struct y { struct type; };
+struct Integer;
+template <int i>
+struct x {
+    struct type {
+        static constexpr int value = i;
+        using mpl_datatype = Integer;
+    };
+};
+namespace boost { namespace mpl11 {
+    template <>
+    struct Comparable<Integer> {
+        template <typename x, typename y>
+        using equal_impl = bool_<(x::type::value == y::type::value)>;
+
+        template <typename x, typename y>
+        using not_equal_impl = bool_<(x::type::value != y::type::value)>;
+    };
+}}
 using Default = Comparable<typeclass<Comparable>>;
-static_assert( Default::equal_impl<x::type, x::type>::value, "");
-static_assert(!Default::equal_impl<x::type, y::type>::value, "");
-static_assert( Default::not_equal_impl<x::type, y::type>::value, "");
-static_assert(!Default::not_equal_impl<x::type, x::type>::value, "");
+static_assert( Default::equal_impl<x<0>, x<0>>::value, "");
+static_assert(!Default::equal_impl<x<0>, x<1>>::value, "");
+static_assert( Default::not_equal_impl<x<0>, x<1>>::value, "");
+static_assert(!Default::not_equal_impl<x<0>, x<0>>::value, "");
 
 
 int main() { }

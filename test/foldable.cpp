@@ -18,14 +18,14 @@ using detail::std_is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct FoldableArchetype;
-struct archetype { struct type { using mpl_datatype = FoldableArchetype; }; };
+struct Archetype;
+struct archetype { struct type { using mpl_datatype = Archetype; }; };
 struct foldr_tag;
 struct foldl_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Foldable<FoldableArchetype> {
+    struct Foldable<Archetype> {
         template <typename, typename, typename>
         struct foldr_impl { using type = foldr_tag; };
 

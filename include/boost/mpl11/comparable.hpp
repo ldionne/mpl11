@@ -34,11 +34,11 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct Comparable<typeclass<Comparable>> {
-        template <typename left, typename right>
-        using equal_impl = not_<not_equal<box<left>, box<right>>>;
+        template <typename x, typename y>
+        using equal_impl = not_<not_equal<x, y>>;
 
-        template <typename left, typename right>
-        using not_equal_impl = not_<equal<box<left>, box<right>>>;
+        template <typename x, typename y>
+        using not_equal_impl = not_<equal<x, y>>;
     };
 
     template <typename x1, typename x2, typename ...xs>
@@ -46,12 +46,12 @@ namespace boost { namespace mpl11 {
         : and_<equal<x1, x2>, equal<x2, xs...>>
     { };
 
-    template <typename x1, typename x2>
-    struct equal<x1, x2> :
+    template <typename x, typename y>
+    struct equal<x, y> :
         Comparable<
-            typename datatype<typename x1::type>::type,
-            typename datatype<typename x2::type>::type
-        >::template equal_impl<typename x1::type, typename x2::type>
+            typename datatype<typename x::type>::type,
+            typename datatype<typename y::type>::type
+        >::template equal_impl<x, y>
     { };
 
     template <typename x, typename y>
@@ -59,7 +59,7 @@ namespace boost { namespace mpl11 {
         Comparable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template not_equal_impl<typename x::type, typename y::type>
+        >::template not_equal_impl<x, y>
     { };
 }} // end namespace boost::mpl11
 

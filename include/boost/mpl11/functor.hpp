@@ -15,7 +15,7 @@ namespace boost { namespace mpl11 {
     template <typename f, typename structure>
     struct fmap :
         Functor<typename datatype<typename structure::type>::type>::
-        template fmap_impl<f, typename structure::type>
+        template fmap_impl<f, structure>
     { };
 }} // end namespace boost::mpl11
 

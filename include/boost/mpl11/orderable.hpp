@@ -10,7 +10,6 @@
 
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/common_method.hpp>
-#include <boost/mpl11/detail/std_conditional.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/logical.hpp>
@@ -57,24 +56,20 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct Orderable<typeclass<Orderable>> {
-        template <typename left, typename right>
-        using less_equal_impl = not_<less<box<right>, box<left>>>;
+        template <typename x, typename y>
+        using less_equal_impl = not_<less<y, x>>;
 
-        template <typename left, typename right>
-        using greater_impl = less<box<right>, box<left>>;
+        template <typename x, typename y>
+        using greater_impl = less<y, x>;
 
-        template <typename left, typename right>
-        using greater_equal_impl = not_<less<box<left>, box<right>>>;
+        template <typename x, typename y>
+        using greater_equal_impl = not_<less<x, y>>;
 
-        template <typename left, typename right>
-        using min_impl = detail::std_conditional<
-            less<box<left>, box<right>>::value, left, right
-        >;
+        template <typename x, typename y>
+        using min_impl = if_c<less<x, y>::value, x, y>;
 
-        template <typename left, typename right>
-        using max_impl = detail::std_conditional<
-            less<box<left>, box<right>>::value, right, left
-        >;
+        template <typename x, typename y>
+        using max_impl = if_c<less<x, y>::value, y, x>;
     };
 
 
@@ -88,7 +83,7 @@ namespace boost { namespace mpl11 {
         Orderable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template less_impl<typename x::type, typename y::type>
+        >::template less_impl<x, y>
     { };
 
 
@@ -102,7 +97,7 @@ namespace boost { namespace mpl11 {
         Orderable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template less_equal_impl<typename x::type, typename y::type>
+        >::template less_equal_impl<x, y>
     { };
 
 
@@ -116,7 +111,7 @@ namespace boost { namespace mpl11 {
         Orderable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template greater_impl<typename x::type, typename y::type>
+        >::template greater_impl<x, y>
     { };
 
 
@@ -130,7 +125,7 @@ namespace boost { namespace mpl11 {
         Orderable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template greater_equal_impl<typename x::type, typename y::type>
+        >::template greater_equal_impl<x, y>
     { };
 
 
@@ -144,7 +139,7 @@ namespace boost { namespace mpl11 {
         Orderable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template min_impl<typename x::type, typename y::type>
+        >::template min_impl<x, y>
     { };
 
 
@@ -158,7 +153,7 @@ namespace boost { namespace mpl11 {
         Orderable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template max_impl<typename x::type, typename y::type>
+        >::template max_impl<x, y>
     { };
 }} // end namespace boost::mpl11
 

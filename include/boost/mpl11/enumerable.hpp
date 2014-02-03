@@ -15,13 +15,13 @@ namespace boost { namespace mpl11 {
     template <typename e>
     struct succ :
         Enumerable<typename datatype<typename e::type>::type>::
-        template succ_impl<typename e::type>
+        template succ_impl<e>
     { };
 
     template <typename e>
     struct pred :
         Enumerable<typename datatype<typename e::type>::type>::
-        template pred_impl<typename e::type>
+        template pred_impl<e>
     { };
 }} // end namespace boost::mpl11
 

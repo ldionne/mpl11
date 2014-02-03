@@ -15,13 +15,13 @@ using detail::std_is_same;
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct FunctorArchetype;
-struct archetype { struct type { using mpl_datatype = FunctorArchetype; }; };
+struct Archetype;
+struct archetype { struct type { using mpl_datatype = Archetype; }; };
 struct fmap_tag;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Functor<FunctorArchetype> {
+    struct Functor<Archetype> {
         template <typename, typename>
         struct fmap_impl { using type = fmap_tag; };
     };

@@ -26,10 +26,10 @@ namespace boost { namespace mpl11 { namespace detail {
         template <template <typename ...> class f, typename x, typename y>
         using apply = f<
             typename cast<Left, typename common_datatype<Left, Right>::type>
-            ::type::template apply<box<x>>::type,
+            ::type::template apply<x>::type,
 
             typename cast<Right, typename common_datatype<Left, Right>::type>
-            ::type::template apply<box<y>>::type
+            ::type::template apply<y>::type
         >;
     };
 }}} // end namespace boost::mpl11::detail
