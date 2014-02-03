@@ -11,6 +11,7 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/enumerable.hpp>
 #include <boost/mpl11/group.hpp>
+#include <boost/mpl11/integral_domain.hpp>
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/monoid.hpp>
 #include <boost/mpl11/orderable.hpp>
@@ -80,6 +81,21 @@ namespace boost { namespace mpl11 {
 
         template <typename ...>
         using one_impl = int_<1>;
+    };
+
+    template <>
+    struct IntegralDomain<Integer> {
+        template <typename x, typename y>
+        using div_impl = integral_c<
+            decltype(x::type::value / y::type::value),
+            x::type::value / y::type::value
+        >;
+
+        template <typename x, typename y>
+        using mod_impl = integral_c<
+            decltype(x::type::value % y::type::value),
+            x::type::value % y::type::value
+        >;
     };
 
     template <>

@@ -17,29 +17,29 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right>
     struct Field {
         template <typename x, typename y>
-        using div_impl =
+        using quot_impl =
             typename detail::common_method<Left, Right>::
             template apply<
                 Field<typename common_datatype<Left, Right>::type>::
-                template div_impl, x, y
+                template quot_impl, x, y
             >;
     };
 
     template <typename Datatype>
     struct Field<default_<Datatype>> {
         template <typename x, typename y>
-        using div_impl = mult<x, recip<y>>;
+        using quot_impl = mult<x, recip<y>>;
 
         template <typename x>
-        using recip_impl = div<one<Datatype>, x>;
+        using recip_impl = quot<one<Datatype>, x>;
     };
 
     template <typename x, typename y>
-    struct div :
+    struct quot :
         Field<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template div_impl<x, y>
+        >::template quot_impl<x, y>
     { };
 
     template <typename x>

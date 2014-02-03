@@ -11,18 +11,15 @@ namespace boost { namespace mpl11 {
      * @ingroup typeclasses
      * @defgroup Field Field
      *
-     * The `Field` typeclass is used for `Ring`s whose non-zero elements form
-     * a `Group` under multiplication.
+     * `IntegralDomain` whose non-zero elements form a `Group` under
+     * multiplication.
      *
-     *
-     * ### Refines
-     * `Ring`
      *
      * ### Methods
-     * `recip` and `div`
+     * `recip` and `quot`
      *
      * ### Minimal complete definition
-     * Either `recip` or `div`.
+     * Either `recip` or `quot`.
      *
      *
      * @todo
@@ -33,9 +30,8 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right = Left>
     struct Field;
 
-    //! Equivalent to `mult<x, recip<y>>`.
     template <typename x, typename y>
-    struct div;
+    struct quot;
 
     //! Multiplicative inverse of `x`.
     template <typename x>
