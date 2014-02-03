@@ -7,7 +7,7 @@
 
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 
 using namespace boost::mpl11;

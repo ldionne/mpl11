@@ -8,7 +8,7 @@
 
 #include <boost/mpl11/fwd/logical.hpp>
 
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 
 namespace boost { namespace mpl11 {

@@ -49,12 +49,12 @@ static_assert(std_is_same<
 
 
 
-template <typename = struct default_>
+template <typename = struct default_arg>
 struct unary_with_def;
 
 static_assert(std_is_same<
     into<unary_with_def>::type::apply<>::type,
-    unary_with_def<struct default_>
+    unary_with_def<struct default_arg>
 >::value, "");
 
 static_assert(std_is_same<

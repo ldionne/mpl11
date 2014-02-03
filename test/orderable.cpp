@@ -8,7 +8,7 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 
 using namespace boost::mpl11;
@@ -101,17 +101,17 @@ struct dispatch_tests :
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-struct Integer;
+struct Int;
 template <int i>
 struct x {
     struct type {
         static constexpr int value = i;
-        using mpl_datatype = Integer;
+        using mpl_datatype = Int;
     };
 };
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<Integer> : Orderable<default_<Integer>> {
+    struct Orderable<Int> : Orderable<default_<Int>> {
         template <typename x, typename y>
         using less_impl = bool_<(x::type::value < y::type::value)>;
     };

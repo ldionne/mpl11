@@ -17,7 +17,7 @@ namespace boost { namespace mpl11 { namespace detail {
 }}} // end namespace boost::mpl11::detail
 
 
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {

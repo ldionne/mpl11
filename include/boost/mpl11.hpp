@@ -58,7 +58,7 @@
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/functor.hpp>
 #include <boost/mpl11/group.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/monoid.hpp>
 #include <boost/mpl11/orderable.hpp>

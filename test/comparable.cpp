@@ -8,7 +8,7 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 
 using namespace boost::mpl11;
@@ -18,9 +18,11 @@ using detail::std_is_same;
 // Test method dispatching
 ///////////////////////////
 struct Archetype1 { template <typename> using from = quote<id>; };
-struct Archetype2;
 struct archetype1 { struct type { using mpl_datatype = Archetype1; }; };
+
+struct Archetype2;
 struct archetype2 { struct type { using mpl_datatype = Archetype2; }; };
+
 struct equal_tag;
 struct not_equal_tag;
 
@@ -67,29 +69,11 @@ struct dispatch_tests :
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-struct Integer;
-template <int i>
-struct x {
-    struct type {
-        static constexpr int value = i;
-        using mpl_datatype = Integer;
-    };
-};
-namespace boost { namespace mpl11 {
-    template <>
-    struct Comparable<Integer> {
-        template <typename x, typename y>
-        using equal_impl = bool_<(x::type::value == y::type::value)>;
-
-        template <typename x, typename y>
-        using not_equal_impl = bool_<(x::type::value != y::type::value)>;
-    };
-}}
 using Default = Comparable<default_<Integer>>;
-static_assert( Default::equal_impl<x<0>, x<0>>::value, "");
-static_assert(!Default::equal_impl<x<0>, x<1>>::value, "");
-static_assert( Default::not_equal_impl<x<0>, x<1>>::value, "");
-static_assert(!Default::not_equal_impl<x<0>, x<0>>::value, "");
+static_assert( Default::equal_impl<int_<0>, int_<0>>::value, "");
+static_assert(!Default::equal_impl<int_<0>, int_<1>>::value, "");
+static_assert( Default::not_equal_impl<int_<0>, int_<1>>::value, "");
+static_assert(!Default::not_equal_impl<int_<0>, int_<0>>::value, "");
 
 
 int main() { }

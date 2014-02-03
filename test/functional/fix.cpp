@@ -5,25 +5,17 @@
 
 #include <boost/mpl11/functional.hpp>
 
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 #include <boost/mpl11/logical.hpp>
 
 
 using namespace boost::mpl11;
 
-//! @todo Remove this when we have arithmetic operations.
-template <typename f, typename n>
-struct times_helper
-    : ullong<
-        n::type::value * apply<f, ullong<n::type::value - 1>>::type::value
-    >
-{ };
-
 // Factorial using fix<>
 template <typename f, typename n>
 using fact_impl = if_c<n::type::value == 0,
     ullong<1>,
-    times_helper<f, n>
+    mult<n, apply<f, pred<n>>>
 >;
 
 template <unsigned long long n>

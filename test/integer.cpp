@@ -1,9 +1,9 @@
 /*!
  * @file
- * Contains unit tests for `boost::mpl11::integral_c`.
+ * Contains unit tests for @ref Integer.
  */
 
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 #include <boost/mpl11/detail/std_is_same.hpp>
 

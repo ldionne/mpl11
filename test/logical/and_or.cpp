@@ -6,7 +6,7 @@
 #include <boost/mpl11/logical.hpp>
 
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/integer.hpp>
 
 
 using namespace boost::mpl11;
