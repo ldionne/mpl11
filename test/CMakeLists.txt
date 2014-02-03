@@ -25,6 +25,7 @@ endfunction()
 
 mpl11_add_test(comparable                   comparable.cpp)
 mpl11_add_test(core_box                     core/box.cpp)
+mpl11_add_test(core_cast                    core/cast.cpp)
 mpl11_add_test(core_common_datatype         core/common_datatype.cpp)
 mpl11_add_test(core_datatype                core/datatype.cpp)
 mpl11_add_test(core_foreign                 core/foreign.cpp)

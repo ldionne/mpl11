@@ -25,11 +25,11 @@ namespace boost { namespace mpl11 { namespace detail {
     struct common_method {
         template <template <typename ...> class f, typename x, typename y>
         using apply = f<
-            typename common_datatype<Left, Right>::type::
-            template from<Left>::type::template apply<box<x>>::type,
+            typename cast<Left, typename common_datatype<Left, Right>::type>
+            ::type::template apply<box<x>>::type,
 
-            typename common_datatype<Left, Right>::type::
-            template from<Right>::type::template apply<box<y>>::type
+            typename cast<Right, typename common_datatype<Left, Right>::type>
+            ::type::template apply<box<y>>::type
         >;
     };
 }}} // end namespace boost::mpl11::detail

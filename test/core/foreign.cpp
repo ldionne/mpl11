@@ -19,7 +19,7 @@ struct z { struct type; };
 // Test conversion to `Foreign`.
 /////////////////////////////////
 static_assert(std_is_same<
-    Foreign::from<undefined>::type::apply<x>::type,
+    cast<undefined, Foreign>::type::apply<x>::type,
     x::type
 >::value, "");
 

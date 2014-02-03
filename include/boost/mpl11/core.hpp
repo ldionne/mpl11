@@ -15,11 +15,15 @@
 
 
 namespace boost { namespace mpl11 {
+    // box
     template <typename x>
     struct box {
         using type = x;
     };
 
+
+
+    // datatype
     namespace core_detail {
         template <typename T>
         auto pick_datatype(T*)  -> typename T::mpl_datatype;
@@ -31,21 +35,33 @@ namespace boost { namespace mpl11 {
         using type = decltype(core_detail::pick_datatype((ctor*)nullptr));
     };
 
+
+
+    // common_datatype
     template <typename Left, typename Right>
     struct common_datatype
         : common_datatype<Right, Left>
     { };
 
 
-    struct Foreign {
-        template <typename Datatype>
-        using from = quote<id>;
-    };
 
+    // cast
+    template <typename From, typename To>
+    struct cast : To::template from<From> { };
+
+    template <typename To>
+    struct cast<To, To> : quote<id> { };
+
+
+
+    // Foreign
     template <typename Datatype>
     struct common_datatype<Foreign, Datatype> {
         using type = Foreign;
     };
+
+    template <typename From>
+    struct cast<From, Foreign> : quote<id> { };
 
     template <>
     struct Comparable<Foreign> {

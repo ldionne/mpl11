@@ -46,6 +46,10 @@ namespace boost { namespace mpl11 {
      * @note
      * This metafunction must be invoked with an unboxed type. The reason
      * for this special behavior is to allow specialization by users.
+     *
+     * @todo
+     * Consider allowing multiple arguments here; this would replace
+     * `common_datatype`.
      */
     template <typename ctor>
     struct datatype;
@@ -69,6 +73,19 @@ namespace boost { namespace mpl11 {
      */
     template <typename Left, typename Right>
     struct common_datatype;
+
+    /*!
+     * Metafunction class converting an object of the `From` datatype to
+     * an object of the `To` datatype.
+     *
+     * By default, this metafunction class is equivalent to `To::from<From>`.
+     * However, if `From` and `To` are the same datatypes, `cast` does not
+     * perform anything.
+     *
+     * `cast` may be specialized to customize its behavior.
+     */
+    template <typename From, typename To>
+    struct cast;
     //! @}
 }} // end namespace boost::mpl11
 
