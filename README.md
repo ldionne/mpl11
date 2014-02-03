@@ -670,7 +670,6 @@ in most cases.
 ## Todo list
 - [ ] Implement fast arithmetic operations on sequences of `StaticConstant`s.
 - [ ] Implement associative data structures.
-- [ ] Refactor the `Numeric` and `Integral` classes.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
     Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
     such a DSL should:
