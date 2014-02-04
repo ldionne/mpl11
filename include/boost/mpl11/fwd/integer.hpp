@@ -51,18 +51,22 @@ namespace boost { namespace mpl11 {
      * dependencies.
      */
     template <typename T, T v>
-    struct integral_c {
+    struct integer_c {
         using value_type = T;
         static constexpr value_type value = v;
         constexpr operator value_type() const { return value; }
         constexpr value_type operator()() const { return value; }
-        using type = integral_c;
+        using type = integer_c;
         using mpl_datatype = Integer;
     };
 
-    //! Alias to `integral_c<bool, B>`; provided for convenience.
+    //! Alias to `integer_c<T, v>`; provided for backward compatibility.
+    template <typename T, T v>
+    using integral_c = integer_c<T, v>;
+
+    //! Alias to `integer_c<bool, B>`; provided for convenience.
     template <bool B>
-    using bool_ = integral_c<bool, B>;
+    using bool_ = integer_c<bool, B>;
 
     //! Alias to `bool_<true>`; provided for convenience.
     using true_ = bool_<true>;
@@ -70,46 +74,45 @@ namespace boost { namespace mpl11 {
     //! Alias to `bool_<false>`; provided for convenience.
     using false_ = bool_<false>;
 
-    //! Alias to `integral_c<char, C>`; provided for convenience.
+    //! Alias to `integer_c<char, C>`; provided for convenience.
     template <char C>
-    using char_ = integral_c<char, C>;
+    using char_ = integer_c<char, C>;
 
-    //! Alias to `integral_c<short, N>`; provided for convenience.
+    //! Alias to `integer_c<short, N>`; provided for convenience.
     template <short N>
-    using short_ = integral_c<short, N>;
+    using short_ = integer_c<short, N>;
 
-    //! Alias to `integral_c<unsigned short, N>`; provided for convenience.
+    //! Alias to `integer_c<unsigned short, N>`; provided for convenience.
     template <unsigned short N>
-    using ushort = integral_c<unsigned short, N>;
+    using ushort = integer_c<unsigned short, N>;
 
-    //! Alias to `integral_c<int, N>`; provided for convenience.
+    //! Alias to `integer_c<int, N>`; provided for convenience.
     template <int N>
-    using int_ = integral_c<int, N>;
+    using int_ = integer_c<int, N>;
 
-    //! Alias to `integral_c<unsigned int, N>`; provided for convenience.
+    //! Alias to `integer_c<unsigned int, N>`; provided for convenience.
     template <unsigned int N>
-    using uint = integral_c<unsigned int, N>;
+    using uint = integer_c<unsigned int, N>;
 
-    //! Alias to `integral_c<long, N>`; provided for convenience.
+    //! Alias to `integer_c<long, N>`; provided for convenience.
     template <long N>
-    using long_ = integral_c<long, N>;
+    using long_ = integer_c<long, N>;
 
-    //! Alias to `integral_c<unsigned long, N>`; provided for convenience.
+    //! Alias to `integer_c<unsigned long, N>`; provided for convenience.
     template <unsigned long N>
-    using ulong = integral_c<unsigned long, N>;
+    using ulong = integer_c<unsigned long, N>;
 
-    //! Alias to `integral_c<long long, N>`; provided for convenience.
+    //! Alias to `integer_c<long long, N>`; provided for convenience.
     template <long long N>
-    using llong = integral_c<long long, N>;
+    using llong = integer_c<long long, N>;
 
-    //! Alias to `integral_c<unsigned long long, N>`; provided for convenience.
+    //! Alias to `integer_c<unsigned long long, N>`; provided for convenience.
     template <unsigned long long N>
-    using ullong = integral_c<unsigned long long, N>;
+    using ullong = integer_c<unsigned long long, N>;
 
-    //! Alias to `integral_c<std::size_t, N>`; provided for convenience.
+    //! Alias to `integer_c<std::size_t, N>`; provided for convenience.
     template <detail::std_size_t N>
-    using size_t = integral_c<detail::std_size_t, N>;
-
+    using size_t = integer_c<detail::std_size_t, N>;
     //! @}
 }} // end namespace boost::mpl11
 

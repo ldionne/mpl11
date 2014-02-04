@@ -19,35 +19,35 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace integral_c_detail {
+    namespace integral_detail {
         template <typename ...T>
         struct or_impl : true_ { };
 
         template <typename ...T>
-        struct or_impl<integral_c<T, false>...> : false_ { };
+        struct or_impl<integer_c<T, false>...> : false_ { };
 
         template <typename ...T>
         struct and_impl : false_ { };
 
         template <typename ...T>
-        struct and_impl<integral_c<T, true>...> : true_ { };
-    } // end namespace integral_c_detail
+        struct and_impl<integer_c<T, true>...> : true_ { };
+    } // end namespace integral_detail
 
     template <typename T, T ...v>
-    struct or_<integral_c<T, v>...>
-        : integral_c_detail::or_impl<bool_<(bool)v>...>
+    struct or_<integer_c<T, v>...>
+        : integral_detail::or_impl<bool_<(bool)v>...>
     { };
 
     template <typename T, T ...v>
-    struct and_<integral_c<T, v>...>
-        : integral_c_detail::and_impl<bool_<(bool)v>...>
+    struct and_<integer_c<T, v>...>
+        : integral_detail::and_impl<bool_<(bool)v>...>
     { };
 
 
     template <>
     struct Monoid<Integer> {
         template <typename x, typename y>
-        using plus_impl = integral_c<
+        using plus_impl = integer_c<
             decltype(x::type::value + y::type::value),
             x::type::value + y::type::value
         >;
@@ -59,13 +59,13 @@ namespace boost { namespace mpl11 {
     template <>
     struct Group<Integer> {
         template <typename x, typename y>
-        using minus_impl = integral_c<
+        using minus_impl = integer_c<
             decltype(x::type::value - y::type::value),
             x::type::value - y::type::value
         >;
 
         template <typename x>
-        using negate_impl = integral_c<
+        using negate_impl = integer_c<
             decltype(-x::type::value),
             -x::type::value
         >;
@@ -74,7 +74,7 @@ namespace boost { namespace mpl11 {
     template <>
     struct Ring<Integer> {
         template <typename x, typename y>
-        using mult_impl = integral_c<
+        using mult_impl = integer_c<
             decltype(x::type::value * y::type::value),
             x::type::value * y::type::value
         >;
@@ -86,13 +86,13 @@ namespace boost { namespace mpl11 {
     template <>
     struct IntegralDomain<Integer> {
         template <typename x, typename y>
-        using div_impl = integral_c<
+        using div_impl = integer_c<
             decltype(x::type::value / y::type::value),
             x::type::value / y::type::value
         >;
 
         template <typename x, typename y>
-        using mod_impl = integral_c<
+        using mod_impl = integer_c<
             decltype(x::type::value % y::type::value),
             x::type::value % y::type::value
         >;
@@ -101,13 +101,13 @@ namespace boost { namespace mpl11 {
     template <>
     struct Enumerable<Integer> {
         template <typename x>
-        using succ_impl = integral_c<
+        using succ_impl = integer_c<
             decltype(x::type::value + 1),
             x::type::value + 1
         >;
 
         template <typename x>
-        using pred_impl = integral_c<
+        using pred_impl = integer_c<
             decltype(x::type::value - 1),
             x::type::value - 1
         >;

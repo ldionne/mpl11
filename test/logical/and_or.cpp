@@ -72,7 +72,7 @@ struct tests :
     test_and_or<yes<int, 1>, no>,
     test_and_or<yes<int, 2>, no>,
 
-    // test integral_c specialization
+    // test integer_c specialization
     test_and_or<true_, false_>,
     test_and_or<int_<2>, false_>,
     test_and_or<int_<2>, int_<0>>,

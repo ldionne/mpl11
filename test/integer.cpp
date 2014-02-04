@@ -13,7 +13,7 @@ using detail::std_is_same;
 
 template <typename T, T v = T{}>
 struct test_one {
-    using I = integral_c<T, v>;
+    using I = integer_c<T, v>;
 
     static_assert(std_is_same<typename I::value_type, T>::value, "");
 
