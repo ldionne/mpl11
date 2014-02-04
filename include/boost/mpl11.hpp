@@ -63,6 +63,7 @@
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/monoid.hpp>
 #include <boost/mpl11/orderable.hpp>
+#include <boost/mpl11/rational.hpp>
 #include <boost/mpl11/ring.hpp>
 
 #endif // !BOOST_MPL11_HPP

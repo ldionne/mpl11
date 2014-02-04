@@ -11,8 +11,7 @@ namespace boost { namespace mpl11 {
      * @ingroup typeclasses
      * @defgroup Field Field
      *
-     * `IntegralDomain` whose non-zero elements form a `Group` under
-     * multiplication.
+     * `Ring` whose non-zero elements form a `Group` under multiplication.
      *
      *
      * ### Methods
