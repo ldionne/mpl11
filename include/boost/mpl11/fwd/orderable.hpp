@@ -37,29 +37,29 @@ namespace boost { namespace mpl11 {
     struct Orderable;
 
     /*!
-     * Boolean `StaticConstant` representing whether the given objects are
-     * ordered according to the `<` ordering.
+     * Returns whether the given objects are ordered according to the `<`
+     * ordering.
      */
     template <typename x1, typename x2, typename ...xs>
     struct less;
 
     /*!
-     * Boolean `StaticConstant` representing whether the given objects are
-     * ordered according to the `<=` ordering.
+     * Returns whether the given objects are ordered according to the `<=`
+     * ordering.
      */
     template <typename x1, typename x2, typename ...xs>
     struct less_equal;
 
     /*!
-     * Boolean `StaticConstant` representing whether the given objects are
-     * ordered according to the `>` ordering.
+     * Returns whether the given objects are ordered according to the `>`
+     * ordering.
      */
     template <typename x1, typename x2, typename ...xs>
     struct greater;
 
     /*!
-     * Boolean `StaticConstant` representing whether the given objects are
-     * ordered according to the `>=` ordering.
+     * Returns whether the given objects are ordered according to the `>=`
+     * ordering.
      */
     template <typename x1, typename x2, typename ...xs>
     struct greater_equal;

@@ -27,8 +27,7 @@ namespace boost { namespace mpl11 {
     struct Comparable;
 
     /*!
-     * Boolean `StaticConstant` representing whether the given objects
-     * are equal.
+     * Returns whether the given objects are equal.
      *
      * This method can be invoked with more than two arguments. Specifically,
      * `equal<x1, x2, xs...>` is equivalent to
@@ -39,8 +38,7 @@ namespace boost { namespace mpl11 {
     struct equal;
 
     /*!
-     * Boolean `StaticConstant` representing whether the given objects
-     * are unequal.
+     * Returns whether the given objects are unequal.
      *
      * Unlike `equal`, this method can't be invoked with more than two
      * arguments. The reason is that `not_equal` is not transitive and

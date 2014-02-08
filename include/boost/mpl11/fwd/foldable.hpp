@@ -47,8 +47,8 @@ namespace boost { namespace mpl11 {
 
 
     /*!
-     * Boolean `StaticConstant` representing whether all the elements of
-     * the structure satisfy the `predicate`.
+     * Returns whether all the elements of the structure satisfy the
+     * `predicate`.
      */
     template <typename predicate, typename structure>
     using all = foldr<
@@ -62,8 +62,8 @@ namespace boost { namespace mpl11 {
     using all_of = all<quote<id>, structure>;
 
     /*!
-     * Boolean `StaticConstant` representing whether none of the elements
-     * of the structure satisfy the `predicate`.
+     * Returns whether none of the elements of the structure satisfy the
+     * `predicate`.
      */
     template <typename predicate, typename structure>
     using none = all<compose<quote<not_>, predicate>, structure>;
@@ -73,8 +73,7 @@ namespace boost { namespace mpl11 {
     using none_of = none<quote<id>, structure>;
 
     /*!
-     * Boolean `StaticConstant` representing whether any element of the
-     * structure satisfies the `predicate`.
+     * Returns whether any element of the structure satisfies the `predicate`.
      */
     template <typename predicate, typename structure>
     using any = not_<none<predicate, structure>>;
