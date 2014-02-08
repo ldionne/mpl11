@@ -6,95 +6,52 @@
 #include <boost/mpl11/orderable.hpp>
 
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/std_is_same.hpp>
-#include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
+#include "test_method_dispatch.hpp"
 
 
 using namespace boost::mpl11;
-using detail::std_is_same;
 
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct Archetype1 { template <typename> using from = quote<id>; };
-struct archetype1 { struct type { using mpl_datatype = Archetype1; }; };
-
-struct Archetype2;
-struct archetype2 { struct type { using mpl_datatype = Archetype2; }; };
-
-struct less_tag;
-struct less_equal_tag;
-struct greater_tag;
-struct greater_equal_tag;
-struct min_tag;
-struct max_tag;
-
 namespace boost { namespace mpl11 {
     template <>
-    struct common_datatype<Archetype1, Archetype2> {
-        using type = Archetype1;
-    };
-
-    template <>
-    struct Orderable<Archetype1> {
+    struct Orderable<Archetype<0>> {
         template <typename, typename>
-        struct less_impl { using type = less_tag; };
+        using less_impl = method_tag<less>;
 
         template <typename, typename>
-        struct less_equal_impl { using type = less_equal_tag; };
+        using less_equal_impl = method_tag<less_equal>;
 
         template <typename, typename>
-        struct greater_impl { using type = greater_tag; };
+        using greater_impl = method_tag<greater>;
 
         template <typename, typename>
-        struct greater_equal_impl { using type = greater_equal_tag; };
+        using greater_equal_impl = method_tag<greater_equal>;
 
         template <typename, typename>
-        struct min_impl { using type = min_tag; };
+        using min_impl = method_tag<min>;
 
         template <typename, typename>
-        struct max_impl { using type = max_tag; };
+        using max_impl = method_tag<max>;
     };
 }} // end namespace boost::mpl11
 
 template <typename x, typename y>
-struct dispatch_with {
-    static_assert(std_is_same<
-        typename less<x, y>::type,
-        less_tag
-    >::value, "");
+struct dispatch_with
+    : method<less, x, y>
+    , method<less_equal, x, y>
+    , method<greater, x, y>
+    , method<greater_equal, x, y>
+    , method<min, x, y>
+    , method<max, x, y>
+{ };
 
-    static_assert(std_is_same<
-        typename less_equal<x, y>::type,
-        less_equal_tag
-    >::value, "");
-
-    static_assert(std_is_same<
-        typename greater<x, y>::type,
-        greater_tag
-    >::value, "");
-
-    static_assert(std_is_same<
-        typename greater_equal<x, y>::type,
-        greater_equal_tag
-    >::value, "");
-
-    static_assert(std_is_same<
-        typename min<x, y>::type,
-        min_tag
-    >::value, "");
-
-    static_assert(std_is_same<
-        typename max<x, y>::type,
-        max_tag
-    >::value, "");
-};
-
-struct dispatch_tests :
-    dispatch_with<archetype1, archetype1>,
-    dispatch_with<archetype1, archetype2>,
-    dispatch_with<archetype2, archetype1>
+struct test_dispatching :
+    dispatch_with<archetype<0>, archetype<0>>,
+    dispatch_with<archetype<0>, archetype<1>>,
+    dispatch_with<archetype<1>, archetype<0>>
 { };
 
 

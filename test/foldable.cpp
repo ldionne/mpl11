@@ -10,39 +10,29 @@
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 #include "minimal_foldable.hpp"
+#include "test_method_dispatch.hpp"
 
 
 using namespace boost::mpl11;
-using detail::std_is_same;
 
 ///////////////////////////
 // Test method dispatching
 ///////////////////////////
-struct Archetype;
-struct archetype { struct type { using mpl_datatype = Archetype; }; };
-struct foldr_tag;
-struct foldl_tag;
-
 namespace boost { namespace mpl11 {
     template <>
-    struct Foldable<Archetype> {
+    struct Foldable<Archetype<>> {
         template <typename, typename, typename>
-        struct foldr_impl { using type = foldr_tag; };
+        using foldr_impl = method_tag<foldr>;
 
         template <typename, typename, typename>
-        struct foldl_impl { using type = foldl_tag; };
+        using foldl_impl = method_tag<foldl>;
     };
-}} // end namespace boost::mpl11
+}}
 
-static_assert(std_is_same<
-    foldr<undefined, undefined, archetype>::type,
-    foldr_tag
->::value, "");
-
-static_assert(std_is_same<
-    foldl<undefined, undefined, archetype>::type,
-    foldl_tag
->::value, "");
+struct test_dispatching
+    : method<foldr, undefined, undefined, archetype<>>
+    , method<foldl, undefined, undefined, archetype<>>
+{ };
 
 
 //////////////////////////
@@ -104,7 +94,7 @@ struct tests_with_predicate :
             ::any_is<true>
             ::none_is<false>
 
-    , with_predicate<partial<quote<std_is_same>, t>>
+    , with_predicate<partial<quote<detail::std_is_same>, t>>
         ::with_input<t>
             ::all_is<true>
             ::any_is<true>
