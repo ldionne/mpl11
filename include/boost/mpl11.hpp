@@ -36,6 +36,24 @@
  * Metafunction classes provided by the library.
  */
 
+/*!
+ * @ingroup typeclasses
+ * @defgroup StaticConstant Static Constant
+ *
+ * Type holding a compile-time value that can be converted to a runtime value.
+ *
+ * @ref StaticConstant is not really a typeclass; it is only a way of
+ * capturing syntactic requirements for an interface, without providing
+ * methods or functionality.
+ *
+ *
+ * ### Valid expressions
+ * For any @ref StaticConstant `N`, the following expressions must be valid:
+ * - `constexpr N::value_type v = N::value`
+ * - `constexpr N::value_type v = N{}`
+ * - `constexpr N::value_type v = N{}()`
+ */
+
 #if defined(BOOST_MPL11_DOXYGEN_INVOKED)
     /*!
      * @ingroup details
@@ -50,6 +68,7 @@
 #   define BOOST_MPL11_ENABLE_ASSERTIONS
 #endif
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/enumerable.hpp>

@@ -14,20 +14,7 @@ namespace boost { namespace mpl11 {
      * @ingroup datatypes
      * @defgroup Integer Integer
      *
-     * Holds a compile-time value of an integral type.
-     *
-     *
-     * ### Valid expressions
-     * In the following table, `N` is an `Integer`, and `n` is an object of
-     * type `N`.
-     *
-     * | Expression                        | Type
-     * | ----------                        | ----
-     * | `N::value_type`                   | An integral type
-     * | `N::value`                        | An integral constant expression
-     * | `N::type`                         | `N`
-     * | `constexpr N::value_type c = N{}` | n/a
-     * | `constexpr N::value_type c = n()` | n/a
+     * @ref StaticConstant of an integral type.
      *
      *
      * ### Instance of
@@ -41,15 +28,7 @@ namespace boost { namespace mpl11 {
      */
     struct Integer;
 
-    /*!
-     * `Integer` holding the specified value.
-     *
-     *
-     * @internal
-     * We define this in the forward declaration header because it is
-     * required almost everywhere. This saves us trouble with circular
-     * dependencies.
-     */
+    //! `Integer` holding the specified value.
     template <typename T, T v>
     struct integer_c {
         using value_type = T;
@@ -63,16 +42,6 @@ namespace boost { namespace mpl11 {
     //! Alias to `integer_c<T, v>`; provided for backward compatibility.
     template <typename T, T v>
     using integral_c = integer_c<T, v>;
-
-    //! Alias to `integer_c<bool, B>`; provided for convenience.
-    template <bool B>
-    using bool_ = integer_c<bool, B>;
-
-    //! Alias to `bool_<true>`; provided for convenience.
-    using true_ = bool_<true>;
-
-    //! Alias to `bool_<false>`; provided for convenience.
-    using false_ = bool_<false>;
 
     //! Alias to `integer_c<char, C>`; provided for convenience.
     template <char C>
