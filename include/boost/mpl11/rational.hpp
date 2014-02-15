@@ -8,11 +8,11 @@
 
 #include <boost/mpl11/fwd/rational.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/enumerable.hpp>
 #include <boost/mpl11/field.hpp>
-#include <boost/mpl11/fwd/integer.hpp>
 #include <boost/mpl11/group.hpp>
 #include <boost/mpl11/monoid.hpp>
 #include <boost/mpl11/orderable.hpp>

@@ -6,8 +6,8 @@
 #ifndef BOOST_MPL11_FWD_FOLDABLE_HPP
 #define BOOST_MPL11_FWD_FOLDABLE_HPP
 
+#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
-#include <boost/mpl11/fwd/integer.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
 
 

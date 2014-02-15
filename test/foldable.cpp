@@ -5,10 +5,10 @@
 
 #include <boost/mpl11/foldable.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/integer.hpp>
 #include "minimal_foldable.hpp"
 #include "test_method_dispatch.hpp"
 

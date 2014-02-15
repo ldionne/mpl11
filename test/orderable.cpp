@@ -5,6 +5,7 @@
 
 #include <boost/mpl11/orderable.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/integer.hpp>
 #include "test_method_dispatch.hpp"
