@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_FUNCTIONAL_HPP
 #define BOOST_MPL11_FWD_FUNCTIONAL_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup Functional Functional
@@ -42,7 +45,7 @@ namespace boost { namespace mpl11 {
 
     //! The identity metafunction - returns its argument unchanged.
     template <typename x>
-    using id = x;
+    BOOST_MPL11_DOXYGEN_ALIAS(id, x);
 
     /*!
      * Turns a metafunction into an equivalent metafunction class.
@@ -210,6 +213,25 @@ namespace boost { namespace mpl11 {
      */
     template <typename f, typename ...fs>
     struct bind;
+
+    /*!
+     * Convenience namespace containing everything provided by the
+     * @ref Functional module.
+     */
+    namespace functional {
+        using mpl11::always;
+        using mpl11::flip;
+        using mpl11::apply;
+        using mpl11::id;
+        using mpl11::quote;
+        using mpl11::into;
+        using mpl11::partial;
+        using mpl11::fix;
+        using mpl11::compose;
+        using mpl11::argmap;
+        using mpl11::on;
+        using mpl11::bind;
+    }
     //! @}
 }} // end namespace boost::mpl11
 
