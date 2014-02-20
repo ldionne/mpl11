@@ -36,20 +36,6 @@
  * Metafunction classes provided by the library.
  */
 
-#if defined(BOOST_MPL11_DOXYGEN_INVOKED)
-    /*!
-     * @ingroup details
-     *
-     * When defined, optional assertions and consistency checks are
-     * performed by the library.
-     *
-     * Since this can have a negative impact on compile-time performance,
-     * it is disabled by default. However, it is strongly recommended to
-     * enable this when debugging template code.
-     */
-#   define BOOST_MPL11_ENABLE_ASSERTIONS
-#endif
-
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>

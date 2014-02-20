@@ -4,22 +4,30 @@
 add_custom_target(unit COMMENT "Build all the unit tests.")
 
 function(mpl11_add_test name sources)
-    # For each unit test, we compile with and without the assertions.
-    # Since I'm not a CMake pro, I currently create two different targets.
-    add_executable(${name}_without_assertions ${sources})
+    # We compile each unit test with the possible combinations of options
+    # found in boost/mpl11/detail/config.hpp.
+    #
+    # For lack of a better solution, I currently create different targets for
+    # each configuration.
+    # A - BOOST_MPL11_NO_ASSERTIONS
+    # R - BOOST_MPL11_NO_RULES
+    add_executable(${name}_AR ${sources})
+    add_executable(${name}_A ${sources})
+    add_executable(${name}_R ${sources})
+    add_executable(${name} ${sources})
 
-    add_executable(${name}_with_assertions ${sources})
-    set_target_properties(
-        ${name}_with_assertions PROPERTIES
-            COMPILE_DEFINITIONS BOOST_MPL11_ENABLE_ASSERTIONS
-    )
+    set_target_properties(${name}_R PROPERTIES
+        COMPILE_DEFINITIONS BOOST_MPL11_NO_RULES)
+    set_target_properties(${name}_A PROPERTIES
+            COMPILE_DEFINITIONS BOOST_MPL11_NO_ASSERTIONS)
+    set_target_properties(${name}_AR PROPERTIES
+        COMPILE_DEFINITIONS BOOST_MPL11_NO_RULES
+        COMPILE_DEFINITIONS BOOST_MPL11_NO_ASSERTIONS)
 
-    add_custom_target(${name})
-    add_dependencies(${name}
-        ${name}_with_assertions
-        ${name}_without_assertions
-    )
-    add_dependencies(unit ${name})
+    add_custom_target(${name}_all_cfgs)
+    add_dependencies(${name}_all_cfgs
+        ${name} ${name}_A ${name}_R ${name}_AR)
+    add_dependencies(unit ${name}_all_cfgs)
 endfunction()
 
 

@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_ITERABLE_HPP
 #define BOOST_MPL11_FWD_ITERABLE_HPP
 
+#include <boost/mpl11/detail/config.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -39,6 +42,8 @@ namespace boost { namespace mpl11 {
     template <typename Datatype>
     struct Iterable;
 
+#if defined(BOOST_MPL11_DOXYGEN_INVOKED)
+
     //! Returns the first element of a non-empty iterable.
     template <typename iter>
     struct head;
@@ -51,6 +56,30 @@ namespace boost { namespace mpl11 {
      */
     template <typename iter>
     struct tail;
+
+#else
+
+    namespace detail {
+        namespace impls {
+            template <typename iter> struct head;
+            template <typename iter> struct tail;
+        }
+
+        namespace rules_ns {
+            using impls::head;
+            using impls::tail;
+        }
+
+        namespace checked_ns {
+            template <typename iter> struct head;
+            template <typename iter> struct tail;
+        }
+    }
+
+    using detail::checked::head;
+    using detail::checked::tail;
+
+#endif
 
     //! Returns whether the iterable is empty.
     template <typename iter>
