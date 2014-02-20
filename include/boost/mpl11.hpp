@@ -62,6 +62,7 @@
 #include <boost/mpl11/integer.hpp>
 #include <boost/mpl11/integral_domain.hpp>
 #include <boost/mpl11/iterable.hpp>
+#include <boost/mpl11/list.hpp>
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/monoid.hpp>
 #include <boost/mpl11/orderable.hpp>
