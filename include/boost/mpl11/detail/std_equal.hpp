@@ -18,18 +18,17 @@ namespace boost { namespace mpl11 { namespace detail {
      *
      * @todo implement this with fold
      */
-    template <
-        typename S1, typename S2,
-        bool = is_empty<S1>::value,
-        bool = is_empty<S2>::value
+    template <typename xs, typename ys,
+        bool = is_empty<xs>::value,
+        bool = is_empty<ys>::value
     >
     struct std_equal;
 }}} // end namespace boost::mpl11::detail
 
 
-#include <boost/mpl11/and.hpp>
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
-#include <boost/mpl11/integral_c.hpp>
+#include <boost/mpl11/logical.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail {
