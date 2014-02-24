@@ -24,7 +24,6 @@ namespace boost { namespace mpl11 {
      * - Find out how to minimize the number of instantiations. In the
      * current implementation, the whole list has to be re-indexed
      * each time we modify it.
-     * - Write unit tests.
      *
      * @{
      */
