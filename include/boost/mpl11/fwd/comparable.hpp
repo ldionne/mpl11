@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_COMPARABLE_HPP
 #define BOOST_MPL11_FWD_COMPARABLE_HPP
 
+#include <boost/mpl11/fwd/bool.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -21,9 +24,13 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * Either `equal` or `not_equal`.
      *
+     *
+     * @todo
+     * Document the function of the third template parameter.
+     *
      * @{
      */
-    template <typename Left, typename Right = Left>
+    template <typename Left, typename Right = Left, typename = true_>
     struct Comparable;
 
     /*!

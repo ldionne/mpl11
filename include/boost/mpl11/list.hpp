@@ -42,7 +42,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Iterable<List> {
+    struct Iterable<List> : default_Iterable {
         template <typename self>
         using head_impl = typename self::type::head;
 

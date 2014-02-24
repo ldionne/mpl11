@@ -8,9 +8,10 @@
 #define BOOST_MPL11_TEST_CHECK_FINITE_ITERABLE_HPP
 
 #include <boost/mpl11/detail/static_assert.hpp>
-#include <boost/mpl11/detail/std_equal.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/iterable.hpp>
+#include <boost/mpl11/integer.hpp>
+
 #include "minimal_iterable.hpp"
 
 
@@ -22,22 +23,31 @@ namespace check_finite_iter_detail {
         typename Actual = typename y::type>
     using assert_eq = detail::static_assert_<equal<x, y>>;
 
-    template <typename x, typename y,
-        typename Expected = typename x::type,
-        typename Actual = typename y::type>
-    using assert_std_eq = detail::static_assert_<detail::std_equal<x, y>>;
-
     template <typename reference, typename iter,
+        typename index = size_t<0>,
         bool = is_empty<reference>::value>
-    struct impl
-        : assert_eq<head<reference>, head<iter>>
-        , assert_std_eq<tail<reference>, tail<iter>>
-        , assert_eq<is_empty<reference>, is_empty<iter>>
-    { };
+    struct impl;
 
     template <typename reference, typename iter>
-    struct impl<reference, iter, true>
+    struct impl<reference, iter, size_t<length<reference>::value>, false>
+        : assert_eq<head<reference>, head<iter>>
+        , assert_eq<tail<reference>, tail<iter>>
+        , assert_eq<is_empty<reference>, is_empty<iter>>
+
+        , assert_eq<last<reference>, last<iter>>
+        , assert_eq<length<reference>, length<iter>>
+    { };
+
+    template <typename reference, typename iter, typename index>
+    struct impl<reference, iter, index, false>
+        : assert_eq<at<index, reference>, at<index, iter>>
+        , impl<reference, iter, size_t<index::type::value + 1>>
+    { };
+
+    template <typename reference, typename iter, typename index>
+    struct impl<reference, iter, index, true>
         : detail::static_assert_<is_empty<iter>>
+        , assert_eq<size_t<0>, length<iter>>
     { };
 } // end namespace check_finite_iter_detail
 

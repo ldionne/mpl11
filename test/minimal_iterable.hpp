@@ -29,7 +29,7 @@ struct minimal_iterable {
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Iterable<MinimalIterable> {
+    struct Iterable<MinimalIterable> : default_Iterable {
         template <typename s>
         struct head_impl : head_impl<typename s::type> { };
 

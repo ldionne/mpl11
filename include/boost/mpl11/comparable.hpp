@@ -15,7 +15,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct Comparable {
     private:
         using Common = Comparable<typename common_datatype<Left, Right>::type>;
