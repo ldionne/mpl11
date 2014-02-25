@@ -236,7 +236,7 @@ struct default_Iterable : true_ {
 
 template <typename X, typename Y>
 struct Comparable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
-    : Comparable<default_<void>>
+    : default_Comparable
 {
     template <typename xs, typename ys,
         bool xs_done = is_empty<xs>::value,

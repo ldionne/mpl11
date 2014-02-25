@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename Datatype>
-    struct Group<default_<Datatype>> {
+    struct default_Group {
         template <typename x, typename y>
         using minus_impl = plus<x, negate<y>>;
 

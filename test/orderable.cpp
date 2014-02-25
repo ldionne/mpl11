@@ -69,7 +69,7 @@ struct x {
 };
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<Int> : Orderable<default_<Int>> {
+    struct Orderable<Int> : default_Orderable {
         template <typename x, typename y>
         using less_impl = bool_<(x::type::value < y::type::value)>;
     };

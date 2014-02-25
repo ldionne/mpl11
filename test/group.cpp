@@ -35,7 +35,7 @@ struct test_dispatching
 ////////////////////////////////
 // Test default implementations
 ////////////////////////////////
-using Default = Group<default_<Integer>>;
+using Default = default_Group<Integer>;
 static_assert(Default::minus_impl<int_<10>, int_<3>>::value == 10 - 3, "");
 static_assert(Default::negate_impl<int_<10>>::value == -10, "");
 

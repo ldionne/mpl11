@@ -40,7 +40,7 @@ struct test_dispatching
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-using Default = Comparable<default_<Integer>>;
+using Default = default_Comparable;
 static_assert( Default::equal_impl<int_<0>, int_<0>>::value, "");
 static_assert(!Default::equal_impl<int_<0>, int_<1>>::value, "");
 static_assert( Default::not_equal_impl<int_<0>, int_<1>>::value, "");

@@ -86,10 +86,6 @@ namespace boost { namespace mpl11 {
      */
     template <typename From, typename To>
     struct cast;
-
-    //! Dummy type used to get the default implementation of a typeclass.
-    template <typename Datatype>
-    struct default_ BOOST_MPL11_IF_DOXYGEN({ });
     //! @}
 }} // end namespace boost::mpl11
 

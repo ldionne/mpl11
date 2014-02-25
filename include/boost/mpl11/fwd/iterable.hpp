@@ -76,8 +76,6 @@ namespace boost { namespace mpl11 {
      *   has efficient xx or yy operations.
      * - Perform bounds-checking in `at` when we have a way of knowing whether
      *   an `Iterable` is finite.
-     * - Fix the usage of `default_<void>` in `Comparable` instance.
-     * - Get a proper way of handling default implementations.
      * - Improve the implementation of `Foldable`, `Comparable`, `drop_while`,
      *   `drop` and default methods.
      *

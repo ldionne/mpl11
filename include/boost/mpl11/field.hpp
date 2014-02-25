@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename Datatype>
-    struct Field<default_<Datatype>> {
+    struct default_Field {
         template <typename x, typename y>
         using quot_impl = mult<x, recip<y>>;
 

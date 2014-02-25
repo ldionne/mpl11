@@ -54,8 +54,7 @@ namespace boost { namespace mpl11 {
     };
 
 
-    template <typename Datatype>
-    struct Orderable<default_<Datatype>> {
+    struct default_Orderable {
         template <typename x, typename y>
         using less_equal_impl = not_<less<y, x>>;
 
