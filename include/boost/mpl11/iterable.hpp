@@ -16,6 +16,7 @@
 #include <boost/mpl11/functional.hpp> //
 #include <boost/mpl11/integer.hpp>    // required by fwd/iterable.hpp
 #include <boost/mpl11/logical.hpp>    //
+#include <boost/mpl11/orderable.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -231,6 +232,32 @@ struct default_Iterable : true_ {
     template <typename xs, detail::std_size_t acc>
     struct length_impl<xs, acc, false>
         : length_impl<tail<xs>, acc+1>
+    { };
+};
+
+template <typename X, typename Y>
+struct Orderable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
+    : default_Orderable
+{
+    // xs is shorter than ys
+    template <typename xs, typename ys,
+        bool xs_done = is_empty<xs>::value,
+        bool ys_done = is_empty<ys>::value
+    >
+    struct less_impl
+        : bool_<xs_done && !ys_done>
+    { };
+
+    // (head(xs) < head(ys)) or (head(xs) == head(ys) and compare the rest)
+    template <typename xs, typename ys>
+    struct less_impl<xs, ys, false, false>
+        : or_<
+            less<head<xs>, head<ys>>,
+            and_<
+                not_<less<head<ys>, head<xs>>>,
+                less_impl<tail<xs>, tail<ys>>
+            >
+        >
     { };
 };
 

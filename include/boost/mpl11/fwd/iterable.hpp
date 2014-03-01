@@ -40,6 +40,10 @@ namespace boost { namespace mpl11 {
      * side-by-side, and if both iterables run out of elements at the
      * same time, i.e. if they have the same length.
      *
+     * #### `Orderable`
+     * Less-than comparison for iterables is defined as the lexicographical
+     * comparison of their elements.
+     *
      * #### `Foldable`
      * ##### `foldl<f, state, iter>`
      * Reduces an iterable using a binary operation, from left to right.
@@ -76,8 +80,8 @@ namespace boost { namespace mpl11 {
      *   has efficient xx or yy operations.
      * - Perform bounds-checking in `at` when we have a way of knowing whether
      *   an `Iterable` is finite.
-     * - Improve the implementation of `Foldable`, `Comparable`, `drop_while`,
-     *   `drop` and default methods.
+     * - Improve the implementation of `Foldable`, `Comparable`, `Orderable`,
+     *   `drop_while`, `drop` and default methods.
      *
      * @{
      */

@@ -16,7 +16,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct Orderable {
     private:
         using Common = Orderable<typename common_datatype<Left, Right>::type>;

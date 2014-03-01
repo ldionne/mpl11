@@ -99,7 +99,7 @@ namespace test_default_methods {
     { };
 } // end namespace test_default_methods
 
-namespace test_comparison {
+namespace test_comparable {
     template <int ...xs>
     struct compare {
         template <typename Dummy, int ...ys>
@@ -143,7 +143,50 @@ namespace test_comparison {
         , compare<0, 1, 2>::with<0, 1>
         , compare<0, 1, 2>::with<0, 1, 2>
     { };
-} // end namespace test_comparison
+} // end namespace test_comparable
+
+namespace test_orderable {
+    template <int ...xs>
+    struct check {
+        template <template <typename ...> class comp>
+        struct is {
+            template <int ...ys>
+            struct than : check, is {
+                static_assert(comp<
+                    minimal_iterable<int_<xs>...>,
+                    minimal_iterable<int_<ys>...>
+                >::value, "");
+            };
+        };
+    };
+
+    struct tests :
+          check<>
+            ::is<less>
+                ::than<0>
+                ::than<0, 1>
+                ::than<0, 1, 2>
+                ::than<0, 1, 2, 3>
+
+            ::is<less_equal>
+                ::than<>
+                ::than<0>
+
+        , check<0>::is<less>
+            ::than<1>
+            ::than<0, 0>
+            ::than<0, 1>
+
+        , check<0, 1>::is<less>
+            ::than<1, 0>
+            ::than<0, 2>
+
+        , check<0, 1, 2>::is<less>
+            ::than<0, 1, 3>
+            ::than<0, 2>
+            ::than<1>
+    { };
+} // end namespace test_orderable
 
 namespace test_foldable {
     template <typename x, typename y>
