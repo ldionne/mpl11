@@ -35,6 +35,13 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
+     * Clang-3.5 has a bug causing `flip` to fail on binary metafunctions.
+     */
+#   define BOOST_MPL11_CLANG_FLIP_BUG
+
+    /*!
+     * @ingroup details
+     *
      * Contains the raw implementation of metafunctions supporting rewrite
      * rules or assertions.
      */

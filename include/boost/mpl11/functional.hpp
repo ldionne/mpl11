@@ -8,6 +8,8 @@
 
 #include <boost/mpl11/fwd/functional.hpp>
 
+#include <boost/mpl11/detail/config.hpp>
+
 
 namespace boost { namespace mpl11 {
     ////////////////////
@@ -36,8 +38,13 @@ namespace boost { namespace mpl11 {
     struct flip {
         using type = flip;
 
+#if defined(BOOST_MPL11_CLANG_FLIP_BUG)
+        template <typename x0, typename x1, typename ...xs>
+        struct apply : f::type::template apply<x1, x0, xs...> {};
+#else
         template <typename x0, typename x1, typename ...xs>
         using apply = typename f::type::template apply<x1, x0, xs...>;
+#endif
     };
 
     ////////////////////

@@ -11,35 +11,37 @@
 using namespace boost::mpl11;
 using detail::std_is_same;
 
-struct f {
-    struct mf { template <typename ...> struct apply { struct type; }; };
-    using type = mf;
-};
+template <typename, typename>
+struct binary { struct type; };
+
+template <typename ...>
+struct variadic { struct type; };
+
 struct a0; struct a1; struct a2; struct a3; struct a4; struct a5;
 
 static_assert(std_is_same<
-    flip<f>::type::apply<a0, a1>::type,
-    f::type::apply<a1, a0>::type
+    flip<quote<binary>>::type::apply<a0, a1>::type,
+    binary<a1, a0>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<f>::type::apply<a0, a1, a2>::type,
-    f::type::apply<a1, a0, a2>::type
+    flip<quote<variadic>>::type::apply<a0, a1, a2>::type,
+    variadic<a1, a0, a2>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<f>::type::apply<a0, a1, a2, a3>::type,
-    f::type::apply<a1, a0, a2, a3>::type
+    flip<quote<variadic>>::type::apply<a0, a1, a2, a3>::type,
+    variadic<a1, a0, a2, a3>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<f>::type::apply<a0, a1, a2, a3, a4>::type,
-    f::type::apply<a1, a0, a2, a3, a4>::type
+    flip<quote<variadic>>::type::apply<a0, a1, a2, a3, a4>::type,
+    variadic<a1, a0, a2, a3, a4>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<f>::type::apply<a0, a1, a2, a3, a4, a5>::type,
-    f::type::apply<a1, a0, a2, a3, a4, a5>::type
+    flip<quote<variadic>>::type::apply<a0, a1, a2, a3, a4, a5>::type,
+    variadic<a1, a0, a2, a3, a4, a5>::type
 >::value, "");
 
 
