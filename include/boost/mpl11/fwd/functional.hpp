@@ -7,6 +7,7 @@
 #define BOOST_MPL11_FWD_FUNCTIONAL_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/detail/std_size_t.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -215,6 +216,16 @@ namespace boost { namespace mpl11 {
     struct bind;
 
     /*!
+     * Returns the `n`th of its arguments.
+     *
+     * Indexing starts at 1, so that `arg<1>` returns the 1st argument,
+     * `arg<2>` the 2nd and so on. Using `arg<0>` is an error. Passing
+     * less than `n` arguments to `arg<n>` is also an error.
+     */
+    template <detail::std_size_t n>
+    struct arg;
+
+    /*!
      * Convenience namespace containing everything provided by the
      * @ref Functional module.
      */
@@ -231,6 +242,7 @@ namespace boost { namespace mpl11 {
         using mpl11::argmap;
         using mpl11::on;
         using mpl11::bind;
+        using mpl11::arg;
     }
     //! @}
 }} // end namespace boost::mpl11
