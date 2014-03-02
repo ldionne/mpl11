@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_FWD_FOLDABLE_HPP
 #define BOOST_MPL11_FWD_FOLDABLE_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
@@ -51,36 +52,37 @@ namespace boost { namespace mpl11 {
      * `predicate`.
      */
     template <typename predicate, typename structure>
-    using all = foldr<
+    BOOST_MPL11_DOXYGEN_ALIAS(all, foldr<
         compose<quote<and_>, predicate>,
         true_,
         structure
-    >;
+    >);
 
     //! Equivalent to `all<quote<id>, structure>`.
     template <typename structure>
-    using all_of = all<quote<id>, structure>;
+    BOOST_MPL11_DOXYGEN_ALIAS(all_of, all<quote<id>, structure>);
 
     /*!
      * Returns whether none of the elements of the structure satisfy the
      * `predicate`.
      */
     template <typename predicate, typename structure>
-    using none = all<compose<quote<not_>, predicate>, structure>;
+    BOOST_MPL11_DOXYGEN_ALIAS(none,
+        all<compose<quote<not_>, predicate>, structure>);
 
     //! Equivalent to `none<quote<id>, structure>`.
     template <typename structure>
-    using none_of = none<quote<id>, structure>;
+    BOOST_MPL11_DOXYGEN_ALIAS(none_of, none<quote<id>, structure>);
 
     /*!
      * Returns whether any element of the structure satisfies the `predicate`.
      */
     template <typename predicate, typename structure>
-    using any = not_<none<predicate, structure>>;
+    BOOST_MPL11_DOXYGEN_ALIAS(any, not_<none<predicate, structure>>);
 
     //! Equivalent to `any<quote<id>, structure>`.
     template <typename structure>
-    using any_of = any<quote<id>, structure>;
+    BOOST_MPL11_DOXYGEN_ALIAS(any_of, any<quote<id>, structure>);
 
     /*!
      * Invokes a metafunction class with the contents of a structure.

@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_FWD_BITWISE_HPP
 #define BOOST_MPL11_FWD_BITWISE_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/integer.hpp>
 
@@ -58,7 +59,7 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `shift_right<x, size_t<n>>`.
     template <typename x, detail::std_size_t n>
-    using shift_right_c = shift_right<x, size_t<n>>;
+    BOOST_MPL11_DOXYGEN_ALIAS(shift_right_c, shift_right<x, size_t<n>>);
 
     /*!
      * Bitwise left shift (`<<`).
@@ -71,7 +72,7 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `shift_left<x, size_t<n>>`.
     template <typename x, detail::std_size_t n>
-    using shift_left_c = shift_left<x, size_t<n>>;
+    BOOST_MPL11_DOXYGEN_ALIAS(shift_left_c, shift_left<x, size_t<n>>);
 
     //! Bitwise complement (`~`).
     template <typename x>

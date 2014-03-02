@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_FWD_INTEGER_HPP
 #define BOOST_MPL11_FWD_INTEGER_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 
 
@@ -62,57 +63,57 @@ namespace boost { namespace mpl11 {
 
     //! Alias to `integer_c<T, v>`; provided for backward compatibility.
     template <typename T, T v>
-    using integral_c = integer_c<T, v>;
+    BOOST_MPL11_DOXYGEN_ALIAS(integral_c, integer_c<T, v>);
 
     //! Alias to `integer_c<bool, B>`; provided for convenience.
     template <bool B>
-    using bool_ = integer_c<bool, B>;
+    BOOST_MPL11_DOXYGEN_ALIAS(bool_, integer_c<bool, B>);
 
     //! Alias to `bool_<true>`; provided for convenience.
-    using true_ = bool_<true>;
+    BOOST_MPL11_DOXYGEN_ALIAS(true_, bool_<true>);
 
     //! Alias to `bool_<false>`; provided for convenience.
-    using false_ = bool_<false>;
+    BOOST_MPL11_DOXYGEN_ALIAS(false_, bool_<false>);
 
     //! Alias to `integer_c<char, C>`; provided for convenience.
     template <char C>
-    using char_ = integer_c<char, C>;
+    BOOST_MPL11_DOXYGEN_ALIAS(char_, integer_c<char, C>);
 
     //! Alias to `integer_c<short, N>`; provided for convenience.
     template <short N>
-    using short_ = integer_c<short, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(short_, integer_c<short, N>);
 
     //! Alias to `integer_c<unsigned short, N>`; provided for convenience.
     template <unsigned short N>
-    using ushort = integer_c<unsigned short, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(ushort, integer_c<unsigned short, N>);
 
     //! Alias to `integer_c<int, N>`; provided for convenience.
     template <int N>
-    using int_ = integer_c<int, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(int_, integer_c<int, N>);
 
     //! Alias to `integer_c<unsigned int, N>`; provided for convenience.
     template <unsigned int N>
-    using uint = integer_c<unsigned int, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(uint, integer_c<unsigned int, N>);
 
     //! Alias to `integer_c<long, N>`; provided for convenience.
     template <long N>
-    using long_ = integer_c<long, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(long_, integer_c<long, N>);
 
     //! Alias to `integer_c<unsigned long, N>`; provided for convenience.
     template <unsigned long N>
-    using ulong = integer_c<unsigned long, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(ulong, integer_c<unsigned long, N>);
 
     //! Alias to `integer_c<long long, N>`; provided for convenience.
     template <long long N>
-    using llong = integer_c<long long, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(llong, integer_c<long long, N>);
 
     //! Alias to `integer_c<unsigned long long, N>`; provided for convenience.
     template <unsigned long long N>
-    using ullong = integer_c<unsigned long long, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(ullong, integer_c<unsigned long long, N>);
 
     //! Alias to `integer_c<std::size_t, N>`; provided for convenience.
     template <detail::std_size_t N>
-    using size_t = integer_c<detail::std_size_t, N>;
+    BOOST_MPL11_DOXYGEN_ALIAS(size_t, integer_c<detail::std_size_t, N>);
     //! @}
 }} // end namespace boost::mpl11
 

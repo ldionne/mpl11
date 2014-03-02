@@ -71,7 +71,7 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `take<size_t<n>, xs>`.
     template <detail::std_size_t n, typename xs>
-    using take_c = take<size_t<n>, xs>;
+    BOOST_MPL11_DOXYGEN_ALIAS(take_c, take<size_t<n>, xs>);
 
     /*!
      * Returns the longest prefix of a `List` in which all elements
@@ -82,7 +82,8 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `take_while` with a negated `predicate`.
     template <typename predicate, typename xs>
-    using take_until = take_while<compose<quote<not_>, predicate>, xs>;
+    BOOST_MPL11_DOXYGEN_ALIAS(take_until,
+        take_while<compose<quote<not_>, predicate>, xs>);
 
     //! Returns a `List` with its elements in reverse order.
     template <typename xs>
@@ -148,7 +149,7 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `slice<xs, size_t<start>, size_t<stop>>`.
     template <typename xs, detail::std_size_t start, detail::std_size_t stop>
-    using slice_c = slice<xs, size_t<start>, size_t<stop>>;
+    BOOST_MPL11_DOXYGEN_ALIAS(slice_c, slice<xs, size_t<start>, size_t<stop>>);
 
     //! Returns a list sorted with the `predicate`.
     //!

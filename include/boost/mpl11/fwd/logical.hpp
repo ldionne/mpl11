@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_LOGICAL_HPP
 #define BOOST_MPL11_FWD_LOGICAL_HPP
 
+#include <boost/mpl11/detail/doxygen.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @defgroup Logical Logical
@@ -53,12 +56,14 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `if_<bool_<condition>, then_branch, else_branch>`.
     template <bool condition, typename then_branch, typename else_branch>
-    using if_c = typename logical_detail::if_impl<condition>::
-                 template result<then_branch, else_branch>;
+    BOOST_MPL11_DOXYGEN_ALIAS(if_c,
+            typename logical_detail::if_impl<condition>::
+            template result<then_branch, else_branch>);
 
     //! Equivalent to `else_if<bool_<condition>, then_branch, else_branch>`.
     template <bool condition, typename then_branch, typename else_branch>
-    using else_if_c = if_c<condition, then_branch, else_branch>;
+    BOOST_MPL11_DOXYGEN_ALIAS(else_if_c,
+        if_c<condition, then_branch, else_branch>);
 
     /*!
      * Evaluates one of two branches based on a condition.
@@ -75,11 +80,12 @@ namespace boost { namespace mpl11 {
 
     //! Equivalent to `if_`; provided for use with `if_`.
     template <typename condition, typename then_branch, typename else_branch>
-    using else_if = if_<condition, then_branch, else_branch>;
+    BOOST_MPL11_DOXYGEN_ALIAS(else_if,
+        if_<condition, then_branch, else_branch>);
 
     //! Transparent alias to its argument; provided for use with `if_`.
     template <typename else_branch>
-    using else_ = else_branch;
+    BOOST_MPL11_DOXYGEN_ALIAS(else_, else_branch);
     //! @}
 }} // end namespace boost::mpl11
 
