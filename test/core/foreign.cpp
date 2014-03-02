@@ -23,6 +23,11 @@ static_assert(std_is_same<
     x::type
 >::value, "");
 
+static_assert(std_is_same<
+    cast<Foreign, Foreign>::type::apply<x>::type,
+    x::type
+>::value, "");
+
 
 //////////////////////////////////////////
 // Test `common_datatype` specialization.

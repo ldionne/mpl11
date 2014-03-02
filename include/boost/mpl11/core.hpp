@@ -64,6 +64,9 @@ namespace boost { namespace mpl11 {
     struct cast<From, Foreign> : quote<id> { };
 
     template <>
+    struct cast<Foreign, Foreign> : quote<id> { };
+
+    template <>
     struct Comparable<Foreign> {
         template <typename x, typename y>
         using equal_impl = detail::std_is_same<
