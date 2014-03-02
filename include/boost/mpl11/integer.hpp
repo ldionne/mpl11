@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/fwd/integer.hpp>
 
+#include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/enumerable.hpp>
 #include <boost/mpl11/group.hpp>
@@ -141,6 +142,45 @@ namespace boost { namespace mpl11 {
 
         template <typename x, typename y>
         using min_impl = if_c<(x::type::value < y::type::value), x, y>;
+    };
+
+    template <>
+    struct Bitwise<Integer> {
+        template <typename x, typename y>
+        using bitand_impl = integer_c<
+            decltype(x::type::value & y::type::value),
+            x::type::value & y::type::value
+        >;
+
+        template <typename x, typename y>
+        using bitor_impl = integer_c<
+            decltype(x::type::value | y::type::value),
+            x::type::value | y::type::value
+        >;
+
+        template <typename x, typename y>
+        using bitxor_impl = integer_c<
+            decltype(x::type::value ^ y::type::value),
+            x::type::value ^ y::type::value
+        >;
+
+        template <typename x, typename n>
+        using shift_left_impl = integer_c<
+            decltype(x::type::value << n::type::value),
+            (x::type::value << n::type::value)
+        >;
+
+        template <typename x, typename n>
+        using shift_right_impl = integer_c<
+            decltype(x::type::value >> n::type::value),
+            (x::type::value >> n::type::value)
+        >;
+
+        template <typename x>
+        using compl_impl = integer_c<
+            decltype(~x::type::value),
+            ~x::type::value
+        >;
     };
 }} // end namespace boost::mpl11
 

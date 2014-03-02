@@ -31,8 +31,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Instance of
-     * `Comparable`, `Orderable`, `Enumerable`, `Monoid`, `Group`, `Ring` and
-     * `IntegralDomain`.
+     * `Comparable`, `Orderable`, `Enumerable`, `Monoid`, `Group`, `Ring`,
+     * `IntegralDomain` and `Bitwise`.
      *
      * @todo
      * Write unit tests for the provided instances.
