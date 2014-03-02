@@ -81,6 +81,16 @@ namespace boost { namespace mpl11 {
     //! Equivalent to `any<quote<id>, structure>`.
     template <typename structure>
     using any_of = any<quote<id>, structure>;
+
+    /*!
+     * Invokes a metafunction class with the contents of a structure.
+     *
+     * Specifically, `unpack<structure, f>` is equivalent to
+     * `apply<f, a0, ..., an>`, where `a0`, ...,`an` are the
+     * elements in the structure.
+     */
+    template <typename structure, typename f>
+    struct unpack;
     //! @}
 }} // end namespace boost::mpl11
 

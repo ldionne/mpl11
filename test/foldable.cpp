@@ -9,6 +9,7 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
+
 #include "minimal_foldable.hpp"
 #include "test_method_dispatch.hpp"
 
@@ -253,6 +254,33 @@ struct tests_without_predicate :
         ::any_is<false>
         ::none_is<true>
 { };
+
+
+//////////////
+// Test unpack
+//////////////
+namespace test_unpack {
+    template <typename ...> struct f { struct type; };
+
+    template <int ...xs>
+    struct unpacking {
+        static_assert(detail::std_is_same<
+            typename unpack<
+                minimal_foldable<int_<xs>...>, quote<f>
+            >::type,
+            typename f<int_<xs>...>::type
+        >::value, "");
+    };
+
+    struct tests
+        : unpacking<>
+        , unpacking<0>
+        , unpacking<0, 1>
+        , unpacking<0, 1, 2>
+        , unpacking<0, 1, 2, 3>
+        , unpacking<0, 1, 2, 3, 4>
+    { };
+} // end namespace test_unpack
 
 
 int main() { }
