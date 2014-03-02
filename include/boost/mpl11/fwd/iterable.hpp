@@ -6,7 +6,6 @@
 #ifndef BOOST_MPL11_FWD_ITERABLE_HPP
 #define BOOST_MPL11_FWD_ITERABLE_HPP
 
-#include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
@@ -88,8 +87,6 @@ namespace boost { namespace mpl11 {
     template <typename Datatype>
     struct Iterable;
 
-#if defined(BOOST_MPL11_DOXYGEN_INVOKED)
-
     //! Returns the first element of a non-empty iterable.
     template <typename iter>
     struct head;
@@ -103,6 +100,26 @@ namespace boost { namespace mpl11 {
     template <typename iter>
     struct tail;
 
+    //! Returns the last element of a non-empty iterable.
+    template <typename iter>
+    struct last;
+
+    //! Returns the number of elements in a finite iterable.
+    template <typename iter>
+    struct length;
+
+    //! Returns the element of an iterable at the given index.
+    template <typename index, typename iter>
+    struct at;
+
+    //! Equivalent to `at<size_t<index>, iter>`.
+    template <detail::std_size_t index, typename iter>
+    BOOST_MPL11_DOXYGEN_ALIAS(at_c, at<size_t<index>, iter>);
+
+    //! Returns whether the iterable is empty.
+    template <typename iter>
+    struct is_empty;
+
     /*!
      * Drops the first `n` elements from an iterable and return the rest.
      *
@@ -112,54 +129,6 @@ namespace boost { namespace mpl11 {
      */
     template <typename n, typename iter>
     struct drop;
-
-    //! Returns the last element of a non-empty iterable.
-    template <typename iter>
-    struct last;
-
-    //! Returns the element of an iterable at the given index.
-    template <typename index, typename iter>
-    struct at;
-
-#else
-
-    namespace detail {
-        namespace impls {
-            template <typename iter> struct head;
-            template <typename iter> struct tail;
-            template <typename n, typename iter> struct drop;
-            template <typename index, typename iter> struct at;
-            template <typename iter> struct last;
-        }
-
-        namespace rules_ns {
-            using impls::head;
-            using impls::tail;
-            using impls::drop;
-            using impls::at;
-            using impls::last;
-        }
-
-        namespace checked_ns {
-            template <typename iter> struct head;
-            template <typename iter> struct tail;
-            template <typename n, typename iter> struct drop;
-            template <typename index, typename iter> struct at;
-            template <typename iter> struct last;
-        }
-    }
-
-    using detail::checked::head;
-    using detail::checked::tail;
-    using detail::checked::drop;
-    using detail::checked::at;
-    using detail::checked::last;
-
-#endif
-
-    //! Returns whether the iterable is empty.
-    template <typename iter>
-    struct is_empty;
 
     //! Equivalent to `drop<size_t<n>, iter>`; provided for convenience.
     template <detail::std_size_t n, typename iter>
@@ -182,14 +151,6 @@ namespace boost { namespace mpl11 {
     template <typename predicate, typename iter>
     BOOST_MPL11_DOXYGEN_ALIAS(drop_until,
                         drop_while<compose<quote<not_>, predicate>, iter>);
-
-    //! Equivalent to `at<size_t<index>, iter>`.
-    template <detail::std_size_t index, typename iter>
-    BOOST_MPL11_DOXYGEN_ALIAS(at_c, at<size_t<index>, iter>);
-
-    //! Returns the number of elements in a finite iterable.
-    template <typename iter>
-    struct length;
     //! @}
 }} // end namespace boost::mpl11
 

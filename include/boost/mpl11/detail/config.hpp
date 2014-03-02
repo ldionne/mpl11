@@ -38,47 +38,6 @@ namespace boost { namespace mpl11 { namespace detail {
      * Clang-3.5 has a bug causing `flip` to fail on binary metafunctions.
      */
 #   define BOOST_MPL11_CLANG_FLIP_BUG
-
-    /*!
-     * @ingroup details
-     *
-     * Contains the raw implementation of metafunctions supporting rewrite
-     * rules or assertions.
-     */
-    namespace impls { }
-
-    /*!
-     * @ingroup details
-     *
-     * Contains the rewrite rules of metafunctions supporting it.
-     *
-     * When referring to rewrite rules, one should use the `rules`
-     * namespace alias instead of `rules_ns`.
-     */
-    namespace rules_ns { }
-
-#if defined(BOOST_MPL11_NO_RULES)
-    namespace rules = impls;
-#else
-    namespace rules = rules_ns;
-#endif
-
-
-    /*!
-     * @ingroup details
-     *
-     * Contains the checked versions of metafunctions supporting it.
-     *
-     * When referring to checked versions, one should use the `checked`
-     * namespace alias instead of `checked_ns`.
-     */
-    namespace checked_ns { }
-
-#if defined(BOOST_MPL11_NO_ASSERTIONS)
-    namespace checked = rules;
-#else
-    namespace checked = checked_ns;
-#endif
 }}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_CONFIG_HPP

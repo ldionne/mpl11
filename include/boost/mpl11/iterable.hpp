@@ -11,6 +11,7 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functional.hpp> //
@@ -105,89 +106,86 @@ struct drop_while : iterable_detail::drop_while_impl1<pred, iter> { };
     struct is_empty_impl<drop_while<Pred, Iter>> : all<Pred, Iter> { };
 #endif
 
-namespace detail {
-    namespace impls {
-        template <typename iter>
-        struct head
-            : Iterable<typename datatype<typename iter::type>::type>::
-              template head_impl<iter>
-        { };
+namespace iterable_detail {
+    template <typename iter>
+    struct check_head {
+        static_assert(!is_empty<iter>::value,
+        "Invalid usage of `head` on an empty iterable.");
+    };
 
-        template <typename iter>
-        struct tail
-            : Iterable<typename datatype<typename iter::type>::type>::
-              template tail_impl<iter>
-        { };
+    template <typename iter>
+    struct check_tail {
+        static_assert(!is_empty<iter>::value,
+        "Invalid usage of `tail` on an empty iterable.");
+    };
 
-        template <typename n, typename iter>
-        struct drop
-            : iterable_detail::drop_impl<n::type::value, iter>
-        { };
+    template <typename iter>
+    struct check_last {
+        static_assert(!is_empty<iter>::value,
+        "Invalid usage of `last` on an empty iterable.");
+    };
 
-        template <typename iter>
-        struct last :
-            Iterable<typename datatype<typename iter::type>::type>::
-            template last_impl<iter>
-        { };
+    template <typename index, typename iter>
+    class check_at {
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+        static_assert(index::type::value >= 0,
+        "Invalid usage of `at` with a negative index.");
 
-        template <typename index, typename iter>
-        struct at :
-            Iterable<typename datatype<typename iter::type>::type>::
-            template at_impl<index, iter>
-        { };
-    }
+        /*
+        using Length = if_c<sequence_traits<typename Iter::type>::is_finite,
+            length<Iter>,
+            size_t<index::type::value + 1>
+        >;
 
-    namespace checked_ns {
-        template <typename iter>
-        struct head {
-            static_assert(!is_empty<iter>::value,
-            "Invalid usage of `head` on an empty iterable.");
-            using type = typename rules::head<iter>::type;
-        };
+        static_assert(index::type::value < Length::value,
+        "Invalid usage of `at` with an out-of-bounds index.");
+        */
+#endif
+    };
 
-        template <typename iter>
-        struct tail {
-            static_assert(!is_empty<iter>::value,
-            "Invalid usage of `tail` on an empty iterable.");
-            using type = typename rules::tail<iter>::type;
-        };
+    template <typename n, typename iter>
+    struct check_drop {
+        static_assert(n::type::value >= 0,
+        "Invalid usage of `drop`: "
+        "The number of elements to drop must be non-negative.");
+    };
+} // end namespace iterable_detail
 
-        template <typename n, typename iter>
-        struct drop {
-            static_assert(n::type::value >= 0,
-            "Invalid usage of `drop`: "
-            "The number of elements to drop must be non-negative.");
-            using type = typename rules::drop<n, iter>::type;
-        };
+template <typename iter>
+struct head :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    iterable_detail::check_head<iter>,
+#endif
+      Iterable<typename datatype<typename iter::type>::type>::
+      template head_impl<iter>
+{ };
 
-        template <typename iter>
-        struct last {
-            static_assert(!is_empty<iter>::value,
-            "Invalid usage of `last` on an empty iterable.");
-            using type = typename rules::last<iter>::type;
-        };
+template <typename iter>
+struct tail :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    iterable_detail::check_tail<iter>,
+#endif
+    Iterable<typename datatype<typename iter::type>::type>::
+    template tail_impl<iter>
+{ };
 
-        template <typename index, typename iter>
-        struct at {
-        private:
-            static_assert(index::type::value >= 0,
-            "Invalid usage of `at` with a negative index.");
+template <typename iter>
+struct last :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    iterable_detail::check_last<iter>,
+#endif
+    Iterable<typename datatype<typename iter::type>::type>::
+    template last_impl<iter>
+{ };
 
-        #if 0
-            using Length = if_c<sequence_traits<typename Iter::type>::is_finite,
-                length<Iter>,
-                size_t<index::type::value + 1>
-            >;
-
-            static_assert(index::type::value < Length::value,
-            "Invalid usage of `at` with an out-of-bounds index.");
-        #endif
-
-        public:
-            using type = typename rules::at<index, iter>::type;
-        };
-    }
-} // end namespace detail
+template <typename index, typename iter>
+struct at :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    iterable_detail::check_at<index, iter>,
+#endif
+    Iterable<typename datatype<typename iter::type>::type>::
+    template at_impl<index, iter>
+{ };
 
 template <typename iter>
 struct is_empty :
@@ -199,6 +197,14 @@ template <typename iter>
 struct length :
     Iterable<typename datatype<typename iter::type>::type>::
     template length_impl<iter>
+{ };
+
+template <typename n, typename iter>
+struct drop :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    iterable_detail::check_drop<n, iter>,
+#endif
+    iterable_detail::drop_impl<n::type::value, iter>
 { };
 
 template <typename Datatype>

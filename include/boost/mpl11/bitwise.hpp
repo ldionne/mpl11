@@ -80,29 +80,39 @@ namespace boost { namespace mpl11 {
         >::template bitxor_impl<x, y>
     { };
 
+    namespace bitwise_detail {
+        template <typename x, typename n>
+        struct check_shift_left {
+            static_assert(n::type::value >= 0,
+            "Invalid usage of `shift_left` with a negative shift.");
+        };
+
+        template <typename x, typename n>
+        struct check_shift_right {
+            static_assert(n::type::value >= 0,
+            "Invalid usage of `shift_right` with a negative shift.");
+        };
+    }
+
 
     template <typename x, typename n>
     struct shift_left :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    bitwise_detail::check_shift_left<x, n>,
+#endif
         Bitwise<typename datatype<typename x::type>::type>::
         template shift_left_impl<x, n>
-    {
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-        static_assert(n::type::value >= 0,
-        "Invalid usage of `shift_left` with a negative shift.");
-#endif
-    };
+    { };
 
 
     template <typename x, typename n>
     struct shift_right :
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+    bitwise_detail::check_shift_right<x, n>,
+#endif
         Bitwise<typename datatype<typename x::type>::type>::
         template shift_right_impl<x, n>
-    {
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-        static_assert(n::type::value >= 0,
-        "Invalid usage of `shift_right` with a negative shift.");
-#endif
-    };
+    { };
 
 
     template <typename x>

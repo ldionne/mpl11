@@ -161,18 +161,22 @@ namespace boost { namespace mpl11 {
         struct take_impl<n, xs, false>
             : cons<head<xs>, take_impl<n-1, tail<xs>>>
         { };
+
+        template <typename n, typename xs>
+        struct check_take {
+            static_assert(n::type::value >= 0,
+            "Invalid usage of `take`: "
+            "The number of elements to take must be non-negative.");
+        };
     }
 
     template <typename n, typename xs>
-    struct take {
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-        static_assert(n::type::value >= 0,
-        "Invalid usage of `take`: "
-        "The number of elements to take must be non-negative.");
-#endif
-
-        using type = typename list_detail::take_impl<n::type::value, xs>::type;
-    };
+    struct take :
+    #if !defined(BOOST_MPL11_NO_ASSERTIONS)
+        list_detail::check_take<n, xs>,
+    #endif
+        list_detail::take_impl<n::type::value, xs>
+    { };
 
 #if 0
     template <typename N1, typename N2, typename Iter>
@@ -395,35 +399,39 @@ namespace boost { namespace mpl11 {
     { };
 #endif
 
+    namespace list_detail {
+        template <typename xs, typename from, typename to>
+        class check_slice {
+            static constexpr auto start = from::type::value;
+            static constexpr auto stop = to::type::value;
+
+            static_assert(start >= 0,
+            "Invalid usage of `slice`: The start index must be non-negative.");
+
+            static_assert(start <= stop,
+            "Invalid usage of `slice`: "
+            "The start index must be less-than or equal to the stop index.");
+
+        #if 0
+            using Length = if_c<sequence_traits<typename Iter::type>::is_finite,
+                length<Iter>,
+                Stop_
+            >;
+
+            static_assert(Stop <= Length::value,
+            "Invalid usage of `slice`: "
+            "The stop index is out of the bounds of the iterable.");
+        #endif
+        };
+    }
+
     template <typename xs, typename from, typename to>
-    struct slice {
-    private:
-        static constexpr auto Start = from::type::value;
-        static constexpr auto Stop = to::type::value;
-
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-        static_assert(Start >= 0,
-        "Invalid usage of `slice`: The start index must be non-negative.");
-
-        static_assert(Start <= Stop,
-        "Invalid usage of `slice`: "
-        "The start index must be less-than or equal to the stop index.");
-
-#if 0
-        using Length = if_c<sequence_traits<typename Iter::type>::is_finite,
-            length<Iter>,
-            Stop_
-        >;
-
-        static_assert(Stop <= Length::value,
-        "Invalid usage of `slice`: "
-        "The stop index is out of the bounds of the iterable.");
-#endif
-#endif
-
-    public:
-        using type = typename take_c<Stop - Start, drop_c<Start, xs>>::type;
-    };
+    struct slice :
+    #if !defined(BOOST_MPL11_NO_ASSERTIONS)
+        list_detail::check_slice<xs, from, to>,
+    #endif
+        take_c<to::type::value - from::type::value, drop<from, xs>>
+    { };
 
     namespace list_detail {
         template <
@@ -440,6 +448,12 @@ namespace boost { namespace mpl11 {
             sort_by<pred, SmallerEq>,
             cons<pivot, sort_by<pred, Greater>>
         >;
+
+        template <typename xs>
+        struct check_init {
+            static_assert(!is_empty<xs>::value,
+            "Invalid usage of `init` on an empty list.");
+        };
     }
 
     template <typename pred, typename xs>
@@ -451,17 +465,15 @@ namespace boost { namespace mpl11 {
     { };
 
     template <typename xs>
-    struct init {
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-        static_assert(!is_empty<xs>::value,
-        "Invalid usage of `init` on an empty list.");
-#endif
-
-        using type = typename if_c<is_empty<tail<xs>>::value,
+    struct init :
+    #if !defined(BOOST_MPL11_NO_ASSERTIONS)
+        list_detail::check_init<xs>,
+    #endif
+        if_c<is_empty<tail<xs>>::value,
             list<>,
             cons<head<xs>, init<tail<xs>>>
-        >::type;
-    };
+        >
+    { };
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_LIST_HPP
