@@ -5,91 +5,52 @@
 
 #include <boost/mpl11/functional.hpp>
 
-#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 
 
 using namespace boost::mpl11;
 using detail::std_is_same;
 
-template <template <typename ...> class f>
-struct call {
-    struct mf {
-        template <typename ...x>
-        struct apply { using type = f<typename x::type...>; };
+struct w { using type = w; };
+struct x { using type = x; };
+struct y { using type = y; };
+template <typename ...xs> struct f { using type = f<typename xs::type...>; };
+template <typename ...xs> struct g { using type = g<typename xs::type...>; };
+template <typename ...xs> struct h { using type = h<typename xs::type...>; };
+
+template <template <typename ...> class ...fs>
+struct composing {
+    template <typename ...args>
+    struct with {
+        template <typename result>
+        struct is : composing {
+            static_assert(std_is_same<
+                typename compose<quote<fs>...>::type::
+                template apply<args...>::type,
+                result
+            >::value, "");
+        };
     };
-    using type = mf;
 };
 
-template <typename ...> struct f;
-template <typename ...> struct g;
-template <typename ...> struct h;
-template <typename ...> struct i;
+struct tests
+    : composing<f>
+        ::with<>::is<f<>>
+        ::with<w>::is<f<w>>
+        ::with<w, x>::is<f<w, x>>
+        ::with<w, x, y>::is<f<w, x, y>>
 
-template <typename ...x>
-struct test_compose;
+    , composing<f, g>
+        ::with<>::is<f<g<>>>
+        ::with<w>::is<f<g<w>>>
+        ::with<w, x>::is<f<g<w>, x>>
+        ::with<w, x, y>::is<f<g<w>, x, y>>
 
-template <typename x, typename ...xs>
-struct test_compose<x, xs...> {
-    template <template <typename ...> class ...fs>
-    using compose = typename boost::mpl11::compose<call<fs>...>::type::
-                    template apply<box<x>, box<xs>...>::type;
-
-    static_assert(std_is_same<
-        compose<i>,
-        i<x, xs...>
-    >::value, "");
-
-    static_assert(std_is_same<
-        compose<h, i>,
-        h<i<x>, xs...>
-    >::value, "");
-
-    static_assert(std_is_same<
-        compose<g, h, i>,
-        g<h<i<x>>, xs...>
-    >::value, "");
-
-    static_assert(std_is_same<
-        compose<f, g, h, i>,
-        f<g<h<i<x>>>, xs...>
-    >::value, "");
-};
-
-template <>
-struct test_compose<> {
-    template <template <typename ...> class ...fs>
-    using compose = typename boost::mpl11::compose<call<fs>...>::type::
-                    template apply<>::type;
-
-    static_assert(std_is_same<
-        compose<i>,
-        i<>
-    >::value, "");
-
-    static_assert(std_is_same<
-        compose<h, i>,
-        h<i<>>
-    >::value, "");
-
-    static_assert(std_is_same<
-        compose<g, h, i>,
-        g<h<i<>>>
-    >::value, "");
-
-    static_assert(std_is_same<
-        compose<f, g, h, i>,
-        f<g<h<i<>>>>
-    >::value, "");
-};
-
-struct w; struct x; struct y; struct z;
-struct tests :
-    test_compose<>,
-    test_compose<w>,
-    test_compose<w, x>,
-    test_compose<w, x, y>,
-    test_compose<w, x, y, z>
+    , composing<f, g, h>
+        ::with<>::is<f<g<h<>>>>
+        ::with<w>::is<f<g<h<w>>>>
+        ::with<w, x>::is<f<g<h<w>>, x>>
+        ::with<w, x, y>::is<f<g<h<w>>, x, y>>
 { };
 
 

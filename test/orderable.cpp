@@ -77,10 +77,10 @@ namespace boost { namespace mpl11 {
 
 template <int from, int to>
 struct test_operators : test_operators<from, to+1> {
-    static_assert(less<x<from>, x<to>>::value == from < to, "");
-    static_assert(less_equal<x<from>, x<to>>::value == from <= to, "");
-    static_assert(greater<x<from>, x<to>>::value == from > to, "");
-    static_assert(greater_equal<x<from>, x<to>>::value == from >= to, "");
+    static_assert(less<x<from>, x<to>>::value == (from < to), "");
+    static_assert(less_equal<x<from>, x<to>>::value == (from <= to), "");
+    static_assert(greater<x<from>, x<to>>::value == (from > to), "");
+    static_assert(greater_equal<x<from>, x<to>>::value == (from >= to), "");
 };
 
 template <int from>

@@ -46,7 +46,10 @@ template <
     template <typename ...> class f,
     typename pred, bool result, typename ...xs
 >
-struct check_pred : with_predicate<pred>::template with_input<xs...> {
+struct check_pred
+    : with_predicate<pred>::template with_input<xs...>
+    , with_predicate<pred>
+{
     static_assert(f<pred, minimal_foldable<xs...>>::value == result, "");
 };
 

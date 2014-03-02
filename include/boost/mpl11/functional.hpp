@@ -64,8 +64,13 @@ namespace boost { namespace mpl11 {
     struct partial<quote<f>, x...> {
         using type = partial;
 
+#if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
+        template <typename ...y>
+        struct apply : f<x..., y...> { };
+#else
         template <typename ...y>
         using apply = f<x..., y...>;
+#endif
     };
 
     template <template <typename ...> class f, typename ...x>
@@ -85,8 +90,13 @@ namespace boost { namespace mpl11 {
     struct quote {
         using type = quote;
 
+#if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
+        template <typename ...x>
+        struct apply : f<x...> { };
+#else
         template <typename ...x>
         using apply = f<x...>;
+#endif
     };
 
     ////////////////////

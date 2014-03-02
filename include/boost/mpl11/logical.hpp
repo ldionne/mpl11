@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/logical.hpp>
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/detail/config.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -59,14 +60,25 @@ namespace boost { namespace mpl11 {
 
     template <typename ...xs>
     struct and_ :
+#if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
         logical_detail::and_impl<true, false>::
+        template result<true_, xs...>
+#else
+        logical_detail::and_impl<false, false>::
         template result<xs...>
+#endif
+
     { };
 
     template <typename ...xs>
     struct or_ :
+#if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
+        logical_detail::or_impl<false, false>::
+        template result<false_, xs...>
+#else
         logical_detail::or_impl<false, false>::
         template result<xs...>
+#endif
     { };
 
     template <> struct and_<> : true_ { };

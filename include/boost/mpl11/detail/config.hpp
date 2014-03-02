@@ -38,6 +38,14 @@ namespace boost { namespace mpl11 { namespace detail {
      * Clang-3.5 has a bug causing `flip` to fail on binary metafunctions.
      */
 #   define BOOST_MPL11_CLANG_FLIP_BUG
+
+    /*!
+     * @ingroup details
+     *
+     * GCC-4.9 has a bug making it an error to expand parameter packs in some
+     * circumstances.
+     */
+#   define BOOST_MPL11_GCC_PACK_EXPANSION_BUG
 }}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_CONFIG_HPP

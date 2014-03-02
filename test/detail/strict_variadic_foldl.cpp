@@ -12,8 +12,8 @@
 
 using namespace boost::mpl11;
 
-template <typename, typename>
-struct f { using type = f; };
+template <typename x, typename y>
+struct f { using type = f<typename x::type, typename y::type>; };
 
 template <int state, int ...xs>
 struct folding {
