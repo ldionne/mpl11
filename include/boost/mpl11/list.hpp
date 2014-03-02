@@ -11,12 +11,12 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
-#include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functor.hpp>
 #include <boost/mpl11/iterable.hpp>
 
-#include <boost/mpl11/functional.hpp> //
-#include <boost/mpl11/integer.hpp>    // required by fwd/list.hpp
+#include <boost/mpl11/foldable.hpp>   //
+#include <boost/mpl11/functional.hpp> // required by fwd/list.hpp
+#include <boost/mpl11/integer.hpp>    //
 #include <boost/mpl11/logical.hpp>    //
 
 
@@ -89,14 +89,6 @@ namespace boost { namespace mpl11 {
             >;
         };
     };
-
-    template <typename xs, typename x>
-    struct snoc
-        : if_c<is_empty<xs>::value,
-            list<x>,
-            cons<head<xs>, snoc<tail<xs>, x>>
-        >
-    { };
 
 #if 0
     template <typename Init, typename Last>
@@ -321,23 +313,23 @@ namespace boost { namespace mpl11 {
     struct last_impl<scanl<F, State, Iter>> : foldl<F, State, Iter> { };
 #endif
 
-    template <>
-    struct zip<>
+    template <typename f>
+    struct zip_with<f>
         : list<>
     { };
 
-    template <typename xs>
-    struct zip<xs>
-        : fmap<quote<list>, xs>
+    template <typename f, typename xs>
+    struct zip_with<f, xs>
+        : fmap<f, xs>
     { };
 
-    template <typename ...lists>
-    struct zip
+    template <typename f, typename ...lists>
+    struct zip_with
         : if_<or_<is_empty<lists>...>,
             list<>,
             cons<
-                list<head<lists>...>,
-                zip<tail<lists>...>
+                typename f::type::template apply<head<lists>...>,
+                zip_with<f, tail<lists>...>
             >
         >
     { };

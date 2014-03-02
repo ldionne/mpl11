@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/foldable.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
 #include <boost/mpl11/fwd/integer.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
@@ -49,7 +50,7 @@ namespace boost { namespace mpl11 {
      * If the iterable is infinite, `snoc` could be `id`.
      */
     template <typename xs, typename x>
-    struct snoc;
+    BOOST_MPL11_DOXYGEN_ALIAS(snoc, foldr<quote<cons>, list<x>, xs>);
 
     //! Returns an infinite `List` of repeated applications of `f` to `x`.
     template <typename f, typename x>
@@ -101,20 +102,28 @@ namespace boost { namespace mpl11 {
     struct scanl;
 
     /*!
-     * Returns a list that aggregates elements from several lists.
+     * Returns a list of applications of `f` to the elements of the zipped
+     * lists, in lockstep.
      *
-     * Specifically, the i-th element of the list is a `List` containing
-     * the i-th element of each zipped list. The list stops when the
-     * shortest zipped list is exhausted. When invoked with 0 arguments,
-     * `zip` returns an empty list. When invoked with 1 argument, `zip`
-     * returns a `List` of 1-element `List`s.
+     * Specifically, the i-th element of the list is equivalent to
+     * `f(s1[i], ..., sn[i])`, where `f(...)` denotes metafunction class
+     * suspension and `sk[i]` denotes the i-th element of the k-th list
+     * passed as an argument.
      *
+     * The list stops when the shortest zipped list is exhausted. When
+     * invoked with 0 arguments, `zip` returns an empty list.
      *
      * @todo
-     * Consider implementing a `zip_longest` with the obvious semantics.
+     * - Consider implementing a `zip_longest` with the obvious semantics.
+     * - `zip_with` is some kind of generalization of `fmap` with several
+     * `Functors` at a time. Is this interesting?
      */
+    template <typename f, typename ...lists>
+    struct zip_with;
+
+    //! Equivalent to `zip_with<quote<list>, lists...>`.
     template <typename ...lists>
-    struct zip;
+    BOOST_MPL11_DOXYGEN_ALIAS(zip, zip_with<quote<list>, lists...>);
 
     /*!
      * Concatenate several lists.

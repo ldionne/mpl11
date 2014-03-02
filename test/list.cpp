@@ -346,67 +346,92 @@ namespace test_scanl {
     { };
 } // end namespace test_scanl
 
-namespace test_zip {
+namespace test_zip_with {
+    template <typename ...xs>
+    struct f { using type = f<typename xs::type...>; };
+
     template <typename ...lists>
     struct zipping {
         template <typename ...zipped>
         struct is
-            : check_finite_iterable<zip<lists...>, zipped...>
+            : check_finite_iterable<zip_with<quote<f>, lists...>, zipped...>
         { };
     };
 
-    template <typename ...xs>
-    using seq = list<box<xs>...>;
-
-    struct w0; struct w1; struct w2; struct w3; struct w4;
-    struct x0; struct x1; struct x2; struct x3; struct x4;
-    struct y0; struct y1; struct y2; struct y3; struct y4;
-    struct z0; struct z1; struct z2; struct z3; struct z4;
+    template <int> struct w { using type = w; };
+    template <int> struct x { using type = x; };
+    template <int> struct y { using type = y; };
+    template <int> struct z { using type = z; };
 
     struct tests
-        // zip 0 iterables
+        // zip 0
         : zipping<>::is<>
 
-        // zip 1 iterable
-        , zipping<seq<x0>>::is<seq<x0>>
-        , zipping<seq<x0, x1>>::is<seq<x0>, seq<x1>>
-        , zipping<seq<x0, x1, x2>>::is<seq<x0>, seq<x1>, seq<x2>>
+        // zip 1
+        , zipping<list<x<0>>>::is<f<x<0>>>
+        , zipping<list<x<0>, x<1>>>::is<f<x<0>>, f<x<1>>>
+        , zipping<list<x<0>, x<1>, x<2>>>::is<f<x<0>>, f<x<1>>, f<x<2>>>
 
-        // zip 2 iterables
-        , zipping<seq<>, seq<>>::is<>
-        , zipping<seq<>, seq<x0>>::is<>
-        , zipping<seq<>, seq<x0, x1>>::is<>
+        // zip 2
+        , zipping<list<>, list<>>::is<>
+        , zipping<list<>, list<undefined>>::is<>
+        , zipping<list<undefined>, list<>>::is<>
+        , zipping<list<x<0>>, list<y<0>>>::is<f<x<0>, y<0>>>
+        , zipping<
+            list<w<0>>, list<x<0>, x<1>>
+        >::is<f<w<0>, x<0>>>
+        , zipping<
+            list<w<0>, undefined>,
+            list<x<0>>
+        >::is<
+            f<w<0>, x<0>>
+        >
+        , zipping<
+            list<w<0>, w<1>>,
+            list<x<0>, x<1>>
+        >::is<
+            f<w<0>, x<0>>,
+            f<w<1>, x<1>>
+        >
 
-        , zipping<seq<w0>, seq<>>::is<>
-        , zipping<seq<w0>, seq<x0>>::is<seq<w0, x0>>
-        , zipping<seq<w0>, seq<x0, x1>>::is<seq<w0, x0>>
+        // zip 3
+        , zipping<
+            list<>,
+            list<>,
+            list<y<0>>
+        >::is<>
 
-        , zipping<seq<w0, w1>, seq<>>::is<>
-        , zipping<seq<w0, w1>, seq<x0>>::is<seq<w0, x0>>
-        , zipping<seq<w0, w1>, seq<x0, x1>>::is<seq<w0, x0>, seq<w1, x1>>
+        , zipping<
+            list<>,
+            list<x<0>>,
+            list<>
+        >::is<>
 
-        // zip 3 iterables
-        , zipping<seq<>, seq<>, seq<y0>>::is<>
-        , zipping<seq<>, seq<x0>, seq<>>::is<>
-        , zipping<seq<>, seq<x0>, seq<y0>>::is<>
-        , zipping<seq<w0>, seq<>, seq<>>::is<>
-        , zipping<seq<w0>, seq<>, seq<y0>>::is<>
-        , zipping<seq<w0>, seq<x0>, seq<>>::is<>
-        , zipping<seq<w0>, seq<x0>, seq<y0>>::is<seq<w0, x0, y0>>
+        , zipping<
+            list<>,
+            list<x<0>>,
+            list<y<0>>
+        >::is<>
+
+        , zipping<list<w<0>>, list<>, list<>>::is<>
+        , zipping<list<w<0>>, list<>, list<y<0>>>::is<>
+        , zipping<list<w<0>>, list<x<0>>, list<>>::is<>
+        , zipping<list<w<0>>, list<x<0>>, list<y<0>>>::is<f<w<0>, x<0>, y<0>>>
+
 
         // zip 4 iterables with (sometimes) different sizes
         , zipping<
-            seq<w0, w1, w2, w3>,
-            seq<x0, x1, x2, x3, x4>,
-            seq<y0, y1, y2>,
-            seq<z0, z1, z2, z3, z4>
+            list<w<0>, w<1>, w<2>, undefined>,
+            list<x<0>, x<1>, x<2>, undefined, undefined>,
+            list<y<0>, y<1>, y<2>>,
+            list<z<0>, z<1>, z<2>, undefined, undefined, undefined>
         >::is<
-            seq<w0, x0, y0, z0>,
-            seq<w1, x1, y1, z1>,
-            seq<w2, x2, y2, z2>
+            f<w<0>, x<0>, y<0>, z<0>>,
+            f<w<1>, x<1>, y<1>, z<1>>,
+            f<w<2>, x<2>, y<2>, z<2>>
         >
     { };
-} // end namespace test_zip
+} // end namespace test_zip_with
 
 namespace test_join {
     template <int ...xs>
