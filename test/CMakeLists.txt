@@ -29,6 +29,7 @@ function(mpl11_add_test name sources)
 endfunction()
 
 
+mpl11_add_test(bitwise                      bitwise.cpp)
 mpl11_add_test(comparable                   comparable.cpp)
 mpl11_add_test(core-box                     core/box.cpp)
 mpl11_add_test(core-cast                    core/cast.cpp)

@@ -36,6 +36,7 @@
  * Metafunction classes provided by the library.
  */
 
+#include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>
