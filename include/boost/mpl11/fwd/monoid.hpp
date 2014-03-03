@@ -40,8 +40,13 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right = Left>
     struct Monoid;
 
-    //! Associative operation on a `Monoid`.
-    template <typename x, typename y>
+    /*!
+     * Associative operation on a `Monoid`.
+     *
+     * `plus` can be invoked with more than two arguments. Specifically,
+     * `plus<x1, x2, xn...>` is equivalent to `plus<plus<x1, x2>, xn...>`.
+     */
+    template <typename x1, typename x2, typename ...xn>
     struct plus;
 
     //! Additive identity for the given `Datatype`.

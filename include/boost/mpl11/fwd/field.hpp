@@ -29,6 +29,7 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right = Left>
     struct Field;
 
+    //! Multiplication of `x` by the multiplicative inverse of `y`.
     template <typename x, typename y>
     struct quot;
 

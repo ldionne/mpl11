@@ -25,9 +25,11 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right = Left>
     struct IntegralDomain;
 
+    //! Integer division of `x` by `y`.
     template <typename x, typename y>
     struct div;
 
+    //! Remainder of the integer division of `x` by `y`.
     template <typename x, typename y>
     struct mod;
     //! @}

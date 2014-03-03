@@ -10,6 +10,8 @@
 
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/common_method.hpp>
+#include <boost/mpl11/detail/strict_variadic_foldl.hpp>
+#include <boost/mpl11/functional.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -24,8 +26,13 @@ namespace boost { namespace mpl11 {
             >;
     };
 
+    template <typename x1, typename x2, typename ...xn>
+    struct mult
+        : detail::strict_variadic_foldl<quote<mult>, x1, x2, xn...>
+    { };
+
     template <typename x, typename y>
-    struct mult :
+    struct mult<x, y> :
         Ring<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type

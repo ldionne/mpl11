@@ -40,7 +40,13 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right = Left>
     struct Ring;
 
-    template <typename x, typename y>
+    /*!
+     * `Ring` operation.
+     *
+     * `mult` can be invoked with more than two arguments. Specifically,
+     * `mult<x1, x2, xn...>` is equivalent to `mult<mult<x1, x2>, xn...>`.
+     */
+    template <typename x1, typename x2, typename ...xn>
     struct mult;
 
     //! Multiplicative identity for the given `Datatype`.
