@@ -8,9 +8,10 @@
 
 #include <boost/mpl11/fwd/foldable.hpp>
 
-#include <boost/mpl11/bool.hpp>       // required by fwd/foldable.hpp
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/functional.hpp> //
+
+#include <boost/mpl11/bool.hpp>       //
+#include <boost/mpl11/functional.hpp> // required by fwd/foldable.hpp
 #include <boost/mpl11/logical.hpp>    //
 
 
@@ -25,6 +26,18 @@ namespace boost { namespace mpl11 {
     struct foldl :
         Foldable<typename datatype<typename structure::type>::type>::
         template foldl_impl<f, state, structure>
+    { };
+
+    template <typename f, typename structure>
+    struct foldr1 :
+        Foldable<typename datatype<typename structure::type>::type>::
+        template foldr1_impl<f, structure>
+    { };
+
+    template <typename f, typename structure>
+    struct foldl1 :
+        Foldable<typename datatype<typename structure::type>::type>::
+        template foldl1_impl<f, structure>
     { };
 
     namespace foldable_detail {

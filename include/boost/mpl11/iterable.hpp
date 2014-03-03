@@ -297,11 +297,22 @@ struct Foldable<Datatype, typename Iterable<Datatype>::type> {
         >
     { };
 
+    template <typename f, typename iter>
+    using foldl1_impl = foldl_impl<f, head<iter>, tail<iter>>;
+
     template <typename f, typename state, typename iter>
     struct foldr_impl
         : if_<is_empty<iter>,
             state,
             apply<f, head<iter>, foldr_impl<f, state, tail<iter>>>
+        >
+    { };
+
+    template <typename f, typename iter>
+    struct foldr1_impl
+        : if_<is_empty<tail<iter>>,
+            head<iter>,
+            apply<f, head<iter>, foldr1_impl<f, tail<iter>>>
         >
     { };
 };

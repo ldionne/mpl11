@@ -9,7 +9,11 @@
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
+#include <boost/mpl11/fwd/integer.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
+#include <boost/mpl11/fwd/monoid.hpp>
+#include <boost/mpl11/fwd/orderable.hpp>
+#include <boost/mpl11/fwd/ring.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -22,15 +26,13 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Methods
-     * `foldl` and `foldr`.
+     * `foldl`, `foldl1`, `foldr` and `foldr1`.
      *
      * ### Minimal complete definition
      * All the methods.
      *
-     *
      * @todo
-     * `Foldable` is currently weak compared to its Haskell counterpart
-     * because I have not found a suitable way to implement a Monoid yet.
+     * Provide a default implementation for `foldl1` and `foldr1`.
      *
      * @{
      */
@@ -41,10 +43,24 @@ namespace boost { namespace mpl11 {
     template <typename f, typename state, typename structure>
     struct foldr;
 
+    /*!
+     * Variant of `foldr` that has no base case, and thus may only be
+     * applied to non-empty structures.
+     */
+    template <typename f, typename structure>
+    struct foldr1;
+
 
     //! Left-associative fold of a structure using a binary operator.
     template <typename f, typename state, typename structure>
     struct foldl;
+
+    /*!
+     * Variant of `foldl` that has no base case, and thus may only be
+     * applied to non-empty structures.
+     */
+    template <typename f, typename structure>
+    struct foldl1;
 
 
     /*!
@@ -83,6 +99,40 @@ namespace boost { namespace mpl11 {
     //! Equivalent to `any<quote<id>, structure>`.
     template <typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(any_of, any<quote<id>, structure>);
+
+    //! Compute the sum of the elements of a `structure`.
+    template <typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(sum,
+        foldr<quote<plus>, zero<Integer>, structure>);
+
+    //! Compute the product of the elements of a `structure`.
+    template <typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(product,
+        foldr<quote<mult>, one<Integer>, structure>);
+
+    /*!
+     * The largest element of a non-empty structure with respect to
+     * the given `predicate`.
+     */
+    template <typename predicate, typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(maximum_by,
+        foldr1<bind<quote<if_>, predicate, arg<2>, arg<1>>, structure>);
+
+    //! Returns the largest element of a non-empty structure.
+    template <typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(maximum, foldr1<quote<max>, structure>);
+
+    /*!
+     * The least element of a non-empty structure with respect to
+     * the given `predicate`.
+     */
+    template <typename predicate, typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(minimum_by,
+        foldr1<bind<quote<if_>, predicate, arg<1>, arg<2>>, structure>);
+
+    //! Returns the least element of a non-empty structure.
+    template <typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(minimum, foldr1<quote<min>, structure>);
 
     /*!
      * Invokes a metafunction class with the contents of a structure.

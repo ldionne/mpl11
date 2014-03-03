@@ -13,6 +13,7 @@
 #include <boost/mpl11/logical.hpp>
 
 #include "check_finite_iterable.hpp"
+#include "check_foldable.hpp"
 #include "minimal_iterable.hpp"
 #include "test_method_dispatch.hpp"
 
@@ -189,46 +190,18 @@ namespace test_orderable {
 } // end namespace test_orderable
 
 namespace test_foldable {
-    template <typename x, typename y>
-    struct f { using type = f<typename x::type, typename y::type>; };
-
-    using detail::std_is_same;
-    template <int state>
-    struct with_state {
-        template <int ...xs>
-        struct folding : with_state {
-            template <typename expected,
-                typename actual = typename foldr<
-                    quote<f>, int_<state>, minimal_iterable<int_<xs>...>
-                >::type>
-            struct right_is : folding {
-                static_assert(std_is_same<actual, expected>::value, "");
-            };
-
-            template <typename expected,
-                typename actual = typename foldl<
-                    quote<f>, int_<state>, minimal_iterable<int_<xs>...>
-                >::type>
-            struct left_is : folding {
-                static_assert(std_is_same<actual, expected>::value, "");
-            };
-        };
-    };
+    template <int ...xs>
+    struct check
+        : check_foldable<minimal_iterable<int_<xs>...>, int_<xs>...>
+    { };
 
     struct tests
-        : with_state<0>
-            ::folding<>
-                ::right_is<int_<0>>
-                ::left_is<int_<0>>
-            ::folding<1>
-                ::right_is<f<int_<1>, int_<0>>>
-                ::left_is<f<int_<0>, int_<1>>>
-            ::folding<1, 2>
-                ::right_is<f<int_<1>, f<int_<2>, int_<0>>>>
-                ::left_is<f<f<int_<0>, int_<1>>, int_<2>>>
-            ::folding<1, 2, 3>
-                ::right_is<f<int_<1>, f<int_<2>, f<int_<3>, int_<0>>>>>
-                ::left_is<f<f<f<int_<0>, int_<1>>, int_<2>>, int_<3>>>
+        : check<>
+        , check<0>
+        , check<0, 1>
+        , check<0, 1, 2>
+        , check<0, 1, 2, 3>
+        , check<0, 1, 2, 3, 4>
     { };
 } // end namespace test_foldable
 
