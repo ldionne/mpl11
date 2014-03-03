@@ -33,11 +33,6 @@ CMAKE_DEPENDENT_OPTION(
     OFF "MPL11_IS_NESTED" # OFF when MPL11_IS_NESTED
     ON                    # ON otherwise
 )
-CMAKE_DEPENDENT_OPTION(
-    MPL11_ENABLE_BENCHMARKS "Enable the `benchmarks` target. To avoid target name conflicts and cluttering the list of targets, this is disabled when the library is nested inside another project."
-    OFF "MPL11_IS_NESTED" # OFF when MPL11_IS_NESTED
-    ON                    # ON otherwise
-)
 
 
 #=============================================================================
@@ -126,12 +121,4 @@ endif()
 #=============================================================================
 if (MPL11_ENABLE_EXAMPLES)
     add_subdirectory(example)
-endif()
-
-
-#=============================================================================
-# Setup benchmarks
-#=============================================================================
-if (MPL11_ENABLE_BENCHMARKS)
-    add_subdirectory(benchmarks)
 endif()
