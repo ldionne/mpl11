@@ -19,17 +19,20 @@ namespace boost { namespace mpl11 { namespace detail {
     template <typename f, typename state, typename ...xs>
     struct strict_variadic_foldl : state { };
 
-    template <typename f, typename state, typename x, typename ...xs>
-    struct strict_variadic_foldl<f, state, x, xs...> {
-    private:
-        using new_state = typename f::type::template apply<state, x>;
-        static constexpr auto make_strict = sizeof(new_state);
+    namespace strict_vfoldl_detail {
+        template <bool, typename x>
+        using second = x;
+    }
 
-    public:
-        using type = typename strict_variadic_foldl<
-            f, new_state, xs...
-        >::type;
-    };
+    template <typename f, typename state, typename x, typename ...xs>
+    struct strict_variadic_foldl<f, state, x, xs...>
+        : strict_vfoldl_detail::second<
+            sizeof(typename f::type::template apply<state, x>),
+            strict_variadic_foldl<
+                f, typename f::type::template apply<state, x>, xs...
+            >
+        >
+    { };
 }}} // end namespace boost::mpl11::detail
 
 #endif // !BOOST_MPL11_DETAIL_STRICT_VARIADIC_FOLDL_HPP
