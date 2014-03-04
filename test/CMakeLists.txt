@@ -1,72 +1,110 @@
 #=============================================================================
 # Setup unit tests
 #=============================================================================
-add_custom_target(unit COMMENT "Build all the unit tests.")
+add_custom_target(tests COMMENT "Build all the unit tests.")
 
-function(mpl11_add_test name sources)
+function(mpl11_add_module module)
+    add_custom_target(${module}
+        COMMENT "Build unit tests for the ${module} module.")
+    add_dependencies(tests ${module})
+endfunction()
+
+function(mpl11_add_standalone_test test source)
     # We compile each unit test with the possible combinations of options
     # found in boost/mpl11/detail/config.hpp.
     #
-    # For lack of a better solution, I currently create different targets for
-    # each configuration.
-    # A - BOOST_MPL11_NO_ASSERTIONS
-    # R - BOOST_MPL11_NO_RULES
-    add_executable(${name}_AR ${sources})
-    add_executable(${name}_A ${sources})
-    add_executable(${name}_R ${sources})
-    add_executable(${name} ${sources})
+    # For lack of a better solution, we currently create different targets
+    # for each configuration.
+    # noassert - BOOST_MPL11_NO_ASSERTIONS
+    # norules  - BOOST_MPL11_NO_RULES
+    add_custom_target(${test})
 
-    set_target_properties(${name}_R PROPERTIES
-        COMPILE_DEFINITIONS BOOST_MPL11_NO_RULES)
-    set_target_properties(${name}_A PROPERTIES
-            COMPILE_DEFINITIONS BOOST_MPL11_NO_ASSERTIONS)
-    set_target_properties(${name}_AR PROPERTIES
-        COMPILE_DEFINITIONS BOOST_MPL11_NO_RULES
-        COMPILE_DEFINITIONS BOOST_MPL11_NO_ASSERTIONS)
+    macro(helper suffix)
+        add_executable(${test}-${suffix} ${source})
+        add_dependencies(${test} ${test}-${suffix})
 
-    add_dependencies(${name} ${name}_A ${name}_R ${name}_AR)
-    add_dependencies(unit ${name})
+        foreach(def IN ITEMS ${ARGN})
+            set_property(
+                TARGET ${test}-${suffix}
+                APPEND PROPERTY COMPILE_DEFINITIONS ${def}
+            )
+        endforeach()
+    endmacro()
+    helper(normal)
+    helper(noassert         BOOST_MPL11_NO_ASSERTIONS)
+    helper(norules          BOOST_MPL11_NO_RULES)
+    helper(noassert-norules BOOST_MPL11_NO_ASSERTIONS BOOST_MPL11_NO_RULES)
 endfunction()
 
+function(mpl11_add_tests module)
+    if(NOT TARGET ${module})
+        mpl11_add_module(${module})
+    endif()
 
-mpl11_add_test(bitwise                      bitwise.cpp)
-mpl11_add_test(comparable                   comparable.cpp)
-mpl11_add_test(core-box                     core/box.cpp)
-mpl11_add_test(core-cast                    core/cast.cpp)
-mpl11_add_test(core-common_datatype         core/common_datatype.cpp)
-mpl11_add_test(core-datatype                core/datatype.cpp)
-mpl11_add_test(core-foreign                 core/foreign.cpp)
-mpl11_add_test(detail-std_conditional       detail/std_conditional.cpp)
-mpl11_add_test(detail-std_index_sequence    detail/std_index_sequence.cpp)
-mpl11_add_test(detail-std_is_same           detail/std_is_same.cpp)
-mpl11_add_test(detail-strict_variadic_foldl detail/strict_variadic_foldl.cpp)
-mpl11_add_test(enumerable                   enumerable.cpp)
-mpl11_add_test(field                        field.cpp)
-mpl11_add_test(foldable                     foldable.cpp)
-mpl11_add_test(functional-always            functional/always.cpp)
-mpl11_add_test(functional-apply             functional/apply.cpp)
-mpl11_add_test(functional-arg               functional/arg.cpp)
-mpl11_add_test(functional-argmap            functional/argmap.cpp)
-mpl11_add_test(functional-bind              functional/bind.cpp)
-mpl11_add_test(functional-compose           functional/compose.cpp)
-mpl11_add_test(functional-fix               functional/fix.cpp)
-mpl11_add_test(functional-flip              functional/flip.cpp)
-mpl11_add_test(functional-id                functional/id.cpp)
-mpl11_add_test(functional-into              functional/into.cpp)
-mpl11_add_test(functional-on                functional/on.cpp)
-mpl11_add_test(functional-partial           functional/partial.cpp)
-mpl11_add_test(functional-quote             functional/quote.cpp)
-mpl11_add_test(functor                      functor.cpp)
-mpl11_add_test(group                        group.cpp)
-mpl11_add_test(integer                      integer.cpp)
-mpl11_add_test(integral_domain              integral_domain.cpp)
-mpl11_add_test(iterable                     iterable.cpp)
-mpl11_add_test(list                         list.cpp)
-mpl11_add_test(logical-and_or               logical/and_or.cpp)
-mpl11_add_test(logical-if                   logical/if.cpp)
-mpl11_add_test(logical-not                  logical/not.cpp)
-mpl11_add_test(master_header                master_header.cpp)
-mpl11_add_test(minimal_foldable             minimal_foldable.cpp)
-mpl11_add_test(monoid                       monoid.cpp)
-mpl11_add_test(orderable                    orderable.cpp)
-mpl11_add_test(ring                         ring.cpp)
+    foreach(test IN ITEMS ${ARGN})
+        mpl11_add_standalone_test(${module}-${test} ${module}/${test}.cpp)
+        add_dependencies(${module} ${module}-${test})
+    endforeach()
+endfunction()
+
+mpl11_add_tests(
+    detail
+    ######
+    std_conditional
+    std_index_sequence
+    std_is_same
+    strict_variadic_foldl
+)
+
+mpl11_add_tests(
+    functional
+    ##########
+    always
+    apply
+    arg
+    argmap
+    bind
+    compose
+    fix
+    flip
+    id
+    into
+    on
+    partial
+    quote
+)
+
+mpl11_add_tests(
+    core
+    ####
+    box
+    cast
+    common_datatype
+    datatype
+    foreign
+)
+
+mpl11_add_tests(
+    logical
+    #######
+    if
+    and_or
+    not
+)
+
+mpl11_add_standalone_test(bitwise bitwise.cpp)
+mpl11_add_standalone_test(comparable comparable.cpp)
+mpl11_add_standalone_test(enumerable enumerable.cpp)
+mpl11_add_standalone_test(field field.cpp)
+mpl11_add_standalone_test(foldable foldable.cpp)
+mpl11_add_standalone_test(functor functor.cpp)
+mpl11_add_standalone_test(group group.cpp)
+mpl11_add_standalone_test(integer integer.cpp)
+mpl11_add_standalone_test(integral_domain integral_domain.cpp)
+mpl11_add_standalone_test(iterable iterable.cpp)
+mpl11_add_standalone_test(list list.cpp)
+mpl11_add_standalone_test(master_header master_header.cpp)
+mpl11_add_standalone_test(minimal_foldable minimal_foldable.cpp)
+mpl11_add_standalone_test(monoid monoid.cpp)
+mpl11_add_standalone_test(orderable orderable.cpp)
+mpl11_add_standalone_test(ring ring.cpp)
