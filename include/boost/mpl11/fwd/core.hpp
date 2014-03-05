@@ -58,8 +58,10 @@ namespace boost { namespace mpl11 {
      * Undefined type.
      *
      * @todo
-     * If there's something more to document here, do it. Otherwise,
+     * - If there's something more to document here, do it. Otherwise,
      * remove this todo.
+     * - Consider making `undefined` an alias to something that asserts when
+     * instantiated.
      */
     struct undefined BOOST_MPL11_IF_DOXYGEN({ });
 
