@@ -88,6 +88,20 @@ namespace boost { namespace mpl11 {
      */
     template <typename From, typename To>
     struct cast;
+
+    /*!
+     * Convenience namespace containing everything provided by the
+     * @ref Core module.
+     */
+    namespace core {
+        using mpl11::typeclass;
+        using mpl11::Foreign;
+        using mpl11::datatype;
+        using mpl11::undefined;
+        using mpl11::box;
+        using mpl11::common_datatype;
+        using mpl11::cast;
+    }
     //! @}
 }} // end namespace boost::mpl11
 
