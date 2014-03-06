@@ -89,6 +89,10 @@ namespace boost { namespace mpl11 {
     template <typename From, typename To>
     struct cast;
 
+    //! Metafunction class converting an object to the `To` datatype.
+    template <typename To>
+    struct cast_to;
+
     /*!
      * Convenience namespace containing everything provided by the
      * @ref Core module.
@@ -101,6 +105,7 @@ namespace boost { namespace mpl11 {
         using mpl11::box;
         using mpl11::common_datatype;
         using mpl11::cast;
+        using mpl11::cast_to;
     }
     //! @}
 }} // end namespace boost::mpl11

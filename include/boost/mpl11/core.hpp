@@ -54,6 +54,19 @@ namespace boost { namespace mpl11 {
 
 
 
+    // cast_to
+    template <typename To>
+    struct cast_to {
+        using type = cast_to;
+
+        template <typename x>
+        using apply = typename cast<
+            typename datatype<typename x::type>::type, To
+        >::template apply<x>;
+    };
+
+
+
     // Foreign
     template <typename Datatype>
     struct common_datatype<Foreign, Datatype> {
