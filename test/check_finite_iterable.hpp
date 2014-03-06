@@ -17,6 +17,7 @@
 
 namespace check_finite_iter_detail {
     using namespace boost::mpl11;
+    using boost::mpl11::size_t;
 
     template <typename x, typename y,
         typename Expected = typename x::type,

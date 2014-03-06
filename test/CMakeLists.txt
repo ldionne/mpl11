@@ -58,6 +58,12 @@ mpl11_add_tests(
 )
 
 mpl11_add_tests(
+    ext
+    ######
+    std_tuple
+)
+
+mpl11_add_tests(
     functional
     ##########
     always
