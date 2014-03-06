@@ -30,6 +30,7 @@ namespace boost { namespace mpl11 {
      * current implementation, the whole list has to be re-indexed
      * each time we modify it.
      * - Use rewrite rules for `repeat` and `take`.
+     * - If the iterable is infinite, `snoc` and `init` could be `id`.
      *
      * @{
      */
@@ -43,12 +44,7 @@ namespace boost { namespace mpl11 {
     template <typename x, typename xs>
     struct cons;
 
-    /*!
-     * A `List` created by appending an element to an @ref Iterable.
-     *
-     * @todo
-     * If the iterable is infinite, `snoc` could be `id`.
-     */
+    //! A `List` created by appending an element to an @ref Iterable.
     template <typename xs, typename x>
     BOOST_MPL11_DOXYGEN_ALIAS(snoc, foldr<quote<cons>, list<x>, xs>);
 
@@ -133,7 +129,6 @@ namespace boost { namespace mpl11 {
      *
      *
      * @todo
-     * - Optimize last, init and at.
      * - Should we receive variadic arguments or an iterable of iterables?
      * - Consider using `drop_while` instead of hand-written recursion.
      */
