@@ -69,10 +69,12 @@ mpl11_add_tests(
     fix
     flip
     id
+    infix
     into
     on
     partial
     quote
+    sections
 )
 
 mpl11_add_tests(

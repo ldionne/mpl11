@@ -19,7 +19,34 @@ namespace boost { namespace mpl11 {
      *
      * @note
      * For legibility reasons, `apply<f, x1, ..., xn>` is sometimes noted as
-     * `f(x1, ..., xn)`.
+     * `f(x1, ..., xn)` in the documentation.
+     *
+     *
+     * @todo
+     * - Consider moving `into` out of this module. Maybe it would fit better
+     *   with other utilities manipulating template specializations.
+     * - Try generalizing `rsect` and `lsect`. Not sure it can be done, but
+     *   here's some brain food:
+        @code
+            rsectn<0, f, x1, ..., xn>::apply<> == f<x1, ..., xn>
+            rsectn<1, f, x2, ..., xn>::apply<x1> == f<x1, x2, ..., xn>
+            rsectn<2, f, x3, ..., xn>::apply<x1, x2> == f<x1, x2, x3, ..., xn>
+        @endcode
+     *
+     * It also seems like there may be some kind of operation modifying
+     * how functions are applied:
+     *
+        @code
+            f x1 ... xn                 // shiftr 0
+            x1 f x2 ... xn              // shiftr 1
+            x1 x2 f x3 ... xn           // shiftr 2
+            x1 x2 x3 f x4 ... xn        // shiftr 3
+
+            x1 x2 x3 f x4 ... xn        // shiftl 0
+            x1 x2 f x3 ... xn           // shiftl 1
+            x1 f x2 ... xn              // shiftl 2
+            f x1 ... xn                 // shiftl 3
+        @endcode
      *
      * @{
      */
@@ -75,10 +102,6 @@ namespace boost { namespace mpl11 {
      * provided arguments.
      *
      * Specifically, `apply<into<tp>, x...>::%type` is the same as `tp<x...>`.
-     *
-     *
-     * @todo
-     * Consider moving this out of the @ref Functional module.
      */
     template <template <typename ...> class tp>
     struct into;
@@ -261,6 +284,50 @@ namespace boost { namespace mpl11 {
     struct arg;
 
     /*!
+     * Applies a metafunction class in infix notation.
+     *
+     * Specifically, `infix<x, f, y>` is equivalent to `apply<f, x, y>`.
+     * Using `infix` improves legibility when applying some metafunction
+     * classes such as `on`. Consider `infix_<f, on, g>` versus `on<f, g>`.
+     * The former reads naturally while the latter requires knowing what
+     * each argument stands for.
+     */
+    template <typename x, typename f, typename y>
+    BOOST_MPL11_DOXYGEN_ALIAS(infix, apply<f, x, y>);
+
+    //! Equivalent to `infix<x, quote<f>, y>`; provided for convenience.
+    template <typename x, template <typename ...> class f, typename y>
+    BOOST_MPL11_DOXYGEN_ALIAS(infix_, f<x, y>);
+
+    /*!
+     * Returns the left section of `f` with `x`.
+     *
+     * Specifically, `lsect<x, f>(y)` is equivalent to `f(x, y)`. This is
+     * mainly useful to increase legibility when partially applying
+     * metafunction classes that are logically infix operators.
+     */
+    template <typename x, typename f>
+    BOOST_MPL11_DOXYGEN_ALIAS(lsect, partial<f, x>);
+
+    //! Equivalent to `lsect<x, quote<f>>`; provided for convenience.
+    template <typename x, template <typename ...> class f>
+    BOOST_MPL11_DOXYGEN_ALIAS(lsect_, lsect<x, quote<f>>);
+
+    /*!
+     * Returns the right section of `f` with `y`.
+     *
+     * Specifically, `rsect<f, y>(x)` is equivalent to `f(x, y)`. This is
+     * mainly useful to increase legibility when partially applying
+     * metafunction classes that are logically infix operators.
+     */
+    template <typename f, typename y>
+    BOOST_MPL11_DOXYGEN_ALIAS(rsect, partial<flip<f>, y>);
+
+    //! Equivalent to `rsect<quote<f>, y>`; provided for convenience.
+    template <template <typename ...> class f, typename y>
+    BOOST_MPL11_DOXYGEN_ALIAS(rsect_, rsect<quote<f>, y>);
+
+    /*!
      * Convenience namespace containing everything provided by the
      * @ref Functional module.
      */
@@ -276,10 +343,16 @@ namespace boost { namespace mpl11 {
         using mpl11::fix;
         using mpl11::flip;
         using mpl11::id;
+        using mpl11::infix;
+        using mpl11::infix_;
         using mpl11::into;
+        using mpl11::lsect;
+        using mpl11::lsect_;
         using mpl11::on;
         using mpl11::partial;
         using mpl11::quote;
+        using mpl11::rsect;
+        using mpl11::rsect_;
         using mpl11::uncurry;
     }
     //! @}

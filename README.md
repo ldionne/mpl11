@@ -1216,8 +1216,6 @@ a boxed type, so they're not completely forgotten.
     comparing sequences; that would make `equal` as powerful as the `equal`
     algorithm from the Boost.MPL. Maybe we can achieve the same effect in
     another way.
-- [ ] Consider having `infix` and `section` aliases to improve legibility when
-      using some metafunctions.
 - [ ] Clarify the notion of weak head normal form if this applies to us.
 - [ ] Consider having a wrapper that allows treating template specializations
       as data. Something like sequence operations on template specializations
