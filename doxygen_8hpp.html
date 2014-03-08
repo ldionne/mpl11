@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost/mpl11/detail/doxygen.hpp File Reference</title>
+<title>MPL11: boost/mpl11/detail/doxygen.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,24 +100,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:gae5447772857b09213a0a6064f4d484b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae5447772857b09213a0a6064f4d484b7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__details.html#gae5447772857b09213a0a6064f4d484b7">BOOST_MPL11_IF_DOXYGEN</a>(...)&#160;&#160;&#160;__VA_ARGS__</td></tr>
-<tr class="memdesc:gae5447772857b09213a0a6064f4d484b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing otherwise. <br/></td></tr>
-<tr class="separator:gae5447772857b09213a0a6064f4d484b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4e76545f2eca59472c01697c967ec7ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4e76545f2eca59472c01697c967ec7ef"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__details.html#ga4e76545f2eca59472c01697c967ec7ef">BOOST_MPL11_UNLESS_DOXYGEN</a>(...)&#160;&#160;&#160;/* nothing */</td></tr>
-<tr class="memdesc:ga4e76545f2eca59472c01697c967ec7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro expanding to its argument(s) unless when generating the documentation with Doxygen, where it expands to nothing. <br/></td></tr>
-<tr class="separator:ga4e76545f2eca59472c01697c967ec7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad607f1c88441b0e243b1f67bff9c0ec9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__details.html#gad607f1c88441b0e243b1f67bff9c0ec9">BOOST_MPL11_DOXYGEN_ALIAS</a>(NAME,...)&#160;&#160;&#160;struct NAME : __VA_ARGS__ { }</td></tr>
-<tr class="memdesc:gad607f1c88441b0e243b1f67bff9c0ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro expanding to a struct when generating the documentation and to an alias otherwise.  <a href="group__details.html#gad607f1c88441b0e243b1f67bff9c0ec9">More...</a><br/></td></tr>
-<tr class="separator:gad607f1c88441b0e243b1f67bff9c0ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5447772857b09213a0a6064f4d484b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5447772857b09213a0a6064f4d484b7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="doxygen_8hpp.html#ae5447772857b09213a0a6064f4d484b7">BOOST_MPL11_IF_DOXYGEN</a>(...)&#160;&#160;&#160;__VA_ARGS__</td></tr>
+<tr class="memdesc:ae5447772857b09213a0a6064f4d484b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro expanding to its argument(s) when generating the documentation with Doxygen and to nothing otherwise. <br/></td></tr>
+<tr class="separator:ae5447772857b09213a0a6064f4d484b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e76545f2eca59472c01697c967ec7ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e76545f2eca59472c01697c967ec7ef"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="doxygen_8hpp.html#a4e76545f2eca59472c01697c967ec7ef">BOOST_MPL11_UNLESS_DOXYGEN</a>(...)&#160;&#160;&#160;/* nothing */</td></tr>
+<tr class="memdesc:a4e76545f2eca59472c01697c967ec7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro expanding to its argument(s) unless when generating the documentation with Doxygen, where it expands to nothing. <br/></td></tr>
+<tr class="separator:a4e76545f2eca59472c01697c967ec7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad607f1c88441b0e243b1f67bff9c0ec9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="doxygen_8hpp.html#ad607f1c88441b0e243b1f67bff9c0ec9">BOOST_MPL11_DOXYGEN_ALIAS</a>(NAME,...)&#160;&#160;&#160;struct NAME : __VA_ARGS__ { }</td></tr>
+<tr class="memdesc:ad607f1c88441b0e243b1f67bff9c0ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro expanding to a struct when generating the documentation and to an alias otherwise.  <a href="#ad607f1c88441b0e243b1f67bff9c0ec9">More...</a><br/></td></tr>
+<tr class="separator:ad607f1c88441b0e243b1f67bff9c0ec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines Doxygen related utilities. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ad607f1c88441b0e243b1f67bff9c0ec9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BOOST_MPL11_DOXYGEN_ALIAS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">NAME, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;struct NAME : __VA_ARGS__ { }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Macro expanding to a struct when generating the documentation and to an alias otherwise. </p>
+<p>This is required because Doxygen handles template aliases (and aliases in general) poorly (or maybe I just can't get them to work). </p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

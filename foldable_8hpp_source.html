@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost/mpl11/foldable.hpp Source File</title>
+<title>MPL11: boost/mpl11/foldable.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,20 +94,86 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FOLDABLE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FOLDABLE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="all_8hpp.html">boost/mpl11/foldable/all.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="any_8hpp.html">boost/mpl11/foldable/any.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="foldable_2foldable_8hpp.html">boost/mpl11/foldable/foldable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="none_8hpp.html">boost/mpl11/foldable/none.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FOLDABLE_HPP</span></div>
-<div class="ttc" id="all_8hpp_html"><div class="ttname"><a href="all_8hpp.html">all.hpp</a></div><div class="ttdoc">Defines boost::mpl11::all. </div></div>
-<div class="ttc" id="none_8hpp_html"><div class="ttname"><a href="none_8hpp.html">none.hpp</a></div><div class="ttdoc">Defines boost::mpl11::none. </div></div>
-<div class="ttc" id="foldable_2foldable_8hpp_html"><div class="ttname"><a href="foldable_2foldable_8hpp.html">foldable.hpp</a></div><div class="ttdoc">Defines the methods of the Foldable typeclass. </div></div>
-<div class="ttc" id="any_8hpp_html"><div class="ttname"><a href="any_8hpp.html">any.hpp</a></div><div class="ttdoc">Defines boost::mpl11::any. </div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2foldable_8hpp.html">boost/mpl11/fwd/foldable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="core_8hpp.html">boost/mpl11/core.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bool_8hpp.html">boost/mpl11/bool.hpp</a>&gt;</span>       <span class="comment">//</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="functional_8hpp.html">boost/mpl11/functional.hpp</a>&gt;</span> <span class="comment">// required by fwd/foldable.hpp</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="logical_8hpp.html">boost/mpl11/logical.hpp</a>&gt;</span>    <span class="comment">//</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> state, <span class="keyword">typename</span> structure&gt;</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1foldr.html">   20</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1foldr.html">foldr</a> :</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        Foldable&lt;typename datatype&lt;typename structure::type&gt;::type&gt;::</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        template foldr_impl&lt;f, state, structure&gt;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    { };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> state, <span class="keyword">typename</span> structure&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1foldl.html">   26</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1foldl.html">foldl</a> :</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        Foldable&lt;typename datatype&lt;typename structure::type&gt;::type&gt;::</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        template foldl_impl&lt;f, state, structure&gt;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    { };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> structure&gt;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1foldr1.html">   32</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1foldr1.html">foldr1</a> :</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        Foldable&lt;typename datatype&lt;typename structure::type&gt;::type&gt;::</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        template foldr1_impl&lt;f, structure&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    { };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> structure&gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1foldl1.html">   38</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1foldl1.html">foldl1</a> :</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        Foldable&lt;typename datatype&lt;typename structure::type&gt;::type&gt;::</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        template foldl1_impl&lt;f, structure&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    { };</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">namespace </span>foldable_detail {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">struct </span>holder {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keyword">using</span> type = holder;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">using</span> append = holder&lt;xs..., x&gt;;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt; <span class="keyword">class </span>f&gt;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keyword">using</span> <a class="code" href="structboost_1_1mpl11_1_1into.html">into</a> = f&lt;xs...&gt;;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        };</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">struct </span>fill_holder {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keyword">using</span> type = fill_holder;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Holder, <span class="keyword">typename</span> X&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keyword">using</span> <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a> = <span class="keyword">typename</span> Holder::type::template append&lt;X&gt;;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        };</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    } <span class="comment">// end namespace foldable_detail</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> structure, <span class="keyword">typename</span> f&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1unpack.html">   63</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1unpack.html">unpack</a></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1foldl.html">foldl</a>&lt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            foldable_detail::fill_holder,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            foldable_detail::holder&lt;&gt;,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            structure</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        &gt;::type::template <a class="code" href="structboost_1_1mpl11_1_1into.html">into</a>&lt;f::type::template apply&gt;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    { };</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FOLDABLE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1into_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1into.html">boost::mpl11::into</a></div><div class="ttdoc">Returns a specialization of the given template with the provided arguments. </div><div class="ttdef"><b>Definition:</b> functional.hpp:165</div></div>
+<div class="ttc" id="logical_8hpp_html"><div class="ttname"><a href="logical_8hpp.html">logical.hpp</a></div><div class="ttdoc">Defines the Logical module. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1unpack_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1unpack.html">boost::mpl11::unpack</a></div><div class="ttdoc">Invokes a metafunction class with the contents of a structure. </div><div class="ttdef"><b>Definition:</b> foldable.hpp:63</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1foldl1_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1foldl1.html">boost::mpl11::foldl1</a></div><div class="ttdoc">Variant of foldl that has no base case, and thus may only be applied to non-empty structures...</div><div class="ttdef"><b>Definition:</b> foldable.hpp:38</div></div>
+<div class="ttc" id="core_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Defines the Core module. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1foldr_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1foldr.html">boost::mpl11::foldr</a></div><div class="ttdoc">Right-associative fold of a structure using a binary operator. </div><div class="ttdef"><b>Definition:</b> foldable.hpp:20</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a metafunction class with the given arguments. </div><div class="ttdef"><b>Definition:</b> functional.hpp:33</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1foldl_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1foldl.html">boost::mpl11::foldl</a></div><div class="ttdoc">Left-associative fold of a structure using a binary operator. </div><div class="ttdef"><b>Definition:</b> foldable.hpp:26</div></div>
+<div class="ttc" id="bool_8hpp_html"><div class="ttname"><a href="bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/integer.hpp. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1foldr1_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1foldr1.html">boost::mpl11::foldr1</a></div><div class="ttdoc">Variant of foldr that has no base case, and thus may only be applied to non-empty structures...</div><div class="ttdef"><b>Definition:</b> foldable.hpp:32</div></div>
+<div class="ttc" id="functional_8hpp_html"><div class="ttname"><a href="functional_8hpp.html">functional.hpp</a></div><div class="ttdoc">Defines the Functional module. </div></div>
+<div class="ttc" id="fwd_2foldable_8hpp_html"><div class="ttname"><a href="fwd_2foldable_8hpp.html">foldable.hpp</a></div><div class="ttdoc">Forward declares the Foldable typeclass. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:08 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

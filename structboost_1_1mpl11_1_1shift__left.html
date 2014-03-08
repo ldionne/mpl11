@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost::mpl11::shift_left&lt; T, Shift &gt; Struct Template Reference</title>
+<title>MPL11: boost::mpl11::shift_left&lt; x, n &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,23 +88,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">boost::mpl11::shift_left&lt; T, Shift &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group___bitwise.html">Bitwise</a></div></div>  </div>
+<div class="title">boost::mpl11::shift_left&lt; x, n &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group___bitwise.html">Bitwise</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1shift__left__c.html" title="Returns the result of bitwise left shift (&lt;&lt;) on the given object. ">shift_left_c</a>&lt;T, Shift::type::value&gt;</code>; requires a non-negative <code>Shift</code>.  
+<p>Bitwise left shift (<code>&lt;&lt;</code>).  
  <a href="structboost_1_1mpl11_1_1shift__left.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="fwd_2bitwise_8hpp_source.html">boost/mpl11/fwd/bitwise.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename T, typename Shift&gt;<br/>
-struct boost::mpl11::shift_left&lt; T, Shift &gt;</h3>
+<div class="textblock"><h3>template&lt;typename x, typename n&gt;<br/>
+struct boost::mpl11::shift_left&lt; x, n &gt;</h3>
 
-<p>Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1shift__left__c.html" title="Returns the result of bitwise left shift (&lt;&lt;) on the given object. ">shift_left_c</a>&lt;T, Shift::type::value&gt;</code>; requires a non-negative <code>Shift</code>. </p>
+<p>Bitwise left shift (<code>&lt;&lt;</code>). </p>
+<p><code>n</code> must be a non-negative <a class="el" href="group___integer.html">Integer</a> representing the number of positions to shift. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

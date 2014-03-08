@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: Todo List</title>
+<title>MPL11: Todo List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -65,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,58 +81,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="structboost_1_1mpl11_1_1and__.html">boost::mpl11::and_&lt; Fn &gt;</a>  </dt>
-<dd>Use a generic fold instead.  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Class <a class="el" href="structboost_1_1mpl11_1_1arg.html">boost::mpl11::arg&lt; N &gt;</a>  </dt>
-<dd>Implement this in O(1).  </dd>
-<dt><a class="anchor" id="_todo000002"></a>Class <a class="el" href="structboost_1_1mpl11_1_1detail_1_1lazy__variadic__foldr.html">boost::mpl11::detail::lazy_variadic_foldr&lt; F, State, T &gt;</a>  </dt>
+<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="structboost_1_1mpl11_1_1and__.html">boost::mpl11::and_&lt; xs &gt;</a>  </dt>
+<dd>Consider using folds in the implementation of <code>and_</code> and <code>or_</code>.  </dd>
+<dt><a class="anchor" id="_todo000003"></a>Class <a class="el" href="structboost_1_1mpl11_1_1datatype.html">boost::mpl11::datatype&lt; ctor &gt;</a>  </dt>
+<dd>Consider allowing multiple arguments here; this would replace <code>common_datatype</code>.  </dd>
+<dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="structboost_1_1mpl11_1_1detail_1_1strict__variadic__foldl.html">boost::mpl11::detail::strict_variadic_foldl&lt; f, state, xs &gt;</a>  </dt>
 <dd>Optimize this and make it able to process <em>huge</em> sequences.  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Class <a class="el" href="structboost_1_1mpl11_1_1detail_1_1lexicographical__compare.html">boost::mpl11::detail::lexicographical_compare&lt; S1, S2, bool, bool &gt;</a>  </dt>
-<dd>implement this with fold  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Class <a class="el" href="structboost_1_1mpl11_1_1detail_1_1std__equal.html">boost::mpl11::detail::std_equal&lt; S1, S2, bool, bool &gt;</a>  </dt>
-<dd>implement this with fold  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Class <a class="el" href="structboost_1_1mpl11_1_1detail_1_1strict__variadic__foldl.html">boost::mpl11::detail::strict_variadic_foldl&lt; F, State, T &gt;</a>  </dt>
-<dd>Optimize this and make it able to process <em>huge</em> sequences.  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="group___iterable.html#gad50ff76e5200fec380735897c94012b4">boost::mpl11::drop</a>  </dt>
-<dd>Try optimizing the recursion in the implementation.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="structboost_1_1mpl11_1_1drop__while.html">boost::mpl11::drop_while&lt; Predicate, Iter &gt;</a>  </dt>
-<dd>Try optimizing the recursion in the implementation.  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Class <a class="el" href="structboost_1_1mpl11_1_1_foldable_3_01iterable__tag_01_4.html">boost::mpl11::Foldable&lt; iterable_tag &gt;</a>  </dt>
-<dd>Improve the implementations.  </dd>
-<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="structboost_1_1mpl11_1_1join.html">boost::mpl11::join&lt; Iters &gt;</a>  </dt>
+<dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="structboost_1_1mpl11_1_1into.html">boost::mpl11::into&lt; tp &gt;</a>  </dt>
+<dd>Consider moving this out of the <a class="el" href="group___functional.html">Functional</a> module.  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="structboost_1_1mpl11_1_1join.html">boost::mpl11::join&lt; lists &gt;</a>  </dt>
 <dd><ul>
-<li>Optimize last, init and at.</li>
 <li>Should we receive variadic arguments or an iterable of iterables?</li>
-<li>Consider using drop_while instead of hand-written recursion.  </li>
+<li>Consider using <code>drop_while</code> instead of hand-written recursion.  </li>
 </ul>
 </dd>
-<dt><a class="anchor" id="_todo000016"></a>Class <a class="el" href="structboost_1_1mpl11_1_1list.html">boost::mpl11::list&lt;&gt;</a>  </dt>
-<dd>Find out how to minimize the number of instantiations. In the current implementation, the whole list has to be re-indexed each time we modify it.  </dd>
-<dt><a class="anchor" id="_todo000021"></a>Class <a class="el" href="structboost_1_1mpl11_1_1or__.html">boost::mpl11::or_&lt; Fn &gt;</a>  </dt>
-<dd>Use a generic fold instead.  </dd>
-<dt><a class="anchor" id="_todo000020"></a>Class <a class="el" href="structboost_1_1mpl11_1_1rules_1_1at__impl_3_01zip_3_01_iters_8_8_8_4_00_01_index_01_4.html">boost::mpl11::rules::at_impl&lt; zip&lt; Iters...&gt;, Index &gt;</a>  </dt>
-<dd>Knowing whether <code>at_c</code> is fast for the zipped iterables could allow us to use this implementation only if it's faster than iterating to the given index.  </dd>
-<dt><a class="anchor" id="_todo000019"></a>Class <a class="el" href="structboost_1_1mpl11_1_1sequence__traits_3_01cons_3_01_t_00_01repeat_3_01_t_01_4_01_4_01_4.html">boost::mpl11::sequence_traits&lt; cons&lt; T, repeat&lt; T &gt; &gt; &gt;</a>  </dt>
-<dd>This is a workaround. This may break if <code>cons</code> changes.  </dd>
-<dt><a class="anchor" id="_todo000018"></a>Class <a class="el" href="structboost_1_1mpl11_1_1sequence__traits_3_01cons_3_01_x_00_01iterate_3_01_f_00_01apply_3_01_f_00_01_x_01_4_01_4_01_4_01_4.html">boost::mpl11::sequence_traits&lt; cons&lt; X, iterate&lt; F, apply&lt; F, X &gt; &gt; &gt; &gt;</a>  </dt>
-<dd>This is a workaround. This may break if <code>cons</code> changes.  </dd>
-<dt><a class="anchor" id="_todo000013"></a>Class <a class="el" href="structboost_1_1mpl11_1_1slice.html">boost::mpl11::slice&lt; Iter, Start, Stop &gt;</a>  </dt>
+<dt><a class="anchor" id="_todo000013"></a>Class <a class="el" href="structboost_1_1mpl11_1_1slice.html">boost::mpl11::slice&lt; xs, start, stop &gt;</a>  </dt>
 <dd>Reintroduce optimizations that were lost when using a single typeclass for iterables.  </dd>
-<dt><a class="anchor" id="_todo000014"></a>Class <a class="el" href="structboost_1_1mpl11_1_1snoc.html">boost::mpl11::snoc&lt; Init, Last &gt;</a>  </dt>
-<dd>If the iterable is infinite, <code>snoc</code> could be <code>id</code>.  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="structboost_1_1mpl11_1_1zip.html">boost::mpl11::zip&lt; Iters &gt;</a>  </dt>
-<dd>Consider implementing a <code>zip_longest</code> with the obvious semantics.  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Group <a class="el" href="group___foldable.html">Foldable</a>  </dt>
-<dd>Rewrite <code>all</code>, <code>any</code> and <code>none</code>'s unit test using a <code>Foldable</code> instead of an iterable. </dd>
-<dt><a class="anchor" id="_todo000008"></a>Group <a class="el" href="group___iterable.html">Iterable</a>  </dt>
-<dd>Support lazy sequence traits. </dd>
-<dt><a class="anchor" id="_todo000022"></a>Class <a class="el" href="structsort__less.html">sort_less&lt; Less &gt;</a>  </dt>
-<dd>Generate more data by using a permutation generator. </dd>
+<dt><a class="anchor" id="_todo000014"></a>Class <a class="el" href="structboost_1_1mpl11_1_1sort__by.html">boost::mpl11::sort_by&lt; predicate, xs &gt;</a>  </dt>
+<dd>Generate more data in unit tests by using a permutation generator.  </dd>
+<dt><a class="anchor" id="_todo000004"></a>Class <a class="el" href="structboost_1_1mpl11_1_1undefined.html">boost::mpl11::undefined</a>  </dt>
+<dd><ul>
+<li>If there's something more to document here, do it. Otherwise, remove this todo.</li>
+<li>Consider making <code>undefined</code> an alias to something that asserts when instantiated.  </li>
+</ul>
+</dd>
+<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="structboost_1_1mpl11_1_1zip__with.html">boost::mpl11::zip_with&lt; f, lists &gt;</a>  </dt>
+<dd><ul>
+<li>Consider implementing a <code>zip_longest</code> with the obvious semantics.</li>
+<li><code>zip_with</code> is some kind of generalization of <code>fmap</code> with several <code>Functors</code> at a time. Is this interesting?  </li>
+</ul>
+</dd>
+<dt><a class="anchor" id="_todo000002"></a>Group <a class="el" href="group___comparable.html">Comparable</a>  </dt>
+<dd>Document the function of the third template parameter. </dd>
+<dt><a class="anchor" id="_todo000005"></a>Group <a class="el" href="group___field.html">Field</a>  </dt>
+<dd>Test the default implementations. </dd>
+<dt><a class="anchor" id="_todo000006"></a>Group <a class="el" href="group___foldable.html">Foldable</a>  </dt>
+<dd>Provide a default implementation for <code>foldl1</code> and <code>foldr1</code>. </dd>
+<dt><a class="anchor" id="_todo000008"></a>Group <a class="el" href="group___integer.html">Integer</a>  </dt>
+<dd>Write unit tests for the provided instances. </dd>
+<dt><a class="anchor" id="_todo000009"></a>Group <a class="el" href="group___iterable.html">Iterable</a>  </dt>
+<dd><ul>
+<li>Find a way to know whether an <code>Iterable</code> is finite and whether it has efficient xx or yy operations.</li>
+<li>Perform bounds-checking in <code>at</code> when we have a way of knowing whether an <code>Iterable</code> is finite.</li>
+<li>Improve the implementation of <code>Foldable</code>, <code>Comparable</code>, <code>Orderable</code>, <code>drop_while</code>, <code>drop</code> and default methods. </li>
+</ul>
+</dd>
+<dt><a class="anchor" id="_todo000010"></a>Group <a class="el" href="group___list.html">List</a>  </dt>
+<dd><ul>
+<li>Find out how to minimize the number of instantiations. In the current implementation, the whole list has to be re-indexed each time we modify it.</li>
+<li>Use rewrite rules for <code>repeat</code> and <code>take</code>.</li>
+<li>If the iterable is infinite, <code>snoc</code> and <code>init</code> could be <code>id</code>. </li>
+</ul>
+</dd>
+<dt><a class="anchor" id="_todo000016"></a>Group <a class="el" href="group___rational.html">Rational</a>  </dt>
+<dd><ul>
+<li>Write unit tests for the provided instances.</li>
+<li>Consider checking for overflows and reducing the fraction after doing computations.</li>
+<li>Consider instantiating <code>IntegralDomain</code>.</li>
+</ul>
+</dd>
 </dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

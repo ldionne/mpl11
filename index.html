@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: Main Page</title>
+<title>MPL11: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,225 +77,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">mpl11 Documentation</div>  </div>
+<div class="title">MPL11 Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><blockquote class="doxtable">
-<p>Template metaprogramming for humans</p>
-<p></p>
-</blockquote>
-<h2>Disclaimers</h2>
-<p>This is not an official Boost library. It might be proposed as a replacement for the current Boost.MPL in the future, but there is no guarantee.</p>
-<p>The library is unstable at the moment; do not use for production.</p>
-<p>This was initially supposed to be a simple C++11 reimplementation of the Boost.MPL. However, for reasons documented in the <a href="#rationales">rationales</a>, the library was redesigned and the name does not fit so well anymore.</p>
-<h2>Table of contents</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#introduction">Introduction</a><ul>
-<li><a href="#traditional-metafunctions">Traditional metafunctions</a></li>
-<li><a href="#the-burden-of-evaluation">The burden of evaluation</a></li>
-</ul>
-</li>
-<li><a href="#the-mpl11">The MPL11</a><ul>
-<li><a href="#boxed-types">Boxed types</a></li>
-<li><a href="#metafunctions">Metafunctions</a></li>
-<li><a href="#metafunction-classes">Metafunction classes</a></li>
-<li><a href="#datatypes-and-data-constructors">Datatypes and data constructors</a></li>
-<li><a href="#typeclasses-and-methods">Typeclasses and methods</a></li>
-<li><a href="#rewrite-rules">Rewrite rules</a></li>
-</ul>
-</li>
-<li><a href="#acknowledgements">Acknowledgements</a></li>
-<li><a href="#rationales">Rationales</a></li>
-<li><a href="#todo-list">Todo list</a></li>
-</ul>
-<h2>Installation</h2>
-<p>The MPL11 is a header only library. To use it in your own project, just add the [include](include) directory to your compiler's header search path and you are done.</p>
-<p>Note that a C++11 man-compiler is required. Currently, only Clang 3.5 can compile all the tests. However, a standard library is <em>not</em> required at all.</p>
-<p>To compile the unit tests and the examples, you will also need <a href="http://www.cmake.org">CMake</a>. Once you have it, you can go to the root of the project and do:</p>
-<p>```shell $ mkdir build $ cd build $ cmake .. $ make unit # Compiles the unit tests. $ make example # Compiles the examples. $ make # Compiles the unit tests and the examples. ```</p>
-<h2>Introduction</h2>
-<p>The MPL11 is a C++11 library providing composable, high-level primitives for solving complex <a href="http://en.wikipedia.org/wiki/Template_metaprogramming">template metaprogramming</a> problems. The library is built around a few core concepts; the aim of this tutorial is to present them, while the handful of tools provided by the library are left to the <a href="http://ldionne.github.io/mpl11">reference documentation</a>.</p>
-<p>This tutorial assumes a good understanding of template metaprogramming and basic functional programming concepts. Also, a good understanding of the <a href="http://www.boost.org/doc/libs/1_55_0b1/libs/mpl/doc/index.html">Boost.MPL</a> library will be helpful. However, the MPL11 diverges from the Boost.MPL in many ways, and one should be careful not to transfer knowledge between both libraries without checking the documentation.</p>
-<h3>Traditional metafunctions</h3>
-<p>A traditional metafunction is simply a class or a class template representing a compile-time function whose arguments are types instead of runtime values.</p>
-<p>```cpp template &lt;typename x&gt;=""&gt; struct f { using type = ...; }; ```</p>
-<p>By convention, the result of a metafunction is obtained by reaching its nested <code>::type</code> type. For example, invoking <code>f</code> would look like so:</p>
-<p>```cpp using result = f&lt;int&gt;::type; ```</p>
-<p>We decide to use only types as metafunction arguments. We adopt this convention because it allows treating metafunctions uniformly, which is necessary when dealing with higher-order metafunctions. Also, we do not lose the ability to process compile-time values with metafunctions, because we can provide a wrapper that will allow those to be passed as types:</p>
-<p>```cpp template &lt;int i&gt;=""&gt; struct int_ { static constexpr int value = i; };</p>
-<p>template &lt;typename x&gt;=""&gt; struct increment { using type = int_&lt;X::value + 1&gt;; };</p>
-<p>using two = increment&lt;int&lt;1&gt;&gt;::type; ```</p>
-<p>To explore what's possible, let's implement a couple basic metafunctions. First, we decide to create compile-time counterparts to the boolean values <code>true</code> and <code>false</code>. These will be useful to define a compile-time counterpart to the well-known <code>if</code> statement.</p>
-<p>```cpp template &lt;bool b&gt;=""&gt; struct bool_ { static constexpr bool value = b; };</p>
-<p>using true_ = <a class="el" href="structboost_1_1mpl11_1_1bool__.html">bool_&lt;true&gt;</a>; using false_ = <a class="el" href="structboost_1_1mpl11_1_1bool__.html">bool_&lt;false&gt;</a>;</p>
-<p>template &lt;typename Condition, typename Then, typename Else&gt; struct if_ { using type = Then; };</p>
-<p>template &lt;typename Then, typename Else&gt; struct if_&lt;false_, Then, Else&gt; { using type = Else; }; ```</p>
-<p>We can now use our compile-time <code>if</code> to create a lot of interesting metafunctions. For example, let's implement the <code>min</code> metafunction, which returns the smaller of its two arguments.</p>
-<p>```cpp template &lt;typename X, typename Y&gt; struct min { using type = typename if_&lt;bool_&lt;(X::value &lt; Y::value)&gt;, X, Y&gt;::type; }; ```</p>
-<p>As a quick note, observe how we could have inherited from <code>if_</code> instead of doing what we did above:</p>
-<p>```cpp template &lt;typename X, typename Y&gt; struct min : if_&lt;bool_&lt;(X::value &lt; Y::value)&gt;, X, Y&gt; { }; ```</p>
-<p>This is a technique called metafunction forwarding. When we inherit from <code>if_</code>, all its publicly accessible members become accessible through the derived type too, so that <code>min&lt;...&gt;::type</code> is actually <code>if&lt;...&gt;::type</code>. From now on, this technique will be used when appropriate because it reduces syntactic overhead.</p>
-<p>Let's now set aside numeric metafunctions for a while and concentrate on compile-time sequences. Compile-time sequences are data structures storing types instead of runtime values. Compile-time sequences relate to runtime sequences just like metafunctions relate to normal functions. However, our compile-time data structures will have to be purely functional, because templates are a purely functional sub-language. Let's implement a basic <code>list</code> as seen in most functional programming languages:</p>
-<p>```cpp template &lt;typename ...&gt; struct list;</p>
-<p>// Returns the first element of a list. Requires a non-empty list. template &lt;typename list&gt;=""&gt; struct head;</p>
-<p>template &lt;typename Head, typename ...Tail&gt; struct head&lt;list&lt;Head, Tail...&gt;&gt; { using type = Head; };</p>
-<p>// Returns all the list except the head. Requires a non-empty list. template &lt;typename list&gt;=""&gt; struct tail;</p>
-<p>template &lt;typename Head, typename ...Tail&gt; struct tail&lt;list&lt;Head, Tail...&gt;&gt; { using type = list&lt;Tail...&gt;; };</p>
-<p>// Returns whether a list is empty. template &lt;typename list&gt;=""&gt; struct is_empty { using type = false_; };</p>
-<p>template &lt;&gt; struct is_empty&lt;list&lt;&gt;&gt; { using type = true_; }; ```</p>
-<p>We can now use our <code>list</code> like so:</p>
-<p>```cpp using List = list&lt;int, char, float&gt;; using Int = head&lt;List&gt;::type; using Char = head&lt;tail&lt;List&gt;::type&gt;::type; using Float = head&lt;tail&lt;tail&lt;List&gt;::type&gt;::type&gt;::type; using Error = head&lt;list&lt;&gt;&gt;::type; // head requires a non-empty list ```</p>
-<h3>The burden of evaluation</h3>
-<p>Like we just saw, traditional metafunctions expect their arguments to be "fully
-evaluated types". For example, when invoking a metafunction with the result of another metafunction, that metafunction has to be evaluated by the caller before its result is passed to the callee:</p>
-<p>```cpp using List = list&lt;int_&lt;1&gt;, int_&lt;2&gt;&gt;; using Two = head&lt;tail&lt;List&gt;::type&gt;::type; // ^^^^^^ // tail is evaluated so we can pass the result to head</p>
-<p>using Error = head&lt;tail&lt;List&gt;&gt;::type; // head expects a list&lt;...&gt; ```</p>
-<p>From now on, we will say of such metafunctions that the caller has the burden of evaluating the arguments. If <code>head</code> expected a metafunction returning a <code>list</code> instead of a <code>list</code> directly, the burden of evaluation would be switched from <code>head</code>'s caller to <code>head</code> itself. For example, we could write:</p>
-<p>```cpp using List = list&lt;int_&lt;1&gt;, int_&lt;2&gt;&gt;; using Two = head&lt;tail&lt;List&gt;&gt;::type; // ^ no evaluation of tail</p>
-<p>using Error = head&lt;tail&lt;List&gt;::type&gt;; // error: tail&lt;List&gt;::type is list&lt;int_&lt;2&gt;&gt;, which is not a metafunction ```</p>
-<p>In such case, we would say that the callee has the burden of evaluation. Right now, the usefulness of this distinction is unclear. However, we can expose a common situation where it comes into play using just the tools we created in the previous section. Let's assume we want to create a metafunction that will drop the first <code>N</code> elements of a list and return what's left, or the empty list if <code>N</code> is greater than the number of elements in the list.</p>
-<p>```cpp template &lt;typename N, typename List&gt; struct drop : if_&lt;bool_&lt;N::value == 0 || is_empty&lt;List&gt;::type::value&gt;,</p>
-<p>/* then List,</p>
-<p>/* else typename drop&lt; int_&lt;N::value - 1&gt;, typename tail&lt;List&gt;::type &gt;::type &gt; { }; ```</p>
-<p>This metafunction looks fine, but it isn't. The first problem is in the recursive invocation of <code>drop</code>. Since we fetch its nested <code>::type</code>, it is instantiated regardless of the <code>if_</code> branch taken and we end up with infinite recursion. This problem may be fixed by introducing a metafunction similar to <code>if_</code>, except it expects the branches to be nullary metafunctions and returns the result of the metafunction corresponding to the branch taken. The metafunction corresponding to the other branch is never evaluated. Here is a possible implementation:</p>
-<p>```cpp template &lt;typename Condition, typename Then, typename Else&gt; struct eval_if : Then { };</p>
-<p>template &lt;typename Then, typename Else&gt; struct eval_if&lt;false_, Then, Else&gt; : Else { };</p>
-<p>// This is the identity metafunction: it returns its argument unchanged. // We'll need this in a second. template &lt;typename x&gt;=""&gt; struct id { using type = X; }; ```</p>
-<p>While <code>eval_if</code> is simple, it has two things that makes it different from most traditional metafunctions. First, the burden of evaluating the <code>Then</code> and <code>Else</code> arguments are switched from the caller to the callee. Second, <code>eval_if</code> does not evaluate all its arguments all the time. In fact, it would be useless if it did. Later, we will formalize what it means for a metafunction not to evaluate all of its arguments all the time. For now, what must be clear is the fact that switching the evaluation burden and evaluating only the necessary arguments are two different things, but the later requires giving the evaluation burden to the callee. We can now write our <code>drop</code> metafunction like so:</p>
-<p>```cpp template &lt;typename N, typename List&gt; struct drop : eval_if&lt;bool_&lt;N::value == 0 || is_empty&lt;List&gt;::type::value&gt;,</p>
-<p>/* then id&lt;List&gt;,</p>
-<p>/* else drop&lt;int_&lt;N::value - 1&gt;, typename tail&lt;List&gt;::type&gt; &gt; { }; ```</p>
-<p>Since we do not fetch <code>drop</code>'s nested <code>::type</code> anymore, we do not end up with infinite recursion. Also notice how we wrapped <code>List</code> with <code>id</code> in the "then" branch; this is a bit annoying but it is necessary because <code>eval_if</code> expects a metafunction in both branches.</p>
-<p>The second problem is when we have an empty list. When that happens, we will return the empty list, which is fine. But we will also invoke <code>tail</code> on the empty list, which is an error because <code>tail</code> expects its argument to be non-empty. Much like the first one, this problem can be fixed by providing another version of the problematic metafunction, which is <code>drop</code> in this case:</p>
-<p>```cpp template &lt;typename N, typename List&gt; struct eval_drop : drop&lt;typename N::type, typename List::type&gt; { }; ```</p>
-<p>Note how the burden of evaluation is given to <code>eval_drop</code>, yet <code>eval_drop</code> evaluates its arguments whether they are needed or not. This again illustrates how the evaluation burden and the "laziness" are two different but related things. We can now write our final <code>drop</code> metafunction:</p>
-<p>```cpp template &lt;typename N, typename List&gt; struct drop : eval_if&lt;bool_&lt;N::value == 0 || is_empty&lt;List&gt;::type::value&gt;,</p>
-<p>/* then id&lt;List&gt;,</p>
-<p>/* else eval_drop&lt; id&lt;int_&lt;N::value - 1&gt;&gt;, tail&lt;List&gt; &gt; &gt; { }; ```</p>
-<p>This implementation works as expected. Note that the original Boost.MPL does provide an <code>eval_if</code> metafunction, but it does not provide an analogous for most other metafunctions. Hence, ad-hoc solutions like the following are common:</p>
-<p>```cpp // Forward declaration needed for drop_tail. template &lt;typename N, typename List&gt; struct drop;</p>
-<p>// Invokes drop with the tail of the list. template &lt;typename N, typename List&gt; struct drop_tail : drop&lt;N, typename tail&lt;List&gt;::type&gt; { };</p>
-<p>template &lt;typename N, typename List&gt; struct drop : eval_if&lt;bool_&lt;N::value == 0 || is_empty&lt;List&gt;::type::value&gt;,</p>
-<p>/* then id&lt;List&gt;,</p>
-<p>/* else drop_tail&lt;int_&lt;N::value - 1&gt;, List&gt; &gt; { }; ```</p>
-<p>There is a lesson to be learned here. Since it makes sense for an arbitrary metafunction to be invoked with arguments that must be evaluated by the callee, all metafunctions should provide a version that does just that, or the library should provide a way to achieve the same result without providing two different versions. It does increase the complexity of the library, but the alternative is to have the user write an equivalent ad-hoc solution, which is a net loss.</p>
-<h2>The MPL11</h2>
-<p>This section explains the core concepts of the library. Definitions will be introduced as we go, but be careful because some definitions clash with definitions from the MPL. It is essential to start with a clean slate here.</p>
-<h3>Boxed types</h3>
-<p>An <b>unboxed type</b> is an arbitrary C++ type.</p>
-<p>A <b>boxed type</b> <code>B</code> is an arbitrary C++ type such that <code>B::type</code> is an unboxed type. <code>B::type</code> is called the <b>boxee</b> of <code>B</code>. As a mnemonic, one can consider the pointer-pointee relation. In that context, <code>B</code> would be the pointer and <code>B::type</code> the pointee.</p>
-<p>Let <code>B</code> be a boxed type and <code>U</code> an unboxed type. Then,</p>
-<ul>
-<li>Fetching the nested <code>::type</code> inside of <code>B</code> is <b>unboxing</b> <code>B</code>. In the pointer analogy, that would be dereferencing <code>B</code>.</li>
-<li>Conversely, wrapping <code>U</code> in a type <code>C</code> such that <code>U</code> is the boxee of <code>C</code> is <b>boxing</b> <code>U</code> into <code>C</code>. With the pointer analogy, boxing <code>U</code> into <code>C</code> would be letting <code>C = &amp;U</code>.</li>
-</ul>
-<p>There exists a special <code>undefined</code> boxed type which as the characteristic of causing a compile-time error when it is unboxed. <code>undefined</code> is also called bottom.</p>
-<p>One important thing to note is that <code>non-boxed != unboxed</code>. A type is unboxed if it was a boxee at some point, but nothing prevents a boxee to be boxed, much like we can have a pointer to a pointer. Here are some examples:</p>
-<p>```cpp // This useful template takes an arbitrary unboxed type U // and makes it a boxed type. template &lt;typename u&gt;=""&gt; struct boxed { using type = U; };</p>
-<p>// These are unboxed types. struct w; int; boxed&lt;char&gt;; boxed&lt;char&gt;::type;</p>
-<p>// These are non-boxed types. struct x { char foo; }; int; boxed&lt;char&gt;::type;</p>
-<p>// These are boxed types. boxed&lt;char&gt;; boxed&lt;boxed&lt;char&gt;&gt;::type; struct y { struct type; }; struct z { using type = char; }; ```</p>
-<h3>Metafunctions</h3>
-<p>Informally, a metafunction is a template representing a compile-time function taking types as arguments and returning a type as a result.</p>
-<p>Formally, let <code>f</code> be a C++ template accepting an arbitrary number of type template parameters, and only type template parameters. Then, <code>f</code> is a <b>metafunction</b> if and only if there exists types <code>x1, ..., xn</code> such that <code>f&lt;x1, ..., xn&gt;::type</code> is a valid type name. In this context,</p>
-<ul>
-<li><code>x1, ..., xn</code> are the <b>arguments</b> of <code>f</code>.</li>
-<li>Forming a specialization <code>f&lt;x1, ..., xn&gt;</code> is <b>suspending</b> <code>f</code> with <code>x1, ..., xn</code>.</li>
-<li>A specialization <code>f&lt;x1, ..., xn&gt;</code> is a <b>thunk</b> or a <b>suspension</b>.</li>
-<li>The nested <code>::type</code> of a thunk is the <b>result</b> of the thunk. If the thunk is of the form <code>f&lt;x1, ..., xn&gt;</code>, we can also say it is the <b>result</b> of <code>f</code> with <code>x1, ..., xn</code>.</li>
-<li>Fetching the result of a thunk is <b>evaluating</b> the thunk. If the thunk is of the form <code>f&lt;x1, ..., xn&gt;</code>, we can also say <b>invoking</b> <code>f</code> with <code>x1, ..., xn</code> or <b>applying</b> <code>f</code> to <code>x1, ..., xn</code>.</li>
-<li>The <b>arity</b> of a metafunction is the number of arguments it can be invoked with. A metafunction with arity <em>n</em> is said to be a <b>n-ary</b> metafunction.</li>
-<li>A metafunction that can be invoked with any number of arguments is said to be <b>variadic</b>. By definition, a variadic metafunction is n-ary for any non-negative integer n.</li>
-</ul>
-<p>There are two important things to note here. The first is that thunks are really the same as boxed types. The second is the difference between this definition and the one given by the Boost.MPL. With our definition, a metafunction can never be a normal C++ type; it must always be a template. Hence, Boost.MPL nullary metafunctions implemented as non-template classes are not considered metafunctions with our definition. Here are some examples:</p>
-<p>```cpp // A unary metafunction. template &lt;typename x&gt;=""&gt; struct unary { struct type; };</p>
-<p>// A binary metafunction. template &lt;typename x, typename y&gt; struct binary { struct type; };</p>
-<p>// A variadic metafunction. template &lt;typename ...&gt; struct variadic { struct type; };</p>
-<p>// A nullary metafunction. It can only be invoked with // 0 arguments, and it is therefore 0-ary (nullary). template &lt;typename ...&gt; struct nullary; template &lt;&gt; struct nullary&lt;&gt; { struct type; };</p>
-<p>// Not a metafunction; it is not a template! struct old_nullary { struct type; };</p>
-<p>// Not a metafunction; it never has a result (a nested ::type)! template &lt;typename ...&gt; struct no_result { }; ```</p>
-<p>We can now formally define the notion of non-strictness (loosely referred to as "laziness" earlier) for a metafunction. Let <code>f</code> be a <code>n-ary</code> metafunction whose arguments <code>x1, ..., xn</code> must all be boxed types. Then, <code>f</code> is <b>strict in <code>xi</code></b> if and only if invoking <code>f&lt;x1, ..., xi-1, undefined, xi+1, ..., xn&gt;</code> is a compile-time error for all <code>x1, ..., xi-1, xi+1, ..., xn</code>. A metafunction that is not strict in <code>xi</code> is <b>non-strict in <code>xi</code></b>. It is possible that strictness in an argument depends on the value of the other arguments. For example, consider the following implementation of an <code>if</code> statement:</p>
-<p>```cpp template &lt;typename Condition, typename Then, typename Else&gt; struct if_ : std::conditional&lt;Condition::type::value, Then, Else&gt;::type { }; ```</p>
-<p>Here, <code>if_</code> is always strict in its first argument. However, <code>if_&lt;True, ...&gt;</code> is non-strict in its second argument and <code>if_&lt;False, ...&gt;</code> is non-strict in its first argument. When a metafunction has special or complicated strictness characteristics, they should be documented explicitly.</p>
-<p>The intuition behind the definition of strictness in an argument is that if replacing an argument by <code>undefined</code> yields an error, the metafunction must necessarily try to evaluate that argument. Hence, one can think of strictness in an argument as the fact that the metafunction always evaluates this argument.</p>
-<blockquote class="doxtable">
-<p>It is interesting to note that the equivalence between thunks and boxed types plays a big role in making non-strict metafunctions useful. This equivalence means that whenever a boxed type is expected, a thunk may be passed instead. Hence, non-strict metafunctions can sometimes avoid evaluating complete thunks, which is far more interesting that avoiding the unboxing of a type.</p>
-<p></p>
-</blockquote>
-<blockquote class="doxtable">
-<p>Interested readers should consider reading <a href="http://en.wikibooks.org/wiki/Haskell/Denotational_semantics">this</a> for a detailed treatment of strict versus non-strict semantics. This is a much richer topic than what is exposed here.</p>
-<p></p>
-</blockquote>
-<h3>Metafunction classes</h3>
-<p>Informally, a metafunction class is a representation of a metafunction that allows it to be manipulated as a first class citizen in template metaprograms.</p>
-<p>Formally, an arbitrary C++ type <code>f</code> is a <b>metafunction class</b> if and only if <code>f::apply</code> is a metafunction. In general, metafunction classes inherit the terminology of metafunctions, and the characteristics of a metafunction class follow from that of its nested <code>apply</code> metafunction. For example, the arity of a metafunction class <code>f</code> is that of <code>f::apply</code>.</p>
-<blockquote class="doxtable">
-<p>The definition of metafunction classes exposed here is not the same as that of the Boost.MPL. The difference between both definitions is the difference between the definition of metafunctions in both libraries.</p>
-<p></p>
-</blockquote>
-<h3>Datatypes and data constructors</h3>
-<p>A data constructor is a way to create "values" of a given datatype. For example, let's create a simple list with two different data constructors.</p>
-<p>```cpp // The datatype. struct List;</p>
-<p>// The list constructor. It represents a List with the provided elements. template &lt;typename ...Elements&gt; struct list { using mpl_datatype = List; };</p>
-<p>// The cons constructor. It represents a List with the provided // head and tail. template &lt;typename Head, typename Tail&gt; struct cons { using mpl_datatype = List; }; ```</p>
-<p>While it is not mandatory, it is often a good idea to box data constructors since it makes them usable in non-strict metafunctions as-is. Let's rewrite the above data constructors this way:</p>
-<p>```cpp template &lt;typename ...Elements&gt; struct list { using type = list; using mpl_datatype = List; };</p>
-<p>template &lt;typename Head, typename Tail&gt; struct cons { using type = cons; using mpl_datatype = List; }; ```</p>
-<p>An important distinction must be made here. One could come to think of data constructors as metafunctions, but they are not quite the same. While metafunctions must be templates taking type template parameters only, data constructors do not have such a restriction. In fact, data constructors do not even have to be boxed, in which case any similarity with metafunctions vanishes:</p>
-<p>```cpp struct Integer;</p>
-<p>// A non-boxed data constructor. This is <em>clearly</em> not a metafunction. template &lt;int i&gt;=""&gt; struct int_ { using mpl_datatype = Integer; }; ```</p>
-<h3>Typeclasses and methods</h3>
-<p><b>TODO</b></p>
-<h3>Rewrite rules</h3>
-<p><b>TODO</b></p>
-<h2>Acknowledgements</h2>
-<p>The development of this library drew inspiration from a couple of projects with different levels of involvement in template metaprogramming. I would like to thank the people involved in these projects for their work, without which this library wouldn't be the same. The most notable sources of inspirations and enlightment were:</p>
-<ul>
-<li>The <a href="http://www.haskell.org">Haskell</a> programming language</li>
-<li>The original <a href="http://www.boost.org/doc/libs/1_55_0b1/libs/mpl/doc/index.html">Boost.MPL</a></li>
-<li>The <a href="https://github.com/sabel83/mpllibs">mpllibs</a> library</li>
-</ul>
-<h2>Rationales</h2>
-<p>This section contains rationales for some design decisions of the library. In its early development, the library was rewritten several times because fundamental aspects of it needed to be changed. Hence, only the rationales pertaining to the current design are kept here. If you have a question about a design decision that is not explained here, please contact the creator of the library (Louis Dionne).</p>
-<h3>Why are iterators not used in the library?</h3>
-<p>The following points led to their removal:</p>
-<ul>
-<li>Lazy views were hard to implement because they required creating new iterators, which is a pain. Using a different abstraction for sequences made it much easier.</li>
-<li>Iterators being hard to implement and non-composable is a known problem, which is addressed e.g. by the Boost.Range library or in this <a href="http://www.informit.com/articles/article.aspx?p=1407357">paper</a> by Andrei Alexandrescu.</li>
-<li>There is no performance gain to be achieved by using iterators. In fact, it often makes straightforward implementations more complicated, which can hide possible optimizations.</li>
-<li>Implementing infinite ranges using iterators is hacky at best.</li>
-</ul>
-<h3>Why isn't <code>apply</code> a method?</h3>
-<p>There are two main reasons for this. First, if <code>apply</code> were a method, one would need to make every metafunction class an instance of the typeclass defining <code>apply</code>. Since metafunction classes are very common, that would be very cumbersome. Second, making <code>apply</code> a method requires using the usual method dispatching mechanism, which adds some overhead.</p>
-<h3>Why aren't <code>and_</code>, <code>or_</code> and <code>not_</code> methods?</h3>
-<p>In some previous design of the library, these were methods. However, allowing <code>and_</code> and <code>or_</code> to be non-strict required special casing these methods. Since I could not find any use case, I decided to make them normal metafunctions.</p>
-<h3>Why aren't <code>*_t</code> versions of metafunctions provided like in C++1y?</h3>
-<p>Switching the evaluation burden from the caller to the callee makes this useless in most cases.</p>
-<h2>Todo list</h2>
-<ul>
-<li>[ ] Implement fast arithmetic operations on sequences of <code>StaticConstant</code>s.</li>
-<li>[ ] Implement associative data structures.</li>
-<li>[ ] Refactor the <code>Numeric</code> and <code>Integral</code> classes.</li>
-<li>[ ] Implement a small DSL to implement inline metafunction classes (like Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo, such a DSL should:<ul>
-<li>Allow leaving placeholders as-is inside a lambda, if this is desirable.</li>
-<li>Allow performing placeholder substitution in a lambda without actually evaluating the expression, if this is desirable.</li>
-<li>Allow "variadic placeholders", i.e. placeholders expanding to several types. One pitfal of this is using such a placeholder with a metafunction that is not variadic: <pre class="fragment">```cpp
-template &lt;typename, typename&gt;
-struct f;
-using F = lambda&lt;f&lt;_args&gt;&gt;; // error here, f is not unary
-using Result = F::apply&lt;int, char&gt;::type;
-```
-</pre> This fails because <code>f</code> requires 2 arguments.</li>
-</ul>
-</li>
-<li>[ ] Consider allowing types to be printed somehow. The idea is to have something like a <code>Show</code> typeclass that allows types to be pretty-printed for debugging purposes.</li>
-<li>[ ] Think about a convention or a system to customize some metafunction calls. Something neat would be to have a way of passing a custom predicate when comparing sequences; that would make <code>equal</code> as powerful as the <code>equal</code> algorithm from the Boost.MPL. Maybe we can achieve the same effect in another way. </li>
-</ul>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

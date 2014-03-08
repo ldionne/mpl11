@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['uint',['uint',['../structboost_1_1mpl11_1_1uint.html',1,'boost::mpl11']]],
-  ['ullong',['ullong',['../structboost_1_1mpl11_1_1ullong.html',1,'boost::mpl11']]],
-  ['ulong',['ulong',['../structboost_1_1mpl11_1_1ulong.html',1,'boost::mpl11']]],
-  ['unpack',['unpack',['../structboost_1_1mpl11_1_1unpack.html',1,'boost::mpl11']]],
-  ['unpack_3c_20iter_2c_20lazy_5ffmap_5fdetail_3a_3afast_5fmap_3c_20f_2c_20detail_3a_3abox_3c_20dest_20_3e_20_3e_20_3e',['unpack&lt; Iter, lazy_fmap_detail::fast_map&lt; F, detail::box&lt; Dest &gt; &gt; &gt;',['../structboost_1_1mpl11_1_1unpack.html',1,'boost::mpl11']]],
-  ['unpack_3c_20join_3c_20itern_2e_2e_2e_3e_2c_20unpack_3c_20iter1_2c_20partial_3c_20into_3c_20partial_20_3e_2c_20f_20_3e_20_3e_20_3e',['unpack&lt; join&lt; IterN...&gt;, unpack&lt; Iter1, partial&lt; into&lt; partial &gt;, F &gt; &gt; &gt;',['../structboost_1_1mpl11_1_1unpack.html',1,'boost::mpl11']]],
-  ['unpack_3c_20tail_2c_20partial_3c_20detail_3a_3abox_3c_20f_20_3e_2c_20head_20_3e_20_3e',['unpack&lt; Tail, partial&lt; detail::box&lt; F &gt;, Head &gt; &gt;',['../structboost_1_1mpl11_1_1unpack.html',1,'boost::mpl11']]],
-  ['ushort',['ushort',['../structboost_1_1mpl11_1_1ushort.html',1,'boost::mpl11']]]
+  ['tail',['tail',['../structboost_1_1mpl11_1_1tail.html',1,'boost::mpl11']]],
+  ['take',['take',['../structboost_1_1mpl11_1_1take.html',1,'boost::mpl11']]],
+  ['take_3c_20size_5ft_3c_20n_20_3e_2c_20drop_3c_20from_2c_20xs_20_3e_20_3e',['take&lt; size_t&lt; n &gt;, drop&lt; from, xs &gt; &gt;',['../structboost_1_1mpl11_1_1take.html',1,'boost::mpl11']]],
+  ['take_3c_20size_5ft_3c_20n_20_3e_2c_20xs_20_3e',['take&lt; size_t&lt; n &gt;, xs &gt;',['../structboost_1_1mpl11_1_1take.html',1,'boost::mpl11']]],
+  ['take_5fc',['take_c',['../structboost_1_1mpl11_1_1take__c.html',1,'boost::mpl11']]],
+  ['take_5fc_3c_20to_3a_3atype_3a_3avalue_2dfrom_3a_3atype_3a_3avalue_2c_20drop_3c_20from_2c_20xs_20_3e_20_3e',['take_c&lt; to::type::value-from::type::value, drop&lt; from, xs &gt; &gt;',['../structboost_1_1mpl11_1_1take__c.html',1,'boost::mpl11']]],
+  ['take_5funtil',['take_until',['../structboost_1_1mpl11_1_1take__until.html',1,'boost::mpl11']]],
+  ['take_5fwhile',['take_while',['../structboost_1_1mpl11_1_1take__while.html',1,'boost::mpl11']]],
+  ['take_5fwhile_3c_20compose_3c_20quote_3c_20not_5f_20_3e_2c_20predicate_20_3e_2c_20xs_20_3e',['take_while&lt; compose&lt; quote&lt; not_ &gt;, predicate &gt;, xs &gt;',['../structboost_1_1mpl11_1_1take__while.html',1,'boost::mpl11']]],
+  ['true_5f',['true_',['../structboost_1_1mpl11_1_1true__.html',1,'boost::mpl11']]],
+  ['typeclass',['typeclass',['../structboost_1_1mpl11_1_1typeclass.html',1,'boost::mpl11']]]
 ];

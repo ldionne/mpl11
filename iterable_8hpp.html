@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost/mpl11/iterable.hpp File Reference</title>
+<title>MPL11: boost/mpl11/iterable.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,38 +86,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">iterable.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Includes all the <a class="el" href="group___iterable.html">Iterable</a> module.  
+<p>Defines the <a class="el" href="group___iterable.html">Iterable</a> typeclass.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="cons_8hpp_source.html">boost/mpl11/iterable/cons.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="drop_8hpp_source.html">boost/mpl11/iterable/drop.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="drop__until_8hpp_source.html">boost/mpl11/iterable/drop_until.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="drop__while_8hpp_source.html">boost/mpl11/iterable/drop_while.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="filter_8hpp_source.html">boost/mpl11/iterable/filter.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="iterable_2iterable_8hpp_source.html">boost/mpl11/iterable/iterable.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="iterate_8hpp_source.html">boost/mpl11/iterable/iterate.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="join_8hpp_source.html">boost/mpl11/iterable/join.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="repeat_8hpp_source.html">boost/mpl11/iterable/repeat.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="reverse_8hpp_source.html">boost/mpl11/iterable/reverse.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="slice_8hpp_source.html">boost/mpl11/iterable/slice.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="snoc_8hpp_source.html">boost/mpl11/iterable/snoc.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="sort__by_8hpp_source.html">boost/mpl11/iterable/sort_by.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="take_8hpp_source.html">boost/mpl11/iterable/take.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="take__until_8hpp_source.html">boost/mpl11/iterable/take_until.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="take__while_8hpp_source.html">boost/mpl11/iterable/take_while.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="zip_8hpp_source.html">boost/mpl11/iterable/zip.hpp</a>&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="fwd_2iterable_8hpp_source.html">boost/mpl11/fwd/iterable.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="bool_8hpp_source.html">boost/mpl11/bool.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="comparable_8hpp_source.html">boost/mpl11/comparable.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="core_8hpp_source.html">boost/mpl11/core.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="config_8hpp_source.html">boost/mpl11/detail/config.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="std__size__t_8hpp_source.html">boost/mpl11/detail/std_size_t.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="foldable_8hpp_source.html">boost/mpl11/foldable.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="functional_8hpp_source.html">boost/mpl11/functional.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="integer_8hpp_source.html">boost/mpl11/integer.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="logical_8hpp_source.html">boost/mpl11/logical.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="orderable_8hpp_source.html">boost/mpl11/orderable.hpp</a>&gt;</code><br/>
 </div>
 <p><a href="iterable_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop__while.html">boost::mpl11::drop_while&lt; predicate, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops elements from an iterable up to, but not including, the first element for which the <code>predicate</code> returns <code>false</code>.  <a href="structboost_1_1mpl11_1_1drop__while.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1head.html">boost::mpl11::head&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first element of a non-empty iterable.  <a href="structboost_1_1mpl11_1_1head.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1tail.html">boost::mpl11::tail&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the elements after the head of a non-empty iterable.  <a href="structboost_1_1mpl11_1_1tail.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1last.html">boost::mpl11::last&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last element of a non-empty iterable.  <a href="structboost_1_1mpl11_1_1last.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1at.html">boost::mpl11::at&lt; index, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the element of an iterable at the given index.  <a href="structboost_1_1mpl11_1_1at.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1is__empty.html">boost::mpl11::is_empty&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the iterable is empty.  <a href="structboost_1_1mpl11_1_1is__empty.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1length.html">boost::mpl11::length&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in a finite iterable.  <a href="structboost_1_1mpl11_1_1length.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop.html">boost::mpl11::drop&lt; n, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops the first <code>n</code> elements from an iterable and return the rest.  <a href="structboost_1_1mpl11_1_1drop.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Includes all the <a class="el" href="group___iterable.html">Iterable</a> module. </p>
+<div class="textblock"><p>Defines the <a class="el" href="group___iterable.html">Iterable</a> typeclass. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

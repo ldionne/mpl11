@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['numeric',['Numeric',['../group___numeric.html',1,'']]]
+  ['monoid',['Monoid',['../group___monoid.html',1,'']]]
 ];

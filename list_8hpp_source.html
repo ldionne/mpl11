@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost/mpl11/list.hpp Source File</title>
+<title>MPL11: boost/mpl11/list.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -96,152 +96,478 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2list_8hpp.html">boost/mpl11/fwd/list.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="apply_8hpp.html">boost/mpl11/apply.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="index__sequence_8hpp.html">boost/mpl11/detail/index_sequence.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bool_8hpp.html">boost/mpl11/bool.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="config_8hpp.html">boost/mpl11/detail/config.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="std__size__t_8hpp.html">boost/mpl11/detail/std_size_t.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="variadic__last_8hpp.html">boost/mpl11/detail/variadic_last.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2sequence__traits_8hpp.html">boost/mpl11/fwd/sequence_traits.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2tag__of_8hpp.html">boost/mpl11/fwd/tag_of.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integral__c_8hpp.html">boost/mpl11/integral_c.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="iterable_2iterable_8hpp.html">boost/mpl11/iterable/iterable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">namespace </span>detail {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">template</span> &lt;std_<span class="keywordtype">size_t</span> Index, <span class="keyword">typename</span> Value&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">struct </span>list_index_holder { };</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Indices, <span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">struct </span>list_index_based_lookup;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="functor_8hpp.html">boost/mpl11/functor.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="iterable_8hpp.html">boost/mpl11/iterable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="foldable_8hpp.html">boost/mpl11/foldable.hpp</a>&gt;</span>   <span class="comment">//</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="functional_8hpp.html">boost/mpl11/functional.hpp</a>&gt;</span> <span class="comment">// required by fwd/list.hpp</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="integer_8hpp.html">boost/mpl11/integer.hpp</a>&gt;</span>    <span class="comment">//</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="logical_8hpp.html">boost/mpl11/logical.hpp</a>&gt;</span>    <span class="comment">//</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">struct </span>list&lt;x, xs...&gt; {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">using</span> type = list;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">using</span> mpl_datatype = List;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">template</span> &lt;<a class="code" href="group__details.html#gacbb2916454811819a0e88e84ed1a70f7">std_size_t</a> ...Indices, <span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">struct </span>list_index_based_lookup&lt;index_sequence&lt;Indices...&gt;, T...&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            : list_index_holder&lt;Indices, T&gt;...</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        { };</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">using</span> head = x;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">using</span> tail = list&lt;xs...&gt;;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">using</span> is_empty = false_;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">template</span> &lt;std_<span class="keywordtype">size_t</span> Index, <span class="keyword">typename</span> Value&gt;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        Value at_list_index(list_index_holder&lt;Index, Value&gt;*);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">struct </span>list_impl</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            : list_index_based_lookup&lt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                typename make_index_sequence&lt;sizeof...(T)&gt;::type, T...</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            &gt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        { };</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">struct </span>list_tag;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    } <span class="comment">// end namespace detail</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">struct </span>list&lt;&gt; {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">using</span> type = list;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">using</span> mpl_datatype = List;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">using</span> is_empty = true_;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> xs&gt;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">struct </span>cons {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">using</span> type = cons;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">using</span> mpl_datatype = List;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">struct </span>list { <span class="keyword">using</span> type = detail::list_impl&lt;T...&gt;; };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">struct </span>tag_of&lt;detail::list_impl&lt;T...&gt;&gt; { <span class="keyword">using</span> type = detail::list_tag; };</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">struct </span>sequence_traits&lt;detail::list_impl&lt;T...&gt;&gt; {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> has_O1_length = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> has_O1_unpack = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> is_finite = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">using</span> head = x;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">using</span> tail = xs;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">using</span> is_empty = false_;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    };</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">struct </span>Iterable&lt;List&gt; : default_Iterable {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> self&gt;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">using</span> head_impl = <span class="keyword">typename</span> self::type::head;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> self&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">using</span> tail_impl = <span class="keyword">typename</span> self::type::tail;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Tag&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">struct </span>Comparable&lt;detail::list_tag, Tag&gt;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        : Comparable&lt;iterable_tag, Tag&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    { };</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Tag&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">struct </span>Orderable&lt;detail::list_tag, Tag&gt;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        : Orderable&lt;iterable_tag, Tag&gt;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    { };</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">struct </span>Foldable&lt;detail::list_tag&gt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        : Foldable&lt;iterable_tag&gt;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    { };</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">struct </span>Functor&lt;detail::list_tag&gt; {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">typename</span>&gt; <span class="keyword">struct </span>fmap_impl;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> self&gt;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">using</span> is_empty_impl = <span class="keyword">typename</span> self::type::is_empty;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> n, <span class="keyword">typename</span> self&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">struct </span>at_impl : default_Iterable::at_impl&lt;n, self&gt; { };</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> n, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">struct </span>at_impl&lt;n, list&lt;xs...&gt;&gt;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            : arg&lt;n::type::value+1&gt;::type::template <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a>&lt;xs...&gt;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        { };</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    };</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">struct </span>Functor&lt;List&gt; {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> xs&gt;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">struct </span>fmap_impl</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            : fmap_impl&lt;f, typename xs::type&gt;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        { };</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> F, <span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">struct </span>fmap_impl&lt;F, detail::list_impl&lt;T...&gt;&gt; {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keyword">using</span> type = detail::list_impl&lt;apply&lt;F, T&gt;...&gt;;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">struct </span>fmap_impl&lt;f, list&lt;xs...&gt;&gt; {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keyword">using</span> type = list&lt;typename f::type::template apply&lt;xs&gt;...&gt;;</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        };</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    };</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">struct </span>Iterable&lt;detail::list_tag&gt; : Iterable&lt;iterable_tag&gt; {</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;           <span class="keyword">struct </span>head_impl;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;           <span class="keyword">struct </span>tail_impl;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;           <span class="keyword">struct </span>is_empty_impl;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;           <span class="keyword">struct </span>length_impl;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">typename</span>&gt; <span class="keyword">struct </span>unpack_impl;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;           <span class="keyword">struct </span>last_impl;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keyword">typename</span>&gt; <span class="keyword">struct </span>at_impl;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Head, <span class="keyword">typename</span> ...Tail&gt;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">struct </span>head_impl&lt;detail::list_impl&lt;Head, Tail...&gt;&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            : Head</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        { };</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Head, <span class="keyword">typename</span> ...Tail&gt;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keyword">struct </span>tail_impl&lt;detail::list_impl&lt;Head, Tail...&gt;&gt; {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            <span class="keyword">using</span> type = detail::list_impl&lt;Tail...&gt;;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        };</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">struct </span>is_empty_impl&lt;detail::list_impl&lt;T...&gt;&gt;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            : false_</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        { };</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T&gt;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keyword">struct </span>length_impl&lt;detail::list_impl&lt;T...&gt;&gt;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            : size_t&lt;sizeof...(T)&gt;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        { };</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T, <span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keyword">struct </span>unpack_impl&lt;detail::list_impl&lt;T...&gt;, F&gt;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            : <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a>&lt;F, T...&gt;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        { };</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> x, <span class="keyword">typename</span> xs&gt;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">struct </span>fmap_impl&lt;f, cons&lt;x, xs&gt;&gt; {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keyword">using</span> type = cons&lt;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                <span class="keyword">typename</span> f::type::template <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply&lt;x&gt;</a>,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                fmap&lt;f, xs&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            &gt;;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        };</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    };</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#if 0</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Init, <span class="keyword">typename</span> Last&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">struct </span>head_impl&lt;snoc&lt;Init, Last&gt;&gt;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        : head&lt;Init&gt;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    { };</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Init, <span class="keyword">typename</span> Last&gt;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">struct </span>tail_impl&lt;snoc&lt;Init, Last&gt;&gt;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        : snoc&lt;tail&lt;Init&gt;, Last&gt;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    { };</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">using</span> is_empty_impl = false_;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Init, <span class="keyword">typename</span> Last&gt;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">struct </span>length_impl&lt;snoc&lt;Init, Last&gt;&gt;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        : size_t&lt;length&lt;Init&gt;::value + 1&gt;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    { };</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Init, <span class="keyword">typename</span> Last, <span class="keyword">typename</span> F&gt;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">struct </span>unpack_impl&lt;snoc&lt;Init, Last&gt;, F&gt;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a>&lt;unpack&lt;Init, partial&lt;into&lt;partial&gt;, F&gt;&gt;, Last&gt;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    { };</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Init, <span class="keyword">typename</span> Last&gt;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keyword">struct </span>init_impl&lt;snoc&lt;Init, Last&gt;&gt; : Init { };</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Head, <span class="keyword">typename</span> ...Tail&gt;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keyword">struct </span>last_impl&lt;detail::list_impl&lt;Head, Tail...&gt;&gt;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            : detail::variadic_last&lt;Head, Tail...&gt;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        { };</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...T, <span class="keyword">typename</span> Index&gt;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keyword">struct </span>at_impl&lt;detail::list_impl&lt;T...&gt;, Index&gt; {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keyword">using</span> type = <span class="keyword">typename</span> decltype(</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                detail::at_list_index&lt;Index::type::value&gt;(</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                    (detail::list_impl&lt;T...&gt;*)<span class="keyword">nullptr</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                )</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            )::type;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        };</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    };</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">struct </span>Iterable&lt;detail::list_tag&gt;::is_empty_impl&lt;detail::list_impl&lt;&gt;&gt;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        : true_</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    { };</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Init, <span class="keyword">typename</span> Last&gt;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">struct </span>last_impl&lt;snoc&lt;Init, Last&gt;&gt; : Last { };</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> f, <span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">struct </span>iterate</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        : cons&lt;x, iterate&lt;f, typename f::type::template apply&lt;x&gt;&gt;&gt;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    { };</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">struct </span>repeat</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        : cons&lt;x, repeat&lt;x&gt;&gt;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    { };</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#if 0</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Index&gt;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">struct </span>at_impl&lt;repeat&lt;T&gt;, Index&gt; : T { };</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">struct </span>last_impl&lt;repeat&lt;T&gt;&gt; : T { };</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_LIST_HPP</span></div>
-<div class="ttc" id="integral__c_8hpp_html"><div class="ttname"><a href="integral__c_8hpp.html">integral_c.hpp</a></div><div class="ttdoc">Defines boost::mpl11::integral_c. </div></div>
-<div class="ttc" id="group__details_html_gacbb2916454811819a0e88e84ed1a70f7"><div class="ttname"><a href="group__details.html#gacbb2916454811819a0e88e84ed1a70f7">boost::mpl11::detail::std_size_t</a></div><div class="ttdeci">decltype(sizeof(int)) std_size_t</div><div class="ttdoc">Type identical to std::size_t. </div><div class="ttdef"><b>Definition:</b> std_size_t.hpp:15</div></div>
-<div class="ttc" id="fwd_2tag__of_8hpp_html"><div class="ttname"><a href="fwd_2tag__of_8hpp.html">tag_of.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::tag_of. </div></div>
-<div class="ttc" id="variadic__last_8hpp_html"><div class="ttname"><a href="variadic__last_8hpp.html">variadic_last.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::variadic_last. </div></div>
-<div class="ttc" id="fwd_2sequence__traits_8hpp_html"><div class="ttname"><a href="fwd_2sequence__traits_8hpp.html">sequence_traits.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::sequence_traits. </div></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keyword">struct </span>init_impl&lt;repeat&lt;T&gt;&gt; : repeat&lt;T&gt; { };</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keyword">namespace </span>list_detail {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keyword">template</span> &lt;detail::std_size_t n, <span class="keyword">typename</span> xs,</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="keywordtype">bool</span> = n == 0 || is_empty&lt;xs&gt;::value&gt;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keyword">struct </span>take_impl</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            : list&lt;&gt;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        { };</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keyword">template</span> &lt;detail::std_<span class="keywordtype">size_t</span> n, <span class="keyword">typename</span> xs&gt;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keyword">struct </span>take_impl&lt;n, xs, false&gt;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            : cons&lt;head&lt;xs&gt;, take_impl&lt;n-1, tail&lt;xs&gt;&gt;&gt;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        { };</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> n, <span class="keyword">typename</span> xs&gt;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keyword">struct </span>check_take {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            static_assert(n::type::value &gt;= 0,</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="stringliteral">&quot;Invalid usage of `take`: &quot;</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            <span class="stringliteral">&quot;The number of elements to take must be non-negative.&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        };</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> n, <span class="keyword">typename</span> xs&gt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keyword">struct </span>take :</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">    #if !defined(BOOST_MPL11_NO_ASSERTIONS)</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor"></span>        list_detail::check_take&lt;n, xs&gt;,</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor"></span>        list_detail::take_impl&lt;n::type::value, xs&gt;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    { };</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#if 0</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor"></span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N1, <span class="keyword">typename</span> N2, <span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">struct </span>take_impl&lt;N1, take&lt;N2, Iter&gt;&gt; : take&lt;min&lt;N1, N2&gt;, Iter&gt; { };</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N, <span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="keyword">struct </span>is_empty_impl&lt;take&lt;N, Iter&gt;&gt;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        : or_&lt;bool_&lt;N::type::value == 0&gt;, is_empty&lt;Iter&gt;&gt;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    { };</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N, <span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keyword">struct </span>length_impl&lt;take&lt;N, Iter&gt;,</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        bool_&lt;!sequence_traits&lt;typename Iter::type&gt;::is_finite&gt;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    &gt;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        : N</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    { };</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N, <span class="keyword">typename</span> Iter&gt;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keyword">struct </span>length_impl&lt;take&lt;N, Iter&gt;,</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        bool_&lt;sequence_traits&lt;typename Iter::type&gt;::has_O1_length&gt;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    &gt;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        : size_t&lt;(</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            N::type::value &lt; length&lt;Iter&gt;::value</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                ? N::type::value</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                : length&lt;Iter&gt;::value</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        )&gt;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    { };</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    template &lt;typename N, typename Iter&gt;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    struct init_impl&lt;take&lt;N, Iter&gt;,</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        bool_&lt;sequence_traits&lt;typename Iter::type&gt;::has_O1_length&gt;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    &gt;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        : take&lt;pred&lt;length&lt;take&lt;N, Iter&gt;&gt;&gt;, Iter&gt;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    { };</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    template &lt;typename N, typename Iter, typename Index&gt;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    struct at_impl&lt;take&lt;N, Iter&gt;, Index&gt; : at&lt;Iter, Index&gt; { };</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;#endif</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    namespace list_detail {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        template &lt;typename pred&gt;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        struct go {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            using type = go;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;            template &lt;typename x, typename xs&gt;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            using apply = if_c&lt;pred::type::template apply&lt;x&gt;::type::value,</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                cons&lt;x, xs&gt;,</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                list&lt;&gt;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            &gt;;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        };</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    }</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    template &lt;typename pred, typename xs&gt;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    struct take_while</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        : foldr&lt;list_detail::go&lt;pred&gt;, list&lt;&gt;, xs&gt;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    { };</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;#if 0</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    template &lt;typename Pred, typename Iter&gt;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    struct is_empty_impl&lt;take_while&lt;Pred, Iter&gt;&gt;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        : or_&lt;is_empty&lt;Iter&gt;, not_&lt;apply&lt;Pred, head&lt;Iter&gt;&gt;&gt;&gt;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    { };</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;#endif</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    template &lt;typename xs&gt;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    struct reverse</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        : foldl&lt;flip&lt;quote&lt;cons&gt;&gt;, list&lt;&gt;, xs&gt;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    { };</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;#if 0</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    template &lt;typename Iter&gt;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    struct reverse_impl&lt;reverse&lt;Iter&gt;&gt; : Iter { };</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    template &lt;typename Iter&gt;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    struct head_impl&lt;reverse&lt;Iter&gt;&gt; : last&lt;Iter&gt; { };</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    template &lt;typename Iter&gt;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    struct last_impl&lt;reverse&lt;Iter&gt;&gt; : head&lt;Iter&gt; { };</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    template &lt;typename Iter&gt;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    struct is_empty_impl&lt;reverse&lt;Iter&gt;&gt; : is_empty&lt;Iter&gt; { };</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    template &lt;typename Iter&gt;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    struct length_impl&lt;reverse&lt;Iter&gt;&gt; : length&lt;Iter&gt; { };</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    template &lt;typename Iter, typename Index&gt;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    struct at_impl&lt;reverse&lt;Iter&gt;, Index,</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        bool_&lt;sequence_traits&lt;typename Iter::type&gt;::has_O1_length&gt;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    &gt;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        : at_c&lt;Iter, length&lt;Iter&gt;::value - Index::type::value - 1&gt;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    { };</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;#endif</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    template &lt;typename pred, typename xs&gt;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    struct filter</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        : if_c&lt;none&lt;pred, xs&gt;::value,</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            list&lt;&gt;,</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            cons&lt;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                head&lt;drop_until&lt;pred, xs&gt;&gt;,</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                filter&lt;pred, tail&lt;drop_until&lt;pred, xs&gt;&gt;&gt;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            &gt;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        &gt;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    { };</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;#if 0</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    template &lt;typename Pred1, typename Pred2&gt;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    struct both {</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        using type = both;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        template &lt;typename X&gt;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        using apply = and_&lt;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            mpl11::apply&lt;Pred1, X&gt;,</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            mpl11::apply&lt;Pred2, X&gt;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    };</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    template &lt;typename Pred, typename Iter&gt;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    struct is_empty_impl&lt;filter&lt;Pred, Iter&gt;&gt; : none&lt;Pred, Iter&gt; { };</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    template &lt;typename Pred1, typename Pred2, typename Iter&gt;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    struct filter_impl&lt;Pred1, filter&lt;Pred2, Iter&gt;&gt;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        : filter&lt;filter_detail::both&lt;Pred1, Pred2&gt;, Iter&gt;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    { };</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;#endif</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    template &lt;typename f, typename state, typename xs&gt;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    struct scanl</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        : if_c&lt;is_empty&lt;xs&gt;::value,</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            list&lt;state&gt;,</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            cons&lt;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                state,</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                scanl&lt;f, apply&lt;f, state, head&lt;xs&gt;&gt;, tail&lt;xs&gt;&gt;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            &gt;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        &gt;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    { };</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;#if 0</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    template &lt;typename F, typename State, typename Iter&gt;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    struct length_impl&lt;scanl&lt;F, State, Iter&gt;&gt;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        : size_t&lt;length&lt;Iter&gt;::value + 1&gt;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    { };</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    template &lt;typename F, typename State, typename Iter&gt;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    struct last_impl&lt;scanl&lt;F, State, Iter&gt;&gt; : foldl&lt;F, State, Iter&gt; { };</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;#endif</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    template &lt;typename f&gt;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    struct zip_with&lt;f&gt;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        : list&lt;&gt;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    { };</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    template &lt;typename f, typename xs&gt;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    struct zip_with&lt;f, xs&gt;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        : fmap&lt;f, xs&gt;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    { };</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    template &lt;typename f, typename ...lists&gt;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    struct zip_with</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        : if_&lt;or_&lt;is_empty&lt;lists&gt;...&gt;,</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            list&lt;&gt;,</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            cons&lt;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                typename f::type::template apply&lt;head&lt;lists&gt;...&gt;,</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                zip_with&lt;f, tail&lt;lists&gt;...&gt;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            &gt;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        &gt;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    { };</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;#if 0</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    template &lt;typename ...Iters&gt;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    struct length_impl&lt;zip&lt;Iters...&gt;&gt;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="comment">// We make it strict because we might get some optimization.</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;        : min&lt;typename length&lt;Iters&gt;::type...&gt;::type</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    { };</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    template &lt;typename ...Iters, typename Index&gt;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    struct at_impl&lt;zip&lt;Iters...&gt;, Index&gt;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;        : list&lt;at&lt;Iters, Index&gt;...&gt;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    { };</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;#endif</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    template &lt;&gt;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    struct join&lt;&gt;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        : list&lt;&gt;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    { };</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    template &lt;typename xs&gt;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    struct join&lt;xs&gt;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        : xs</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    { };</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    template &lt;typename xs, typename ...ys&gt;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    struct join&lt;xs, ys...&gt;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        : if_c&lt;is_empty&lt;xs&gt;::value,</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            join&lt;ys...&gt;,</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            cons&lt;head&lt;xs&gt;, join&lt;tail&lt;xs&gt;, ys...&gt;&gt;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        &gt;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    { };</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;#if 0</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    template &lt;&gt;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    struct length_impl&lt;join&lt;&gt;&gt; : size_t&lt;0&gt; { };</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    template &lt;typename Iter&gt;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    struct length_impl&lt;join&lt;Iter&gt;&gt; : length&lt;Iter&gt; { };</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="comment">// We add strictly because there could be optimizations.</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    template &lt;typename ...Iters&gt;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    struct length_impl&lt;join&lt;Iters...&gt;&gt;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        : plus&lt;typename length&lt;Iters&gt;::type...&gt;::type</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    { };</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    template &lt;typename Iter1, typename ...IterN, typename F&gt;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    struct unpack_impl&lt;join&lt;Iter1, IterN...&gt;, F&gt;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        : unpack&lt;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            join&lt;IterN...&gt;,</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            unpack&lt;Iter1, partial&lt;into&lt;partial&gt;, F&gt;&gt;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        &gt;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    { };</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;#endif</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    namespace list_detail {</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        template &lt;typename xs, typename from, typename to&gt;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        class check_slice {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            static constexpr auto start = from::type::value;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            static constexpr auto stop = to::type::value;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            static_assert(start &gt;= 0,</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            &quot;Invalid usage of `slice`: The start index must be non-negative.&quot;);</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            static_assert(start &lt;= stop,</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            &quot;Invalid usage of `slice`: &quot;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;            &quot;The start index must be less-than or equal to the stop index.&quot;);</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        #if 0</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            using Length = if_c&lt;sequence_traits&lt;typename Iter::type&gt;::is_finite,</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                length&lt;Iter&gt;,</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                Stop_</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            &gt;;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            static_assert(Stop &lt;= Length::value,</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            &quot;Invalid usage of `slice`: &quot;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            &quot;The stop index is out of the bounds of the iterable.&quot;);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        #endif</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        };</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    template &lt;typename xs, typename from, typename to&gt;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    struct slice :</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    #if !defined(BOOST_MPL11_NO_ASSERTIONS)</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        list_detail::check_slice&lt;xs, from, to&gt;,</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    #endif</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;        take_c&lt;to::type::value - from::type::value, drop&lt;from, xs&gt;&gt;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    { };</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    namespace list_detail {</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        template &lt;</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            typename pred,</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            typename xs,</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            typename pivot = head&lt;xs&gt;,</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;            typename rest = tail&lt;xs&gt;,</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;            typename IsGreater = partial&lt;pred, pivot&gt;,</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;            typename IsSmallerEq = compose&lt;quote&lt;not_&gt;, IsGreater&gt;,</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            typename SmallerEq = filter&lt;IsSmallerEq, rest&gt;,</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            typename Greater = filter&lt;IsGreater, rest&gt;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        &gt;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        using sort_by_impl = join&lt;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;            sort_by&lt;pred, SmallerEq&gt;,</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            cons&lt;pivot, sort_by&lt;pred, Greater&gt;&gt;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        template &lt;typename xs&gt;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        struct check_init {</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            static_assert(!is_empty&lt;xs&gt;::value,</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            &quot;Invalid usage of `init` on an empty list.&quot;);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        };</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    }</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    template &lt;typename pred, typename xs&gt;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    struct sort_by</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        : if_c&lt;or_&lt;is_empty&lt;xs&gt;, is_empty&lt;tail&lt;xs&gt;&gt;&gt;::value,</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;            xs,</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;            list_detail::sort_by_impl&lt;pred, xs&gt;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        &gt;</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    { };</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    template &lt;typename xs&gt;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    struct init :</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    #if !defined(BOOST_MPL11_NO_ASSERTIONS)</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        list_detail::check_init&lt;xs&gt;,</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    #endif</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        if_c&lt;is_empty&lt;tail&lt;xs&gt;&gt;::value,</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;            list&lt;&gt;,</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;            cons&lt;head&lt;xs&gt;, init&lt;tail&lt;xs&gt;&gt;&gt;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;        &gt;</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    { };</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;#endif <span class="comment">// !BOOST_MPL11_LIST_HPP</span></div>
+<div class="ttc" id="integer_8hpp_html"><div class="ttname"><a href="integer_8hpp.html">integer.hpp</a></div><div class="ttdoc">Defines the Integer datatype. </div></div>
+<div class="ttc" id="iterable_8hpp_html"><div class="ttname"><a href="iterable_8hpp.html">iterable.hpp</a></div><div class="ttdoc">Defines the Iterable typeclass. </div></div>
+<div class="ttc" id="config_8hpp_html"><div class="ttname"><a href="config_8hpp.html">config.hpp</a></div><div class="ttdoc">Manages configurable options of the library. </div></div>
 <div class="ttc" id="std__size__t_8hpp_html"><div class="ttname"><a href="std__size__t_8hpp.html">std_size_t.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::std_size_t. </div></div>
-<div class="ttc" id="iterable_2iterable_8hpp_html"><div class="ttname"><a href="iterable_2iterable_8hpp.html">iterable.hpp</a></div><div class="ttdoc">Defines the methods of the Iterable typeclass. </div></div>
-<div class="ttc" id="index__sequence_8hpp_html"><div class="ttname"><a href="index__sequence_8hpp.html">index_sequence.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::index_sequence. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a metafunction class F with arguments Args.... </div><div class="ttdef"><b>Definition:</b> apply.hpp:37</div></div>
-<div class="ttc" id="apply_8hpp_html"><div class="ttname"><a href="apply_8hpp.html">apply.hpp</a></div><div class="ttdoc">Defines boost::mpl11::apply. </div></div>
-<div class="ttc" id="fwd_2list_8hpp_html"><div class="ttname"><a href="fwd_2list_8hpp.html">list.hpp</a></div><div class="ttdoc">Forward declares boost::mpl11::list. </div></div>
+<div class="ttc" id="functor_8hpp_html"><div class="ttname"><a href="functor_8hpp.html">functor.hpp</a></div><div class="ttdoc">Defines the fmap method of the Functor typeclass. </div></div>
+<div class="ttc" id="logical_8hpp_html"><div class="ttname"><a href="logical_8hpp.html">logical.hpp</a></div><div class="ttdoc">Defines the Logical module. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a metafunction class with the given arguments. </div><div class="ttdef"><b>Definition:</b> functional.hpp:33</div></div>
+<div class="ttc" id="fwd_2list_8hpp_html"><div class="ttname"><a href="fwd_2list_8hpp.html">list.hpp</a></div><div class="ttdoc">Forward declares the boost::mpl11::List datatype. </div></div>
+<div class="ttc" id="bool_8hpp_html"><div class="ttname"><a href="bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/integer.hpp. </div></div>
+<div class="ttc" id="foldable_8hpp_html"><div class="ttname"><a href="foldable_8hpp.html">foldable.hpp</a></div><div class="ttdoc">Defines the methods of the Foldable typeclass. </div></div>
+<div class="ttc" id="functional_8hpp_html"><div class="ttname"><a href="functional_8hpp.html">functional.hpp</a></div><div class="ttdoc">Defines the Functional module. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

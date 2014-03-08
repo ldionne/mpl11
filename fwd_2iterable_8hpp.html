@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost/mpl11/fwd/iterable.hpp File Reference</title>
+<title>MPL11: boost/mpl11/fwd/iterable.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,145 +87,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">iterable.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Forward declares the <a class="el" href="group___iterable.html">Iterable</a> module.  
+<p>Forward declares the <a class="el" href="group___iterable.html">Iterable</a> typeclass.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="doxygen_8hpp_source.html">boost/mpl11/detail/doxygen.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="std__size__t_8hpp_source.html">boost/mpl11/detail/std_size_t.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2comparable_8hpp_source.html">boost/mpl11/fwd/comparable.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2foldable_8hpp_source.html">boost/mpl11/fwd/foldable.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2functor_8hpp_source.html">boost/mpl11/fwd/functor.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2integral__c_8hpp_source.html">boost/mpl11/fwd/integral_c.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2orderable_8hpp_source.html">boost/mpl11/fwd/orderable.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2compose_8hpp_source.html">boost/mpl11/fwd/compose.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2not_8hpp_source.html">boost/mpl11/fwd/not.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="fwd_2quote_8hpp_source.html">boost/mpl11/fwd/quote.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="fwd_2functional_8hpp_source.html">boost/mpl11/fwd/functional.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="fwd_2integer_8hpp_source.html">boost/mpl11/fwd/integer.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="fwd_2logical_8hpp_source.html">boost/mpl11/fwd/logical.hpp</a>&gt;</code><br/>
 </div>
 <p><a href="fwd_2iterable_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1iterable__tag.html">boost::mpl11::iterable_tag</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag representing the <code>Iterable</code> typeclass.  <a href="structboost_1_1mpl11_1_1iterable__tag.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1head.html">boost::mpl11::head&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first element of a non-empty iterable.  <a href="structboost_1_1mpl11_1_1head.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1is__empty.html">boost::mpl11::is_empty&lt; Iter &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean <code>StaticConstant</code> representing whether the iterable is empty.  <a href="structboost_1_1mpl11_1_1is__empty.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1tail.html">boost::mpl11::tail&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract the elements after the head of a non-empty iterable.  <a href="structboost_1_1mpl11_1_1tail.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1at__c.html">boost::mpl11::at_c&lt; Iter, Index &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1at__c.html" title="Equivalent to at_c&lt;Iter, size_t&lt;Index&gt;&gt;. ">at_c</a>&lt;Iter, <a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integral_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;Index&gt;&gt;</code>.  <a href="structboost_1_1mpl11_1_1at__c.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1last.html">boost::mpl11::last&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last element of a non-empty iterable.  <a href="structboost_1_1mpl11_1_1last.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1length.html">boost::mpl11::length&lt; Iter &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>StaticConstant</code> of unsigned type representing the number of elements in a finite iterable.  <a href="structboost_1_1mpl11_1_1length.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1length.html">boost::mpl11::length&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in a finite iterable.  <a href="structboost_1_1mpl11_1_1length.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1unpack.html">boost::mpl11::unpack&lt; Iter, F &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes a metafunction class with the contents of a finite iterable.  <a href="structboost_1_1mpl11_1_1unpack.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1at.html">boost::mpl11::at&lt; index, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the element of an iterable at the given index.  <a href="structboost_1_1mpl11_1_1at.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_iterable_3_01iterable__tag_01_4.html">boost::mpl11::Iterable&lt; iterable_tag &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the default operations for iterables.  <a href="structboost_1_1mpl11_1_1_iterable_3_01iterable__tag_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1at__c.html">boost::mpl11::at_c&lt; index, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>at&lt;<a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integer_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;index&gt;, iter&gt;</code>.  <a href="structboost_1_1mpl11_1_1at__c.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_comparable_3_01iterable__tag_00_01iterable__tag_01_4.html">boost::mpl11::Comparable&lt; iterable_tag, iterable_tag &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default instantiation of the <code>Comparable</code> typeclass for iterables.  <a href="structboost_1_1mpl11_1_1_comparable_3_01iterable__tag_00_01iterable__tag_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1is__empty.html">boost::mpl11::is_empty&lt; iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the iterable is empty.  <a href="structboost_1_1mpl11_1_1is__empty.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_orderable_3_01iterable__tag_00_01iterable__tag_01_4.html">boost::mpl11::Orderable&lt; iterable_tag, iterable_tag &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default instantiation of the <code>Orderable</code> typeclass for iterables.  <a href="structboost_1_1mpl11_1_1_orderable_3_01iterable__tag_00_01iterable__tag_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop.html">boost::mpl11::drop&lt; n, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops the first <code>n</code> elements from an iterable and return the rest.  <a href="structboost_1_1mpl11_1_1drop.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_foldable_3_01iterable__tag_01_4.html">boost::mpl11::Foldable&lt; iterable_tag &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default instantiation of the <code>Foldable</code> typeclass for iterables.  <a href="structboost_1_1mpl11_1_1_foldable_3_01iterable__tag_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop__c.html">boost::mpl11::drop_c&lt; n, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>drop&lt;<a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integer_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;n&gt;, iter&gt;</code>; provided for convenience.  <a href="structboost_1_1mpl11_1_1drop__c.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1_functor_3_01iterable__tag_01_4.html">boost::mpl11::Functor&lt; iterable_tag &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default instantiation of the <code>Functor</code> typeclass for iterables.  <a href="structboost_1_1mpl11_1_1_functor_3_01iterable__tag_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop__while.html">boost::mpl11::drop_while&lt; predicate, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops elements from an iterable up to, but not including, the first element for which the <code>predicate</code> returns <code>false</code>.  <a href="structboost_1_1mpl11_1_1drop__while.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1cons.html">boost::mpl11::cons&lt; Head, Tail &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable with an element prepended to it.  <a href="structboost_1_1mpl11_1_1cons.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop__until.html">boost::mpl11::drop_until&lt; predicate, iter &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1drop__while.html" title="Drops elements from an iterable up to, but not including, the first element for which the predicate r...">drop_while</a></code> with a negated <code>predicate</code>.  <a href="structboost_1_1mpl11_1_1drop__until.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1drop__while.html">boost::mpl11::drop_while&lt; Predicate, Iter &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops elements from an iterable up to, but not including, the first element for which the <code>Predicate</code> returns <code>false</code>.  <a href="structboost_1_1mpl11_1_1drop__while.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1iterate.html">boost::mpl11::iterate&lt; F, X &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an infinite iterable containing repeated applications of a metafunction class to an initial argument.  <a href="structboost_1_1mpl11_1_1iterate.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1join.html">boost::mpl11::join&lt; Iters &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate several iterables.  <a href="structboost_1_1mpl11_1_1join.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1repeat.html">boost::mpl11::repeat&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an infinite iterable containing copies of the given type.  <a href="structboost_1_1mpl11_1_1repeat.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1scanl.html">boost::mpl11::scanl&lt; F, State, Iter &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>scanl</code> is similar to <code>foldl</code>, but returns an iterable of successive reduced values from the left.  <a href="structboost_1_1mpl11_1_1scanl.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1slice.html">boost::mpl11::slice&lt; Iter, Start, Stop &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a subrange of an iterable.  <a href="structboost_1_1mpl11_1_1slice.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1snoc.html">boost::mpl11::snoc&lt; Init, Last &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable with an element appended to its end.  <a href="structboost_1_1mpl11_1_1snoc.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1sort__by.html">boost::mpl11::sort_by&lt; Predicate, Iter &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable sorted with the <code>Predicate</code>.  <a href="structboost_1_1mpl11_1_1sort__by.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1take__while.html">boost::mpl11::take_while&lt; Predicate, Iter &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the longest prefix of an iterable in which all elements satisfy the <code>Predicate</code>.  <a href="structboost_1_1mpl11_1_1take__while.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1zip.html">boost::mpl11::zip&lt; Iters &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable that aggregates elements from several iterables.  <a href="structboost_1_1mpl11_1_1zip.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:gad50ff76e5200fec380735897c94012b4"><td class="memTemplParams" colspan="2">template&lt;typename N , typename Iter &gt; </td></tr>
-<tr class="memitem:gad50ff76e5200fec380735897c94012b4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#gad50ff76e5200fec380735897c94012b4">boost::mpl11::drop</a> = rules::drop_impl&lt; N, Iter &gt;</td></tr>
-<tr class="memdesc:gad50ff76e5200fec380735897c94012b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable containing the suffix of another iterable after the first <code>N</code> elements.  <a href="group___iterable.html#gad50ff76e5200fec380735897c94012b4">More...</a><br/></td></tr>
-<tr class="separator:gad50ff76e5200fec380735897c94012b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9cdb3a8538c66e941efa7bc8459f885b"><td class="memTemplParams" colspan="2"><a class="anchor" id="ga9cdb3a8538c66e941efa7bc8459f885b"></a>
-template&lt;detail::std_size_t N, typename Iter &gt; </td></tr>
-<tr class="memitem:ga9cdb3a8538c66e941efa7bc8459f885b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga9cdb3a8538c66e941efa7bc8459f885b">boost::mpl11::drop_c</a> = drop&lt; size_t&lt; N &gt;, Iter &gt;</td></tr>
-<tr class="memdesc:ga9cdb3a8538c66e941efa7bc8459f885b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>drop&lt;<a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integral_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;N&gt;, Iter&gt;</code>; provided for convenience. <br/></td></tr>
-<tr class="separator:ga9cdb3a8538c66e941efa7bc8459f885b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4c0bf00e70b29b9b58d47dedcd2ce8d9"><td class="memTemplParams" colspan="2"><a class="anchor" id="ga4c0bf00e70b29b9b58d47dedcd2ce8d9"></a>
-template&lt;typename Predicate , typename Iter &gt; </td></tr>
-<tr class="memitem:ga4c0bf00e70b29b9b58d47dedcd2ce8d9"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga4c0bf00e70b29b9b58d47dedcd2ce8d9">boost::mpl11::drop_until</a> = drop_while&lt; compose&lt; quote&lt; not_ &gt;, Predicate &gt;, Iter &gt;</td></tr>
-<tr class="memdesc:ga4c0bf00e70b29b9b58d47dedcd2ce8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1drop__while.html" title="Drops elements from an iterable up to, but not including, the first element for which the Predicate r...">drop_while</a></code> with a negated <code>Predicate</code>. <br/></td></tr>
-<tr class="separator:ga4c0bf00e70b29b9b58d47dedcd2ce8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga32db75ab9c2ae6dbe9b9d2c7376f65b3"><td class="memTemplParams" colspan="2">template&lt;typename Predicate , typename Iter &gt; </td></tr>
-<tr class="memitem:ga32db75ab9c2ae6dbe9b9d2c7376f65b3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga32db75ab9c2ae6dbe9b9d2c7376f65b3">boost::mpl11::filter</a> = rules::filter_impl&lt; Predicate, Iter &gt;</td></tr>
-<tr class="memdesc:ga32db75ab9c2ae6dbe9b9d2c7376f65b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable containing only the elements satisfying the <code>Predicate</code>.  <a href="group___iterable.html#ga32db75ab9c2ae6dbe9b9d2c7376f65b3">More...</a><br/></td></tr>
-<tr class="separator:ga32db75ab9c2ae6dbe9b9d2c7376f65b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3dce9130c89c2ca4837afd655669b87e"><td class="memTemplParams" colspan="2"><a class="anchor" id="ga3dce9130c89c2ca4837afd655669b87e"></a>
-template&lt;typename Iter &gt; </td></tr>
-<tr class="memitem:ga3dce9130c89c2ca4837afd655669b87e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga3dce9130c89c2ca4837afd655669b87e">boost::mpl11::reverse</a> = rules::reverse_impl&lt; Iter &gt;</td></tr>
-<tr class="memdesc:ga3dce9130c89c2ca4837afd655669b87e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elements of an iterable in reverse order. <br/></td></tr>
-<tr class="separator:ga3dce9130c89c2ca4837afd655669b87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6de84eaf9c4646c00657b755a22e327b"><td class="memTemplParams" colspan="2"><a class="anchor" id="ga6de84eaf9c4646c00657b755a22e327b"></a>
-template&lt;typename Iter , detail::std_size_t Start, detail::std_size_t Stop&gt; </td></tr>
-<tr class="memitem:ga6de84eaf9c4646c00657b755a22e327b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga6de84eaf9c4646c00657b755a22e327b">boost::mpl11::slice_c</a> = slice&lt; Iter, size_t&lt; Start &gt;, size_t&lt; Stop &gt;&gt;</td></tr>
-<tr class="memdesc:ga6de84eaf9c4646c00657b755a22e327b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>slice&lt;Iter, <a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integral_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;Start&gt;, <a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integral_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;Stop&gt;&gt;</code>. <br/></td></tr>
-<tr class="separator:ga6de84eaf9c4646c00657b755a22e327b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga83120e8941eadc6e79ceb77a84287654"><td class="memTemplParams" colspan="2">template&lt;typename N , typename Iter &gt; </td></tr>
-<tr class="memitem:ga83120e8941eadc6e79ceb77a84287654"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga83120e8941eadc6e79ceb77a84287654">boost::mpl11::take</a> = rules::take_impl&lt; N, Iter &gt;</td></tr>
-<tr class="memdesc:ga83120e8941eadc6e79ceb77a84287654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an iterable containing the first <code>N</code> elements of another iterable.  <a href="group___iterable.html#ga83120e8941eadc6e79ceb77a84287654">More...</a><br/></td></tr>
-<tr class="separator:ga83120e8941eadc6e79ceb77a84287654"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaefbcbda863b53814a7ed34ef9799acba"><td class="memTemplParams" colspan="2"><a class="anchor" id="gaefbcbda863b53814a7ed34ef9799acba"></a>
-template&lt;detail::std_size_t N, typename Iter &gt; </td></tr>
-<tr class="memitem:gaefbcbda863b53814a7ed34ef9799acba"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#gaefbcbda863b53814a7ed34ef9799acba">boost::mpl11::take_c</a> = take&lt; size_t&lt; N &gt;, Iter &gt;</td></tr>
-<tr class="memdesc:gaefbcbda863b53814a7ed34ef9799acba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>take&lt;<a class="el" href="structboost_1_1mpl11_1_1size__t.html" title="Alias to integral_c&lt;std::size_t, N&gt;; provided for convenience. ">size_t</a>&lt;N&gt;, Iter&gt;</code>. <br/></td></tr>
-<tr class="separator:gaefbcbda863b53814a7ed34ef9799acba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga680e0545b32a6618e43a1a13aa0f11ed"><td class="memTemplParams" colspan="2"><a class="anchor" id="ga680e0545b32a6618e43a1a13aa0f11ed"></a>
-template&lt;typename Predicate , typename Iter &gt; </td></tr>
-<tr class="memitem:ga680e0545b32a6618e43a1a13aa0f11ed"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group___iterable.html#ga680e0545b32a6618e43a1a13aa0f11ed">boost::mpl11::take_until</a> = take_while&lt; compose&lt; quote&lt; not_ &gt;, Predicate &gt;, Iter &gt;</td></tr>
-<tr class="memdesc:ga680e0545b32a6618e43a1a13aa0f11ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1take__while.html" title="Returns the longest prefix of an iterable in which all elements satisfy the Predicate. ">take_while</a></code> with a negated <code>Predicate</code>. <br/></td></tr>
-<tr class="separator:ga680e0545b32a6618e43a1a13aa0f11ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Forward declares the <a class="el" href="group___iterable.html">Iterable</a> module. </p>
+<div class="textblock"><p>Forward declares the <a class="el" href="group___iterable.html">Iterable</a> typeclass. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:09 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

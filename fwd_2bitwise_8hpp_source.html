@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>mpl11: boost/mpl11/fwd/bitwise.hpp Source File</title>
+<title>MPL11: boost/mpl11/fwd/bitwise.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,9 +22,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">mpl11
+   <div id="projectname">MPL11
    </div>
-   <div id="projectbrief">Template metaprogramming for humans</div>
   </td>
  </tr>
  </tbody>
@@ -40,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,75 +94,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_BITWISE_HPP</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_BITWISE_HPP</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="std__size__t_8hpp.html">boost/mpl11/detail/std_size_t.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> TagL, <span class="keyword">typename</span> TagR = TagL&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">struct </span>Bitwise;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">struct </span>bitand_;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">using</span> bitand_t = <span class="keyword">typename</span> bitand_&lt;T1, T2, Tn...&gt;::type;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">struct </span>bitor_;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">using</span> bitor_t = <span class="keyword">typename</span> bitor_&lt;T1, T2, Tn...&gt;::type;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">struct </span>bitxor;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ...Tn&gt;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">using</span> bitxor_t = <span class="keyword">typename</span> bitxor&lt;T1, T2, Tn...&gt;::type;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, detail::std_<span class="keywordtype">size_t</span> Shift&gt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">struct </span>shift_right_c;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, detail::std_<span class="keywordtype">size_t</span> Shift&gt;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">using</span> shift_right_c_t = <span class="keyword">typename</span> shift_right_c&lt;T, Shift&gt;::type;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="doxygen_8hpp.html">boost/mpl11/detail/doxygen.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="std__size__t_8hpp.html">boost/mpl11/detail/std_size_t.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2integer_8hpp.html">boost/mpl11/fwd/integer.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right = Left&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">struct </span>Bitwise;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xn&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">struct </span>bitand_;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xn&gt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">struct </span>bitor_;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xn&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">struct </span>bitxor;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> n&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">struct </span>shift_right;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, detail::std_<span class="keywordtype">size_t</span> n&gt;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1shift__right__c.html">   62</a></span>&#160;    <a class="code" href="doxygen_8hpp.html#ad607f1c88441b0e243b1f67bff9c0ec9">BOOST_MPL11_DOXYGEN_ALIAS</a>(<a class="code" href="structboost_1_1mpl11_1_1shift__right__c.html">shift_right_c</a>, <a class="code" href="structboost_1_1mpl11_1_1shift__right.html">shift_right</a>&lt;x, <a class="code" href="structboost_1_1mpl11_1_1size__t.html">size_t&lt;n&gt;</a>&gt;);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> n&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1shift__left.html">shift_left</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, detail::std_<span class="keywordtype">size_t</span> n&gt;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1shift__left__c.html">   75</a></span>&#160;    <a class="code" href="doxygen_8hpp.html#ad607f1c88441b0e243b1f67bff9c0ec9">BOOST_MPL11_DOXYGEN_ALIAS</a>(<a class="code" href="structboost_1_1mpl11_1_1shift__left__c.html">shift_left_c</a>, <a class="code" href="structboost_1_1mpl11_1_1shift__left.html">shift_left</a>&lt;x, <a class="code" href="structboost_1_1mpl11_1_1size__t.html">size_t&lt;n&gt;</a>&gt;);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Shift&gt;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">struct </span>shift_right;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1compl__.html">compl_</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Shift&gt;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">using</span> shift_right_t = <span class="keyword">typename</span> shift_right&lt;T, Shift&gt;::type;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, detail::std_<span class="keywordtype">size_t</span> Shift&gt;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">struct </span>shift_left_c;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, detail::std_<span class="keywordtype">size_t</span> Shift&gt;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">using</span> shift_left_c_t = <span class="keyword">typename</span> shift_left_c&lt;T, Shift&gt;::type;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Shift&gt;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">struct </span>shift_left;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> Shift&gt;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">using</span> shift_left_t = <span class="keyword">typename</span> shift_left&lt;T, Shift&gt;::type;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">struct </span>compl_;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">using</span> compl_t = <span class="keyword">typename</span> compl_&lt;T&gt;::type;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_BITWISE_HPP</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_BITWISE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1shift__left_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1shift__left.html">boost::mpl11::shift_left</a></div><div class="ttdoc">Bitwise left shift (&lt;&lt;). </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:99</div></div>
+<div class="ttc" id="fwd_2integer_8hpp_html"><div class="ttname"><a href="fwd_2integer_8hpp.html">integer.hpp</a></div><div class="ttdoc">Forward declares the Integer datatype. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1shift__right_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1shift__right.html">boost::mpl11::shift_right</a></div><div class="ttdoc">Bitwise right shift (&gt;&gt;). </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:109</div></div>
+<div class="ttc" id="doxygen_8hpp_html"><div class="ttname"><a href="doxygen_8hpp.html">doxygen.hpp</a></div><div class="ttdoc">Defines Doxygen related utilities. </div></div>
 <div class="ttc" id="std__size__t_8hpp_html"><div class="ttname"><a href="std__size__t_8hpp.html">std_size_t.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::std_size_t. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1shift__right__c_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1shift__right__c.html">boost::mpl11::shift_right_c</a></div><div class="ttdoc">Equivalent to shift_right&lt;x, size_t&lt;n&gt;&gt;. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:62</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1size__t_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1size__t.html">boost::mpl11::size_t</a></div><div class="ttdoc">Alias to integer_c&lt;std::size_t, N&gt;; provided for convenience. </div><div class="ttdef"><b>Definition:</b> integer.hpp:116</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1compl___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1compl__.html">boost::mpl11::compl_</a></div><div class="ttdoc">Bitwise complement (~). </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:119</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1shift__left__c_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1shift__left__c.html">boost::mpl11::shift_left_c</a></div><div class="ttdoc">Equivalent to shift_left&lt;x, size_t&lt;n&gt;&gt;. </div><div class="ttdef"><b>Definition:</b> bitwise.hpp:75</div></div>
+<div class="ttc" id="doxygen_8hpp_html_ad607f1c88441b0e243b1f67bff9c0ec9"><div class="ttname"><a href="doxygen_8hpp.html#ad607f1c88441b0e243b1f67bff9c0ec9">BOOST_MPL11_DOXYGEN_ALIAS</a></div><div class="ttdeci">#define BOOST_MPL11_DOXYGEN_ALIAS(NAME,...)</div><div class="ttdoc">Macro expanding to a struct when generating the documentation and to an alias otherwise. </div><div class="ttdef"><b>Definition:</b> doxygen.hpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 19 2014 17:50:08 for mpl11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 08:33:50 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
