@@ -1208,29 +1208,6 @@ in most cases.
 - [ ] Consider having `infix` and `section` aliases to improve legibility when
       using some metafunctions.
 - [ ] Clarify the notion of weak head normal form if this applies to us.
-- [ ] Think about a way to have a curry/uncurry metafunction class, if that
-      seems useful. One difficulty is to handle variadic metafunctions. Also,
-      since we don't have automatic currying and the syntax for metafunction
-      application is not the same as in Haskell, it might not be useful at all.
-      Consider:
-
-      ```cpp
-      // This is currying (not sure it's useful):
-      template <typename, typename, typename>
-      struct f_;
-      using f = curry3<quote<f_>>;
-      using f1 = apply<f, x>;
-      using f2 = apply<f1, y>;
-      using f3 = apply<f2, z>;
-
-      // This is partial application (clearly useful, but we already have that)
-      template <typename, typename, typename>
-      struct g_;
-      using g = quote<g_>;
-      using g1 = partial<g, x>;
-      using g2 = partial<g1, y>;
-      using g3 = partial<g2, z>;
-      ```
 - [ ] Consider having a wrapper that allows treating template specializations
       as data. Something like sequence operations on template specializations
       and/or tree operations.

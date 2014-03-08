@@ -65,6 +65,7 @@ mpl11_add_tests(
     argmap
     bind
     compose
+    currying
     fix
     flip
     id

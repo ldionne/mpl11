@@ -16,6 +16,11 @@ namespace boost { namespace mpl11 {
      *
      * General purpose metafunctions and metafunction classes.
      *
+     *
+     * @note
+     * For legibility reasons, `apply<f, x1, ..., xn>` is sometimes noted as
+     * `f(x1, ..., xn)`.
+     *
      * @{
      */
 
@@ -43,6 +48,15 @@ namespace boost { namespace mpl11 {
      */
     template <typename f, typename ...x>
     struct apply;
+
+    /*!
+     * Invokes a curried metafunction class with the given arguments.
+     *
+     * Specifically, `apply_curried<f, x1, ..., xn>` is equivalent to
+     * `f(x1)...(xn)`.
+     */
+    template <typename f, typename ...x>
+    struct apply_curried;
 
     //! The identity metafunction - returns its argument unchanged.
     template <typename x>
@@ -83,6 +97,27 @@ namespace boost { namespace mpl11 {
      */
     template <typename f, typename ...x>
     struct partial;
+
+    /*!
+     * Returns a curried metafunction class.
+     *
+     * `n` must be a positive (meaning `!= 0`) integer representing the
+     * number of curried arguments of the created metafunction class.
+     * Specifically, `curry<n, f>(x1)...(xn)` is equivalent to
+     * `f(x1, ..., xn)`.
+     */
+    template <detail::std_size_t n, typename f>
+    struct curry;
+
+    /*!
+     * Returns a uncurried metafunction class.
+     *
+     * `n` must be a positive (meaning `!= 0`) integer representing the
+     * number of arguments taken by `f` in curried form. Specifically,
+     * `uncurry<n, f>(x1, ..., xn)` is equivalent to `f(x1)...(xn)`.
+     */
+    template <detail::std_size_t n, typename f>
+    struct uncurry;
 
     /*!
      * Returns a metafunction class computing the least fixed point of `f`.
@@ -231,18 +266,21 @@ namespace boost { namespace mpl11 {
      */
     namespace functional {
         using mpl11::always;
-        using mpl11::flip;
         using mpl11::apply;
-        using mpl11::id;
-        using mpl11::quote;
-        using mpl11::into;
-        using mpl11::partial;
-        using mpl11::fix;
-        using mpl11::compose;
-        using mpl11::argmap;
-        using mpl11::on;
-        using mpl11::bind;
+        using mpl11::apply_curried;
         using mpl11::arg;
+        using mpl11::argmap;
+        using mpl11::bind;
+        using mpl11::compose;
+        using mpl11::curry;
+        using mpl11::fix;
+        using mpl11::flip;
+        using mpl11::id;
+        using mpl11::into;
+        using mpl11::on;
+        using mpl11::partial;
+        using mpl11::quote;
+        using mpl11::uncurry;
     }
     //! @}
 }} // end namespace boost::mpl11

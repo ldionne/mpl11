@@ -11,6 +11,7 @@
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_index_sequence.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -82,6 +83,64 @@ namespace boost { namespace mpl11 {
             using type = f<x..., y...>;
         };
     };
+
+    ////////////////////
+    // apply_curried
+    ////////////////////
+    template <typename f, typename ...xs>
+    struct apply_curried
+        : detail::strict_variadic_foldl<quote<apply>, f, xs...>
+    { };
+
+    ////////////////////
+    // curry
+    ////////////////////
+    template <detail::std_size_t n, typename f>
+    struct curry {
+#if !defined(BOOST_MPL11_NO_ASSERTIONS)
+        static_assert(n > 0,
+        "Invalid usage of curry<n, f> with a zero-valued n.");
+#endif
+
+        using type = curry;
+
+        template <typename x>
+        using apply = curry<n-1, partial<f, x>>;
+    };
+
+    template <typename f>
+    struct curry<1, f> {
+        using type = curry;
+
+        template <typename x>
+        using apply = typename f::type::template apply<x>;
+    };
+
+    ////////////////////
+    // uncurry
+    ////////////////////
+    template <detail::std_size_t n, typename f>
+    struct uncurry {
+        using type = uncurry;
+
+#if defined(BOOST_MPL11_NO_ASSERTIONS)
+        template <typename ...xs>
+        using apply = apply_curried<f, xs...>;
+#else
+        static_assert(n > 0,
+        "Invalid usage of uncurry<n, f> with a zero-valued n.");
+
+        template <typename ...xs>
+        struct apply : apply_curried<f, xs...> {
+            static_assert(sizeof...(xs) <= n,
+            "Invalid usage of uncurry<n, f> with more than n arguments.");
+
+            static_assert(sizeof...(xs) >= n,
+            "Invalid usage of uncurry<n, f> with less than n arguments.");
+        };
+#endif
+    };
+
 
     ////////////////////
     // quote
