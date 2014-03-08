@@ -7,17 +7,29 @@
 
 BENCHMARK_CODE=<<-END_OF_BENCHMARK
 
-template <long a0, long a1, long ...aN>
-struct max
-    : max<a0, max<a1, aN...>::value>
-{ };
+<% if opts[:standard_recursion] %>
 
-template <long a0, long a1>
-struct max<a0, a1> {
-    static constexpr long value = a0 < a1 ? a1 : a0;
-};
+    template <long a0, long a1, long ...aN>
+    struct max
+        : max<a0, max<a1, aN...>::value>
+    { };
 
-<% if opts[:union] %>
+    template <long a0, long a1>
+    struct max<a0, a1> {
+        static constexpr long value = a0 < a1 ? a1 : a0;
+    };
+
+<% elsif opts[:union] %>
+
+    template <long a0, long a1, long ...aN>
+    struct max
+        : max<a0, max<a1, aN...>::value>
+    { };
+
+    template <long a0, long a1>
+    struct max<a0, a1> {
+        static constexpr long value = a0 < a1 ? a1 : a0;
+    };
 
     template <long a0, long a1, long a2, long a3, long a4, long a5, long a6>
     union alignas(char) batch_max_impl {
@@ -50,6 +62,29 @@ struct max<a0, a1> {
     >
     struct max<a0, a1, a2, a3, a4, a5, a6, a7, aN...>
         : max<max<a0, a1, a2, a3, a4, a5, a6>::value, a7, aN...>
+    { };
+
+<% elsif opts[:argwise] %>
+
+    template <long v>
+    struct integer_c;
+
+    template <typename a0, typename a1, typename ...aN>
+    struct max_impl;
+
+    template <template <long> class ...Ints, long v>
+    struct max_impl<Ints<v>...> {
+        static constexpr auto value = v;
+    };
+
+    template <long v, long ...vs>
+    struct max_impl<integer_c<v>, integer_c<vs>...>
+        : max_impl<integer_c<v>, integer_c<(v < vs ? vs : v)>...>
+    { };
+
+    template <long a0, long a1, long ...aN>
+    struct max
+        : max_impl<integer_c<a0>, integer_c<a1>, integer_c<aN>...>
     { };
 
 <% end %>
@@ -101,24 +136,50 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
-        Gnuplot::Plot.new(io) do |plot|
-            plot.title      "max benchmark with #{compiler.name}"
-            plot.xlabel     "number of elements"
-            plot.ylabel     "compile time"
-            plot.format     'y "%f s"'
+    def make_plot(compiler, _, opts)
+        max_points = 200
 
-            for curve in [:union, :standard_recursion]
-                points = generate_points(1..10) { |n|
-                    opts[:ints] = (0..n).to_a.shuffle
-                    opts[curve] = true
-                    compiler.compile_template_string(BENCHMARK_CODE, binding).real
-                }
+        Gnuplot.open do |io|
+            Gnuplot::Plot.new(io) do |plot|
+                plot.title      "max with #{compiler.name} (dataset without redundancy)"
+                plot.xlabel     "number of elements"
+                plot.ylabel     "compile time"
+                plot.format     'y "%f s"'
 
-                plot.data << Gnuplot::DataSet.new(points) { |ds|
-                    ds.with = "lines"
-                    ds.title = curve
-                }
+                for curve in [:union, :standard_recursion, :argwise]
+                    points = generate_points(1..max_points) { |n|
+                        opts[:ints] = (0..n).to_a.shuffle
+                        opts[curve] = true
+                        compiler.compile_template_string(BENCHMARK_CODE, binding).real
+                    }
+
+                    plot.data << Gnuplot::DataSet.new(points) { |ds|
+                        ds.with = "lines"
+                        ds.title = curve
+                    }
+                end
+            end
+        end
+
+        Gnuplot.open do |io|
+            Gnuplot::Plot.new(io) do |plot|
+                plot.title      "max with #{compiler.name} (dataset with redundancy)"
+                plot.xlabel     "number of elements"
+                plot.ylabel     "compile time"
+                plot.format     'y "%f s"'
+
+                for curve in [:union, :standard_recursion, :argwise]
+                    points = generate_points(1..max_points) { |n|
+                        opts[:ints] = ((0..n/2).to_a + (0..n-n/2).to_a).shuffle
+                        opts[curve] = true
+                        compiler.compile_template_string(BENCHMARK_CODE, binding).real
+                    }
+
+                    plot.data << Gnuplot::DataSet.new(points) { |ds|
+                        ds.with = "lines"
+                        ds.title = curve
+                    }
+                end
             end
         end
     end
