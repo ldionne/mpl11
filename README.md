@@ -1033,8 +1033,7 @@ take boxed types are similar to the reasons for writing call-by-need
 metafunctions.
 
 The `head` metafunction we have so far is useful, but consider the following
-datatype and boxed data constructor. Here, suppose that we don't have the
-control over that code and that the constructor takes boxed arguments.
+datatype and boxed data constructor taking boxed arguments.
 
 ```cpp
 struct Vector;
@@ -1057,11 +1056,12 @@ struct vector<Head, Tail...> {
 
 Since `Vector` is really some kind of `List`, it is only reasonable to expect
 that we can invoke `head` on a `Vector` just like we do on a `List`. But how
-would we go about implementing `head` for `Vector`? The only way we have right
-now is to use partial specialization of `head_impl` on `Vector`'s constructor.
-Unfortunately, that constructor is `vector<...>::type`, not `vector<...>`. Since
-we can't partially specialize on a dependent type, we're out of luck. To bypass
-this limitation, we will refine `head` so it uses the datatype of its argument.
+would we go about implementing `head` for `Vector`? Assuming we can't modify
+the implementation of `Vector`, the only way we have right now is to use partial
+specialization of `head_impl` on `Vector`'s constructor. Unfortunately, that
+constructor is `vector<...>::type`, not `vector<...>`. Since we can't partially
+specialize on a dependent type, we're out of luck. To bypass this limitation,
+we will refine `head` so it uses the datatype of its argument.
 
 ```cpp
 template <typename Datatype>
@@ -1128,7 +1128,7 @@ __TODO__
 The development of this library drew inspiration from a couple of projects with
 different levels of involvement in template metaprogramming. I would like to
 thank the people involved in these projects for their work, without which this
-library wouldn't be the same. The most notable sources of inspirations and
+library wouldn't be the same. The most notable sources of inspiration and
 enlightenment were:
 
 - The [Haskell][] programming language
@@ -1172,6 +1172,17 @@ I could not find any use case, I decided to make them normal metafunctions.
 ### Why aren't `*_t` versions of metafunctions provided like in C++1y?
 Switching the evaluation burden from the caller to the callee makes this useless
 in most cases.
+
+### Why are MPL-style non-template nullary metafunctions not allowed?
+It introduces a special case in the definition of metafunction that prevents us
+from using `f::apply<>` to invoke a nullary metafunction class. We have to use
+`apply<f>`, which will then use either `f::apply<>` or `f::apply`. This adds a
+template instantiation and an overload resolution to each metafunction class
+invocation, which significantly slows down compilation. Considering nullary
+metafunctions are of limited use anyway (why would you want a function without
+arguments in a purely functional setting?), this is not worth the trouble. Also,
+note that MPL-style nullary non-template metafunctions fit in the definition of
+a boxed type, so they're not completely forgotten.
 
 
 ## Todo list
