@@ -1220,6 +1220,7 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider having a wrapper that allows treating template specializations
       as data. Something like sequence operations on template specializations
       and/or tree operations.
+- [ ] Consider adding `while_` and `until` metafunctions.
 
 
 <!-- Links -->

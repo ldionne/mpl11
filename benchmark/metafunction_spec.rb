@@ -50,7 +50,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
+    def make_plot(compiler, io, opts_)
         Gnuplot::Plot.new(io) do |plot|
             plot.title      "metafunction_spec benchmark with #{compiler.name}"
             plot.xlabel     "number of specializations"
@@ -58,9 +58,10 @@ class Main < Benchmarker
             plot.format     'y "%f s"'
 
             for curve in [:full_specialization, :nested_type]
+                opts = opts_.clone
+                opts[curve] = true
                 points = generate_points((0..5_000).step(100)) { |nspec|
                     opts[:nspec] = nspec
-                    opts[curve] = true
                     compiler.compile_template_string(BENCHMARK_CODE, binding).real
                 }
 

@@ -13,7 +13,7 @@ BENCHMARK_CODE=<<-END_OF_BENCHMARK
     #include <boost/mpl11/list.hpp>
 <% end %>
 
-<% if opts[:mpl] or opts[:fair] %>
+<% if opts[:mpl] or (xs.length <= 50 and opts[:fair]) %>
     #include <boost/mpl/fold.hpp>
     #include <%= "<boost/mpl/vector/vector" + round_up(xs.length, 1).to_s + ".hpp>" %>
 <% end %>
@@ -99,7 +99,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
+    def make_plot(compiler, io, opts_)
         Gnuplot::Plot.new(io) do |plot|
             plot.title      "left fold benchmark with #{compiler.name}"
             plot.xlabel     "number of folded elements"
@@ -107,9 +107,10 @@ class Main < Benchmarker
             plot.format     'y "%f s"'
 
             for curve in [:mpl11, :mpl, :aliases, :standard_recursion]
+                opts = opts_.clone
+                opts[curve] = true
                 points = generate_points(0..10) { |n|
                     opts[:n_elements] = n
-                    opts[curve] = true
                     compiler.compile_template_string(BENCHMARK_CODE, binding).real
                 }
 

@@ -163,7 +163,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
+    def make_plot(compiler, io, opts_)
         Gnuplot::Plot.new(io) do |plot|
             plot.title      "plus benchmark with #{compiler.name}"
             plot.xlabel     "number of summed integers"
@@ -175,6 +175,7 @@ class Main < Benchmarker
                       :sizeof_trick]
 
             for curve in curves
+                opts = opts_.clone
                 opts[curve] = true
                 points = generate_points(2..5) { |n|
                     opts[:ints] = (0..n).collect{ |i| (-1)**i * i }

@@ -136,7 +136,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, _, opts)
+    def make_plot(compiler, _, opts_)
         max_points = 200
 
         Gnuplot.open do |io|
@@ -147,9 +147,10 @@ class Main < Benchmarker
                 plot.format     'y "%f s"'
 
                 for curve in [:union, :standard_recursion, :argwise]
+                    opts = opts_.clone
+                    opts[curve] = true
                     points = generate_points(1..max_points) { |n|
                         opts[:ints] = (0..n).to_a.shuffle
-                        opts[curve] = true
                         compiler.compile_template_string(BENCHMARK_CODE, binding).real
                     }
 
@@ -169,9 +170,10 @@ class Main < Benchmarker
                 plot.format     'y "%f s"'
 
                 for curve in [:union, :standard_recursion, :argwise]
+                    opts = opts_.clone
+                    opts[curve] = true
                     points = generate_points(1..max_points) { |n|
                         opts[:ints] = ((0..n/2).to_a + (0..n-n/2).to_a).shuffle
-                        opts[curve] = true
                         compiler.compile_template_string(BENCHMARK_CODE, binding).real
                     }
 

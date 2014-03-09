@@ -55,7 +55,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
+    def make_plot(compiler, io, opts_)
         Gnuplot::Plot.new(io) do |plot|
             plot.title      "mention vs instantiating templates with #{compiler.name}"
             plot.xlabel     "number of templates"
@@ -63,9 +63,10 @@ class Main < Benchmarker
             plot.format     'y "%f s"'
 
             for curve in [:mention, :instantiate]
+                opts = opts_.clone
+                opts[curve] = true
                 points = generate_points(1..10) { |n|
                     opts[:n] = n
-                    opts[curve] = true
                     compiler.compile_template_string(BENCHMARK_CODE, binding).real
                 }
 

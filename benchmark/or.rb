@@ -194,7 +194,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
+    def make_plot(compiler, io, opts_)
         Gnuplot::Plot.new(io) do |plot|
             plot.title      "logical or benchmark with #{compiler.name}"
             plot.xlabel     "number of or'ed elements"
@@ -205,9 +205,10 @@ class Main < Benchmarker
                       :specialization, :aliases, :short_circuit_structs]
 
             for curve in curves
+                opts = opts_.clone
+                opts[curve] = true
                 points = generate_points(1..10) { |n|
                     opts[:bools] = (0..n).collect{'false_'} << 'true_'
-                    opts[curve] = true
                     compiler.compile_template_string(BENCHMARK_CODE, binding).real
                 }
 

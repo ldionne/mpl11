@@ -69,7 +69,7 @@ require_relative 'bench'
 
 
 class Main < Benchmarker
-    def make_plot(compiler, io, opts)
+    def make_plot(compiler, io, opts_)
         Gnuplot::Plot.new(io) do |plot|
             plot.title      "pair reuse benchmark with #{compiler.name}"
             plot.xlabel     "number of instantiated pairs"
@@ -77,6 +77,7 @@ class Main < Benchmarker
             plot.format     'y "%f s"'
 
             for curve in [:specialized, :reuse]
+                opts = opts_.clone
                 opts[curve] = true
                 points = generate_points(1..10) { |n|
                     opts[:elements] = n
