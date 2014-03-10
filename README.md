@@ -1472,7 +1472,11 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider adding `while_` and `until` metafunctions.
 - [ ] Consider ditching `Foreign` and making the default datatype the data
       constructor itself.
-- [ ] Consider adding `Maybe` and `Either`
+- [ ] Consider adding `Either`
+- [ ] Right now, we must include `boost/mpl11/core.hpp` to get the
+      `instantiate<>` template in client code. Maybe typeclass headers
+      should take care of it. Or maybe `boost/mpl11/core.hpp` should
+      never have to be included by clients altogether?
 
 
 <!-- Links -->
