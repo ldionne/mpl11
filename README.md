@@ -1136,11 +1136,15 @@ struct trait<T, mpl11::bool_<std::is_trivial<T>::value>> {
 };
 ```
 
-Note that we had to use `bool_<...>` instead of `std::is_trivial<T>::type`
-because the latter is `std::true_type`, which is not necessarily the same
-as `true_`. Since this functionality can really be useful, it might be a
-good idea to support it in the `head_impl` metafunction class. Fortunately,
-that only requires changing the `head_impl` forward declaration to:
+> Note that we used `bool_<...>` instead of `std::is_trivial<T>::type` because
+> the latter is `std::true_type`, which is not necessarily the same as `true_`.
+>
+> Also, we don't use a straight `bool` for the enabler because partial
+> specializations cannot have dependent non-type template arguments.
+
+Since this functionality can really be useful, it might be a good idea to
+support it in the `head_impl` metafunction class. Fortunately, that only
+requires changing the `head_impl` forward declaration to:
 
 ```cpp
 template <typename Datatype, typename = true_>
