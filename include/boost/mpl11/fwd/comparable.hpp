@@ -24,10 +24,6 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * Either `equal` or `not_equal`.
      *
-     *
-     * @todo
-     * Document the function of the third template parameter.
-     *
      * @{
      */
     template <typename Left, typename Right = Left, typename = true_>

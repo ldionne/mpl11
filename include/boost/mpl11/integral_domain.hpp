@@ -13,7 +13,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct IntegralDomain {
         template <typename x, typename y>
         using div_impl =

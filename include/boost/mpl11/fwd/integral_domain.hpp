@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_INTEGRAL_DOMAIN_HPP
 #define BOOST_MPL11_FWD_INTEGRAL_DOMAIN_HPP
 
+#include <boost/mpl11/fwd/bool.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -22,7 +25,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Left, typename Right = Left>
+    template <typename Left, typename Right = Left, typename = true_>
     struct IntegralDomain;
 
     //! Integer division of `x` by `y`.

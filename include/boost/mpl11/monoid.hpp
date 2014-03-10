@@ -15,7 +15,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct Monoid {
         template <typename x, typename y>
         using plus_impl =

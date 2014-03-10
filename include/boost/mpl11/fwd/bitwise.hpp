@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/integer.hpp>
 
 
@@ -33,7 +34,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Left, typename Right = Left>
+    template <typename Left, typename Right = Left, typename = true_>
     struct Bitwise;
 
     //! Bitwise `and` (`&&`).

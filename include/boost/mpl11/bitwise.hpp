@@ -17,7 +17,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct Bitwise {
     private:
         using Common = Bitwise<typename common_datatype<Left, Right>::type>;

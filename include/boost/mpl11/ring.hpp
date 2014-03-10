@@ -15,7 +15,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct Ring {
         template <typename x, typename y>
         using mult_impl =

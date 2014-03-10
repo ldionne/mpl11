@@ -207,7 +207,7 @@ struct drop :
     iterable_detail::drop_impl<n::type::value, iter>
 { };
 
-template <typename Datatype>
+template <typename Datatype, typename>
 struct Iterable : false_ { };
 
 struct default_Iterable : true_ {

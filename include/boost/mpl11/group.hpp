@@ -14,7 +14,7 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right>
+    template <typename Left, typename Right, typename>
     struct Group {
         template <typename x, typename y>
         using minus_impl =

@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_ENUMERABLE_HPP
 #define BOOST_MPL11_FWD_ENUMERABLE_HPP
 
+#include <boost/mpl11/fwd/bool.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -23,7 +26,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Datatype>
+    template <typename Datatype, typename = true_>
     struct Enumerable;
 
     //! Returns the successor of the given object.

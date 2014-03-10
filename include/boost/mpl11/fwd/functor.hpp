@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_FUNCTOR_HPP
 #define BOOST_MPL11_FWD_FUNCTOR_HPP
 
+#include <boost/mpl11/fwd/bool.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -26,7 +29,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Datatype>
+    template <typename Datatype, typename = true_>
     struct Functor;
 
     //! Returns the result of mapping a metafunction class over a `Functor`.

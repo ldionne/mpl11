@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
 #include <boost/mpl11/fwd/integer.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
@@ -84,7 +85,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Datatype>
+    template <typename Datatype, typename = true_>
     struct Iterable;
 
     //! Returns the first element of a non-empty iterable.

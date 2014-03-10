@@ -6,6 +6,9 @@
 #ifndef BOOST_MPL11_FWD_FIELD_HPP
 #define BOOST_MPL11_FWD_FIELD_HPP
 
+#include <boost/mpl11/fwd/bool.hpp>
+
+
 namespace boost { namespace mpl11 {
     /*!
      * @ingroup typeclasses
@@ -26,7 +29,7 @@ namespace boost { namespace mpl11 {
      *
      * @{
      */
-    template <typename Left, typename Right = Left>
+    template <typename Left, typename Right = Left, typename = true_>
     struct Field;
 
     //! Multiplication of `x` by the multiplicative inverse of `y`.
