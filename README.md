@@ -17,7 +17,7 @@ the library was redesigned and the name does not fit so well anymore.
 - [Introduction](#introduction)
     + [Traditional metafunctions](#traditional-metafunctions)
     + [Evaluation strategies](#evaluation-strategies)
-- [The MPL11](#the-mpl11)
+- [Core concepts](#core-concepts)
     + [Boxed types](#boxed-types)
     + [Metafunctions](#metafunctions)
     + [Non-strictness](#non-strictness)
@@ -376,7 +376,7 @@ call-by-need is the reduction of syntactic noise, particularly in dependent
 contexts where `typename` and `::type` become a real pain.
 
 
-## The MPL11
+## Core concepts
 This section explains the core concepts of the library. We start with a couple
 of definitions; be careful because some definitions clash with those from the
 MPL, and some terms were used to denote different things in the introduction.
@@ -956,8 +956,7 @@ mpl11::cast_to<List>::apply<my_tuple>::type; // == my_list
 `mpl11::cast_to` simply deduces the datatype to cast from by using that of its
 argument and then forwards to `mpl11::cast`.
 
-__TODO__
-- give more details on the `Foreign` datatype
+> __TODO__: Give more details on the `Foreign` datatype.
 
 
 ### Methods
@@ -1103,7 +1102,57 @@ struct head_impl<Vector> {
 };
 ```
 
-Metafunctions using this dispatching technique are called __methods__.
+It is sometimes useful to exert a finer grained control over template
+specializations than what we currently have. A common idiom is for the
+primary template to provide an additional dummy parameter which can be
+SFINAE'd upon in partial specializations:
+
+```cpp
+template <typename T, typename Enable = void>
+struct trait;
+
+template <typename T>
+struct trait<T, std::enable_if_t<std::is_trivial<T>::value>> {
+    // ...
+};
+```
+
+This enables the specialization to depend on an arbitrary compile-time boolean
+expression (in fact on the syntactic validity of an arbitrary expression). Note
+that all partial specializations using the enabler must have mutually exclusive
+conditions or the specialization will be ambiguous; this can be tricky at times.
+A variant of this trick is to use a default type of `true_` instead of `void`
+for the dummy template parameter. That makes it possible to leave the
+`std::enable_if_t` part for most use cases:
+
+```cpp
+template <typename T, typename Enable = mpl11::true_>
+struct trait;
+
+template <typename T>
+struct trait<T, mpl11::bool_<std::is_trivial<T>::value>> {
+    // ...
+};
+```
+
+Note that we had to use `bool_<...>` instead of `std::is_trivial<T>::type`
+because the latter is `std::true_type`, which is not necessarily the same
+as `true_`. Since this functionality can really be useful, it might be a
+good idea to support it in the `head_impl` metafunction class. Fortunately,
+that only requires changing the `head_impl` forward declaration to:
+
+```cpp
+template <typename Datatype, typename = true_>
+struct head_impl;
+```
+
+> __TODO__: Provide a use case where this is useful.
+
+In this section, we went through the process of designing a simple yet
+powerful way of dispatching metafunctions. The subset of metafunctions
+using this dispatching technique are called __methods__ in the MPL11.
+
+> __TODO__: Tackle binary operators and mixed-datatype dispatch.
 
 
 ### Typeclasses
@@ -1111,13 +1160,198 @@ Typeclasses come from the observation that some methods are naturally related
 to each other. For example, take the `head`, `tail` and `is_empty` methods.
 When implementing any of these three methods, it is probable that the other
 two should also be implemented. Hence, it would be logical to group them in
-some way; that is the job of typeclasses.
+some way; that is the job of typeclasses. However, typeclasses are much more
+than mere method bundles. They provide a clean way of specifying and extending
+the interface of a datatype through a process called typeclass instantiation.
 
-__TODO__
-- Talk about default implementations
-- There's more but its not clear right now
-- Note that we can probably reuse a lot of stuff from the section on methods;
-  typeclasses are mostly (but not only) method bundles.
+Let's make a typeclass out of the `head`, `tail` and `is_empty` methods.
+Datatypes supporting all three methods look somewhat like `List`s; hence
+we will call the typeclass `Iterable`. We start by grouping the `*_impl`
+metafunction classes of the methods together under the `Iterable` banner.
+In the following code snippets, the `tail` and `is_empty` methods will be
+omitted when illustrating `head` suffices.
+
+```cpp
+struct Iterable {
+    template <typename Datatype, typename = true_>
+    struct head_impl;
+
+    // ...
+};
+
+template <typename Iter>
+struct head
+    : Iterable::head_impl<typename datatype<typename Iter::type>::type>::
+      template apply<typename Iter::type>
+{ };
+
+// ...
+```
+
+To implement the methods for `List`, we now have to write:
+
+```cpp
+template <>
+struct Iterable::head_impl<List> {
+    template <typename the_list>
+    struct apply {
+        // ...
+    };
+};
+```
+
+Soon enough, we notice that we can regroup the datatype parametrization on
+`Iterable` instead of leaving it on each nested metafunction class.
+
+```cpp
+template <typename Datatype, typename = true_>
+struct Iterable {
+    struct head_impl;
+
+    // ...
+};
+
+template <typename Iter>
+struct head
+    : Iterable<typename datatype<typename Iter::type>::type>::
+      head_impl::template apply<typename Iter::type>
+{ };
+
+// ...
+```
+
+The next logical step is to prune the superfluous indirection through the
+`*_impl` metafunction classes and to simply make them metafunctions.
+
+```cpp
+template <typename Datatype, typename = true_>
+struct Iterable {
+    template <typename Iter>
+    struct head_impl;
+
+    // ...
+};
+
+template <typename Iter>
+struct head
+    : Iterable<typename datatype<typename Iter::type>::type>::
+      template head_impl<typename Iter::type>
+{ };
+
+// ...
+```
+
+The `Iterable` template is called a __typeclass__, and metafunctions following
+this dispatching pattern through a typeclass are called __typeclass methods__
+in the MPL11. In order to implement `head` & friends, one would now write
+
+```cpp
+template <>
+struct Iterable<List> {
+    template <typename the_list>
+    struct head_impl {
+        // ...
+    };
+
+    // ...
+};
+```
+
+The three methods `Iterable` contains so far are very basic; for any given
+datatype, it is not possible to provide a suitable default implementation.
+However, there are other metafunctions that can be implemented in terms of
+these three basic blocks. For example, consider the `last` metafunction that
+returns the last element of an `Iterable`. A possible implementation would be:
+
+```cpp
+template <typename iter>
+struct last
+    : if_<is_empty<tail<iter>>,
+        head<iter>,
+        last<tail<iter>>
+    >
+{ };
+```
+
+While we could provide this metafunction as-is, some datatypes might be able
+to provide a more efficient implementation. Therefore, we would like to make
+it a method, but one that can be defaulted to the above.
+
+> Note that method dispatching incurs some compile-time overhead;
+> hence there is a tradeoff between using (typeclass) methods and
+> regular metafunctions. The rule of thumb is that if a method is
+> likely to never be specialized (i.e. the default implementation
+> is almost always the best), then it should probably be a regular
+> metafunction.
+
+It turns out that providing a default implementation can be done easily using
+typeclasses and a little convention. First, we make `last` a normal typeclass
+method.
+
+```cpp
+template <typename Iter>
+struct last
+    : Iterable<typename datatype<typename Iter::type>::type>::
+      template last_impl<typename Iter::type>
+{ };
+```
+
+Then, we require specializations of `Iterable` to inherit from a template
+class named `mpl11::instance`, which should be specialized by the designer
+of `Iterable` (that's us). That `mpl11::instance` specialization should
+provide a nested metafunction named `last_impl` corresponding to the default
+implementation of `last` shown above. If, for example, `List` does not implement
+`last_impl`, the default implementation provided by `mpl11::instance` will be
+used:
+
+```cpp
+namespace boost { namespace mpl11 {
+    template <typename Datatype>
+    struct instance<Iterable, Datatype> {
+        template <typename Iter>
+        struct last_impl {
+            // default implementation
+        };
+    };
+}}
+
+template <>
+struct Iterable<List> : mpl11::instance<Iterable, List> {
+    // ...
+};
+```
+
+Inheriting from `mpl11::instance` provides a lot more flexibility. One notable
+improvement is the ability to add new methods to `Iterable` without breaking
+existing client code, provided the new methods have a default implementation.
+Hence, in the MPL11, all typeclass specializations are required to inherit
+`mpl11::instance`, regardless of whether they actually need defaulted methods.
+The primary template of `mpl11::instance` is just an empty class, so nothing is
+done unless the designer of the typeclass decides to specialize it.
+
+> You might wonder why `mpl11::instance` also takes the datatype(s)
+> parameterizing the typeclass instead of the typeclass only. This
+> is because some typeclasses need to know which datatype they
+> operate on to provide meaningful defaults.
+
+A typeclass specialization inheriting from `mpl11::instance` is called
+a __typeclass instantiation__. When a typeclass instantiation exists for
+a typeclass `T` and a datatype `D`, we say that `D` is an __instance__ of
+`T`. Equivalently, we say that `D` __instantiates__ `T`, or sometimes that
+`D` __is a__ `T`. The set of definitions that _must_ be provided for a
+typeclass to be complete is called the __minimal complete definition__ of
+the typeclass. The minimal complete definition is typically the set of methods
+without a default implementation, but it must be documented for each typeclass.
+
+> The term _typeclass instantiation_ is borrowed from Haskell and should not be
+> mistaken with _template instantiation_ even though they share similarities,
+> especially in the MPL11.
+
+<!--  -->
+
+> __TODO__
+> - Tackle typeclasses as boolean metafunctions
+> - Tackle mixed-datatype typeclass-method dispatch
 
 
 ### Rewrite rules
@@ -1221,6 +1455,8 @@ a boxed type, so they're not completely forgotten.
       as data. Something like sequence operations on template specializations
       and/or tree operations.
 - [ ] Consider adding `while_` and `until` metafunctions.
+- [ ] Consider ditching `Foreign` and making the default datatype the data
+      constructor itself.
 
 
 <!-- Links -->
