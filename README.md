@@ -1434,7 +1434,11 @@ a boxed type, so they're not completely forgotten.
 - [ ] Sync the library with the tutorial. For example, there are some places
       where the tutorial says that we're taking unboxed types (and it is better
       to do so) but we're still taking boxed types in the library.
+- [ ] Don't take for granted metafunction classes provided by the library which
+      can be specialized are boxed. An example is cast, which is used as-if
+      it was boxed in common_method.hpp.
 - [ ] Implement fast arithmetic operations on sequences of `StaticConstant`s.
+      We probably want constexpr for this.
 - [ ] Implement associative data structures.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
     Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
@@ -1468,6 +1472,7 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider adding `while_` and `until` metafunctions.
 - [ ] Consider ditching `Foreign` and making the default datatype the data
       constructor itself.
+- [ ] Consider adding `Maybe` and `Either`
 
 
 <!-- Links -->

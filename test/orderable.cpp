@@ -9,6 +9,7 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/integer.hpp>
 
+#include "minimal_orderable.hpp"
 #include "test_method_dispatch.hpp"
 
 
@@ -62,23 +63,10 @@ struct test_dispatching :
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-struct Int;
-template <int i>
-struct x {
-    struct type {
-        static constexpr int value = i;
-        using mpl_datatype = Int;
-    };
-};
-namespace boost { namespace mpl11 {
-    template <>
-    struct Orderable<Int> : instantiate<Orderable>::with<Int> {
-        template <typename x, typename y>
-        using less_impl = bool_<(x::type::value < y::type::value)>;
-    };
-}}
+template <unsigned v>
+using x = minimal_orderable<v>;
 
-template <int from, int to>
+template <unsigned from, unsigned to>
 struct test_operators : test_operators<from, to+1> {
     static_assert(less<x<from>, x<to>>::value == (from < to), "");
     static_assert(less_equal<x<from>, x<to>>::value == (from <= to), "");
@@ -86,7 +74,7 @@ struct test_operators : test_operators<from, to+1> {
     static_assert(greater_equal<x<from>, x<to>>::value == (from >= to), "");
 };
 
-template <int from>
+template <unsigned from>
 struct test_operators<from, 5> : test_operators<from+1, 0> { };
 
 template <>
