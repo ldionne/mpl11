@@ -417,9 +417,10 @@ useful, but the definition is general enough to allow it.
 B<B<T>>; // this is a "box of B<T>", aka a "box of (box of T)"
 ```
 
-There exists a special `undefined` type which has the characteristic of causing
-a compile-time error when it is instantiated. `undefined` can be seen as a box
-containing no type at all. `undefined` is also called bottom.
+There exists a special boxed type named `undefined` (sometimes called _bottom_)
+which has the characteristic of causing a compile-time error when it is unboxed,
+even in SFINAE-able contexts. `undefined` can be seen as an invalid value, or
+the result of a computation that failed.
 
 Here are some examples to illustrate the previous definition:
 

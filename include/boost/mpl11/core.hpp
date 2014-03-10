@@ -13,6 +13,19 @@
 
 
 namespace boost { namespace mpl11 {
+    // undefined
+    namespace core_detail {
+        template <typename ...xs>
+        struct undefined_ {
+            static_assert(false && sizeof...(xs), // always false
+            "Error: `undefined` may not be instantiated.");
+
+            struct type; // reduce subsequent error messages
+        };
+    }
+
+
+
     // instantiate
     template <template <typename ...> class Typeclass>
     struct instantiate {

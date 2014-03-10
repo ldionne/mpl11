@@ -28,10 +28,5 @@ static_assert(std_is_same<
     Foreign
 >::value, "");
 
-static_assert(std_is_same<
-    datatype<undefined>::type,
-    Foreign
->::value, "");
-
 
 int main() { }

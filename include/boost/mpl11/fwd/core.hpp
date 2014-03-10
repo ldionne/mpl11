@@ -72,18 +72,16 @@ namespace boost { namespace mpl11 {
     template <typename ctor>
     struct datatype;
 
+    namespace core_detail { template <typename...> struct undefined_; }
+
     /*!
      * Represents the _bottom_ value of most functional programming languages.
      *
-     * Specifically, this is a an invalid boxed type triggering a
-     * compile-time error whenever it is unboxed.
-     *
-     *
-     * @todo
-     * - Consider making `undefined` an alias to something that asserts when
-     * instantiated.
+     * Specifically, this is a an invalid boxed type triggering a compile-time
+     * error whenever it is unboxed. Note that instantiating `undefined` in
+     * a SFINAE-able context will _still_ trigger an error.
      */
-    struct undefined BOOST_MPL11_IF_DOXYGEN({ });
+    BOOST_MPL11_DOXYGEN_ALIAS(undefined, core_detail::undefined_<>);
 
     //! Boxes its argument.
     template <typename x>
