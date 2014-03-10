@@ -44,7 +44,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Monoid<Rational> {
+    struct Monoid<Rational> : instantiate<Monoid>::with<Rational> {
         template <typename x, typename y>
         using plus_impl = rational_c<
             decltype(true ? x::type::num : y::type::num),
@@ -57,7 +57,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Group<Rational> {
+    struct Group<Rational> : instantiate<Group>::with<Rational> {
         template <typename x, typename y>
         using minus_impl = rational_c<
             decltype(true ? x::type::num : y::type::num),
@@ -72,7 +72,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Ring<Rational> {
+    struct Ring<Rational> : instantiate<Ring>::with<Rational> {
         template <typename x, typename y>
         using mult_impl = rational_c<
             decltype(true ? x::type::num : y::type::num),
@@ -85,7 +85,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Field<Rational> {
+    struct Field<Rational> : instantiate<Field>::with<Rational> {
         template <typename x, typename y>
         using quot_impl = rational_c<
             decltype(true ? x::type::num : y::type::num),
@@ -100,7 +100,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Comparable<Rational> {
+    struct Comparable<Rational> : instantiate<Comparable>::with<Rational> {
         template <typename x, typename y>
         using equal_impl = bool_<
             x::type::num * y::type::den == x::type::den * y::type::num
@@ -113,7 +113,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Orderable<Rational> : default_Orderable {
+    struct Orderable<Rational> : instantiate<Orderable>::with<Rational> {
         template <typename x, typename y>
         using less_impl = bool_<(
             x::type::num * y::type::den < x::type::den * y::type::num

@@ -22,7 +22,7 @@ using namespace boost::mpl11;
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Iterable<Archetype<>> : true_ {
+    struct Iterable<Archetype<>> : instantiate<Iterable>::with<Archetype<>> {
         template <typename>           using head_impl   = method_tag<head>;
         template <typename>           using tail_impl   = method_tag<tail>;
         template <typename>           using last_impl   = method_tag<last>;

@@ -1296,46 +1296,52 @@ struct last
 { };
 ```
 
-Then, we require specializations of `Iterable` to inherit from a template
-class named `mpl11::instance`, which should be specialized by the designer
-of `Iterable` (that's us). That `mpl11::instance` specialization should
-provide a nested metafunction named `last_impl` corresponding to the default
-implementation of `last` shown above. If, for example, `List` does not implement
-`last_impl`, the default implementation provided by `mpl11::instance` will be
-used:
+Then, we require specializations of `Iterable` to inherit some special type
+as follows:
 
 ```cpp
-namespace boost { namespace mpl11 {
-    template <typename Datatype>
-    struct instance<Iterable, Datatype> {
-        template <typename Iter>
-        struct last_impl {
-            // default implementation
-        };
-    };
-}}
-
 template <>
-struct Iterable<List> : mpl11::instance<Iterable, List> {
+struct Iterable<List> : mpl11::instantiate<Iterable>::with<List> {
     // ...
 };
 ```
 
-Inheriting from `mpl11::instance` provides a lot more flexibility. One notable
-improvement is the ability to add new methods to `Iterable` without breaking
-existing client code, provided the new methods have a default implementation.
-Hence, in the MPL11, all typeclass specializations are required to inherit
-`mpl11::instance`, regardless of whether they actually need defaulted methods.
-The primary template of `mpl11::instance` is just an empty class, so nothing is
-done unless the designer of the typeclass decides to specialize it.
+Here, `mpl11::instantiate<...>::with<...>` is an empty class by default.
+However, `mpl11::instantiate` may be specialized by typeclass designers
+in such a way that the member template `with` contains the default methods.
+In our case, we would provide a `last_impl` metafunction corresponding to
+the default implementation of `last` shown above. This way, if a datatype
+does not implement the `last` method, our default implementation will be used.
 
-> You might wonder why `mpl11::instance` also takes the datatype(s)
-> parameterizing the typeclass instead of the typeclass only. This
-> is because some typeclasses need to know which datatype they
-> operate on to provide meaningful defaults.
+```cpp
+namespace boost { namespace mpl11 {
+    template <>
+    struct instantiate<Iterable> {
+        template <typename Datatype>
+        struct with {
+            template <typename Iter>
+            struct last_impl {
+                // default implementation
+            };
+        };
+    };
+}}
+```
 
-A typeclass specialization inheriting from `mpl11::instance` is called
-a __typeclass instantiation__. When a typeclass instantiation exists for
+This technique provides a lot more flexibility. One notable improvement is the
+ability to add new methods to `Iterable` without breaking existing client code,
+provided the new methods have a default implementation. Hence, in the MPL11,
+all typeclass specializations are required to use this technique, regardless
+of whether they actually need defaulted methods.
+
+> You might wonder why we use `instantiate<Typeclass>::with<Datatypes...>`
+> instead of just using `instantiate<Typeclass>`. This is because some
+> typeclasses need to know the datatype(s) they operate on to provide
+> meaningful defaults. Also, we don't use `instantiate<Typeclass, Datatypes...>`
+> because that would make defaulted typeclass parameters hard to handle.
+
+A typeclass specialization using the technique we just saw is called a
+__typeclass instantiation__. When a typeclass instantiation exists for
 a typeclass `T` and a datatype `D`, we say that `D` is an __instance__ of
 `T`. Equivalently, we say that `D` __instantiates__ `T`, or sometimes that
 `D` __is a__ `T`. The set of definitions that _must_ be provided for a

@@ -8,13 +8,20 @@
 
 #include <boost/mpl11/fwd/core.hpp>
 
-#include <boost/mpl11/comparable.hpp>
-#include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/logical.hpp>
+#include <boost/mpl11/fwd/logical.hpp>
 
 
 namespace boost { namespace mpl11 {
+    // instantiate
+    template <template <typename ...> class Typeclass>
+    struct instantiate {
+        template <typename ...>
+        using with = instantiate;
+    };
+
+
+
     // box
     template <typename x>
     struct box {
@@ -68,6 +75,8 @@ namespace boost { namespace mpl11 {
 
 
     // Foreign
+    // Comparable instantiation is defined in comparable.hpp because
+    // that caused circular dependencies.
     template <typename Datatype>
     struct common_datatype<Foreign, Datatype> {
         using type = Foreign;
@@ -78,19 +87,8 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct cast<Foreign, Foreign> : quote<id> { };
-
-    template <>
-    struct Comparable<Foreign> {
-        template <typename x, typename y>
-        using equal_impl = detail::std_is_same<
-            typename x::type, typename y::type
-        >;
-
-        template <typename x, typename y>
-        using not_equal_impl = not_<detail::std_is_same<
-            typename x::type, typename y::type
-        >>;
-    };
 }} // end namespace boost::mpl11
+
+#include <boost/mpl11/logical.hpp>
 
 #endif // !BOOST_MPL11_CORE_HPP

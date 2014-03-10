@@ -8,6 +8,7 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/integer.hpp>
+
 #include "test_method_dispatch.hpp"
 
 
@@ -18,7 +19,9 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<Archetype<0>> {
+    struct Orderable<Archetype<0>>
+        : instantiate<Orderable>::with<Archetype<0>>
+    {
         template <typename, typename>
         using less_impl = method_tag<less>;
 
@@ -69,7 +72,7 @@ struct x {
 };
 namespace boost { namespace mpl11 {
     template <>
-    struct Orderable<Int> : default_Orderable {
+    struct Orderable<Int> : instantiate<Orderable>::with<Int> {
         template <typename x, typename y>
         using less_impl = bool_<(x::type::value < y::type::value)>;
     };

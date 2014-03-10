@@ -210,40 +210,44 @@ struct drop :
 template <typename Datatype, typename>
 struct Iterable : false_ { };
 
-struct default_Iterable : true_ {
-    template <typename xs, bool = is_empty<tail<xs>>::value>
-    struct last_impl : head<xs> { };
+template <>
+struct instantiate<Iterable> {
+    template <typename Datatype>
+    struct with : true_ {
+        template <typename xs, bool = is_empty<tail<xs>>::value>
+        struct last_impl : head<xs> { };
 
-    template <typename xs>
-    struct last_impl<xs, false>
-        : last_impl<tail<xs>>
-    { };
-
-
-    template <typename index, typename xs, bool = index::type::value == 0>
-    struct at_impl
-        : head<xs>
-    { };
-
-    template <typename index, typename xs>
-    struct at_impl<index, xs, false>
-        : at_impl<size_t<index::type::value - 1>, tail<xs>>
-    { };
+        template <typename xs>
+        struct last_impl<xs, false>
+            : last_impl<tail<xs>>
+        { };
 
 
-    template <typename xs, detail::std_size_t acc = 0,
-        bool = is_empty<xs>::value>
-    struct length_impl : size_t<acc> { };
+        template <typename index, typename xs, bool = index::type::value == 0>
+        struct at_impl
+            : head<xs>
+        { };
 
-    template <typename xs, detail::std_size_t acc>
-    struct length_impl<xs, acc, false>
-        : length_impl<tail<xs>, acc+1>
-    { };
+        template <typename index, typename xs>
+        struct at_impl<index, xs, false>
+            : at_impl<size_t<index::type::value - 1>, tail<xs>>
+        { };
+
+
+        template <typename xs, detail::std_size_t acc = 0,
+            bool = is_empty<xs>::value>
+        struct length_impl : size_t<acc> { };
+
+        template <typename xs, detail::std_size_t acc>
+        struct length_impl<xs, acc, false>
+            : length_impl<tail<xs>, acc+1>
+        { };
+    };
 };
 
 template <typename X, typename Y>
 struct Orderable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
-    : default_Orderable
+    : instantiate<Orderable>::template with<X, Y>
 {
     // xs is shorter than ys
     template <typename xs, typename ys,
@@ -269,7 +273,7 @@ struct Orderable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
 
 template <typename X, typename Y>
 struct Comparable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
-    : default_Comparable
+    : instantiate<Comparable>::template with<X, Y>
 {
     template <typename xs, typename ys,
         bool xs_done = is_empty<xs>::value,
@@ -288,7 +292,9 @@ struct Comparable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
 };
 
 template <typename Datatype>
-struct Foldable<Datatype, typename Iterable<Datatype>::type> {
+struct Foldable<Datatype, typename Iterable<Datatype>::type>
+    : instantiate<Foldable>::template with<Datatype>
+{
     template <typename f, typename state, typename iter>
     struct foldl_impl
         : if_<is_empty<iter>,

@@ -32,7 +32,8 @@ namespace boost { namespace mpl11 {
      * All the methods.
      *
      * @todo
-     * Provide a default implementation for `foldl1` and `foldr1`.
+     * - Provide a default implementation for `foldl1` and `foldr1`.
+     * - Check if we can improve unpack. Maybe make it transparent?
      *
      * @{
      */

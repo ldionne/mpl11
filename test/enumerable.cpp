@@ -5,6 +5,8 @@
 
 #include <boost/mpl11/enumerable.hpp>
 
+#include <boost/mpl11/core.hpp>
+
 #include "test_method_dispatch.hpp"
 
 
@@ -15,7 +17,9 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Enumerable<Archetype<>> {
+    struct Enumerable<Archetype<>>
+        : instantiate<Enumerable>::with<Archetype<>>
+    {
         template <typename> using succ_impl = method_tag<succ>;
         template <typename> using pred_impl = method_tag<pred>;
     };

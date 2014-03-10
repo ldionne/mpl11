@@ -7,6 +7,7 @@
 #define BOOST_MPL11_TEST_MINIMAL_ITERABLE_HPP
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/iterable.hpp>
 
 
@@ -29,7 +30,9 @@ struct minimal_iterable {
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Iterable<MinimalIterable> : default_Iterable {
+    struct Iterable<MinimalIterable>
+        : instantiate<Iterable>::with<MinimalIterable>
+    {
         template <typename s>
         struct head_impl : head_impl<typename s::type> { };
 

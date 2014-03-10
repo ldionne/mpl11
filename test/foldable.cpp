@@ -23,7 +23,7 @@ using detail::std_is_same;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Foldable<Archetype<>> {
+    struct Foldable<Archetype<>> : instantiate<Foldable>::with<Archetype<>> {
         template <typename, typename, typename>
         using foldr_impl = method_tag<foldr>;
 

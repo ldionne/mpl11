@@ -6,6 +6,7 @@
 #include <boost/mpl11/functor.hpp>
 
 #include <boost/mpl11/core.hpp>
+
 #include "test_method_dispatch.hpp"
 
 
@@ -16,7 +17,7 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Functor<Archetype<>> {
+    struct Functor<Archetype<>> : instantiate<Functor>::with<Archetype<>> {
         template <typename, typename> using fmap_impl = method_tag<fmap>;
     };
 }}

@@ -5,6 +5,8 @@
 
 #include <boost/mpl11/ring.hpp>
 
+#include <boost/mpl11/core.hpp>
+
 #include "test_method_dispatch.hpp"
 
 
@@ -15,7 +17,7 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Ring<Archetype<0>> {
+    struct Ring<Archetype<0>> : instantiate<Ring>::with<Archetype<0>> {
         template <typename, typename> using mult_impl = method_tag<mult>;
         template <typename ...>       using one_impl  = method_tag<one>;
     };

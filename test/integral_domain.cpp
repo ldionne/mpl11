@@ -5,6 +5,8 @@
 
 #include <boost/mpl11/integral_domain.hpp>
 
+#include <boost/mpl11/core.hpp>
+
 #include "test_method_dispatch.hpp"
 
 
@@ -15,7 +17,9 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct IntegralDomain<Archetype<0>> {
+    struct IntegralDomain<Archetype<0>>
+        : instantiate<IntegralDomain>::with<Archetype<0>>
+    {
         template <typename, typename> using div_impl = method_tag<div>;
         template <typename, typename> using mod_impl = method_tag<mod>;
     };

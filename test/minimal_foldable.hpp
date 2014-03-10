@@ -6,6 +6,7 @@
 #ifndef BOOST_MPL11_TEST_MINIMAL_FOLDABLE_HPP
 #define BOOST_MPL11_TEST_MINIMAL_FOLDABLE_HPP
 
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/foldable.hpp>
 
 
@@ -19,7 +20,9 @@ struct minimal_foldable {
 
 namespace boost { namespace mpl11 {
     template <>
-    struct Foldable<MinimalFoldable> {
+    struct Foldable<MinimalFoldable>
+        : instantiate<Foldable>::with<MinimalFoldable>
+    {
     private:
         template <typename f, typename state, typename structure>
         struct fold_left : state { };

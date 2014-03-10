@@ -8,6 +8,34 @@
 
 #include <boost/mpl11/fwd/orderable.hpp>
 
+#include <boost/mpl11/fwd/core.hpp>
+#include <boost/mpl11/fwd/logical.hpp>
+
+
+namespace boost { namespace mpl11 {
+    template <>
+    struct instantiate<Orderable> {
+        template <typename Left, typename Right = Left>
+        struct with {
+            template <typename x, typename y>
+            using less_equal_impl = not_<less<y, x>>;
+
+            template <typename x, typename y>
+            using greater_impl = less<y, x>;
+
+            template <typename x, typename y>
+            using greater_equal_impl = not_<less<x, y>>;
+
+            template <typename x, typename y>
+            using min_impl = if_c<less<x, y>::value, x, y>;
+
+            template <typename x, typename y>
+            using max_impl = if_c<less<x, y>::value, y, x>;
+        };
+    };
+}} // end namespace boost::mpl11
+
+
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
@@ -52,25 +80,6 @@ namespace boost { namespace mpl11 {
             typename detail::common_method<Left, Right>::
             template apply<Common::template max_impl, x, y>;
     };
-
-
-    struct default_Orderable {
-        template <typename x, typename y>
-        using less_equal_impl = not_<less<y, x>>;
-
-        template <typename x, typename y>
-        using greater_impl = less<y, x>;
-
-        template <typename x, typename y>
-        using greater_equal_impl = not_<less<x, y>>;
-
-        template <typename x, typename y>
-        using min_impl = if_c<less<x, y>::value, x, y>;
-
-        template <typename x, typename y>
-        using max_impl = if_c<less<x, y>::value, y, x>;
-    };
-
 
     template <typename x1, typename x2, typename ...xs>
     struct less

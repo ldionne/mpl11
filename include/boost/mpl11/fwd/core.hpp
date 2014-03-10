@@ -18,9 +18,27 @@ namespace boost { namespace mpl11 {
      * @{
      */
 
-    //! Wrapper allowing typeclasses to be considered as normal C++ types.
-    template <template <typename ...> class>
-    struct typeclass BOOST_MPL11_IF_DOXYGEN({ });
+    /*!
+     * Holds default methods of typeclasses.
+     *
+     * This should be specialized for typeclasses wishing to provide a
+     * default implementation for some methods. Usage:
+     *
+        @code
+            template <>
+            struct SomeTypeclass<MyDatatype>
+                : instantiate<SomeTypeclass>::with<MyDatatype>
+            {
+                // ...
+            };
+        @endcode
+     *
+     * Hence, typeclasses should provide their default methods in the nested
+     * `with` member template. The primary template provides an empty member
+     * template `with`.
+     */
+    template <template <typename ...> class Typeclass>
+    struct instantiate;
 
     /*!
      * Datatype for data constructors that are foreign to the library.
@@ -55,11 +73,13 @@ namespace boost { namespace mpl11 {
     struct datatype;
 
     /*!
-     * Undefined type.
+     * Represents the _bottom_ value of most functional programming languages.
+     *
+     * Specifically, this is a an invalid boxed type triggering a
+     * compile-time error whenever it is unboxed.
+     *
      *
      * @todo
-     * - If there's something more to document here, do it. Otherwise,
-     * remove this todo.
      * - Consider making `undefined` an alias to something that asserts when
      * instantiated.
      */
@@ -98,7 +118,7 @@ namespace boost { namespace mpl11 {
      * @ref Core module.
      */
     namespace core {
-        using mpl11::typeclass;
+        using mpl11::instantiate;
         using mpl11::Foreign;
         using mpl11::datatype;
         using mpl11::undefined;

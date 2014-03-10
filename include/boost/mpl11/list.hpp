@@ -50,7 +50,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Iterable<List> : default_Iterable {
+    struct Iterable<List> : instantiate<Iterable>::with<List> {
         template <typename self>
         using head_impl = typename self::type::head;
 
@@ -61,7 +61,9 @@ namespace boost { namespace mpl11 {
         using is_empty_impl = typename self::type::is_empty;
 
         template <typename n, typename self>
-        struct at_impl : default_Iterable::at_impl<n, self> { };
+        struct at_impl
+            : instantiate<mpl11::Iterable>::with<List>::at_impl<n, self>
+        { };
 
         template <typename n, typename ...xs>
         struct at_impl<n, list<xs...>>
@@ -70,7 +72,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct Functor<List> {
+    struct Functor<List> : instantiate<Functor>::with<List> {
         template <typename f, typename xs>
         struct fmap_impl
             : fmap_impl<f, typename xs::type>

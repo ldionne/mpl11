@@ -5,6 +5,7 @@
 
 #include <boost/mpl11/bitwise.hpp>
 
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/integer.hpp>
 
 #include "test_method_dispatch.hpp"
@@ -17,7 +18,7 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Bitwise<Archetype<0>> {
+    struct Bitwise<Archetype<0>> : instantiate<Bitwise>::with<Archetype<0>> {
         template <typename, typename>
         using bitand_impl  = method_tag<bitand_>;
 

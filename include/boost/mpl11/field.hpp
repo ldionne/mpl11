@@ -25,13 +25,19 @@ namespace boost { namespace mpl11 {
             >;
     };
 
-    template <typename Datatype>
-    struct default_Field {
-        template <typename x, typename y>
-        using quot_impl = mult<x, recip<y>>;
+    template <>
+    struct instantiate<Field> {
+        template <typename Left, typename Right = Left>
+        struct with;
 
-        template <typename x>
-        using recip_impl = quot<one<Datatype>, x>;
+        template <typename Datatype>
+        struct with<Datatype> {
+            template <typename x, typename y>
+            using quot_impl = mult<x, recip<y>>;
+
+            template <typename x>
+            using recip_impl = quot<one<Datatype>, x>;
+        };
     };
 
     template <typename x, typename y>

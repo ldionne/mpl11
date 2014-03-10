@@ -8,9 +8,30 @@
 
 #include <boost/mpl11/fwd/group.hpp>
 
+#include <boost/mpl11/fwd/core.hpp>
+#include <boost/mpl11/fwd/monoid.hpp>
+
+
+namespace boost { namespace mpl11 {
+    template <>
+    struct instantiate<Group> {
+        template <typename Left, typename Right = Left>
+        struct with;
+
+        template <typename Datatype>
+        struct with<Datatype> {
+            template <typename x, typename y>
+            using minus_impl = plus<x, negate<y>>;
+
+            template <typename x>
+            using negate_impl = minus<zero<Datatype>, x>;
+        };
+    };
+}} // end namespace boost::mpl11
+
+
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/common_method.hpp>
-#include <boost/mpl11/fwd/monoid.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -23,15 +44,6 @@ namespace boost { namespace mpl11 {
                 Group<typename common_datatype<Left, Right>::type>::
                 template minus_impl, x, y
             >;
-    };
-
-    template <typename Datatype>
-    struct default_Group {
-        template <typename x, typename y>
-        using minus_impl = plus<x, negate<y>>;
-
-        template <typename x>
-        using negate_impl = minus<zero<Datatype>, x>;
     };
 
     template <typename x, typename y>

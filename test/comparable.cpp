@@ -7,6 +7,7 @@
 
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/integer.hpp>
+
 #include "test_method_dispatch.hpp"
 
 
@@ -17,7 +18,9 @@ using namespace boost::mpl11;
 ///////////////////////////
 namespace boost { namespace mpl11 {
     template <>
-    struct Comparable<Archetype<0>> {
+    struct Comparable<Archetype<0>>
+        : instantiate<Comparable>::with<Archetype<0>>
+    {
         template <typename, typename>
         using equal_impl = method_tag<equal>;
 
@@ -40,7 +43,7 @@ struct test_dispatching
 ///////////////////////////
 // Test provided defaults
 ///////////////////////////
-using Default = default_Comparable;
+using Default = instantiate<Comparable>::with<undefined>;
 static_assert( Default::equal_impl<int_<0>, int_<0>>::value, "");
 static_assert(!Default::equal_impl<int_<0>, int_<1>>::value, "");
 static_assert( Default::not_equal_impl<int_<0>, int_<1>>::value, "");
