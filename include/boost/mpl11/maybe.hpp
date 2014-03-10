@@ -11,6 +11,9 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/functor.hpp>
 
+#include <boost/mpl11/bool.hpp>       // required by fwd/maybe.hpp
+#include <boost/mpl11/functional.hpp> //
+
 
 namespace boost { namespace mpl11 {
     template <typename x>
@@ -34,6 +37,16 @@ namespace boost { namespace mpl11 {
     struct maybe
         : m::type::template maybe_<def, f>
     { };
+
+    namespace maybe_detail {
+        template <typename ...dum>
+        struct err_from_just {
+            static_assert(false && sizeof...(dum) != 0,
+            "Using from_just on a nothing.");
+
+            struct type;
+        };
+    }
 
     template <>
     struct Functor<Maybe> : instantiate<Functor>::with<Maybe> {

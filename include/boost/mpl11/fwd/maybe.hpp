@@ -7,6 +7,8 @@
 #define BOOST_MPL11_FWD_MAYBE_HPP
 
 #include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/fwd/bool.hpp>
+#include <boost/mpl11/fwd/functional.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -26,7 +28,6 @@ namespace boost { namespace mpl11 {
      * @todo
      * - Instantiate `Comparable` and `Orderable` for `Maybe`. This might
      *   require `Maybe` to become a parametric datatype. Can we handle this?
-     * - Provide more metafunctions like `from_maybe`, `from_just`, etc...
      *
      * @{
      */
@@ -49,6 +50,32 @@ namespace boost { namespace mpl11 {
      */
     template <typename def, typename f, typename m>
     struct maybe;
+
+    //! Returns whether a `Maybe` is a `just`.
+    template <typename m>
+    BOOST_MPL11_DOXYGEN_ALIAS(is_just, maybe<false_, always<true_>, m>);
+
+    //! Returns whether a `Maybe` is a `nothing`.
+    template <typename m>
+    BOOST_MPL11_DOXYGEN_ALIAS(is_nothing, maybe<true_, always<false_>, m>);
+
+    //! If `m` is nothing, returns `def`. Otherwise, returns the value
+    //! inside the `just`.
+    template <typename def, typename m>
+    BOOST_MPL11_DOXYGEN_ALIAS(from_maybe, maybe<def, quote<id>, m>);
+
+    namespace maybe_detail { template <typename ...> struct err_from_just; }
+
+    /*!
+     * Extracts the value out of a `just`, and triggers a hard compile-time
+     * error if the argument is `nothing`.
+     *
+     * @todo
+     * Consider being SFINAE friendly.
+     */
+    template <typename m>
+    BOOST_MPL11_DOXYGEN_ALIAS(from_just,
+        maybe<maybe_detail::err_from_just<>, quote<id>, m>);
     //! @}
 }} // end namespace boost::mpl11
 
