@@ -50,6 +50,7 @@ endfunction()
 mpl11_add_tests(
     detail
     ######
+    dependent
     std_conditional
     std_index_sequence
     std_is_same

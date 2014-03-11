@@ -8,6 +8,7 @@
 
 #include <boost/mpl11/fwd/core.hpp>
 
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
 
@@ -17,7 +18,7 @@ namespace boost { namespace mpl11 {
     namespace core_detail {
         template <typename ...xs>
         struct undefined_ {
-            static_assert(false && sizeof...(xs), // always false
+            static_assert(detail::dependent<xs...>::value(false),
             "Error: `undefined` may not be instantiated.");
         };
     }
@@ -108,7 +109,7 @@ namespace boost { namespace mpl11 {
     namespace core_detail {
         template <typename ...datatypes>
         struct invalid_cast {
-            static_assert(false && sizeof...(datatypes),
+            static_assert(detail::dependent<datatypes...>::value(false),
             "No cast is provided between the two requested datatypes.");
         };
     }

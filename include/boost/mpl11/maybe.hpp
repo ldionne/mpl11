@@ -9,6 +9,7 @@
 #include <boost/mpl11/fwd/maybe.hpp>
 
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/functor.hpp>
 
 #include <boost/mpl11/bool.hpp>       // required by fwd/maybe.hpp
@@ -41,7 +42,7 @@ namespace boost { namespace mpl11 {
     namespace maybe_detail {
         template <typename ...dum>
         struct err_from_just {
-            static_assert(false && sizeof...(dum) != 0,
+            static_assert(detail::dependent<dum...>::value(false),
             "Using from_just on a nothing.");
 
             struct type;
