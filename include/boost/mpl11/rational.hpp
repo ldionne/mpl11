@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 {
         using type = cast;
         template <typename i>
         using apply = rational_c<
-            typename i::type::value_type, i::type::value
+            typename i::value_type, i::value
         >;
     };
 

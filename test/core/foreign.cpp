@@ -11,9 +11,8 @@
 using namespace boost::mpl11;
 using detail::std_is_same;
 
-struct x { struct type; };
-struct y { struct type; };
-struct z { struct type; };
+struct x;
+struct y;
 
 /////////////////////////////////
 // Test conversion to `Foreign`.
@@ -30,7 +29,7 @@ static_assert(std_is_same<
 
 static_assert(std_is_same<
     cast<Foreign, Foreign>::type::apply<x>::type,
-    x::type
+    x
 >::value, "");
 
 
@@ -53,11 +52,14 @@ static_assert(std_is_same<
 ///////////////////////////////
 template <bool eq, typename ...x>
 struct assert_eq {
-    static_assert(eq == equal<x...>::value, "");
+    static_assert(eq == equal<box<x>...>::value, "");
 };
 
-template <bool eq, typename x, typename y>
-struct assert_eq<eq, x, y> {
+template <bool eq, typename x_, typename y_>
+struct assert_eq<eq, x_, y_> {
+    using x = box<x_>;
+    using y = box<y_>;
+
     static_assert(eq == equal<x, y>::value, "");
     static_assert(!equal<x, y>::value == not_equal<x, y>::value, "");
 };

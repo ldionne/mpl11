@@ -101,12 +101,18 @@ namespace boost { namespace mpl11 {
      *
      * By default, `cast` does not perform anything if `From` and `To` are
      * the same datatypes. However, it must be specialized to customize its
-     * behavior further.
+     * behavior further. Note that the arguments to `cast<From, To>` are
+     * data constructors, which do not need to be boxed. Hence, `cast`
+     * is a call-by-value metafunction class.
      */
     template <typename From, typename To>
     struct cast;
 
-    //! Metafunction class converting an object to the `To` datatype.
+    /*!
+     * Metafunction class converting an object to the `To` datatype.
+     *
+     * Note that `cast_to` is a call-by-value metafunction class.
+     */
     template <typename To>
     struct cast_to;
 

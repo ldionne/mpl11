@@ -13,44 +13,38 @@ using namespace boost::mpl11;
 using detail::std_is_same;
 
 struct X;
-struct x {
-    using type = x;
-    using mpl_datatype = X;
-};
+struct x { using mpl_datatype = X; };
 
 struct Y;
-struct y {
-    using type = y;
-    using mpl_datatype = Y;
-};
+struct y { using mpl_datatype = Y; };
 
 namespace boost { namespace mpl11 {
     template <>
     struct cast<X, Y> {
         using type = cast;
         template <typename>
-        using apply = y;
+        using apply = box<y>;
     };
 }}
 
 static_assert(std_is_same<
     cast<X, X>::type::apply<x>::type,
-    x::type
+    x
 >::value, "");
 
 static_assert(std_is_same<
     cast<X, Y>::type::apply<x>::type,
-    y::type
+    y
 >::value, "");
 
 static_assert(std_is_same<
     cast_to<X>::type::apply<x>::type,
-    x::type
+    x
 >::value, "");
 
 static_assert(std_is_same<
     cast_to<Y>::type::apply<x>::type,
-    y::type
+    y
 >::value, "");
 
 

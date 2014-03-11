@@ -869,11 +869,11 @@ struct int_ {
 ```
 
 #### Conversions
-The MPL11 provides a preferred way to convert values from one datatype to the
-other. The usefulness of this is clearest when implementing numeric datatypes,
-but we'll stick with `List` because we already have it. Let's suppose we want to
-convert values from a `List` to an `std::tuple` and vice-versa. First, we will
-need to define a datatype of which `std::tuple` can be a data constructor.
+The MPL11 provides a way to convert values from one datatype to the other. The
+usefulness of this is clearest when implementing numeric datatypes, but we'll
+stick with `List` because we already have it. Let's suppose we want to convert
+values from a `List` to an `std::tuple` and vice-versa. First, we will need to
+define a datatype of which `std::tuple` can be a data constructor.
 
 ```cpp
 struct StdTuple;
@@ -946,8 +946,10 @@ mpl11::cast<List, StdTuple>::apply<my_list>::type; // == my_tuple
 mpl11::cast<StdTuple, List>::apply<my_tuple>::type; // == my_list
 ```
 
-The library also defines a handy `mpl11::cast_to` metafunction class that
-reduces the syntactic noise of `mpl11::cast`:
+Also note that casting from a datatype `T` to itself is a noop, so you don't
+have to worry about that trivial case. The library also defines a handy
+`mpl11::cast_to` metafunction class that reduces the syntactic noise of
+`mpl11::cast`:
 
 ```cpp
 mpl11::cast_to<StdTuple>::apply<my_list>::type; // == my_tuple
@@ -955,7 +957,7 @@ mpl11::cast_to<List>::apply<my_tuple>::type; // == my_list
 ```
 
 `mpl11::cast_to` simply deduces the datatype to cast from by using that of its
-argument and then forwards to `mpl11::cast`.
+(unboxed) argument and then forwards to `mpl11::cast`.
 
 > __TODO__: Give more details on the `Foreign` datatype.
 
@@ -1452,7 +1454,6 @@ a boxed type, so they're not completely forgotten.
       Once that is decided, modify either the tutorial or the library.
 - [ ] Implement cross-type typeclasses.
 - [ ] Implement typeclasses as boolean metafunctions, like documented.
-- [ ] Take unboxed types in `cast`.
 - [ ] Implement associative data structures.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
       Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
@@ -1504,6 +1505,21 @@ a boxed type, so they're not completely forgotten.
 - [ ] Make bool.hpp lighter. In particular, it should probably not depend
       on integer.
 - [ ] Design a StaticConstant concept?
+- [ ] In the tutorial, when we specialize metafunction classes inside the
+      `boost::mpl11` namespace, we don't make them boxed. This makes sense
+      because they are metafunction classes, not boxes of metafunction class.
+      What should we do? Should we
+      1. Make the specializations boxed
+      2. Do not take for granted that they are boxed when we use them in the
+         library and box them redundantly, which is correct but suboptimal.
+      3. Explicitly state that nothing may be specialized inside the
+         `boost::mpl11` namespace unless specified otherwise. Then,
+         specify what can be specialized on a per-component basis and
+         then we apply (2) only to the components that might not be boxed.
+- [ ] Consider having a public data constructor for `Foreign`, which would
+      simply preserve type identity. Also; might consider changing the name
+      of `Foreign`.
+
 
 
 <!-- Links -->

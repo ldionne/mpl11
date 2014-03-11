@@ -71,8 +71,8 @@ namespace boost { namespace mpl11 {
 
         template <typename x>
         using apply = typename cast<
-            typename datatype<typename x::type>::type, To
-        >::template apply<x>;
+            typename datatype<x>::type, To
+        >::type::template apply<x>;
     };
 
 
@@ -80,6 +80,18 @@ namespace boost { namespace mpl11 {
     // Foreign
     // Comparable instantiation is defined in comparable.hpp because
     // that caused circular dependencies.
+    namespace core_detail {
+        // Data constructor for `Foreign`. Not sure that should be public.
+        // This only preserves type identity. Also; this is not the only
+        // data constructor. In fact, any type is a valid data constructor
+        // for `Foreign`. I'm not sure I like that.
+        template <typename>
+        struct foreign {
+            using type = foreign;
+            using mpl_datatype = Foreign;
+        };
+    }
+
     template <typename Datatype>
     struct common_datatype<Foreign, Datatype> {
         using type = Foreign;
@@ -90,15 +102,15 @@ namespace boost { namespace mpl11 {
         using type = cast;
 
         template <typename x>
-        struct apply : x {
-            using type = apply;
-            using mpl_datatype = Foreign;
-        };
+        using apply = core_detail::foreign<x>;
     };
 
+    // We can't use `quote<id>` here because `foreign` is not the only
+    // data constructor for `Foreign`! Pitfall!
     template <>
-    struct cast<Foreign, Foreign> : quote<id> { };
+    struct cast<Foreign, Foreign> : quote<box> { };
 }} // end namespace boost::mpl11
+
 
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/logical.hpp>
@@ -114,10 +126,13 @@ namespace boost { namespace mpl11 {
         };
     }
 
+    // Note that we must not specialize cast<From, From> because that
+    // could make the specialization ambiguous when `cast` is defined
+    // over parameterized types, say `cast<Vector<T>, Vector<T>>`.
     template <typename From, typename To>
     struct cast
         : if_c<detail::std_is_same<From, To>::value,
-            quote<id>,
+            quote<box>,
             core_detail::invalid_cast<From, To>
         >
     { };
