@@ -222,6 +222,7 @@ class Main < Benchmarker
 
         puts "including all the mpl11: #{mpl11} s"
         puts "including all the mpl: #{mpl} s"
+        puts "including the mpl11 is ~#{mpl/mpl11}x faster"
     end
 end
 
