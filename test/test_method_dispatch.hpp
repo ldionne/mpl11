@@ -6,16 +6,12 @@
 #ifndef BOOST_MPL11_TEST_TEST_METHOD_DISPATCH_HPP
 #define BOOST_MPL11_TEST_TEST_METHOD_DISPATCH_HPP
 
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
-#include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/fwd/core.hpp>
 
 
 template <unsigned level = 0>
-struct Archetype {
-    template <typename>
-    using from = boost::mpl11::quote<boost::mpl11::id>;
-};
+struct Archetype;
 
 template <unsigned level = 0>
 struct archetype {
@@ -23,6 +19,13 @@ struct archetype {
 };
 
 namespace boost { namespace mpl11 {
+    template <unsigned from, unsigned to>
+    struct cast<Archetype<from>, Archetype<to>> {
+        using type = cast;
+        template <typename>
+        using apply = archetype<to>;
+    };
+
     template <unsigned l1, unsigned l2>
     struct common_datatype<Archetype<l1>, Archetype<l2>> {
         using type = Archetype<(l1 < l2 ? l1 : l2)>;

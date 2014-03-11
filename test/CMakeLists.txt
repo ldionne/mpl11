@@ -82,7 +82,6 @@ mpl11_add_tests(
     ####
     box
     cast
-    cast_to
     common_datatype
     datatype
     foreign

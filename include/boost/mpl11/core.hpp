@@ -19,8 +19,6 @@ namespace boost { namespace mpl11 {
         struct undefined_ {
             static_assert(false && sizeof...(xs), // always false
             "Error: `undefined` may not be instantiated.");
-
-            struct type; // reduce subsequent error messages
         };
     }
 
@@ -65,15 +63,6 @@ namespace boost { namespace mpl11 {
 
 
 
-    // cast
-    template <typename From, typename To>
-    struct cast : To::template from<From> { };
-
-    template <typename To>
-    struct cast<To, To> : quote<id> { };
-
-
-
     // cast_to
     template <typename To>
     struct cast_to {
@@ -96,12 +85,41 @@ namespace boost { namespace mpl11 {
     };
 
     template <typename From>
-    struct cast<From, Foreign> : quote<id> { };
+    struct cast<From, Foreign> {
+        using type = cast;
+
+        template <typename x>
+        struct apply : x {
+            using type = apply;
+            using mpl_datatype = Foreign;
+        };
+    };
 
     template <>
     struct cast<Foreign, Foreign> : quote<id> { };
 }} // end namespace boost::mpl11
 
+#include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/logical.hpp>
+
+
+namespace boost { namespace mpl11 {
+    // cast
+    namespace core_detail {
+        template <typename ...datatypes>
+        struct invalid_cast {
+            static_assert(false && sizeof...(datatypes),
+            "No cast is provided between the two requested datatypes.");
+        };
+    }
+
+    template <typename From, typename To>
+    struct cast
+        : if_c<detail::std_is_same<From, To>::value,
+            quote<id>,
+            core_detail::invalid_cast<From, To>
+        >
+    { };
+}}
 
 #endif // !BOOST_MPL11_CORE_HPP

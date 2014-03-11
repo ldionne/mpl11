@@ -18,9 +18,14 @@ struct z { struct type; };
 /////////////////////////////////
 // Test conversion to `Foreign`.
 /////////////////////////////////
-static_assert(std_is_same<
+static_assert(!std_is_same<
     cast<undefined, Foreign>::type::apply<x>::type,
-    x::type
+    cast<undefined, Foreign>::type::apply<y>::type
+>::value, "");
+
+static_assert(std_is_same<
+    datatype<cast<undefined, Foreign>::type::apply<x>::type>::type,
+    Foreign
 >::value, "");
 
 static_assert(std_is_same<

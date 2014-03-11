@@ -43,11 +43,12 @@ namespace boost { namespace mpl11 {
     /*!
      * Datatype for data constructors that are foreign to the library.
      *
-     * Any datatype can be converted to `Foreign`; conversion to `Foreign` is
-     * just the identity transformation.
-     *
-     * Also, `Foreign` types can be compared; equality and inequality for
-     * `Foreign` types is defined in terms of `std::is_same`.
+     * Any datatype can be converted to `Foreign`; conversion to `Foreign`
+     * makes the constructor lose everything except type identity. In other
+     * words, two data constructors with different C++ types will be
+     * considered different, even if they were equal under their initial
+     * datatype. Hence, `Foreign` types can be compared; equality and
+     * inequality for `Foreign` types is defined in terms of `std::is_same`.
      *
      * @ingroup datatypes
      */
@@ -98,11 +99,9 @@ namespace boost { namespace mpl11 {
      * Metafunction class converting an object of the `From` datatype to
      * an object of the `To` datatype.
      *
-     * By default, this metafunction class is equivalent to `To::from<From>`.
-     * However, if `From` and `To` are the same datatypes, `cast` does not
-     * perform anything.
-     *
-     * `cast` may be specialized to customize its behavior.
+     * By default, `cast` does not perform anything if `From` and `To` are
+     * the same datatypes. However, it must be specialized to customize its
+     * behavior further.
      */
     template <typename From, typename To>
     struct cast;
