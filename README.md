@@ -1437,18 +1437,16 @@ a boxed type, so they're not completely forgotten.
 - [ ] Don't take for granted metafunction classes provided by the library which
       can be specialized are boxed. An example is cast, which is used as-if
       it was boxed in common_method.hpp.
-- [ ] Implement fast arithmetic operations on sequences of `StaticConstant`s.
-      We probably want constexpr for this.
 - [ ] Implement associative data structures.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
-    Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
-    such a DSL should:
-    - Allow leaving placeholders as-is inside a lambda, if this is desirable.
-    - Allow performing placeholder substitution in a lambda without actually
-    evaluating the expression, if this is desirable.
-    - Allow "variadic placeholders", i.e. placeholders expanding to several
-    types. One pitfall of this is using such a placeholder with a
-    metafunction that is not variadic:
+      Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
+      such a DSL should:
+      - Allow leaving placeholders as-is inside a lambda, if this is desirable.
+      - Allow performing placeholder substitution in a lambda without actually
+      evaluating the expression, if this is desirable.
+      - Allow "variadic placeholders", i.e. placeholders expanding to several
+      types. One pitfall of this is using such a placeholder with a
+      metafunction that is not variadic:
 
         ```cpp
         template <typename, typename>
@@ -1456,15 +1454,15 @@ a boxed type, so they're not completely forgotten.
         using F = lambda<f<_args>>; // error here, f is not unary
         using Result = F::apply<int, char>::type;
         ```
-    This fails because `f` requires 2 arguments.
+      This fails because `f` requires 2 arguments.
 - [ ] Consider allowing types to be printed somehow. The idea is to have
-    something like a `Show` typeclass that allows types to be pretty-printed
-    for debugging purposes.
+      something like a `Show` typeclass that allows types to be pretty-printed
+      for debugging purposes.
 - [ ] Think about a convention or a system to customize some metafunction calls.
-    Something neat would be to have a way of passing a custom predicate when
-    comparing sequences; that would make `equal` as powerful as the `equal`
-    algorithm from the Boost.MPL. Maybe we can achieve the same effect in
-    another way.
+      Something neat would be to have a way of passing a custom predicate when
+      comparing sequences; that would make `equal` as powerful as the `equal`
+      algorithm from the Boost.MPL. Maybe we can achieve the same effect in
+      another way.
 - [ ] Clarify the notion of weak head normal form if this applies to us.
 - [ ] Consider having a wrapper that allows treating template specializations
       as data. Something like sequence operations on template specializations
@@ -1472,11 +1470,19 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider adding `while_` and `until` metafunctions.
 - [ ] Consider ditching `Foreign` and making the default datatype the data
       constructor itself.
-- [ ] Consider adding `Either`
+- [ ] Consider adding `Either`.
 - [ ] Right now, we must include `boost/mpl11/core.hpp` to get the
       `instantiate<>` template in client code. Maybe typeclass headers
       should take care of it. Or maybe `boost/mpl11/core.hpp` should
       never have to be included by clients altogether?
+- [ ] Add interoperability with the Boost.MPL, Boost.Fusion and components
+      in the `std` namespace.
+- [ ] Use `constexpr` to perform numeric computations on homogeneous sequences
+      of integral constants.
+- [ ] Automate and refactor the benchmarks.
+- [ ] Benchmark memory usage in addition to compilation time.
+- [ ] Consider providing data constructors taking unboxed types for convenience.
+- [ ] Consider making `int_<>` a simple boxed `int` without a value.
 
 
 <!-- Links -->
