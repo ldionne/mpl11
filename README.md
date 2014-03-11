@@ -1246,13 +1246,27 @@ struct head
 // ...
 ```
 
-The `Iterable` template is called a __typeclass__, and metafunctions following
-this dispatching pattern through a typeclass are called __typeclass methods__
-in the MPL11. In order to implement `head` & friends, one would now write
+Since it might be useful to query whether a datatype supports the operations
+of `Iterable`, we would like to have a boolean metafunction that does just that.
+Fortunately, we can use the `Iterable` for this task with a small modification.
+
+```cpp
+template <typename Datatype, typename = true_>
+struct Iterable : false_ {
+    // ...
+};
+```
+
+By default, `Iterable` is therefore also a boolean metafunction returning
+`false`, meaning that arbitrary datatypes don't implement the `head`, `tail`
+and `is_empty` metafunctions. In its current form, the `Iterable` template is
+called a __typeclass__, and metafunctions like `head` following this dispatching
+pattern through a typeclass are called __typeclass methods__. In order to
+implement `head` and friends, one would now write
 
 ```cpp
 template <>
-struct Iterable<List> {
+struct Iterable<List> : true_ {
     template <typename the_list>
     struct head_impl {
         // ...
@@ -1260,6 +1274,8 @@ struct Iterable<List> {
 
     // ...
 };
+
+static_assert(Iterable<List>{}, "List is an Iterable!");
 ```
 
 The three methods `Iterable` contains so far are very basic; for any given
@@ -1311,19 +1327,21 @@ struct Iterable<List> : mpl11::instantiate<Iterable>::with<List> {
 };
 ```
 
-Here, `mpl11::instantiate<...>::with<...>` is an empty class by default.
-However, `mpl11::instantiate` may be specialized by typeclass designers
-in such a way that the member template `with` contains the default methods.
-In our case, we would provide a `last_impl` metafunction corresponding to
-the default implementation of `last` shown above. This way, if a datatype
-does not implement the `last` method, our default implementation will be used.
+Here, `mpl11::instantiate<...>::with<...>` is `true_` by default. Hence, it only
+takes care of making `Iterable` a true-valued boolean metafunction, which we did
+ourselves previously. However, `mpl11::instantiate` may be specialized by
+typeclass designers in such a way that the member template `with` also contains
+default methods. In our case, we would provide a `last_impl` metafunction
+corresponding to the default implementation of `last` shown above. This way,
+if a datatype does not implement the `last` method, our default implementation
+will be used.
 
 ```cpp
 namespace boost { namespace mpl11 {
     template <>
     struct instantiate<Iterable> {
         template <typename Datatype>
-        struct with {
+        struct with : true_ {
             template <typename Iter>
             struct last_impl {
                 // default implementation
@@ -1361,7 +1379,6 @@ without a default implementation, but it must be documented for each typeclass.
 <!--  -->
 
 > __TODO__
-> - Tackle typeclasses as boolean metafunctions
 > - Tackle mixed-datatype typeclass-method dispatch
 
 
@@ -1431,12 +1448,11 @@ a boxed type, so they're not completely forgotten.
 
 
 ## Todo list
-- [ ] Sync the library with the tutorial. For example, there are some places
-      where the tutorial says that we're taking unboxed types (and it is better
-      to do so) but we're still taking boxed types in the library.
-- [ ] Don't take for granted metafunction classes provided by the library which
-      can be specialized are boxed. An example is cast, which is used as-if
-      it was boxed in common_method.hpp.
+- [ ] Decide whether to receive unboxed or boxed types in method implementations.
+      Once that is decided, modify either the tutorial or the library.
+- [ ] Implement cross-type typeclasses.
+- [ ] Implement typeclasses as boolean metafunctions, like documented.
+- [ ] Take unboxed types in `cast`.
 - [ ] Implement associative data structures.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
       Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
@@ -1483,6 +1499,11 @@ a boxed type, so they're not completely forgotten.
 - [ ] Benchmark memory usage in addition to compilation time.
 - [ ] Consider providing data constructors taking unboxed types for convenience.
 - [ ] Consider making `int_<>` a simple boxed `int` without a value.
+- [ ] Write a rationale for why we don't have parameterized datatypes.
+      Or is this possible/useful?
+- [ ] Make bool.hpp lighter. In particular, it should probably not depend
+      on integer.
+- [ ] Design a StaticConstant concept?
 
 
 <!-- Links -->
