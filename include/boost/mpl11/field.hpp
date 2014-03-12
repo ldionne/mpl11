@@ -9,7 +9,7 @@
 #include <boost/mpl11/fwd/field.hpp>
 
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
+#include <boost/mpl11/detail/apply_to_common.hpp>
 #include <boost/mpl11/fwd/ring.hpp>
 
 
@@ -17,12 +17,7 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
     struct Field {
         template <typename x, typename y>
-        using quot_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<
-                Field<typename common_datatype<Left, Right>::type>::
-                template quot_impl, x, y
-            >;
+        using quot_impl = detail::apply_to_common<quot, x, y>;
     };
 
     template <>

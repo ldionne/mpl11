@@ -37,7 +37,7 @@ namespace boost { namespace mpl11 {
 
 
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
+#include <boost/mpl11/detail/apply_to_common.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/logical.hpp>
@@ -46,39 +46,24 @@ namespace boost { namespace mpl11 {
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
     struct Orderable {
-    private:
-        using Common = Orderable<typename common_datatype<Left, Right>::type>;
-
-    public:
         template <typename x, typename y>
-        using less_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template less_impl, x, y>;
+        using less_impl = detail::apply_to_common<less, x, y>;
 
         template <typename x, typename y>
-        using less_equal_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template less_equal_impl, x, y>;
+        using less_equal_impl = detail::apply_to_common<less_equal, x, y>;
 
         template <typename x, typename y>
-        using greater_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template greater_impl, x, y>;
+        using greater_impl = detail::apply_to_common<greater, x, y>;
 
         template <typename x, typename y>
         using greater_equal_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template greater_equal_impl, x, y>;
+            detail::apply_to_common<greater_equal, x, y>;
 
         template <typename x, typename y>
-        using min_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template min_impl, x, y>;
+        using min_impl = detail::apply_to_common<min, x, y>;
 
         template <typename x, typename y>
-        using max_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template max_impl, x, y>;
+        using max_impl = detail::apply_to_common<max, x, y>;
     };
 
     template <typename x1, typename x2, typename ...xs>

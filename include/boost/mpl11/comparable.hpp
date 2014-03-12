@@ -28,7 +28,7 @@ namespace boost { namespace mpl11 {
 
 
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
+#include <boost/mpl11/detail/apply_to_common.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/logical.hpp>
 
@@ -36,19 +36,11 @@ namespace boost { namespace mpl11 {
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
     struct Comparable {
-    private:
-        using Common = Comparable<typename common_datatype<Left, Right>::type>;
-
-    public:
         template <typename x, typename y>
-        using equal_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template equal_impl, x, y>;
+        using equal_impl = detail::apply_to_common<equal, x, y>;
 
         template <typename x, typename y>
-        using not_equal_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template not_equal_impl, x, y>;
+        using not_equal_impl = detail::apply_to_common<not_equal, x, y>;
     };
 
     template <typename x1, typename x2, typename ...xs>
