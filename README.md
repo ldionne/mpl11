@@ -15,18 +15,17 @@ the library was redesigned and the name does not fit so well anymore.
 ## Table of contents
 - [Installation](#installation)
 - [Introduction](#introduction)
-    + [Traditional metafunctions](#traditional-metafunctions)
-    + [Evaluation strategies](#evaluation-strategies)
-- [Core concepts](#core-concepts)
-    + [Boxed types](#boxed-types)
-    + [Metafunctions](#metafunctions)
-    + [Non-strictness](#non-strictness)
-    + [Metafunction classes](#metafunction-classes)
-    + [Datatypes and data constructors](#datatypes-and-data-constructors)
-        * [Conversions](#conversions)
-    + [Methods](#methods)
-    + [Typeclasses](#typeclasses)
-    + [Rewrite rules](#rewrite-rules)
+- [Metafunctions](#metafunctions)
+  + [Boxed types](#boxed-types)
+  + [Laziness](#laziness)
+  + [Lifted metafunctions](#lifted-metafunctions)
+- [Datatypes and data constructors](#datatypes-and-data-constructors)
+  + [Boxed data constructors](#boxed-data-constructors)
+  + [Laziness in data constructors](#laziness-in-data-constructors)
+  + [Conversions](#conversions)
+- [Methods](#methods)
+- [Typeclasses](#typeclasses)
+- [Rewrite rules](#rewrite-rules)
 - [Acknowledgements](#acknowledgements)
 - [Rationales](#rationales)
 - [Todo list](#todo-list)
@@ -66,329 +65,76 @@ Boost.MPL in many ways, and one should be careful not to transfer knowledge
 between both libraries without checking the documentation.
 
 
-### Traditional metafunctions
-A traditional metafunction is simply a class or a class template representing a
-compile-time function whose arguments are types instead of runtime values.
+## Metafunctions
+Informally, a metafunction is a template representing a compile-time function
+taking types as arguments and returning a type as a result. Readers coming
+from the MPL should be careful here, since the formal definition differs
+from that of the MPL.
+
+Formally, let `f` be a C++ template with an arbitrary number of type
+template parameters, and type template parameters only. Then, `f` is a
+__metafunction__ if and only if there exists types `x1, ..., xn` such
+that `f<x1, ..., xn>::type` is a valid type name. In this context,
+
+- `x1, ..., xn` are the __arguments__ of `f`.
+- Forming a specialization `f<x1, ..., xn>` is called __suspending__ `f`
+  with `x1, ..., xn`.
+- A specialization `f<x1, ..., xn>` is called a __thunk__ or a __suspension__.
+- The nested `::type` of a thunk is called the __result__ of the thunk. If the
+  thunk is of the form `f<x1, ..., xn>`, we can also say it is the __result__
+  of `f` with `x1, ..., xn`.
+- Fetching the result of a thunk is called __evaluating__ the thunk. If the
+  thunk is of the form `f<x1, ..., xn>`, we can also say __invoking__ `f`
+  with `x1, ..., xn` or __applying__ `f` to `x1, ..., xn`.
+- The __arity__ of a metafunction is the number of arguments it can be
+  invoked with. A metafunction with arity _n_ is said to be a __n-ary__
+  metafunction.
+- A metafunction that can be invoked with any number of arguments is said
+  to be __variadic__. By definition, a variadic metafunction is n-ary for
+  any non-negative integer n.
+
+It is important to note the difference between this definition and the one
+given by the Boost.MPL. With this definition, a metafunction can never be a
+normal C++ type; it must always be a template. Hence, Boost.MPL nullary
+metafunctions implemented as non-template classes are not considered as
+metafunctions. Here are some examples:
 
 ```cpp
+// A unary metafunction.
 template <typename x>
-struct f {
-    using type = ...;
-};
-```
+struct unary { struct type; };
 
-By convention, the result of a metafunction is obtained by reaching its nested
-`::type` type. For example, invoking `f` would look like so:
+// A binary metafunction.
+template <typename x, typename y>
+struct binary { struct type; };
 
-```cpp
-using result = f<int>::type;
-```
-
-We decide to use only types as metafunction arguments. We adopt this convention
-because it allows treating metafunctions uniformly, which is necessary when
-dealing with higher-order metafunctions. Also, we do not lose the ability
-to process compile-time values with metafunctions, because we can provide
-a wrapper that will allow those to be passed as types:
-
-```cpp
-template <int i>
-struct int_ {
-    static constexpr int value = i;
-};
-
-template <typename X>
-struct increment {
-    using type = int_<X::value + 1>;
-};
-
-using two = increment<int<1>>::type;
-```
-
-To explore what's possible, let's implement a couple basic metafunctions. First,
-we decide to create compile-time counterparts to the boolean values `true` and
-`false`. These  will be useful to define a compile-time counterpart to the
-well-known `if` statement.
-
-```cpp
-template <bool b>
-struct bool_ {
-    static constexpr bool value = b;
-};
-
-using true_ = bool_<true>;
-using false_ = bool_<false>;
-
-template <typename Condition, typename Then, typename Else>
-struct if_ {
-    using type = Then;
-};
-
-template <typename Then, typename Else>
-struct if_<false_, Then, Else> {
-    using type = Else;
-};
-```
-
-We can now use our compile-time `if` to create a lot of interesting
-metafunctions. For example, let's implement the `min` metafunction,
-which returns the smaller of its two arguments.
-
-```cpp
-template <typename X, typename Y>
-struct min {
-    using type = typename if_<bool_<(X::value < Y::value)>, X, Y>::type;
-};
-```
-
-As a quick note, observe how we could have inherited from `if_` instead of
-doing what we did above:
-
-```cpp
-template <typename X, typename Y>
-struct min
-    : if_<bool_<(X::value < Y::value)>, X, Y>
-{ };
-```
-
-This is a technique called metafunction forwarding. When we inherit from `if_`,
-all its publicly accessible members become accessible through the derived type
-too, so that `min<...>::type` is actually `if<...>::type`. From now on, this
-technique will be used when appropriate because it reduces syntactic overhead.
-
-Let's now set aside numeric metafunctions for a while and concentrate on
-compile-time sequences. Compile-time sequences are data structures storing
-types instead of runtime values. Compile-time sequences relate to runtime
-sequences just like metafunctions relate to normal functions. However, our
-compile-time data structures will have to be purely functional, because
-templates are a purely functional sub-language. Let's implement a basic
-`list` as seen in most functional programming languages:
-
-```cpp
+// A variadic metafunction.
 template <typename ...>
-struct list;
+struct variadic { struct type; };
 
+// A nullary metafunction. It can only be invoked with
+// 0 arguments, and it is therefore 0-ary (nullary).
+template <typename ...> struct nullary;
+template <> struct nullary<> { struct type; };
 
-// Returns the first element of a list. Requires a non-empty list.
-template <typename List>
-struct head;
+// Not a metafunction with the MPL11; it is not a template!
+struct MPL_nullary { struct type; };
 
-template <typename Head, typename ...Tail>
-struct head<list<Head, Tail...>> {
-    using type = Head;
-};
-
-
-// Returns all the list except the head. Requires a non-empty list.
-template <typename List>
-struct tail;
-
-template <typename Head, typename ...Tail>
-struct tail<list<Head, Tail...>> {
-    using type = list<Tail...>;
-};
-
-
-// Returns whether a list is empty.
-template <typename List>
-struct is_empty {
-    using type = false_;
-};
-
-template <>
-struct is_empty<list<>> {
-    using type = true_;
-};
+// Not a metafunction; it never has a result (a nested ::type)!
+template <typename ...>
+struct no_result { };
 ```
-
-We can now use our `list` like so:
-
-```cpp
-using List  = list<int, char, float>;
-using Int   = head<List>::type;
-using Char  = head<tail<List>::type>::type;
-using Float = head<tail<tail<List>::type>::type>::type;
-using Error = head<list<>>::type; // head requires a non-empty list
-```
-
-
-### Evaluation strategies
-Like we just saw, traditional metafunctions expect their arguments to be "fully
-evaluated". For example, when invoking a metafunction with the result of another
-metafunction, that metafunction has to be evaluated by the caller before its
-result is passed to the callee. This is roughly equivalent to a
-[call-by-value][] evaluation strategy.
-
-```cpp
-using List = list<int_<1>, int_<2>>;
-using Two = head<tail<List>::type>::type;
-//                         ^^^^^^
-// tail is evaluated so we can pass the result to head
-
-using Error = head<tail<List>>::type; // head expects a list<...>
-```
-
-If `head` expected a metafunction returning a `list` instead of a `list`
-directly, the burden of evaluating the arguments could be switched from
-`head`'s caller to `head` itself. For example, we could write:
-
-```cpp
-using List = list<int_<1>, int_<2>>;
-using Two = head<tail<List>>::type;
-//                        ^ no evaluation of tail
-
-using Error = head<tail<List>::type>;
-// error: tail<List>::type is list<int_<2>>, which is not a metafunction
-```
-
-This would be roughly equivalent to a [call-by-need][] evaluation strategy,
-where the compiler is the one performing memoization of template instantiations
-behind the scenes. Right now, the usefulness of this evaluation strategy might
-not be clear. However, we can expose a common situation where it comes in handy
-using just the tools we created in the previous section. Let's assume we want to
-create a metafunction that will drop the first `N` elements of a list and return
-what's left, or the empty list if `N` is greater than the number of elements in
-the list.
-
-```cpp
-template <typename N, typename List>
-struct drop
-    : if_<bool_<N::value == 0 || is_empty<List>::type::value>,
-
-    /* then */
-        List,
-
-    /* else */
-        typename drop<
-            int_<N::value - 1>, typename tail<List>::type
-        >::type
-    >
-{ };
-```
-
-This metafunction looks fine, but it isn't. The first problem is in the
-recursive invocation of `drop`. Since we fetch its nested `::type`, it is
-instantiated regardless of the `if_` branch taken and we end up with infinite
-recursion. This problem may be fixed by introducing a metafunction similar to
-`if_`, except it expects the branches to be nullary metafunctions and returns
-the result of the metafunction corresponding to the branch taken. The
-metafunction corresponding to the other branch is never evaluated. Here
-is a possible implementation:
-
-```cpp
-template <typename Condition, typename Then, typename Else>
-struct eval_if : Then { };
-
-template <typename Then, typename Else>
-struct eval_if<false_, Then, Else> : Else { };
-
-// This is the identity metafunction: it returns its argument unchanged.
-// We'll need this in a second.
-template <typename X>
-struct id {
-    using type = X;
-};
-```
-
-As it turns out, `eval_if` is only an `if_` using a call-by-need evaluation
-strategy. We can now write the `drop` metafunction like so:
-
-```cpp
-template <typename N, typename List>
-struct drop
-    : eval_if<bool_<N::value == 0 || is_empty<List>::type::value>,
-
-    /* then */
-        id<List>,
-
-    /* else */
-        drop<int_<N::value - 1>, typename tail<List>::type>
-    >
-{ };
-```
-
-Since we do not fetch `drop`'s nested `::type` anymore, we do not end up with
-infinite recursion. Also notice how we wrapped `List` with `id` in the "then"
-branch; this is a bit annoying but it is necessary because `eval_if` expects a
-metafunction in both branches.
-
-The second problem is when we have an empty list. When that happens, we will
-return the empty list, which is fine. However, we will also invoke `tail` on
-the empty list, which is an error because `tail` expects its argument to be
-non-empty. Much like the first one, this problem can be fixed by providing
-an equivalent metafunction with a call-by-need evaluation strategy:
-
-```cpp
-template <typename N, typename List>
-struct eval_drop
-    : drop<typename N::type, typename List::type>
-{ };
-```
-
-We can now write our final `drop` metafunction:
-
-```cpp
-template <typename N, typename List>
-struct drop
-    : eval_if<bool_<N::value == 0 || is_empty<List>::type::value>,
-
-    /* then */
-        id<List>,
-
-    /* else */
-        eval_drop<
-            id<int_<N::value - 1>>,
-            tail<List>
-        >
-    >
-{ };
-```
-
-This implementation works as expected. Note that the original Boost.MPL does
-provide an `eval_if` metafunction, but it does not provide an analogous for
-most other metafunctions. Hence, ad-hoc solutions like the following are common:
-
-```cpp
-// Invokes drop with the tail of the list.
-template <typename N, typename List>
-struct drop_tail
-    : drop<N, typename tail<List>::type>
-{ };
-
-template <typename N, typename List>
-struct drop
-    : eval_if<bool_<N::value == 0 || is_empty<List>::type::value>,
-
-    /* then */
-        id<List>,
-
-    /* else */
-        drop_tail<int_<N::value - 1>, List>
-    >
-{ };
-```
-
-There is a lesson to be learned here. Since it makes sense for an arbitrary
-metafunction to be used in a context where it should be conditionally invoked,
-all metafunctions should have a call-by-need version. It does increase the
-complexity of the library, but the alternative is to have the user write an
-equivalent ad-hoc solution, which is a net loss. Also, a nice side-effect of
-call-by-need is the reduction of syntactic noise, particularly in dependent
-contexts where `typename` and `::type` become a real pain.
-
-
-## Core concepts
-This section explains the core concepts of the library. We start with a couple
-of definitions; be careful because some definitions clash with those from the
-MPL, and some terms were used to denote different things in the introduction.
-It is essential to start with a clean slate here.
 
 
 ### Boxed types
-The notion of boxed type is central to the MPL11. As you will see later, it
-serves as a bridge between normal types and metafunctions. For an arbitrary C++
-type `T`, a __boxed `T`__ is an arbitrary C++ type `B` such that `B::type` is
-`T`. In this context, `B` is called a __box__ (of `T`) and fetching the nested
-`::type` inside of `B` is called __unboxing__ `T`.
+Informally, a boxed type is a type that has yet to be evaluated. Hence,
+before knowing the actual "value" of a boxed type, one must evaluate it,
+a process which is called unboxing.
+
+Formally, for an arbitrary C++ type `T`, a __boxed `T`__ is an arbitrary C++
+type `B` such that `B::type` is `T`. In this context, `B` is called a __box__
+(of `T`) and fetching the nested `::type` inside of `B` is called __unboxing__
+`T`.
 
 ```cpp
 struct T;
@@ -397,9 +143,10 @@ struct B { using type = T; }; // a boxed T (equivalently, a box of T)
 B::type; // unboxing T
 ```
 
-Conversely, wrapping an arbitrary type `T` in a type `B` such that `B::type` is
-`T` is called __boxing__ `T` (into `B` or with `B`). It is important to note
-that `B` may depend on `T`, without which boxing would be of limited interest.
+Conversely, wrapping an arbitrary type `T` in a type `B` such that `B::type`
+is `T` is called __boxing__ `T` (into `B` or with `B`). It is important to
+note that `B` may depend on `T`, without which boxing would be of limited
+interest.
 
 ```cpp
 struct T;
@@ -410,17 +157,17 @@ struct B { using type = t; };
 B<T>; // boxing T into B
 ```
 
-Note that types may be boxed an arbitrary number of times. This is probably not
-useful, but the definition is general enough to allow it.
+Note that types may be boxed an arbitrary number of times. This is probably
+not useful, but the definition is general enough to allow it.
 
 ```cpp
 B<B<T>>; // this is a "box of B<T>", aka a "box of (box of T)"
 ```
 
-There exists a special boxed type named `undefined` (sometimes called _bottom_)
-which has the characteristic of causing a compile-time error when it is unboxed,
-even in SFINAE-able contexts. `undefined` can be seen as an invalid value, or
-the result of a computation that failed.
+There exists a special boxed type named `undefined` (sometimes called
+_bottom_) which has the characteristic of causing a compile-time error
+when it is unboxed, even in SFINAE-able contexts. `undefined` can be
+seen as an invalid value, or the result of a computation that failed.
 
 Here are some examples to illustrate the previous definition:
 
@@ -457,29 +204,51 @@ struct B2 { using type = T; }; // a boxed T too
 ```
 
 Certainly, `B1` and `B2` are equivalent w.r.t. to the type they box since they
-both are boxes of `T`. However, `B1` and `B2` are _not_ equivalent w.r.t. the
-C++ type system because they are different types. Now, this is important because
-it tells us that we can't use pattern matching on boxes! Consider a fictive
-situation where we want to define a metafunction whose argument is a boxed type
-(the relevance of such metafunctions will become clear):
+both box the same type `T`. However, `B1` and `B2` are _not_ equivalent w.r.t.
+the C++ type system because they are different types. Now, this is important
+because it tells us that we can't use pattern matching to define a
+metafunction taking a boxed type as an argument. Indeed, since the
+representation of a boxed type is not unique, we can't know what form
+will have our argument in advance, and therefore we can't pattern match.
+Consider the following:
 
 ```cpp
+// B should be a boxed type.
 template <typename B>
 struct f;
 
-// this handle boxed chars
+// This should handle boxed chars, but we don't know
+// what a boxed char may look like!
+template <>
+struct f<????> {
+    // ...
+};
+```
+
+Now, we might be tempted to do the following:
+
+```cpp
+// box is the template that we defined earlier. It takes an
+// arbitrary type and boxes it.
 template <>
 struct f<box<char>> {
-    using type = ...;
+    // ...
 };
+```
 
+But then...
+
+```cpp
 template <typename T>
 struct bad {
     using type = T;
 };
 
-f<box<char>>::type; // works
-f<bad<char>>::type; // oops!
+// works, as expected
+f<box<char>>::type;
+
+// does not work, even though bad<char> is clearly a boxed char
+f<bad<char>>::type;
 ```
 
 Instead, we would have to do something more convoluted like:
@@ -502,104 +271,67 @@ f<box<char>>::type; // works
 f<bad<char>>::type; // works too
 ```
 
+> It is interesting to note that boxed types and thunks share a lot. In
+> fact, a thunk is nothing but a boxed type that was formed by _suspending_
+> a metafunction. Hence, whenever a boxed type is expected, a thunk may be
+> used instead.
 
-### Metafunctions
-Informally, a metafunction is a template representing a compile-time function
-taking types as arguments and returning a type as a result. Readers coming from
-the MPL should be careful here, since the formal definition differs from the
-that of the MPL.
 
-Formally, let `f` be a C++ template accepting an arbitrary number of type
-template parameters, and only type template parameters. Then, `f` is a
-__metafunction__ if and only if there exists types `x1, ..., xn` such that
-`f<x1, ..., xn>::type` is a valid type name. In this context,
+### Laziness
+This section introduces the notion of laziness in the context of template
+metaprograms and explains how it relates to the previous notions. This is
+by no means a rigorous treatment of the broader subject of evaluation
+strategies, and knowledge of those concepts is expected.
 
-- `x1, ..., xn` are the __arguments__ of `f`.
-- Forming a specialization `f<x1, ..., xn>` is called __suspending__ `f`
-  with `x1, ..., xn`.
-- A specialization `f<x1, ..., xn>` is called a __thunk__ or a __suspension__.
-- The nested `::type` of a thunk is called the __result__ of the thunk. If the
-  thunk is of the form `f<x1, ..., xn>`, we can also say it is the __result__
-  of `f` with `x1, ..., xn`.
-- Fetching the result of a thunk is called __evaluating__ the thunk. If the
-  thunk is of the form `f<x1, ..., xn>`, we can also say __invoking__ `f` with
-  `x1, ..., xn` or __applying__ `f` to `x1, ..., xn`.
-- The __arity__ of a metafunction is the number of arguments it can be
-  invoked with. A metafunction with arity _n_ is said to be a __n-ary__
-  metafunction.
-- A metafunction that can be invoked with any number of arguments is said
-  to be __variadic__. By definition, a variadic metafunction is n-ary for
-  any non-negative integer n.
+Informally, laziness is a property of a metafunction meaning that the
+metafunction performs the least amount of work needed to give its result.
+It requires the metafunction to only evaluate the expressions that are
+actually needed in its body, and to evaluate them no more than once.
 
-There are two important things to note here. The first is that thunks are
-really the same as boxed types, which is why boxed types can be seen as a
-bridge between normal types and metafunctions. The second is the difference
-between this definition and the one given by the Boost.MPL. With our definition,
-a metafunction can never be a normal C++ type; it must always be a template.
-Hence, Boost.MPL nullary metafunctions implemented as non-template classes
-are not considered metafunctions with our definition. Here are some examples:
+The second point is called memoization and it is handled behind the scenes by
+the compiler. While the C++ standard does not require compilers to memoize
+template instantiations, this is always the case in practice. Consider:
 
 ```cpp
-// A unary metafunction.
 template <typename x>
-struct unary { struct type; };
-
-// A binary metafunction.
-template <typename x, typename y>
-struct binary { struct type; };
-
-// A variadic metafunction.
-template <typename ...>
-struct variadic { struct type; };
-
-// A nullary metafunction. It can only be invoked with
-// 0 arguments, and it is therefore 0-ary (nullary).
-template <typename ...> struct nullary;
-template <> struct nullary<> { struct type; };
-
-// Not a metafunction with the MPL11; it is not a template!
-struct MPL_nullary { struct type; };
-
-// Not a metafunction; it never has a result (a nested ::type)!
-template <typename ...>
-struct no_result { };
-```
-
-In the MPL11, the default evaluation strategy is call-by-need. This is not a
-requirement of the definition but merely a design choice which often makes
-metafunctions easier to compose. However, a direct consequence is that
-metafunctions must take boxed arguments and unbox them in their body as needed.
-
-As an aside, it is interesting to note that the equivalence between thunks and
-boxed types plays a big role in making call-by-need metafunctions useful. This
-equivalence means that whenever a boxed type is expected, a thunk may be passed
-instead. Hence, call-by-need metafunctions can sometimes avoid evaluating
-complex thunks, which is far more interesting than avoiding to unbox a type.
-
-At this point, it is probably helpful to clarify that the way we return from
-call-by-need metafunctions is no different from that of usual metafunctions.
-For example, consider the following call-by-need metafunction that returns the
-successor of an integer:
-
-```cpp
-// We do this:
-template <typename N>
-struct succ {
-    using type = int_<N::type::value + 1>;
+struct f {
+  using type = x;
 };
 
-// Not this:
-template <typename N>
-struct bad_succ {
-    using type = box<int_<N::type::value + 1>>;
-};
-
-// So we can do this:
-using one = succ<box<int_<0>>>;
-using three = succ<succ<one>>;      // note that one and three are boxed
+f<int>::type; // instantiate f<int>
+f<int>::type; // f<int> is already instantiated, nothing is done.
 ```
 
+The first point, however, must be handled manually when writing template
+metaprograms.
 
+> __TODO__
+> Finish this section. Specifically, explain the following:
+>
+> - What is a lazy metafunction (mf classes follow from that)
+> - The inverse of a lazy metafunction is a strict metafunction (broadly)
+> - Lazy metafunctions must take boxed types, otherwise they would always
+>   evaluate their arguments whether they are needed or not. This is
+>   equivalent to call-by-name.
+> - Strict metafunctions can take unboxed arguments, because they always
+>   evaluate their arguments anyways. However, strict metafunctions can still
+>   take boxed arguments and unbox them unconditionally; this is just a matter
+>   of convention.
+> - Metafunctions take boxed arguments by default in the MPL11.
+> - Metafunctions are lazy by default (i.e. whenever possible) in the MPL11.
+> - Strict metafunctions usually still take boxed arguments for consistency.
+> - Some metafunctions don't follow the convention, and in this case this
+>   behavior is documented.
+> - Metafunctions that don't follow the convention do it because it's
+>   necessary or because it's much easier to do such or such when breaking
+>   the convention.
+> - Why are lazy metafunctions useful?
+>   This could use the `drop` metafunction of the old introduction.
+>   Laziness often leads to increased expressiveness; for example it becomes
+>   easy to define new control structures and infinite data structures.
+> - Consider keeping the optional section on non-strictness.
+
+<!--
 ### Non-strictness
 Call-by-need is an evaluation strategy that is part of a larger family of
 evaluation strategies called non-strict evaluation. The goal of this section
@@ -655,30 +387,129 @@ strictness characteristics should be documented clearly.
 > for a detailed treatment of strict versus non-strict semantics. This is a
 > much richer topic than what is exposed here, and can lead to worthwhile
 > insights.
+ -->
+
+At this point, it is probably helpful to clarify that returning from a lazy
+metafunction is no different than returning from a strict metafunction. For
+example, consider the following lazy metafunction implementing an `if`
+statement:
+
+```cpp
+template <typename Condition, typename Then, typename Else>
+struct if_ {
+    using Branch = std::conditional<Condition::type::value, Then, Else>::type;
+    using type = typename Branch::type;
+};
+```
+
+Since `if_` is lazy, its arguments are all boxed types. Here, we unbox
+`Branch` and return that instead of returning `Branch` itself. This way,
+`if_<Condition, Then, Else>` is a thunk and we can pass it to other lazy
+metafunctions as-is:
+
+```cpp
+// A lazy metafunction.
+template <typename x>
+struct f;
+
+using result = f<   if_<Condition, Then, Else>  >::type;
+```
+
+ If we had defined `if_` as follows
+
+```cpp
+template <typename Condition, typename Then, typename Else>
+struct if_ {
+    using Branch = std::conditional<Condition::type::value, Then, Else>::type;
+    using type = Branch; // Note that we don't unbox Branch here
+};
+```
+
+then `if_` would return a thunk and we would need to do the following instead:
+
+```cpp
+using result = f<   if_<Condition, Then, Else>::type    >::type;
+                                              ^^^^^^
+```
 
 
-### Metafunction classes
-Informally, a metafunction class is a representation of a metafunction that
+### Lifted metafunctions
+Informally, a lifted metafunction is a representation of a metafunction that
 allows it to be manipulated as a first class citizen in template metaprograms.
-Hence, the formal definition of a metafunction class naturally follows from
-that of a metafunction.
+Formally, an arbitrary C++ type `f` is a __lifted metafunction__ if and only
+if `f::apply` is a metafunction. In general, lifted metafunctions inherit the
+terminology of metafunctions, and the characteristics of a lifted metafunction
+follow from that of its nested `apply` metafunction. For example, the arity of
+a lifted metafunction `f` is that of `f::apply`.
 
-An arbitrary C++ type `f` is a __metafunction class__ if and only if `f::apply`
-is a metafunction. In general, metafunction classes inherit the terminology of
-metafunctions, and the characteristics of a metafunction class follow from that
-of its nested `apply` metafunction. For example, the arity of a metafunction
-class `f` is that of `f::apply`.
+> The definition of a lifted metafunction is almost the same as the definition
+> of a metafunction class in the Boost.MPL. The only difference is the
+> difference between metafunctions in both libraries.
 
-> The definition of metafunction classes exposed here is not the same as that
-> of the Boost.MPL. The difference between both definitions is the difference
-> between the definition of metafunctions in both libraries.
+Here are some examples of lifted metafunctions:
+
+```cpp
+// A unary lifted metafunction.
+struct unary {
+    template <typename x>
+    struct apply { struct type; };
+};
+
+// A binary lifted metafunction.
+struct binary {
+    template <typename x, typename y>
+    struct apply { struct type; };
+};
+
+// A variadic lifted metafunction.
+struct variadic {
+    template <typename ...>
+    struct variadic { struct type; };
+};
+
+// A nullary lifted metafunction.
+struct nullary {
+    template <typename ...> struct apply;
+};
+template <> struct nullary::apply<> { struct type; };
+
+// Not a lifted metafunction with the MPL11; its nested apply
+// is not a metafunction!
+struct MPL_nullary {
+    struct apply { struct type; };
+};
+
+// Not a lifted metafunction; its nested apply never has a result!
+struct no_result {
+    template <typename ...>
+    struct apply { };
+};
+```
+
+Any metafunction can be lifted, and the MPL11 defines a template to do
+just that.
+
+```cpp
+template <template <typename ...> class f>
+struct lift {
+    template <typename ...xs>
+    struct apply
+        : f<xs...>
+    { };
+};
+```
+
+> `lift` is essentially the same as `quote` in the Boost.MPL. The name
+> `lift` was preferred because what we're doing is really a _lift_ in
+> its category theoretical sense, and the author has a positive bias
+> towards category theory.
 
 
-### Datatypes and data constructors
-At compile-time, types become values. A legitimate question would then be: what
-is the type of those values? In the MPL11, datatypes play that role. Closely
-related are data constructors, a way to create a "value" of a given datatype.
-For example, let's create a simple compile-time list:
+## Datatypes and data constructors
+At compile-time, a type becomes a value. A legitimate question would then be:
+what is the type of that value? In the MPL11, datatypes play that role.
+Closely related are data constructors, which are a way of creating values
+of a given datatype. For example, let's create a simple compile-time list:
 
 ```cpp
 // A "tag" representing the datatype.
@@ -699,16 +530,15 @@ struct nil { using mpl_datatype = List; };
 ```
 
 Data constructors must provide a nested `::mpl_datatype` alias representing
-their datatype. One can then use the `mpl11::datatype` metafunction to retrieve
-that datatype:
+their datatype. One can then use the `datatype` metafunction to retrieve it:
 
 ```cpp
-mpl11::datatype<nil>::type; // == List
+datatype<nil>::type; // == List
 ```
 
-It is also possible to specialize `mpl11::datatype` instead of providing a
-nested `mpl_datatype` alias. So this definition of `cons` is equally valid
-(and the other constructors could be defined analogously):
+It is also possible to specialize `datatype` instead of providing a
+nested `mpl_datatype` alias. So this definition of `cons` is equally
+valid (and the other constructors could be defined analogously):
 
 ```cpp
 template <typename Head, typename Tail>
@@ -723,17 +553,20 @@ namespace boost { namespace mpl11 {
 ```
 
 Being able to do this is paramount when adapting code over which we don't have
-the control, but for simplicity we'll stick with the nested `mpl_datatype` for
-most of this tutorial. When unspecialized, `mpl11::datatype<ctor>` simply
-returns `ctor::mpl_datatype` if that expression is a valid type name, and
-`mpl11::Foreign` otherwise. `mpl11::Foreign` is the default datatype of
-everything; its purpose will become clearer later.
+the control, but for simplicity we'll stick with the nested `mpl_datatype`
+whenever possible. When unspecialized, `datatype<T>` simply returns
+`T::mpl_datatype` if that expression is a valid type name, and `Foreign`
+otherwise. Hence, `Foreign` is the default datatype of everything.
 
-Note that `mpl11::datatype` really takes a data constructor as an argument,
-not a boxed type. This is one of the rare metafunctions of the library that
-have call-by-value semantics. While it is not mandatory, it is often a good
-idea to box data constructors since it makes them usable as-is in call-by-need
-metafunctions too. Let's rewrite the previous data constructors that way:
+> Note that `datatype` is a strict metafunction and that it does not obey the
+> convention of taking boxed arguments. Breaking the convention is necessary
+> to allow user-defined specializations.
+
+
+### Boxed data constructors
+While it is not mandatory, it is often a good idea to box data constructors
+since it makes them usable as-is in lazy metafunctions. Let's rewrite the
+previous data constructors that way:
 
 ```cpp
 template <typename ...Elements>
@@ -767,8 +600,8 @@ struct nil {
 The downside is that we end up with twice the amount of code, half of which
 is complete boilerplate. Also, this approach causes twice as many templates
 to be instantiated each time we unbox a data constructor, which can hurt
-compile-time performance. Fortunately, we can use self-referential boxed
-types to make this right.
+compile-time performance. Fortunately, we can use self-referential boxing
+to make this better.
 
 ```cpp
 template <typename ...Elements>
@@ -790,8 +623,8 @@ struct nil {
 ```
 
 That way, only one additional line of code is required per data constructor
-and we only instantiate one template when we unbox it. Indeed, `cons<...>::type`
-is just `cons<...>`, which is already instantiated.
+and we only instantiate one template when we unbox it. Indeed,
+`cons<...>::type` is just `cons<...>`, which is already instantiated.
 
 You might wonder why I have even bothered with the inferior solution using
 `cons_impl` and friends in the first place, since the self-referential
@@ -800,8 +633,11 @@ constructors do not _need_ to be self-referential; it is merely a convenient
 implementation trick. This is a subtle difference between the MPL11 and the
 [mpllibs][] library collection, which I wanted to point out.
 
-There is something rather important that we have left undefined when we created
-the `list` and `cons` data constructors: what do their arguments look like?
+
+### Laziness in data constructors
+There is something rather important that we have left undefined when we
+created the `list` and `cons` data constructors: what do their arguments
+look like?
 
 ```cpp
 template <typename ...Elements>
@@ -833,10 +669,10 @@ using z = cons<box<int>, cons<box<char>, cons<box<float>, nil>>>;
 > Note that we do not need to box the second arguments to `cons` ourselves,
 > because we have already made `list`, `cons` and `nil` boxed.
 
-This is clearly less natural than the first solution. Still, for reasons that
-will soon become clearer, the MPL11 `List` constructors use the second solution,
-and so will we for the rest of this tutorial. To reduce the syntactic noise, we
-will define aliases that will make our life easier:
+This is clearly less natural than the first solution. Still, for reasons
+that will soon become clearer, the MPL11 `List` constructors use the second
+solution, and so will we for the rest of this tutorial. To reduce the
+syntactic noise, we will define aliases that will make our life easier:
 
 ```cpp
 template <typename ...Elements>
@@ -851,24 +687,15 @@ using cons_ = cons<box<Head>, box<Tail>>;
 > `box<Tail>` is really redundant, but we still do it here for the sake of
 > clarity.
 
-An important distinction must be made here. One could come to think of data
-constructors as metafunctions, but they are not quite the same. While some
-data constructors may happen to fulfill the definition of a metafunction (like
-`cons` and `list`), data constructors have far fewer restrictions. Indeed, data
-constructors are not _required_ to be boxed (or even templates), in which case
-any similarity with metafunctions vanishes:
+We will say that a data constructor taking unboxed arguments is __strict__,
+and that a data constructor taking boxed arguments is __lazy__. An interesting
+observation is that some (but not all) constructors are also metafunctions.
+Specifically, boxed constructors taking type template parameters are
+metafunctions. Therefore, strict boxed constructors correspond to strict
+metafunctions, and lazy boxed constructors correspond to lazy metafunctions!
 
-```cpp
-struct Integer;
 
-// A non-boxed data constructor. This is _clearly_ not a metafunction.
-template <int i>
-struct int_ {
-    using mpl_datatype = Integer;
-};
-```
-
-#### Conversions
+### Conversions
 The MPL11 provides a way to convert values from one datatype to the other. The
 usefulness of this is clearest when implementing numeric datatypes, but we'll
 stick with `List` because we already have it. Let's suppose we want to convert
@@ -887,10 +714,10 @@ namespace boost { namespace mpl11 {
 ```
 
 We can now consider `std::tuple` as a data constructor for the `StdTuple`
-datatype. Note that unlike the arguments to `list`, the arguments to `std::tuple`
-must be unboxed; this will be important for what follows. The next step is to
-implement the conversion itself. This is done by specializing the `mpl11::cast`
-metafunction class for the involved datatypes.
+datatype. Note that unlike the arguments to `list`, the arguments to
+`std::tuple` must be unboxed; this will be important for what follows.
+The next step is to implement the conversion itself. This is done by
+specializing the `cast` lifted metafunction for the involved datatypes.
 
 ```cpp
 namespace boost { namespace mpl11 {
@@ -934,41 +761,41 @@ had forgotten to provide `apply<nil>`, we could only convert from the `list`
 and `cons` constructors. Second, we had to unbox the elements of the `list`
 when passing them to `std::tuple` because `std::tuple` expects unboxed types.
 Similarly, we had to box the elements of the `std::tuple` when passing them to
-`list`. Third, the arguments to the `mpl11::cast` metafunction class are unboxed
-data constructors, which makes it easier to perform pattern matching in the
-nested `apply`. Here is how we could now convert between the two datatypes:
+`list`. Third, the `cast` lifted metafunction is strict and it does not follow
+the convention of taking boxed arguments, which makes it possible to pattern
+match data constructors. Here is how we could now convert between the two
+datatypes:
 
 ```cpp
 using my_list = list_<int, char, float>;
 using my_tuple = std::tuple<int, char, float>;
 
-mpl11::cast<List, StdTuple>::apply<my_list>::type; // == my_tuple
-mpl11::cast<StdTuple, List>::apply<my_tuple>::type; // == my_list
+cast<List, StdTuple>::apply<my_list>::type; // == my_tuple
+cast<StdTuple, List>::apply<my_tuple>::type; // == my_list
 ```
 
 Also note that casting from a datatype `T` to itself is a noop, so you don't
 have to worry about that trivial case. The library also defines a handy
-`mpl11::cast_to` metafunction class that reduces the syntactic noise of
-`mpl11::cast`:
+`cast_to` lifted metafunction that reduces the syntactic noise of `cast`:
 
 ```cpp
-mpl11::cast_to<StdTuple>::apply<my_list>::type; // == my_tuple
-mpl11::cast_to<List>::apply<my_tuple>::type; // == my_list
+cast_to<StdTuple>::apply<my_list>::type; // == my_tuple
+cast_to<List>::apply<my_tuple>::type; // == my_list
 ```
 
-`mpl11::cast_to` simply deduces the datatype to cast from by using that of its
-(unboxed) argument and then forwards to `mpl11::cast`.
+`cast_to` simply deduces the datatype to cast from by using that of its
+argument and then forwards to `cast`. `cast_to` is strict and does not
+take boxed arguments.
 
 > __TODO__: Give more details on the `Foreign` datatype.
 
 
-### Methods
+## Methods
 So far, we have created the `List` datatype and a couple of constructors to
-create "values" of that type, but we still don't have a way to manipulate those
-values in a useful way. Let's redefine the `head` metafunction from the
-introduction for the `List` datatype. Keep in mind that metafunctions are
-call-by-need by default in the MPL11, so we will stick with this convention
-for `head`.
+create "values" of that type, but we still don't have a way to manipulate
+those values in a useful way. Let's define a `head` metafunction that will
+return the first element of a `List`. We will stick to the convention of
+taking boxed arguments.
 
 ```cpp
 template <typename List>
@@ -992,16 +819,14 @@ struct head
 { };
 ```
 
-We need to add a level of indirection (`head_impl`) because `head` receives
-boxed arguments and we need to perform pattern matching on the data constructors.
-Also, note that while `head` is technically call-by-need, it is still strict
-because it always evaluates its argument. `head` is therefore a call-by-need
-metafunction that _happens_ to always need to evaluate its argument. Also, note
-that we inherit from `Head` in `head_impl` because it is a boxed type; fetching
-`head_impl::type` will unbox `Head::type`, which is what we want.
+First, we need to add a level of indirection (`head_impl`) because `head`
+receives boxed arguments and we need to pattern match the constructors.
+Second, note that `head` is a strict metafunction because its argument
+is always evaluated. Third, we inherit from `Head` in `head_impl` because
+the `List` constructors are lazy and hence `Head` is boxed.
 
-It is now possible to see why it was useful to take boxed types in the `List`
-data constructors. Consider the following situation:
+It is now possible to see why it was useful to make the `List` constructors
+lazy. Consider the following situation:
 
 ```cpp
 using refs = list<
@@ -1009,16 +834,15 @@ using refs = list<
     std::add_lvalue_reference<void>
 >;
 
-using int_ref = head<refs>::type;
+head<refs>::type; // == int&
 ```
 
-Since we can't form a reference to `void`, we will trigger a compile-time error
-if we evaluate the `std::add_lvalue_reference<void>` thunk. However, since we
-only ever use the value of the first element in the list, it would be nice if
-we could only evaluate that element, right? Taking boxed types (which are
-really the same as thunks) in the `list` constructor is what makes it possible.
-If, instead, we had decided to take unboxed types in `list`, we would need to
-write:
+Since we can't form a reference to `void`, we will trigger a compile-time
+error if we evaluate the `std::add_lvalue_reference<void>` thunk. However,
+since we only ever use the value of the first element in the list, it would
+be nice if we could only evaluate that element, right? Making `list` a lazy
+constructor makes that possible. If, instead, we had decided to make `list`
+strict, we would need to write:
 
 ```cpp
 using refs = list<
@@ -1028,14 +852,13 @@ using refs = list<
 ```
 
 which does not compile. The same reasoning is valid if the contents of the
-list were the results of complicated computations. By taking thunks in the
-constructor, we would only need to evaluate those computation whose result
-is actually used. In the end, the reasons for writing data constructors that
-take boxed types are similar to the reasons for writing call-by-need
-metafunctions.
+list were the results of complicated computations. By making the constructor
+lazy, we would only need to evaluate those computation whose result is
+actually used. In the end, the reasons for writing lazy data constructors
+are similar to the reasons for writing lazy metafunctions.
 
 The `head` metafunction we have so far is useful, but consider the following
-datatype and boxed data constructor taking boxed arguments.
+datatype and lazy boxed constructor:
 
 ```cpp
 struct Vector;
@@ -1059,11 +882,12 @@ struct vector<Head, Tail...> {
 Since `Vector` is really some kind of `List`, it is only reasonable to expect
 that we can invoke `head` on a `Vector` just like we do on a `List`. But how
 would we go about implementing `head` for `Vector`? Assuming we can't modify
-the implementation of `Vector`, the only way we have right now is to use partial
-specialization of `head_impl` on `Vector`'s constructor. Unfortunately, that
-constructor is `vector<...>::type`, not `vector<...>`. Since we can't partially
-specialize on a dependent type, we're out of luck. To bypass this limitation,
-we will refine `head` so it uses the datatype of its argument.
+the implementation of `Vector`, the only way we have right now is to use
+partial specialization of `head_impl` on `Vector`'s constructor.
+Unfortunately, that constructor is `vector<...>::type`, not `vector<...>`.
+Since we can't partially specialize on a dependent type, we're out of luck.
+To bypass this limitation, we will refine `head` so it uses the datatype of
+its argument.
 
 ```cpp
 template <typename Datatype>
@@ -1076,7 +900,7 @@ struct head
 { };
 ```
 
-We now consider `head_impl` as a metafunction class parameterized over the
+We now consider `head_impl` as a lifted metafunction parameterized over the
 datatype of its argument. Implementing `head` for `List` and `Vector` is now
 a breeze.
 
@@ -1121,19 +945,19 @@ struct trait<T, std::enable_if_t<std::is_trivial<T>::value>> {
 ```
 
 This enables the specialization to depend on an arbitrary compile-time boolean
-expression (in fact on the syntactic validity of an arbitrary expression). Note
-that all partial specializations using the enabler must have mutually exclusive
-conditions or the specialization will be ambiguous; this can be tricky at times.
-A variant of this trick is to use a default type of `true_` instead of `void`
-for the dummy template parameter. That makes it possible to leave the
-`std::enable_if_t` part for most use cases:
+expression (in fact on the syntactic validity of an arbitrary expression).
+Note that all partial specializations using the enabler must have mutually
+exclusive conditions or the specialization will be ambiguous; this can be
+tricky at times. A variant of this trick is to use a default type of `true_`
+instead of `void` for the dummy template parameter. That makes it possible to
+leave the `std::enable_if_t` part for most use cases:
 
 ```cpp
-template <typename T, typename Enable = mpl11::true_>
+template <typename T, typename Enable = true_>
 struct trait;
 
 template <typename T>
-struct trait<T, mpl11::bool_<std::is_trivial<T>::value>> {
+struct trait<T, bool_<std::is_trivial<T>::value>> {
     // ...
 };
 ```
@@ -1145,7 +969,7 @@ struct trait<T, mpl11::bool_<std::is_trivial<T>::value>> {
 > specializations cannot have dependent non-type template arguments.
 
 Since this functionality can really be useful, it might be a good idea to
-support it in the `head_impl` metafunction class. Fortunately, that only
+support it in the `head_impl` lifted metafunction. Fortunately, that only
 requires changing the `head_impl` forward declaration to:
 
 ```cpp
@@ -1174,7 +998,7 @@ the interface of a datatype through a process called typeclass instantiation.
 Let's make a typeclass out of the `head`, `tail` and `is_empty` methods.
 Datatypes supporting all three methods look somewhat like `List`s; hence
 we will call the typeclass `Iterable`. We start by grouping the `*_impl`
-metafunction classes of the methods together under the `Iterable` banner.
+lifted metafunctions of the methods together under the `Iterable` banner.
 In the following code snippets, the `tail` and `is_empty` methods will be
 omitted when illustrating `head` suffices.
 
@@ -1208,7 +1032,7 @@ struct Iterable::head_impl<List> {
 ```
 
 Soon enough, we notice that we can regroup the datatype parametrization on
-`Iterable` instead of leaving it on each nested metafunction class.
+`Iterable` instead of leaving it on each nested lifted metafunction.
 
 ```cpp
 template <typename Datatype, typename = true_>
@@ -1228,7 +1052,7 @@ struct head
 ```
 
 The next logical step is to prune the superfluous indirection through the
-`*_impl` metafunction classes and to simply make them metafunctions.
+`*_impl` lifted metafunctions and to simply make them metafunctions.
 
 ```cpp
 template <typename Datatype, typename = true_>
@@ -1249,8 +1073,9 @@ struct head
 ```
 
 Since it might be useful to query whether a datatype supports the operations
-of `Iterable`, we would like to have a boolean metafunction that does just that.
-Fortunately, we can use the `Iterable` for this task with a small modification.
+of `Iterable`, we would like to have a boolean metafunction that does just
+that. Fortunately, we can use the `Iterable` for this task with a small
+modification.
 
 ```cpp
 template <typename Datatype, typename = true_>
@@ -1262,9 +1087,9 @@ struct Iterable : false_ {
 By default, `Iterable` is therefore also a boolean metafunction returning
 `false`, meaning that arbitrary datatypes don't implement the `head`, `tail`
 and `is_empty` metafunctions. In its current form, the `Iterable` template is
-called a __typeclass__, and metafunctions like `head` following this dispatching
-pattern through a typeclass are called __typeclass methods__. In order to
-implement `head` and friends, one would now write
+called a __typeclass__, and metafunctions like `head` following this
+dispatching pattern through a typeclass are called __typeclass methods__.
+In order to implement `head` and friends, one would now write
 
 ```cpp
 template <>
@@ -1300,12 +1125,11 @@ While we could provide this metafunction as-is, some datatypes might be able
 to provide a more efficient implementation. Therefore, we would like to make
 it a method, but one that can be defaulted to the above.
 
-> Note that method dispatching incurs some compile-time overhead;
-> hence there is a tradeoff between using (typeclass) methods and
-> regular metafunctions. The rule of thumb is that if a method is
-> likely to never be specialized (i.e. the default implementation
-> is almost always the best), then it should probably be a regular
-> metafunction.
+> Note that method dispatching incurs some compile-time overhead; hence there
+> is a tradeoff between using (typeclass) methods and regular metafunctions.
+> The rule of thumb is that if a method is likely to never be specialized
+> (i.e. the default implementation is almost always the best), then it should
+> probably be a regular metafunction.
 
 It turns out that providing a default implementation can be done easily using
 typeclasses and a little convention. First, we make `last` a normal typeclass
@@ -1324,19 +1148,19 @@ as follows:
 
 ```cpp
 template <>
-struct Iterable<List> : mpl11::instantiate<Iterable>::with<List> {
+struct Iterable<List> : instantiate<Iterable>::with<List> {
     // ...
 };
 ```
 
-Here, `mpl11::instantiate<...>::with<...>` is `true_` by default. Hence, it only
-takes care of making `Iterable` a true-valued boolean metafunction, which we did
-ourselves previously. However, `mpl11::instantiate` may be specialized by
-typeclass designers in such a way that the member template `with` also contains
-default methods. In our case, we would provide a `last_impl` metafunction
-corresponding to the default implementation of `last` shown above. This way,
-if a datatype does not implement the `last` method, our default implementation
-will be used.
+Here, `instantiate<...>::with<...>` is `true_` by default. Hence, it only
+takes care of making `Iterable` a true-valued boolean metafunction, which we
+did by ourselves previously. However, `instantiate` may be specialized by
+typeclass designers in such a way that the member template `with` also
+contains default methods. In our case, we would provide a `last_impl`
+metafunction corresponding to the default implementation of `last` shown
+above. This way, if a datatype does not implement the `last` method, our
+default implementation will be used.
 
 ```cpp
 namespace boost { namespace mpl11 {
@@ -1423,8 +1247,8 @@ The following points led to their removal:
 
 ### Why isn't `apply` a method?
 There are two main reasons for this. First, if `apply` were a method, one would
-need to make every metafunction class an instance of the typeclass defining
-`apply`. Since metafunction classes are very common, that would be very
+need to make every lifted metafunction an instance of the typeclass defining
+`apply`. Since lifted metafunctions are very common, that would be very
 cumbersome. Second, making `apply` a method requires using the usual method
 dispatching mechanism, which adds some overhead.
 
@@ -1439,9 +1263,9 @@ in most cases.
 
 ### Why are MPL-style non-template nullary metafunctions not allowed?
 It introduces a special case in the definition of metafunction that prevents us
-from using `f::apply<>` to invoke a nullary metafunction class. We have to use
+from using `f::apply<>` to invoke a nullary lifted metafunction. We have to use
 `apply<f>`, which will then use either `f::apply<>` or `f::apply`. This adds a
-template instantiation and an overload resolution to each metafunction class
+template instantiation and an overload resolution to each lifted metafunction
 invocation, which significantly slows down compilation. Considering nullary
 metafunctions are of limited use anyway (why would you want a function without
 arguments in a purely functional setting?), this is not worth the trouble. Also,
@@ -1470,10 +1294,9 @@ a boxed type, so they're not completely forgotten.
         template <typename x, typename y>
         using equal_impl = not_<Comparable<Left, Right>::not_equal_impl<x, y>>;
         ```
-
 - [ ] Implement cross-type typeclasses.
 - [ ] Implement associative data structures.
-- [ ] Implement a small DSL to implement inline metafunction classes (like
+- [ ] Implement a small DSL to implement inline lifted metafunctions (like
       Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,
       such a DSL should:
       - Allow leaving placeholders as-is inside a lambda, if this is desirable.
@@ -1498,7 +1321,6 @@ a boxed type, so they're not completely forgotten.
       comparing sequences; that would make `equal` as powerful as the `equal`
       algorithm from the Boost.MPL. Maybe we can achieve the same effect in
       another way.
-- [ ] Clarify the notion of weak head normal form if this applies to us.
 - [ ] Consider having a wrapper that allows treating template specializations
       as data. Something like sequence operations on template specializations
       and/or tree operations.
@@ -1522,9 +1344,9 @@ a boxed type, so they're not completely forgotten.
 - [ ] Make bool.hpp lighter. In particular, it should probably not depend
       on integer.
 - [ ] Design a StaticConstant concept?
-- [ ] In the tutorial, when we specialize metafunction classes inside the
+- [ ] In the tutorial, when we specialize lifted metafunctions inside the
       `boost::mpl11` namespace, we don't make them boxed. This makes sense
-      because they are metafunction classes, not boxes of metafunction class.
+      because they are lifted metafunctions, not boxed lifted metafunctions.
       What should we do? Should we
       1. Make the specializations boxed
       2. Do not take for granted that they are boxed when we use them in the
@@ -1540,12 +1362,12 @@ a boxed type, so they're not completely forgotten.
 
 <!-- Links -->
 [Boost.MPL]: http://www.boost.org/doc/libs/1_55_0b1/libs/mpl/doc/index.html
-[call-by-need]: http://en.wikipedia.org/wiki/Call_by_need
 [call-by-value]: http://en.wikipedia.org/wiki/Call_by_value
 [Cmake]: http://www.cmake.org
 [doxygen-doc]: http://ldionne.github.io/mpl11
 [haskell-denot-semantics]: http://en.wikibooks.org/wiki/Haskell/Denotational_semantics
 [Haskell]: http://www.haskell.org
+[lazy]: http://en.wikipedia.org/wiki/Lazy_evaluation
 [mpllibs]: http://github.com/sabel83/mpllibs
 [on-iteration]: http://www.informit.com/articles/article.aspx?p=1407357
 [wiki-tmp]: http://en.wikipedia.org/wiki/Template_metaprogramming
