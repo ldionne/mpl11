@@ -11,14 +11,20 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/apply_to_common.hpp>
 #include <boost/mpl11/detail/config.hpp>
+#include <boost/mpl11/detail/n3351.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp> // required by fwd/bitwise.hpp
 
 
 namespace boost { namespace mpl11 {
-    template <typename Left, typename Right, typename>
-    struct Bitwise {
+    template <typename, typename, typename>
+    struct Bitwise : false_ { };
+
+    template <typename Left, typename Right>
+    struct Bitwise<Left, Right, detail::N3351<Bitwise, Left, Right>>
+        : instantiate<Bitwise>::template with<Left, Right>
+    {
         template <typename x, typename y>
         using bitand_impl = detail::apply_to_common<bitand_, x, y>;
 
