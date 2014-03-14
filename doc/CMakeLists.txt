@@ -1,7 +1,6 @@
 #=============================================================================
 # Setup the documentation
 #=============================================================================
-find_package(Doxygen)
 if (DOXYGEN_FOUND)
     configure_file(Doxyfile.in Doxyfile @ONLY)
     add_custom_target(
@@ -10,5 +9,5 @@ if (DOXYGEN_FOUND)
         COMMENT "Generating API documentation with Doxygen" VERBATIM
     )
 else()
-    message(STATUS "Doxygen not found, the 'doc' target will be unavailable.")
+    message(STATUS "Doxygen not found; the 'doc' target will be unavailable.")
 endif()
