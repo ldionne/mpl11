@@ -36,11 +36,6 @@ namespace boost { namespace mpl11 {
     };
 
     template <>
-    struct common_datatype<Rational, Integer> {
-        using type = Rational;
-    };
-
-    template <>
     struct cast<Integer, Rational> {
         using type = cast;
         template <typename i>

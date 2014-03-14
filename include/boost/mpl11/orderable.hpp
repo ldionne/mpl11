@@ -14,6 +14,7 @@
 
 #include <boost/mpl11/fwd/orderable.hpp>
 
+#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/core.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
 
@@ -22,7 +23,7 @@ namespace boost { namespace mpl11 {
     template <>
     struct instantiate<Orderable> {
         template <typename Left, typename Right = Left>
-        struct with {
+        struct with : true_ {
             template <typename x, typename y>
             using less_equal_impl = not_<less<y, x>>;
 
@@ -42,8 +43,8 @@ namespace boost { namespace mpl11 {
 }} // end namespace boost::mpl11
 
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/logical.hpp>
@@ -51,41 +52,7 @@ namespace boost { namespace mpl11 {
 
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
-    struct Orderable {
-    private:
-        using Common = Orderable<typename common_datatype<Left, Right>::type>;
-
-    public:
-        template <typename x, typename y>
-        using less_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template less_impl, x, y>;
-
-        template <typename x, typename y>
-        using less_equal_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template less_equal_impl, x, y>;
-
-        template <typename x, typename y>
-        using greater_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template greater_impl, x, y>;
-
-        template <typename x, typename y>
-        using greater_equal_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template greater_equal_impl, x, y>;
-
-        template <typename x, typename y>
-        using min_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template min_impl, x, y>;
-
-        template <typename x, typename y>
-        using max_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template max_impl, x, y>;
-    };
+    struct Orderable : false_ { };
 
     template <typename x1, typename x2, typename ...xs>
     struct less

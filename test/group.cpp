@@ -26,8 +26,8 @@ namespace boost { namespace mpl11 {
 
 struct test_dispatching
     : method<minus, archetype<0>, archetype<0>>
-    , method<minus, archetype<0>, archetype<1>>
-    , method<minus, archetype<1>, archetype<0>>
+    // , method<minus, archetype<0>, archetype<1>>
+    // , method<minus, archetype<1>, archetype<0>>
 
     , method<negate, archetype<0>>
 { };

@@ -30,6 +30,11 @@ namespace boost { namespace mpl11 {
      * ### Minimal complete definition
      * Either `equal` or `not_equal`.
      *
+     *
+     * @note
+     * All datatypes are by default instance of this typeclass. Comparison
+     * of arbitrary datatypes is done with `std::is_same`.
+     *
      * @{
      */
     template <typename Left, typename Right = Left, typename = true_>

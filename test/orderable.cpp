@@ -53,10 +53,10 @@ struct dispatch_with
     , method<max, x, y>
 { };
 
-struct test_dispatching :
-    dispatch_with<archetype<0>, archetype<0>>,
-    dispatch_with<archetype<0>, archetype<1>>,
-    dispatch_with<archetype<1>, archetype<0>>
+struct test_dispatching
+    : dispatch_with<archetype<0>, archetype<0>>
+    // , dispatch_with<archetype<0>, archetype<1>>
+    // , dispatch_with<archetype<1>, archetype<0>>
 { };
 
 

@@ -14,23 +14,15 @@
 
 #include <boost/mpl11/fwd/ring.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
-    struct Ring {
-        template <typename x, typename y>
-        using mult_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<
-                Ring<typename common_datatype<Left, Right>::type>::
-                template mult_impl, x, y
-            >;
-    };
+    struct Ring : false_ { };
 
     template <typename x1, typename x2, typename ...xn>
     struct mult

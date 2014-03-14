@@ -14,23 +14,15 @@
 
 #include <boost/mpl11/fwd/monoid.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
-    struct Monoid {
-        template <typename x, typename y>
-        using plus_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<
-                Monoid<typename common_datatype<Left, Right>::type>::
-                template plus_impl, x, y
-            >;
-    };
+    struct Monoid : false_ { };
 
     template <typename x1, typename x2, typename ...xn>
     struct plus

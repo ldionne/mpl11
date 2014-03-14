@@ -41,16 +41,16 @@ namespace boost { namespace mpl11 {
 
 struct test_dispatching
     : method<bitand_, archetype<0>, archetype<0>>
-    , method<bitand_, archetype<0>, archetype<1>>
-    , method<bitand_, archetype<1>, archetype<0>>
+    // , method<bitand_, archetype<0>, archetype<1>>
+    // , method<bitand_, archetype<1>, archetype<0>>
 
     , method<bitor_, archetype<0>, archetype<0>>
-    , method<bitor_, archetype<0>, archetype<1>>
-    , method<bitor_, archetype<1>, archetype<0>>
+    // , method<bitor_, archetype<0>, archetype<1>>
+    // , method<bitor_, archetype<1>, archetype<0>>
 
     , method<bitxor, archetype<0>, archetype<0>>
-    , method<bitxor, archetype<0>, archetype<1>>
-    , method<bitxor, archetype<1>, archetype<0>>
+    // , method<bitxor, archetype<0>, archetype<1>>
+    // , method<bitxor, archetype<1>, archetype<0>>
 
     , method<compl_, archetype<0>>
     , method<shift_right, archetype<0>, int_<0>>

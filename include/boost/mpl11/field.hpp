@@ -14,22 +14,14 @@
 
 #include <boost/mpl11/fwd/field.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/fwd/ring.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
-    struct Field {
-        template <typename x, typename y>
-        using quot_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<
-                Field<typename common_datatype<Left, Right>::type>::
-                template quot_impl, x, y
-            >;
-    };
+    struct Field : false_ { };
 
     template <>
     struct instantiate<Field> {
@@ -37,7 +29,7 @@ namespace boost { namespace mpl11 {
         struct with;
 
         template <typename Datatype>
-        struct with<Datatype> {
+        struct with<Datatype> : true_ {
             template <typename x, typename y>
             using quot_impl = mult<x, recip<y>>;
 

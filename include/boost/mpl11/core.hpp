@@ -16,6 +16,7 @@
 
 #include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/functional.hpp>
+#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/logical.hpp>
 
 
@@ -35,7 +36,7 @@ namespace boost { namespace mpl11 {
     template <template <typename ...> class Typeclass>
     struct instantiate {
         template <typename ...>
-        using with = instantiate;
+        using with = true_;
     };
 
 
@@ -62,14 +63,6 @@ namespace boost { namespace mpl11 {
 
 
 
-    // common_datatype
-    template <typename Left, typename Right>
-    struct common_datatype
-        : common_datatype<Right, Left>
-    { };
-
-
-
     // cast_to
     template <typename To>
     struct cast_to {
@@ -84,8 +77,6 @@ namespace boost { namespace mpl11 {
 
 
     // Foreign
-    // Comparable instantiation is defined in comparable.hpp because
-    // that caused circular dependencies.
     namespace core_detail {
         // Data constructor for `Foreign`. Not sure that should be public.
         // This only preserves type identity. Also; this is not the only
@@ -97,11 +88,6 @@ namespace boost { namespace mpl11 {
             using mpl_datatype = Foreign;
         };
     }
-
-    template <typename Datatype>
-    struct common_datatype<Foreign, Datatype> {
-        using type = Foreign;
-    };
 
     template <typename From>
     struct cast<From, Foreign> {
@@ -118,6 +104,7 @@ namespace boost { namespace mpl11 {
 }} // end namespace boost::mpl11
 
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/logical.hpp>
 

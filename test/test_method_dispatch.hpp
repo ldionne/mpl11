@@ -25,11 +25,6 @@ namespace boost { namespace mpl11 {
         template <typename>
         using apply = archetype<to>;
     };
-
-    template <unsigned l1, unsigned l2>
-    struct common_datatype<Archetype<l1>, Archetype<l2>> {
-        using type = Archetype<(l1 < l2 ? l1 : l2)>;
-    };
 }}
 
 template <template <typename ...> class f>

@@ -14,8 +14,8 @@
 
 #include <boost/mpl11/fwd/bitwise.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>
@@ -24,26 +24,7 @@
 
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
-    struct Bitwise {
-    private:
-        using Common = Bitwise<typename common_datatype<Left, Right>::type>;
-
-    public:
-        template <typename x, typename y>
-        using bitand_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template bitand_impl, x, y>;
-
-        template <typename x, typename y>
-        using bitor_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template bitor_impl, x, y>;
-
-        template <typename x, typename y>
-        using bitxor_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<Common::template bitxor_impl, x, y>;
-    };
+    struct Bitwise : false_ { };
 
     template <typename x1, typename x2, typename ...xn>
     struct bitand_

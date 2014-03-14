@@ -40,8 +40,10 @@ namespace boost { namespace mpl11 {
         @endcode
      *
      * Hence, typeclasses should provide their default methods in the nested
-     * `with` member template. The primary template provides an empty member
-     * template `with`.
+     * `with` member template. `instantiate<...>::with<...>` should always
+     * inherit from `true_`; specializations of `instantiate` should conserve
+     * that. The primary `instantiate` template provides a member template
+     * `with<...>` equivalent to `true_`.
      */
     template <template <typename ...> class Typeclass>
     struct instantiate;
@@ -51,10 +53,8 @@ namespace boost { namespace mpl11 {
      *
      * Any datatype can be converted to `Foreign`; conversion to `Foreign`
      * makes the constructor lose everything except type identity. In other
-     * words, two data constructors with different C++ types will be
-     * considered different, even if they were equal under their initial
-     * datatype. Hence, `Foreign` types can be compared; equality and
-     * inequality for `Foreign` types is defined in terms of `std::is_same`.
+     * words, two data constructors with different C++ types will map to
+     * a different C++ type when converted to `Foreign`.
      *
      * @ingroup datatypes
      */
@@ -71,10 +71,6 @@ namespace boost { namespace mpl11 {
      * @note
      * This metafunction must be invoked with an unboxed type. The reason
      * for this special behavior is to allow specialization by users.
-     *
-     * @todo
-     * Consider allowing multiple arguments here; this would replace
-     * `common_datatype`.
      */
     template <typename ctor>
     struct datatype;
@@ -93,13 +89,6 @@ namespace boost { namespace mpl11 {
     //! Boxes its argument.
     template <typename x>
     struct box;
-
-    /*!
-     * Returns a datatype to which instances of both `Left` and `Right` may
-     * be converted.
-     */
-    template <typename Left, typename Right>
-    struct common_datatype;
 
     /*!
      * Metafunction class converting an object of the `From` datatype to
@@ -132,7 +121,6 @@ namespace boost { namespace mpl11 {
         using mpl11::datatype;
         using mpl11::undefined;
         using mpl11::box;
-        using mpl11::common_datatype;
         using mpl11::cast;
         using mpl11::cast_to;
     }

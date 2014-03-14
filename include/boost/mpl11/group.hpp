@@ -14,6 +14,7 @@
 
 #include <boost/mpl11/fwd/group.hpp>
 
+#include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/core.hpp>
 #include <boost/mpl11/fwd/monoid.hpp>
 
@@ -25,7 +26,7 @@ namespace boost { namespace mpl11 {
         struct with;
 
         template <typename Datatype>
-        struct with<Datatype> {
+        struct with<Datatype> : true_ {
             template <typename x, typename y>
             using minus_impl = plus<x, negate<y>>;
 
@@ -36,21 +37,13 @@ namespace boost { namespace mpl11 {
 }} // end namespace boost::mpl11
 
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/common_method.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
-    struct Group {
-        template <typename x, typename y>
-        using minus_impl =
-            typename detail::common_method<Left, Right>::
-            template apply<
-                Group<typename common_datatype<Left, Right>::type>::
-                template minus_impl, x, y
-            >;
-    };
+    struct Group : false_ { };
 
     template <typename x, typename y>
     struct minus :

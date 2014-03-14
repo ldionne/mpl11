@@ -1453,7 +1453,6 @@ a boxed type, so they're not completely forgotten.
 - [ ] Decide whether to receive unboxed or boxed types in method implementations.
       Once that is decided, modify either the tutorial or the library.
 - [ ] Implement cross-type typeclasses.
-- [ ] Implement typeclasses as boolean metafunctions, like documented.
 - [ ] Implement associative data structures.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
       Boost.MPL's lambda). Consider let expressions. Using the Boost.MPL lingo,

@@ -25,8 +25,8 @@ namespace boost { namespace mpl11 {
 
 struct tests
     : method<mult, archetype<0>, archetype<0>>
-    , method<mult, archetype<0>, archetype<1>>
-    , method<mult, archetype<1>, archetype<0>>
+    // , method<mult, archetype<0>, archetype<1>>
+    // , method<mult, archetype<1>, archetype<0>>
     , method<one, Archetype<0>>
 { };
 
