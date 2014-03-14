@@ -5,6 +5,7 @@
 
 #include <boost/mpl11/functional.hpp>
 
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 
 
@@ -23,7 +24,7 @@ struct composing {
     template <typename ...args>
     struct with {
         template <typename result>
-        struct is : composing {
+        struct is : detail::dependent<result>::template type<composing> {
             static_assert(std_is_same<
                 typename compose<quote<fs>...>::type::
                 template apply<args...>::type,

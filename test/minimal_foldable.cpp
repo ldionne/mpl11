@@ -5,6 +5,7 @@
 
 #include "minimal_foldable.hpp"
 
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
@@ -41,22 +42,22 @@ struct folding {
     using Foldl1 = typename foldl1<quote<f>, structure>::type;
 
     template <typename expected, typename = Foldr>
-    struct right_is : folding {
+    struct right_is : detail::dependent<expected>::template type<folding> {
         static_assert(std_is_same<Foldr, expected>::value, "");
     };
 
     template <typename expected, typename = Foldl>
-    struct left_is : folding {
+    struct left_is : detail::dependent<expected>::template type<folding> {
         static_assert(std_is_same<Foldl, expected>::value, "");
     };
 
     template <typename expected, typename = Foldr1>
-    struct right1_is : folding {
+    struct right1_is : detail::dependent<expected>::template type<folding> {
         static_assert(std_is_same<Foldr1, expected>::value, "");
     };
 
     template <typename expected, typename = Foldl1>
-    struct left1_is : folding {
+    struct left1_is : detail::dependent<expected>::template type<folding> {
         static_assert(std_is_same<Foldl1, expected>::value, "");
     };
 };

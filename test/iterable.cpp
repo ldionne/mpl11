@@ -7,6 +7,7 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
@@ -66,7 +67,9 @@ namespace test_default_methods {
                 last<reference>
             >
         >
-        struct last_is : with_iterable {
+        struct last_is
+            : detail::dependent<expected>::template type<with_iterable>
+        {
             static_assert(std_is_same<expected, actual>::value, "");
         };
 
@@ -74,7 +77,9 @@ namespace test_default_methods {
             typename actual = typename at_c<index, reference>::type>
         struct at {
             template <typename expected>
-            struct is : with_iterable {
+            struct is
+                : detail::dependent<expected>::template type<with_iterable>
+            {
                 static_assert(std_is_same<expected, actual>::value, "");
             };
         };
@@ -152,7 +157,10 @@ namespace test_orderable {
         template <template <typename ...> class comp>
         struct is {
             template <int ...ys>
-            struct than : check, is {
+            struct than
+                : detail::dependent<int_<ys>...>::template type<check>
+                , detail::dependent<int_<ys>...>::template type<is>
+            {
                 static_assert(comp<
                     minimal_iterable<int_<xs>...>,
                     minimal_iterable<int_<ys>...>

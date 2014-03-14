@@ -7,6 +7,7 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 
@@ -54,7 +55,7 @@ namespace test_snoc {
         struct to {
             template <int ...ys>
             struct is
-                : appending
+                : detail::dependent<int_<ys>...>::template type<appending>
                 , check_finite_iterable<
                     snoc<minimal_iterable<int_<xs>...>, int_<x>>,
                     int_<ys>...
