@@ -1,6 +1,12 @@
 /*!
  * @file
- * Defines `boost::mpl11::list`.
+ * Defines the @ref List datatype.
+ *
+ *
+ * @copyright Louis Dionne 2014
+ * Distributed under the Boost Software License, Version 1.0.
+ *         (See accompanying file LICENSE.md or copy at
+ *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #ifndef BOOST_MPL11_LIST_HPP
