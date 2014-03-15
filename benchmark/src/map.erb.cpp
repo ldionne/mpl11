@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-
-##############################################################################
-# Comparison of techniques to implement lookup in compile-time maps.
-##############################################################################
-
-
-BENCHMARK_CODE=<<-END_OF_BENCHMARK
+<%
+    kvs = (0..env[:input]).collect { |i| "kv<#{i}, #{i}>" }.join(", ")
+%>
 
 template <typename T, typename U>
 struct is_same { static constexpr bool value = false; };
@@ -22,7 +17,7 @@ template <typename First, typename Second>
 struct pair;
 
 
-<% if opts[:multiple_inheritance] %>
+<% if env[:multiple_inheritance] %>
 
     template <typename Pair>
     struct holder { };
@@ -43,7 +38,7 @@ struct pair;
         { };
     };
 
-<% elsif opts[:single_inheritance] %>
+<% elsif env[:single_inheritance] %>
 
     template <typename ...Pairs>
     struct map {
@@ -79,55 +74,9 @@ static_assert(is_same<
 >::value, "");
 
 static_assert(is_same<
-    map<
-        <%=
-            kvs = (0..opts[:nkeys]).collect { |i|
-                'kv<' + i.to_s + ',' + i.to_s + '>'
-            }
-            kvs.join(', ')
-        %>
-    >::at_key<
-        k<
-            <%= opts[:nkeys] %>
-        >
-    >::type,
-    v<
-        <%= opts[:nkeys] %>
-    >
+    map<<%= kvs %>>::at_key<k<<%= env[:input] %>>>::type,
+    v<<%= env[:input] %>>
 >::value, "");
 
 
 int main() { }
-
-END_OF_BENCHMARK
-
-
-require_relative 'bench'
-
-
-class Main < Benchmarker
-    def make_plot(compiler, io, opts_)
-        Gnuplot::Plot.new(io) do |plot|
-            plot.title      "compile-time map benchmark with #{compiler.name}"
-            plot.xlabel     "number of keys in the map"
-            plot.ylabel     "compile time"
-            plot.format     'y "%f s"'
-
-            for curve in [:single_inheritance, :multiple_inheritance]
-                opts = opts_.clone
-                opts[curve] = true
-                points = generate_points(0..200) { |nkeys|
-                    opts[:nkeys] = nkeys
-                    compiler.compile_template_string(BENCHMARK_CODE, binding).real
-                }
-
-                plot.data << Gnuplot::DataSet.new(points) { |ds|
-                    ds.with = "lines"
-                    ds.title = curve
-                }
-            end
-        end
-    end
-end
-
-Main.new(ARGV).run

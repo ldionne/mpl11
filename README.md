@@ -1495,7 +1495,6 @@ a boxed type, so they're not completely forgotten.
       in the `std` namespace.
 - [ ] Use `constexpr` to perform numeric computations on homogeneous sequences
       of integral constants.
-- [ ] Automate and refactor the benchmarks.
 - [ ] Benchmark memory usage in addition to compilation time.
 - [ ] Consider providing data constructors taking unboxed types for convenience.
 - [ ] Consider making `int_<>` a simple boxed `int` without a value.

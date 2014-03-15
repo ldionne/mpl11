@@ -1,22 +1,18 @@
-#!/usr/bin/env ruby
-
-BENCHMARK_CODE=<<-END_OF_BENCHMARK
-
-<% if opts[:fair] or opts[:mpl] %>
+<% if env[:fair] or env[:mpl] %>
     #include <boost/mpl/long.hpp>
     #include <boost/mpl/plus.hpp>
 <% end %>
 
-<% if opts[:fair] or opts[:mpl11] %>
+<% if env[:fair] or env[:mpl11] %>
     #include <boost/mpl11/integer.hpp>
 <% end %>
 
-<% if opts[:fair] or opts[:sizeof_trick] %>
+<% if env[:fair] or env[:sizeof_trick] %>
     #include <boost/mpl11/detail/std_index_sequence.hpp>
 <% end %>
 
 
-<% if opts[:accumulating_constexpr] %>
+<% if env[:accumulating_constexpr] %>
 
 namespace bench {
     constexpr long sum_helper(long acc, long n)
@@ -32,7 +28,7 @@ namespace bench {
     };
 }
 
-<% elsif opts[:mpl] %>
+<% elsif env[:mpl] %>
 
 namespace bench {
     namespace mpl = boost::mpl;
@@ -41,7 +37,7 @@ namespace bench {
     using plus = mpl::plus<mpl::long_<n>...>;
 }
 
-<% elsif opts[:variant] == :mpl11 %>
+<% elsif env[:mpl11] %>
 
 namespace bench {
     namespace mpl11 = boost::mpl11;
@@ -50,7 +46,7 @@ namespace bench {
     using plus = mpl11::plus<mpl11::long_<n>...>;
 }
 
-<% elsif opts[:recursive_constexpr] %>
+<% elsif env[:recursive_constexpr] %>
 
 namespace bench {
     constexpr long sum_helper(long a, long b)
@@ -66,7 +62,7 @@ namespace bench {
     };
 }
 
-<% elsif opts[:recursive_struct] %>
+<% elsif env[:recursive_struct] %>
 
 namespace bench {
     template <long a, long b, long ...n>
@@ -80,7 +76,7 @@ namespace bench {
     };
 }
 
-<% elsif opts[:sizeof_trick] %>
+<% elsif env[:sizeof_trick] %>
 
 namespace bench {
     namespace mpl11 = boost::mpl11;
@@ -149,46 +145,15 @@ static_assert(plus<1, 1>::value == 1 + 1, "");
 static_assert(plus<1, 1, 1, 1>::value == 1 + 1 + 1 + 1, "");
 
 
+<%
+    ints = (0..env[:input]).collect{ |i| (-1)**i * i }
+%>
+
 static_assert(
-    plus<   <%= opts[:ints].join(', ') %>   >::value
+    plus<   <%= ints.join(", ") %>   >::value
                         ==
-            <%= opts[:ints].reduce :+ %>
+            <%= ints.reduce :+ %>
 , "");
 
 
 int main() { }
-END_OF_BENCHMARK
-
-require_relative 'bench'
-
-
-class Main < Benchmarker
-    def make_plot(compiler, io, opts_)
-        Gnuplot::Plot.new(io) do |plot|
-            plot.title      "plus benchmark with #{compiler.name}"
-            plot.xlabel     "number of summed integers"
-            plot.ylabel     "compile time"
-            plot.format     'y "%f s"'
-
-            curves = [:accumulating_constexpr, :mpl, :mpl11,
-                      :recursive_constexpr, :recursive_struct,
-                      :sizeof_trick]
-
-            for curve in curves
-                opts = opts_.clone
-                opts[curve] = true
-                points = generate_points(2..5) { |n|
-                    opts[:ints] = (0..n).collect{ |i| (-1)**i * i }
-                    compiler.compile_template_string(BENCHMARK_CODE, binding).real
-                }
-
-                plot.data << Gnuplot::DataSet.new(points) { |ds|
-                    ds.with = "lines"
-                    ds.title = curve
-                }
-            end
-        end
-    end
-end
-
-Main.new(ARGV).run

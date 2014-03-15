@@ -2,6 +2,3 @@
 	path = doc/gh-pages
 	url = https://github.com/ldionne/mpl11.git
 	branch = gh-pages
-[submodule "benchmark/ruby_gnuplot"]
-	path = benchmark/ruby_gnuplot
-	url = https://github.com/rdp/ruby_gnuplot.git

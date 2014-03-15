@@ -1,18 +1,9 @@
-#!/usr/bin/env ruby
 
-##############################################################################
-# Comparison of the compilation time for including all the mpl
-# and all the mpl11
-##############################################################################
-
-
-BENCHMARK_CODE=<<-END_OF_BENCHMARK
-
-<% if opts[:mpl11] %>
+<% if env[:mpl11] %>
 
     #include <boost/mpl11.hpp>
 
-<% elsif opts[:mpl] %>
+<% elsif env[:mpl] %>
 
     #include <boost/mpl/accumulate.hpp>
     #include <boost/mpl/advance.hpp>
@@ -204,26 +195,3 @@ BENCHMARK_CODE=<<-END_OF_BENCHMARK
 
 
 int main() { }
-
-END_OF_BENCHMARK
-
-
-require_relative 'bench'
-
-
-class Main < Benchmarker
-    def make_plot(compiler, _, opts)
-        opts[:mpl] = true
-        mpl = compiler.compile_template_string(BENCHMARK_CODE, binding).real
-
-        opts[:mpl] = false
-        opts[:mpl11] = true
-        mpl11 = compiler.compile_template_string(BENCHMARK_CODE, binding).real
-
-        puts "including all the mpl11: #{mpl11} s"
-        puts "including all the mpl: #{mpl} s"
-        puts "including the mpl11 is ~#{mpl/mpl11}x faster"
-    end
-end
-
-Main.new(ARGV).run

@@ -1,150 +1,172 @@
 #!/usr/bin/env ruby
 
-##############################################################################
-# Utilities to gather compilation statistics and plot the results
-##############################################################################
-require 'benchmark'
-require 'erb'
-require 'tempfile'
-require_relative 'ruby_gnuplot/lib/gnuplot'
+require "benchcc"
 
 
-# Returns the basename of a file without the extension.
-def File.basename_we(fname)
-    File.basename(fname, File.extname(fname))
+suite = Benchcc::BenchmarkSuite.new do
+  benchmark(:foldl) do
+    name "Left fold"
+    description "Comparison between different implementations "\
+                "of a left fold algorithm."
+    file "src/foldl.erb.cpp"
+    time 1..100
+
+    technique(:mpl) do
+      name "MPL"
+      description "Left fold on an MPL vector."
+      requires -> (env) { env[:input] <= 50 }
+    end
+
+    technique(:mpl11) do
+      name "MPL11"
+      description "Left fold on an MPL11 list."
+      requires -> (env) { env[:input] <= 100 }
+    end
+
+    technique(:aliases) do
+      description "Left fold on a variadic parameter pack using "\
+                    "lightweight aliases to iterate."
+    end
+
+    technique(:standard_recursion) do
+      description "Left fold on a variadic parameter pack using "\
+                  "standard recursive structs."
+    end
+  end
+
+  benchmark(:at) do
+    description "Comparison of techniques implementing access to "\
+                "parameter packs."
+    file "src/at.erb.cpp"
+    time 1..100
+
+    technique :multiple_inheritance
+    technique :overload
+  end
+
+  benchmark(:include_all) do
+    description "Comparison of the compilation time for "\
+                "including all a library."
+    file "src/include_all.erb.cpp"
+
+    technique :mpl
+    technique :mpl11
+  end
+
+  benchmark(:instantiations) do
+    description "Comparison between different ways of instantiating "\
+                "the same number of templates"
+    file "src/instantiations.erb.cpp"
+    time (0..10_000).step 1_000
+
+    technique :flat
+    technique :recursive
+  end
+
+  benchmark(:list_at) do
+    file "src/list_at.erb.cpp"
+    time 0..50
+    technique :mpl11
+    technique :mpl
+  end
+
+  benchmark(:map) do
+    description "Comparison of techniques to implement lookup "\
+                "in compile-time maps."
+    file "src/map.erb.cpp"
+    time 0..200
+    technique :single_inheritance
+    technique :multiple_inheritance
+  end
+
+  benchmark(:max) do
+    description "Comparison of techniques to implement "\
+                "compile-time extrema computations."
+    file "src/max.erb.cpp"
+    technique :union
+    technique :standard_recursion
+    technique :argwise
+    time 0..200
+    # TODO: generate dataset with redundancy. look at src/max.erb.cpp
+  end
+
+  benchmark(:mention) do
+    description "Comparison of the cost of mentioning a template "
+                "versus instantiating it."
+    file "src/mention.erb.cpp"
+    technique :mention
+    technique :instantiate
+    time (0..20_000).step 100
+  end
+
+  benchmark(:metafunction_forwarding) do
+    description "Comparison between metafunction forwarding and "\
+                "nested type propagation."
+    file "src/metafunction_forwarding.erb.cpp"
+    technique :forwarding
+    technique :nested_type
+    time (0..300).step 5
+  end
+
+  benchmark(:metafunction_specialization) do
+    description "Benchmark the cost of implementing metafunctions "\
+                "via specialization."
+    file "src/metafunction_specialization.erb.cpp"
+
+    technique :full_specialization do
+      description "The metafunction is specialized for different arguments"
+    end
+
+    technique :nested_type do
+      description "The metafunction uses a nested type of the argument "\
+                  "to customize its behavior"
+    end
+
+    time (0..5_000).step(100)
+  end
+
+  benchmark(:or) do
+    description "Comparison of techniques to implement compile-time "\
+                "logical conjunction."
+    file "src/or.erb.cpp"
+    technique :overload
+    technique :noexcept
+    technique :linear_constexpr
+    technique :structs
+    technique :specialization
+    technique :aliases
+    technique :short_circuit_structs
+    time 0..100
+  end
+
+  benchmark(:pair_reuse) do
+    description "Comparison of reusing a template versus using a new one "\
+                "more specialized for the task at hand."
+    file "src/pair_reuse.erb.cpp"
+    technique :reuse
+    technique :specialized
+    time (0..20_000).step(100)
+  end
+
+  benchmark(:plus) do
+    file "src/plus.erb.cpp"
+    time 0..100
+    technique :accumulating_constexpr
+    technique :mpl
+    technique :mpl11
+    technique :recursive_constexpr
+    technique :recursive_struct
+    technique :sizeof_trick
+  end
+
+  benchmark(:while) do
+    description "Comparison between using aliases and normal templates "\
+                "for a `while_` implementation."
+    file "src/while.erb.cpp"
+    time 0..200
+    technique :aliases
+    technique :standard_recursion
+  end
 end
 
-def average(xs)
-    (xs.reduce :+) / xs.size
-end
-
-def quote(str)
-    "\"#{str}\""
-end
-
-def round_up(n, ndigits)
-    k = 10 ** ndigits
-    if n % k == 0
-        n
-    else
-        (1 + n/k) * k
-    end
-end
-
-def round_down(n, ndigits)
-    k = 10 ** ndigits
-    (n / k) * k
-end
-
-class FailedCompilation < RuntimeError
-
-end
-
-class BenchmarkingCompiler
-    attr_reader :name
-
-    def initialize(name, compile)
-        @name = name
-        @_compile = compile
-    end
-
-    def to_s
-        @name
-    end
-
-    def _compile(filename)
-        @_compile.call(filename)
-        raise FailedCompilation.new unless $?.success?
-    end
-
-    def compile_string(str)
-        tmp = Tempfile.new(['', '.cpp'])
-        tmp.write(str)
-        tmp.close
-        self.compile_file(tmp.path)
-    end
-
-    def compile_template_string(str, b=binding)
-        erb = ERB.new(str)
-        code = erb.result(b)
-        self.compile_string(code)
-    end
-
-    def compile_template_file(filename, b=binding)
-        self.compile_template_string(File.read(filename), b)
-    end
-
-    def compile_file(filename)
-        self._compile(filename) # Rehearse once before benchmarking.
-        avg = average 2.times.collect {
-            Benchmark.measure { self._compile(filename) }
-        }
-        avg.instance_variable_set(:@label, @name); avg
-    end
-end
-
-# Generates `[xs, ys]` points for graphing. `ys` is a list containing
-# `gen_y(x)` for each `x` in `xs`. Whenever a call to `gen_y` raises
-# a `FailedCompilation` error, the (`nil, `nil`) point is added instead,
-# which makes a hole in the generated graph.
-def generate_points(xs, &gen_y)
-    points = [[], []]
-    for x in xs
-        begin
-            y = gen_y.call(x)
-            points[0] << x
-            points[1] << y
-        rescue FailedCompilation
-            $stderr.puts("skipping point (#{x}, ?); y-axis generation failed")
-            points[0] << nil
-            points[1] << nil
-        end
-    end
-    points
-end
-
-class Benchmarker
-    def _usage(s=nil)
-        msg = <<-EOS
-Usage:
-    #{File.basename_we($0)} [options]
-        --fair      When available, benchmarks will be more fair. For example,
-                    all headers will always be included at the beginning of
-                    the benchmark to eliminate any difference in header
-                    parsing time.
-EOS
-
-        $stderr.puts(s) if s
-        $stderr.puts(msg)
-        exit(2)
-    end
-
-    def initialize(argv)
-        @opts = {:fair => false}
-        @compilers = {
-            :gcc49 => BenchmarkingCompiler.new("GCC 4.9",
-                -> (filename) {
-                    `g++-4.9 -std=c++11 -o /dev/null -I ~/code/mpl11/include -c #{filename}`
-                }
-            ),
-            :clang35 => BenchmarkingCompiler.new("Clang 3.5",
-                -> (filename) {
-                    `clang++-3.5 -std=c++11 -o /dev/null -I ~/code/mpl11/include -c #{filename}`
-                }
-            )
-        }
-
-        until argv.empty?
-            case argv[0]
-            when '--fair'   then @opts[:fair] = true; argv.shift
-            else _usage("Unknown option: #{argv[0].inspect}")
-            end
-        end
-    end
-
-    def run
-        Gnuplot.open do |gnuplot_process|
-            self.make_plot(@compilers[:clang35], gnuplot_process, @opts)
-        end
-    end
-end
+suite.run_from_cli(ARGV)
