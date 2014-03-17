@@ -25,10 +25,10 @@ namespace boost { namespace mpl11 {
         template <typename Left, typename Right = Left>
         struct with : true_ {
             template <typename x, typename y>
-            using equal_impl = not_<not_equal<x, y>>;
+            using equal_impl = not_<not_equal<box<x>, box<y>>>;
 
             template <typename x, typename y>
-            using not_equal_impl = not_<equal<x, y>>;
+            using not_equal_impl = not_<equal<box<x>, box<y>>>;
         };
     };
 }}
@@ -44,14 +44,10 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
     struct Comparable : instantiate<Comparable>::template with<Left, Right> {
         template <typename x, typename y>
-        using equal_impl = detail::std_is_same<
-            typename x::type, typename y::type
-        >;
+        using equal_impl = detail::std_is_same<x, y>;
 
         template <typename x, typename y>
-        using not_equal_impl = not_<detail::std_is_same<
-            typename x::type, typename y::type
-        >>;
+        using not_equal_impl = not_<detail::std_is_same<x, y>>;
     };
 
     template <typename x1, typename x2, typename ...xs>
@@ -64,7 +60,7 @@ namespace boost { namespace mpl11 {
         Comparable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template equal_impl<x, y>
+        >::template equal_impl<typename x::type, typename y::type>
     { };
 
     template <typename x, typename y>
@@ -72,7 +68,7 @@ namespace boost { namespace mpl11 {
         Comparable<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template not_equal_impl<x, y>
+        >::template not_equal_impl<typename x::type, typename y::type>
     { };
 }} // end namespace boost::mpl11
 

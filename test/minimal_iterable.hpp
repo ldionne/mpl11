@@ -33,15 +33,15 @@ namespace boost { namespace mpl11 {
     struct Iterable<MinimalIterable>
         : instantiate<Iterable>::with<MinimalIterable>
     {
-        template <typename s>
-        struct head_impl : head_impl<typename s::type> { };
+        template <typename>
+        struct head_impl;
 
         template <typename x, typename ...xs>
         struct head_impl<minimal_iterable<x, xs...>> : x { };
 
 
-        template <typename s>
-        struct tail_impl : tail_impl<typename s::type> { };
+        template <typename>
+        struct tail_impl;
 
         template <typename x, typename ...xs>
         struct tail_impl<minimal_iterable<x, xs...>>
@@ -49,8 +49,8 @@ namespace boost { namespace mpl11 {
         { };
 
 
-        template <typename s>
-        struct is_empty_impl : is_empty_impl<typename s::type> { };
+        template <typename>
+        struct is_empty_impl;
 
         template <typename ...xs>
         struct is_empty_impl<minimal_iterable<xs...>>

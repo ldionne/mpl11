@@ -163,7 +163,7 @@ struct head :
     iterable_detail::check_head<iter>,
 #endif
       Iterable<typename datatype<typename iter::type>::type>::
-      template head_impl<iter>
+      template head_impl<typename iter::type>
 { };
 
 template <typename iter>
@@ -172,7 +172,7 @@ struct tail :
     iterable_detail::check_tail<iter>,
 #endif
     Iterable<typename datatype<typename iter::type>::type>::
-    template tail_impl<iter>
+    template tail_impl<typename iter::type>
 { };
 
 template <typename iter>
@@ -181,7 +181,7 @@ struct last :
     iterable_detail::check_last<iter>,
 #endif
     Iterable<typename datatype<typename iter::type>::type>::
-    template last_impl<iter>
+    template last_impl<typename iter::type>
 { };
 
 template <typename index, typename iter>
@@ -190,19 +190,19 @@ struct at :
     iterable_detail::check_at<index, iter>,
 #endif
     Iterable<typename datatype<typename iter::type>::type>::
-    template at_impl<index, iter>
+    template at_impl<index, typename iter::type>
 { };
 
 template <typename iter>
 struct is_empty :
     Iterable<typename datatype<typename iter::type>::type>::
-    template is_empty_impl<iter>
+    template is_empty_impl<typename iter::type>
 { };
 
 template <typename iter>
 struct length :
     Iterable<typename datatype<typename iter::type>::type>::
-    template length_impl<iter>
+    template length_impl<typename iter::type>
 { };
 
 template <typename n, typename iter>
@@ -220,33 +220,36 @@ template <>
 struct instantiate<Iterable> {
     template <typename Datatype>
     struct with : true_ {
-        template <typename xs, bool = is_empty<tail<xs>>::value>
-        struct last_impl : head<xs> { };
+        template <typename xs, bool = is_empty<tail<box<xs>>>::value>
+        struct last_impl : head<box<xs>> { };
 
         template <typename xs>
         struct last_impl<xs, false>
-            : last_impl<tail<xs>>
+            : last_impl<typename tail<box<xs>>::type>
         { };
 
 
         template <typename index, typename xs, bool = index::type::value == 0>
         struct at_impl
-            : head<xs>
+            : head<box<xs>>
         { };
 
         template <typename index, typename xs>
         struct at_impl<index, xs, false>
-            : at_impl<size_t<index::type::value - 1>, tail<xs>>
+            : at_impl<
+                size_t<index::type::value - 1>,
+                typename tail<box<xs>>::type
+            >
         { };
 
 
         template <typename xs, detail::std_size_t acc = 0,
-            bool = is_empty<xs>::value>
+            bool = is_empty<box<xs>>::value>
         struct length_impl : size_t<acc> { };
 
         template <typename xs, detail::std_size_t acc>
         struct length_impl<xs, acc, false>
-            : length_impl<tail<xs>, acc+1>
+            : length_impl<typename tail<box<xs>>::type, acc+1>
         { };
     };
 };
@@ -257,8 +260,8 @@ struct Orderable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
 {
     // xs is shorter than ys
     template <typename xs, typename ys,
-        bool xs_done = is_empty<xs>::value,
-        bool ys_done = is_empty<ys>::value
+        bool xs_done = is_empty<box<xs>>::value,
+        bool ys_done = is_empty<box<ys>>::value
     >
     struct less_impl
         : bool_<xs_done && !ys_done>
@@ -268,10 +271,13 @@ struct Orderable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
     template <typename xs, typename ys>
     struct less_impl<xs, ys, false, false>
         : or_<
-            less<head<xs>, head<ys>>,
+            less<head<box<xs>>, head<box<ys>>>,
             and_<
-                not_<less<head<ys>, head<xs>>>,
-                less_impl<tail<xs>, tail<ys>>
+                not_<less<head<box<ys>>, head<box<xs>>>>,
+                less_impl<
+                    typename tail<box<xs>>::type,
+                    typename tail<box<ys>>::type
+                >
             >
         >
     { };
@@ -282,8 +288,8 @@ struct Comparable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
     : instantiate<Comparable>::template with<X, Y>
 {
     template <typename xs, typename ys,
-        bool xs_done = is_empty<xs>::value,
-        bool ys_done = is_empty<ys>::value>
+        bool xs_done = is_empty<box<xs>>::value,
+        bool ys_done = is_empty<box<ys>>::value>
     struct equal_impl
         : bool_<xs_done && ys_done>
     { };
@@ -291,8 +297,11 @@ struct Comparable<X, Y, bool_<Iterable<X>::value && Iterable<Y>::value>>
     template <typename xs, typename ys>
     struct equal_impl<xs, ys, false, false>
         : and_<
-            equal<head<xs>, head<ys>>,
-            equal_impl<tail<xs>, tail<ys>>
+            equal<head<box<xs>>, head<box<ys>>>,
+            equal_impl<
+                typename tail<box<xs>>::type,
+                typename tail<box<ys>>::type
+            >
         >
     { };
 };
@@ -301,30 +310,54 @@ template <typename Datatype>
 struct Foldable<Datatype, typename Iterable<Datatype>::type>
     : instantiate<Foldable>::template with<Datatype>
 {
-    template <typename f, typename state, typename iter>
+    template <typename f, typename state, typename iter,
+        bool = is_empty<box<iter>>::value>
     struct foldl_impl
-        : if_<is_empty<iter>,
-            state,
-            foldl_impl<f, apply<f, state, head<iter>>, tail<iter>>
-        >
+        : state
     { };
-
-    template <typename f, typename iter>
-    using foldl1_impl = foldl_impl<f, head<iter>, tail<iter>>;
 
     template <typename f, typename state, typename iter>
-    struct foldr_impl
-        : if_<is_empty<iter>,
-            state,
-            apply<f, head<iter>, foldr_impl<f, state, tail<iter>>>
+    struct foldl_impl<f, state, iter, false>
+        : foldl_impl<
+            f,
+            typename f::type::template apply<state, head<box<iter>>>,
+            typename tail<box<iter>>::type
         >
     { };
 
+
     template <typename f, typename iter>
+    using foldl1_impl = foldl_impl<
+        f, head<box<iter>>, typename tail<box<iter>>::type
+    >;
+
+
+    template <typename f, typename state, typename iter,
+        bool = is_empty<box<iter>>::value>
+    struct foldr_impl
+        : state
+    { };
+
+    template <typename f, typename state, typename iter>
+    struct foldr_impl<f, state, iter, false>
+        : f::type::template apply<
+            head<box<iter>>,
+            foldr_impl<f, state, typename tail<box<iter>>::type>
+        >
+    { };
+
+
+    template <typename f, typename iter,
+        bool = is_empty<tail<box<iter>>>::value>
     struct foldr1_impl
-        : if_<is_empty<tail<iter>>,
-            head<iter>,
-            apply<f, head<iter>, foldr1_impl<f, tail<iter>>>
+        : head<box<iter>>
+    { };
+
+    template <typename f, typename iter>
+    struct foldr1_impl<f, iter, false>
+        : f::type::template apply<
+            head<box<iter>>,
+            foldr1_impl<f, typename tail<box<iter>>::type>
         >
     { };
 };

@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
         : instantiate<Orderable>::with<MinimalOrderable>
     {
         template <typename x, typename y>
-        using less_impl = bool_<(x::type::value < y::type::value)>;
+        using less_impl = bool_<(x::value < y::value)>;
     };
 }} // end namespace boost::mpl11
 

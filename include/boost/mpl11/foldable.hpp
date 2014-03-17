@@ -25,25 +25,25 @@ namespace boost { namespace mpl11 {
     template <typename f, typename state, typename structure>
     struct foldr :
         Foldable<typename datatype<typename structure::type>::type>::
-        template foldr_impl<f, state, structure>
+        template foldr_impl<f, state, typename structure::type>
     { };
 
     template <typename f, typename state, typename structure>
     struct foldl :
         Foldable<typename datatype<typename structure::type>::type>::
-        template foldl_impl<f, state, structure>
+        template foldl_impl<f, state, typename structure::type>
     { };
 
     template <typename f, typename structure>
     struct foldr1 :
         Foldable<typename datatype<typename structure::type>::type>::
-        template foldr1_impl<f, structure>
+        template foldr1_impl<f, typename structure::type>
     { };
 
     template <typename f, typename structure>
     struct foldl1 :
         Foldable<typename datatype<typename structure::type>::type>::
-        template foldl1_impl<f, structure>
+        template foldl1_impl<f, typename structure::type>
     { };
 
     namespace foldable_detail {

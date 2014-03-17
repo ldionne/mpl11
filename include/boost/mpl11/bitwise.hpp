@@ -36,7 +36,7 @@ namespace boost { namespace mpl11 {
         Bitwise<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template bitand_impl<x, y>
+        >::template bitand_impl<typename x::type, typename y::type>
     { };
 
 
@@ -50,7 +50,7 @@ namespace boost { namespace mpl11 {
         Bitwise<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template bitor_impl<x, y>
+        >::template bitor_impl<typename x::type, typename y::type>
     { };
 
 
@@ -64,7 +64,7 @@ namespace boost { namespace mpl11 {
         Bitwise<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template bitxor_impl<x, y>
+        >::template bitxor_impl<typename x::type, typename y::type>
     { };
 
     namespace bitwise_detail {
@@ -88,7 +88,7 @@ namespace boost { namespace mpl11 {
     bitwise_detail::check_shift_left<x, n>,
 #endif
         Bitwise<typename datatype<typename x::type>::type>::
-        template shift_left_impl<x, n>
+        template shift_left_impl<typename x::type, n>
     { };
 
 
@@ -98,14 +98,14 @@ namespace boost { namespace mpl11 {
     bitwise_detail::check_shift_right<x, n>,
 #endif
         Bitwise<typename datatype<typename x::type>::type>::
-        template shift_right_impl<x, n>
+        template shift_right_impl<typename x::type, n>
     { };
 
 
     template <typename x>
     struct compl_ :
         Bitwise<typename datatype<typename x::type>::type>::
-        template compl_impl<x>
+        template compl_impl<typename x::type>
     { };
 }} // end namespace boost::mpl11
 

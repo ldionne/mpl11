@@ -34,7 +34,7 @@ namespace boost { namespace mpl11 {
         Ring<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template mult_impl<x, y>
+        >::template mult_impl<typename x::type, typename y::type>
     { };
 
     template <typename Datatype>

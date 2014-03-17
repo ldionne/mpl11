@@ -28,10 +28,10 @@ namespace boost { namespace mpl11 {
         template <typename Datatype>
         struct with<Datatype> : true_ {
             template <typename x, typename y>
-            using minus_impl = plus<x, negate<y>>;
+            using minus_impl = plus<box<x>, negate<box<y>>>;
 
             template <typename x>
-            using negate_impl = minus<zero<Datatype>, x>;
+            using negate_impl = minus<zero<Datatype>, box<x>>;
         };
     };
 }} // end namespace boost::mpl11
@@ -50,13 +50,13 @@ namespace boost { namespace mpl11 {
         Group<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template minus_impl<x, y>
+        >::template minus_impl<typename x::type, typename y::type>
     { };
 
     template <typename x>
     struct negate :
         Group<typename datatype<typename x::type>::type>::
-        template negate_impl<x>
+        template negate_impl<typename x::type>
     { };
 }} // end namespace boost::mpl11
 

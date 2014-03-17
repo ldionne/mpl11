@@ -27,44 +27,47 @@
 
 
 namespace boost { namespace mpl11 {
-    template <typename x, typename ...xs>
-    struct list<x, xs...> {
+    template <typename ...xs>
+    struct list {
         using type = list;
         using mpl_datatype = List;
-
-        using head = x;
-        using tail = list<xs...>;
-        using is_empty = false_;
-    };
-
-    template <>
-    struct list<> {
-        using type = list;
-        using mpl_datatype = List;
-
-        using is_empty = true_;
     };
 
     template <typename x, typename xs>
     struct cons {
         using type = cons;
         using mpl_datatype = List;
-
-        using head = x;
-        using tail = xs;
-        using is_empty = false_;
     };
 
     template <>
     struct Iterable<List> : instantiate<Iterable>::with<List> {
-        template <typename self>
-        using head_impl = typename self::type::head;
+        template <typename>
+        struct head_impl;
 
-        template <typename self>
-        using tail_impl = typename self::type::tail;
+        template <typename x, typename xs>
+        struct head_impl<cons<x, xs>>
+            : x
+        { };
 
-        template <typename self>
-        using is_empty_impl = typename self::type::is_empty;
+        template <typename x, typename ...xs>
+        struct head_impl<list<x, xs...>>
+            : x
+        { };
+
+
+        template <typename>
+        struct tail_impl;
+
+        template <typename x, typename xs>
+        struct tail_impl<cons<x, xs>>
+            : xs
+        { };
+
+        template <typename x, typename ...xs>
+        struct tail_impl<list<x, xs...>>
+            : list<xs...>
+        { };
+
 
         template <typename n, typename self>
         struct at_impl
@@ -75,14 +78,20 @@ namespace boost { namespace mpl11 {
         struct at_impl<n, list<xs...>>
             : arg<n::type::value+1>::type::template apply<xs...>
         { };
+
+
+        template <typename>
+        struct is_empty_impl : false_ { };
     };
+
+    template <>
+    struct Iterable<List>::is_empty_impl<list<>> : true_ { };
+
 
     template <>
     struct Functor<List> : instantiate<Functor>::with<List> {
         template <typename f, typename xs>
-        struct fmap_impl
-            : fmap_impl<f, typename xs::type>
-        { };
+        struct fmap_impl;
 
         template <typename f, typename ...xs>
         struct fmap_impl<f, list<xs...>> {

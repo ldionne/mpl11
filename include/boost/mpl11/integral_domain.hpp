@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 {
         IntegralDomain<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template div_impl<x, y>
+        >::template div_impl<typename x::type, typename y::type>
     { };
 
     template <typename x, typename y>
@@ -35,7 +35,7 @@ namespace boost { namespace mpl11 {
         IntegralDomain<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template mod_impl<x, y>
+        >::template mod_impl<typename x::type, typename y::type>
     { };
 }} // end namespace boost::mpl11
 

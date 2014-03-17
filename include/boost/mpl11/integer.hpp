@@ -55,8 +55,8 @@ namespace boost { namespace mpl11 {
     struct Monoid<Integer> : instantiate<Monoid>::with<Integer> {
         template <typename x, typename y>
         using plus_impl = integer_c<
-            decltype(x::type::value + y::type::value),
-            x::type::value + y::type::value
+            decltype(x::value + y::value),
+            x::value + y::value
         >;
 
         template <typename ...>
@@ -67,14 +67,14 @@ namespace boost { namespace mpl11 {
     struct Group<Integer> : instantiate<Group>::with<Integer> {
         template <typename x, typename y>
         using minus_impl = integer_c<
-            decltype(x::type::value - y::type::value),
-            x::type::value - y::type::value
+            decltype(x::value - y::value),
+            x::value - y::value
         >;
 
         template <typename x>
         using negate_impl = integer_c<
-            decltype(-x::type::value),
-            -x::type::value
+            decltype(-x::value),
+            -x::value
         >;
     };
 
@@ -82,8 +82,8 @@ namespace boost { namespace mpl11 {
     struct Ring<Integer> : instantiate<Ring>::with<Integer> {
         template <typename x, typename y>
         using mult_impl = integer_c<
-            decltype(x::type::value * y::type::value),
-            x::type::value * y::type::value
+            decltype(x::value * y::value),
+            x::value * y::value
         >;
 
         template <typename ...>
@@ -96,14 +96,14 @@ namespace boost { namespace mpl11 {
     {
         template <typename x, typename y>
         using div_impl = integer_c<
-            decltype(x::type::value / y::type::value),
-            x::type::value / y::type::value
+            decltype(x::value / y::value),
+            x::value / y::value
         >;
 
         template <typename x, typename y>
         using mod_impl = integer_c<
-            decltype(x::type::value % y::type::value),
-            x::type::value % y::type::value
+            decltype(x::value % y::value),
+            x::value % y::value
         >;
     };
 
@@ -111,83 +111,83 @@ namespace boost { namespace mpl11 {
     struct Enumerable<Integer> : instantiate<Enumerable>::with<Integer> {
         template <typename x>
         using succ_impl = integer_c<
-            decltype(x::type::value + 1),
-            x::type::value + 1
+            decltype(x::value + 1),
+            x::value + 1
         >;
 
         template <typename x>
         using pred_impl = integer_c<
-            decltype(x::type::value - 1),
-            x::type::value - 1
+            decltype(x::value - 1),
+            x::value - 1
         >;
     };
 
     template <>
     struct Comparable<Integer> : instantiate<Comparable>::with<Integer> {
         template <typename x, typename y>
-        using equal_impl = bool_<x::type::value == y::type::value>;
+        using equal_impl = bool_<x::value == y::value>;
 
         template <typename x, typename y>
-        using not_equal_impl = bool_<x::type::value != y::type::value>;
+        using not_equal_impl = bool_<x::value != y::value>;
     };
 
     template <>
     struct Orderable<Integer> : instantiate<Orderable>::with<Integer> {
         template <typename x, typename y>
-        using less_impl = bool_<(x::type::value < y::type::value)>;
+        using less_impl = bool_<(x::value < y::value)>;
 
         template <typename x, typename y>
-        using less_equal_impl = bool_<(x::type::value <= y::type::value)>;
+        using less_equal_impl = bool_<(x::value <= y::value)>;
 
         template <typename x, typename y>
-        using greater_impl = bool_<(x::type::value > y::type::value)>;
+        using greater_impl = bool_<(x::value > y::value)>;
 
         template <typename x, typename y>
-        using greater_equal_impl = bool_<(x::type::value >= y::type::value)>;
+        using greater_equal_impl = bool_<(x::value >= y::value)>;
 
         template <typename x, typename y>
-        using max_impl = if_c<(x::type::value < y::type::value), y, x>;
+        using max_impl = if_c<(x::value < y::value), y, x>;
 
         template <typename x, typename y>
-        using min_impl = if_c<(x::type::value < y::type::value), x, y>;
+        using min_impl = if_c<(x::value < y::value), x, y>;
     };
 
     template <>
     struct Bitwise<Integer> : instantiate<Bitwise>::with<Integer> {
         template <typename x, typename y>
         using bitand_impl = integer_c<
-            decltype(x::type::value & y::type::value),
-            x::type::value & y::type::value
+            decltype(x::value & y::value),
+            x::value & y::value
         >;
 
         template <typename x, typename y>
         using bitor_impl = integer_c<
-            decltype(x::type::value | y::type::value),
-            x::type::value | y::type::value
+            decltype(x::value | y::value),
+            x::value | y::value
         >;
 
         template <typename x, typename y>
         using bitxor_impl = integer_c<
-            decltype(x::type::value ^ y::type::value),
-            x::type::value ^ y::type::value
+            decltype(x::value ^ y::value),
+            x::value ^ y::value
         >;
 
         template <typename x, typename n>
         using shift_left_impl = integer_c<
-            decltype(x::type::value << n::type::value),
-            (x::type::value << n::type::value)
+            decltype(x::value << n::value),
+            (x::value << n::value)
         >;
 
         template <typename x, typename n>
         using shift_right_impl = integer_c<
-            decltype(x::type::value >> n::type::value),
-            (x::type::value >> n::type::value)
+            decltype(x::value >> n::value),
+            (x::value >> n::value)
         >;
 
         template <typename x>
         using compl_impl = integer_c<
-            decltype(~x::type::value),
-            ~x::type::value
+            decltype(~x::value),
+            ~x::value
         >;
     };
 }} // end namespace boost::mpl11

@@ -1450,8 +1450,27 @@ a boxed type, so they're not completely forgotten.
 
 
 ## Todo list
-- [ ] Decide whether to receive unboxed or boxed types in method implementations.
-      Once that is decided, modify either the tutorial or the library.
+- [ ] What should we do for default typeclass methods?
+      1. We reuse the "official" method and we rebox the arguments.
+        ```cpp
+        template <typename x, typename y>
+        using equal_impl = not_<not_equal<box<x>, box<y>>>;
+        ```
+
+      2. We create an "official" unboxed method and we use that.
+        ```cpp
+        template <typename x, typename y>
+        using equal_impl = not_<not_equal_<x, y>>;
+        ```
+        where `not_equal_` is a non-boxed version of `not_equal`.
+
+      3. We directly forward to the implementation of the method in the
+         typeclass.
+        ```cpp
+        template <typename x, typename y>
+        using equal_impl = not_<Comparable<Left, Right>::not_equal_impl<x, y>>;
+        ```
+
 - [ ] Implement cross-type typeclasses.
 - [ ] Implement associative data structures.
 - [ ] Implement a small DSL to implement inline metafunction classes (like
@@ -1517,7 +1536,7 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider having a public data constructor for `Foreign`, which would
       simply preserve type identity. Also; might consider changing the name
       of `Foreign`.
-
+- [ ] Consider _not_ inheritting bool_ in std_is_same.
 
 
 <!-- Links -->

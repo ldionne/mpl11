@@ -34,7 +34,7 @@ namespace boost { namespace mpl11 {
         Monoid<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template plus_impl<x, y>
+        >::template plus_impl<typename x::type, typename y::type>
     { };
 
     template <typename Datatype>

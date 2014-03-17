@@ -31,10 +31,10 @@ namespace boost { namespace mpl11 {
         template <typename Datatype>
         struct with<Datatype> : true_ {
             template <typename x, typename y>
-            using quot_impl = mult<x, recip<y>>;
+            using quot_impl = mult<box<x>, recip<box<y>>>;
 
             template <typename x>
-            using recip_impl = quot<one<Datatype>, x>;
+            using recip_impl = quot<one<Datatype>, box<x>>;
         };
     };
 
@@ -43,13 +43,13 @@ namespace boost { namespace mpl11 {
         Field<
             typename datatype<typename x::type>::type,
             typename datatype<typename y::type>::type
-        >::template quot_impl<x, y>
+        >::template quot_impl<typename x::type, typename y::type>
     { };
 
     template <typename x>
     struct recip :
         Field<typename datatype<typename x::type>::type>::
-        template recip_impl<x>
+        template recip_impl<typename x::type>
     { };
 }} // end namespace boost::mpl11
 

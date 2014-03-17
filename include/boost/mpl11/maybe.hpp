@@ -58,7 +58,7 @@ namespace boost { namespace mpl11 {
     template <>
     struct Functor<Maybe> : instantiate<Functor>::with<Maybe> {
         template <typename f, typename m>
-        using fmap_impl = typename m::type::template maybe_<nothing, f>;
+        using fmap_impl = typename m::template maybe_<nothing, f>;
     };
 
 #if 0

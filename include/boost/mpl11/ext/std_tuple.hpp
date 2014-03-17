@@ -63,28 +63,31 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct Iterable<StdTuple> : instantiate<Iterable>::with<StdTuple> {
-    private:
         template <typename>
-        struct tuple_impl {
-            using is_empty = true_;
-        };
+        struct head_impl;
 
         template <typename x, typename ...xs>
-        struct tuple_impl<std::tuple<x, xs...>> {
-            using head = box<x>;
-            using tail = box<std::tuple<xs...>>;
-            using is_empty = false_;
+        struct head_impl<std::tuple<x, xs...>> {
+            using type = x;
         };
 
-    public:
-        template <typename xs>
-        using head_impl = typename tuple_impl<typename xs::type>::head;
 
-        template <typename xs>
-        using tail_impl = typename tuple_impl<typename xs::type>::tail;
+        template <typename>
+        struct tail_impl;
 
-        template <typename xs>
-        using is_empty_impl = typename tuple_impl<typename xs::type>::is_empty;
+        template <typename x, typename ...xs>
+        struct tail_impl<std::tuple<x, xs...>> {
+            using type = std::tuple<xs...>;
+        };
+
+
+        template <typename>
+        struct is_empty_impl;
+
+        template <typename ...xs>
+        struct is_empty_impl<std::tuple<xs...>>
+            : bool_<sizeof...(xs) == 0>
+        { };
     };
 }} // end namespace boost::mpl11
 

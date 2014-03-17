@@ -12,7 +12,7 @@
 
 struct MinimalFoldable;
 
-template <typename ...x>
+template <typename ...xs>
 struct minimal_foldable {
     using type = minimal_foldable;
     using mpl_datatype = MinimalFoldable;
@@ -23,13 +23,12 @@ namespace boost { namespace mpl11 {
     struct Foldable<MinimalFoldable>
         : instantiate<Foldable>::with<MinimalFoldable>
     {
-    private:
         template <typename f, typename state, typename structure>
-        struct fold_left : state { };
+        struct foldl_impl : state { };
 
         template <typename f, typename state, typename x, typename ...xs>
-        struct fold_left<f, state, minimal_foldable<x, xs...>>
-            : fold_left<
+        struct foldl_impl<f, state, minimal_foldable<x, xs...>>
+            : foldl_impl<
                 f,
                 typename f::type::template apply<state, x>,
                 minimal_foldable<xs...>
@@ -38,48 +37,37 @@ namespace boost { namespace mpl11 {
 
 
         template <typename f, typename state, typename structure>
-        struct fold_right : state { };
+        struct foldr_impl : state { };
 
         template <typename f, typename state, typename x, typename ...xs>
-        struct fold_right<f, state, minimal_foldable<x, xs...>>
+        struct foldr_impl<f, state, minimal_foldable<x, xs...>>
             : f::type::template apply<
-                x, fold_right<f, state, minimal_foldable<xs...>>
+                x, foldr_impl<f, state, minimal_foldable<xs...>>
             >
         { };
 
 
         template <typename f, typename structure>
-        struct fold_right1;
-
-        template <typename f, typename x>
-        struct fold_right1<f, minimal_foldable<x>> : x { };
-
-        template <typename f, typename x, typename ...xs>
-        struct fold_right1<f, minimal_foldable<x, xs...>>
-            : f::type::template apply<
-                x, fold_right1<f, minimal_foldable<xs...>>
-            >
-        { };
-
-    public:
-        template <typename f, typename structure>
-        struct foldl1_impl
-            : foldl1_impl<f, typename structure::type>
-        { };
+        struct foldl1_impl;
 
         template <typename f, typename x, typename ...xs>
         struct foldl1_impl<f, minimal_foldable<x, xs...>>
-            : fold_left<f, x, minimal_foldable<xs...>>
+            : foldl_impl<f, x, minimal_foldable<xs...>>
         { };
 
+
         template <typename f, typename structure>
-        using foldr1_impl = fold_right1<f, typename structure::type>;
+        struct foldr1_impl;
 
-        template <typename f, typename state, typename structure>
-        using foldl_impl = fold_left<f, state, typename structure::type>;
+        template <typename f, typename x>
+        struct foldr1_impl<f, minimal_foldable<x>> : x { };
 
-        template <typename f, typename state, typename structure>
-        using foldr_impl = fold_right<f, state, typename structure::type>;
+        template <typename f, typename x, typename ...xs>
+        struct foldr1_impl<f, minimal_foldable<x, xs...>>
+            : f::type::template apply<
+                x, foldr1_impl<f, minimal_foldable<xs...>>
+            >
+        { };
     };
 }} // end namespace boost::mpl11
 
