@@ -96,12 +96,12 @@ namespace boost { namespace mpl11 {
     BOOST_MPL11_DOXYGEN_ALIAS(id, x);
 
     /*!
-     * Turns a metafunction into an equivalent metafunction class.
+     * Lifts a metafunction.
      *
-     * Specifically, `apply<quote<f>, x...>` is equivalent to `f<x...>`.
+     * Specifically, `apply<lift<f>, x...>` is equivalent to `f<x...>`.
      */
     template <template <typename ...> class f>
-    struct quote;
+    struct lift;
 
     /*!
      * Returns a specialization of the given template with the
@@ -120,8 +120,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * @note
-     * `partial` is specialized for `quote` and `into` so that patterns like
-     * `partial<quote<equal>, x...>` are as efficient as writing a custom
+     * `partial` is specialized for `lift` and `into` so that patterns like
+     * `partial<lift<equal>, x...>` are as efficient as writing a custom
      * metafunction class.
      */
     template <typename f, typename ...x>
@@ -301,7 +301,7 @@ namespace boost { namespace mpl11 {
     template <typename x, typename f, typename y>
     BOOST_MPL11_DOXYGEN_ALIAS(infix, apply<f, x, y>);
 
-    //! Equivalent to `infix<x, quote<f>, y>`; provided for convenience.
+    //! Equivalent to `infix<x, lift<f>, y>`; provided for convenience.
     template <typename x, template <typename ...> class f, typename y>
     BOOST_MPL11_DOXYGEN_ALIAS(infix_, f<x, y>);
 
@@ -315,9 +315,9 @@ namespace boost { namespace mpl11 {
     template <typename x, typename f>
     BOOST_MPL11_DOXYGEN_ALIAS(lsect, partial<f, x>);
 
-    //! Equivalent to `lsect<x, quote<f>>`; provided for convenience.
+    //! Equivalent to `lsect<x, lift<f>>`; provided for convenience.
     template <typename x, template <typename ...> class f>
-    BOOST_MPL11_DOXYGEN_ALIAS(lsect_, lsect<x, quote<f>>);
+    BOOST_MPL11_DOXYGEN_ALIAS(lsect_, lsect<x, lift<f>>);
 
     /*!
      * Returns the right section of `f` with `y`.
@@ -329,9 +329,9 @@ namespace boost { namespace mpl11 {
     template <typename f, typename y>
     BOOST_MPL11_DOXYGEN_ALIAS(rsect, partial<flip<f>, y>);
 
-    //! Equivalent to `rsect<quote<f>, y>`; provided for convenience.
+    //! Equivalent to `rsect<lift<f>, y>`; provided for convenience.
     template <template <typename ...> class f, typename y>
-    BOOST_MPL11_DOXYGEN_ALIAS(rsect_, rsect<quote<f>, y>);
+    BOOST_MPL11_DOXYGEN_ALIAS(rsect_, rsect<lift<f>, y>);
 
     /*!
      * Convenience namespace containing everything provided by the
@@ -352,11 +352,11 @@ namespace boost { namespace mpl11 {
         using mpl11::infix;
         using mpl11::infix_;
         using mpl11::into;
+        using mpl11::lift;
         using mpl11::lsect;
         using mpl11::lsect_;
         using mpl11::on;
         using mpl11::partial;
-        using mpl11::quote;
         using mpl11::rsect;
         using mpl11::rsect_;
         using mpl11::uncurry;

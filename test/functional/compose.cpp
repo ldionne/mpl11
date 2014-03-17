@@ -26,7 +26,7 @@ struct composing {
         template <typename result>
         struct is : detail::dependent<result>::template type<composing> {
             static_assert(std_is_same<
-                typename compose<quote<fs>...>::type::
+                typename compose<lift<fs>...>::type::
                 template apply<args...>::type,
                 result
             >::value, "");

@@ -19,7 +19,7 @@ template <int ...xs>
 struct tuple_of {
     using lst = list<box<t<xs>>...>;
     using tpl = std::tuple<t<xs>...>;
-    using conses = typename foldr<quote<cons>, list<>, lst>::type;
+    using conses = typename foldr<lift<cons>, list<>, lst>::type;
 
     // Check Iterable instantiation
     static_assert(sizeof(

@@ -25,12 +25,12 @@ struct wrapnothing : nothing { };
 
 namespace test_maybe_metafunction {
     static_assert(std_is_same<
-        maybe<def, quote<f>, wrapjust<x>>::type,
+        maybe<def, lift<f>, wrapjust<x>>::type,
         f<x>::type
     >::value, "");
 
     static_assert(std_is_same<
-        maybe<def, quote<f>, wrapnothing>::type,
+        maybe<def, lift<f>, wrapnothing>::type,
         def::type
     >::value, "");
 }
@@ -65,12 +65,12 @@ namespace test_maybe_variants {
 
 namespace test_functor_instantiation {
     static_assert(std_is_same<
-        fmap<quote<f>, wrapjust<x>>::type,
+        fmap<lift<f>, wrapjust<x>>::type,
         f<x>::type
     >::value, "");
 
     static_assert(std_is_same<
-        fmap<quote<f>, wrapnothing>::type,
+        fmap<lift<f>, wrapnothing>::type,
         nothing
     >::value, "");
 }

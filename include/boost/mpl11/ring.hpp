@@ -26,7 +26,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct mult
-        : detail::strict_variadic_foldl<quote<mult>, x1, x2, xn...>
+        : detail::strict_variadic_foldl<lift<mult>, x1, x2, xn...>
     { };
 
     template <typename x, typename y>

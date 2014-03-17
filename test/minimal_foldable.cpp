@@ -36,10 +36,10 @@ static_assert(std_is_same<
 template <typename ...xs>
 struct folding {
     using structure = minimal_foldable<xs...>;
-    using Foldr = typename foldr<quote<f>, s, structure>::type;
-    using Foldl = typename foldl<quote<f>, s, structure>::type;
-    using Foldr1 = typename foldr1<quote<f>, structure>::type;
-    using Foldl1 = typename foldl1<quote<f>, structure>::type;
+    using Foldr = typename foldr<lift<f>, s, structure>::type;
+    using Foldl = typename foldl<lift<f>, s, structure>::type;
+    using Foldr1 = typename foldr1<lift<f>, structure>::type;
+    using Foldl1 = typename foldl1<lift<f>, structure>::type;
 
     template <typename expected, typename = Foldr>
     struct right_is : detail::dependent<expected>::template type<folding> {

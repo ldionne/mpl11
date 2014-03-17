@@ -57,13 +57,13 @@ struct test_bind {
 };
 
 template <template <typename ...> class f>
-using quoted = quote<call<f>::type::template apply>;
+using lifted = lift<call<f>::type::template apply>;
 
 struct tests :
     test_bind<call<e>, call<f>, call<g>, call<h>>,
 
-    // test specialization for quote<>
-    test_bind<quoted<e>, quoted<f>, quoted<g>, quoted<h>>
+    // test specialization for lift<>
+    test_bind<lifted<e>, lifted<f>, lifted<g>, lifted<h>>
 { };
 
 

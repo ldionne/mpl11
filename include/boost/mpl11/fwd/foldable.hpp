@@ -76,14 +76,14 @@ namespace boost { namespace mpl11 {
      */
     template <typename predicate, typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(all, foldr<
-        compose<quote<and_>, predicate>,
+        compose<lift<and_>, predicate>,
         true_,
         structure
     >);
 
-    //! Equivalent to `all<quote<id>, structure>`.
+    //! Equivalent to `all<lift<id>, structure>`.
     template <typename structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(all_of, all<quote<id>, structure>);
+    BOOST_MPL11_DOXYGEN_ALIAS(all_of, all<lift<id>, structure>);
 
     /*!
      * Returns whether none of the elements of the structure satisfy the
@@ -91,11 +91,11 @@ namespace boost { namespace mpl11 {
      */
     template <typename predicate, typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(none,
-        all<compose<quote<not_>, predicate>, structure>);
+        all<compose<lift<not_>, predicate>, structure>);
 
-    //! Equivalent to `none<quote<id>, structure>`.
+    //! Equivalent to `none<lift<id>, structure>`.
     template <typename structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(none_of, none<quote<id>, structure>);
+    BOOST_MPL11_DOXYGEN_ALIAS(none_of, none<lift<id>, structure>);
 
     /*!
      * Returns whether any element of the structure satisfies the `predicate`.
@@ -103,19 +103,19 @@ namespace boost { namespace mpl11 {
     template <typename predicate, typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(any, not_<none<predicate, structure>>);
 
-    //! Equivalent to `any<quote<id>, structure>`.
+    //! Equivalent to `any<lift<id>, structure>`.
     template <typename structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(any_of, any<quote<id>, structure>);
+    BOOST_MPL11_DOXYGEN_ALIAS(any_of, any<lift<id>, structure>);
 
     //! Compute the sum of the elements of a `structure`.
     template <typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(sum,
-        foldr<quote<plus>, zero<Integer>, structure>);
+        foldr<lift<plus>, zero<Integer>, structure>);
 
     //! Compute the product of the elements of a `structure`.
     template <typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(product,
-        foldr<quote<mult>, one<Integer>, structure>);
+        foldr<lift<mult>, one<Integer>, structure>);
 
     /*!
      * The largest element of a non-empty structure with respect to
@@ -123,11 +123,11 @@ namespace boost { namespace mpl11 {
      */
     template <typename predicate, typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(maximum_by,
-        foldr1<bind<quote<if_>, predicate, arg<2>, arg<1>>, structure>);
+        foldr1<bind<lift<if_>, predicate, arg<2>, arg<1>>, structure>);
 
     //! Returns the largest element of a non-empty structure.
     template <typename structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(maximum, foldr1<quote<max>, structure>);
+    BOOST_MPL11_DOXYGEN_ALIAS(maximum, foldr1<lift<max>, structure>);
 
     /*!
      * The least element of a non-empty structure with respect to
@@ -135,11 +135,11 @@ namespace boost { namespace mpl11 {
      */
     template <typename predicate, typename structure>
     BOOST_MPL11_DOXYGEN_ALIAS(minimum_by,
-        foldr1<bind<quote<if_>, predicate, arg<1>, arg<2>>, structure>);
+        foldr1<bind<lift<if_>, predicate, arg<1>, arg<2>>, structure>);
 
     //! Returns the least element of a non-empty structure.
     template <typename structure>
-    BOOST_MPL11_DOXYGEN_ALIAS(minimum, foldr1<quote<min>, structure>);
+    BOOST_MPL11_DOXYGEN_ALIAS(minimum, foldr1<lift<min>, structure>);
 
     /*!
      * Invokes a metafunction class with the contents of a structure.

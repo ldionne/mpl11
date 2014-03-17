@@ -28,7 +28,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct bitand_
-        : detail::strict_variadic_foldl<quote<bitand_>, x1, x2, xn...>
+        : detail::strict_variadic_foldl<lift<bitand_>, x1, x2, xn...>
     { };
 
     template <typename x, typename y>
@@ -42,7 +42,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct bitor_
-        : detail::strict_variadic_foldl<quote<bitor_>, x1, x2, xn...>
+        : detail::strict_variadic_foldl<lift<bitor_>, x1, x2, xn...>
     { };
 
     template <typename x, typename y>
@@ -56,7 +56,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct bitxor
-        : detail::strict_variadic_foldl<quote<bitxor>, x1, x2, xn...>
+        : detail::strict_variadic_foldl<lift<bitxor>, x1, x2, xn...>
     { };
 
     template <typename x, typename y>

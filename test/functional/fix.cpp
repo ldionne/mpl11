@@ -20,7 +20,7 @@ using fact_impl = if_c<n::type::value == 0,
 
 template <unsigned long long n>
 struct fact_fix {
-    static constexpr auto value = fix<quote<fact_impl>>::type::
+    static constexpr auto value = fix<lift<fact_impl>>::type::
                                   template apply<ullong<n>>::type::value;
 };
 

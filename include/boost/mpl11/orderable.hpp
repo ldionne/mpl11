@@ -112,7 +112,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xs>
     struct min
-        : detail::strict_variadic_foldl<quote<min>, x1, x2, xs...>
+        : detail::strict_variadic_foldl<lift<min>, x1, x2, xs...>
     { };
 
     template <typename x, typename y>
@@ -126,7 +126,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xs>
     struct max
-        : detail::strict_variadic_foldl<quote<max>, x1, x2, xs...>
+        : detail::strict_variadic_foldl<lift<max>, x1, x2, xs...>
     { };
 
     template <typename x, typename y>

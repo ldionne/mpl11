@@ -157,7 +157,7 @@ namespace boost { namespace mpl11 {
     //! Equivalent to `drop_while` with a negated `predicate`.
     template <typename predicate, typename iter>
     BOOST_MPL11_DOXYGEN_ALIAS(drop_until,
-                        drop_while<compose<quote<not_>, predicate>, iter>);
+                        drop_while<compose<lift<not_>, predicate>, iter>);
     //! @}
 }} // end namespace boost::mpl11
 

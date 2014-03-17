@@ -19,7 +19,7 @@ template <int> struct x;
 
 template <typename ...x>
 struct test_with_args {
-    using curried = curry<sizeof...(x), quote<f>>;
+    using curried = curry<sizeof...(x), lift<f>>;
     using uncurried = uncurry<sizeof...(x), curried>;
 
     static_assert(std_is_same<

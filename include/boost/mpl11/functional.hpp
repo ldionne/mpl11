@@ -68,7 +68,7 @@ namespace boost { namespace mpl11 {
     };
 
     template <template <typename ...> class f, typename ...x>
-    struct partial<quote<f>, x...> {
+    struct partial<lift<f>, x...> {
         using type = partial;
 
 #if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
@@ -95,7 +95,7 @@ namespace boost { namespace mpl11 {
     ////////////////////
     template <typename f, typename ...xs>
     struct apply_curried
-        : detail::strict_variadic_foldl<quote<apply>, f, xs...>
+        : detail::strict_variadic_foldl<lift<apply>, f, xs...>
     { };
 
     ////////////////////
@@ -149,11 +149,11 @@ namespace boost { namespace mpl11 {
 
 
     ////////////////////
-    // quote
+    // lift
     ////////////////////
     template <template <typename ...> class f>
-    struct quote {
-        using type = quote;
+    struct lift {
+        using type = lift;
 
 #if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
         template <typename ...x>
@@ -252,7 +252,7 @@ namespace boost { namespace mpl11 {
         template <typename ...> class f,
         template <typename ...> class ...fs
     >
-    struct on<quote<f>, quote<fs>...> {
+    struct on<lift<f>, lift<fs>...> {
         using type = on;
 
         template <typename ...x>
@@ -276,7 +276,7 @@ namespace boost { namespace mpl11 {
         template <typename ...> class f,
         template <typename ...> class ...fs
     >
-    struct bind<quote<f>, quote<fs>...> {
+    struct bind<lift<f>, lift<fs>...> {
         using type = bind;
 
         template <typename ...x>

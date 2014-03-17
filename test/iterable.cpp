@@ -266,7 +266,7 @@ namespace test_drop_while {
         template <int ...remaining>
         struct is
             : check_finite_iterable<
-                drop_while<quote<not_>, minimal_iterable<int_<all>...>>,
+                drop_while<lift<not_>, minimal_iterable<int_<all>...>>,
                 int_<remaining>...
             >
         { };

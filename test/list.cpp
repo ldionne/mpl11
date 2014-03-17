@@ -84,7 +84,7 @@ namespace test_functor {
     template <int ...xs>
     struct do_fmap
         : check_finite_iterable<
-            fmap<quote<f>, list<int_<xs>...>>,
+            fmap<lift<f>, list<int_<xs>...>>,
             f<int_<xs>>...
         >
     { };
@@ -179,7 +179,7 @@ namespace test_iterate {
         template <typename ...fxs>
         struct is
             : check_finite_iterable<
-                take_c<n, iterate<quote<f>, x>>,
+                take_c<n, iterate<lift<f>, x>>,
                 fxs...
             >
         { };
@@ -262,7 +262,7 @@ namespace test_filter {
         template <int ...filtered>
         struct are
             : check_finite_iterable<
-                filter<quote<id>, minimal_iterable<int_<all>...>>,
+                filter<lift<id>, minimal_iterable<int_<all>...>>,
                 int_<filtered>...
             >
         { };
@@ -299,7 +299,7 @@ namespace test_scanl {
         template <typename ...result>
         struct is
             : check_finite_iterable<
-                scanl<quote<f>, int_<state>, minimal_iterable<int_<xs>...>>,
+                scanl<lift<f>, int_<state>, minimal_iterable<int_<xs>...>>,
                 result...
             >
         { };
@@ -355,7 +355,7 @@ namespace test_zip_with {
     struct zipping {
         template <typename ...zipped>
         struct is
-            : check_finite_iterable<zip_with<quote<f>, lists...>, zipped...>
+            : check_finite_iterable<zip_with<lift<f>, lists...>, zipped...>
         { };
     };
 
@@ -546,8 +546,8 @@ namespace test_sort {
     { };
 
     struct tests
-        : sort_less<quote<less>>
-        , sort_less<quote<less_equal>>
+        : sort_less<lift<less>>
+        , sort_less<lift<less_equal>>
     { };
 } // end namespace test_sort
 

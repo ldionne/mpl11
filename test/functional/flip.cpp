@@ -20,27 +20,27 @@ struct variadic { struct type; };
 struct a0; struct a1; struct a2; struct a3; struct a4; struct a5;
 
 static_assert(std_is_same<
-    flip<quote<binary>>::type::apply<a0, a1>::type,
+    flip<lift<binary>>::type::apply<a0, a1>::type,
     binary<a1, a0>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<quote<variadic>>::type::apply<a0, a1, a2>::type,
+    flip<lift<variadic>>::type::apply<a0, a1, a2>::type,
     variadic<a1, a0, a2>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<quote<variadic>>::type::apply<a0, a1, a2, a3>::type,
+    flip<lift<variadic>>::type::apply<a0, a1, a2, a3>::type,
     variadic<a1, a0, a2, a3>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<quote<variadic>>::type::apply<a0, a1, a2, a3, a4>::type,
+    flip<lift<variadic>>::type::apply<a0, a1, a2, a3, a4>::type,
     variadic<a1, a0, a2, a3, a4>::type
 >::value, "");
 
 static_assert(std_is_same<
-    flip<quote<variadic>>::type::apply<a0, a1, a2, a3, a4, a5>::type,
+    flip<lift<variadic>>::type::apply<a0, a1, a2, a3, a4, a5>::type,
     variadic<a1, a0, a2, a3, a4, a5>::type
 >::value, "");
 

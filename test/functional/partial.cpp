@@ -67,8 +67,8 @@ template <typename ...> struct h;
 
 struct tests :
     test_partial<f>,
-    test_partial<quote<g>>, // test quote specialization
-    test_partial<into<h>>   // test into specialization
+    test_partial<lift<g>>, // test lift specialization
+    test_partial<into<h>>  // test into specialization
 { };
 
 

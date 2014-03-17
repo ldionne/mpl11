@@ -52,7 +52,7 @@ namespace boost { namespace mpl11 {
 
     //! A `List` created by appending an element to an @ref Iterable.
     template <typename xs, typename x>
-    BOOST_MPL11_DOXYGEN_ALIAS(snoc, foldr<quote<cons>, list<x>, xs>);
+    BOOST_MPL11_DOXYGEN_ALIAS(snoc, foldr<lift<cons>, list<x>, xs>);
 
     //! Returns an infinite `List` of repeated applications of `f` to `x`.
     template <typename f, typename x>
@@ -86,7 +86,7 @@ namespace boost { namespace mpl11 {
     //! Equivalent to `take_while` with a negated `predicate`.
     template <typename predicate, typename xs>
     BOOST_MPL11_DOXYGEN_ALIAS(take_until,
-        take_while<compose<quote<not_>, predicate>, xs>);
+        take_while<compose<lift<not_>, predicate>, xs>);
 
     //! Returns a `List` with its elements in reverse order.
     template <typename xs>
@@ -123,9 +123,9 @@ namespace boost { namespace mpl11 {
     template <typename f, typename ...lists>
     struct zip_with;
 
-    //! Equivalent to `zip_with<quote<list>, lists...>`.
+    //! Equivalent to `zip_with<lift<list>, lists...>`.
     template <typename ...lists>
-    BOOST_MPL11_DOXYGEN_ALIAS(zip, zip_with<quote<list>, lists...>);
+    BOOST_MPL11_DOXYGEN_ALIAS(zip, zip_with<lift<list>, lists...>);
 
     /*!
      * Concatenate several lists.

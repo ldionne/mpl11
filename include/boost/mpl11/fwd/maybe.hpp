@@ -68,7 +68,7 @@ namespace boost { namespace mpl11 {
     //! If `m` is nothing, returns `def`. Otherwise, returns the value
     //! inside the `just`.
     template <typename def, typename m>
-    BOOST_MPL11_DOXYGEN_ALIAS(from_maybe, maybe<def, quote<id>, m>);
+    BOOST_MPL11_DOXYGEN_ALIAS(from_maybe, maybe<def, lift<id>, m>);
 
     namespace maybe_detail { template <typename ...> struct err_from_just; }
 
@@ -81,7 +81,7 @@ namespace boost { namespace mpl11 {
      */
     template <typename m>
     BOOST_MPL11_DOXYGEN_ALIAS(from_just,
-        maybe<maybe_detail::err_from_just<>, quote<id>, m>);
+        maybe<maybe_detail::err_from_just<>, lift<id>, m>);
     //! @}
 }} // end namespace boost::mpl11
 

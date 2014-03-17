@@ -21,7 +21,7 @@ struct folding {
     struct is {
         static_assert(detail::std_is_same<
             typename detail::strict_variadic_foldl<
-                quote<f>, int_<state>, int_<xs>...
+                lift<f>, int_<state>, int_<xs>...
             >::type,
             f_expr
         >::value, "");

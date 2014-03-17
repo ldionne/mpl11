@@ -97,10 +97,10 @@ namespace boost { namespace mpl11 {
         using apply = core_detail::foreign<x>;
     };
 
-    // We can't use `quote<id>` here because `foreign` is not the only
+    // We can't use `lift<id>` here because `foreign` is not the only
     // data constructor for `Foreign`! Pitfall!
     template <>
-    struct cast<Foreign, Foreign> : quote<box> { };
+    struct cast<Foreign, Foreign> : lift<box> { };
 }} // end namespace boost::mpl11
 
 
@@ -125,7 +125,7 @@ namespace boost { namespace mpl11 {
     template <typename From, typename To>
     struct cast
         : if_c<detail::std_is_same<From, To>::value,
-            quote<box>,
+            lift<box>,
             core_detail::invalid_cast<From, To>
         >
     { };

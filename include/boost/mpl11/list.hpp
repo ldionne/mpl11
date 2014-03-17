@@ -251,7 +251,7 @@ namespace boost { namespace mpl11 {
 
     template <typename xs>
     struct reverse
-        : foldl<flip<quote<cons>>, list<>, xs>
+        : foldl<flip<lift<cons>>, list<>, xs>
     { };
 
 #if 0
@@ -449,7 +449,7 @@ namespace boost { namespace mpl11 {
             typename pivot = head<xs>,
             typename rest = tail<xs>,
             typename IsGreater = partial<pred, pivot>,
-            typename IsSmallerEq = compose<quote<not_>, IsGreater>,
+            typename IsSmallerEq = compose<lift<not_>, IsGreater>,
             typename SmallerEq = filter<IsSmallerEq, rest>,
             typename Greater = filter<IsGreater, rest>
         >

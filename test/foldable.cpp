@@ -105,7 +105,7 @@ namespace test_all_any_none {
                 ::any_is<true>
                 ::none_is<false>
 
-        , with_predicate<partial<quote<std_is_same>, t>>
+        , with_predicate<partial<lift<std_is_same>, t>>
             ::with_input<t>
                 ::all_is<true>
                 ::any_is<true>
@@ -292,8 +292,8 @@ namespace test_minimum_maximum {
         using structure = minimal_foldable<int_<xs>...>;
         template <int min, int max>
         struct minmax {
-            static_assert(minimum_by<quote<less>, structure>::value == min, "");
-            static_assert(maximum_by<quote<less>, structure>::value == max, "");
+            static_assert(minimum_by<lift<less>, structure>::value == min, "");
+            static_assert(maximum_by<lift<less>, structure>::value == max, "");
             static_assert(minimum<structure>::value == min, "");
             static_assert(maximum<structure>::value == max, "");
         };
@@ -321,7 +321,7 @@ namespace test_unpack {
     template <int ...xs>
     struct unpacking {
         static_assert(std_is_same<
-            typename unpack<minimal_foldable<int_<xs>...>, quote<f>>::type,
+            typename unpack<minimal_foldable<int_<xs>...>, lift<f>>::type,
             typename f<int_<xs>...>::type
         >::value, "");
     };

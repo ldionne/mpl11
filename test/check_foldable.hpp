@@ -34,32 +34,32 @@ namespace check_foldable_detail {
     template <typename structure, typename ...xs>
     struct check_foldable
         : assert_same<
-            foldl<quote<f>, state, structure>,
-            foldl<quote<f>, state, minimal_foldable<xs...>>
+            foldl<lift<f>, state, structure>,
+            foldl<lift<f>, state, minimal_foldable<xs...>>
         >
         , assert_same<
-            foldr<quote<f>, state, structure>,
-            foldr<quote<f>, state, minimal_foldable<xs...>>
+            foldr<lift<f>, state, structure>,
+            foldr<lift<f>, state, minimal_foldable<xs...>>
         >
     { };
 
     template <typename structure, typename x, typename ...xs>
     struct check_foldable<structure, x, xs...>
         : assert_same<
-            foldl<quote<f>, state, structure>,
-            foldl<quote<f>, state, minimal_foldable<x, xs...>>
+            foldl<lift<f>, state, structure>,
+            foldl<lift<f>, state, minimal_foldable<x, xs...>>
         >
         , assert_same<
-            foldr<quote<f>, state, structure>,
-            foldr<quote<f>, state, minimal_foldable<x, xs...>>
+            foldr<lift<f>, state, structure>,
+            foldr<lift<f>, state, minimal_foldable<x, xs...>>
         >
         , assert_same<
-            foldl1<quote<f>, structure>,
-            foldl1<quote<f>, minimal_foldable<x, xs...>>
+            foldl1<lift<f>, structure>,
+            foldl1<lift<f>, minimal_foldable<x, xs...>>
         >
         , assert_same<
-            foldr1<quote<f>, structure>,
-            foldr1<quote<f>, minimal_foldable<x, xs...>>
+            foldr1<lift<f>, structure>,
+            foldr1<lift<f>, minimal_foldable<x, xs...>>
         >
     { };
 } // end namespace check_foldable_detail

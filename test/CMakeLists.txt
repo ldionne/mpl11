@@ -78,9 +78,9 @@ mpl11_add_tests(
     id
     infix
     into
+    lift
     on
     partial
-    quote
     sections
 )
 
