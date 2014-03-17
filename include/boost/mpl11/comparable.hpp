@@ -44,10 +44,10 @@ namespace boost { namespace mpl11 {
     template <typename Left, typename Right, typename>
     struct Comparable : instantiate<Comparable>::template with<Left, Right> {
         template <typename x, typename y>
-        using equal_impl = detail::std_is_same<x, y>;
+        using equal_impl = bool_<detail::std_is_same<x, y>::value>;
 
         template <typename x, typename y>
-        using not_equal_impl = not_<detail::std_is_same<x, y>>;
+        using not_equal_impl = bool_<!detail::std_is_same<x, y>::value>;
     };
 
     template <typename x1, typename x2, typename ...xs>

@@ -1536,7 +1536,6 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider having a public data constructor for `Foreign`, which would
       simply preserve type identity. Also; might consider changing the name
       of `Foreign`.
-- [ ] Consider _not_ inheritting bool_ in std_is_same.
 
 
 <!-- Links -->
