@@ -278,15 +278,21 @@ namespace boost { namespace mpl11 {
     { };
 #endif
 
+    namespace list_detail {
+        template <typename pred>
+        struct filter_help {
+            using type = filter_help;
+            template <typename x, typename xs>
+            using apply = if_c<pred::type::template apply<x>::type::value,
+                cons<x, xs>,
+                xs
+            >;
+        };
+    }
+
     template <typename pred, typename xs>
     struct filter
-        : if_c<none<pred, xs>::value,
-            list<>,
-            cons<
-                head<drop_until<pred, xs>>,
-                filter<pred, tail<drop_until<pred, xs>>>
-            >
-        >
+        : foldr<list_detail::filter_help<pred>, list<>, xs>
     { };
 
 #if 0
@@ -368,31 +374,17 @@ namespace boost { namespace mpl11 {
     { };
 #endif
 
-    template <>
-    struct join<>
-        : list<>
+    template <typename ...xs>
+    struct join
+        : foldr<lift<join>, list<>, list<xs...>>
     { };
 
-    template <typename xs>
-    struct join<xs>
-        : xs
-    { };
-
-    template <typename xs, typename ...ys>
-    struct join<xs, ys...>
-        : if_c<is_empty<xs>::value,
-            join<ys...>,
-            cons<head<xs>, join<tail<xs>, ys...>>
-        >
+    template <typename xs, typename ys>
+    struct join<xs, ys>
+        : foldr<lift<cons>, ys, xs>
     { };
 
 #if 0
-    template <>
-    struct length_impl<join<>> : size_t<0> { };
-
-    template <typename Iter>
-    struct length_impl<join<Iter>> : length<Iter> { };
-
     // We add strictly because there could be optimizations.
     template <typename ...Iters>
     struct length_impl<join<Iters...>>
