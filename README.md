@@ -1358,6 +1358,14 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider having a public data constructor for `Foreign`, which would
       simply preserve type identity. Also; might consider changing the name
       of `Foreign`.
+- [ ] Consider regrouping the typeclass instantiations of a datatype in the
+      datatype itself. This was done in a previous version, but it might have
+      some advantages.
+- [ ] Consider providing automatic currying for metafunctions.
+- [ ] Optimize `lazy_variadic_foldr` and `strict_variadic_foldl`.
+- [ ] By making some std algorithms constexpr and providing a couple of
+      containers with constexpr iterators, would we have constexpr for free
+      almost everywhere?
 
 
 <!-- Links -->
