@@ -67,40 +67,33 @@ namespace boost { namespace mpl11 {
         >::template bitxor_impl<typename x::type, typename y::type>
     { };
 
-    namespace bitwise_detail {
+    namespace checks {
         template <typename x, typename n>
-        struct check_shift_left {
+        struct shift_left_checks {
             static_assert(n::type::value >= 0,
             "Invalid usage of `shift_left` with a negative shift.");
         };
 
         template <typename x, typename n>
-        struct check_shift_right {
+        struct shift_right_checks {
             static_assert(n::type::value >= 0,
             "Invalid usage of `shift_right` with a negative shift.");
         };
     }
 
+    namespace unchecked {
+        template <typename x, typename n>
+        struct shift_left :
+            Bitwise<typename datatype<typename x::type>::type>::
+            template shift_left_impl<typename x::type, n>
+        { };
 
-    template <typename x, typename n>
-    struct shift_left :
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-    bitwise_detail::check_shift_left<x, n>,
-#endif
-        Bitwise<typename datatype<typename x::type>::type>::
-        template shift_left_impl<typename x::type, n>
-    { };
-
-
-    template <typename x, typename n>
-    struct shift_right :
-#if !defined(BOOST_MPL11_NO_ASSERTIONS)
-    bitwise_detail::check_shift_right<x, n>,
-#endif
-        Bitwise<typename datatype<typename x::type>::type>::
-        template shift_right_impl<typename x::type, n>
-    { };
-
+        template <typename x, typename n>
+        struct shift_right :
+            Bitwise<typename datatype<typename x::type>::type>::
+            template shift_right_impl<typename x::type, n>
+        { };
+    }
 
     template <typename x>
     struct compl_ :

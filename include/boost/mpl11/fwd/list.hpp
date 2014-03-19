@@ -12,6 +12,7 @@
 #ifndef BOOST_MPL11_FWD_LIST_HPP
 #define BOOST_MPL11_FWD_LIST_HPP
 
+#include <boost/mpl11/detail/checked.hpp>
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/foldable.hpp>
@@ -69,8 +70,7 @@ namespace boost { namespace mpl11 {
      * elements to keep. If `n` is greater than the length of the `List`,
      * the whole `List` is returned.
      */
-    template <typename n, typename xs>
-    struct take;
+    BOOST_MPL11_DECLARE_CHECKED(take, typename n, typename xs);
 
     //! Equivalent to `take<size_t<n>, xs>`.
     template <detail::std_size_t n, typename xs>
@@ -154,8 +154,8 @@ namespace boost { namespace mpl11 {
      * Reintroduce optimizations that were lost when using a single
      * typeclass for iterables.
      */
-    template <typename xs, typename start, typename stop>
-    struct slice;
+    BOOST_MPL11_DECLARE_CHECKED(slice,
+        typename xs, typename start, typename stop);
 
     //! Equivalent to `slice<xs, size_t<start>, size_t<stop>>`.
     template <typename xs, detail::std_size_t start, detail::std_size_t stop>
@@ -174,8 +174,7 @@ namespace boost { namespace mpl11 {
      * Specifically, returns a list containing all the elements of the
      * original list except the last one.
      */
-    template <typename xs>
-    struct init;
+    BOOST_MPL11_DECLARE_CHECKED(init, typename xs);
     //! @}
 }} // end namespace boost::mpl11
 

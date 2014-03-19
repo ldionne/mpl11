@@ -12,6 +12,7 @@
 #ifndef BOOST_MPL11_FWD_BITWISE_HPP
 #define BOOST_MPL11_FWD_BITWISE_HPP
 
+#include <boost/mpl11/detail/checked.hpp>
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/bool.hpp>
@@ -61,8 +62,7 @@ namespace boost { namespace mpl11 {
      * `n` must be a non-negative @ref Integer representing the number of
      * positions to shift.
      */
-    template <typename x, typename n>
-    struct shift_right;
+    BOOST_MPL11_DECLARE_CHECKED(shift_right, typename x, typename n);
 
     //! Equivalent to `shift_right<x, size_t<n>>`.
     template <typename x, detail::std_size_t n>
@@ -74,8 +74,7 @@ namespace boost { namespace mpl11 {
      * `n` must be a non-negative @ref Integer representing the number of
      * positions to shift.
      */
-    template <typename x, typename n>
-    struct shift_left;
+    BOOST_MPL11_DECLARE_CHECKED(shift_left, typename x, typename n);
 
     //! Equivalent to `shift_left<x, size_t<n>>`.
     template <typename x, detail::std_size_t n>
