@@ -40,7 +40,7 @@ namespace boost { namespace mpl11 {
         @endcode
      *
      * Hence, typeclasses should provide their default methods in the nested
-     * `with` member template. `instantiate<...>::with<...>` should always
+     * `with` member template. `instantiate<...>::%with<...>` should always
      * inherit from `true_`; specializations of `instantiate` should conserve
      * that. The primary `instantiate` template provides a member template
      * `with<...>` equivalent to `true_`.

@@ -16,8 +16,8 @@ namespace boost { namespace mpl11 { namespace detail {
     /*!
      * @ingroup details
      *
-     * Equivalent to `std::is_same`; except it only has a nested `::value`
-     * and a nested `::type`.
+     * Equivalent to `std::is_same`; except it only has a nested `::%value`
+     * and a nested `::%type`.
      */
     template <typename T, typename U>
     struct std_is_same {
