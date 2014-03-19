@@ -101,12 +101,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 struct boost::mpl11::cast&lt; From, To &gt;</h3>
 
 <p>Metafunction class converting an object of the <code>From</code> datatype to an object of the <code>To</code> datatype. </p>
-<p>By default, this metafunction class is equivalent to <code>To::from&lt;From&gt;</code>. However, if <code>From</code> and <code>To</code> are the same datatypes, <code>cast</code> does not perform anything.</p>
-<p><code>cast</code> may be specialized to customize its behavior. </p>
+<p>By default, <code>cast</code> does not perform anything if <code>From</code> and <code>To</code> are the same datatypes. However, it must be specialized to customize its behavior further. Note that the arguments to <code>cast&lt;From, To&gt;</code> are data constructors, which do not need to be boxed. Hence, <code>cast</code> is a call-by-value metafunction class. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

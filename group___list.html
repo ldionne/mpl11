@@ -128,7 +128,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of applications of <code>f</code> to the elements of the zipped lists, in lockstep.  <a href="structboost_1_1mpl11_1_1zip__with.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1zip.html">boost::mpl11::zip&lt; lists &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1zip__with.html" title="Returns a list of applications of f to the elements of the zipped lists, in lockstep. ">zip_with</a>&lt;quote&lt;list&gt;, lists...&gt;</code>.  <a href="structboost_1_1mpl11_1_1zip.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code><a class="el" href="structboost_1_1mpl11_1_1zip__with.html" title="Returns a list of applications of f to the elements of the zipped lists, in lockstep. ">zip_with</a>&lt;lift&lt;list&gt;, lists...&gt;</code>.  <a href="structboost_1_1mpl11_1_1zip.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1join.html">boost::mpl11::join&lt; lists &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate several lists.  <a href="structboost_1_1mpl11_1_1join.html#details">More...</a><br/></td></tr>
@@ -150,7 +150,7 @@ Classes</h2></td></tr>
 <p>A sequence of types. </p>
 <h3>Instance of</h3>
 <p><code>Iterable</code>, <code>Functor</code></p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd><ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd><ul>
 <li>Find out how to minimize the number of instantiations. In the current implementation, the whole list has to be re-indexed each time we modify it.</li>
 <li>Use rewrite rules for <code>repeat</code> and <code>take</code>.</li>
 <li>If the iterable is infinite, <code>snoc</code> and <code>init</code> could be <code>id</code>.</li>
@@ -159,7 +159,7 @@ Classes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

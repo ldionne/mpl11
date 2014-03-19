@@ -104,19 +104,19 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether all the elements of the structure satisfy the <code>predicate</code>.  <a href="structboost_1_1mpl11_1_1all.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1all__of.html">boost::mpl11::all_of&lt; structure &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>all&lt;quote&lt;id&gt;, structure&gt;</code>.  <a href="structboost_1_1mpl11_1_1all__of.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>all&lt;lift&lt;id&gt;, structure&gt;</code>.  <a href="structboost_1_1mpl11_1_1all__of.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1none.html">boost::mpl11::none&lt; predicate, structure &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether none of the elements of the structure satisfy the <code>predicate</code>.  <a href="structboost_1_1mpl11_1_1none.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1none__of.html">boost::mpl11::none_of&lt; structure &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>none&lt;quote&lt;id&gt;, structure&gt;</code>.  <a href="structboost_1_1mpl11_1_1none__of.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>none&lt;lift&lt;id&gt;, structure&gt;</code>.  <a href="structboost_1_1mpl11_1_1none__of.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1any.html">boost::mpl11::any&lt; predicate, structure &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether any element of the structure satisfies the <code>predicate</code>.  <a href="structboost_1_1mpl11_1_1any.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1any__of.html">boost::mpl11::any_of&lt; structure &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>any&lt;quote&lt;id&gt;, structure&gt;</code>.  <a href="structboost_1_1mpl11_1_1any__of.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>any&lt;lift&lt;id&gt;, structure&gt;</code>.  <a href="structboost_1_1mpl11_1_1any__of.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1sum.html">boost::mpl11::sum&lt; structure &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the sum of the elements of a <code>structure</code>.  <a href="structboost_1_1mpl11_1_1sum.html#details">More...</a><br/></td></tr>
@@ -146,11 +146,15 @@ Classes</h2></td></tr>
 <p><code>foldl</code>, <code><a class="el" href="structboost_1_1mpl11_1_1foldl1.html" title="Variant of foldl that has no base case, and thus may only be applied to non-empty structures...">foldl1</a></code>, <code>foldr</code> and <code><a class="el" href="structboost_1_1mpl11_1_1foldr1.html" title="Variant of foldr that has no base case, and thus may only be applied to non-empty structures...">foldr1</a></code>.</p>
 <h3>Minimal complete definition</h3>
 <p>All the methods.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Provide a default implementation for <code><a class="el" href="structboost_1_1mpl11_1_1foldl1.html" title="Variant of foldl that has no base case, and thus may only be applied to non-empty structures...">foldl1</a></code> and <code><a class="el" href="structboost_1_1mpl11_1_1foldr1.html" title="Variant of foldr that has no base case, and thus may only be applied to non-empty structures...">foldr1</a></code>.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd><ul>
+<li>Provide a default implementation for <code><a class="el" href="structboost_1_1mpl11_1_1foldl1.html" title="Variant of foldl that has no base case, and thus may only be applied to non-empty structures...">foldl1</a></code> and <code><a class="el" href="structboost_1_1mpl11_1_1foldr1.html" title="Variant of foldr that has no base case, and thus may only be applied to non-empty structures...">foldr1</a></code>.</li>
+<li>Check if we can improve unpack. Maybe make it transparent?</li>
+</ul>
+</dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

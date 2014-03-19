@@ -10,8 +10,8 @@ var searchData=
   ['bool_5f_3c_20true_20_3e',['bool_&lt; true &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_20xs_5fdone_20_26_26_21ys_5fdone_20_3e',['bool_&lt; xs_done &amp;&amp;!ys_done &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_20xs_5fdone_20_26_26ys_5fdone_20_3e',['bool_&lt; xs_done &amp;&amp;ys_done &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
+  ['bool_5f_3c_21none_3c_20lift_3c_20id_20_3e_2c_20structure_20_3e_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!none&lt; lift&lt; id &gt;, structure &gt;::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_21none_3c_20predicate_2c_20structure_20_3e_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!none&lt; predicate, structure &gt;::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
-  ['bool_5f_3c_21none_3c_20quote_3c_20id_20_3e_2c_20structure_20_3e_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!none&lt; quote&lt; id &gt;, structure &gt;::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_21x_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!x::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['box',['box',['../structboost_1_1mpl11_1_1box.html',1,'boost::mpl11']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>MPL11: boost::mpl11::detail::common_method&lt; Left, Right &gt; Struct Template Reference</title>
+<title>MPL11: boost::mpl11::infix&lt; x, f, y &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,30 +83,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>boost</b></li><li class="navelem"><b>mpl11</b></li><li class="navelem"><b>detail</b></li><li class="navelem"><a class="el" href="structboost_1_1mpl11_1_1detail_1_1common__method.html">common_method</a></li>  </ul>
+<li class="navelem"><b>boost</b></li><li class="navelem"><b>mpl11</b></li><li class="navelem"><a class="el" href="structboost_1_1mpl11_1_1infix.html">infix</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="structboost_1_1mpl11_1_1detail_1_1common__method-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">boost::mpl11::detail::common_method&lt; Left, Right &gt; Struct Template Reference</div>  </div>
+<div class="title">boost::mpl11::infix&lt; x, f, y &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group___functional.html">Functional</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Helper to reduce syntactic overhead in typeclasses.  
- <a href="structboost_1_1mpl11_1_1detail_1_1common__method.html#details">More...</a></p>
+<p>Applies a metafunction class in infix notation.  
+ <a href="structboost_1_1mpl11_1_1infix.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="common__method_8hpp_source.html">boost/mpl11/detail/common_method.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fwd_2functional_8hpp_source.html">boost/mpl11/fwd/functional.hpp</a>&gt;</code></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Left, typename Right&gt;<br/>
-struct boost::mpl11::detail::common_method&lt; Left, Right &gt;</h3>
+<div class="textblock"><h3>template&lt;typename x, typename f, typename y&gt;<br/>
+struct boost::mpl11::infix&lt; x, f, y &gt;</h3>
 
-<p>Helper to reduce syntactic overhead in typeclasses. </p>
+<p>Applies a metafunction class in infix notation. </p>
+<p>Specifically, <code>infix&lt;x, f, y&gt;</code> is equivalent to <code>apply&lt;f, x, y&gt;</code>. Using <code>infix</code> improves legibility when applying some metafunction classes such as <code>on</code>. Consider <code><a class="el" href="structboost_1_1mpl11_1_1infix__.html" title="Equivalent to infix&lt;x, lift&lt;f&gt;, y&gt;; provided for convenience. ">infix_</a>&lt;f, on, g&gt;</code> versus <code>on&lt;f, g&gt;</code>. The former reads naturally while the latter requires knowing what each argument stands for. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

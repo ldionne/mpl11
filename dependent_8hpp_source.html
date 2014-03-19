@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>MPL11: /Users/ldionne/code/mpl11/test/functional/quote.cpp File Reference</title>
+<title>MPL11: boost/mpl11/detail/dependent.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,25 +82,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="dir_f792b5dc9a503f8514b127733fd1f0d5.html">functional</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_aa5bbcd4de1c8e465ef4b408da4fc28c.html">detail</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">quote.cpp File Reference</div>  </div>
+<div class="title">dependent.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Contains unit tests for <code><a class="el" href="structboost_1_1mpl11_1_1quote.html" title="Turns a metafunction into an equivalent metafunction class. ">boost::mpl11::quote</a></code>.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="functional_8hpp_source.html">boost/mpl11/functional.hpp</a>&gt;</code><br/>
-<code>#include &lt;<a class="el" href="std__is__same_8hpp_source.html">boost/mpl11/detail/std_is_same.hpp</a>&gt;</code><br/>
-</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Contains unit tests for <code><a class="el" href="structboost_1_1mpl11_1_1quote.html" title="Turns a metafunction into an equivalent metafunction class. ">boost::mpl11::quote</a></code>. </p>
-</div></div><!-- contents -->
+<a href="dependent_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_DETAIL_DEPENDENT_HPP</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_DETAIL_DEPENDENT_HPP</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 { <span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1detail_1_1dependent.html">   19</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1dependent.html">dependent</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">using</span> type = T;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> constexpr T value(T x) { <span class="keywordflow">return</span> x; }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::detail</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_DETAIL_DEPENDENT_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1dependent_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1dependent.html">boost::mpl11::detail::dependent</a></div><div class="ttdoc">Turns a value or a type into a dependent entity. </div><div class="ttdef"><b>Definition:</b> dependent.hpp:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

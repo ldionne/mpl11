@@ -17,10 +17,11 @@ var searchData=
   ['bool_5f_3c_20true_20_3e',['bool_&lt; true &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_20xs_5fdone_20_26_26_21ys_5fdone_20_3e',['bool_&lt; xs_done &amp;&amp;!ys_done &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_20xs_5fdone_20_26_26ys_5fdone_20_3e',['bool_&lt; xs_done &amp;&amp;ys_done &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
+  ['bool_5f_3c_21none_3c_20lift_3c_20id_20_3e_2c_20structure_20_3e_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!none&lt; lift&lt; id &gt;, structure &gt;::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_21none_3c_20predicate_2c_20structure_20_3e_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!none&lt; predicate, structure &gt;::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
-  ['bool_5f_3c_21none_3c_20quote_3c_20id_20_3e_2c_20structure_20_3e_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!none&lt; quote&lt; id &gt;, structure &gt;::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['bool_5f_3c_21x_3a_3atype_3a_3avalue_20_3e',['bool_&lt;!x::type::value &gt;',['../structboost_1_1mpl11_1_1bool__.html',1,'boost::mpl11']]],
   ['boost_5fmpl11_5fclang_5fflip_5fbug',['BOOST_MPL11_CLANG_FLIP_BUG',['../config_8hpp.html#aba9adfe40b4a1b89d9cba8bc9dba6a21',1,'config.hpp']]],
+  ['boost_5fmpl11_5fdeclare_5fchecked',['BOOST_MPL11_DECLARE_CHECKED',['../checked_8hpp.html#a52cf97cc6667e8a8a9a8cdaae26258ff',1,'checked.hpp']]],
   ['boost_5fmpl11_5fdoxygen_5falias',['BOOST_MPL11_DOXYGEN_ALIAS',['../doxygen_8hpp.html#ad607f1c88441b0e243b1f67bff9c0ec9',1,'doxygen.hpp']]],
   ['boost_5fmpl11_5fgcc_5fpack_5fexpansion_5fbug',['BOOST_MPL11_GCC_PACK_EXPANSION_BUG',['../config_8hpp.html#a9053809c83289a37d1d1e8adc9138dd8',1,'config.hpp']]],
   ['boost_5fmpl11_5fif_5fdoxygen',['BOOST_MPL11_IF_DOXYGEN',['../doxygen_8hpp.html#ae5447772857b09213a0a6064f4d484b7',1,'doxygen.hpp']]],
@@ -29,6 +30,8 @@ var searchData=
   ['boost_5fmpl11_5funless_5fdoxygen',['BOOST_MPL11_UNLESS_DOXYGEN',['../doxygen_8hpp.html#a4e76545f2eca59472c01697c967ec7ef',1,'doxygen.hpp']]],
   ['box',['box',['../structboost_1_1mpl11_1_1box.html',1,'boost::mpl11']]],
   ['box_2ecpp',['box.cpp',['../box_8cpp.html',1,'']]],
+  ['checks',['checks',['../namespaceboost_1_1mpl11_1_1checks.html',1,'boost::mpl11']]],
   ['core',['core',['../namespaceboost_1_1mpl11_1_1core.html',1,'boost::mpl11']]],
-  ['functional',['functional',['../namespaceboost_1_1mpl11_1_1functional.html',1,'boost::mpl11']]]
+  ['functional',['functional',['../namespaceboost_1_1mpl11_1_1functional.html',1,'boost::mpl11']]],
+  ['unchecked',['unchecked',['../namespaceboost_1_1mpl11_1_1unchecked.html',1,'boost::mpl11']]]
 ];

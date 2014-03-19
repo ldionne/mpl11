@@ -110,8 +110,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1id.html">boost::mpl11::id&lt; x &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identity metafunction - returns its argument unchanged.  <a href="structboost_1_1mpl11_1_1id.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1quote.html">boost::mpl11::quote&lt; f &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns a metafunction into an equivalent metafunction class.  <a href="structboost_1_1mpl11_1_1quote.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1lift.html">boost::mpl11::lift&lt; f &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lifts a metafunction.  <a href="structboost_1_1mpl11_1_1lift.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1into.html">boost::mpl11::into&lt; tp &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a specialization of the given template with the provided arguments.  <a href="structboost_1_1mpl11_1_1into.html#details">More...</a><br/></td></tr>
@@ -143,14 +143,50 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1arg.html">boost::mpl11::arg&lt; n &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th of its arguments.  <a href="structboost_1_1mpl11_1_1arg.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1infix.html">boost::mpl11::infix&lt; x, f, y &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a metafunction class in infix notation.  <a href="structboost_1_1mpl11_1_1infix.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1infix__.html">boost::mpl11::infix_&lt; x, f, y &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>infix&lt;x, lift&lt;f&gt;, y&gt;</code>; provided for convenience.  <a href="structboost_1_1mpl11_1_1infix__.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1lsect.html">boost::mpl11::lsect&lt; x, f &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the left section of <code>f</code> with <code>x</code>.  <a href="structboost_1_1mpl11_1_1lsect.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1lsect__.html">boost::mpl11::lsect_&lt; x, f &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>lsect&lt;x, lift&lt;f&gt;&gt;</code>; provided for convenience.  <a href="structboost_1_1mpl11_1_1lsect__.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1rsect.html">boost::mpl11::rsect&lt; f, y &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the right section of <code>f</code> with <code>y</code>.  <a href="structboost_1_1mpl11_1_1rsect.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1rsect__.html">boost::mpl11::rsect_&lt; f, y &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equivalent to <code>rsect&lt;lift&lt;f&gt;, y&gt;</code>; provided for convenience.  <a href="structboost_1_1mpl11_1_1rsect__.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>General purpose metafunctions and metafunction classes. </p>
-<dl class="section note"><dt>Note</dt><dd>For legibility reasons, <code>apply&lt;f, x1, ..., xn&gt;</code> is sometimes noted as <code>f(x1, ..., xn)</code>. </dd></dl>
-</div><!-- contents -->
+<dl class="section note"><dt>Note</dt><dd>For legibility reasons, <code>apply&lt;f, x1, ..., xn&gt;</code> is sometimes noted as <code>f(x1, ..., xn)</code> in the documentation.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd><ul>
+<li>Consider moving <code>into</code> out of this module. Maybe it would fit better with other utilities manipulating template specializations.</li>
+<li>Try generalizing <code>rsect</code> and <code>lsect</code>. Not sure it can be done, but here's some brain food: <div class="fragment"><div class="line">rsectn&lt;0, f, x1, ..., xn&gt;<a class="code" href="structboost_1_1mpl11_1_1apply.html">::apply&lt;&gt;</a> == f&lt;x1, ..., xn&gt;</div>
+<div class="line">rsectn&lt;1, f, x2, ..., xn&gt;<a class="code" href="structboost_1_1mpl11_1_1apply.html">::apply&lt;x1&gt;</a> == f&lt;x1, x2, ..., xn&gt;</div>
+<div class="line">rsectn&lt;2, f, x3, ..., xn&gt;<a class="code" href="structboost_1_1mpl11_1_1apply.html">::apply&lt;x1, x2&gt;</a> == f&lt;x1, x2, x3, ..., xn&gt;</div>
+</div><!-- fragment --></li>
+</ul>
+</dd></dl>
+<p>It also seems like there may be some kind of operation modifying how functions are applied:</p>
+<div class="fragment"><div class="line">f x1 ... xn                 <span class="comment">// shiftr 0</span></div>
+<div class="line">x1 f x2 ... xn              <span class="comment">// shiftr 1</span></div>
+<div class="line">x1 x2 f x3 ... xn           <span class="comment">// shiftr 2</span></div>
+<div class="line">x1 x2 x3 f x4 ... xn        <span class="comment">// shiftr 3</span></div>
+<div class="line"></div>
+<div class="line">x1 x2 x3 f x4 ... xn        <span class="comment">// shiftl 0</span></div>
+<div class="line">x1 x2 f x3 ... xn           <span class="comment">// shiftl 1</span></div>
+<div class="line">x1 f x2 ... xn              <span class="comment">// shiftl 2</span></div>
+<div class="line">f x1 ... xn                 <span class="comment">// shiftl 3</span></div>
+</div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

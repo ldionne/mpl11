@@ -91,27 +91,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="std__conditional_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_DETAIL_STD_CONDITIONAL_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_DETAIL_STD_CONDITIONAL_HPP</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 { <span class="keyword">namespace </span>detail {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">bool</span> Cond, <span class="keyword">typename</span> Then, <span class="keyword">typename</span> Else&gt;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">   16</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">std_conditional</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">using</span> type = Then;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    };</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Then, <span class="keyword">typename</span> Else&gt;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">std_conditional</a>&lt;false, Then, Else&gt; {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">using</span> type = Else;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::detail</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_DETAIL_STD_CONDITIONAL_HPP</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_DETAIL_STD_CONDITIONAL_HPP</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 { <span class="keyword">namespace </span>detail {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">bool</span> Cond, <span class="keyword">typename</span> Then, <span class="keyword">typename</span> Else&gt;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">   22</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">std_conditional</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">using</span> type = Then;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_DETAIL_STD_CONDITIONAL_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1std__conditional_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">boost::mpl11::detail::std_conditional</a></div><div class="ttdoc">Equivalent to std::conditional. </div><div class="ttdef"><b>Definition:</b> std_conditional.hpp:16</div></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Then, <span class="keyword">typename</span> Else&gt;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">std_conditional</a>&lt;false, Then, Else&gt; {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">using</span> type = Else;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}}} <span class="comment">// end namespace boost::mpl11::detail</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_DETAIL_STD_CONDITIONAL_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1std__conditional_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1std__conditional.html">boost::mpl11::detail::std_conditional</a></div><div class="ttdoc">Equivalent to std::conditional. </div><div class="ttdef"><b>Definition:</b> std_conditional.hpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

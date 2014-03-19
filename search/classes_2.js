@@ -3,8 +3,6 @@ var searchData=
   ['cast',['cast',['../structboost_1_1mpl11_1_1cast.html',1,'boost::mpl11']]],
   ['cast_5fto',['cast_to',['../structboost_1_1mpl11_1_1cast__to.html',1,'boost::mpl11']]],
   ['char_5f',['char_',['../structboost_1_1mpl11_1_1char__.html',1,'boost::mpl11']]],
-  ['common_5fdatatype',['common_datatype',['../structboost_1_1mpl11_1_1common__datatype.html',1,'boost::mpl11']]],
-  ['common_5fmethod',['common_method',['../structboost_1_1mpl11_1_1detail_1_1common__method.html',1,'boost::mpl11::detail']]],
   ['compl_5f',['compl_',['../structboost_1_1mpl11_1_1compl__.html',1,'boost::mpl11']]],
   ['compose',['compose',['../structboost_1_1mpl11_1_1compose.html',1,'boost::mpl11']]],
   ['cons',['cons',['../structboost_1_1mpl11_1_1cons.html',1,'boost::mpl11']]],

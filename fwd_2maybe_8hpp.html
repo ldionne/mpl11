@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>MPL11: boost/mpl11/detail/common_method.hpp File Reference</title>
+<title>MPL11: boost/mpl11/fwd/maybe.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,38 +82,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_aa5bbcd4de1c8e465ef4b408da4fc28c.html">detail</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_38e952446b4c1a7d5275e3418b74cb19.html">mpl11</a></li><li class="navelem"><a class="el" href="dir_9ab24a3e457341ade9bc5d99e126ed7f.html">fwd</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
-<div class="title">common_method.hpp File Reference</div>  </div>
+<div class="title">maybe.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1detail_1_1common__method.html" title="Helper to reduce syntactic overhead in typeclasses. ">boost::mpl11::detail::common_method</a></code>.  
+<p>Forward declares the <a class="el" href="group___maybe.html">Maybe</a> datatype.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="core_8hpp_source.html">boost/mpl11/core.hpp</a>&gt;</code><br/>
+<div class="textblock"><code>#include &lt;<a class="el" href="doxygen_8hpp_source.html">boost/mpl11/detail/doxygen.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="fwd_2bool_8hpp_source.html">boost/mpl11/fwd/bool.hpp</a>&gt;</code><br/>
+<code>#include &lt;<a class="el" href="fwd_2functional_8hpp_source.html">boost/mpl11/fwd/functional.hpp</a>&gt;</code><br/>
 </div>
-<p><a href="common__method_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="fwd_2maybe_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1detail_1_1common__method.html">boost::mpl11::detail::common_method&lt; Left, Right &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to reduce syntactic overhead in typeclasses.  <a href="structboost_1_1mpl11_1_1detail_1_1common__method.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1just.html">boost::mpl11::just&lt; x &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an optional value containing <code>x</code>.  <a href="structboost_1_1mpl11_1_1just.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1detail_1_1common__method.html">boost::mpl11::detail::common_method&lt; Left, Right &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to reduce syntactic overhead in typeclasses.  <a href="structboost_1_1mpl11_1_1detail_1_1common__method.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1nothing.html">boost::mpl11::nothing</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty optional value.  <a href="structboost_1_1mpl11_1_1nothing.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1maybe.html">boost::mpl11::maybe&lt; def, f, m &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a metafunction class to a <code>Maybe</code>, with a fallback result.  <a href="structboost_1_1mpl11_1_1maybe.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1is__just.html">boost::mpl11::is_just&lt; m &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a <code>Maybe</code> is a <code>just</code>.  <a href="structboost_1_1mpl11_1_1is__just.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1is__nothing.html">boost::mpl11::is_nothing&lt; m &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a <code>Maybe</code> is a <code>nothing</code>.  <a href="structboost_1_1mpl11_1_1is__nothing.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1from__maybe.html">boost::mpl11::from_maybe&lt; def, m &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <code>m</code> is nothing, returns <code>def</code>.  <a href="structboost_1_1mpl11_1_1from__maybe.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1from__just.html">boost::mpl11::from_just&lt; m &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the value out of a <code>just</code>, and triggers a hard compile-time error if the argument is <code>nothing</code>.  <a href="structboost_1_1mpl11_1_1from__just.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1detail_1_1common__method.html" title="Helper to reduce syntactic overhead in typeclasses. ">boost::mpl11::detail::common_method</a></code>. </p>
+<div class="textblock"><p>Forward declares the <a class="el" href="group___maybe.html">Maybe</a> datatype. </p>
+<dl class="section copyright"><dt>Copyright</dt><dd>Louis Dionne 2014 Distributed under the Boost Software License, Version 1.0. (See accompanying file LICENSE.md or copy at <a href="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>) </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

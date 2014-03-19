@@ -122,32 +122,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> structure, <span class="keyword">typename</span> ...xs&gt;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">struct </span>check_foldable</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        : assert_same&lt;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            foldl&lt;quote&lt;f&gt;, state, structure&gt;,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            foldl&lt;quote&lt;f&gt;, state, minimal_foldable&lt;xs...&gt;&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            foldl&lt;lift&lt;f&gt;, state, structure&gt;,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            foldl&lt;lift&lt;f&gt;, state, minimal_foldable&lt;xs...&gt;&gt;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        &gt;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        , assert_same&lt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            foldr&lt;quote&lt;f&gt;, state, structure&gt;,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            foldr&lt;quote&lt;f&gt;, state, minimal_foldable&lt;xs...&gt;&gt;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            foldr&lt;lift&lt;f&gt;, state, structure&gt;,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            foldr&lt;lift&lt;f&gt;, state, minimal_foldable&lt;xs...&gt;&gt;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        &gt;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    { };</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> structure, <span class="keyword">typename</span> x, <span class="keyword">typename</span> ...xs&gt;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">struct </span>check_foldable&lt;structure, x, xs...&gt;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        : assert_same&lt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            foldl&lt;quote&lt;f&gt;, state, structure&gt;,</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            foldl&lt;quote&lt;f&gt;, state, minimal_foldable&lt;x, xs...&gt;&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            foldl&lt;lift&lt;f&gt;, state, structure&gt;,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            foldl&lt;lift&lt;f&gt;, state, minimal_foldable&lt;x, xs...&gt;&gt;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        &gt;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        , assert_same&lt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            foldr&lt;quote&lt;f&gt;, state, structure&gt;,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            foldr&lt;quote&lt;f&gt;, state, minimal_foldable&lt;x, xs...&gt;&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            foldr&lt;lift&lt;f&gt;, state, structure&gt;,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            foldr&lt;lift&lt;f&gt;, state, minimal_foldable&lt;x, xs...&gt;&gt;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        &gt;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        , assert_same&lt;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            foldl1&lt;quote&lt;f&gt;, structure&gt;,</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            foldl1&lt;quote&lt;f&gt;, minimal_foldable&lt;x, xs...&gt;&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            foldl1&lt;lift&lt;f&gt;, structure&gt;,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            foldl1&lt;lift&lt;f&gt;, minimal_foldable&lt;x, xs...&gt;&gt;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        &gt;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        , assert_same&lt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            foldr1&lt;quote&lt;f&gt;, structure&gt;,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            foldr1&lt;quote&lt;f&gt;, minimal_foldable&lt;x, xs...&gt;&gt;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            foldr1&lt;lift&lt;f&gt;, structure&gt;,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            foldr1&lt;lift&lt;f&gt;, minimal_foldable&lt;x, xs...&gt;&gt;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        &gt;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    { };</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// end namespace check_foldable_detail</span></div>
@@ -155,7 +155,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">using</span> check_foldable_detail::check_foldable;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_TEST_CHECK_FOLDABLE_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1static__assert___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">boost::mpl11::detail::static_assert_</a></div><div class="ttdoc">Returns the given boolean expression and statically asserts that its value is true. </div><div class="ttdef"><b>Definition:</b> static_assert.hpp:17</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1static__assert___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">boost::mpl11::detail::static_assert_</a></div><div class="ttdoc">Returns the given boolean expression and statically asserts that its value is true. </div><div class="ttdef"><b>Definition:</b> static_assert.hpp:23</div></div>
 <div class="ttc" id="minimal__foldable_8hpp_html"><div class="ttname"><a href="minimal__foldable_8hpp.html">minimal_foldable.hpp</a></div><div class="ttdoc">Defines the minimal_foldable helper for unit tests. </div></div>
 <div class="ttc" id="std__is__same_8hpp_html"><div class="ttname"><a href="std__is__same_8hpp.html">std_is_same.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::std_is_same. </div></div>
 <div class="ttc" id="static__assert_8hpp_html"><div class="ttname"><a href="static__assert_8hpp.html">static_assert.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::static_assert_. </div></div>
@@ -164,7 +164,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

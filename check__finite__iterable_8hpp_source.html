@@ -104,61 +104,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>check_finite_iter_detail {</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">using namespace </span>boost::mpl11;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y,</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">typename</span> Expected = <span class="keyword">typename</span> x::type,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">typename</span> Actual = <span class="keyword">typename</span> y::type&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">using</span> assert_eq = <a class="code" href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">detail::static_assert_&lt;equal&lt;x, y&gt;</a>&gt;;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">typename</span> index = <a class="code" href="structboost_1_1mpl11_1_1size__t.html">size_t&lt;0&gt;</a>,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">bool</span> = <a class="code" href="structboost_1_1mpl11_1_1is__empty.html">is_empty&lt;reference&gt;::value</a>&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">struct </span>impl;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">struct </span>impl&lt;reference, iter, <a class="code" href="structboost_1_1mpl11_1_1size__t.html">size_t</a>&lt;<a class="code" href="structboost_1_1mpl11_1_1length.html">length</a>&lt;reference&gt;::value&gt;, false&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        : assert_eq&lt;head&lt;reference&gt;, head&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        , assert_eq&lt;tail&lt;reference&gt;, tail&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        , assert_eq&lt;is_empty&lt;reference&gt;, is_empty&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        , assert_eq&lt;last&lt;reference&gt;, last&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        , assert_eq&lt;length&lt;reference&gt;, length&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    { };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter, <span class="keyword">typename</span> index&gt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">struct </span>impl&lt;reference, iter, index, false&gt;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        : assert_eq&lt;at&lt;index, reference&gt;, at&lt;index, iter&gt;&gt;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        , impl&lt;reference, iter, size_t&lt;index::type::value + 1&gt;&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    { };</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter, <span class="keyword">typename</span> index&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">struct </span>impl&lt;reference, iter, index, true&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">detail::static_assert_</a>&lt;is_empty&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        , assert_eq&lt;size_t&lt;0&gt;, length&lt;iter&gt;&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    { };</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;} <span class="comment">// end namespace check_finite_iter_detail</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">using</span> <a class="code" href="structboost_1_1mpl11_1_1size__t.html">boost::mpl11::size_t</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">typename</span> Expected = <span class="keyword">typename</span> x::type,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">typename</span> Actual = <span class="keyword">typename</span> y::type&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">using</span> assert_eq = <a class="code" href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">detail::static_assert_&lt;equal&lt;x, y&gt;</a>&gt;;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">typename</span> index = <a class="code" href="structboost_1_1mpl11_1_1size__t.html">size_t&lt;0&gt;</a>,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">bool</span> = <a class="code" href="structboost_1_1mpl11_1_1is__empty.html">is_empty&lt;reference&gt;::value</a>&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">struct </span>impl;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter&gt;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">struct </span>impl&lt;reference, iter, <a class="code" href="structboost_1_1mpl11_1_1size__t.html">size_t</a>&lt;<a class="code" href="structboost_1_1mpl11_1_1length.html">length</a>&lt;reference&gt;::value&gt;, false&gt;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        : assert_eq&lt;head&lt;reference&gt;, head&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        , assert_eq&lt;tail&lt;reference&gt;, tail&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        , assert_eq&lt;is_empty&lt;reference&gt;, is_empty&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        , assert_eq&lt;last&lt;reference&gt;, last&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        , assert_eq&lt;length&lt;reference&gt;, length&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    { };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter, <span class="keyword">typename</span> index&gt;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">struct </span>impl&lt;reference, iter, index, false&gt;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        : assert_eq&lt;at&lt;index, reference&gt;, at&lt;index, iter&gt;&gt;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        , impl&lt;reference, iter, size_t&lt;index::type::value + 1&gt;&gt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    { };</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> reference, <span class="keyword">typename</span> iter, <span class="keyword">typename</span> index&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">struct </span>impl&lt;reference, iter, index, true&gt;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        : <a class="code" href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">detail::static_assert_</a>&lt;is_empty&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        , assert_eq&lt;size_t&lt;0&gt;, length&lt;iter&gt;&gt;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    { };</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <span class="comment">// end namespace check_finite_iter_detail</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> iter, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">using</span> <a class="code" href="check__finite__iterable_8hpp.html#a699913e85eb3f9177ec0e380df13327d">check_finite_iterable</a> =</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="check__finite__iterable_8hpp.html#a699913e85eb3f9177ec0e380df13327d">   64</a></span>&#160;    check_finite_iter_detail::impl&lt;<a class="code" href="structminimal__iterable.html">minimal_iterable</a>&lt;xs...&gt;, iter&gt;;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_TEST_CHECK_FINITE_ITERABLE_HPP</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> iter, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">using</span> <a class="code" href="check__finite__iterable_8hpp.html#a699913e85eb3f9177ec0e380df13327d">check_finite_iterable</a> =</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="check__finite__iterable_8hpp.html#a699913e85eb3f9177ec0e380df13327d">   65</a></span>&#160;    check_finite_iter_detail::impl&lt;<a class="code" href="structminimal__iterable.html">minimal_iterable</a>&lt;xs...&gt;, iter&gt;;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_TEST_CHECK_FINITE_ITERABLE_HPP</span></div>
 <div class="ttc" id="integer_8hpp_html"><div class="ttname"><a href="integer_8hpp.html">integer.hpp</a></div><div class="ttdoc">Defines the Integer datatype. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1static__assert___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">boost::mpl11::detail::static_assert_</a></div><div class="ttdoc">Returns the given boolean expression and statically asserts that its value is true. </div><div class="ttdef"><b>Definition:</b> static_assert.hpp:17</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1detail_1_1static__assert___html"><div class="ttname"><a href="structboost_1_1mpl11_1_1detail_1_1static__assert__.html">boost::mpl11::detail::static_assert_</a></div><div class="ttdoc">Returns the given boolean expression and statically asserts that its value is true. </div><div class="ttdef"><b>Definition:</b> static_assert.hpp:23</div></div>
 <div class="ttc" id="minimal__iterable_8hpp_html"><div class="ttname"><a href="minimal__iterable_8hpp.html">minimal_iterable.hpp</a></div><div class="ttdoc">Defines the minimal_iterable helper for unit tests. </div></div>
 <div class="ttc" id="fwd_2iterable_8hpp_html"><div class="ttname"><a href="fwd_2iterable_8hpp.html">iterable.hpp</a></div><div class="ttdoc">Forward declares the Iterable typeclass. </div></div>
-<div class="ttc" id="structminimal__iterable_html"><div class="ttname"><a href="structminimal__iterable.html">minimal_iterable</a></div><div class="ttdoc">Minimal iterable for testing purposes. </div><div class="ttdef"><b>Definition:</b> minimal_iterable.hpp:25</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1is__empty_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1is__empty.html">boost::mpl11::is_empty</a></div><div class="ttdoc">Returns whether the iterable is empty. </div><div class="ttdef"><b>Definition:</b> iterable.hpp:121</div></div>
-<div class="ttc" id="check__finite__iterable_8hpp_html_a699913e85eb3f9177ec0e380df13327d"><div class="ttname"><a href="check__finite__iterable_8hpp.html#a699913e85eb3f9177ec0e380df13327d">check_finite_iterable</a></div><div class="ttdeci">check_finite_iter_detail::impl&lt; minimal_iterable&lt; xs...&gt;, iter &gt; check_finite_iterable</div><div class="ttdoc">Generic unit test for finite iterables. </div><div class="ttdef"><b>Definition:</b> check_finite_iterable.hpp:64</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1size__t_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1size__t.html">boost::mpl11::size_t</a></div><div class="ttdoc">Alias to integer_c&lt;std::size_t, N&gt;; provided for convenience. </div><div class="ttdef"><b>Definition:</b> integer.hpp:116</div></div>
+<div class="ttc" id="structminimal__iterable_html"><div class="ttname"><a href="structminimal__iterable.html">minimal_iterable</a></div><div class="ttdoc">Minimal iterable for testing purposes. </div><div class="ttdef"><b>Definition:</b> minimal_iterable.hpp:26</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1is__empty_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1is__empty.html">boost::mpl11::is_empty</a></div><div class="ttdoc">Returns whether the iterable is empty. </div><div class="ttdef"><b>Definition:</b> iterable.hpp:125</div></div>
+<div class="ttc" id="check__finite__iterable_8hpp_html_a699913e85eb3f9177ec0e380df13327d"><div class="ttname"><a href="check__finite__iterable_8hpp.html#a699913e85eb3f9177ec0e380df13327d">check_finite_iterable</a></div><div class="ttdeci">check_finite_iter_detail::impl&lt; minimal_iterable&lt; xs...&gt;, iter &gt; check_finite_iterable</div><div class="ttdoc">Generic unit test for finite iterables. </div><div class="ttdef"><b>Definition:</b> check_finite_iterable.hpp:65</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1size__t_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1size__t.html">boost::mpl11::size_t</a></div><div class="ttdoc">Alias to integer_c&lt;std::size_t, N&gt;; provided for convenience. </div><div class="ttdef"><b>Definition:</b> integer.hpp:122</div></div>
 <div class="ttc" id="fwd_2comparable_8hpp_html"><div class="ttname"><a href="fwd_2comparable_8hpp.html">comparable.hpp</a></div><div class="ttdoc">Forward declares the Comparable typeclass. </div></div>
 <div class="ttc" id="static__assert_8hpp_html"><div class="ttname"><a href="static__assert_8hpp.html">static_assert.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::static_assert_. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1length_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1length.html">boost::mpl11::length</a></div><div class="ttdoc">Returns the number of elements in a finite iterable. </div><div class="ttdef"><b>Definition:</b> iterable.hpp:109</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1length_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1length.html">boost::mpl11::length</a></div><div class="ttdoc">Returns the number of elements in a finite iterable. </div><div class="ttdef"><b>Definition:</b> iterable.hpp:114</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

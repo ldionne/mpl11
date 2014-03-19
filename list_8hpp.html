@@ -87,13 +87,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
 <div class="title">list.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1list.html" title="A List containing the given elements. ">boost::mpl11::list</a></code>.  
+<p>Defines the <a class="el" href="group___list.html">List</a> datatype.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="fwd_2list_8hpp_source.html">boost/mpl11/fwd/list.hpp</a>&gt;</code><br/>
 <code>#include &lt;<a class="el" href="bool_8hpp_source.html">boost/mpl11/bool.hpp</a>&gt;</code><br/>
@@ -110,6 +111,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1list.html">boost::mpl11::list&lt; xs &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>List</code> containing the given elements.  <a href="structboost_1_1mpl11_1_1list.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1cons.html">boost::mpl11::cons&lt; x, xs &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code>List</code> created by prepending an element to an <a class="el" href="group___iterable.html">Iterable</a>.  <a href="structboost_1_1mpl11_1_1cons.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,9 +122,6 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1repeat.html">boost::mpl11::repeat&lt; x &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an infinite <code>List</code> containing copies of <code>x</code>.  <a href="structboost_1_1mpl11_1_1repeat.html#details">More...</a><br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1take.html">boost::mpl11::take&lt; n, xs &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first <code>n</code> elements of a <code>List</code>.  <a href="structboost_1_1mpl11_1_1take.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1take__while.html">boost::mpl11::take_while&lt; predicate, xs &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the longest prefix of a <code>List</code> in which all elements satisfy the <code>predicate</code>.  <a href="structboost_1_1mpl11_1_1take__while.html#details">More...</a><br/></td></tr>
@@ -137,22 +138,29 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1zip__with.html">boost::mpl11::zip_with&lt; f, lists &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of applications of <code>f</code> to the elements of the zipped lists, in lockstep.  <a href="structboost_1_1mpl11_1_1zip__with.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1slice.html">boost::mpl11::slice&lt; xs, start, stop &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a subrange of a list.  <a href="structboost_1_1mpl11_1_1slice.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1join.html">boost::mpl11::join&lt; lists &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate several lists.  <a href="structboost_1_1mpl11_1_1join.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1sort__by.html">boost::mpl11::sort_by&lt; predicate, xs &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list sorted with the <code>predicate</code>.  <a href="structboost_1_1mpl11_1_1sort__by.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1mpl11_1_1init.html">boost::mpl11::init&lt; xs &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the elements before the last of a non-empty list.  <a href="structboost_1_1mpl11_1_1init.html#details">More...</a><br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceboost_1_1mpl11_1_1checks"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1mpl11_1_1checks.html">boost::mpl11::checks</a></td></tr>
+<tr class="memdesc:namespaceboost_1_1mpl11_1_1checks"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the asserting code of checked metafunctions. <br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceboost_1_1mpl11_1_1unchecked"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1mpl11_1_1unchecked.html">boost::mpl11::unchecked</a></td></tr>
+<tr class="memdesc:namespaceboost_1_1mpl11_1_1unchecked"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the unchecked version of checked metafunctions. <br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines <code><a class="el" href="structboost_1_1mpl11_1_1list.html" title="A List containing the given elements. ">boost::mpl11::list</a></code>. </p>
+<div class="textblock"><p>Defines the <a class="el" href="group___list.html">List</a> datatype. </p>
+<dl class="section copyright"><dt>Copyright</dt><dd>Louis Dionne 2014 Distributed under the Boost Software License, Version 1.0. (See accompanying file LICENSE.md or copy at <a href="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>) </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

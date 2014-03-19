@@ -91,147 +91,142 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="rational_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_RATIONAL_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_RATIONAL_HPP</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2rational_8hpp.html">boost/mpl11/fwd/rational.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bool_8hpp.html">boost/mpl11/bool.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="comparable_8hpp.html">boost/mpl11/comparable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="core_8hpp.html">boost/mpl11/core.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="enumerable_8hpp.html">boost/mpl11/enumerable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="field_8hpp.html">boost/mpl11/field.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="group_8hpp.html">boost/mpl11/group.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="monoid_8hpp.html">boost/mpl11/monoid.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="orderable_8hpp.html">boost/mpl11/orderable.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="ring_8hpp.html">boost/mpl11/ring.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, T numerator, T denominator&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">struct </span>rational_c {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">using</span> type = rational_c;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">using</span> mpl_datatype = Rational;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_RATIONAL_HPP</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_RATIONAL_HPP</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2rational_8hpp.html">boost/mpl11/fwd/rational.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bool_8hpp.html">boost/mpl11/bool.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="comparable_8hpp.html">boost/mpl11/comparable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="core_8hpp.html">boost/mpl11/core.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="enumerable_8hpp.html">boost/mpl11/enumerable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="field_8hpp.html">boost/mpl11/field.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="group_8hpp.html">boost/mpl11/group.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="monoid_8hpp.html">boost/mpl11/monoid.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="orderable_8hpp.html">boost/mpl11/orderable.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="ring_8hpp.html">boost/mpl11/ring.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">static</span> constexpr T num = numerator;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">static</span> constexpr T den = denominator;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    };</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">struct </span>common_datatype&lt;Rational, Integer&gt; {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">using</span> type = Rational;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">struct </span>cast&lt;Integer, Rational&gt; {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">using</span> type = cast;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> i&gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">using</span> <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a> = rational_c&lt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keyword">typename</span> i::type::value_type, i::type::value</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    };</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">struct </span>Monoid&lt;Rational&gt; {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">using</span> plus_impl = rational_c&lt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            decltype(<span class="keyword">true</span> ? x::type::num : y::type::num),</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            (x::type::num * y::type::den) + (x::type::den * y::type::num),</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            x::type::den * y::type::den</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">using</span> zero_impl = rational_c&lt;long long, 0&gt;;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">struct </span>Group&lt;Rational&gt; {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">using</span> minus_impl = rational_c&lt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            decltype(<span class="keyword">true</span> ? x::type::num : y::type::num),</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            (x::type::num * y::type::den) - (x::type::den * y::type::num),</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            x::type::den * y::type::den</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">using</span> negate_impl = rational_c&lt;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            decltype(-x::type::num), -x::type::num, x::type::den</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    };</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">struct </span>Ring&lt;Rational&gt; {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">using</span> mult_impl = rational_c&lt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            decltype(<span class="keyword">true</span> ? x::type::num : y::type::num),</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            x::type::num * y::type::num,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            x::type::den * y::type::den</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keyword">using</span> one_impl = rational_c&lt;long long, 1&gt;;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    };</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">struct </span>Field&lt;Rational&gt; {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">using</span> quot_impl = rational_c&lt;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            decltype(<span class="keyword">true</span> ? x::type::num : y::type::num),</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            x::type::num * y::type::den,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            x::type::den * y::type::num</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keyword">using</span> recip_impl = rational_c&lt;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            decltype(x::type::num), x::type::den, x::type::num</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    };</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">struct </span>Comparable&lt;Rational&gt; {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">using</span> equal_impl = bool_&lt;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            x::type::num * y::type::den == x::type::den * y::type::num</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">using</span> not_equal_impl = bool_&lt;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            x::type::num * y::type::den != x::type::den * y::type::num</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        &gt;;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    };</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">struct </span>Orderable&lt;Rational&gt; : default_Orderable {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keyword">using</span> less_impl = bool_&lt;(</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            x::type::num * y::type::den &lt; x::type::den * y::type::num</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        )&gt;;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keyword">using</span> less_equal_impl = bool_&lt;(</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            x::type::num * y::type::den &lt;= x::type::den * y::type::num</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        )&gt;;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keyword">using</span> greater_impl = bool_&lt;(</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            x::type::num * y::type::den &gt; x::type::den * y::type::num</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        )&gt;;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keyword">using</span> greater_equal_impl = bool_&lt;(</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            x::type::num * y::type::den &gt;= x::type::den * y::type::num</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        )&gt;;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    };</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_RATIONAL_HPP</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, T numerator, T denominator&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">struct </span>rational_c {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">using</span> type = rational_c;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">using</span> mpl_datatype = Rational;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">static</span> constexpr T num = numerator;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">static</span> constexpr T den = denominator;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    };</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">struct </span>cast&lt;Integer, Rational&gt; {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">using</span> type = cast;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> i&gt;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">using</span> <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a> = rational_c&lt;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keyword">typename</span> i::value_type, i::value</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">struct </span>Monoid&lt;Rational&gt; : instantiate&lt;Monoid&gt;::with&lt;Rational&gt; {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">using</span> plus_impl = rational_c&lt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            decltype(<span class="keyword">true</span> ? x::num : y::num),</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            (x::num * y::den) + (x::den * y::num),</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            x::den * y::den</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">using</span> zero_impl = rational_c&lt;long long, 0&gt;;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">struct </span>Group&lt;Rational&gt; : instantiate&lt;Group&gt;::with&lt;Rational&gt; {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">using</span> minus_impl = rational_c&lt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            decltype(<span class="keyword">true</span> ? x::num : y::num),</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            (x::num * y::den) - (x::den * y::num),</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            x::den * y::den</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">using</span> negate_impl = rational_c&lt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            decltype(-x::num), -x::num, x::den</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    };</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">struct </span>Ring&lt;Rational&gt; : instantiate&lt;Ring&gt;::with&lt;Rational&gt; {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">using</span> mult_impl = rational_c&lt;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            decltype(<span class="keyword">true</span> ? x::num : y::num),</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            x::num * y::num,</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            x::den * y::den</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ...&gt;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">using</span> one_impl = rational_c&lt;long long, 1&gt;;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    };</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">struct </span>Field&lt;Rational&gt; : instantiate&lt;Field&gt;::with&lt;Rational&gt; {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">using</span> quot_impl = rational_c&lt;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            decltype(<span class="keyword">true</span> ? x::num : y::num),</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            x::num * y::den,</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            x::den * y::num</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keyword">using</span> recip_impl = rational_c&lt;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            decltype(x::num), x::den, x::num</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    };</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">struct </span>Comparable&lt;Rational&gt; : instantiate&lt;Comparable&gt;::with&lt;Rational&gt; {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">using</span> equal_impl = bool_&lt;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            x::num * y::den == x::den * y::num</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keyword">using</span> not_equal_impl = bool_&lt;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            x::num * y::den != x::den * y::num</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        &gt;;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    };</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">struct </span>Orderable&lt;Rational&gt; : instantiate&lt;Orderable&gt;::with&lt;Rational&gt; {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keyword">using</span> less_impl = bool_&lt;(</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            x::num * y::den &lt; x::den * y::num</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        )&gt;;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keyword">using</span> less_equal_impl = bool_&lt;(</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            x::num * y::den &lt;= x::den * y::num</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        )&gt;;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keyword">using</span> greater_impl = bool_&lt;(</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            x::num * y::den &gt; x::den * y::num</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        )&gt;;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keyword">using</span> greater_equal_impl = bool_&lt;(</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            x::num * y::den &gt;= x::den * y::num</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        )&gt;;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    };</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_RATIONAL_HPP</span></div>
 <div class="ttc" id="fwd_2rational_8hpp_html"><div class="ttname"><a href="fwd_2rational_8hpp.html">rational.hpp</a></div><div class="ttdoc">Forward declares the Rational datatype. </div></div>
 <div class="ttc" id="ring_8hpp_html"><div class="ttname"><a href="ring_8hpp.html">ring.hpp</a></div><div class="ttdoc">Defines the Ring typeclass. </div></div>
 <div class="ttc" id="comparable_8hpp_html"><div class="ttname"><a href="comparable_8hpp.html">comparable.hpp</a></div><div class="ttdoc">Defines the Comparable typeclass. </div></div>
 <div class="ttc" id="field_8hpp_html"><div class="ttname"><a href="field_8hpp.html">field.hpp</a></div><div class="ttdoc">Defines the Field typeclass. </div></div>
 <div class="ttc" id="enumerable_8hpp_html"><div class="ttname"><a href="enumerable_8hpp.html">enumerable.hpp</a></div><div class="ttdoc">Defines the methods of the Enumerable typeclass. </div></div>
 <div class="ttc" id="core_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Defines the Core module. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a metafunction class with the given arguments. </div><div class="ttdef"><b>Definition:</b> functional.hpp:33</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a metafunction class with the given arguments. </div><div class="ttdef"><b>Definition:</b> functional.hpp:39</div></div>
 <div class="ttc" id="group_8hpp_html"><div class="ttname"><a href="group_8hpp.html">group.hpp</a></div><div class="ttdoc">Defines the Group typeclass. </div></div>
 <div class="ttc" id="orderable_8hpp_html"><div class="ttname"><a href="orderable_8hpp.html">orderable.hpp</a></div><div class="ttdoc">Defines the Orderable typeclass. </div></div>
 <div class="ttc" id="bool_8hpp_html"><div class="ttname"><a href="bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/integer.hpp. </div></div>
@@ -239,7 +234,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

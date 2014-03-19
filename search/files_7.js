@@ -2,6 +2,7 @@ var searchData=
 [
   ['id_2ecpp',['id.cpp',['../id_8cpp.html',1,'']]],
   ['if_2ecpp',['if.cpp',['../if_8cpp.html',1,'']]],
+  ['infix_2ecpp',['infix.cpp',['../infix_8cpp.html',1,'']]],
   ['integer_2ecpp',['integer.cpp',['../integer_8cpp.html',1,'']]],
   ['integer_2ehpp',['integer.hpp',['../integer_8hpp.html',1,'']]],
   ['integer_2ehpp',['integer.hpp',['../fwd_2integer_8hpp.html',1,'']]],

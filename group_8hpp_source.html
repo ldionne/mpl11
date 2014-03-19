@@ -91,62 +91,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="group_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_GROUP_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_GROUP_HPP</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2group_8hpp.html">boost/mpl11/fwd/group.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="core_8hpp.html">boost/mpl11/core.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="common__method_8hpp.html">boost/mpl11/detail/common_method.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2monoid_8hpp.html">boost/mpl11/fwd/monoid.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">struct </span>Group {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">using</span> minus_impl =</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keyword">typename</span> detail::common_method&lt;Left, Right&gt;::</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            template <a class="code" href="structboost_1_1mpl11_1_1apply.html">apply</a>&lt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                Group&lt;typename common_datatype&lt;Left, Right&gt;::type&gt;::</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                template minus_impl, x, y</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            &gt;;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_GROUP_HPP</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_GROUP_HPP</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2group_8hpp.html">boost/mpl11/fwd/group.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2bool_8hpp.html">boost/mpl11/fwd/bool.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2core_8hpp.html">boost/mpl11/fwd/core.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2monoid_8hpp.html">boost/mpl11/fwd/monoid.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">struct </span>instantiate&lt;Group&gt; {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right = Left&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">struct </span>with;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Datatype&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">struct </span>default_Group {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">using</span> minus_impl = plus&lt;x, negate&lt;y&gt;&gt;;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Datatype&gt;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">struct </span>with&lt;Datatype&gt; : true_ {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keyword">using</span> minus_impl = plus&lt;box&lt;x&gt;, negate&lt;box&lt;y&gt;&gt;&gt;;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">using</span> negate_impl = minus&lt;zero&lt;Datatype&gt;, x&gt;;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">struct </span>minus :</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        Group&lt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            typename datatype&lt;typename x::type&gt;::type,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            typename datatype&lt;typename y::type&gt;::type</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        &gt;::template minus_impl&lt;x, y&gt;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    { };</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">struct </span>negate :</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        Group&lt;typename datatype&lt;typename x::type&gt;::type&gt;::</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        template negate_impl&lt;x&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    { };</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_GROUP_HPP</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">using</span> negate_impl = minus&lt;zero&lt;Datatype&gt;, box&lt;x&gt;&gt;;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    };</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="bool_8hpp.html">boost/mpl11/bool.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="core_8hpp.html">boost/mpl11/core.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right, <span class="keyword">typename</span>&gt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">struct </span>Group : false_ { };</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x, <span class="keyword">typename</span> y&gt;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">struct </span>minus :</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        Group&lt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            typename datatype&lt;typename x::type&gt;::type,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            typename datatype&lt;typename y::type&gt;::type</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        &gt;::template minus_impl&lt;typename x::type, typename y::type&gt;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    { };</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">struct </span>negate :</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        Group&lt;typename datatype&lt;typename x::type&gt;::type&gt;::</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        template negate_impl&lt;typename x::type&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    { };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_GROUP_HPP</span></div>
+<div class="ttc" id="fwd_2core_8hpp_html"><div class="ttname"><a href="fwd_2core_8hpp.html">core.hpp</a></div><div class="ttdoc">Forward declares the Core module. </div></div>
 <div class="ttc" id="fwd_2group_8hpp_html"><div class="ttname"><a href="fwd_2group_8hpp.html">group.hpp</a></div><div class="ttdoc">Forward declares the Group typeclass. </div></div>
+<div class="ttc" id="fwd_2bool_8hpp_html"><div class="ttname"><a href="fwd_2bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/fwd/integer.hpp. </div></div>
 <div class="ttc" id="fwd_2monoid_8hpp_html"><div class="ttname"><a href="fwd_2monoid_8hpp.html">monoid.hpp</a></div><div class="ttdoc">Forward declares the Monoid typeclass. </div></div>
 <div class="ttc" id="core_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Defines the Core module. </div></div>
-<div class="ttc" id="common__method_8hpp_html"><div class="ttname"><a href="common__method_8hpp.html">common_method.hpp</a></div><div class="ttdoc">Defines boost::mpl11::detail::common_method. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1apply_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1apply.html">boost::mpl11::apply</a></div><div class="ttdoc">Invokes a metafunction class with the given arguments. </div><div class="ttdef"><b>Definition:</b> functional.hpp:33</div></div>
+<div class="ttc" id="bool_8hpp_html"><div class="ttname"><a href="bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/integer.hpp. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

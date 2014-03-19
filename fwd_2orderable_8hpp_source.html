@@ -91,47 +91,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="fwd_2orderable_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_ORDERABLE_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_ORDERABLE_HPP</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2bool_8hpp.html">boost/mpl11/fwd/bool.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right = Left, <span class="keyword">typename</span> = true_&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">struct </span>Orderable;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1less.html">   47</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1less.html">less</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1less__equal.html">   54</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1less__equal.html">less_equal</a>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1greater.html">   61</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1greater.html">greater</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1greater__equal.html">   68</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1greater__equal.html">greater_equal</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1min.html">   75</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1min.html">min</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1max.html">   82</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1max.html">max</a>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_ORDERABLE_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1min_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1min.html">boost::mpl11::min</a></div><div class="ttdoc">Returns the smallest of its arguments according to the ordering induced by less. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:75</div></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_ORDERABLE_HPP</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_ORDERABLE_HPP</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2bool_8hpp.html">boost/mpl11/fwd/bool.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right = Left, <span class="keyword">typename</span> = true_&gt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">struct </span>Orderable;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1less.html">   53</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1less.html">less</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1less__equal.html">   60</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1less__equal.html">less_equal</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1greater.html">   67</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1greater.html">greater</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1greater__equal.html">   74</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1greater__equal.html">greater_equal</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1min.html">   81</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1min.html">min</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xs&gt;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1max.html">   88</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1max.html">max</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_ORDERABLE_HPP</span></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1min_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1min.html">boost::mpl11::min</a></div><div class="ttdoc">Returns the smallest of its arguments according to the ordering induced by less. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:81</div></div>
 <div class="ttc" id="fwd_2bool_8hpp_html"><div class="ttname"><a href="fwd_2bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/fwd/integer.hpp. </div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1greater_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1greater.html">boost::mpl11::greater</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &gt; ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:61</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1max_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1max.html">boost::mpl11::max</a></div><div class="ttdoc">Returns the largest of its arguments according to the ordering induced by less. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:82</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1less_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1less.html">boost::mpl11::less</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &lt; ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:47</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1less__equal_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1less__equal.html">boost::mpl11::less_equal</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &lt;= ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:54</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1greater__equal_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1greater__equal.html">boost::mpl11::greater_equal</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &gt;= ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:68</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1greater_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1greater.html">boost::mpl11::greater</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &gt; ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:67</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1max_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1max.html">boost::mpl11::max</a></div><div class="ttdoc">Returns the largest of its arguments according to the ordering induced by less. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:88</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1less_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1less.html">boost::mpl11::less</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &lt; ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:53</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1less__equal_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1less__equal.html">boost::mpl11::less_equal</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &lt;= ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:60</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1greater__equal_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1greater__equal.html">boost::mpl11::greater_equal</a></div><div class="ttdoc">Returns whether the given objects are ordered according to the &gt;= ordering. </div><div class="ttdef"><b>Definition:</b> orderable.hpp:74</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

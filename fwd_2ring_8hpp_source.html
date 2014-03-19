@@ -91,27 +91,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="fwd_2ring_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_RING_HPP</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_RING_HPP</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right = Left&gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">struct </span>Ring;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xn&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1mult.html">   50</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1mult.html">mult</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef BOOST_MPL11_FWD_RING_HPP</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BOOST_MPL11_FWD_RING_HPP</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="fwd_2bool_8hpp.html">boost/mpl11/fwd/bool.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>boost { <span class="keyword">namespace </span>mpl11 {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Left, <span class="keyword">typename</span> Right = Left, <span class="keyword">typename</span> = true_&gt;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">struct </span>Ring;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Datatype&gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1one.html">   54</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1one.html">one</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_RING_HPP</span></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1mult_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1mult.html">boost::mpl11::mult</a></div><div class="ttdoc">Ring operation. </div><div class="ttdef"><b>Definition:</b> ring.hpp:50</div></div>
-<div class="ttc" id="structboost_1_1mpl11_1_1one_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1one.html">boost::mpl11::one</a></div><div class="ttdoc">Multiplicative identity for the given Datatype. </div><div class="ttdef"><b>Definition:</b> ring.hpp:54</div></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> x1, <span class="keyword">typename</span> x2, <span class="keyword">typename</span> ...xn&gt;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1mult.html">   59</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1mult.html">mult</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Datatype&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structboost_1_1mpl11_1_1one.html">   63</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structboost_1_1mpl11_1_1one.html">one</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}} <span class="comment">// end namespace boost::mpl11</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif // !BOOST_MPL11_FWD_RING_HPP</span></div>
+<div class="ttc" id="fwd_2bool_8hpp_html"><div class="ttname"><a href="fwd_2bool_8hpp.html">bool.hpp</a></div><div class="ttdoc">Forwards to boost/mpl11/fwd/integer.hpp. </div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1mult_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1mult.html">boost::mpl11::mult</a></div><div class="ttdoc">Ring operation. </div><div class="ttdef"><b>Definition:</b> ring.hpp:59</div></div>
+<div class="ttc" id="structboost_1_1mpl11_1_1one_html"><div class="ttname"><a href="structboost_1_1mpl11_1_1one.html">boost::mpl11::one</a></div><div class="ttdoc">Multiplicative identity for the given Datatype. </div><div class="ttdef"><b>Definition:</b> ring.hpp:63</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 08:33:51 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 19 2014 09:16:39 for MPL11 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
