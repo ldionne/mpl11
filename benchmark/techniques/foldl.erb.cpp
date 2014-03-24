@@ -1,43 +1,5 @@
-<%
-    xs = (1..env[:input]).collect{ |i| "x<#{i}>" }.join ', '
-%>
-
-<% if env[:mpl11] or env[:fair] %>
-    #include <boost/mpl11/list.hpp>
-<% end %>
-
-<% if env[:mpl] or (env[:input] <= 50 and env[:fair]) %>
-    #include <boost/mpl/fold.hpp>
-    #include <boost/mpl/vector/vector<%= env[:input].round_up(1) %>.hpp>
-<% end %>
-
-
-template <unsigned>
-struct x;
-
-struct state { struct type; };
-
-struct f {
-    using type = f;
-
-    template <typename, typename>
-    struct apply {
-        struct type;
-    };
-};
-
-
-<% if env[:mpl] %>
-
-    using dataset = <%= "boost::mpl::vector#{env[:input]}<#{xs}>" %>;
-    using Go = boost::mpl::fold<dataset, state, f>::type;
-
-<% elsif env[:mpl11] %>
-
-    using dataset = boost::mpl11::list<     <%= xs %>   >;
-    using Go = boost::mpl11::foldl<f, state, dataset>::type;
-
-<% elsif env[:aliases] %>
+<% case env[:config]
+    when :aliases %>
 
     template <bool done>
     struct until {
@@ -62,9 +24,7 @@ struct f {
         : until<sizeof...(xs) == 0>::template apply<f, state, xs...>
     { };
 
-    using Go = foldl<f, state,  <%= xs %>     >::type;
-
-<% elsif env[:standard_recursion] %>
+<% when :standard_recursion %>
 
     template <typename f, typename state, typename ...xs>
     struct foldl;
@@ -79,8 +39,25 @@ struct f {
         : foldl<f, typename f::template apply<state, head>::type, tail...>
     { };
 
-    using Go = foldl<f, state,  <%= xs %>     >::type;
-
 <% end %>
+
+template <unsigned>
+struct x;
+
+struct state;
+
+struct f {
+    template <typename, typename>
+    struct apply {
+        struct type;
+    };
+};
+
+<%
+    n = env[:input]
+    xs = (0...n).collect{ |i| "x<#{i}>" }.join(", ")
+%>
+
+using Go = foldl<f, state  <%= ", #{xs}" if n != 0 %>     >::type;
 
 int main() { }

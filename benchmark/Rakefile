@@ -1,0 +1,162 @@
+require "benchcc"
+
+
+##############################################################################
+# Utilities
+##############################################################################
+def def_compiler(id, cmd, template_depth, constexpr_depth)
+  Benchcc::GccFrontend.new id do |cc|
+    cc.binary = `which #{cmd}`.strip
+    raise "#{cmd} not found" unless $?.success?
+
+    cc.template_depth = template_depth
+    cc.constexpr_depth = constexpr_depth
+    cc.wflags = %w{-Wall -Wextra -pedantic}
+    cc.includes = %w{~/code/mpl11/include}
+  end
+end
+
+#            id         command         template-depth  constexpr-depth
+def_compiler(:apple51 , "clang"       , 256             , 512)
+def_compiler(:clang34 , "clang++-3.4" , 256             , 512)
+def_compiler(:clang35 , "clang++-3.5" , 256             , 512)
+def_compiler(:gcc49   , "g++-4.9"     , 900             , 512)
+
+
+def input_bounded_to(value = nil, &block)
+  -> (env) { env.input <= (block_given? ? block.call(env) : value) }
+end
+
+def respect_template_depth(wiggle_room = 10)
+  input_bounded_to { |env| env.compiler.template_depth - wiggle_room }
+end
+
+def respect_constexpr_depth(wiggle_room = 10)
+  input_bounded_to { |env| env.compiler.constexpr_depth - wiggle_room }
+end
+
+
+##############################################################################
+# Benchmark registration
+##############################################################################
+task :default => [:all]
+
+desc "Run all the tasks."
+task :all => [:comparison, :techniques]
+
+desc "Benchmark MPL vs MPL11."
+benchmark_suite :comparison do
+
+  benchmark "at.erb.cpp" do |bm|
+    bm.variant :config, %i{mpl_vector mpl_list mpl11_list}
+    bm.variant :fair,   [:fair, false]
+    bm.if_{ config =~ /^mpl_/ || fair }.require_(&input_bounded_to(50))
+    bm.plot 1.upto 250
+  end
+
+  benchmark "fmap.erb.cpp" do |bm|
+    bm.variant :config, [:mpl_vector, :mpl_list, :mpl11_list]
+    bm.variant :rules, [:with_rules, false]
+    bm.variant :fair, [:fair, false]
+    bm.variant :operation, [:fmap]
+    bm.if_{ config =~ /^mpl_/ && rules }.disable
+    bm.if_{ config =~ /^mpl_/ || fair }.require_(&input_bounded_to(50))
+    bm.plot 0.upto 250
+  end
+
+  benchmark "foldl.erb.cpp" do |bm|
+    bm.variant :config, %i{mpl_list mpl_vector mpl11_list}
+    bm.variant :fair, [:fair, false]
+    bm.if_{ config =~ /^mpl_/ || fair }.require_(&input_bounded_to(50))
+    bm.plot 0.upto 250
+  end
+
+  benchmark "include_all.erb.cpp" do |bm|
+    bm.variant :config, [:mpl, :mpl11]
+    bm.plot 0..0 # TODO: Find a better way to present the results.
+  end
+
+  benchmark "plus.erb.cpp" do |bm|
+    bm.variant :config, [:mpl11, :mpl]
+    bm.variant :fair,   [:fair, false]
+    bm.if_{ config == :mpl }.require_(&input_bounded_to(5))
+    bm.plot 2.upto 250
+  end
+end
+
+desc "Benchmark different implementation techniques."
+benchmark_suite :techniques do
+
+  benchmark "alias_vs_struct.erb.cpp" do |bm|
+    bm.variant :config, %i{alias struct}
+    bm.plot (0..10_000).step 20
+  end
+
+  benchmark "at_index.erb.cpp" do |bm|
+    bm.variant :config, %i{overload multiple_inheritance}
+    bm.plot 0.upto 500
+  end
+
+  benchmark "at_key.erb.cpp" do |bm|
+    bm.variant :config, %i{single_inheritance multiple_inheritance}
+    bm.if_{ config == :single_inheritance }.require_(&respect_template_depth)
+    bm.plot 0.upto 500
+  end
+
+  benchmark "foldl.erb.cpp" do |bm|
+    bm.variant :config, %i{aliases standard_recursion}
+    bm.require_(&respect_template_depth)
+    bm.plot 0.upto 500
+  end
+
+  benchmark "implement_metafunction.erb.cpp" do |bm|
+    bm.variant :config, %i{specialize delegate}
+    bm.plot (0..10_000).step 10
+  end
+
+  benchmark "invoke_metafunction.erb.cpp" do |bm|
+    bm.variant :config, %i{flat_nested_type recursive_forwarding
+                                            recursive_nested_type}
+    bm.if_{ config =~ /^recursive/ }.require_(&respect_template_depth)
+    bm.plot (0..5_000).step 10
+  end
+
+  benchmark "max.erb.cpp" do |bm|
+    bm.variant :config, %i{union standard_recursion recursive_constexpr}
+    bm.if_{ config == :standard_recursion }.require_(&respect_template_depth)
+    bm.if_{ config == :recursive_constexpr }.require_(&respect_constexpr_depth)
+    bm.plot 2.upto 500
+  end
+
+  benchmark "mention_vs_instantiate.erb.cpp" do |bm|
+    bm.variant :config,  %i{mention instantiate}
+    bm.plot (0..5_000).step 10
+  end
+
+  benchmark "or.erb.cpp" do |bm|
+    bm.variant :config, %i{overload noexcept recursive_constexpr structs
+                           specialization short_circuit_structs}
+    bm.if_{ config =~ /structs$/ }.require_(&respect_template_depth)
+    bm.plot 0.upto 500
+  end
+
+  benchmark "sum.erb.cpp" do |bm|
+    bm.variant :config, %i{accumulating_constexpr recursive_constexpr
+                           recursive_struct sizeof_trick}
+    bm.if_{ config =~ /constexpr$/ }.require_(&respect_constexpr_depth)
+    bm.if_{ config == :recursive_struct }.require_(&respect_template_depth)
+    bm.plot 2.upto 500
+  end
+
+  benchmark "trampoline.erb.cpp" do |bm|
+    bm.variant :config, %i{standard_recursion aliases
+                           macro_quantifier constexpr_quantifier}
+    bm.plot (1..30_000).step 100
+  end
+
+  benchmark "while.erb.cpp" do |bm|
+    bm.variant :config, %i{aliases standard_recursion}
+    bm.require_(&respect_template_depth)
+    bm.plot 0.upto 500
+  end
+end

@@ -1,11 +1,17 @@
+#include <boost/mpl11/detail/std_conditional.hpp>
 
-template <bool Condition, typename Then, typename Else>
-struct conditional { using type = Then; };
 
-template <typename Then, typename Else>
-struct conditional<false, Then, Else> { using type = Else; };
+using boost::mpl11::detail::std_conditional;
 
-<% if env[:overload] %>
+template <bool B>
+struct bool_ { static constexpr bool value = B; };
+
+using true_ = bool_<true>;
+using false_ = bool_<false>;
+
+
+<% case env[:config]
+    when :overload %>
 
     template <typename ...T>
     constexpr bool all_pointers(T*...) { return true; }
@@ -16,7 +22,7 @@ struct conditional<false, Then, Else> { using type = Else; };
     template <typename ...T>
     struct or_ {
         static constexpr bool value = !all_pointers(
-            ((typename conditional<T::value, int, void*>::type)0)...
+            ((typename std_conditional<T::value, int, void*>::type)0)...
         );
     };
 
@@ -25,7 +31,7 @@ struct conditional<false, Then, Else> { using type = Else; };
         static constexpr bool value = false;
     };
 
-<% elsif env[:noexcept] %>
+<% when :noexcept %>
 
     void allow_expansion(...) noexcept;
 
@@ -36,34 +42,34 @@ struct conditional<false, Then, Else> { using type = Else; };
     struct or_ {
         static constexpr bool value = !noexcept(
             allow_expansion(
-                typename conditional<
+                typename std_conditional<
                     T::value, throwing, non_throwing
                 >::type{}...
             )
         );
     };
 
-<% elsif env[:linear_constexpr] %>
+<% when :recursive_constexpr %>
 
-    // This has horrible performance and we sometimes hit the recursion
-    // limit on Clang.
-    constexpr bool or_impl() { return false; }
-
-    template <typename ...Tail>
-    constexpr bool or_impl(bool head, Tail... tail) {
-        return head || or_impl(tail...);
+    template <typename Iter>
+    constexpr bool or_impl(Iter first, Iter last) {
+        return first == last ? false
+                             : *first || or_impl(first+1, last);
     }
 
     template <typename ...T>
     struct or_ {
-        static constexpr bool value = or_impl(T::value...);
+        static constexpr bool tmp[] = {T::value...};
+        static constexpr bool value = or_impl(&tmp[0], &tmp[sizeof...(T)]);
     };
 
-<% elsif env[:structs] %>
+    template <>
+    struct or_<> {
+        static constexpr bool value = false;
+    };
 
-    // Surprisingly (for me), this is better than the above solution using
-    // constexpr functions, but it still sucks and we hit the recursion limit
-    // on Clang quite easily.
+<% when :structs %>
+
     template <typename ...T>
     struct or_ {
         static constexpr bool value = false;
@@ -74,10 +80,8 @@ struct conditional<false, Then, Else> { using type = Else; };
         static constexpr bool value = Head::value || or_<Tail...>::value;
     };
 
-<% elsif env[:specialization] %>
+<% when :specialization %>
 
-    // I don't know why I did not think of this earlier. This is clearly
-    // the simplest method and it's also the fastest. lol
     template <typename ...T>
     struct or_ {
         static constexpr bool value = true;
@@ -88,8 +92,9 @@ struct conditional<false, Then, Else> { using type = Else; };
         static constexpr bool value = false;
     };
 
-<% elsif env[:aliases] %>
+<% when :aliases %>
 
+#if 0 // This does not work
     template <bool ValueOfLast, bool WeAreDone>
     struct or_impl;
 
@@ -123,25 +128,20 @@ struct conditional<false, Then, Else> { using type = Else; };
     struct or_<>
         : false_
     { };
+#endif
 
-<% elsif env[:short_circuit_structs] %>
+<% when :short_circuit_structs %>
 
     template <bool b, typename ...c>
     struct or_impl : bool_<b> { };
 
     template <typename c, typename ...cs>
-    struct or_impl<false, c, cs...> : or_impl<c::type::value, cs...> { };
+    struct or_impl<false, c, cs...> : or_impl<c::value, cs...> { };
 
     template <typename ...c>
     struct or_ : or_impl<false, c...> { };
 
 <% end %>
-
-template <bool B>
-struct bool_ { static constexpr bool value = B; };
-
-using true_ = bool_<true>;
-using false_ = bool_<false>;
 
 static_assert(!or_<>::value, "");
 

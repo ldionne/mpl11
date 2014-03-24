@@ -1,20 +1,16 @@
-<% if env[:fair] or env[:mpl] %>
-    #include <boost/mpl/long.hpp>
-    #include <boost/mpl/plus.hpp>
-<% end %>
-
-<% if env[:fair] or env[:mpl11] %>
-    #include <boost/mpl11/integer.hpp>
-<% end %>
-
-<% if env[:fair] or env[:sizeof_trick] %>
+<% if env[:config] == :sizeof_trick || env[:fair] %>
     #include <boost/mpl11/detail/std_index_sequence.hpp>
+    #include <boost/mpl11/detail/std_size_t.hpp>
+
+    using boost::mpl11::detail::make_std_index_sequence;
+    using boost::mpl11::detail::std_index_sequence;
+    using boost::mpl11::detail::std_size_t;
 <% end %>
 
 
-<% if env[:accumulating_constexpr] %>
+<% case env[:config]
+    when :accumulating_constexpr %>
 
-namespace bench {
     constexpr long sum_helper(long acc, long n)
     { return acc + n; }
 
@@ -26,29 +22,9 @@ namespace bench {
     struct plus {
         static constexpr long value = sum_helper(a, b, n...);
     };
-}
 
-<% elsif env[:mpl] %>
+<% when :recursive_constexpr %>
 
-namespace bench {
-    namespace mpl = boost::mpl;
-
-    template <long ...n>
-    using plus = mpl::plus<mpl::long_<n>...>;
-}
-
-<% elsif env[:mpl11] %>
-
-namespace bench {
-    namespace mpl11 = boost::mpl11;
-
-    template <long ...n>
-    using plus = mpl11::plus<mpl11::long_<n>...>;
-}
-
-<% elsif env[:recursive_constexpr] %>
-
-namespace bench {
     constexpr long sum_helper(long a, long b)
     { return a + b; }
 
@@ -60,11 +36,9 @@ namespace bench {
     struct plus {
         static constexpr long value = sum_helper(a, b, n...);
     };
-}
 
-<% elsif env[:recursive_struct] %>
+<% when :recursive_struct %>
 
-namespace bench {
     template <long a, long b, long ...n>
     struct plus {
         static constexpr long value = plus<a + b, n...>::value;
@@ -74,12 +48,8 @@ namespace bench {
     struct plus<a, b> {
         static constexpr long value = a + b;
     };
-}
 
-<% elsif env[:sizeof_trick] %>
-
-namespace bench {
-    namespace mpl11 = boost::mpl11;
+<% when :sizeof_trick %>
 
     template <unsigned long long size, unsigned make_unique = 0>
     class alignas(char) padding { char x[size]; };
@@ -93,8 +63,8 @@ namespace bench {
     template <typename indices, long ...n>
     struct sum_helper;
 
-    template <unsigned ...i>
-    struct sum_helper<mpl11::detail::std_index_sequence<i...>> {
+    template <std_size_t ...i>
+    struct sum_helper<std_index_sequence<i...>> {
         static constexpr long value = 0;
     };
 
@@ -102,8 +72,8 @@ namespace bench {
     // I'm not sure this will always work. I'm unfamiliar with the details
     // of structure alignment. If padding was to be added between the
     // `padding`s in `inherit` below, this could screw up the whole thing.
-    template <unsigned ...i, long ...n>
-    struct sum_helper<mpl11::detail::std_index_sequence<i...>, n...> {
+    template <std_size_t ...i, long ...n>
+    struct sum_helper<std_index_sequence<i...>, n...> {
         static constexpr long value =
             // We use n+1 to avoid 0-sized arrays, and we pass the index to
             // padding<> to avoid deriving several times from the same base
@@ -115,21 +85,16 @@ namespace bench {
 
     template <long a, long b, long ...n>
     struct plus {
-        using Indices = typename mpl11::detail::make_std_index_sequence<
-            sizeof...(n)
-        >::type;
+        using Indices = typename make_std_index_sequence<sizeof...(n)>::type;
 
         static constexpr long value =
             a + b +
             sum_helper<Indices, (n > 0 ? n : 0)...>::value -
             sum_helper<Indices, (n < 0 ? -n : 0)...>::value;
     };
-} // end namespace bench
 
 <% end %>
 
-
-using bench::plus;
 
 static_assert(plus<0, -2>::value == 0 - 2, "");
 static_assert(plus<0, -1>::value == 0 - 1, "");

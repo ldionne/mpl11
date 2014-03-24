@@ -1,9 +1,10 @@
 
-<% if env[:mpl11] %>
+<% case env[:config]
+    when :mpl11 %>
 
     #include <boost/mpl11.hpp>
 
-<% elsif env[:mpl] %>
+<% when :mpl %>
 
     #include <boost/mpl/accumulate.hpp>
     #include <boost/mpl/advance.hpp>

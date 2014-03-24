@@ -1,8 +1,12 @@
-<% if env[:aliases] %>
+#include <boost/mpl11/detail/std_is_same.hpp>
+
+<% case env[:config]
+    when :aliases %>
 
     template <bool Continue>
     struct while_impl {
-        template <typename Pred, typename F, typename PrevState, typename State = typename F::template apply<PrevState>::type>
+        template <typename Pred, typename F, typename PrevState,
+                  typename State = typename F::template apply<PrevState>::type>
         using apply = typename while_impl<Pred::template apply<State>::value>::
                       template apply<Pred, F, State>;
     };
@@ -19,9 +23,10 @@
     using while_ = typename while_impl<Pred::template apply<State>::value>::
                    template apply<Pred, F, State>;
 
-<% elsif env[:standard_recursion] %>
+<% when :standard_recursion %>
 
-    template <typename Pred, typename F, typename State, bool = Pred::template apply<State>::value>
+    template <typename Pred, typename F, typename State,
+              bool = Pred::template apply<State>::value>
     struct while_;
 
     template <typename Pred, typename F, typename State>
@@ -35,12 +40,6 @@
     };
 
 <% end %>
-
-template <typename T, typename U>
-struct is_same { static constexpr bool value = false; };
-
-template <typename T>
-struct is_same<T, T> { static constexpr bool value = true; };
 
 template <int> struct x;
 
@@ -65,13 +64,13 @@ struct different_from {
 
 template <typename X>
 struct test_until {
-    static_assert(is_same<
+    static_assert(boost::mpl11::detail::std_is_same<
         typename while_<different_from<X>, increment, x<0>>::type,
         X
     >::value, "");
 };
 
-struct test_all :
+struct tests :
     test_until<x<0>>,
     test_until<x<1>>,
     test_until<x<2>>,
