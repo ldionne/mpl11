@@ -15,6 +15,7 @@
 #include <boost/mpl11/detail/checked.hpp>
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
+#include <boost/mpl11/fwd/core.hpp>
 #include <boost/mpl11/fwd/foldable.hpp>
 #include <boost/mpl11/fwd/functional.hpp>
 #include <boost/mpl11/fwd/integer.hpp>
@@ -46,6 +47,10 @@ namespace boost { namespace mpl11 {
     //! A `List` containing the given elements.
     template <typename ...xs>
     struct list;
+
+    //! Constructor equivalent to `list`, except it takes unboxed arguments.
+    template <typename ...xs>
+    BOOST_MPL11_DOXYGEN_ALIAS(list_, list<box<xs>...>);
 
     //! A `List` created by prepending an element to an @ref Iterable.
     template <typename x, typename xs>

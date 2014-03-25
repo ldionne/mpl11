@@ -20,6 +20,7 @@
 #include <boost/mpl11/functor.hpp>
 #include <boost/mpl11/iterable.hpp>
 
+#include <boost/mpl11/core.hpp>       //
 #include <boost/mpl11/foldable.hpp>   //
 #include <boost/mpl11/functional.hpp> // required by fwd/list.hpp
 #include <boost/mpl11/integer.hpp>    //
