@@ -29,9 +29,10 @@ namespace boost { namespace mpl11 {
         template <>
         struct and_impl<true, false> {
             template <typename x, typename ...xs>
-            using result = typename and_impl<
-                (bool)x::type::value, sizeof...(xs) == 0
-            >::template result<xs...>;
+            struct result
+                : and_impl<(bool)x::type::value, sizeof...(xs) == 0>::
+                  template result<xs...>
+            { };
         };
 
         template <bool current, bool done>
@@ -43,9 +44,10 @@ namespace boost { namespace mpl11 {
         template <>
         struct or_impl<false, false> {
             template <typename x, typename ...xs>
-            using result = typename or_impl<
-                (bool)x::type::value, sizeof...(xs) == 0
-            >::template result<xs...>;
+            struct result
+                : or_impl<(bool)x::type::value, sizeof...(xs) == 0>::
+                  template result<xs...>
+            { };
         };
 
         template <bool cond>
@@ -65,26 +67,15 @@ namespace boost { namespace mpl11 {
     } // end namespace logical_detail
 
     template <typename ...xs>
-    struct and_ :
-#if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
-        logical_detail::and_impl<true, false>::
-        template result<true_, xs...>
-#else
-        logical_detail::and_impl<false, false>::
-        template result<xs...>
-#endif
-
+    struct and_
+        : logical_detail::and_impl<true, false>::
+          template result<true_, xs...>
     { };
 
     template <typename ...xs>
-    struct or_ :
-#if defined(BOOST_MPL11_GCC_PACK_EXPANSION_BUG)
-        logical_detail::or_impl<false, false>::
-        template result<false_, xs...>
-#else
-        logical_detail::or_impl<false, false>::
-        template result<xs...>
-#endif
+    struct or_
+        : logical_detail::or_impl<false, false>::
+          template result<false_, xs...>
     { };
 
     template <> struct and_<> : true_ { };

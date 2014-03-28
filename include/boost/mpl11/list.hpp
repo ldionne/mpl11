@@ -329,7 +329,8 @@ namespace boost { namespace mpl11 {
         struct filter_help {
             using type = filter_help;
             template <typename x, typename xs>
-            using apply = if_c<pred::type::template apply<x>::type::value,
+            using apply = if_c<
+                (bool)pred::type::template apply<x>::type::value,
                 cons<x, xs>,
                 xs
             >;

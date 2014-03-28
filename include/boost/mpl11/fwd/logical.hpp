@@ -21,6 +21,10 @@ namespace boost { namespace mpl11 {
      *
      * Logical operators and conditional branch selection.
      *
+     *
+     * @todo
+     * Reimplement `and_` and `or_`.
+     *
      * @{
      */
 
