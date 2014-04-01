@@ -65,13 +65,13 @@ struct test_and_or {
 };
 
 template <typename T, T v>
-struct yes { struct type { static constexpr T value = v; }; };
-struct no { struct type { static constexpr bool value = false; }; };
+struct Integral { struct type { static constexpr T value = v; }; };
+
 
 struct tests :
-    test_and_or<yes<bool, true>, no>,
-    test_and_or<yes<int, 1>, no>,
-    test_and_or<yes<int, 2>, no>,
+    test_and_or<Integral<bool, true>, Integral<bool, false>>,
+    test_and_or<Integral<int, 1>, Integral<bool, false>>,
+    test_and_or<Integral<int, 2>, Integral<bool, false>>,
 
     // test integer_c specialization
     test_and_or<true_, false_>,

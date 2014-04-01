@@ -15,41 +15,11 @@
 #include <boost/mpl11/fwd/logical.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/config.hpp>
+#include <boost/mpl11/detail/lazy_variadic_foldr.hpp>
 
 
 namespace boost { namespace mpl11 {
     namespace logical_detail {
-        template <bool current, bool done>
-        struct and_impl {
-            template <typename ...>
-            using result = bool_<current>;
-        };
-
-        template <>
-        struct and_impl<true, false> {
-            template <typename x, typename ...xs>
-            struct result
-                : and_impl<(bool)x::type::value, sizeof...(xs) == 0>::
-                  template result<xs...>
-            { };
-        };
-
-        template <bool current, bool done>
-        struct or_impl {
-            template <typename ...>
-            using result = bool_<current>;
-        };
-
-        template <>
-        struct or_impl<false, false> {
-            template <typename x, typename ...xs>
-            struct result
-                : or_impl<(bool)x::type::value, sizeof...(xs) == 0>::
-                  template result<xs...>
-            { };
-        };
-
         template <bool cond>
         struct if_impl;
 
@@ -64,22 +34,33 @@ namespace boost { namespace mpl11 {
             template <typename Then, typename Else>
             using result = Else;
         };
+
+        struct and2 {
+            using type = and2;
+            template <typename x, typename y>
+            using apply = bool_<
+                (bool)if_c<(bool)x::type::value, y, x>::type::value
+            >;
+        };
+
+        struct or2 {
+            using type = or2;
+            template <typename x, typename y>
+            using apply = bool_<
+                (bool)if_c<(bool)x::type::value, x, y>::type::value
+            >;
+        };
     } // end namespace logical_detail
 
     template <typename ...xs>
     struct and_
-        : logical_detail::and_impl<true, false>::
-          template result<true_, xs...>
+        : detail::lazy_variadic_foldr<logical_detail::and2, true_, xs...>
     { };
 
     template <typename ...xs>
     struct or_
-        : logical_detail::or_impl<false, false>::
-          template result<false_, xs...>
+        : detail::lazy_variadic_foldr<logical_detail::or2, false_, xs...>
     { };
-
-    template <> struct and_<> : true_ { };
-    template <> struct or_<>  : false_ { };
 
     template <typename x>
     struct not_

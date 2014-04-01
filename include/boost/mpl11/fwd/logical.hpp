@@ -21,10 +21,6 @@ namespace boost { namespace mpl11 {
      *
      * Logical operators and conditional branch selection.
      *
-     *
-     * @todo
-     * Reimplement `and_` and `or_`.
-     *
      * @{
      */
 
@@ -35,10 +31,6 @@ namespace boost { namespace mpl11 {
      * Arguments must be `StaticConstant`s that will be unboxed from left to
      * right in a short-circuiting fashion. If no arguments are provided,
      * `and_` is equivalent to `true_`.
-     *
-     *
-     * @todo
-     * Consider using folds in the implementation of `and_` and `or_`.
      */
     template <typename ...xs>
     struct and_;
@@ -64,38 +56,36 @@ namespace boost { namespace mpl11 {
 
     namespace logical_detail { template <bool> struct if_impl; }
 
-    //! Equivalent to `if_<bool_<condition>, then_branch, else_branch>`.
-    template <bool condition, typename then_branch, typename else_branch>
+    //! Equivalent to `if_<bool_<Condition>, Then, Else>`.
+    template <bool Condition, typename Then, typename Else>
     BOOST_MPL11_DOXYGEN_ALIAS(if_c,
-            typename logical_detail::if_impl<condition>::
-            template result<then_branch, else_branch>);
+            typename logical_detail::if_impl<Condition>::
+            template result<Then, Else>);
 
-    //! Equivalent to `else_if<bool_<condition>, then_branch, else_branch>`.
-    template <bool condition, typename then_branch, typename else_branch>
-    BOOST_MPL11_DOXYGEN_ALIAS(else_if_c,
-        if_c<condition, then_branch, else_branch>);
+    //! Equivalent to `else_if<bool_<Condition>, Then, Else>`.
+    template <bool Condition, typename Then, typename Else>
+    BOOST_MPL11_DOXYGEN_ALIAS(else_if_c, if_c<Condition, Then, Else>);
 
     /*!
      * Evaluates one of two branches based on a condition.
      *
-     * Specifically, `if_<condition, then_branch, else_branch>` is equivalent
-     * to `then_branch` if `condition::%type::value` evaluates to `true`, and
-     * to `else_branch` otherwise.
+     * Specifically, `if_<Condition, Then, Else>` is equivalent to `Then`
+     * if `Condition::%type::value` evaluates to `true`, and to `Else`
+     * otherwise.
      *
      * `if_` can be combined with `else_if` and `else_` to improve
      * readability.
      */
-    template <typename condition, typename then_branch, typename else_branch>
+    template <typename Condition, typename Then, typename Else>
     struct if_;
 
     //! Equivalent to `if_`; provided for use with `if_`.
-    template <typename condition, typename then_branch, typename else_branch>
-    BOOST_MPL11_DOXYGEN_ALIAS(else_if,
-        if_<condition, then_branch, else_branch>);
+    template <typename Condition, typename Then, typename Else>
+    BOOST_MPL11_DOXYGEN_ALIAS(else_if, if_<Condition, Then, Else>);
 
     //! Transparent alias to its argument; provided for use with `if_`.
-    template <typename else_branch>
-    BOOST_MPL11_DOXYGEN_ALIAS(else_, else_branch);
+    template <typename Else>
+    BOOST_MPL11_DOXYGEN_ALIAS(else_, Else);
     //! @}
 }} // end namespace boost::mpl11
 

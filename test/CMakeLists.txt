@@ -51,10 +51,10 @@ mpl11_add_tests(
     detail
     ######
     dependent
+    variadic_fold
     std_conditional
     std_index_sequence
     std_is_same
-    strict_variadic_foldl
 )
 
 mpl11_add_tests(

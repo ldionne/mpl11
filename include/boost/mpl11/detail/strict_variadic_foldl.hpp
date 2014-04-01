@@ -17,10 +17,6 @@ namespace boost { namespace mpl11 { namespace detail {
      * @ingroup details
      *
      * Strict left-fold algorithm processing a variadic parameter pack.
-     *
-     *
-     * @todo
-     * Optimize this and make it able to process _huge_ sequences.
      */
     template <typename f, typename state, typename ...xs>
     struct strict_variadic_foldl : state { };
