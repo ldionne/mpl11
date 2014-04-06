@@ -33,7 +33,7 @@ namespace boost { namespace mpl11 {
      *
      *
      * ### Methods
-     * `head`, `tail`, `is_empty`, `last`, `at` and `length`
+     * `head`, `tail`, `is_empty`, `last`, `at` and `length`.
      *
      *
      * ### Minimal complete definition
@@ -51,34 +51,7 @@ namespace boost { namespace mpl11 {
      * comparison of their elements.
      *
      * #### `Foldable`
-     * ##### `foldl<f, state, iter>`
-     * Reduces an iterable using a binary operation, from left to right.
-     *
-     * Specifically, returns the result of the successive application of the
-     * binary operation `f` to the result of the previous `f` invocation (or
-     * `state` for the first application) and every element of the iterable
-     * in order.
-     *
-     * Visually, with `iter = x1, x2, ..., xn`:
-     *
-            foldl(f, state, iter) == f(...f(f(state, x1), x2)..., xn)
-     *
-     *
-     *
-     * ##### `foldr<f, state, iter>`
-     * Reduces an iterable using a binary operator, from right to left.
-     *
-     * Specifically, returns the result of the successive application of the
-     * binary operation `f` to every element of the iterable and the result
-     * of the next `f` invocation (or `state` for the last application).
-     *
-     * Visually, with `iter = x1, x2, ..., xn`:
-     *
-            foldr(f, state, iter) == f(x1, f(x2, ...f(xn, state)...))
-     *
-     * @note
-     * `foldl` is equivalent to the `fold` metafunction from the original MPL.
-     * However, the order of the arguments has changed.
+     * Folding is done the obvious way.
      *
      *
      * @todo

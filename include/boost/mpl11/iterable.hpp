@@ -204,18 +204,21 @@ struct length :
 template <typename Datatype, typename>
 struct Iterable : false_ { };
 
+namespace iterable_detail {
+    //! @todo Get rid of this.
+    struct plus_one {
+        using type = plus_one;
+        template <typename x, typename _>
+        using apply = succ<x>;
+    };
+}
+
 template <>
 struct instantiate<Iterable> {
     template <typename Datatype>
     struct with : true_ {
-        template <typename xs, bool = is_empty<tail<box<xs>>>::value>
-        struct last_impl : head<box<xs>> { };
-
         template <typename xs>
-        struct last_impl<xs, false>
-            : last_impl<typename tail<box<xs>>::type>
-        { };
-
+        using last_impl = foldl<arg<2>, undefined, box<xs>>;
 
         template <typename index, typename xs, bool = index::type::value == 0>
         struct at_impl
@@ -230,15 +233,8 @@ struct instantiate<Iterable> {
             >
         { };
 
-
-        template <typename xs, detail::std_size_t acc = 0,
-            bool = is_empty<box<xs>>::value>
-        struct length_impl : size_t<acc> { };
-
-        template <typename xs, detail::std_size_t acc>
-        struct length_impl<xs, acc, false>
-            : length_impl<typename tail<box<xs>>::type, acc+1>
-        { };
+        template <typename xs>
+        using length_impl = foldl<iterable_detail::plus_one, int_<0>, box<xs>>;
     };
 };
 

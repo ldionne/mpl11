@@ -47,7 +47,19 @@ namespace boost { namespace mpl11 {
     template <typename Datatype, typename = true_>
     struct Foldable;
 
-    //! Right-associative fold of a structure using a binary operator.
+    /*!
+     * Right-associative fold of a structure using a binary operation.
+     *
+     * Specifically, returns the result of the successive application of the
+     * binary operation `f` to every element of the structure and the result
+     * of the next `f` invocation (or `state` for the last application). For
+     * example, if the structure contains `x1, x2, ..., xn`:
+     *
+        @code
+            foldr(f, state, structure) == f(x1, f(x2, ...f(xn, state)...))
+        @endcode
+     *
+     */
     template <typename f, typename state, typename structure>
     struct foldr;
 
@@ -58,8 +70,23 @@ namespace boost { namespace mpl11 {
     template <typename f, typename structure>
     struct foldr1;
 
-
-    //! Left-associative fold of a structure using a binary operator.
+    /*
+     * Left-associative fold of a structure using a binary operation.
+     *
+     * Specifically, returns the result of the successive application of the
+     * binary operation `f` to the result of the previous `f` invocation (or
+     * `state` for the first application) and every element of the structure
+     * in order. For example, if the structure contains `x1, x2, ..., xn`:
+     *
+        @code
+            foldl(f, state, structure) == f(...f(f(state, x1), x2)..., xn)
+        @endcode
+     *
+     *
+     * @note
+     * `foldl` is equivalent to the `fold` metafunction from the original MPL.
+     * However, the order of the arguments has changed.
+     */
     template <typename f, typename state, typename structure>
     struct foldl;
 
