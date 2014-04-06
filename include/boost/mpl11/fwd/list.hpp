@@ -135,16 +135,15 @@ namespace boost { namespace mpl11 {
     /*!
      * Concatenate several lists.
      *
-     * When invoked with 0 arguments, `join` returns an empty list.
-     * When invoked with 1 argument, `join` returns the list itself.
+     * When invoked with 0 arguments, `concat` returns an empty list.
+     * When invoked with 1 argument, `concat` returns the list itself.
      *
      *
      * @todo
-     * - Should we receive variadic arguments or an iterable of iterables?
      * - Consider using `drop_while` instead of hand-written recursion.
      */
     template <typename ...lists>
-    struct join;
+    struct concat;
 
     /*!
      * Returns a subrange of a list.

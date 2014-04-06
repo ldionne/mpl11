@@ -434,7 +434,7 @@ namespace test_zip_with {
     { };
 } // end namespace test_zip_with
 
-namespace test_join {
+namespace test_concat {
     template <int ...xs>
     using seq = minimal_iterable<int_<xs>...>;
 
@@ -442,12 +442,12 @@ namespace test_join {
     struct joining {
         template <int ...joined>
         struct is
-            : check_finite_iterable<join<iterables...>, int_<joined>...>
+            : check_finite_iterable<concat<iterables...>, int_<joined>...>
         { };
     };
 
     template <int ...xs>
-    struct auto_test_join
+    struct auto_test_concat
         : joining<seq<xs...>>::template is<xs...>
 
         , joining<seq<xs...>, seq<>>::template is<xs...>
@@ -469,11 +469,11 @@ namespace test_join {
 
     struct tests
         : joining<>::is<>
-        , auto_test_join<>
-        , auto_test_join<9>
-        , auto_test_join<9, 8>
-        , auto_test_join<9, 8, 7>
-        , auto_test_join<9, 8, 7, 6>
+        , auto_test_concat<>
+        , auto_test_concat<9>
+        , auto_test_concat<9, 8>
+        , auto_test_concat<9, 8, 7>
+        , auto_test_concat<9, 8, 7, 6>
         , joining<
             seq<0>, seq<1>, seq<>, seq<2, 3>, seq<>, seq<4, 5>, seq<6>, seq<>
         >::is<0, 1, 2, 3, 4, 5, 6>

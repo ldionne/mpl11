@@ -16,15 +16,13 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-
-#ifndef BOOST_MPL11_NO_ASSERTIONS
-#   include <boost/mpl11/functor.hpp>
-#endif
+#include <boost/mpl11/detail/config.hpp>
+#include <boost/mpl11/fwd/functor.hpp>
 
 
 namespace boost { namespace mpl11 {
     template <typename monad>
-    struct join_ :
+    struct join :
         Monad<typename datatype<typename monad::type>::type>::
         template join_impl<monad>
     { };

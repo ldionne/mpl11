@@ -421,12 +421,12 @@ namespace boost { namespace mpl11 {
 #endif
 
     template <typename ...xs>
-    struct join
-        : foldr<lift<join>, list<>, list<xs...>>
+    struct concat
+        : foldr<lift<concat>, list<>, list<xs...>>
     { };
 
     template <typename xs, typename ys>
-    struct join<xs, ys>
+    struct concat<xs, ys>
         : foldr<lift<cons>, ys, xs>
     { };
 
@@ -457,7 +457,7 @@ namespace boost { namespace mpl11 {
             typename SmallerEq = filter<IsSmallerEq, rest>,
             typename Greater = filter<IsGreater, rest>
         >
-        using sort_by_impl = join<
+        using sort_by_impl = concat<
             sort_by<pred, SmallerEq>,
             cons<pivot, sort_by<pred, Greater>>
         >;

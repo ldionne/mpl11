@@ -28,7 +28,7 @@ namespace boost { namespace mpl11 {
      * `Functor`
      *
      * ### Methods
-     * `unit` and `join_`
+     * `unit` and `join`
      *
      * ### Minimal complete definition
      * All the methods.
@@ -38,11 +38,12 @@ namespace boost { namespace mpl11 {
     template <typename Datatype, typename = true_>
     struct Monad;
 
-    //! Flatten one level of nested monads.
+    //! Remove one level of monadic structure, projecting its argument
+    //! into the outer level.
     template <typename monad>
-    struct join_;
+    struct join;
 
-    //! Lift a value into the monad.
+    //! Lift a value into a monadic structure.
     template <typename MonadType, typename x>
     struct unit;
     //! @}

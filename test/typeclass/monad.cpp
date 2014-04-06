@@ -24,13 +24,13 @@ namespace boost { namespace mpl11 {
 
     template <>
     struct Monad<Archetype<>> : instantiate<Monad>::with<Archetype<>> {
-        template <typename> using join_impl = method_tag<join_>;
+        template <typename> using join_impl = method_tag<join>;
         template <typename> using unit_impl = method_tag<unit>;
     };
 }}
 
 struct tests
-    : method<join_, archetype<>>
+    : method<join, archetype<>>
     , method<unit, Archetype<>, undefined>
 { };
 
