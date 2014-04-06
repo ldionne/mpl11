@@ -120,8 +120,14 @@ mpl11_add_tests(
     ring
 )
 
+mpl11_add_tests(
+    list
+    ####
+    list
+    rules
+)
+
 mpl11_add_standalone_test(integer integer.cpp)
-mpl11_add_standalone_test(list list.cpp)
 mpl11_add_standalone_test(master_header master_header.cpp)
 mpl11_add_standalone_test(maybe maybe.cpp)
 mpl11_add_standalone_test(minimal_foldable minimal_foldable.cpp)

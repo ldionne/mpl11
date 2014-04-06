@@ -81,12 +81,18 @@ namespace boost { namespace mpl11 {
     template <detail::std_size_t n, typename xs>
     BOOST_MPL11_DOXYGEN_ALIAS(take_c, take<size_t<n>, xs>);
 
+    namespace list_detail {
+        template <typename predicate> struct take_while_op;
+        template <typename predicate> struct filter_op;
+    }
+
     /*!
      * Returns the longest prefix of a `List` in which all elements
      * satisfy the `predicate`.
      */
     template <typename predicate, typename xs>
-    struct take_while;
+    BOOST_MPL11_DOXYGEN_ALIAS(take_while,
+                    foldr<list_detail::take_while_op<predicate>, list<>, xs>);
 
     //! Equivalent to `take_while` with a negated `predicate`.
     template <typename predicate, typename xs>
@@ -95,11 +101,12 @@ namespace boost { namespace mpl11 {
 
     //! Returns a `List` with its elements in reverse order.
     template <typename xs>
-    struct reverse;
+    BOOST_MPL11_DOXYGEN_ALIAS(reverse, foldl<flip<lift<cons>>, list<>, xs>);
 
     //! Returns a `List` containing only the elements satisfying `predicate`.
     template <typename predicate, typename xs>
-    struct filter;
+    BOOST_MPL11_DOXYGEN_ALIAS(filter,
+                        foldr<list_detail::filter_op<predicate>, list<>, xs>);
 
     /*!
      * `scanl` is similar to `foldl`, but returns a `List` of successive
@@ -173,7 +180,7 @@ namespace boost { namespace mpl11 {
     struct sort_by;
 
     /*!
-     * Returns the elements before the last of a non-empty list.
+     * Returns the elements before the last one of a non-empty list.
      *
      * Specifically, returns a list containing all the elements of the
      * original list except the last one.

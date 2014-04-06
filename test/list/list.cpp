@@ -1,6 +1,12 @@
 /*!
  * @file
  * Contains unit tests for @ref List.
+ *
+ *
+ * @copyright Louis Dionne 2014
+ * Distributed under the Boost Software License, Version 1.0.
+ *         (See accompanying file LICENSE.md or copy at
+ *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
 #include <boost/mpl11/list.hpp>
@@ -11,8 +17,8 @@
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 
-#include "check_finite_iterable.hpp"
-#include "minimal_iterable.hpp"
+#include "../check_finite_iterable.hpp"
+#include "../minimal_iterable.hpp"
 
 
 using namespace boost::mpl11;

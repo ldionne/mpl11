@@ -63,56 +63,8 @@ namespace iterable_detail {
 
     template <typename pred, typename iter>
     struct drop_while_impl2<pred, iter, false> : iter { };
-} // end namespace iterable_detail
 
-template <typename pred, typename iter>
-struct drop_while : iterable_detail::drop_while_impl1<pred, iter> { };
 
-#if 0
-    template <typename N, typename Iter, typename>
-    struct drop_impl
-        : if_<or_<bool_<N::type::value == 0>, is_empty<Iter>>,
-            Iter,
-            drop<pred<N>, tail<Iter>>
-        >
-    { };
-
-    template <typename N1, typename N2, typename Iter>
-    struct drop_impl<N1, drop<N2, Iter>> : drop<plus<N1, N2>, Iter> { };
-
-    template <typename N, typename Iter>
-    struct head_impl<drop<N, Iter>> : at<Iter, N> { };
-
-    template <typename N, typename Iter>
-    struct is_empty_impl<drop<N, Iter>
-        , bool_<sequence_traits<typename Iter::type>::has_O1_length>
-    >
-        : bool_<(N::type::value >= length<Iter>::value)>
-    { };
-
-    template <typename N, typename Iter>
-    struct length_impl<drop<N, Iter>>
-        : size_t<(
-            N::type::value < length<Iter>::value
-                ? length<Iter>::value - N::type::value
-                : 0
-        )>
-    { };
-
-    template <typename N, typename Iter>
-    struct last_impl<drop<N, Iter>> : last<Iter> { };
-
-    template <typename N, typename Iter, typename Index>
-    struct at_impl<drop<N, Iter>, Index> : at<Iter, plus<N, Index>> { };
-
-    template <typename Pred, typename Iter>
-    struct is_empty_impl<drop_until<Pred, Iter>> : none<Pred, Iter> { };
-
-    template <typename Pred, typename Iter>
-    struct is_empty_impl<drop_while<Pred, Iter>> : all<Pred, Iter> { };
-#endif
-
-namespace iterable_detail {
     template <typename iter>
     struct head_checks {
         static_assert(!is_empty<iter>::value,
@@ -136,7 +88,7 @@ namespace iterable_detail {
         static_assert(index::type::value >= 0,
         "Invalid usage of `at` with a negative index.");
 
-        /*
+#if 0
         using Length = if_c<sequence_traits<typename Iter::type>::is_finite,
             length<Iter>,
             size_t<index::type::value + 1>
@@ -144,7 +96,7 @@ namespace iterable_detail {
 
         static_assert(index::type::value < Length::value,
         "Invalid usage of `at` with an out-of-bounds index.");
-        */
+#endif
     };
 
     template <typename n, typename iter>
@@ -153,7 +105,12 @@ namespace iterable_detail {
         "Invalid usage of `drop`: "
         "The number of elements to drop must be non-negative.");
     };
-}
+} // end namespace iterable_detail
+
+template <typename pred, typename iter>
+struct drop_while
+    : iterable_detail::drop_while_impl1<pred, iter>
+{ };
 
 template <typename iter>
 struct head :

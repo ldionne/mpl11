@@ -108,37 +108,6 @@ namespace boost { namespace mpl11 {
         };
     };
 
-#if 0
-    template <typename Init, typename Last>
-    struct head_impl<snoc<Init, Last>>
-        : head<Init>
-    { };
-
-    template <typename Init, typename Last>
-    struct tail_impl<snoc<Init, Last>>
-        : snoc<tail<Init>, Last>
-    { };
-
-    template <typename>
-    using is_empty_impl = false_;
-
-    template <typename Init, typename Last>
-    struct length_impl<snoc<Init, Last>>
-        : size_t<length<Init>::value + 1>
-    { };
-
-    template <typename Init, typename Last, typename F>
-    struct unpack_impl<snoc<Init, Last>, F>
-        : apply<unpack<Init, partial<into<partial>, F>>, Last>
-    { };
-
-    template <typename Init, typename Last>
-    struct init_impl<snoc<Init, Last>> : Init { };
-
-    template <typename Init, typename Last>
-    struct last_impl<snoc<Init, Last>> : Last { };
-#endif
-
     template <typename f, typename x>
     struct iterate
         : cons<x, iterate<f, typename f::type::template apply<x>>>
@@ -148,17 +117,6 @@ namespace boost { namespace mpl11 {
     struct repeat
         : cons<x, repeat<x>>
     { };
-
-#if 0
-    template <typename T, typename Index>
-    struct at_impl<repeat<T>, Index> : T { };
-
-    template <typename T>
-    struct last_impl<repeat<T>> : T { };
-
-    template <typename T>
-    struct init_impl<repeat<T>> : repeat<T> { };
-#endif
 
     namespace list_detail {
         template <detail::std_size_t n, typename xs,
@@ -232,101 +190,21 @@ namespace boost { namespace mpl11 {
         >
     { };
 
-#if 0
-    template <typename N1, typename N2, typename Iter>
-    struct take_impl<N1, take<N2, Iter>> : take<min<N1, N2>, Iter> { };
-
-    template <typename N, typename Iter>
-    struct is_empty_impl<take<N, Iter>>
-        : or_<bool_<N::type::value == 0>, is_empty<Iter>>
-    { };
-
-    template <typename N, typename Iter>
-    struct length_impl<take<N, Iter>,
-        bool_<!sequence_traits<typename Iter::type>::is_finite>
-    >
-        : N
-    { };
-
-    template <typename N, typename Iter>
-    struct length_impl<take<N, Iter>,
-        bool_<sequence_traits<typename Iter::type>::has_O1_length>
-    >
-        : size_t<(
-            N::type::value < length<Iter>::value
-                ? N::type::value
-                : length<Iter>::value
-        )>
-    { };
-
-    template <typename N, typename Iter>
-    struct init_impl<take<N, Iter>,
-        bool_<sequence_traits<typename Iter::type>::has_O1_length>
-    >
-        : take<pred<length<take<N, Iter>>>, Iter>
-    { };
-
-    template <typename N, typename Iter, typename Index>
-    struct at_impl<take<N, Iter>, Index> : at<Iter, Index> { };
-#endif
-
     namespace list_detail {
         template <typename pred>
-        struct go {
-            using type = go;
+        struct take_while_op {
+            using type = take_while_op;
             template <typename x, typename xs>
-            using apply = if_c<pred::type::template apply<x>::type::value,
+            using apply = if_c<
+                (bool)pred::type::template apply<x>::type::value,
                 cons<x, xs>,
                 list<>
             >;
         };
-    }
 
-    template <typename pred, typename xs>
-    struct take_while
-        : foldr<list_detail::go<pred>, list<>, xs>
-    { };
-
-#if 0
-    template <typename Pred, typename Iter>
-    struct is_empty_impl<take_while<Pred, Iter>>
-        : or_<is_empty<Iter>, not_<apply<Pred, head<Iter>>>>
-    { };
-#endif
-
-    template <typename xs>
-    struct reverse
-        : foldl<flip<lift<cons>>, list<>, xs>
-    { };
-
-#if 0
-    template <typename Iter>
-    struct reverse_impl<reverse<Iter>> : Iter { };
-
-    template <typename Iter>
-    struct head_impl<reverse<Iter>> : last<Iter> { };
-
-    template <typename Iter>
-    struct last_impl<reverse<Iter>> : head<Iter> { };
-
-    template <typename Iter>
-    struct is_empty_impl<reverse<Iter>> : is_empty<Iter> { };
-
-    template <typename Iter>
-    struct length_impl<reverse<Iter>> : length<Iter> { };
-
-    template <typename Iter, typename Index>
-    struct at_impl<reverse<Iter>, Index,
-        bool_<sequence_traits<typename Iter::type>::has_O1_length>
-    >
-        : at_c<Iter, length<Iter>::value - Index::type::value - 1>
-    { };
-#endif
-
-    namespace list_detail {
         template <typename pred>
-        struct filter_help {
-            using type = filter_help;
+        struct filter_op {
+            using type = filter_op;
             template <typename x, typename xs>
             using apply = if_c<
                 (bool)pred::type::template apply<x>::type::value,
@@ -335,31 +213,6 @@ namespace boost { namespace mpl11 {
             >;
         };
     }
-
-    template <typename pred, typename xs>
-    struct filter
-        : foldr<list_detail::filter_help<pred>, list<>, xs>
-    { };
-
-#if 0
-    template <typename Pred1, typename Pred2>
-    struct both {
-        using type = both;
-        template <typename X>
-        using apply = and_<
-            mpl11::apply<Pred1, X>,
-            mpl11::apply<Pred2, X>
-        >;
-    };
-
-    template <typename Pred, typename Iter>
-    struct is_empty_impl<filter<Pred, Iter>> : none<Pred, Iter> { };
-
-    template <typename Pred1, typename Pred2, typename Iter>
-    struct filter_impl<Pred1, filter<Pred2, Iter>>
-        : filter<filter_detail::both<Pred1, Pred2>, Iter>
-    { };
-#endif
 
     template <typename f, typename state, typename xs>
     struct scanl
@@ -371,16 +224,6 @@ namespace boost { namespace mpl11 {
             >
         >
     { };
-
-#if 0
-    template <typename F, typename State, typename Iter>
-    struct length_impl<scanl<F, State, Iter>>
-        : size_t<length<Iter>::value + 1>
-    { };
-
-    template <typename F, typename State, typename Iter>
-    struct last_impl<scanl<F, State, Iter>> : foldl<F, State, Iter> { };
-#endif
 
     template <typename f>
     struct zip_with<f>
@@ -403,23 +246,6 @@ namespace boost { namespace mpl11 {
         >
     { };
 
-#if 0
-    template <typename ...Iters>
-    struct length_impl<zip<Iters...>>
-        // We make it strict because we might get some optimization.
-        : min<typename length<Iters>::type...>::type
-    { };
-
-    //! @todo
-    //! Knowing whether `at_c` is fast for the zipped iterables could
-    //! allow us to use this implementation only if it's faster than
-    //! iterating to the given index.
-    template <typename ...Iters, typename Index>
-    struct at_impl<zip<Iters...>, Index>
-        : list<at<Iters, Index>...>
-    { };
-#endif
-
     template <typename ...xs>
     struct concat
         : foldr<lift<concat>, list<>, list<xs...>>
@@ -429,22 +255,6 @@ namespace boost { namespace mpl11 {
     struct concat<xs, ys>
         : foldr<lift<cons>, ys, xs>
     { };
-
-#if 0
-    // We add strictly because there could be optimizations.
-    template <typename ...Iters>
-    struct length_impl<join<Iters...>>
-        : plus<typename length<Iters>::type...>::type
-    { };
-
-    template <typename Iter1, typename ...IterN, typename F>
-    struct unpack_impl<join<Iter1, IterN...>, F>
-        : unpack<
-            join<IterN...>,
-            unpack<Iter1, partial<into<partial>, F>>
-        >
-    { };
-#endif
 
     namespace list_detail {
         template <
@@ -470,6 +280,20 @@ namespace boost { namespace mpl11 {
             list_detail::sort_by_impl<pred, xs>
         >
     { };
+
+#ifndef BOOST_MPL11_NO_REWRITE_RULES
+    // length/foldr
+    //
+    // length $ foldr (:) xs ys == length xs + length ys
+    template <typename ...xs, typename ys>
+    struct length<foldr<lift<cons>, list<xs...>, ys>>
+        : size_t<length<ys>::value + sizeof...(xs)>
+    { };
+
+    // at/repeat
+    template <typename index, typename x>
+    struct at<index, repeat<x>> : x { };
+#endif // end rewrite rules
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_LIST_HPP
