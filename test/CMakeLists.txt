@@ -101,21 +101,26 @@ mpl11_add_tests(
     not
 )
 
-mpl11_add_standalone_test(bitwise bitwise.cpp)
-mpl11_add_standalone_test(comparable comparable.cpp)
-mpl11_add_standalone_test(enumerable enumerable.cpp)
-mpl11_add_standalone_test(field field.cpp)
-mpl11_add_standalone_test(foldable foldable.cpp)
-mpl11_add_standalone_test(functor functor.cpp)
-mpl11_add_standalone_test(group group.cpp)
+mpl11_add_tests(
+    typeclass
+    #########
+    bitwise
+    comparable
+    enumerable
+    field
+    foldable
+    functor
+    group
+    integral_domain
+    iterable
+    monad
+    monoid
+    orderable
+    ring
+)
+
 mpl11_add_standalone_test(integer integer.cpp)
-mpl11_add_standalone_test(integral_domain integral_domain.cpp)
-mpl11_add_standalone_test(iterable iterable.cpp)
 mpl11_add_standalone_test(list list.cpp)
 mpl11_add_standalone_test(master_header master_header.cpp)
 mpl11_add_standalone_test(maybe maybe.cpp)
 mpl11_add_standalone_test(minimal_foldable minimal_foldable.cpp)
-mpl11_add_standalone_test(monad monad.cpp)
-mpl11_add_standalone_test(monoid monoid.cpp)
-mpl11_add_standalone_test(orderable orderable.cpp)
-mpl11_add_standalone_test(ring ring.cpp)

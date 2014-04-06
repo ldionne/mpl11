@@ -13,9 +13,9 @@
 #include <boost/mpl11/integer.hpp>
 #include <boost/mpl11/logical.hpp>
 
-#include "check_finite_iterable.hpp"
-#include "check_foldable.hpp"
-#include "minimal_iterable.hpp"
+#include "../check_finite_iterable.hpp"
+#include "../check_foldable.hpp"
+#include "../minimal_iterable.hpp"
 #include "test_method_dispatch.hpp"
 
 

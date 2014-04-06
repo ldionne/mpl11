@@ -11,7 +11,7 @@
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 
-#include "minimal_foldable.hpp"
+#include "../minimal_foldable.hpp"
 #include "test_method_dispatch.hpp"
 
 
