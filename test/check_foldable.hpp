@@ -6,12 +6,12 @@
 #ifndef BOOST_MPL11_TEST_CHECK_FOLDABLE_HPP
 #define BOOST_MPL11_TEST_CHECK_FOLDABLE_HPP
 
-#include <boost/mpl11/detail/static_assert.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functional.hpp>
 
 #include "minimal_foldable.hpp"
+#include "static_assert.hpp"
 
 
 namespace check_foldable_detail {
@@ -21,7 +21,7 @@ namespace check_foldable_detail {
         typename x_ = typename x::type, typename y_ = typename y::type
     >
     struct assert_same
-        : detail::static_assert_<detail::std_is_same<x_, y_>>
+        : static_assert_<detail::std_is_same<x_, y_>>
     { };
 
     struct state { struct type; };

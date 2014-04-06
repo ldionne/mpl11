@@ -16,7 +16,6 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/detail/assertions.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 #include <boost/mpl11/functional.hpp>

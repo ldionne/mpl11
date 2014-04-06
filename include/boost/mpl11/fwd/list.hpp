@@ -12,7 +12,7 @@
 #ifndef BOOST_MPL11_FWD_LIST_HPP
 #define BOOST_MPL11_FWD_LIST_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/core.hpp>
 #include <boost/mpl11/fwd/foldable.hpp>

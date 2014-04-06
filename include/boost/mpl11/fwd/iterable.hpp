@@ -12,7 +12,7 @@
 #ifndef BOOST_MPL11_FWD_ITERABLE_HPP
 #define BOOST_MPL11_FWD_ITERABLE_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/bool.hpp>
 #include <boost/mpl11/fwd/functional.hpp>

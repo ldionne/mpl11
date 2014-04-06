@@ -12,7 +12,7 @@
 #ifndef BOOST_MPL11_FWD_CORE_HPP
 #define BOOST_MPL11_FWD_CORE_HPP
 
-#include <boost/mpl11/detail/doxygen.hpp>
+#include <boost/mpl11/detail/config.hpp>
 
 
 namespace boost { namespace mpl11 {

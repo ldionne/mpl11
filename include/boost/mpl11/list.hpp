@@ -15,7 +15,6 @@
 #include <boost/mpl11/fwd/list.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/assertions.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/functor.hpp>

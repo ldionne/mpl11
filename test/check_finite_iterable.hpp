@@ -7,12 +7,12 @@
 #ifndef BOOST_MPL11_TEST_CHECK_FINITE_ITERABLE_HPP
 #define BOOST_MPL11_TEST_CHECK_FINITE_ITERABLE_HPP
 
-#include <boost/mpl11/detail/static_assert.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
 #include <boost/mpl11/fwd/iterable.hpp>
 #include <boost/mpl11/integer.hpp>
 
 #include "minimal_iterable.hpp"
+#include "static_assert.hpp"
 
 
 namespace check_finite_iter_detail {
@@ -22,7 +22,7 @@ namespace check_finite_iter_detail {
     template <typename x, typename y,
         typename Expected = typename x::type,
         typename Actual = typename y::type>
-    using assert_eq = detail::static_assert_<equal<x, y>>;
+    using assert_eq = static_assert_<equal<x, y>>;
 
     template <typename reference, typename iter,
         typename index = size_t<0>,
@@ -47,7 +47,7 @@ namespace check_finite_iter_detail {
 
     template <typename reference, typename iter, typename index>
     struct impl<reference, iter, index, true>
-        : detail::static_assert_<is_empty<iter>>
+        : static_assert_<is_empty<iter>>
         , assert_eq<size_t<0>, length<iter>>
     { };
 } // end namespace check_finite_iter_detail
