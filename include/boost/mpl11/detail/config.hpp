@@ -34,7 +34,7 @@
      * performance; this is mainly meant as a way to make sure rewrite rules
      * do not change the semantics of metaprograms.
      */
-#   define BOOST_MPL11_NO_RULES
+#   define BOOST_MPL11_NO_REWRITE_RULES
 
     /*!
      * @ingroup details

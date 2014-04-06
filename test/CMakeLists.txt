@@ -16,7 +16,7 @@ function(mpl11_add_standalone_test test source)
     # For lack of a better solution, we currently create different targets
     # for each configuration.
     # noassert - BOOST_MPL11_NO_ASSERTIONS
-    # norules  - BOOST_MPL11_NO_RULES
+    # norules  - BOOST_MPL11_NO_REWRITE_RULES
     add_custom_target(${test})
 
     macro(helper suffix)
@@ -32,8 +32,9 @@ function(mpl11_add_standalone_test test source)
     endmacro()
     helper(normal)
     helper(noassert         BOOST_MPL11_NO_ASSERTIONS)
-    helper(norules          BOOST_MPL11_NO_RULES)
-    helper(noassert-norules BOOST_MPL11_NO_ASSERTIONS BOOST_MPL11_NO_RULES)
+    helper(norules          BOOST_MPL11_NO_REWRITE_RULES)
+    helper(noassert-norules BOOST_MPL11_NO_ASSERTIONS
+                            BOOST_MPL11_NO_REWRITE_RULES)
 endfunction()
 
 function(mpl11_add_tests module)
