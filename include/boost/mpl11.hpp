@@ -58,6 +58,7 @@
 #include <boost/mpl11/list.hpp>
 #include <boost/mpl11/logical.hpp>
 #include <boost/mpl11/maybe.hpp>
+#include <boost/mpl11/monad.hpp>
 #include <boost/mpl11/monoid.hpp>
 #include <boost/mpl11/orderable.hpp>
 #include <boost/mpl11/rational.hpp>

@@ -22,6 +22,9 @@
 
 
 namespace boost { namespace mpl11 {
+    template <typename Datatype, typename>
+    struct Foldable : false_ { };
+
     template <typename f, typename state, typename structure>
     struct foldr :
         Foldable<typename datatype<typename structure::type>::type>::

@@ -14,10 +14,14 @@
 
 #include <boost/mpl11/fwd/functor.hpp>
 
+#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 
 
 namespace boost { namespace mpl11 {
+    template <typename Datatype, typename>
+    struct Functor : false_ { };
+
     template <typename f, typename structure>
     struct fmap :
         Functor<typename datatype<typename structure::type>::type>::
