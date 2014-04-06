@@ -15,6 +15,7 @@
 #include <boost/mpl11/fwd/list.hpp>
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/detail/assertions.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/functor.hpp>
@@ -171,9 +172,7 @@ namespace boost { namespace mpl11 {
         struct take_impl<n, xs, false>
             : cons<head<xs>, take_impl<n-1, tail<xs>>>
         { };
-    }
 
-    namespace checks {
         template <typename n, typename xs>
         struct take_checks {
             static_assert(n::type::value >= 0,
@@ -211,27 +210,28 @@ namespace boost { namespace mpl11 {
             static_assert(!is_empty<xs>::value,
             "Invalid usage of `init` on an empty list.");
         };
-    } // end namespace checks
+    } // end namespace list_detail
 
-    namespace unchecked {
-        template <typename n, typename xs>
-        struct take
-            : list_detail::take_impl<n::type::value, xs>
-        { };
+    template <typename n, typename xs>
+    struct take
+        : BOOST_MPL11_IF_ASSERTIONS(list_detail::take_checks<n, xs>,)
+          list_detail::take_impl<n::type::value, xs>
+    { };
 
-        template <typename xs, typename from, typename to>
-        struct slice
-            : take_c<to::type::value - from::type::value, drop<from, xs>>
-        { };
+    template <typename xs, typename from, typename to>
+    struct slice
+        : BOOST_MPL11_IF_ASSERTIONS(list_detail::slice_checks<xs, from, to>,)
+          take_c<to::type::value - from::type::value, drop<from, xs>>
+    { };
 
-        template <typename xs>
-        struct init
-            : if_c<is_empty<tail<xs>>::value,
-                list<>,
-                cons<head<xs>, init<tail<xs>>>
-            >
-        { };
-    } // end namespace unchecked
+    template <typename xs>
+    struct init
+        : BOOST_MPL11_IF_ASSERTIONS(list_detail::init_checks<xs>,)
+          if_c<is_empty<tail<xs>>::value,
+            list<>,
+            cons<head<xs>, init<tail<xs>>>
+        >
+    { };
 
 #if 0
     template <typename N1, typename N2, typename Iter>

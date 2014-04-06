@@ -17,6 +17,7 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/assertions.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldable.hpp>
@@ -112,7 +113,7 @@ struct drop_while : iterable_detail::drop_while_impl1<pred, iter> { };
     struct is_empty_impl<drop_while<Pred, Iter>> : all<Pred, Iter> { };
 #endif
 
-namespace checks {
+namespace iterable_detail {
     template <typename iter>
     struct head_checks {
         static_assert(!is_empty<iter>::value,
@@ -155,36 +156,39 @@ namespace checks {
     };
 }
 
-namespace unchecked {
-    template <typename iter>
-    struct head :
-        Iterable<typename datatype<typename iter::type>::type>::
-        template head_impl<typename iter::type>
-    { };
+template <typename iter>
+struct head :
+    BOOST_MPL11_IF_ASSERTIONS(iterable_detail::head_checks<iter>,)
+    Iterable<typename datatype<typename iter::type>::type>::
+    template head_impl<typename iter::type>
+{ };
 
-    template <typename iter>
-    struct tail :
-        Iterable<typename datatype<typename iter::type>::type>::
-        template tail_impl<typename iter::type>
-    { };
+template <typename iter>
+struct tail :
+    BOOST_MPL11_IF_ASSERTIONS(iterable_detail::tail_checks<iter>,)
+    Iterable<typename datatype<typename iter::type>::type>::
+    template tail_impl<typename iter::type>
+{ };
 
-    template <typename iter>
-    struct last :
-        Iterable<typename datatype<typename iter::type>::type>::
-        template last_impl<typename iter::type>
-    { };
+template <typename iter>
+struct last :
+    BOOST_MPL11_IF_ASSERTIONS(iterable_detail::last_checks<iter>,)
+    Iterable<typename datatype<typename iter::type>::type>::
+    template last_impl<typename iter::type>
+{ };
 
-    template <typename index, typename iter>
-    struct at :
-        Iterable<typename datatype<typename iter::type>::type>::
-        template at_impl<index, typename iter::type>
-    { };
+template <typename index, typename iter>
+struct at :
+    BOOST_MPL11_IF_ASSERTIONS(iterable_detail::at_checks<index, iter>,)
+    Iterable<typename datatype<typename iter::type>::type>::
+    template at_impl<index, typename iter::type>
+{ };
 
-    template <typename n, typename iter>
-    struct drop
-        : iterable_detail::drop_impl<n::type::value, iter>
-    { };
-} // end namespace unchecked
+template <typename n, typename iter>
+struct drop :
+    BOOST_MPL11_IF_ASSERTIONS(iterable_detail::drop_checks<n, iter>,)
+    iterable_detail::drop_impl<n::type::value, iter>
+{ };
 
 template <typename iter>
 struct is_empty :

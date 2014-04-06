@@ -12,7 +12,6 @@
 #ifndef BOOST_MPL11_FWD_ITERABLE_HPP
 #define BOOST_MPL11_FWD_ITERABLE_HPP
 
-#include <boost/mpl11/detail/checked.hpp>
 #include <boost/mpl11/detail/doxygen.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/bool.hpp>
@@ -96,7 +95,8 @@ namespace boost { namespace mpl11 {
     struct Iterable;
 
     //! Returns the first element of a non-empty iterable.
-    BOOST_MPL11_DECLARE_CHECKED(head, typename iter);
+    template <typename iter>
+    struct head;
 
     /*!
      * Extract the elements after the head of a non-empty iterable.
@@ -104,17 +104,20 @@ namespace boost { namespace mpl11 {
      * Specifically, returns an iterable containing all the elements of the
      * original iterable except the first one.
      */
-    BOOST_MPL11_DECLARE_CHECKED(tail, typename iter);
+    template <typename iter>
+    struct tail;
 
     //! Returns the last element of a non-empty iterable.
-    BOOST_MPL11_DECLARE_CHECKED(last, typename iter);
+    template <typename iter>
+    struct last;
 
     //! Returns the number of elements in a finite iterable.
     template <typename iter>
     struct length;
 
     //! Returns the element of an iterable at the given index.
-    BOOST_MPL11_DECLARE_CHECKED(at, typename index, typename iter);
+    template <typename index, typename iter>
+    struct at;
 
     //! Equivalent to `at<size_t<index>, iter>`.
     template <detail::std_size_t index, typename iter>
@@ -131,7 +134,8 @@ namespace boost { namespace mpl11 {
      * elements to be dropped from the underlying iterable. If `n` is greater
      * than the length of the iterable, the returned iterable is empty.
      */
-    BOOST_MPL11_DECLARE_CHECKED(drop, typename n, typename iter);
+    template <typename n, typename iter>
+    struct drop;
 
     //! Equivalent to `drop<size_t<n>, iter>`; provided for convenience.
     template <detail::std_size_t n, typename iter>
