@@ -57,7 +57,7 @@ namespace boost { namespace mpl11 {
 
         template <typename x, typename xs>
         struct apply<cons<x, xs>>
-            : apply<typename unpack<cons<x, xs>, into<list>>::type>
+            : apply<typename unpack<into<list>, cons<x, xs>>::type>
         { };
     };
 

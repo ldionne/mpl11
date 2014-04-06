@@ -321,7 +321,7 @@ namespace test_unpack {
     template <int ...xs>
     struct unpacking {
         static_assert(std_is_same<
-            typename unpack<minimal_foldable<int_<xs>...>, lift<f>>::type,
+            typename unpack<lift<f>, minimal_foldable<int_<xs>...>>::type,
             typename f<int_<xs>...>::type
         >::value, "");
     };

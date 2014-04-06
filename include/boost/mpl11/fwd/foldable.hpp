@@ -39,7 +39,8 @@ namespace boost { namespace mpl11 {
      *
      * @todo
      * - Provide a default implementation for `foldl1` and `foldr1`.
-     * - Check if we can improve unpack. Maybe make it transparent?
+     * - Consider removing `unpack` or moving it elsewhere, maybe
+     *   @ref Functional.
      *
      * @{
      */
@@ -144,12 +145,13 @@ namespace boost { namespace mpl11 {
     /*!
      * Invokes a metafunction class with the contents of a structure.
      *
-     * Specifically, `unpack<structure, f>` is equivalent to
+     * Specifically, `unpack<f, structure>` is equivalent to
      * `apply<f, a0, ..., an>`, where `a0`, ...,`an` are the
      * elements in the structure.
      */
-    template <typename structure, typename f>
-    struct unpack;
+    template <typename f, typename structure>
+    BOOST_MPL11_DOXYGEN_ALIAS(unpack,
+        apply<foldl<lift<partial>, f, structure>>);
     //! @}
 }} // end namespace boost::mpl11
 
