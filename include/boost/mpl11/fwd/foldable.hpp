@@ -35,10 +35,9 @@ namespace boost { namespace mpl11 {
      * `foldl`, `foldl1`, `foldr` and `foldr1`.
      *
      * ### Minimal complete definition
-     * All the methods.
+     * `foldl` and `foldr`.
      *
      * @todo
-     * - Provide a default implementation for `foldl1` and `foldr1`.
      * - Consider removing `unpack` or moving it elsewhere, maybe
      *   @ref Functional.
      *
