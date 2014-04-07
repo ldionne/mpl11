@@ -16,6 +16,8 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/config.hpp>
+#include <boost/mpl11/functional.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -27,6 +29,13 @@ namespace boost { namespace mpl11 {
         Functor<typename datatype<typename structure::type>::type>::
         template fmap_impl<f, typename structure::type>
     { };
+
+#ifndef BOOST_MPL11_NO_REWRITE_RULES
+    template <typename f, typename g, typename structure>
+    struct fmap<f, fmap<g, structure>>
+        : fmap<compose<f, g>, structure>
+    { };
+#endif
 }} // end namespace boost::mpl11
 
 #endif // !BOOST_MPL11_FUNCTOR_HPP
