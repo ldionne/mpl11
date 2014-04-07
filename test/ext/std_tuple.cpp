@@ -5,55 +5,48 @@
 
 #include <boost/mpl11/ext/std_tuple.hpp>
 
-#include "../check_finite_iterable.hpp"
-#include <boost/mpl11/list.hpp>
 #include <boost/mpl11/functional.hpp>
+#include <boost/mpl11/list.hpp>
+#include <boost/mpl11/test/expect.hpp>
+#include <boost/mpl11/test/iterable.hpp>
 #include <tuple>
 
 
 using namespace boost::mpl11;
 
-template <int> struct t;
+template <typename ...xs>
+struct tuple { using type = std::tuple<xs...>; };
+
+template <int>
+struct t;
 
 template <int ...xs>
-struct tuple_of {
-    using lst = list<box<t<xs>>...>;
-    using tpl = std::tuple<t<xs>...>;
-    using conses = typename foldr<lift<cons>, list<>, lst>::type;
+struct test_conversion {
+    template <typename Datatype, typename x>
+    using _cast = typename cast_to<Datatype>::type::
+                  template apply<typename x::type>;
 
-    // Check Iterable instantiation
-    static_assert(sizeof(
-        check_finite_iterable<box<std::tuple<t<xs>...>>, box<t<xs>>...>
-    ), "");
+    using as_list = list_<t<xs>...>;
+    using as_tuple = tuple<t<xs>...>;
+    using as_cons = foldr<lift<cons>, list<>, as_list>;
 
-
-    // Check conversion to List
-    static_assert(equal<
-        typename cast_to<List>::type::template apply<tpl>,
-        lst
-    >::value, "");
-
-
-    // Check conversion from List
-    static_assert(equal<
-        typename cast_to<StdTuple>::type::template apply<lst>,
-        box<tpl>
-    >::value, "");
-
-    static_assert(equal<
-        typename cast_to<StdTuple>::type::template apply<conses>,
-        box<tpl>
-    >::value, "");
+    using go = typename test::instantiate<
+        typename test::expect<_cast<List, as_tuple>>::template to_eq<as_list>,
+        typename test::expect<_cast<StdTuple, as_list>>::template to_eq<as_tuple>,
+        typename test::expect<_cast<StdTuple, as_cons>>::template to_eq<as_tuple>
+    >::type;
 };
 
 struct tests
-    : tuple_of<>
-    , tuple_of<0>
-    , tuple_of<0, 1>
-    , tuple_of<0, 1, 2>
-    , tuple_of<0, 1, 2, 3>
-    , tuple_of<0, 1, 2, 3, 4>
-    , tuple_of<0, 1, 2, 3, 4, 5>
+    : test::Iterable<tuple>
+
+    , test_conversion<>
+    , test_conversion<0>
+    , test_conversion<0, 1>
+    , test_conversion<0, 1, 2>
+    , test_conversion<0, 1, 2, 3>
+    , test_conversion<0, 1, 2, 3, 4>
+    , test_conversion<0, 1, 2, 3, 4, 5>
 { };
 
 

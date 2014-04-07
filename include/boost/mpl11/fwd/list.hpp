@@ -144,10 +144,6 @@ namespace boost { namespace mpl11 {
      *
      * When invoked with 0 arguments, `concat` returns an empty list.
      * When invoked with 1 argument, `concat` returns the list itself.
-     *
-     *
-     * @todo
-     * - Consider using `drop_while` instead of hand-written recursion.
      */
     template <typename ...lists>
     struct concat;
@@ -159,11 +155,6 @@ namespace boost { namespace mpl11 {
      * by [`start`, `stop`). In all cases, `start` must be non-negative and
      * less-than or equal to `stop`. If the list is finite, `stop` must
      * always be less-than or equal to `length<xs>`.
-     *
-     *
-     * @todo
-     * Reintroduce optimizations that were lost when using a single
-     * typeclass for iterables.
      */
     template <typename xs, typename start, typename stop>
     struct slice;
@@ -173,9 +164,6 @@ namespace boost { namespace mpl11 {
     BOOST_MPL11_DOXYGEN_ALIAS(slice_c, slice<xs, size_t<start>, size_t<stop>>);
 
     //! Returns a list sorted with the `predicate`.
-    //!
-    //! @todo
-    //! Generate more data in unit tests by using a permutation generator.
     template <typename predicate, typename xs>
     struct sort_by;
 

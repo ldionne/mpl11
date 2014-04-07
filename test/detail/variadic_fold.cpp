@@ -6,40 +6,40 @@
 #include <boost/mpl11/detail/lazy_variadic_foldr.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 
-#include <boost/mpl11/detail/std_is_same.hpp>
-#include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/integer.hpp>
-
-#include "../minimal_foldable.hpp"
+#include <boost/mpl11/test/foldable.hpp>
 
 
-using namespace boost::mpl11;
+struct Test;
+template <typename ...xs>
+struct foldable_ { using mpl_datatype = Test; };
 
-template <typename x, typename y>
-struct f { using type = f<typename x::type, typename y::type>; };
-struct s { using type = s; };
+template <typename ...xs>
+struct foldable { using type = foldable_<xs...>; };
 
-template <int ...xs>
-struct folding {
-    static_assert(detail::std_is_same<
-        typename foldr<lift<f>, s, minimal_foldable<int_<xs>...>>::type,
-        typename detail::lazy_variadic_foldr<lift<f>, s, int_<xs>...>::type
-    >::value, "");
+namespace boost { namespace mpl11 {
+    template <>
+    struct Foldable<Test> : instantiate<Foldable>::with<Test> {
+        template <typename f, typename z, typename t>
+        struct foldr_impl;
 
-    static_assert(detail::std_is_same<
-        typename foldl<lift<f>, s, minimal_foldable<int_<xs>...>>::type,
-        typename detail::strict_variadic_foldl<lift<f>, s, int_<xs>...>::type
-    >::value, "");
-};
+        template <typename f, typename z, typename t>
+        struct foldl_impl;
+
+
+        template <typename f, typename z, typename ...xs>
+        struct foldr_impl<f, z, foldable_<xs...>>
+            : detail::lazy_variadic_foldr<f, z, xs...>
+        { };
+
+        template <typename f, typename z, typename ...xs>
+        struct foldl_impl<f, z, foldable_<xs...>>
+            : detail::strict_variadic_foldl<f, z, xs...>
+        { };
+    };
+}}
 
 struct tests
-    : folding<>
-    , folding<0>
-    , folding<0, 1>
-    , folding<0, 1, 2>
-    , folding<0, 1, 2, 3>
-    , folding<0, 1, 2, 3, 4>
-    , folding<0, 1, 2, 3, 4, 5>
+    : boost::mpl11::test::Foldable<foldable>
 { };
 
 

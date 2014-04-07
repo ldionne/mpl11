@@ -286,21 +286,6 @@ struct Foldable<Datatype, typename Iterable<Datatype>::type>
             foldr_impl<f, state, typename tail<box<iter>>::type>
         >
     { };
-
-
-    template <typename f, typename iter,
-        bool = is_empty<tail<box<iter>>>::value>
-    struct foldr1_impl
-        : head<box<iter>>
-    { };
-
-    template <typename f, typename iter>
-    struct foldr1_impl<f, iter, false>
-        : f::type::template apply<
-            head<box<iter>>,
-            foldr1_impl<f, typename tail<box<iter>>::type>
-        >
-    { };
 };
 }} // end namespace boost::mpl11
 

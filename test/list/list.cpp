@@ -16,6 +16,8 @@
 #include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
+#include <boost/mpl11/test/functor.hpp>
+#include <boost/mpl11/test/iterable.hpp>
 
 #include "../check_finite_iterable.hpp"
 #include "../minimal_iterable.hpp"
@@ -23,34 +25,16 @@
 
 using namespace boost::mpl11;
 
-namespace test_list {
-    template <int ...xs>
-    struct list_of
-        : check_finite_iterable<
-            list<int_<xs>...>,
-            int_<xs>...
-        >
+template <typename ...xs>
+using conses = foldr<lift<cons>, list<>, list<xs...>>;
 
-        , check_finite_iterable<
-            cons<int_<-1>, minimal_iterable<int_<xs>...>>,
-            int_<-1>, int_<xs>...
-        >
-        , check_finite_iterable<
-            cons<int_<-1>, list<int_<xs>...>>,
-            int_<-1>, int_<xs>...
-        >
-    { };
+struct test_instances
+    : test::Iterable<list>
+    , test::Functor<list>
 
-    struct tests
-        : list_of<>
-        , list_of<0>
-        , list_of<0, 1>
-        , list_of<0, 1, 2>
-        , list_of<0, 1, 2, 3>
-        , list_of<0, 1, 2, 3, 4>
-        , list_of<0, 1, 2, 3, 4, 5>
-    { };
-} // end namespace test_list
+    , test::Iterable<conses>
+    , test::Functor<conses>
+{ };
 
 namespace test_snoc {
     // note: we could test snoc automatically, but clang 3.5 fails with an
@@ -83,28 +67,6 @@ namespace test_snoc {
             ::to<0, 1, 2, 3>::is<0, 1, 2, 3, -1>
     { };
 } // end namespace test_snoc
-
-namespace test_functor {
-    template <typename> struct f { struct type; };
-
-    template <int ...xs>
-    struct do_fmap
-        : check_finite_iterable<
-            fmap<lift<f>, list<int_<xs>...>>,
-            f<int_<xs>>...
-        >
-    { };
-
-    struct tests
-        : do_fmap<>
-        , do_fmap<0>
-        , do_fmap<0, 1>
-        , do_fmap<0, 1, 2>
-        , do_fmap<0, 1, 2, 3>
-        , do_fmap<0, 1, 2, 3, 4>
-        , do_fmap<0, 1, 2, 3, 4, 5>
-    { };
-} // end namespace test_functor
 
 namespace test_take {
     template <unsigned long n>
