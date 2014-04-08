@@ -1,8 +1,114 @@
+##############################################################################
+# Utilities
+##############################################################################
 require "benchcc"
+require "gnuplot"
+require "rake"
+require "ruby-progressbar"
+
+
+class Plot < Gnuplot::Plot
+  include Rake::DSL
+
+  def initialize(name)
+    super() { }
+    @datasets = task name.to_s + "_datasets", [:compiler]
+
+    task name, [:compiler] => [@datasets.name] do
+      Gnuplot.open do |process|
+        process << to_gplot
+        process << store_datasets
+      end
+    end
+
+    yield self if block_given?
+  end
+
+  def dataset(**env, &block)
+    block ||= proc { }
+    @datasets.enhance do |_, args|
+      cc = Benchcc::Compiler[args.compiler]
+      ctx = env.merge(compiler: cc)
+      data << Gnuplot::DataSet.new { |ds| block.call(ds, ctx) }
+    end
+  end
+end
+
+class ManyInputPlot < Plot
+  def dataset(input, y, **env)
+    _input = Proc === input ? input : proc { input }
+    super(**env) do |ds, ctx|
+      yield ds, ctx if block_given?
+
+      xs = _input.call(ctx).to_a
+
+      progress = ProgressBar.create(format: "#{ds.title} %p%% | %B |", total: xs.size)
+      ys = xs.map { |x|
+        y.call(ctx.merge(input: x))
+         .tap{ progress.increment }
+      }
+      ds.data = [xs, ys]
+      puts ds.data
+    end
+  end
+end
+
+class TimingPlot < ManyInputPlot
+  def initialize(name)
+    super do |plot|
+      plot.xlabel "Input size"
+      plot.ylabel "Compilation time"
+      plot.format 'y "%f s"'
+      yield plot if block_given?
+    end
+  end
+
+  attr_accessor :input_file
+
+  def dataset(xs, file = nil, **env, &block)
+    file ||= input_file
+    compute = -> (ctx) { ctx[:compiler].rtime(file, ctx).real }
+    super(xs, compute, **env, &block)
+  end
+end
+
+class MemusgPlot < ManyInputPlot
+  def initialize(name)
+    super do |plot|
+      plot.xlabel "Input size"
+      plot.ylabel "Peak memory usage"
+      plot.format 'y "%f kb"'
+      yield plot if block_given?
+    end
+  end
+
+  attr_accessor :input_file
+
+  def dataset(xs, file = nil, **env)
+    file ||= input_file
+    compute = -> (ctx) { raise NotImplementedError }
+    super(xs, compute, **env, &block)
+  end
+end
+
+
+def procify(x)
+  Proc === x ? x : proc { x }
+end
+
+def flexible_range(from, to, step = 1)
+  from, to, step = procify(from), procify(to), procify(step)
+  proc { |*args|
+    (from.call(*args)..to.call(*args)).step(step.call(*args))
+  }
+end
+
+template_depth = proc { |ctx| ctx[:compiler].template_depth }
+constexpr_depth = proc { |ctx| ctx[:compiler].constexpr_depth }
 
 
 ##############################################################################
-# Utilities
+# Compiler registration with Benchcc
 ##############################################################################
 def def_compiler(id, cmd, template_depth, constexpr_depth)
   Benchcc::GccFrontend.new id do |cc|
@@ -11,7 +117,7 @@ def def_compiler(id, cmd, template_depth, constexpr_depth)
 
     cc.template_depth = template_depth
     cc.constexpr_depth = constexpr_depth
-    cc.wflags = %w{-Wall -Wextra -pedantic}
+    cc.wflags = %w{-Wall -Wextra -pedantic -fsyntax-only}
     cc.includes = %w{~/code/mpl11/include}
   end
 end
@@ -22,18 +128,6 @@ def_compiler(:clang34 , "clang++-3.4" , 256             , 512)
 def_compiler(:clang35 , "clang++-3.5" , 256             , 512)
 def_compiler(:gcc49   , "g++-4.9"     , 900             , 512)
 
-
-def input_bounded_to(value = nil, &block)
-  -> (env) { env.input <= (block_given? ? block.call(env) : value) }
-end
-
-def respect_template_depth(wiggle_room = 10)
-  input_bounded_to { |env| env.compiler.template_depth - wiggle_room }
-end
-
-def respect_constexpr_depth(wiggle_room = 10)
-  input_bounded_to { |env| env.compiler.constexpr_depth - wiggle_room }
-end
 
 
 ##############################################################################
@@ -47,116 +141,143 @@ task :all => [:comparison, :techniques]
 desc "Benchmark MPL vs MPL11."
 benchmark_suite :comparison do
 
-  benchmark "at.erb.cpp" do |bm|
-    bm.variant :config, %i{mpl_vector mpl_list mpl11_list}
-    bm.variant :fair,   [:fair, false]
-    bm.if_{ config =~ /^mpl_/ || fair }.require_(&input_bounded_to(50))
-    bm.plot 1.upto 250
+  def auto
+    proc { |ds, env|
+      ds.with = "lines"
+      fairness = env[:fair] ? "fair" : "unfair"
+      ruliness = env[:rules] ? " with rules" : ""
+      ds.title = "#{env[:config]} (#{fairness}#{ruliness})"
+    }
   end
 
-  benchmark "fmap.erb.cpp" do |bm|
-    bm.variant :config, [:mpl_vector, :mpl_list, :mpl11_list]
-    bm.variant :rules, [:with_rules, false]
-    bm.variant :fair, [:fair, false]
-    bm.variant :operation, [:fmap]
-    bm.if_{ config =~ /^mpl_/ && rules }.disable
-    bm.if_{ config =~ /^mpl_/ || fair }.require_(&input_bounded_to(50))
-    bm.plot 0.upto 250
+  def comparison(name)
+    TimingPlot.new name do |plot|
+      plot.title name
+      plot.term "png"
+      plot.output "comparison/#{name}.png"
+      plot.input_file = "comparison/#{name}.erb.cpp"
+      yield plot if block_given?
+    end
   end
 
-  benchmark "foldl.erb.cpp" do |bm|
-    bm.variant :config, %i{mpl_list mpl_vector mpl11_list}
-    bm.variant :fair, [:fair, false]
-    bm.if_{ config =~ /^mpl_/ || fair }.require_(&input_bounded_to(50))
-    bm.plot 0.upto 250
+  %w{at fmap fmap_nested foldl}.each do |operation|
+    comparison operation do |plot|
+      plot.input_file = "comparison/sequence_operation.erb.cpp"
+
+      dataset = proc { |*args, **kw|
+        plot.dataset(*args, **kw, operation: operation, &auto)
+      }
+
+      dataset.call(1..250, config: "mpl11::list", fair: false, rules: true)
+      dataset.call(1..250, config: "mpl11::list", fair: false, rules: false)
+      dataset.call(1..50,  config: "mpl::vector", fair: false)
+      dataset.call(1..50,  config: "mpl::list",   fair: false)
+
+      dataset.call(1..50, config: "mpl11::list", fair: true, rules: true)
+      dataset.call(1..50, config: "mpl11::list", fair: true, rules: false)
+      dataset.call(1..50, config: "mpl::vector", fair: true)
+      dataset.call(1..50, config: "mpl::list",   fair: true)
+    end
   end
 
-  benchmark "include_all.erb.cpp" do |bm|
-    bm.variant :config, [:mpl, :mpl11]
-    bm.plot 0..0 # TODO: Find a better way to present the results.
+  task :include_all, [:compiler] do |bm, args|
+    cc = Benchcc::Compiler[args.compiler]
+    mpl = cc.rtime("comparison/include_all.erb.cpp", config: :mpl)
+    mpl11 = cc.rtime("comparison/include_all.erb.cpp", config: :mpl11)
+    puts <<-EOS
+mpl:       #{mpl}\
+mpl11:     #{mpl11}\
+mpl/mpl11: #{mpl/mpl11}
+EOS
   end
 
-  benchmark "plus.erb.cpp" do |bm|
-    bm.variant :config, [:mpl11, :mpl]
-    bm.variant :fair,   [:fair, false]
-    bm.if_{ config == :mpl }.require_(&input_bounded_to(5))
-    bm.plot 2.upto 250
+  comparison :plus do |plot|
+    plot.dataset(2..250, config: :mpl11, fair: true, &auto)
+    plot.dataset(2..250, config: :mpl11, fair: false, &auto)
+    plot.dataset(2..5,   config: :mpl, fair: true, &auto)
+    plot.dataset(2..5,   config: :mpl, fair: false, &auto)
   end
 end
 
 desc "Benchmark different implementation techniques."
 benchmark_suite :techniques do
 
-  benchmark "alias_vs_struct.erb.cpp" do |bm|
-    bm.variant :config, %i{alias struct}
-    bm.plot (0..10_000).step 20
+  def technique(name)
+    TimingPlot.new name do |plot|
+      plot.title name
+      plot.term "png"
+      plot.output "techniques/#{name}.png"
+      plot.input_file = "techniques/#{name}.erb.cpp"
+      yield plot if block_given?
+    end
   end
 
-  benchmark "at_index.erb.cpp" do |bm|
-    bm.variant :config, %i{overload multiple_inheritance}
-    bm.plot 0.upto 500
+  technique :alias_vs_struct do |plot|
+    plot.dataset((0..10_000).step(20), config: :alias)
+    plot.dataset((0..10_000).step(20), config: :struct)
   end
 
-  benchmark "at_key.erb.cpp" do |bm|
-    bm.variant :config, %i{single_inheritance multiple_inheritance}
-    bm.if_{ config == :single_inheritance }.require_(&respect_template_depth)
-    bm.plot 0.upto 500
+  technique :at_index do |plot|
+    plot.dataset(0..500, config: :overload)
+    plot.dataset(0..500, config: :multiple_inheritance)
   end
 
-  benchmark "foldl.erb.cpp" do |bm|
-    bm.variant :config, %i{aliases standard_recursion}
-    bm.require_(&respect_template_depth)
-    bm.plot 0.upto 500
+  technique :at_key do |plot|
+    plot.dataset(0..500, config: :multiple_inheritance)
+    plot.dataset(flexible_range(0, template_depth), config: :single_inheritance)
   end
 
-  benchmark "implement_metafunction.erb.cpp" do |bm|
-    bm.variant :config, %i{specialize delegate}
-    bm.plot (0..10_000).step 10
+  technique :foldl do |plot|
+    plot.dataset(flexible_range(0, template_depth), config: :aliases)
+    plot.dataset(flexible_range(0, template_depth), config: :standard_recursion)
   end
 
-  benchmark "invoke_metafunction.erb.cpp" do |bm|
-    bm.variant :config, %i{flat_nested_type recursive_forwarding
-                                            recursive_nested_type}
-    bm.if_{ config =~ /^recursive/ }.require_(&respect_template_depth)
-    bm.plot (0..5_000).step 10
+  technique :implement_metafunction do |plot|
+    plot.dataset((0..10_000).step(10), config: :specialize)
+    plot.dataset((0..10_000).step(10), config: :delegate)
   end
 
-  benchmark "max.erb.cpp" do |bm|
-    bm.variant :config, %i{union standard_recursion recursive_constexpr}
-    bm.if_{ config == :standard_recursion }.require_(&respect_template_depth)
-    bm.if_{ config == :recursive_constexpr }.require_(&respect_constexpr_depth)
-    bm.plot 2.upto 500
+  technique :invoke_metafunction do |plot|
+    plot.dataset((0..5_000).step(10), config: :flat_nested_type)
+    plot.dataset(flexible_range(0, template_depth, 10), config: :recursive_forwarding)
+    plot.dataset(flexible_range(0, template_depth, 10), config: :recursive_nested_type)
   end
 
-  benchmark "mention_vs_instantiate.erb.cpp" do |bm|
-    bm.variant :config,  %i{mention instantiate}
-    bm.plot (0..5_000).step 10
+  technique :max do |plot|
+    plot.dataset(2..500, config: :union)
+    plot.dataset(flexible_range(2, constexpr_depth), config: :standard_recursion)
+    plot.dataset(flexible_range(2, constexpr_depth), config: :recursive_constexpr)
   end
 
-  benchmark "or.erb.cpp" do |bm|
-    bm.variant :config, %i{overload noexcept recursive_constexpr structs
-                           specialization short_circuit_structs}
-    bm.if_{ config =~ /structs$/ }.require_(&respect_template_depth)
-    bm.plot 0.upto 500
+  technique :mention_vs_instantiate do |plot|
+    plot.dataset((0..5_000).step(10), config: :mention)
+    plot.dataset((0..5_000).step(10), config: :instantiate)
   end
 
-  benchmark "sum.erb.cpp" do |bm|
-    bm.variant :config, %i{accumulating_constexpr recursive_constexpr
-                           recursive_struct sizeof_trick}
-    bm.if_{ config =~ /constexpr$/ }.require_(&respect_constexpr_depth)
-    bm.if_{ config == :recursive_struct }.require_(&respect_template_depth)
-    bm.plot 2.upto 500
+  technique :or do |plot|
+    %i{overload noexcept recursive_constexpr specialization}.each { |cfg|
+      plot.dataset(0..500, config: cfg)
+    }
+
+    plot.dataset(flexible_range(0, template_depth), config: :structs)
+    plot.dataset(flexible_range(0, template_depth), config: :short_circuit_structs)
   end
 
-  benchmark "trampoline.erb.cpp" do |bm|
-    bm.variant :config, %i{standard_recursion aliases
-                           macro_quantifier constexpr_quantifier}
-    bm.plot (1..30_000).step 100
+  technique :sum do |plot|
+    plot.dataset(flexible_range(2, constexpr_depth), config: :accumulating_constexpr)
+    plot.dataset(flexible_range(2, constexpr_depth), config: :recursive_constexpr)
+    plot.dataset(flexible_range(2, template_depth), config: :recursive_struct)
+    plot.dataset(2..500, config: :sizeof_trick)
   end
 
-  benchmark "while.erb.cpp" do |bm|
-    bm.variant :config, %i{aliases standard_recursion}
-    bm.require_(&respect_template_depth)
-    bm.plot 0.upto 500
+  technique :trampoline do |plot|
+    %i{standard_recursion aliases macro_quantifier constexpr_quantifier}.each { |cfg|
+      plot.dataset((1..30_000).step(100), config: cfg)
+    }
+  end
+
+  technique :while do |plot|
+    plot.dataset(flexible_range(0, template_depth), config: :aliases)
+    plot.dataset(flexible_range(0, template_depth), config: :standard_recursion)
   end
 end
