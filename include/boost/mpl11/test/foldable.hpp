@@ -20,6 +20,7 @@
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 #include <boost/mpl11/test/expect.hpp>
+#include <boost/mpl11/test/foldl.hpp>
 
 
 #define static_assert_(...) static_assert(__VA_ARGS__, # __VA_ARGS__)
@@ -41,23 +42,6 @@ struct y { using type = y; };
 struct z { using type = z; };
 
 using u = undefined;
-
-template <template <typename ...> class structure>
-struct test_foldl {
-    template <typename ...xs>
-    using _foldl = foldl<lift<f>, x0, structure<xs...>>;
-
-    struct go
-        : expect<_foldl<>>::template to_eq<x0>
-        , expect<_foldl<x1>>::template to_eq<f<x0, x1>>
-        , expect<_foldl<x1, x2>>::template to_eq<f<f<x0, x1>, x2>>
-        , expect<_foldl<x1, x2, x3>>::template to_eq<f<f<f<x0, x1>, x2>, x3>>
-        , expect<_foldl<x1, x2, x3, x4>>::template
-            to_eq<f<f<f<f<x0, x1>, x2>, x3>, x4>>
-    { };
-
-    static_assert_(sizeof(go));
-};
 
 template <template <typename ...> class structure>
 struct test_foldr {
@@ -378,7 +362,7 @@ struct test_datatype {
 
 template <template <typename ...> class structure>
 struct Foldable
-    : foldable_detail::test_foldl<structure>
+    : test_foldl<foldl, structure>
     , foldable_detail::test_foldr<structure>
     , foldable_detail::test_foldl1<structure>
     , foldable_detail::test_foldr1<structure>

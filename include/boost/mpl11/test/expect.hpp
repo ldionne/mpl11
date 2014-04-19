@@ -12,6 +12,7 @@
 #ifndef BOOST_MPL11_TEST_EXPECT_HPP
 #define BOOST_MPL11_TEST_EXPECT_HPP
 
+#include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/fwd/comparable.hpp>
@@ -27,15 +28,26 @@ namespace boost { namespace mpl11 { namespace test {
         using type = instantiate;
     };
 
+    template <typename ...xs>
+    struct show {
+        static_assert(detail::dependent<xs...>::value(false), "");
+    };
+
     template <typename expr>
     struct expect {
         template <template <typename ...> class Bool>
         struct _to {
+            template <typename r, bool =
+                Bool<equal<expr, r>>::value &&
+                !Bool<not_equal<expr, r>>::value
+            >
+            struct eq { };
+
             template <typename r>
-            struct eq {
-                static_assert(Bool<equal<expr, r>>::value, "");
-                static_assert(!Bool<not_equal<expr, r>>::value, "");
-            };
+            struct eq<r, false>
+                : show<expr, r>,
+                  show<typename expr::type, typename r::type>
+            { };
 
             template <typename predicate>
             struct satisfy {
