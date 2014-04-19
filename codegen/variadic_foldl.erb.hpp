@@ -18,24 +18,12 @@
 
 namespace boost { namespace mpl11 { namespace detail {
 <%
+    f = apply.curry(3)['f']
+    unroll = 5
 
     def xs(range)
       range.map(&:to_s).map(&"x".method(:+))
     end
-
-    def comma(xs)
-      xs.map(&", ".method(:+))
-    end
-
-    def typename(xs)
-      xs.map(&"typename ".method(:+))
-    end
-
-    f = -> (state, x) { "typename f::type::template apply<#{state}, #{x}>" }
-    state = "state"
-
-    UNROLL = 5
-
 %>
 
 /*!
@@ -46,19 +34,19 @@ namespace boost { namespace mpl11 { namespace detail {
 template <typename f, typename state, typename ...xs>
 struct variadic_foldl;
 
-template <typename f, typename state <%= comma(typename(xs(0..UNROLL))).join %>, typename ...xs>
-struct variadic_foldl<f, state <%= comma(xs(0..UNROLL)).join %>, xs...>
+template <typename f, typename state <%= comma(typename(xs(0..unroll))).join %>, typename ...xs>
+struct variadic_foldl<f, state <%= comma(xs(0..unroll)).join %>, xs...>
     : variadic_foldl<
         f,
-        <%= xs(0..UNROLL).reduce(state, &f) %>,
+        <%= xs(0..unroll).foldl("state", &f) %>,
         xs...
     >
 { };
 
-<% for n in 0..UNROLL %>
+<% for n in 0..unroll %>
     template <typename f, typename state <%= comma(typename(xs(0...n))).join %> >
     struct variadic_foldl<f, state <%= comma(xs(0...n)).join %> >
-        : <%= xs(0...n).reduce(state, &f).sub(/^typename/, "") %>
+        : <%= xs(0...n).foldl("state", &f).sub(/^typename/, "") %>
     { };
 <% end %>
 }}} // end namespace boost::mpl11::detail

@@ -18,32 +18,12 @@
 
 namespace boost { namespace mpl11 { namespace detail {
 <%
-
     def xs(range)
       range.map(&:to_s).map(&"x".method(:+))
     end
 
-    def comma(xs)
-      xs.map(&", ".method(:+))
-    end
-
-    def typename(xs)
-      xs.map(&"typename ".method(:+))
-    end
-
-    f = -> (x, state) { "typename f::type::template apply<#{x}, #{state}>" }
-    state = "state"
-
-    UNROLL = 5
-
-    module Enumerable
-      def foldr(state, &block)
-        reverse.inject(state) { |state, x| block.call(x, state) }
-      end
-
-      alias_method(:foldl, :inject)
-    end
-
+    f = apply.curry(3)['f']
+    unroll = 5
 %>
 
 /*!
@@ -54,15 +34,15 @@ namespace boost { namespace mpl11 { namespace detail {
 template <typename f, typename state, typename ...xs>
 struct variadic_foldr;
 
-template <typename f, typename state <%= comma(typename(xs(0..UNROLL))).join %>, typename ...xs>
-struct variadic_foldr<f, state <%= comma(xs(0..UNROLL)).join %>, xs...>
+template <typename f, typename state <%= comma(typename(xs(0..unroll))).join %>, typename ...xs>
+struct variadic_foldr<f, state <%= comma(xs(0..unroll)).join %>, xs...>
     : <%=
-        xs(0..UNROLL).foldr("variadic_foldr<f, state, xs...>", &f)
+        xs(0..unroll).foldr("variadic_foldr<f, state, xs...>", &f)
                      .sub(/^typename/, "")
     %>
 { };
 
-<% for n in 0..UNROLL %>
+<% for n in 0..unroll %>
     template <typename f, typename state <%= comma(typename(xs(0...n))).join %> >
     struct variadic_foldr<f, state <%= comma(xs(0...n)).join %> >
         : <%= xs(0...n).foldr("state", &f).sub(/^typename/, "") %>

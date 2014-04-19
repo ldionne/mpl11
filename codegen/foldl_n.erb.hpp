@@ -23,31 +23,28 @@
 namespace boost { namespace mpl11 { namespace detail {
 namespace foldl_n_detail {
     <%
-        f = -> (state, x) {
-          "typename f::type::template apply<#{state}, head<#{x}>>"
-        }
-
         def tail(n)
-          (0...n).reduce("xs") { |xs, _| "tail<#{xs}>" }
+          (0...n).foldl("xs") { |xs, _| "tail<#{xs}>" }
         end
 
         def tails(n)
           (0...n).map(&method(:tail))
         end
 
-        UNROLL = 5
+        f = -> (state, x) { apply.call('f', state, "head<#{x}>") }
+        unroll = 5
     %>
 
     template <std_size_t n, typename f, typename state, typename xs>
     struct impl {
         using left = impl<
-            (n - <%= UNROLL+1 %>)/2,
+            (n - <%= unroll+1 %>)/2,
             f,
-            <%= tails(UNROLL+1).reduce("state", &f) %>,
-            <%= tail(UNROLL+1) %>
+            <%= tails(unroll+1).foldl("state", &f) %>,
+            <%= tail(unroll+1) %>
         >;
         using right = impl<
-            (n - <%= UNROLL+1 %>) - (n - <%= UNROLL+1 %>)/2,
+            (n - <%= unroll+1 %>) - (n - <%= unroll+1 %>)/2,
             f,
             typename left::result,
             typename left::rest
@@ -57,11 +54,11 @@ namespace foldl_n_detail {
         using result = typename right::result;
     };
 
-    <% for n in 0..UNROLL %>
+    <% for n in 0..unroll %>
         template <typename f, typename state, typename xs>
         struct impl<<%= n %>, f, state, xs> {
             using rest = <%= tail n %>;
-            using result = <%= tails(n).reduce("state", &f) %>;
+            using result = <%= tails(n).foldl("state", &f) %>;
         };
     <% end %>
 } // end namespace foldl_n_detail

@@ -1,0 +1,47 @@
+require "erb"
+
+
+module Enumerable
+  def foldr(state, &block)
+    reverse.inject(state) { |state, x| block.call(x, state) }
+  end
+
+  alias_method(:foldl, :inject)
+end
+
+def comma(xs)
+  xs.map(&", ".method(:+))
+end
+
+def typename(xs)
+  xs.map(&"typename ".method(:+))
+end
+
+def apply
+  -> (f, *args) {
+    "typename #{f}::type::template apply<#{args.join(', ')}>"
+  }
+end
+
+
+task :default => [:all]
+task :all
+
+def generate_erb(input, output)
+  task :all => [output]
+
+  file output => [input] do |task|
+    erb = ERB.new(File.read(input), nil, '-')
+    erb.filename = input
+
+    File.open(output, 'w') do |out|
+      out.write(erb.result)
+    end
+  end
+end
+
+["foldl_n", "variadic_foldl", "variadic_foldr", "variadic_foldl_alias"].each do |fold|
+  generate_erb("#{fold}.erb.hpp", "../include/boost/mpl11/detail/#{fold}.hpp")
+end
+
+generate_erb("test_foldl.erb.hpp", "../include/boost/mpl11/test/foldl.hpp")

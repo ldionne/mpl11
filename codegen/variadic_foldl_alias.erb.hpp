@@ -22,18 +22,9 @@
 namespace boost { namespace mpl11 { namespace detail {
 namespace variadic_foldl_alias_detail {
     <%
-        UNROLL = 5
-        f = -> (state, x) { "typename f::type::template apply<#{state}, #{x}>" }
-        state = "state"
-        dispatch = "(sizeof...(xs) > #{UNROLL+1} ? #{UNROLL+1} : sizeof...(xs))"
-
-        def comma(xs)
-          xs.map(&", ".method(:+))
-        end
-
-        def typename(xs)
-          xs.map(&"typename ".method(:+))
-        end
+        unroll = 5
+        f = apply.curry(3)['f']
+        dispatch = "(sizeof...(xs) > #{unroll+1} ? #{unroll+1} : sizeof...(xs))"
 
         def xs(range)
           range.map(&:to_s).map(&"x".method(:+))
@@ -44,21 +35,21 @@ namespace variadic_foldl_alias_detail {
     struct impl;
 
     template <>
-    struct impl<    <%= UNROLL+1 %>   > {
-        template <typename f, typename state <%= comma(typename(xs(1..UNROLL+1))).join %>, typename ...xs>
+    struct impl<    <%= unroll+1 %>   > {
+        template <typename f, typename state <%= comma(typename(xs(1..unroll+1))).join %>, typename ...xs>
         using apply =
             typename impl<  <%= dispatch %>    >::template apply<
                 f,
-                <%= xs(1..UNROLL+1).reduce(state, &f) %>,
+                <%= xs(1..unroll+1).foldl("state", &f) %>,
                 xs...
             >;
     };
 
-    <% for n in 0..UNROLL %>
+    <% for n in 0..unroll %>
         template <>
         struct impl<    <%= n %>    > {
             template <typename f, typename state <%= comma(typename(xs(1..n))).join %>>
-            using apply = <%= xs(1..n).reduce(state, &f) %>;
+            using apply = <%= xs(1..n).foldl("state", &f) %>;
         };
     <% end %>
 } // end namespace variadic_foldl_alias_detail
