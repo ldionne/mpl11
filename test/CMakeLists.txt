@@ -24,10 +24,8 @@ function(mpl11_add_standalone_test test source)
         add_dependencies(${test} ${test}-${suffix})
 
         foreach(def IN ITEMS ${ARGN})
-            set_property(
-                TARGET ${test}-${suffix}
-                APPEND PROPERTY COMPILE_DEFINITIONS ${def}
-            )
+            set_property(TARGET ${test}-${suffix}
+                         APPEND PROPERTY COMPILE_DEFINITIONS ${def})
         endforeach()
     endmacro()
     helper(normal)
@@ -43,8 +41,8 @@ function(mpl11_add_tests module)
     endif()
 
     foreach(test IN ITEMS ${ARGN})
-        mpl11_add_standalone_test(${module}-${test} ${module}/${test}.cpp)
-        add_dependencies(${module} ${module}-${test})
+        mpl11_add_standalone_test(${module}.${test} ${module}/${test}.cpp)
+        add_dependencies(${module} ${module}.${test})
     endforeach()
 endfunction()
 
@@ -52,15 +50,19 @@ mpl11_add_tests(
     detail
     ######
     dependent
-    variadic_fold
+    foldl_n
     std_conditional
     std_index_sequence
     std_is_same
+    variadic_fold
+    variadic_foldl
+    variadic_foldl_alias
+    variadic_foldr
 )
 
 mpl11_add_tests(
     ext
-    ######
+    ###
     std_tuple
 )
 
