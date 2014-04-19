@@ -36,9 +36,13 @@ The MPL11 is a header only library. To use it in your own project, just add the
 [include](include) directory to your compiler's header search path and you are
 done.
 
-Note that a C++11 man-compiler is required. Currently, only Clang 3.5 and
-GCC 4.9 can compile all the tests. However, a standard library is _not_
-required at all.
+The library has no dependencies - not even the standard library. However,
+a C++11 man-compiler is required. The test suite passes under the following
+compilers:
+- clang version 3.4
+- clang version 3.5.0
+- GCC 4.9.0 20140302 (experimental)
+- Apple LLVM version 5.1 (clang-503.0.38)
 
 To compile the unit tests, you will also need [CMake][]. Once you have it, you
 can go to the root of the project and do:
