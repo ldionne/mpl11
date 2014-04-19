@@ -11,9 +11,9 @@
 
 #include <boost/mpl11/detail/variadic_foldl.hpp>
 
+#include <boost/mpl11/detail/test/foldable.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/list.hpp>
-#include <boost/mpl11/test/foldable.hpp>
 
 
 struct Minimal;
@@ -45,7 +45,7 @@ namespace boost { namespace mpl11 {
 }}
 
 struct tests
-    : boost::mpl11::test::Foldable<minimal>
+    : boost::mpl11::detail::test_Foldable<minimal>
 { };
 
 

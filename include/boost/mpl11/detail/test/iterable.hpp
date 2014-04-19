@@ -9,22 +9,22 @@
  *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#ifndef BOOST_MPL11_TEST_ITERABLE_HPP
-#define BOOST_MPL11_TEST_ITERABLE_HPP
+#ifndef BOOST_MPL11_DETAIL_TEST_ITERABLE_HPP
+#define BOOST_MPL11_DETAIL_TEST_ITERABLE_HPP
 
 #include <boost/mpl11/iterable.hpp>
 
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/test/expect.hpp>
+#include <boost/mpl11/detail/test/foldable.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 #include <boost/mpl11/logical.hpp>
-#include <boost/mpl11/test/expect.hpp>
-#include <boost/mpl11/test/foldable.hpp>
 
 
 #define static_assert_(...) static_assert(__VA_ARGS__, # __VA_ARGS__)
 
-namespace boost { namespace mpl11 { namespace test {
+namespace boost { namespace mpl11 { namespace detail {
 namespace iterable_detail {
 template <typename ...x>
 struct f { using type = f<typename x::type...>; };
@@ -236,8 +236,8 @@ struct test_datatype {
 } // end namespace iterable_detail
 
 template <template <typename ...> class structure>
-struct Iterable
-    : Foldable<structure>
+struct test_Iterable
+    : test_Foldable<structure>
 
     , iterable_detail::test_head<structure>
     , iterable_detail::test_tail<structure>
@@ -254,6 +254,6 @@ struct Iterable
 
     , iterable_detail::test_datatype<structure>
 { };
-}}} // end namespace boost::mpl11::test
+}}} // end namespace boost::mpl11::detail
 
-#endif // !BOOST_MPL11_TEST_ITERABLE_HPP
+#endif // !BOOST_MPL11_DETAIL_TEST_ITERABLE_HPP

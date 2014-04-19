@@ -14,10 +14,10 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/dependent.hpp>
+#include <boost/mpl11/detail/test/functor.hpp>
+#include <boost/mpl11/detail/test/iterable.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
-#include <boost/mpl11/test/functor.hpp>
-#include <boost/mpl11/test/iterable.hpp>
 
 #include "../check_finite_iterable.hpp"
 #include "../minimal_iterable.hpp"
@@ -29,11 +29,11 @@ template <typename ...xs>
 using conses = foldr<lift<cons>, list<>, list<xs...>>;
 
 struct test_instances
-    : test::Iterable<list>
-    , test::Functor<list>
+    : detail::test_Iterable<list>
+    , detail::test_Functor<list>
 
-    , test::Iterable<conses>
-    , test::Functor<conses>
+    , detail::test_Iterable<conses>
+    , detail::test_Functor<conses>
 { };
 
 namespace test_snoc {

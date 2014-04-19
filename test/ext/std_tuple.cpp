@@ -5,10 +5,10 @@
 
 #include <boost/mpl11/ext/std_tuple.hpp>
 
+#include <boost/mpl11/detail/test/expect.hpp>
+#include <boost/mpl11/detail/test/iterable.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/list.hpp>
-#include <boost/mpl11/test/expect.hpp>
-#include <boost/mpl11/test/iterable.hpp>
 #include <tuple>
 
 
@@ -30,15 +30,15 @@ struct test_conversion {
     using as_tuple = tuple<t<xs>...>;
     using as_cons = foldr<lift<cons>, list<>, as_list>;
 
-    using go = typename test::instantiate<
-        typename test::expect<_cast<List, as_tuple>>::template to_eq<as_list>,
-        typename test::expect<_cast<StdTuple, as_list>>::template to_eq<as_tuple>,
-        typename test::expect<_cast<StdTuple, as_cons>>::template to_eq<as_tuple>
+    using go = typename detail::instantiate<
+        typename detail::expect<_cast<List, as_tuple>>::template to_eq<as_list>,
+        typename detail::expect<_cast<StdTuple, as_list>>::template to_eq<as_tuple>,
+        typename detail::expect<_cast<StdTuple, as_cons>>::template to_eq<as_tuple>
     >::type;
 };
 
 struct tests
-    : test::Iterable<tuple>
+    : detail::test_Iterable<tuple>
 
     , test_conversion<>
     , test_conversion<0>

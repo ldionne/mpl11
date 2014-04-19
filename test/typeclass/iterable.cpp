@@ -7,7 +7,7 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/test/iterable.hpp>
+#include <boost/mpl11/detail/test/iterable.hpp>
 
 
 struct Minimal;
@@ -45,7 +45,7 @@ namespace boost { namespace mpl11 {
 }} // end namespace boost::mpl11
 
 struct tests
-    : boost::mpl11::test::Iterable<minimal>
+    : boost::mpl11::detail::test_Iterable<minimal>
 { };
 
 

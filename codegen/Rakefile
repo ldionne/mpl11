@@ -44,4 +44,4 @@ end
   generate_erb("#{fold}.erb.hpp", "../include/boost/mpl11/detail/#{fold}.hpp")
 end
 
-generate_erb("test_foldl.erb.hpp", "../include/boost/mpl11/test/foldl.hpp")
+generate_erb("test_foldl.erb.hpp", "../include/boost/mpl11/detail/test/foldl.hpp")

@@ -6,7 +6,7 @@
 #include <boost/mpl11/detail/lazy_variadic_foldr.hpp>
 #include <boost/mpl11/detail/strict_variadic_foldl.hpp>
 
-#include <boost/mpl11/test/foldable.hpp>
+#include <boost/mpl11/detail/test/foldable.hpp>
 
 
 struct Test;
@@ -39,7 +39,7 @@ namespace boost { namespace mpl11 {
 }}
 
 struct tests
-    : boost::mpl11::test::Foldable<foldable>
+    : boost::mpl11::detail::test_Foldable<foldable>
 { };
 
 

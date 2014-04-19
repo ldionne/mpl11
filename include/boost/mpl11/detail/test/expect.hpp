@@ -9,8 +9,8 @@
  *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#ifndef BOOST_MPL11_TEST_EXPECT_HPP
-#define BOOST_MPL11_TEST_EXPECT_HPP
+#ifndef BOOST_MPL11_DETAIL_TEST_EXPECT_HPP
+#define BOOST_MPL11_DETAIL_TEST_EXPECT_HPP
 
 #include <boost/mpl11/detail/dependent.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
@@ -19,18 +19,18 @@
 #include <boost/mpl11/logical.hpp>
 
 
-namespace boost { namespace mpl11 { namespace test {
+namespace boost { namespace mpl11 { namespace detail {
     template <typename ...xs>
     struct instantiate {
         // We avoid empty arrays by adding a dummy 0.
-        static constexpr detail::std_size_t go[] = {0, sizeof(xs)...};
+        static constexpr std_size_t go[] = {0, sizeof(xs)...};
 
         using type = instantiate;
     };
 
     template <typename ...xs>
     struct show {
-        static_assert(detail::dependent<xs...>::value(false), "");
+        static_assert(dependent<xs...>::value(false), "");
     };
 
     template <typename expr>
@@ -79,6 +79,6 @@ namespace boost { namespace mpl11 { namespace test {
         template <typename pred>
         using to_satisfy = typename to::template satisfy<pred>;
     };
-}}} // end namespace boost::mpl11::test
+}}} // end namespace boost::mpl11::detail
 
-#endif // !BOOST_MPL11_TEST_EXPECT_HPP
+#endif // !BOOST_MPL11_DETAIL_TEST_EXPECT_HPP

@@ -9,23 +9,23 @@
  *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#ifndef BOOST_MPL11_TEST_FOLDABLE_HPP
-#define BOOST_MPL11_TEST_FOLDABLE_HPP
+#ifndef BOOST_MPL11_DETAIL_TEST_FOLDABLE_HPP
+#define BOOST_MPL11_DETAIL_TEST_FOLDABLE_HPP
 
 #include <boost/mpl11/foldable.hpp>
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
+#include <boost/mpl11/detail/test/expect.hpp>
+#include <boost/mpl11/detail/test/foldl.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
-#include <boost/mpl11/test/expect.hpp>
-#include <boost/mpl11/test/foldl.hpp>
 
 
 #define static_assert_(...) static_assert(__VA_ARGS__, # __VA_ARGS__)
 
-namespace boost { namespace mpl11 { namespace test {
+namespace boost { namespace mpl11 { namespace detail {
 namespace foldable_detail {
 template <typename ...x>
 struct f { using type = f<typename x::type...>; };
@@ -361,7 +361,7 @@ struct test_datatype {
 } // end namespace foldable_detail
 
 template <template <typename ...> class structure>
-struct Foldable
+struct test_Foldable
     : test_foldl<foldl, structure>
     , foldable_detail::test_foldr<structure>
     , foldable_detail::test_foldl1<structure>
@@ -385,6 +385,6 @@ struct Foldable
     , foldable_detail::test_unpack<structure>
     , foldable_detail::test_datatype<structure>
 { };
-}}} // end namespace boost::mpl11::test
+}}} // end namespace boost::mpl11::detail
 
-#endif // !BOOST_MPL11_TEST_FOLDABLE_HPP
+#endif // !BOOST_MPL11_DETAIL_TEST_FOLDABLE_HPP

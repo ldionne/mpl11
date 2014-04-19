@@ -6,7 +6,7 @@
 #include <boost/mpl11/foldable.hpp>
 
 #include <boost/mpl11/core.hpp>
-#include <boost/mpl11/test/foldable.hpp>
+#include <boost/mpl11/detail/test/foldable.hpp>
 
 
 struct Minimal;
@@ -59,7 +59,7 @@ namespace boost { namespace mpl11 {
 }} // end namespace boost::mpl11
 
 struct tests
-    : boost::mpl11::test::Foldable<minimal>
+    : boost::mpl11::detail::test_Foldable<minimal>
 { };
 
 

@@ -13,14 +13,14 @@
 // GENERATED HEADER: DO NOT EDIT.
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef BOOST_MPL11_TEST_FOLDL_HPP
-#define BOOST_MPL11_TEST_FOLDL_HPP
+#ifndef BOOST_MPL11_DETAIL_TEST_FOLDL_HPP
+#define BOOST_MPL11_DETAIL_TEST_FOLDL_HPP
 
+#include <boost/mpl11/detail/test/expect.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/test/expect.hpp>
 
 
-namespace boost { namespace mpl11 { namespace test {
+namespace boost { namespace mpl11 { namespace detail {
     namespace foldl_detail {
         template <int> struct x { using type = x; };
 
@@ -49,6 +49,6 @@ namespace boost { namespace mpl11 { namespace test {
     } // end namespace foldl_detail
 
     using foldl_detail::test_foldl;
-}}} // end namespace boost::mpl11::test
+}}} // end namespace boost::mpl11::detail
 
-#endif // !BOOST_MPL11_TEST_FOLDL_HPP
+#endif // !BOOST_MPL11_DETAIL_TEST_FOLDL_HPP

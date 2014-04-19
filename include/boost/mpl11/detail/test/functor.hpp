@@ -9,17 +9,17 @@
  *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
-#ifndef BOOST_MPL11_TEST_FUNCTOR_HPP
-#define BOOST_MPL11_TEST_FUNCTOR_HPP
+#ifndef BOOST_MPL11_DETAIL_TEST_FUNCTOR_HPP
+#define BOOST_MPL11_DETAIL_TEST_FUNCTOR_HPP
 
 #include <boost/mpl11/functor.hpp>
 
 #include <boost/mpl11/core.hpp>
+#include <boost/mpl11/detail/test/expect.hpp>
 #include <boost/mpl11/functional.hpp>
-#include <boost/mpl11/test/expect.hpp>
 
 
-namespace boost { namespace mpl11 { namespace test {
+namespace boost { namespace mpl11 { namespace detail {
 namespace functor_detail {
 template <typename ...x>
 struct f { using type = f<typename x::type...>; };
@@ -67,10 +67,10 @@ struct test_datatype {
 } // end namespace functor_detail
 
 template <template <typename ...> class functor>
-struct Functor
+struct test_Functor
     : functor_detail::test_fmap<functor>
     , functor_detail::test_datatype<functor>
 { };
-}}} // end namespace boost::mpl11::test
+}}} // end namespace boost::mpl11::detail
 
-#endif // !BOOST_MPL11_TEST_FUNCTOR_HPP
+#endif // !BOOST_MPL11_DETAIL_TEST_FUNCTOR_HPP
