@@ -15,7 +15,7 @@
 #include <boost/mpl11/fwd/logical.hpp>
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/lazy_variadic_foldr.hpp>
+#include <boost/mpl11/detail/right_folds/variadic.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -38,28 +38,32 @@ namespace boost { namespace mpl11 {
         struct and2 {
             using type = and2;
             template <typename x, typename y>
-            using apply = bool_<
-                (bool)if_c<(bool)x::type::value, y, x>::type::value
-            >;
+            struct apply
+                : bool_<
+                    (bool)if_c<(bool)x::type::value, y, x>::type::value
+                >
+            { };
         };
 
         struct or2 {
             using type = or2;
             template <typename x, typename y>
-            using apply = bool_<
-                (bool)if_c<(bool)x::type::value, x, y>::type::value
-            >;
+            struct apply
+                : bool_<
+                    (bool)if_c<(bool)x::type::value, x, y>::type::value
+                >
+            { };
         };
     } // end namespace logical_detail
 
     template <typename ...xs>
     struct and_
-        : detail::lazy_variadic_foldr<logical_detail::and2, true_, xs...>
+        : detail::right_folds::variadic<logical_detail::and2, true_, xs...>
     { };
 
     template <typename ...xs>
     struct or_
-        : detail::lazy_variadic_foldr<logical_detail::or2, false_, xs...>
+        : detail::right_folds::variadic<logical_detail::or2, false_, xs...>
     { };
 
     template <typename x>

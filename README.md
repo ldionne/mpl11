@@ -1362,12 +1362,9 @@ a boxed type, so they're not completely forgotten.
       datatype itself. This was done in a previous version, but it might have
       some advantages.
 - [ ] Consider providing automatic currying for metafunctions.
-- [ ] Is it necessary/possible to optimize `foldr`?
 - [ ] By making some std algorithms constexpr and providing a couple of
       containers with constexpr iterators, would we have constexpr for free
       almost everywhere?
-- [ ] Make it possible to reuse tests for single metafunctions. Once that is
-      possible, remove duplication in the various fold unit tests.
 
 
 <!-- Links -->

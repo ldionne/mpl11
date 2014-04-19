@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::variadic_foldl_alias`.
+ * Defines `boost::mpl11::detail::left_folds::variadic_aliased`.
  *
  *
  * @copyright Louis Dionne 2014
@@ -13,24 +13,23 @@
 // GENERATED HEADER: DO NOT EDIT.
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef BOOST_MPL11_DETAIL_VARIADIC_FOLDL_ALIAS_HPP
-#define BOOST_MPL11_DETAIL_VARIADIC_FOLDL_ALIAS_HPP
+#ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_ALIASED_HPP
+#define BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_ALIASED_HPP
 
 #include <boost/mpl11/detail/std_size_t.hpp>
 
 
-namespace boost { namespace mpl11 { namespace detail {
-namespace variadic_foldl_alias_detail {
+namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     
 
     template <std_size_t n>
-    struct impl;
+    struct variadic_aliased_impl;
 
     template <>
-    struct impl<    6   > {
+    struct variadic_aliased_impl<    6   > {
         template <typename f, typename state , typename x1, typename x2, typename x3, typename x4, typename x5, typename x6, typename ...xs>
         using apply =
-            typename impl<  (sizeof...(xs) > 6 ? 6 : sizeof...(xs))    >::template apply<
+            typename variadic_aliased_impl<  (sizeof...(xs) > 6 ? 6 : sizeof...(xs))    >::template apply<
                 f,
                 typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, x1>, x2>, x3>, x4>, x5>, x6>,
                 xs...
@@ -39,53 +38,52 @@ namespace variadic_foldl_alias_detail {
 
     
         template <>
-        struct impl<    0    > {
+        struct variadic_aliased_impl<    0    > {
             template <typename f, typename state >
             using apply = state;
         };
     
         template <>
-        struct impl<    1    > {
+        struct variadic_aliased_impl<    1    > {
             template <typename f, typename state , typename x1>
             using apply = typename f::type::template apply<state, x1>;
         };
     
         template <>
-        struct impl<    2    > {
+        struct variadic_aliased_impl<    2    > {
             template <typename f, typename state , typename x1, typename x2>
             using apply = typename f::type::template apply<typename f::type::template apply<state, x1>, x2>;
         };
     
         template <>
-        struct impl<    3    > {
+        struct variadic_aliased_impl<    3    > {
             template <typename f, typename state , typename x1, typename x2, typename x3>
             using apply = typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, x1>, x2>, x3>;
         };
     
         template <>
-        struct impl<    4    > {
+        struct variadic_aliased_impl<    4    > {
             template <typename f, typename state , typename x1, typename x2, typename x3, typename x4>
             using apply = typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, x1>, x2>, x3>, x4>;
         };
     
         template <>
-        struct impl<    5    > {
+        struct variadic_aliased_impl<    5    > {
             template <typename f, typename state , typename x1, typename x2, typename x3, typename x4, typename x5>
             using apply = typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, x1>, x2>, x3>, x4>, x5>;
         };
     
-} // end namespace variadic_foldl_alias_detail
 
-/*!
- * @ingroup details
- *
- * Recursive alias-based variadic left fold.
- */
-template <typename f, typename state, typename ...xs>
-struct variadic_foldl_alias
-    : variadic_foldl_alias_detail::impl<    (sizeof...(xs) > 6 ? 6 : sizeof...(xs))     >::
-      template apply<f, state, xs...>
-{ };
-}}} // end namespace boost::mpl11::detail
+    /*!
+     * @ingroup details
+     *
+     * Recursive alias-based variadic left fold.
+     */
+    template <typename f, typename state, typename ...xs>
+    struct variadic_aliased
+        : variadic_aliased_impl<    (sizeof...(xs) > 6 ? 6 : sizeof...(xs))     >::
+          template apply<f, state, xs...>
+    { };
+}}}} // end namespace boost::mpl11::detail::left_folds
 
-#endif // !BOOST_MPL11_DETAIL_VARIADIC_FOLDL_ALIAS_HPP
+#endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_ALIASED_HPP

@@ -40,8 +40,14 @@ def generate_erb(input, output)
   end
 end
 
-["foldl_n", "variadic_foldl", "variadic_foldr", "variadic_foldl_alias"].each do |fold|
-  generate_erb("#{fold}.erb.hpp", "../include/boost/mpl11/detail/#{fold}.hpp")
+
+["bounded", "variadic", "variadic_aliased"].each do |fold|
+  generate_erb("left_folds/#{fold}.erb.hpp", "../include/boost/mpl11/detail/left_folds/#{fold}.hpp")
+end
+
+["variadic"].each do |fold|
+  generate_erb("right_folds/#{fold}.erb.hpp", "../include/boost/mpl11/detail/right_folds/#{fold}.hpp")
 end
 
 generate_erb("test_foldl.erb.hpp", "../include/boost/mpl11/detail/test/foldl.hpp")
+generate_erb("test_foldr.erb.hpp", "../include/boost/mpl11/detail/test/foldr.hpp")

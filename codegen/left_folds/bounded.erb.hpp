@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::foldl_n`.
+ * Defines `boost::mpl11::detail::left_folds::bounded`.
  *
  *
  * @copyright Louis Dionne 2014
@@ -13,15 +13,14 @@
 // GENERATED HEADER: DO NOT EDIT.
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef BOOST_MPL11_DETAIL_FOLDL_N_HPP
-#define BOOST_MPL11_DETAIL_FOLDL_N_HPP
+#ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_BOUNDED_HPP
+#define BOOST_MPL11_DETAIL_LEFT_FOLDS_BOUNDED_HPP
 
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/fwd/iterable.hpp>
 
 
-namespace boost { namespace mpl11 { namespace detail {
-namespace foldl_n_detail {
+namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     <%
         def tail(n)
           (0...n).foldl("xs") { |xs, _| "tail<#{xs}>" }
@@ -36,14 +35,14 @@ namespace foldl_n_detail {
     %>
 
     template <std_size_t n, typename f, typename state, typename xs>
-    struct impl {
-        using left = impl<
+    struct bounded_impl {
+        using left = bounded_impl<
             (n - <%= unroll+1 %>)/2,
             f,
             <%= tails(unroll+1).foldl("state", &f) %>,
             <%= tail(unroll+1) %>
         >;
-        using right = impl<
+        using right = bounded_impl<
             (n - <%= unroll+1 %>) - (n - <%= unroll+1 %>)/2,
             f,
             typename left::result,
@@ -56,20 +55,19 @@ namespace foldl_n_detail {
 
     <% for n in 0..unroll %>
         template <typename f, typename state, typename xs>
-        struct impl<<%= n %>, f, state, xs> {
+        struct bounded_impl<<%= n %>, f, state, xs> {
             using rest = <%= tail n %>;
             using result = <%= tails(n).foldl("state", &f) %>;
         };
     <% end %>
-} // end namespace foldl_n_detail
 
-/*!
- * @ingroup details
- *
- * Left fold stopping after `n` steps.
- */
-template <std_size_t n, typename f, typename state, typename xs>
-using foldl_n = typename foldl_n_detail::impl<n, f, state, xs>::result;
-}}} // end namespace boost::mpl11::detail
+    /*!
+     * @ingroup details
+     *
+     * Left fold stopping after `n` steps.
+     */
+    template <std_size_t n, typename f, typename state, typename xs>
+    using bounded = typename bounded_impl<n, f, state, xs>::result;
+}}}} // end namespace boost::mpl11::detail::left_folds
 
-#endif // !BOOST_MPL11_DETAIL_FOLDL_N_HPP
+#endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_BOUNDED_HPP

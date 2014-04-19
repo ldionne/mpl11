@@ -19,6 +19,7 @@
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/detail/test/expect.hpp>
 #include <boost/mpl11/detail/test/foldl.hpp>
+#include <boost/mpl11/detail/test/foldr.hpp>
 #include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/integer.hpp>
 
@@ -43,22 +44,6 @@ struct z { using type = z; };
 
 using u = undefined;
 
-template <template <typename ...> class structure>
-struct test_foldr {
-    template <typename ...xs>
-    using _foldr = foldr<lift<f>, x0, structure<xs...>>;
-
-    struct go
-        : expect<_foldr<>>::template to_eq<x0>
-        , expect<_foldr<x1>>::template to_eq<f<x1, x0>>
-        , expect<_foldr<x1, x2>>::template to_eq<f<x1, f<x2, x0>>>
-        , expect<_foldr<x1, x2, x3>>::template to_eq<f<x1, f<x2, f<x3, x0>>>>
-        , expect<_foldr<x1, x2, x3, x4>>::template
-            to_eq<f<x1, f<x2, f<x3, f<x4, x0>>>>>
-    { };
-
-    static_assert_(sizeof(go));
-};
 
 template <template <typename ...> class structure>
 struct test_foldr1 {
@@ -363,7 +348,7 @@ struct test_datatype {
 template <template <typename ...> class structure>
 struct test_Foldable
     : test_foldl<foldl, structure>
-    , foldable_detail::test_foldr<structure>
+    , test_foldr<foldr, structure>
     , foldable_detail::test_foldl1<structure>
     , foldable_detail::test_foldr1<structure>
 
