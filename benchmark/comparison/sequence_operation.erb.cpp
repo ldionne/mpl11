@@ -20,7 +20,7 @@
     end
 
     def headers
-        @headers.select { |config, hdrs| @env.fair || @env.config === config }
+        @headers.select { |config| @env.config === config }
                 .values
                 .flatten
                 .map(&"#include ".method(:+))
@@ -29,10 +29,6 @@
 
     def dataset
         "using dataset = #{@datasets[@env.config]};"
-    end
-
-    def mpl_include header
-        "#include #{header}" if @env.fair || @env.config =~ /^mpl::/
     end
 %>
 
@@ -60,8 +56,8 @@ case env.operation
 %>
 
 
-    <%= mpl_include("<boost/mpl/transform.hpp>") %>
     <% if env.config =~ /^mpl::/ %>
+        #include <boost/mpl/transform.hpp>
         template <typename f, typename dataset>
         using fmap = typename boost::mpl::transform<dataset, f>::type;
     <% else %>
@@ -78,8 +74,8 @@ case env.operation
 <% when :at %>
 
 
-    <%= mpl_include("<boost/mpl/at.hpp>") %>
     <% if env.config =~ /^mpl::/ %>
+        #include <boost/mpl/at.hpp>
         using boost::mpl::at_c;
     <% else %>
         template <typename xs, unsigned long n>
@@ -94,8 +90,8 @@ case env.operation
 
     struct state { struct type; };
 
-    <%= mpl_include("<boost/mpl/fold.hpp>") %>
     <% if env.config =~ /^mpl::/ %>
+        #include <boost/mpl/fold.hpp>
         template <typename f, typename state, typename xs>
         using foldl = boost::mpl::fold<xs, state, f>;
     <% else %>

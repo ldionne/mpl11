@@ -1,9 +1,9 @@
-<% if env[:config] == :mpl || env[:fair] %>
+<% if env[:config] == :mpl %>
     #include <boost/mpl/long.hpp>
     #include <boost/mpl/plus.hpp>
 <% end %>
 
-<% if env[:config] == :mpl11 || env[:fair] %>
+<% if env[:config] == :mpl11 %>
     #include <boost/mpl11/integer.hpp>
 <% end %>
 

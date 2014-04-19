@@ -7,6 +7,10 @@ require "rake"
 require "ruby-progressbar"
 
 
+def procify(x)
+  Proc === x ? x : proc { x }
+end
+
 class Plot < Gnuplot::Plot
   include Rake::DSL
 
@@ -14,6 +18,7 @@ class Plot < Gnuplot::Plot
     super() { }
     @datasets = task name.to_s + "_datasets", [:compiler]
 
+    # Add a task to draw the plot after the datasets are gathered.
     task name, [:compiler] => [@datasets.name] do
       Gnuplot.open do |process|
         process << to_gplot
@@ -36,19 +41,16 @@ end
 
 class ManyInputPlot < Plot
   def dataset(input, y, **env)
-    _input = Proc === input ? input : proc { input }
     super(**env) do |ds, ctx|
       yield ds, ctx if block_given?
 
-      xs = _input.call(ctx).to_a
-
+      xs = procify(input).call(ctx).to_a
       progress = ProgressBar.create(format: "#{ds.title} %p%% | %B |", total: xs.size)
       ys = xs.map { |x|
         y.call(ctx.merge(input: x))
          .tap{ progress.increment }
       }
       ds.data = [xs, ys]
-      puts ds.data
     end
   end
 end
@@ -67,7 +69,7 @@ class TimingPlot < ManyInputPlot
 
   def dataset(xs, file = nil, **env, &block)
     file ||= input_file
-    compute = -> (ctx) { ctx[:compiler].rtime(file, ctx).real }
+    compute = -> (ctx) { ctx[:compiler].rtime(file, ctx, repetitions: 1).real }
     super(xs, compute, **env, &block)
   end
 end
@@ -84,7 +86,7 @@ class MemusgPlot < ManyInputPlot
 
   attr_accessor :input_file
 
-  def dataset(xs, file = nil, **env)
+  def dataset(xs, file = nil, **env, &block)
     file ||= input_file
     compute = -> (ctx) { raise NotImplementedError }
     super(xs, compute, **env, &block)
@@ -92,11 +94,7 @@ class MemusgPlot < ManyInputPlot
 end
 
 
-def procify(x)
-  Proc === x ? x : proc { x }
-end
-
-def flexible_range(from, to, step = 1)
+def range(from, to, step = 1)
   from, to, step = procify(from), procify(to), procify(step)
   proc { |*args|
     (from.call(*args)..to.call(*args)).step(step.call(*args))
@@ -141,15 +139,6 @@ task :all => [:comparison, :techniques]
 desc "Benchmark MPL vs MPL11."
 benchmark_suite :comparison do
 
-  def auto
-    proc { |ds, env|
-      ds.with = "lines"
-      fairness = env[:fair] ? "fair" : "unfair"
-      ruliness = env[:rules] ? " with rules" : ""
-      ds.title = "#{env[:config]} (#{fairness}#{ruliness})"
-    }
-  end
-
   def comparison(name)
     TimingPlot.new name do |plot|
       plot.title name
@@ -160,23 +149,25 @@ benchmark_suite :comparison do
     end
   end
 
+  def default_ds
+    proc { |ds, ctx|
+      ds.with = "lines"
+      ds.title = "#{ctx[:config]}" + (ctx[:rules] ? " (with rules)" : "")
+    }
+  end
+
   %w{at fmap fmap_nested foldl}.each do |operation|
     comparison operation do |plot|
       plot.input_file = "comparison/sequence_operation.erb.cpp"
 
       dataset = proc { |*args, **kw|
-        plot.dataset(*args, **kw, operation: operation, &auto)
+        plot.dataset(*args, **kw, operation: operation, &default_ds)
       }
 
-      dataset.call(1..250, config: "mpl11::list", fair: false, rules: true)
-      dataset.call(1..250, config: "mpl11::list", fair: false, rules: false)
-      dataset.call(1..50,  config: "mpl::vector", fair: false)
-      dataset.call(1..50,  config: "mpl::list",   fair: false)
-
-      dataset.call(1..50, config: "mpl11::list", fair: true, rules: true)
-      dataset.call(1..50, config: "mpl11::list", fair: true, rules: false)
-      dataset.call(1..50, config: "mpl::vector", fair: true)
-      dataset.call(1..50, config: "mpl::list",   fair: true)
+      dataset.call(range(1, template_depth), config: "mpl11::list", rules: true)
+      dataset.call(range(1, template_depth), config: "mpl11::list", rules: false)
+      dataset.call(1..50,  config: "mpl::vector")
+      dataset.call(1..50,  config: "mpl::list")
     end
   end
 
@@ -192,10 +183,8 @@ EOS
   end
 
   comparison :plus do |plot|
-    plot.dataset(2..250, config: :mpl11, fair: true, &auto)
-    plot.dataset(2..250, config: :mpl11, fair: false, &auto)
-    plot.dataset(2..5,   config: :mpl, fair: true, &auto)
-    plot.dataset(2..5,   config: :mpl, fair: false, &auto)
+    plot.dataset(range(2, template_depth), config: :mpl11, &default_ds)
+    plot.dataset(2..5,   config: :mpl, &default_ds)
   end
 end
 
@@ -224,12 +213,12 @@ benchmark_suite :techniques do
 
   technique :at_key do |plot|
     plot.dataset(0..500, config: :multiple_inheritance)
-    plot.dataset(flexible_range(0, template_depth), config: :single_inheritance)
+    plot.dataset(range(0, template_depth), config: :single_inheritance)
   end
 
   technique :foldl do |plot|
-    plot.dataset(flexible_range(0, template_depth), config: :aliases)
-    plot.dataset(flexible_range(0, template_depth), config: :standard_recursion)
+    plot.dataset(range(0, template_depth), config: :aliases)
+    plot.dataset(range(0, template_depth), config: :standard_recursion)
   end
 
   technique :implement_metafunction do |plot|
@@ -239,14 +228,14 @@ benchmark_suite :techniques do
 
   technique :invoke_metafunction do |plot|
     plot.dataset((0..5_000).step(10), config: :flat_nested_type)
-    plot.dataset(flexible_range(0, template_depth, 10), config: :recursive_forwarding)
-    plot.dataset(flexible_range(0, template_depth, 10), config: :recursive_nested_type)
+    plot.dataset(range(0, template_depth, 10), config: :recursive_forwarding)
+    plot.dataset(range(0, template_depth, 10), config: :recursive_nested_type)
   end
 
   technique :max do |plot|
     plot.dataset(2..500, config: :union)
-    plot.dataset(flexible_range(2, constexpr_depth), config: :standard_recursion)
-    plot.dataset(flexible_range(2, constexpr_depth), config: :recursive_constexpr)
+    plot.dataset(range(2, constexpr_depth), config: :standard_recursion)
+    plot.dataset(range(2, constexpr_depth), config: :recursive_constexpr)
   end
 
   technique :mention_vs_instantiate do |plot|
@@ -259,14 +248,14 @@ benchmark_suite :techniques do
       plot.dataset(0..500, config: cfg)
     }
 
-    plot.dataset(flexible_range(0, template_depth), config: :structs)
-    plot.dataset(flexible_range(0, template_depth), config: :short_circuit_structs)
+    plot.dataset(range(0, template_depth), config: :structs)
+    plot.dataset(range(0, template_depth), config: :short_circuit_structs)
   end
 
   technique :sum do |plot|
-    plot.dataset(flexible_range(2, constexpr_depth), config: :accumulating_constexpr)
-    plot.dataset(flexible_range(2, constexpr_depth), config: :recursive_constexpr)
-    plot.dataset(flexible_range(2, template_depth), config: :recursive_struct)
+    plot.dataset(range(2, constexpr_depth), config: :accumulating_constexpr)
+    plot.dataset(range(2, constexpr_depth), config: :recursive_constexpr)
+    plot.dataset(range(2, template_depth), config: :recursive_struct)
     plot.dataset(2..500, config: :sizeof_trick)
   end
 
@@ -277,7 +266,7 @@ benchmark_suite :techniques do
   end
 
   technique :while do |plot|
-    plot.dataset(flexible_range(0, template_depth), config: :aliases)
-    plot.dataset(flexible_range(0, template_depth), config: :standard_recursion)
+    plot.dataset(range(0, template_depth), config: :aliases)
+    plot.dataset(range(0, template_depth), config: :standard_recursion)
   end
 end
