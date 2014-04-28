@@ -30,11 +30,13 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
           (0...n).map(&method(:tail))
         end
 
-        f = -> (state, x) { apply.call('f', state, "head<#{x}>") }
+        f = -> (state, xs) { "f<#{state}, head<#{xs}>>" }
         unroll = 5
     %>
 
-    template <std_size_t n, typename f, typename state, typename xs>
+    template <
+        std_size_t n, template <typename ...> class f,
+        typename state, typename xs>
     struct bounded_impl {
         using left = bounded_impl<
             (n - <%= unroll+1 %>)/2,
@@ -54,7 +56,7 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     };
 
     <% for n in 0..unroll %>
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<<%= n %>, f, state, xs> {
             using rest = <%= tail n %>;
             using result = <%= tails(n).foldl("state", &f) %>;
@@ -65,8 +67,15 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
      * @ingroup details
      *
      * Left fold stopping after `n` steps.
+     *
+     * The metafunction is unlifted for performance.
      */
-    template <std_size_t n, typename f, typename state, typename xs>
+    template <
+        std_size_t n,
+        template <typename ...> class f,
+        typename state,
+        typename xs
+    >
     using bounded = typename bounded_impl<n, f, state, xs>::result;
 }}}} // end namespace boost::mpl11::detail::left_folds
 

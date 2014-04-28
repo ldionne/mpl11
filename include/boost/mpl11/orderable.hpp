@@ -46,7 +46,6 @@ namespace boost { namespace mpl11 {
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_aliased.hpp>
-#include <boost/mpl11/functional.hpp>
 #include <boost/mpl11/logical.hpp>
 
 
@@ -112,7 +111,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xs>
     struct min
-        : detail::left_folds::variadic_aliased<lift<min>, x1, x2, xs...>
+        : detail::left_folds::variadic_aliased<min, x1, x2, xs...>
     { };
 
     template <typename x, typename y>
@@ -126,7 +125,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xs>
     struct max
-        : detail::left_folds::variadic_aliased<lift<max>, x1, x2, xs...>
+        : detail::left_folds::variadic_aliased<max, x1, x2, xs...>
     { };
 
     template <typename x, typename y>

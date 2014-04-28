@@ -17,15 +17,18 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
      * @ingroup details
      *
      * Naive left fold for parameter packs.
+     *
+     * The metafunction is unlifted for performance.
      */
-    template <typename f, typename state, typename ...xs>
+    template <template <typename ...> class f, typename state, typename ...xs>
     struct variadic_naive : state { };
 
-    template <typename f, typename state, typename x, typename ...xs>
+    template <
+        template <typename ...> class f,
+        typename state, typename x, typename ...xs
+    >
     struct variadic_naive<f, state, x, xs...>
-        : variadic_naive<
-            f, typename f::type::template apply<state, x>, xs...
-        >
+        : variadic_naive<f, f<state, x>, xs...>
     { };
 }}}} // end namespace boost::mpl11::detail::left_folds
 

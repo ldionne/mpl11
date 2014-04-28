@@ -22,7 +22,7 @@
 namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     <%
         unroll = 5
-        f = apply.curry(3)['f']
+        f = -> (state, xs) { "f<#{state}, #{xs}>" }
         dispatch = "(sizeof...(xs) > #{unroll+1} ? #{unroll+1} : sizeof...(xs))"
 
         def xs(range)
@@ -35,9 +35,14 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
 
     template <>
     struct variadic_aliased_impl<    <%= unroll+1 %>   > {
-        template <typename f, typename state <%= comma(typename(xs(1..unroll+1))).join %>, typename ...xs>
+        template <
+            template <typename ...> class f,
+            typename state
+            <%= comma(typename(xs(1..unroll+1))).join %>,
+            typename ...xs>
         using apply =
-            typename variadic_aliased_impl<  <%= dispatch %>    >::template apply<
+            typename variadic_aliased_impl<  <%= dispatch %>    >::
+            template apply<
                 f,
                 <%= xs(1..unroll+1).foldl("state", &f) %>,
                 xs...
@@ -47,7 +52,11 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     <% for n in 0..unroll %>
         template <>
         struct variadic_aliased_impl<    <%= n %>    > {
-            template <typename f, typename state <%= comma(typename(xs(1..n))).join %>>
+            template <
+                template <typename ...> class f,
+                typename state
+                <%= comma(typename(xs(1..n))).join %>
+            >
             using apply = <%= xs(1..n).foldl("state", &f) %>;
         };
     <% end %>
@@ -56,8 +65,10 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
      * @ingroup details
      *
      * Recursive alias-based variadic left fold.
+     *
+     * The metafunction is unlifted for performance.
      */
-    template <typename f, typename state, typename ...xs>
+    template <template <typename ...> class f, typename state, typename ...xs>
     struct variadic_aliased
         : variadic_aliased_impl<    <%= dispatch %>     >::
           template apply<f, state, xs...>

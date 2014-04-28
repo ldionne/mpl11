@@ -343,12 +343,21 @@ struct test_datatype {
         sizeof(_datatype<u, u, u>)
     );
 };
+
+template <
+    template <typename ...> class fold,
+    template <typename ...> class structure
+>
+struct fold_on {
+    template <typename f, typename z, typename ...xs>
+    using go = fold<f, z, structure<xs...>>;
+};
 } // end namespace foldable_detail
 
 template <template <typename ...> class structure>
 struct test_Foldable
-    : test_foldl<foldl, structure>
-    , test_foldr<foldr, structure>
+    : test_foldl<foldable_detail::fold_on<foldl, structure>::template go>
+    , test_foldr<foldable_detail::fold_on<foldr, structure>::template go>
     , foldable_detail::test_foldl1<structure>
     , foldable_detail::test_foldr1<structure>
 

@@ -23,12 +23,14 @@
 namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     
 
-    template <std_size_t n, typename f, typename state, typename xs>
+    template <
+        std_size_t n, template <typename ...> class f,
+        typename state, typename xs>
     struct bounded_impl {
         using left = bounded_impl<
             (n - 6)/2,
             f,
-            typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>, head<tail<tail<tail<xs>>>>>, head<tail<tail<tail<tail<xs>>>>>>, head<tail<tail<tail<tail<tail<xs>>>>>>>,
+            f<f<f<f<f<f<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>, head<tail<tail<tail<xs>>>>>, head<tail<tail<tail<tail<xs>>>>>>, head<tail<tail<tail<tail<tail<xs>>>>>>>,
             tail<tail<tail<tail<tail<tail<xs>>>>>>
         >;
         using right = bounded_impl<
@@ -43,40 +45,40 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     };
 
     
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<0, f, state, xs> {
             using rest = xs;
             using result = state;
         };
     
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<1, f, state, xs> {
             using rest = tail<xs>;
-            using result = typename f::type::template apply<state, head<xs>>;
+            using result = f<state, head<xs>>;
         };
     
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<2, f, state, xs> {
             using rest = tail<tail<xs>>;
-            using result = typename f::type::template apply<typename f::type::template apply<state, head<xs>>, head<tail<xs>>>;
+            using result = f<f<state, head<xs>>, head<tail<xs>>>;
         };
     
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<3, f, state, xs> {
             using rest = tail<tail<tail<xs>>>;
-            using result = typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>;
+            using result = f<f<f<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>;
         };
     
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<4, f, state, xs> {
             using rest = tail<tail<tail<tail<xs>>>>;
-            using result = typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>, head<tail<tail<tail<xs>>>>>;
+            using result = f<f<f<f<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>, head<tail<tail<tail<xs>>>>>;
         };
     
-        template <typename f, typename state, typename xs>
+        template <template <typename ...> class f, typename state, typename xs>
         struct bounded_impl<5, f, state, xs> {
             using rest = tail<tail<tail<tail<tail<xs>>>>>;
-            using result = typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<typename f::type::template apply<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>, head<tail<tail<tail<xs>>>>>, head<tail<tail<tail<tail<xs>>>>>>;
+            using result = f<f<f<f<f<state, head<xs>>, head<tail<xs>>>, head<tail<tail<xs>>>>, head<tail<tail<tail<xs>>>>>, head<tail<tail<tail<tail<xs>>>>>>;
         };
     
 
@@ -84,8 +86,15 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
      * @ingroup details
      *
      * Left fold stopping after `n` steps.
+     *
+     * The metafunction is unlifted for performance.
      */
-    template <std_size_t n, typename f, typename state, typename xs>
+    template <
+        std_size_t n,
+        template <typename ...> class f,
+        typename state,
+        typename xs
+    >
     using bounded = typename bounded_impl<n, f, state, xs>::result;
 }}}} // end namespace boost::mpl11::detail::left_folds
 

@@ -18,7 +18,7 @@
 
 namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
 <%
-    f = apply.curry(3)['f']
+    f = -> (state, xs) { "f<#{state}, #{xs}>" }
     unroll = 5
 
     def xs(range)
@@ -30,11 +30,17 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
  * @ingroup details
  *
  * Left fold over a parameter pack.
+ *
+ * The metafunction is unlifted for performance.
  */
-template <typename f, typename state, typename ...xs>
+template <template <typename ...> class f, typename state, typename ...xs>
 struct variadic;
 
-template <typename f, typename state <%= comma(typename(xs(0..unroll))).join %>, typename ...xs>
+template <
+    template <typename ...> class f,
+    typename state
+    <%= comma(typename(xs(0..unroll))).join %>,
+    typename ...xs>
 struct variadic<f, state <%= comma(xs(0..unroll)).join %>, xs...>
     : variadic<
         f,
@@ -44,7 +50,11 @@ struct variadic<f, state <%= comma(xs(0..unroll)).join %>, xs...>
 { };
 
 <% for n in 0..unroll %>
-    template <typename f, typename state <%= comma(typename(xs(0...n))).join %> >
+    template <
+        template <typename ...> class f,
+        typename state
+        <%= comma(typename(xs(0...n))).join %>
+    >
     struct variadic<f, state <%= comma(xs(0...n)).join %> >
         : <%= xs(0...n).foldl("state", &f).sub(/^typename/, "") %>
     { };

@@ -29,134 +29,111 @@ namespace boost { namespace mpl11 { namespace detail {
 
         
 
-        template <
-            template <typename ...> class fold,
-            template <typename ...> class foldable>
+        template <template <typename ...> class fold>
         struct test_foldr :
             
-                                expect<fold<lift<f>, x<0>, foldable<
-                    
-                >>>::template to_eq<
+                                expect<fold<lift<f>, x<0> >
+                >::template to_eq<
                     x<0>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>>
+                >::template to_eq<
                     f<x<1>, x<0>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, x<0>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, x<0>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, x<0>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, x<0>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, x<0>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, x<0>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, x<0>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, x<0>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, x<0>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, x<0>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, x<0>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, x<0>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, x<0>>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>,x<15>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>, x<15>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, f<x<15>, x<0>>>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>,x<15>,x<16>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>, x<15>, x<16>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, f<x<15>, f<x<16>, x<0>>>>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>,x<15>,x<16>,x<17>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>, x<15>, x<16>, x<17>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, f<x<15>, f<x<16>, f<x<17>, x<0>>>>>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>,x<15>,x<16>,x<17>,x<18>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>, x<15>, x<16>, x<17>, x<18>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, f<x<15>, f<x<16>, f<x<17>, f<x<18>, x<0>>>>>>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>,x<15>,x<16>,x<17>,x<18>,x<19>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>, x<15>, x<16>, x<17>, x<18>, x<19>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, f<x<15>, f<x<16>, f<x<17>, f<x<18>, f<x<19>, x<0>>>>>>>>>>>>>>>>>>>>
                 >
             
-                ,                expect<fold<lift<f>, x<0>, foldable<
-                    x<1>,x<2>,x<3>,x<4>,x<5>,x<6>,x<7>,x<8>,x<9>,x<10>,x<11>,x<12>,x<13>,x<14>,x<15>,x<16>,x<17>,x<18>,x<19>,x<20>
-                >>>::template to_eq<
+                ,                expect<fold<lift<f>, x<0> , x<1>, x<2>, x<3>, x<4>, x<5>, x<6>, x<7>, x<8>, x<9>, x<10>, x<11>, x<12>, x<13>, x<14>, x<15>, x<16>, x<17>, x<18>, x<19>, x<20>>
+                >::template to_eq<
                     f<x<1>, f<x<2>, f<x<3>, f<x<4>, f<x<5>, f<x<6>, f<x<7>, f<x<8>, f<x<9>, f<x<10>, f<x<11>, f<x<12>, f<x<13>, f<x<14>, f<x<15>, f<x<16>, f<x<17>, f<x<18>, f<x<19>, f<x<20>, x<0>>>>>>>>>>>>>>>>>>>>>
                 >
             

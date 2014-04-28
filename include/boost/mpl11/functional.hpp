@@ -95,7 +95,7 @@ namespace boost { namespace mpl11 {
     ////////////////////
     template <typename f, typename ...xs>
     struct apply_curried
-        : detail::left_folds::variadic_aliased<lift<apply>, f, xs...>
+        : detail::left_folds::variadic_aliased<apply, f, xs...>
     { };
 
     ////////////////////

@@ -35,25 +35,19 @@ namespace boost { namespace mpl11 {
             using result = Else;
         };
 
-        struct and2 {
-            using type = and2;
-            template <typename x, typename y>
-            struct apply
-                : bool_<
-                    (bool)if_c<(bool)x::type::value, y, x>::type::value
-                >
-            { };
-        };
+        template <typename x, typename y>
+        struct and2
+            : bool_<
+                (bool)if_c<(bool)x::type::value, y, x>::type::value
+            >
+        { };
 
-        struct or2 {
-            using type = or2;
-            template <typename x, typename y>
-            struct apply
-                : bool_<
-                    (bool)if_c<(bool)x::type::value, x, y>::type::value
-                >
-            { };
-        };
+        template <typename x, typename y>
+        struct or2
+            : bool_<
+                (bool)if_c<(bool)x::type::value, x, y>::type::value
+            >
+        { };
     } // end namespace logical_detail
 
     template <typename ...xs>

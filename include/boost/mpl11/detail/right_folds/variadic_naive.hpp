@@ -18,14 +18,15 @@ namespace boost { namespace mpl11 { namespace detail { namespace right_folds {
      *
      * Naive right fold for parameter packs.
      */
-    template <typename f, typename state, typename ...xs>
+    template <template <typename ...> class f, typename state, typename ...xs>
     struct variadic_naive : state { };
 
-    template <typename f, typename state, typename x, typename ...xs>
+    template <
+        template <typename ...> class f,
+        typename state, typename x, typename ...xs
+    >
     struct variadic_naive<f, state, x, xs...>
-        : f::type::template apply<
-            x, variadic_naive<f, state, xs...>
-        >
+        : f<x, variadic_naive<f, state, xs...>>
     { };
 }}}} // end namespace boost::mpl11::detail::right_folds
 

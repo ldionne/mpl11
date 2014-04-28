@@ -33,15 +33,12 @@ namespace boost { namespace mpl11 { namespace detail {
             end
         %>
 
-        template <
-            template <typename ...> class fold,
-            template <typename ...> class foldable>
+        template <template <typename ...> class fold>
         struct test_foldr :
             <% for n in 0..20 %>
                 <%= ',' unless n == 0 -%>
-                expect<fold<lift<f>, x<0>, foldable<
-                    <%= xs(1..n).join(',') %>
-                >>>::template to_eq<
+                expect<fold<lift<f>, x<0> <%= comma(xs(1..n)).join %>>
+                >::template to_eq<
                     <%= xs(1..n).foldr('x<0>'){|x,y| "f<#{x}, #{y}>" } %>
                 >
             <% end %>

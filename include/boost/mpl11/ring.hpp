@@ -17,7 +17,6 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_aliased.hpp>
-#include <boost/mpl11/functional.hpp>
 
 
 namespace boost { namespace mpl11 {
@@ -26,7 +25,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct mult
-        : detail::left_folds::variadic_aliased<lift<mult>, x1, x2, xn...>
+        : detail::left_folds::variadic_aliased<mult, x1, x2, xn...>
     { };
 
     template <typename x, typename y>

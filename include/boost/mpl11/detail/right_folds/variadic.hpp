@@ -23,44 +23,74 @@ namespace boost { namespace mpl11 { namespace detail { namespace right_folds {
      * @ingroup details
      *
      * Right fold over a parameter pack.
+     *
+     * The metafunction is unlifted for performance.
      */
-    template <typename f, typename state, typename ...xs>
+    template <template <typename ...> class f, typename state, typename ...xs>
     struct variadic;
 
-    template <typename f, typename state , typename x0, typename x1, typename x2, typename x3, typename x4, typename x5, typename ...xs>
+    template <
+        template <typename ...> class f,
+        typename state
+        , typename x0, typename x1, typename x2, typename x3, typename x4, typename x5,
+        typename ...xs>
     struct variadic<f, state , x0, x1, x2, x3, x4, x5, xs...>
-        :  f::type::template apply<x0, typename f::type::template apply<x1, typename f::type::template apply<x2, typename f::type::template apply<x3, typename f::type::template apply<x4, typename f::type::template apply<x5, variadic<f, state, xs...>>>>>>>
+        : f<x0, f<x1, f<x2, f<x3, f<x4, f<x5, variadic<f, state, xs...>>>>>>>
     { };
 
     
-        template <typename f, typename state  >
+        template <
+            template <typename ...> class f,
+            typename state
+            
+        >
         struct variadic<f, state  >
             : state
         { };
     
-        template <typename f, typename state , typename x0 >
+        template <
+            template <typename ...> class f,
+            typename state
+            , typename x0
+        >
         struct variadic<f, state , x0 >
-            :  f::type::template apply<x0, state>
+            : f<x0, state>
         { };
     
-        template <typename f, typename state , typename x0, typename x1 >
+        template <
+            template <typename ...> class f,
+            typename state
+            , typename x0, typename x1
+        >
         struct variadic<f, state , x0, x1 >
-            :  f::type::template apply<x0, typename f::type::template apply<x1, state>>
+            : f<x0, f<x1, state>>
         { };
     
-        template <typename f, typename state , typename x0, typename x1, typename x2 >
+        template <
+            template <typename ...> class f,
+            typename state
+            , typename x0, typename x1, typename x2
+        >
         struct variadic<f, state , x0, x1, x2 >
-            :  f::type::template apply<x0, typename f::type::template apply<x1, typename f::type::template apply<x2, state>>>
+            : f<x0, f<x1, f<x2, state>>>
         { };
     
-        template <typename f, typename state , typename x0, typename x1, typename x2, typename x3 >
+        template <
+            template <typename ...> class f,
+            typename state
+            , typename x0, typename x1, typename x2, typename x3
+        >
         struct variadic<f, state , x0, x1, x2, x3 >
-            :  f::type::template apply<x0, typename f::type::template apply<x1, typename f::type::template apply<x2, typename f::type::template apply<x3, state>>>>
+            : f<x0, f<x1, f<x2, f<x3, state>>>>
         { };
     
-        template <typename f, typename state , typename x0, typename x1, typename x2, typename x3, typename x4 >
+        template <
+            template <typename ...> class f,
+            typename state
+            , typename x0, typename x1, typename x2, typename x3, typename x4
+        >
         struct variadic<f, state , x0, x1, x2, x3, x4 >
-            :  f::type::template apply<x0, typename f::type::template apply<x1, typename f::type::template apply<x2, typename f::type::template apply<x3, typename f::type::template apply<x4, state>>>>>
+            : f<x0, f<x1, f<x2, f<x3, f<x4, state>>>>>
         { };
     
 }}}} // end namespace boost::mpl11::detail::right_folds
