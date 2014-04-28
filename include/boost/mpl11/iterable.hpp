@@ -18,6 +18,7 @@
 #include <boost/mpl11/comparable.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/config.hpp>
+#include <boost/mpl11/detail/left_folds/until_aliased.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functional.hpp> //
@@ -251,25 +252,14 @@ template <typename Datatype>
 struct Foldable<Datatype, typename Iterable<Datatype>::type>
     : instantiate<Foldable>::template with<Datatype>
 {
-    template <typename f, typename state, typename iter,
-        bool = is_empty<box<iter>>::value>
-    struct foldl_impl
-        : state
-    { };
+    template <typename f, typename state, typename iterable>
+    using foldl_impl = detail::left_folds::until_aliased<
+        is_empty, f::template apply, state, box<iterable>
+    >;
 
-    template <typename f, typename state, typename iter>
-    struct foldl_impl<f, state, iter, false>
-        : foldl_impl<
-            f,
-            typename f::type::template apply<state, head<box<iter>>>,
-            typename tail<box<iter>>::type
-        >
-    { };
-
-
-    template <typename f, typename iter>
-    using foldl1_impl = foldl_impl<
-        f, head<box<iter>>, typename tail<box<iter>>::type
+    template <typename f, typename iterable>
+    using foldl1_impl = detail::left_folds::until_aliased<
+        is_empty, f::template apply, head<box<iterable>>, tail<box<iterable>>
     >;
 
 

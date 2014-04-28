@@ -11,6 +11,8 @@
 
 #include <boost/mpl11/detail/left_folds/bounded.hpp>
 #include <boost/mpl11/detail/left_folds/until.hpp>
+#include <boost/mpl11/detail/left_folds/until_aliased.hpp>
+#include <boost/mpl11/detail/left_folds/until_naive.hpp>
 #include <boost/mpl11/detail/left_folds/variadic.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_aliased.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_naive.hpp>
@@ -46,6 +48,16 @@ using until = detail::left_folds::until<
     is_empty, f::type::template apply, z, list<xs...>
 >;
 
+template <typename f, typename z, typename ...xs>
+using until_aliased = detail::left_folds::until_aliased<
+    is_empty, f::type::template apply, z, list<xs...>
+>;
+
+template <typename f, typename z, typename ...xs>
+using until_naive = detail::left_folds::until_naive<
+    is_empty, f::type::template apply, z, list<xs...>
+>;
+
 
 struct tests
     : detail::test_foldl<bounded>
@@ -53,6 +65,8 @@ struct tests
     , detail::test_foldl<variadic>
     , detail::test_foldl<variadic_aliased>
     , detail::test_foldl<until>
+    , detail::test_foldl<until_aliased>
+    , detail::test_foldl<until_naive>
 { };
 
 
