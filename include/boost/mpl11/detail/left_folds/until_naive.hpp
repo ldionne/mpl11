@@ -27,23 +27,29 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class predicate,
         template <typename ...> class f,
         typename state, typename xs,
+        template <typename ...> class head = mpl11::head,
+        template <typename ...> class tail = mpl11::tail,
         bool = predicate<xs>::type::value>
     struct until_naive;
 
     template <
         template <typename ...> class p,
         template <typename ...> class f,
-        typename state, typename xs>
-    struct until_naive<p, f, state, xs, true>
+        typename state, typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail>
+    struct until_naive<p, f, state, xs, head, tail, true>
         : state
     { };
 
     template <
         template <typename ...> class p,
         template <typename ...> class f,
-        typename state, typename xs>
-    struct until_naive<p, f, state, xs, false>
-        : until_naive<p, f, f<state, head<xs>>, tail<xs>>
+        typename state, typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail>
+    struct until_naive<p, f, state, xs, head, tail, false>
+        : until_naive<p, f, f<state, head<xs>>, tail<xs>, head, tail>
     { };
 }}}} // end namespace boost::mpl11::detail::left_folds
 

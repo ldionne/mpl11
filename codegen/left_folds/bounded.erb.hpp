@@ -36,19 +36,23 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
 
     template <
         std_size_t n, template <typename ...> class f,
-        typename state, typename xs>
+        typename state, typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail>
     struct bounded_impl {
         using left = bounded_impl<
             (n - <%= unroll+1 %>)/2,
             f,
             <%= tails(unroll+1).foldl("state", &f) %>,
-            <%= tail(unroll+1) %>
+            <%= tail(unroll+1) %>,
+            head, tail
         >;
         using right = bounded_impl<
             (n - <%= unroll+1 %>) - (n - <%= unroll+1 %>)/2,
             f,
             typename left::result,
-            typename left::rest
+            typename left::rest,
+            head, tail
         >;
 
         using rest = typename right::rest;
@@ -56,8 +60,12 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     };
 
     <% for n in 0..unroll %>
-        template <template <typename ...> class f, typename state, typename xs>
-        struct bounded_impl<<%= n %>, f, state, xs> {
+        template <
+            template <typename ...> class f,
+            typename state, typename xs,
+            template <typename ...> class head,
+            template <typename ...> class tail>
+        struct bounded_impl<<%= n %>, f, state, xs, head, tail> {
             using rest = <%= tail n %>;
             using result = <%= tails(n).foldl("state", &f) %>;
         };
@@ -74,9 +82,11 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         std_size_t n,
         template <typename ...> class f,
         typename state,
-        typename xs
+        typename xs,
+        template <typename ...> class head = mpl11::head,
+        template <typename ...> class tail = mpl11::tail
     >
-    using bounded = typename bounded_impl<n, f, state, xs>::result;
+    using bounded = typename bounded_impl<n, f, state, xs, head, tail>::result;
 }}}} // end namespace boost::mpl11::detail::left_folds
 
 #endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_BOUNDED_HPP

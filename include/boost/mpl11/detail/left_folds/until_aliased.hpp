@@ -24,7 +24,9 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <
             template <typename ...> class pred,
             template <typename ...> class f,
-            typename state, typename xs>
+            typename state, typename xs,
+            template <typename ...> class head,
+            template <typename ...> class tail>
         using apply = state;
     };
 
@@ -33,10 +35,12 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <
             template <typename ...> class pred,
             template <typename ...> class f,
-            typename state, typename xs>
+            typename state, typename xs,
+            template <typename ...> class head,
+            template <typename ...> class tail>
         using apply =
             typename until_aliased_impl<pred<tail<xs>>::type::value>::
-            template apply<pred, f, f<state, head<xs>>, tail<xs>>;
+            template apply<pred, f, f<state, head<xs>>, tail<xs>, head, tail>;
     };
 
     /*!
@@ -49,10 +53,12 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     template <
         template <typename ...> class predicate,
         template <typename ...> class f,
-        typename state, typename xs>
+        typename state, typename xs,
+        template <typename ...> class head = mpl11::head,
+        template <typename ...> class tail = mpl11::tail>
     using until_aliased =
         typename until_aliased_impl<predicate<xs>::type::value>::
-        template apply<predicate, f, state, xs>;
+        template apply<predicate, f, state, xs, head, tail>;
 }}}} // end namespace boost::mpl11::detail::left_folds
 
 #endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_ALIASED_HPP

@@ -25,6 +25,8 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class f,
         typename z,
         typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail,
         bool = pred<xs>::type::value
     >
     struct single_step;
@@ -33,9 +35,11 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class pred,
         template <typename ...> class f,
         typename z,
-        typename xs
+        typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail
     >
-    struct single_step<pred, f, z, xs, true> {
+    struct single_step<pred, f, z, xs, head, tail, true> {
         using next = xs;
         using state = z;
     };
@@ -44,9 +48,11 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class pred,
         template <typename ...> class f,
         typename z,
-        typename xs
+        typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail
     >
-    struct single_step<pred, f, z, xs, false> {
+    struct single_step<pred, f, z, xs, head, tail, false> {
         using next = tail<xs>;
         using state = f<z, head<xs>>;
     };
@@ -56,6 +62,8 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class f,
         typename z,
         typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail,
         bool = pred<xs>::type::value
     >
     struct multi_step;
@@ -64,9 +72,11 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class pred,
         template <typename ...> class f,
         typename z,
-        typename xs
+        typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail
     >
-    struct multi_step<pred, f, z, xs, true> {
+    struct multi_step<pred, f, z, xs, head, tail, true> {
         using next = xs;
         using state = z;
     };
@@ -79,28 +89,30 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class pred,
         template <typename ...> class f,
         typename z,
-        typename xs
+        typename xs,
+        template <typename ...> class head,
+        template <typename ...> class tail
     >
-    struct multi_step<pred, f, z, xs, false> {
+    struct multi_step<pred, f, z, xs, head, tail, false> {
         using state0 = f<z, head<xs>>;
         using next0  = tail<xs>;
 
         <% for n in 1..unroll %>
             using <%= "state#{n}" %> = typename single_step<
-                pred, f, <%= "state#{n-1}" %>, <%= "next#{n-1}" %>
+                pred, f, <%= "state#{n-1}" %>, <%= "next#{n-1}" %>, head, tail
             >::state;
 
             using <%= "next#{n}" %> = typename single_step<
-                pred, f, <%= "state#{n-1}" %>, <%= "next#{n-1}" %>
+                pred, f, <%= "state#{n-1}" %>, <%= "next#{n-1}" %>, head, tail
             >::next;
         <% end %>
 
         using next = typename multi_step<
-            pred, f, <%= "state#{unroll}" %>, <%= "next#{unroll}" %>
+            pred, f, <%= "state#{unroll}" %>, <%= "next#{unroll}" %>, head, tail
         >::next;
 
         using state = typename multi_step<
-            pred, f, <%= "state#{unroll}" %>, <%= "next#{unroll}" %>
+            pred, f, <%= "state#{unroll}" %>, <%= "next#{unroll}" %>, head, tail
         >::state;
     };
 
@@ -115,10 +127,12 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         template <typename ...> class predicate,
         template <typename ...> class f,
         typename state,
-        typename xs
+        typename xs,
+        template <typename ...> class head = mpl11::head,
+        template <typename ...> class tail = mpl11::tail
     >
     using until = typename multi_step<
-        predicate, f, state, xs
+        predicate, f, state, xs, head, tail
     >::state;
 }}}} // end namespace boost::mpl11::detail::left_folds
 
