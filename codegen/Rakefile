@@ -51,3 +51,4 @@ end
 
 generate_erb("test_foldl.erb.hpp", "../include/boost/mpl11/detail/test/foldl.hpp")
 generate_erb("test_foldr.erb.hpp", "../include/boost/mpl11/detail/test/foldr.hpp")
+generate_erb("test_logical_or.erb.hpp", "../include/boost/mpl11/detail/test/logical_or.hpp")

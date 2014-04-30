@@ -51,6 +51,7 @@ mpl11_add_tests(
     ######
     dependent
     left_folds
+    logical_or
     right_folds
     std_conditional
     std_index_sequence
