@@ -19,21 +19,17 @@
 
 namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
     template <std_size_t n>
-    constexpr bool
-    strict_constexpr_array_impl(id<bool[n]> const& array, std_size_t i = 0) {
-        return i == n ? false :
-                        array[i] || strict_constexpr_array_impl(array, i + 1);
+    constexpr bool strict_constexpr_array_impl(id<bool[n]> const& array) {
+        for (std_size_t i = 0; i < n; ++i)
+            if (array[i])
+                return true;
+        return false;
     }
 
     /*!
      * @ingroup details
      *
-     * Strict (non short-circuiting) logical or implemented with constexpr.
-     *
-     *
-     * @todo
-     * In C++14, we can use generalized constexpr to reduce memory usage
-     * of this implementation drastically.
+     * Strict (non short-circuiting) `logical or` implemented with constexpr.
      */
     template <typename ...xs>
     using strict_constexpr_array = bool_<

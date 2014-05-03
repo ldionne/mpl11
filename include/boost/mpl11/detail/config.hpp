@@ -89,4 +89,9 @@
  */
 #define BOOST_MPL11_GCC_PACK_EXPANSION_BUG
 
+#if (defined(__GNUC__) || defined(__GNUG__)) && \
+    !defined(__clang__) && !defined(__INTEL_COMPILER)
+#   define BOOST_MPL11_GCC
+#endif
+
 #endif // !BOOST_MPL11_DETAIL_CONFIG_HPP

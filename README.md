@@ -37,7 +37,7 @@ The MPL11 is a header only library. To use it in your own project, just add the
 done.
 
 The library has no dependencies - not even the standard library. However,
-a C++11 man-compiler is required. The test suite passes under the following
+it requires a C++14-able compiler. The test suite passes under the following
 compilers:
 - clang version 3.4
 - clang version 3.5.0
