@@ -1340,7 +1340,6 @@ a boxed type, so they're not completely forgotten.
       in the `std` namespace.
 - [ ] Use `constexpr` to perform numeric computations on homogeneous sequences
       of integral constants.
-- [ ] Benchmark memory usage in addition to compilation time.
 - [ ] Consider providing data constructors taking unboxed types for convenience.
 - [ ] Consider making `int_<>` a simple boxed `int` without a value.
 - [ ] Write a rationale for why we don't have parameterized datatypes.
@@ -1369,6 +1368,7 @@ a boxed type, so they're not completely forgotten.
 - [ ] By making some std algorithms constexpr and providing a couple of
       containers with constexpr iterators, would we have constexpr for free
       almost everywhere?
+- [ ] Consider making `bool_` a lifted metafunction that behaves like `if_`.
 
 
 <!-- Links -->
