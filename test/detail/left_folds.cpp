@@ -10,12 +10,12 @@
  */
 
 #include <boost/mpl11/detail/left_folds/bounded.hpp>
-#include <boost/mpl11/detail/left_folds/until.hpp>
 #include <boost/mpl11/detail/left_folds/until_aliased.hpp>
 #include <boost/mpl11/detail/left_folds/until_naive.hpp>
-#include <boost/mpl11/detail/left_folds/variadic.hpp>
+#include <boost/mpl11/detail/left_folds/until_unrolled.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_aliased.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_naive.hpp>
+#include <boost/mpl11/detail/left_folds/variadic_unrolled.hpp>
 
 #include <boost/mpl11/detail/test/foldl.hpp>
 #include <boost/mpl11/list.hpp>
@@ -34,7 +34,7 @@ using variadic_naive = detail::left_folds::variadic_naive<
 >;
 
 template <typename f, typename z, typename ...xs>
-using variadic = detail::left_folds::variadic<
+using variadic_unrolled = detail::left_folds::variadic_unrolled<
     f::type::template apply, z, xs...
 >;
 
@@ -44,7 +44,7 @@ using variadic_aliased = detail::left_folds::variadic_aliased<
 >;
 
 template <typename f, typename z, typename ...xs>
-using until = detail::left_folds::until<
+using until_unrolled = detail::left_folds::until_unrolled<
     is_empty, f::type::template apply, z, list<xs...>
 >;
 
@@ -61,12 +61,12 @@ using until_naive = detail::left_folds::until_naive<
 
 struct tests
     : detail::test_foldl<bounded>
-    , detail::test_foldl<variadic_naive>
-    , detail::test_foldl<variadic>
     , detail::test_foldl<variadic_aliased>
-    , detail::test_foldl<until>
+    , detail::test_foldl<variadic_naive>
+    , detail::test_foldl<variadic_unrolled>
     , detail::test_foldl<until_aliased>
     , detail::test_foldl<until_naive>
+    , detail::test_foldl<until_unrolled>
 { };
 
 

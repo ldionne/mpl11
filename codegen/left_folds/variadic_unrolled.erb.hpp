@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::left_folds::variadic`.
+ * Defines `boost::mpl11::detail::left_folds::variadic_unrolled`.
  *
  *
  * @copyright Louis Dionne 2014
@@ -13,8 +13,8 @@
 // GENERATED HEADER: DO NOT EDIT.
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_HPP
-#define BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_HPP
+#ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_UNROLLED_HPP
+#define BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_UNROLLED_HPP
 
 namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
 <%
@@ -29,20 +29,20 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
 /*!
  * @ingroup details
  *
- * Left fold over a parameter pack.
+ * Left fold over a parameter pack with loop unrolling.
  *
  * The metafunction is unlifted for performance.
  */
 template <template <typename ...> class f, typename state, typename ...xs>
-struct variadic;
+struct variadic_unrolled;
 
 template <
     template <typename ...> class f,
     typename state
     <%= comma(typename(xs(0..unroll))).join %>,
     typename ...xs>
-struct variadic<f, state <%= comma(xs(0..unroll)).join %>, xs...>
-    : variadic<
+struct variadic_unrolled<f, state <%= comma(xs(0..unroll)).join %>, xs...>
+    : variadic_unrolled<
         f,
         <%= xs(0..unroll).foldl("state", &f) %>,
         xs...
@@ -55,10 +55,10 @@ struct variadic<f, state <%= comma(xs(0..unroll)).join %>, xs...>
         typename state
         <%= comma(typename(xs(0...n))).join %>
     >
-    struct variadic<f, state <%= comma(xs(0...n)).join %> >
+    struct variadic_unrolled<f, state <%= comma(xs(0...n)).join %> >
         : <%= xs(0...n).foldl("state", &f).sub(/^typename/, "") %>
     { };
 <% end %>
 }}}} // end namespace boost::mpl11::detail::left_folds
 
-#endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_HPP
+#endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_UNROLLED_HPP

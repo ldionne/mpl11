@@ -41,7 +41,7 @@ def generate_erb(input, output)
 end
 
 
-["bounded", "variadic", "variadic_aliased", "until"].each do |fold|
+["bounded", "variadic_unrolled", "variadic_aliased", "until_unrolled"].each do |fold|
   generate_erb("left_folds/#{fold}.erb.hpp", "../include/boost/mpl11/detail/left_folds/#{fold}.hpp")
 end
 

@@ -16,7 +16,7 @@
 
 #include <boost/mpl11/bitwise.hpp>
 #include <boost/mpl11/comparable.hpp>
-#include <boost/mpl11/detail/logical_or/strict_specialization.hpp>
+#include <boost/mpl11/detail/logical_or/strict.hpp>
 #include <boost/mpl11/enumerable.hpp>
 #include <boost/mpl11/group.hpp>
 #include <boost/mpl11/integral_domain.hpp>
@@ -43,14 +43,12 @@ namespace boost { namespace mpl11 {
 
     template <typename T, T ...v>
     struct or_<integer_c<T, v>...>
-        : detail::logical_or::strict_specialization<integer_c<T, v>...>
+        : detail::logical_or::strict<bool_<(bool)v>...>
     { };
 
     template <typename T, T ...v>
-    struct and_<integer_c<T, v>...>
-        : bool_< // DeMorgan
-            !detail::logical_or::strict_specialization<bool_<!v>...>::value
-        >
+    struct and_<integer_c<T, v>...> // DeMorgan
+        : bool_<!detail::logical_or::strict<bool_<!v>...>::value>
     { };
 
 

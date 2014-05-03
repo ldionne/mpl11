@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::left_folds::until`.
+ * Defines `boost::mpl11::detail::left_folds::until_unrolled`.
  *
  *
  * @copyright Louis Dionne 2014
@@ -13,8 +13,8 @@
 // GENERATED HEADER: DO NOT EDIT.
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_HPP
-#define BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_HPP
+#ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_UNROLLED_HPP
+#define BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_UNROLLED_HPP
 
 #include <boost/mpl11/fwd/iterable.hpp>
 
@@ -71,9 +71,7 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         using state = z;
     };
 
-    <%
-        unroll = 5
-    %>
+    
 
     template <
         template <typename ...> class pred,
@@ -85,22 +83,54 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         using state0 = f<z, head<xs>>;
         using next0  = tail<xs>;
 
-        <% for n in 1..unroll %>
-            using <%= "state#{n}" %> = typename single_step<
-                pred, f, <%= "state#{n-1}" %>, <%= "next#{n-1}" %>
+        
+            using state1 = typename single_step<
+                pred, f, state0, next0
             >::state;
 
-            using <%= "next#{n}" %> = typename single_step<
-                pred, f, <%= "state#{n-1}" %>, <%= "next#{n-1}" %>
+            using next1 = typename single_step<
+                pred, f, state0, next0
             >::next;
-        <% end %>
+        
+            using state2 = typename single_step<
+                pred, f, state1, next1
+            >::state;
+
+            using next2 = typename single_step<
+                pred, f, state1, next1
+            >::next;
+        
+            using state3 = typename single_step<
+                pred, f, state2, next2
+            >::state;
+
+            using next3 = typename single_step<
+                pred, f, state2, next2
+            >::next;
+        
+            using state4 = typename single_step<
+                pred, f, state3, next3
+            >::state;
+
+            using next4 = typename single_step<
+                pred, f, state3, next3
+            >::next;
+        
+            using state5 = typename single_step<
+                pred, f, state4, next4
+            >::state;
+
+            using next5 = typename single_step<
+                pred, f, state4, next4
+            >::next;
+        
 
         using next = typename multi_step<
-            pred, f, <%= "state#{unroll}" %>, <%= "next#{unroll}" %>
+            pred, f, state5, next5
         >::next;
 
         using state = typename multi_step<
-            pred, f, <%= "state#{unroll}" %>, <%= "next#{unroll}" %>
+            pred, f, state5, next5
         >::state;
     };
 
@@ -117,9 +147,9 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         typename state,
         typename xs
     >
-    using until = typename multi_step<
+    using until_unrolled = typename multi_step<
         predicate, f, state, xs
     >::state;
 }}}} // end namespace boost::mpl11::detail::left_folds
 
-#endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_HPP
+#endif // !BOOST_MPL11_DETAIL_LEFT_FOLDS_UNTIL_UNROLLED_HPP

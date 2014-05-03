@@ -17,7 +17,7 @@
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/config.hpp>
-#include <boost/mpl11/detail/left_folds/variadic_aliased.hpp>
+#include <boost/mpl11/detail/left_folds/variadic.hpp>
 #include <boost/mpl11/integer.hpp> // required by fwd/bitwise.hpp
 
 
@@ -27,7 +27,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct bitand_
-        : detail::left_folds::variadic_aliased<bitand_, x1, x2, xn...>
+        : detail::left_folds::variadic<bitand_, x1, x2, xn...>
     { };
 
     template <typename x, typename y>
@@ -41,7 +41,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct bitor_
-        : detail::left_folds::variadic_aliased<bitor_, x1, x2, xn...>
+        : detail::left_folds::variadic<bitor_, x1, x2, xn...>
     { };
 
     template <typename x, typename y>
@@ -55,7 +55,7 @@ namespace boost { namespace mpl11 {
 
     template <typename x1, typename x2, typename ...xn>
     struct bitxor
-        : detail::left_folds::variadic_aliased<bitxor, x1, x2, xn...>
+        : detail::left_folds::variadic<bitxor, x1, x2, xn...>
     { };
 
     template <typename x, typename y>

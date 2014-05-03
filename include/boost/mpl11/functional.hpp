@@ -15,7 +15,7 @@
 #include <boost/mpl11/fwd/functional.hpp>
 
 #include <boost/mpl11/detail/config.hpp>
-#include <boost/mpl11/detail/left_folds/variadic_aliased.hpp>
+#include <boost/mpl11/detail/left_folds/variadic.hpp>
 #include <boost/mpl11/detail/std_index_sequence.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 
@@ -95,7 +95,7 @@ namespace boost { namespace mpl11 {
     ////////////////////
     template <typename f, typename ...xs>
     struct apply_curried
-        : detail::left_folds::variadic_aliased<apply, f, xs...>
+        : detail::left_folds::variadic<apply, f, xs...>
     { };
 
     ////////////////////
