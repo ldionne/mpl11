@@ -27,28 +27,17 @@ end
 task :default => [:all]
 task :all
 
-def generate_erb(input, output)
-  task :all => [output]
+Dir['boost/**/*.erb.*'].each do |header_erb|
+  header_hpp = header_erb.sub(/\.erb/, '')
 
-  file output => [input] do |task|
-    erb = ERB.new(File.read(input), nil, '-')
-    erb.filename = input
+  task :all => [header_hpp]
+  task header_hpp => ["../include/#{header_hpp}"]
+  file "../include/#{header_hpp}" => [header_erb] do
+    erb = ERB.new(File.read(header_erb), nil, '-')
+    erb.filename = header_erb
 
-    File.open(output, 'w') do |out|
-      out.write(erb.result)
+    File.open("../include/#{header_hpp}", 'w') do |io|
+      io.write(erb.result)
     end
   end
 end
-
-
-["bounded", "variadic_unrolled", "variadic_aliased", "until_unrolled"].each do |fold|
-  generate_erb("left_folds/#{fold}.erb.hpp", "../include/boost/mpl11/detail/left_folds/#{fold}.hpp")
-end
-
-["variadic"].each do |fold|
-  generate_erb("right_folds/#{fold}.erb.hpp", "../include/boost/mpl11/detail/right_folds/#{fold}.hpp")
-end
-
-generate_erb("test_foldl.erb.hpp", "../include/boost/mpl11/detail/test/foldl.hpp")
-generate_erb("test_foldr.erb.hpp", "../include/boost/mpl11/detail/test/foldr.hpp")
-generate_erb("test_logical_or.erb.hpp", "../include/boost/mpl11/detail/test/logical_or.hpp")
