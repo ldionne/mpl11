@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines `boost::mpl11::detail::right_folds::variadic`.
+ * Defines `boost::mpl11::detail::right_folds::variadic_unrolled`.
  *
  *
  * @copyright Louis Dionne 2014
@@ -13,8 +13,8 @@
 // GENERATED HEADER: DO NOT EDIT.
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef BOOST_MPL11_DETAIL_RIGHT_FOLDS_VARIADIC_HPP
-#define BOOST_MPL11_DETAIL_RIGHT_FOLDS_VARIADIC_HPP
+#ifndef BOOST_MPL11_DETAIL_RIGHT_FOLDS_VARIADIC_UNROLLED_HPP
+#define BOOST_MPL11_DETAIL_RIGHT_FOLDS_VARIADIC_UNROLLED_HPP
 
 namespace boost { namespace mpl11 { namespace detail { namespace right_folds {
     <%
@@ -29,22 +29,22 @@ namespace boost { namespace mpl11 { namespace detail { namespace right_folds {
     /*!
      * @ingroup details
      *
-     * Right fold over a parameter pack.
+     * Right fold over a parameter pack with loop unrolling.
      *
      * The metafunction is unlifted for performance.
      */
     template <template <typename ...> class f, typename state, typename ...xs>
-    struct variadic;
+    struct variadic_unrolled;
 
     template <
         template <typename ...> class f,
         typename state
         <%= comma(typename(xs(0..unroll))).join %>,
         typename ...xs>
-    struct variadic<f, state <%= comma(xs(0..unroll)).join %>, xs...>
+    struct variadic_unrolled<f, state <%= comma(xs(0..unroll)).join %>, xs...>
         : <%=
-            xs(0..unroll).foldr("variadic<f, state, xs...>", &f)
-                         .sub(/^typename/, "")
+            xs(0..unroll).foldr("variadic_unrolled<f, state, xs...>", &f)
+                         .sub(/^typename/, '')
         %>
     { };
 
@@ -54,10 +54,10 @@ namespace boost { namespace mpl11 { namespace detail { namespace right_folds {
             typename state
             <%= comma(typename(xs(0...n))).join %>
         >
-        struct variadic<f, state <%= comma(xs(0...n)).join %> >
-            : <%= xs(0...n).foldr("state", &f).sub(/^typename/, "") %>
+        struct variadic_unrolled<f, state <%= comma(xs(0...n)).join %> >
+            : <%= xs(0...n).foldr("state", &f).sub(/^typename/, '') %>
         { };
     <% end %>
 }}}} // end namespace boost::mpl11::detail::right_folds
 
-#endif // !BOOST_MPL11_DETAIL_RIGHT_FOLDS_VARIADIC_HPP
+#endif // !BOOST_MPL11_DETAIL_RIGHT_FOLDS_VARIADIC_UNROLLED_HPP
