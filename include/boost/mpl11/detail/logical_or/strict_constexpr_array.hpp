@@ -14,13 +14,13 @@
 
 #include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
-#include <boost/mpl11/fwd/functional.hpp> // id is defined in the fwd header
 
 
 namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
-    template <std_size_t n>
-    constexpr bool strict_constexpr_array_impl(id<bool[n]> const& array) {
-        for (std_size_t i = 0; i < n; ++i)
+    template <std_size_t N>
+    constexpr bool strict_constexpr_array_impl(const bool (&array)[N]) {
+        // Note: GCC 4.9 does not like range-based for loop in constexpr.
+        for (std_size_t i = 0; i < N; ++i)
             if (array[i])
                 return true;
         return false;
@@ -33,8 +33,8 @@ namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
      */
     template <typename ...xs>
     using strict_constexpr_array = bool_<
-        strict_constexpr_array_impl(id<bool[sizeof...(xs)+1]>{
-            xs::type::value..., false
+        strict_constexpr_array_impl<sizeof...(xs)+1>({
+            (bool)xs::type::value..., false
         })
     >;
 }}}} // end namespace boost::mpl11::detail::logical_or

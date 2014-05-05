@@ -13,13 +13,12 @@
 #define BOOST_MPL11_DETAIL_LOGICAL_OR_STRICT_NOEXCEPT_HPP
 
 #include <boost/mpl11/bool.hpp>
-#include <boost/mpl11/detail/std_conditional.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
-    void allow_expansion_impl(...) noexcept;
-    struct non_throwing_impl { non_throwing_impl() noexcept { } };
-    struct throwing_impl { throwing_impl() { throw; } };
+    void allow_expansion(...) noexcept;
+    template <bool condition>
+    struct noexcept_if { noexcept_if() noexcept(condition) { } };
 
     /*!
      * @ingroup details
@@ -28,11 +27,7 @@ namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
      */
     template <typename ...xs>
     using strict_noexcept = bool_<
-        !noexcept(allow_expansion_impl(
-            typename std_conditional<
-                (bool)xs::type::value, throwing_impl, non_throwing_impl
-            >::type{}...
-        ))
+        !noexcept(allow_expansion(noexcept_if<!(bool)xs::type::value>{}...))
     >;
 }}}} // end namespace boost::mpl11::detail::logical_or
 
