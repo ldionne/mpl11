@@ -1369,6 +1369,8 @@ a boxed type, so they're not completely forgotten.
       containers with constexpr iterators, would we have constexpr for free
       almost everywhere?
 - [ ] Consider making `bool_` a lifted metafunction that behaves like `if_`.
+- [ ] Provide a better syntax for casting. Consider `cast<Datatype(expr)>`.
+- [ ] Seriously consider making datatypes lifted metafunctions.
 
 
 <!-- Links -->

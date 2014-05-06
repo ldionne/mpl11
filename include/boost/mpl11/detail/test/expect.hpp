@@ -64,6 +64,9 @@ namespace boost { namespace mpl11 { namespace detail {
                         typename comparison::type::template apply<expr, r>
                     >::value, "");
                 };
+
+                template <typename r>
+                using with = than<r>;
             };
 
             template <template <typename ...> class f>
