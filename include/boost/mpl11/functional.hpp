@@ -14,9 +14,9 @@
 
 #include <boost/mpl11/fwd/functional.hpp>
 
+#include <boost/mpl11/detail/at_index/best.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/left_folds/variadic.hpp>
-#include <boost/mpl11/detail/std_index_sequence.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 
 
@@ -287,22 +287,6 @@ namespace boost { namespace mpl11 {
     ////////////////////
     // arg
     ////////////////////
-    namespace functional_detail {
-        template <detail::std_size_t n, typename x>
-        struct pair { };
-
-        template <typename ns, typename ...xs>
-        struct index_map;
-
-        template <detail::std_size_t ...ns, typename ...xs>
-        struct index_map<detail::std_index_sequence<ns...>, xs...>
-            : pair<ns, xs>...
-        { };
-
-        template <detail::std_size_t n, typename x>
-        x at_index(pair<n, x>*);
-    }
-
     template <>
     struct arg<0>;
 
@@ -311,12 +295,7 @@ namespace boost { namespace mpl11 {
         using type = arg;
 
         template <typename ...an>
-        using apply = decltype(functional_detail::at_index<n-1>(
-            (functional_detail::index_map<
-                typename detail::make_std_index_sequence<sizeof...(an)>::type,
-                an...
-            >*)nullptr
-        ));
+        using apply = detail::at_index::best<n-1, an...>;
     };
 }} // end namespace boost::mpl11
 

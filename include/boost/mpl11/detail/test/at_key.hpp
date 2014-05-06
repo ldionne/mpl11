@@ -1,6 +1,6 @@
 /*!
  * @file
- * Defines unit tests for at_key algorithms.
+ * Defines unit tests for key-based lookup algorithms.
  *
  *
  * @copyright Louis Dionne 2014
@@ -9,9 +9,14 @@
  *             http://www.boost.org/LICENSE_1_0.txt)
  */
 
+//////////////////////////////////////////////////////////////////////////
+// GENERATED HEADER: DO NOT EDIT.
+//////////////////////////////////////////////////////////////////////////
+
 #ifndef BOOST_MPL11_DETAIL_TEST_AT_KEY_HPP
 #define BOOST_MPL11_DETAIL_TEST_AT_KEY_HPP
 
+#include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/pair.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
 #include <boost/mpl11/detail/test/expect.hpp>
@@ -19,21 +24,187 @@
 
 namespace boost { namespace mpl11 { namespace detail {
 namespace test_at_key_detail {
-    template <int> struct k { using type = k; };
-    template <int> struct v { using type = v; };
-    template <int i, int j> using p = pair<k<i>, v<j>>;
+    template <int> struct k { struct type; };
+    template <int> struct v { struct type; };
+    using u = undefined;
 
     template <template <typename ...> class at_key>
     struct test_at_key
         : instantiate<
+             typename expect<at_key<k<0>, pair<k<0>, v<0>>>>::
+ template to_eq<v<0>>
+,
 
-            typename expect<at_key<k<0>, p<0, 0>>>::
-            to::template be_<std_is_same>::template with<v<0>>
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>>>::
+ template to_eq<v<1>>
+,
 
-            , typename expect<at_key<k<0>, p<0, 0>, p<1, 1>>>::
-              to::template be_<std_is_same>::template with<v<0>>
-            , typename expect<at_key<k<1>, p<0, 0>, p<1, 1>>>::
-              to::template be_<std_is_same>::template with<v<1>>
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>>>::
+ template to_eq<v<2>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>>>::
+ template to_eq<v<3>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>, pair<k<4>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>, pair<k<4>, u>>>::
+ template to_eq<v<3>>
+,
+ typename expect<at_key<k<4>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, v<4>>>>::
+ template to_eq<v<4>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>, pair<k<4>, u>, pair<k<5>, u>>>::
+ template to_eq<v<3>>
+,
+ typename expect<at_key<k<4>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, v<4>>, pair<k<5>, u>>>::
+ template to_eq<v<4>>
+,
+ typename expect<at_key<k<5>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, v<5>>>>::
+ template to_eq<v<5>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>>>::
+ template to_eq<v<3>>
+,
+ typename expect<at_key<k<4>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, v<4>>, pair<k<5>, u>, pair<k<6>, u>>>::
+ template to_eq<v<4>>
+,
+ typename expect<at_key<k<5>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, v<5>>, pair<k<6>, u>>>::
+ template to_eq<v<5>>
+,
+ typename expect<at_key<k<6>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, v<6>>>>::
+ template to_eq<v<6>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>>>::
+ template to_eq<v<3>>
+,
+ typename expect<at_key<k<4>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, v<4>>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>>>::
+ template to_eq<v<4>>
+,
+ typename expect<at_key<k<5>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, v<5>>, pair<k<6>, u>, pair<k<7>, u>>>::
+ template to_eq<v<5>>
+,
+ typename expect<at_key<k<6>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, v<6>>, pair<k<7>, u>>>::
+ template to_eq<v<6>>
+,
+ typename expect<at_key<k<7>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, v<7>>>>::
+ template to_eq<v<7>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<3>>
+,
+ typename expect<at_key<k<4>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, v<4>>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<4>>
+,
+ typename expect<at_key<k<5>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, v<5>>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<5>>
+,
+ typename expect<at_key<k<6>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, v<6>>, pair<k<7>, u>, pair<k<8>, u>>>::
+ template to_eq<v<6>>
+,
+ typename expect<at_key<k<7>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, v<7>>, pair<k<8>, u>>>::
+ template to_eq<v<7>>
+,
+ typename expect<at_key<k<8>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, v<8>>>>::
+ template to_eq<v<8>>
+,
+
+ typename expect<at_key<k<0>, pair<k<0>, v<0>>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<0>>
+,
+ typename expect<at_key<k<1>, pair<k<0>, u>, pair<k<1>, v<1>>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<1>>
+,
+ typename expect<at_key<k<2>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, v<2>>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<2>>
+,
+ typename expect<at_key<k<3>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, v<3>>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<3>>
+,
+ typename expect<at_key<k<4>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, v<4>>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<4>>
+,
+ typename expect<at_key<k<5>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, v<5>>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<5>>
+,
+ typename expect<at_key<k<6>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, v<6>>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<6>>
+,
+ typename expect<at_key<k<7>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, v<7>>, pair<k<8>, u>, pair<k<9>, u>>>::
+ template to_eq<v<7>>
+,
+ typename expect<at_key<k<8>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, v<8>>, pair<k<9>, u>>>::
+ template to_eq<v<8>>
+,
+ typename expect<at_key<k<9>, pair<k<0>, u>, pair<k<1>, u>, pair<k<2>, u>, pair<k<3>, u>, pair<k<4>, u>, pair<k<5>, u>, pair<k<6>, u>, pair<k<7>, u>, pair<k<8>, u>, pair<k<9>, v<9>>>>::
+ template to_eq<v<9>>
+
         >
     { };
 }

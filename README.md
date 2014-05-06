@@ -1371,6 +1371,12 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider making `bool_` a lifted metafunction that behaves like `if_`.
 - [ ] Provide a better syntax for casting. Consider `cast<Datatype(expr)>`.
 - [ ] Seriously consider making datatypes lifted metafunctions.
+- [ ] Is it possible to provide a minified library, i.e. a single header?
+      Pitfall: What happens if you include the minified header and then
+      include another header of the library? The minified header could
+      define all the include guards? Or that's up to the client to use
+      the minified version correctly?
+- [ ] Consider prototype-based objects?
 
 
 <!-- Links -->

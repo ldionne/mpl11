@@ -58,12 +58,16 @@ namespace boost { namespace mpl11 { namespace detail {
 
             template <typename comparison>
             struct be {
+                template <typename r, bool = Bool<
+                    typename comparison::type::template apply<expr, r>
+                >::value>
+                struct than { };
+
                 template <typename r>
-                struct than {
-                    static_assert(Bool<
-                        typename comparison::type::template apply<expr, r>
-                    >::value, "");
-                };
+                struct than<r, false>
+                    : show<expr, r>
+                    , show<typename expr::type, typename r::type>
+                { };
 
                 template <typename r>
                 using with = than<r>;

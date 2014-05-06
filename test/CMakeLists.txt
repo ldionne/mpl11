@@ -49,6 +49,7 @@ endfunction()
 mpl11_add_tests(
     detail
     ######
+    at_index
     at_key
     dependent
     inherit

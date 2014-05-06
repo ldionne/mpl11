@@ -17,11 +17,8 @@
 
 
 namespace boost { namespace mpl11 { namespace detail { namespace at_key {
-    // NOTE: Since we're using boxed types, we know `value` can't be
-    // a type that will decay. Otherwise, we would need to wrap the
-    // return type.
     template <typename key, typename value>
-    static value multi_lookup_impl(pair<key, value>*);
+    value multi_lookup_impl(pair<key, value>*);
 
     /*!
      * @ingroup details
@@ -30,10 +27,15 @@ namespace boost { namespace mpl11 { namespace detail { namespace at_key {
      *
      * Credit goes to Agustín Bergé for posting a variant of this technique
      * on the Boost.Dev mailing list.
+     *
+     * @internal
+     * We assume the `xs` to be boxed types so we don't need `no_decay`.
      */
     template <typename key, typename ...pairs>
     using multiple_inheritance = decltype(
-        multi_lookup_impl<key>((inherit<pairs...>*)nullptr)
+        // Disable ADL or the template arguments of the pairs will
+        // be instantiated.
+        at_key::multi_lookup_impl<key>((inherit<pairs...>*)nullptr)
     );
 }}}} // end namespace boost::mpl11::detail::at_key
 
