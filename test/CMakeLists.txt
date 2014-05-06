@@ -50,6 +50,7 @@ mpl11_add_tests(
     detail
     ######
     dependent
+    inherit
     left_folds
     logical_or
     right_folds
