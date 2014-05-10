@@ -46,7 +46,7 @@ task :all => [:minify]
 desc "Preprocess the master header of the library with Wave and create "\
      "a minified version of it."
 task :minify do
-  wave = '~/code/wave/tool/wave --c++11 -S ../include --line 0'
+  wave = './wave --c++11 -S ../include --line 0'
   body = `#{wave} ../include/boost/mpl11.hpp`.gsub("\n", ' ').squeeze(' ').strip
   minified = <<-EOS
 /*
