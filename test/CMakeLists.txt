@@ -133,3 +133,4 @@ mpl11_add_tests(
 mpl11_add_standalone_test(integer integer.cpp)
 mpl11_add_standalone_test(master_header master_header.cpp)
 mpl11_add_standalone_test(maybe maybe.cpp)
+mpl11_add_standalone_test(minified_master minified_master.cpp)

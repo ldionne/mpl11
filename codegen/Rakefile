@@ -1,4 +1,5 @@
-require "erb"
+require 'erb'
+require 'tempfile'
 
 
 module Enumerable
@@ -30,8 +31,7 @@ task :all
 Dir['boost/**/*.erb.*'].each do |header_erb|
   header_hpp = header_erb.sub(/\.erb/, '')
 
-  task :all => [header_hpp]
-  task header_hpp => ["../include/#{header_hpp}"]
+  task :all => ["../include/#{header_hpp}"]
   file "../include/#{header_hpp}" => [header_erb] do
     erb = ERB.new(File.read(header_erb), nil, '-')
     erb.filename = header_erb
@@ -40,4 +40,23 @@ Dir['boost/**/*.erb.*'].each do |header_erb|
       io.write(erb.result)
     end
   end
+end
+
+task :all => [:minify]
+desc "Preprocess the master header of the library with Wave and create "\
+     "a minified version of it."
+task :minify do
+  wave = '~/code/wave/tool/wave --c++11 -S ../include --line 0'
+  body = `#{wave} ../include/boost/mpl11.hpp`.gsub("\n", ' ').squeeze(' ').strip
+  minified = <<-EOS
+/*
+#{File.read('../LICENSE.md')}
+*/
+#ifndef BOOST_MPL11_MIN_HPP
+#define BOOST_MPL11_MIN_HPP
+#{body}
+#endif
+EOS
+
+  IO.write('../include/boost/mpl11.min.hpp', minified)
 end

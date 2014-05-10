@@ -54,6 +54,12 @@ $ cmake ..
 $ make tests    # Compiles the unit tests.
 ```
 
+### Minified version
+A minified version of the library is also provided. To use it, simply include
+the `boost/mpl11.min.hpp` header, which contains the whole library. Note that
+the minified header must not be used in conjunction with other headers from
+the library.
+
 
 ## Introduction
 The MPL11 is a C++11 library providing composable, high-level primitives for
@@ -1371,11 +1377,6 @@ a boxed type, so they're not completely forgotten.
 - [ ] Consider making `bool_` a lifted metafunction that behaves like `if_`.
 - [ ] Provide a better syntax for casting. Consider `cast<Datatype(expr)>`.
 - [ ] Seriously consider making datatypes lifted metafunctions.
-- [ ] Is it possible to provide a minified library, i.e. a single header?
-      Pitfall: What happens if you include the minified header and then
-      include another header of the library? The minified header could
-      define all the include guards? Or that's up to the client to use
-      the minified version correctly?
 - [ ] Consider prototype-based objects?
 
 
