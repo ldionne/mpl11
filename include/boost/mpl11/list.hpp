@@ -15,7 +15,10 @@
 #include <boost/mpl11/fwd/list.hpp>
 
 #include <boost/mpl11/bool.hpp>
+#include <boost/mpl11/detail/at_index/best.hpp>
 #include <boost/mpl11/detail/config.hpp>
+#include <boost/mpl11/detail/left_folds/variadic.hpp>
+#include <boost/mpl11/detail/right_folds/variadic.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/functor.hpp>
 #include <boost/mpl11/iterable.hpp>
@@ -77,7 +80,7 @@ namespace boost { namespace mpl11 {
 
         template <typename n, typename ...xs>
         struct at_impl<n, list<xs...>>
-            : arg<n::type::value+1>::type::template apply<xs...>
+            : detail::at_index::best<n::type::value, xs...>
         { };
 
 
@@ -282,6 +285,20 @@ namespace boost { namespace mpl11 {
     { };
 
 #ifndef BOOST_MPL11_NO_REWRITE_RULES
+    template <typename f, typename state, typename ...xs>
+    struct foldl<f, state, list<xs...>>
+        : detail::left_folds::variadic<
+            f::type::template apply, state, xs...
+        >
+    { };
+
+    template <typename f, typename state, typename ...xs>
+    struct foldr<f, state, list<xs...>>
+        : detail::right_folds::variadic<
+            f::type::template apply, state, xs...
+        >
+    { };
+
     // length/foldr
     //
     // length $ foldr (:) xs ys == length xs + length ys

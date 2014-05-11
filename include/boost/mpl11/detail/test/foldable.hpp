@@ -349,8 +349,10 @@ template <
     template <typename ...> class structure
 >
 struct fold_on {
+    // Note: Using a struct instead of an alias here to
+    // avoid a ICE on GCC 4.9.
     template <typename f, typename z, typename ...xs>
-    using go = fold<f, z, structure<xs...>>;
+    struct go : fold<f, z, structure<xs...>> { };
 };
 } // end namespace foldable_detail
 

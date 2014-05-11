@@ -19,6 +19,7 @@
 #include <boost/mpl11/core.hpp>
 #include <boost/mpl11/detail/config.hpp>
 #include <boost/mpl11/detail/left_folds/until.hpp>
+#include <boost/mpl11/detail/right_folds/until.hpp>
 #include <boost/mpl11/detail/std_size_t.hpp>
 #include <boost/mpl11/foldable.hpp>
 #include <boost/mpl11/functional.hpp> //
@@ -40,31 +41,6 @@ namespace iterable_detail {
     struct drop_impl<n, iter, false>
         : drop_impl<n-1, tail<iter>>
     { };
-
-
-    template <typename pred, typename iter, bool = is_empty<iter>::value>
-    struct drop_while_impl1;
-
-    template <typename pred, typename iter,
-        bool = pred::type::template apply<head<iter>>::type::value>
-    struct drop_while_impl2;
-
-    template <typename pred, typename iter>
-    struct drop_while_impl1<pred, iter, false>
-        : drop_while_impl2<pred, iter>
-    { };
-
-    template <typename pred, typename iter>
-    struct drop_while_impl1<pred, iter, true> : iter { };
-
-    template <typename pred, typename iter>
-    struct drop_while_impl2<pred, iter, true>
-        : drop_while_impl1<pred, tail<iter>>
-    { };
-
-    template <typename pred, typename iter>
-    struct drop_while_impl2<pred, iter, false> : iter { };
-
 
     template <typename iter>
     struct head_checks {
@@ -106,11 +82,26 @@ namespace iterable_detail {
         "Invalid usage of `drop`: "
         "The number of elements to drop must be non-negative.");
     };
+
+    template <typename p>
+    struct drop_while_pred {
+        using type = drop_while_pred;
+        template <typename xs>
+        using apply = or_<
+            is_empty<xs>,
+            not_<typename p::type::template apply<head<xs>>>
+        >;
+    };
 } // end namespace iterable_detail
 
-template <typename pred, typename iter>
+template <typename pred, typename iterable>
 struct drop_while
-    : iterable_detail::drop_while_impl1<pred, iter>
+    : detail::left_folds::until<
+        iterable_detail::drop_while_pred<pred>::type::template apply
+        , bind<lift<tail>, arg<1>>::type::template apply
+        , iterable
+        , iterable
+    >
 { };
 
 template <typename iter>
@@ -254,28 +245,21 @@ struct Foldable<Datatype, typename Iterable<Datatype>::type>
 {
     template <typename f, typename state, typename iterable>
     using foldl_impl = detail::left_folds::until<
-        is_empty, f::template apply, state, box<iterable>
+        is_empty, f::type::template apply, state, box<iterable>
     >;
 
     template <typename f, typename iterable>
     using foldl1_impl = detail::left_folds::until<
-        is_empty, f::template apply, head<box<iterable>>, tail<box<iterable>>
+        is_empty,
+        f::type::template apply,
+        head<box<iterable>>,
+        tail<box<iterable>>
     >;
 
-
-    template <typename f, typename state, typename iter,
-        bool = is_empty<box<iter>>::value>
-    struct foldr_impl
-        : state
-    { };
-
-    template <typename f, typename state, typename iter>
-    struct foldr_impl<f, state, iter, false>
-        : f::type::template apply<
-            head<box<iter>>,
-            foldr_impl<f, state, typename tail<box<iter>>::type>
-        >
-    { };
+    template <typename f, typename state, typename iterable>
+    using foldr_impl = detail::right_folds::until<
+        is_empty, f::type::template apply, state, box<iterable>
+    >;
 };
 }} // end namespace boost::mpl11
 

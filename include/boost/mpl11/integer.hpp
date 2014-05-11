@@ -27,20 +27,6 @@
 
 
 namespace boost { namespace mpl11 {
-    namespace integral_detail {
-        template <typename ...T>
-        struct or_impl : true_ { };
-
-        template <typename ...T>
-        struct or_impl<integer_c<T, false>...> : false_ { };
-
-        template <typename ...T>
-        struct and_impl : false_ { };
-
-        template <typename ...T>
-        struct and_impl<integer_c<T, true>...> : true_ { };
-    } // end namespace integral_detail
-
     template <typename T, T ...v>
     struct or_<integer_c<T, v>...>
         : detail::logical_or::strict<bool_<(bool)v>...>
