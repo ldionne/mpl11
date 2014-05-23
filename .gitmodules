@@ -2,7 +2,3 @@
 	path = doc/gh-pages
 	url = https://github.com/ldionne/mpl11.git
 	branch = gh-pages
-[submodule "benchmark"]
-	path = benchmark
-	url = https://github.com/ldionne/mpl11.git
-	branch = benchmarks
