@@ -1,0 +1,18 @@
+template <typename ...>
+struct result { using type = result; };
+
+struct f {
+    using type = f;
+    template <typename x, typename state>
+    using apply = result<typename x::type, typename state::type>;
+};
+
+
+<%= (0...breadth).map { |breadth|
+    xs = (0...depth).map { |depth| "x#{breadth}<#{depth}>" }
+    <<-EOS
+    struct state#{breadth} { using type = state#{breadth}; };
+    template <int> struct x#{breadth} { using type = x#{breadth}; };
+    using go#{breadth} = #{yield 'f', "state#{breadth}", xs};
+    EOS
+}.join("\n") %>

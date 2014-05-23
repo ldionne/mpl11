@@ -1,0 +1,10 @@
+<%= "#include <boost/mpl11/detail/left_folds/#{which}.hpp>" %>
+
+
+<%= render('_main.erb') do |f, state, xs|
+    <<-EOS
+    boost::mpl11::detail::left_folds::#{which}<
+        #{f}::type::apply, #{state}, #{xs.join(', ')}
+    >
+    EOS
+end %>

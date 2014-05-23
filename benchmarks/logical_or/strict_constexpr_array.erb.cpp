@@ -1,0 +1,1 @@
+<%= render('_main.erb', which: 'strict_constexpr_array') %>

@@ -1,0 +1,1 @@
+<%= render('_main.erb', which: 'lazy_naive_struct') %>

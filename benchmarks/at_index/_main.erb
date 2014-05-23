@@ -1,0 +1,7 @@
+<%= (0...breadth).map { |breadth|
+    xs = (0...depth).map { |depth| "x#{breadth}<#{depth}>" }.join(', ')
+    <<-EOS
+    template <int> struct x#{breadth} { using type = x#{breadth}; };
+    using go#{breadth} = at_index<#{depth - 1}, #{xs}>::type;
+    EOS
+}.join("\n") %>

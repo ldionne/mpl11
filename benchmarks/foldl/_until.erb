@@ -1,0 +1,14 @@
+#define BOOST_MPL11_NO_ASSERTIONS
+<%= "#include <boost/mpl11/detail/left_folds/#{which}.hpp>" %>
+
+#include <boost/mpl11/list.hpp>
+
+
+<%= render('_main.erb') do |f, state, xs|
+    <<-EOS
+    boost::mpl11::detail::left_folds::#{which}<
+        boost::mpl11::is_empty, #{f}::type::apply, #{state},
+        boost::mpl11::list<#{xs.join(', ')}>
+    >
+    EOS
+end %>

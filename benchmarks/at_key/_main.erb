@@ -1,0 +1,18 @@
+#include <boost/mpl11/detail/pair.hpp>
+
+
+using boost::mpl11::detail::pair;
+
+<%= (0...breadth).map { |breadth|
+    raise "index not in the generated map" unless (0...depth).include? index
+
+    pairs = (0...depth).map { |depth|
+        "pair<k#{breadth}<#{depth}>, v#{breadth}<#{depth}>>"
+    }.join(', ')
+
+    <<-EOS
+    template <int> struct k#{breadth} { using type = k#{breadth}; };
+    template <int> struct v#{breadth} { using type = v#{breadth}; };
+    using go#{breadth} = at_key<k#{breadth}<#{index}>, #{pairs}>::type;
+    EOS
+}.join("\n") %>
