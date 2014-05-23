@@ -12,8 +12,8 @@
 #ifndef BOOST_MPL11_DETAIL_LOGICAL_OR_STRICT_IS_SAME_HPP
 #define BOOST_MPL11_DETAIL_LOGICAL_OR_STRICT_IS_SAME_HPP
 
-#include <boost/mpl11/bool.hpp>
 #include <boost/mpl11/detail/std_is_same.hpp>
+#include <boost/mpl11/fwd/bool.hpp>
 
 
 namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
@@ -35,5 +35,7 @@ namespace boost { namespace mpl11 { namespace detail { namespace logical_or {
         >::value
     >;
 }}}} // end namespace boost::mpl11::detail::logical_or
+
+#include <boost/mpl11/bool.hpp>
 
 #endif // !BOOST_MPL11_DETAIL_LOGICAL_OR_STRICT_IS_SAME_HPP
