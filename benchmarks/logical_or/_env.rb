@@ -1,5 +1,3 @@
-( (0..1000).map { |n| [n, 1] } +
-  (0..400).map { |n| [10, n] }
-).map { |breadth, depth|
-  { breadth: breadth, depth: depth }
+(0..1000).step(5).map { |n|
+  { breadth:1, depth: n }
 }

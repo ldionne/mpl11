@@ -2,6 +2,6 @@
     xs = (0...depth).map { |depth| "x#{breadth}<#{depth}>" }.join(', ')
     <<-EOS
     template <int> struct x#{breadth} { using type = x#{breadth}; };
-    using go#{breadth} = at_index<#{depth - 1}, #{xs}>::type;
+    using go#{breadth} = at_index<#{index}, #{xs}>::type;
     EOS
 }.join("\n") %>

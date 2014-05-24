@@ -1,0 +1,41 @@
+#include <boost/mpl11/bool.hpp>
+
+using boost::mpl11::bool_;
+using boost::mpl11::true_;
+using boost::mpl11::false_;
+
+
+template <typename ...xs>
+struct list;
+
+template <typename x, typename xs>
+struct cons;
+
+template <typename x, typename ...xs>
+struct cons<x, list<xs...>> {
+    using type = list<x, xs...>;
+};
+
+template <typename xs>
+struct tail;
+
+template <typename x, typename ...xs>
+struct tail<list<x, xs...>> {
+    using type = list<xs...>;
+};
+
+template <typename xs>
+struct head;
+
+template <typename x, typename ...xs>
+struct head<list<x, xs...>> {
+    using type = x;
+};
+
+template <typename xs>
+struct is_empty;
+
+template <typename ...xs>
+struct is_empty<list<xs...>>
+    : bool_<sizeof...(xs) == 0>
+{ };

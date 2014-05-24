@@ -1,15 +1,17 @@
-<% render('_main.erb') do %>
-    template <template <typename ...> class f, typename xs,
-              bool = is_empty<xs>::value>
-    struct map
-        : cons<
-            typename f<typename head<xs>::type>::type,
-            typename map<f, typename tail<xs>::type>::type
-        >
-    { };
+<%= render('_base.erb') %>
 
-    template <template <typename ...> class f, typename xs>
-    struct map<f, xs, true> {
-        using type = xs;
-    };
-<% end %>
+template <template <typename ...> class f, typename xs,
+          bool = is_empty<xs>::value>
+struct map
+    : cons<
+        typename f<typename head<xs>::type>::type,
+        typename map<f, typename tail<xs>::type>::type
+    >
+{ };
+
+template <template <typename ...> class f, typename xs>
+struct map<f, xs, true> {
+    using type = xs;
+};
+
+<%= render('_main.erb') %>
