@@ -510,9 +510,11 @@ struct lift {
 ```
 
 > `lift` is essentially the same as `quote` in the Boost.MPL. The name
-> `lift` was preferred because what we're doing is really a _lift_ in
-> its category theoretical sense, and the author has a positive bias
-> towards category theory.
+> `lift` was preferred because of its relation to a _lift_ in category
+> theory. For completeness, `lift` is actually an equivalence of categories
+> between the category where objects are C++ types and morphisms are
+> templates to the category where objects are C++ types and morphisms
+> are structs with a nested `apply` template.
 
 
 ## Datatypes and data constructors
