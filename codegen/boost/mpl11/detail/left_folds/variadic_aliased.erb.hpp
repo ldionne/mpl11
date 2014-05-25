@@ -16,9 +16,6 @@
 #ifndef BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_ALIASED_HPP
 #define BOOST_MPL11_DETAIL_LEFT_FOLDS_VARIADIC_ALIASED_HPP
 
-#include <boost/mpl11/detail/std_size_t.hpp>
-
-
 namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
     <%
         unroll = 5
@@ -30,7 +27,7 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
         end
     %>
 
-    template <std_size_t n>
+    template <unsigned n>
     struct variadic_aliased_impl;
 
     template <>
