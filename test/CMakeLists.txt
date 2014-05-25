@@ -51,6 +51,7 @@ mpl11_add_tests(
     ######
     at_index
     at_key
+    count_if
     dependent
     inherit
     left_folds

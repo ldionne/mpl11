@@ -1,0 +1,12 @@
+#include <boost/mpl11/bool.hpp>
+
+
+using boost::mpl11::true_;
+using boost::mpl11::false_;
+template <typename x> using id = x;
+
+
+<%= (0...breadth).map { |breadth|
+    xs = (0...depth).map { |depth| depth % 2 ? 'true_' : 'false_' }.join(', ')
+    "using go#{breadth} = count_if<id, #{xs}>::type;"
+}.join("\n") %>
