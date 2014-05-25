@@ -10,6 +10,7 @@
  */
 
 #include <boost/mpl11/detail/at_key/multiple_inheritance.hpp>
+#include <boost/mpl11/detail/at_key/multiple_inheritance2.hpp>
 #include <boost/mpl11/detail/at_key/single_inheritance.hpp>
 
 #include <boost/mpl11/detail/test/at_key.hpp>
@@ -19,6 +20,7 @@ using namespace boost::mpl11;
 
 struct tests
     : detail::test_at_key<detail::at_key::multiple_inheritance>
+    , detail::test_at_key<detail::at_key::multiple_inheritance2>
     , detail::test_at_key<detail::at_key::single_inheritance>
 { };
 

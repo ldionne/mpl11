@@ -29,6 +29,8 @@ namespace boost { namespace mpl11 { namespace detail { namespace left_folds {
      * @ingroup details
      *
      * Left fold using `operator->` for recursion.
+     *
+     * Credit goes to Abel Sinkovics for showing me this technique.
      */
     template <template <typename ...> class f, typename state, typename ...xs>
     using variadic_arrow = decltype(arrow_impl<f, state, xs...>{}->result);
