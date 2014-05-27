@@ -17,6 +17,7 @@
 #include <boost/mpl11/detail/left_folds/variadic_arrow.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_naive.hpp>
 #include <boost/mpl11/detail/left_folds/variadic_unrolled.hpp>
+#include <boost/mpl11/detail/left_folds/variadic_variabletp.hpp>
 
 #include <boost/mpl11/detail/test/foldl.hpp>
 #include <boost/mpl11/list.hpp>
@@ -50,6 +51,11 @@ using variadic_arrow = detail::left_folds::variadic_arrow<
 >;
 
 template <typename f, typename z, typename ...xs>
+using variadic_variabletp = detail::left_folds::variadic_variabletp<
+    f::type::template apply, z, xs...
+>;
+
+template <typename f, typename z, typename ...xs>
 using until_unrolled = detail::left_folds::until_unrolled<
     is_empty, f::type::template apply, z, list<xs...>
 >;
@@ -71,6 +77,7 @@ struct tests
     , detail::test_foldl<variadic_naive>
     , detail::test_foldl<variadic_unrolled>
     , detail::test_foldl<variadic_arrow>
+    , detail::test_foldl<variadic_variabletp>
     , detail::test_foldl<until_aliased>
     , detail::test_foldl<until_naive>
     , detail::test_foldl<until_unrolled>
