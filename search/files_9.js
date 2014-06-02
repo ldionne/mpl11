@@ -4,11 +4,17 @@ var searchData=
   ['maybe_2ecpp',['maybe.cpp',['../maybe_8cpp.html',1,'']]],
   ['maybe_2ehpp',['maybe.hpp',['../fwd_2maybe_8hpp.html',1,'']]],
   ['maybe_2ehpp',['maybe.hpp',['../maybe_8hpp.html',1,'']]],
-  ['minimal_5ffoldable_2ecpp',['minimal_foldable.cpp',['../minimal__foldable_8cpp.html',1,'']]],
-  ['minimal_5ffoldable_2ehpp',['minimal_foldable.hpp',['../minimal__foldable_8hpp.html',1,'']]],
+  ['minified_5fmaster_2ecpp',['minified_master.cpp',['../minified__master_8cpp.html',1,'']]],
   ['minimal_5fiterable_2ehpp',['minimal_iterable.hpp',['../minimal__iterable_8hpp.html',1,'']]],
   ['minimal_5forderable_2ehpp',['minimal_orderable.hpp',['../minimal__orderable_8hpp.html',1,'']]],
+  ['monad_2ecpp',['monad.cpp',['../monad_8cpp.html',1,'']]],
+  ['monad_2ehpp',['monad.hpp',['../monad_8hpp.html',1,'']]],
+  ['monad_2ehpp',['monad.hpp',['../fwd_2monad_8hpp.html',1,'']]],
   ['monoid_2ecpp',['monoid.cpp',['../monoid_8cpp.html',1,'']]],
   ['monoid_2ehpp',['monoid.hpp',['../monoid_8hpp.html',1,'']]],
-  ['monoid_2ehpp',['monoid.hpp',['../fwd_2monoid_8hpp.html',1,'']]]
+  ['monoid_2ehpp',['monoid.hpp',['../fwd_2monoid_8hpp.html',1,'']]],
+  ['multiple_5finheritance_2ehpp',['multiple_inheritance.hpp',['../at__key_2multiple__inheritance_8hpp.html',1,'']]],
+  ['multiple_5finheritance_2ehpp',['multiple_inheritance.hpp',['../at__index_2multiple__inheritance_8hpp.html',1,'']]],
+  ['multiple_5finheritance2_2ehpp',['multiple_inheritance2.hpp',['../at__index_2multiple__inheritance2_8hpp.html',1,'']]],
+  ['multiple_5finheritance2_2ehpp',['multiple_inheritance2.hpp',['../at__key_2multiple__inheritance2_8hpp.html',1,'']]]
 ];

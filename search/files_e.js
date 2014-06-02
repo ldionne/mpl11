@@ -1,6 +1,7 @@
 var searchData=
 [
   ['sections_2ecpp',['sections.cpp',['../sections_8cpp.html',1,'']]],
+  ['single_5finheritance_2ehpp',['single_inheritance.hpp',['../single__inheritance_8hpp.html',1,'']]],
   ['static_5fassert_2ehpp',['static_assert.hpp',['../static__assert_8hpp.html',1,'']]],
   ['std_5fconditional_2ecpp',['std_conditional.cpp',['../std__conditional_8cpp.html',1,'']]],
   ['std_5fconditional_2ehpp',['std_conditional.hpp',['../std__conditional_8hpp.html',1,'']]],
@@ -11,6 +12,10 @@ var searchData=
   ['std_5fsize_5ft_2ehpp',['std_size_t.hpp',['../std__size__t_8hpp.html',1,'']]],
   ['std_5ftuple_2ecpp',['std_tuple.cpp',['../std__tuple_8cpp.html',1,'']]],
   ['std_5ftuple_2ehpp',['std_tuple.hpp',['../std__tuple_8hpp.html',1,'']]],
-  ['strict_5fvariadic_5ffoldl_2ecpp',['strict_variadic_foldl.cpp',['../strict__variadic__foldl_8cpp.html',1,'']]],
-  ['strict_5fvariadic_5ffoldl_2ehpp',['strict_variadic_foldl.hpp',['../strict__variadic__foldl_8hpp.html',1,'']]]
+  ['strict_2ehpp',['strict.hpp',['../strict_8hpp.html',1,'']]],
+  ['strict_5fconstexpr_5farray_2ehpp',['strict_constexpr_array.hpp',['../strict__constexpr__array_8hpp.html',1,'']]],
+  ['strict_5fis_5fsame_2ehpp',['strict_is_same.hpp',['../strict__is__same_8hpp.html',1,'']]],
+  ['strict_5fnoexcept_2ehpp',['strict_noexcept.hpp',['../strict__noexcept_8hpp.html',1,'']]],
+  ['strict_5foverload_2ehpp',['strict_overload.hpp',['../strict__overload_8hpp.html',1,'']]],
+  ['strict_5fspecialization_2ehpp',['strict_specialization.hpp',['../strict__specialization_8hpp.html',1,'']]]
 ];

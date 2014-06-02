@@ -10,6 +10,7 @@ var searchData=
   ['take_5fwhile',['take_while',['../structboost_1_1mpl11_1_1take__while.html',1,'boost::mpl11']]],
   ['take_5fwhile_3c_20compose_3c_20lift_3c_20not_5f_20_3e_2c_20predicate_20_3e_2c_20xs_20_3e',['take_while&lt; compose&lt; lift&lt; not_ &gt;, predicate &gt;, xs &gt;',['../structboost_1_1mpl11_1_1take__while.html',1,'boost::mpl11']]],
   ['test_5fmethod_5fdispatch_2ehpp',['test_method_dispatch.hpp',['../test__method__dispatch_8hpp.html',1,'']]],
+  ['tests',['tests',['../structtests.html',1,'']]],
   ['todo_20list',['Todo List',['../todo.html',1,'']]],
   ['true_5f',['true_',['../structboost_1_1mpl11_1_1true__.html',1,'boost::mpl11']]]
 ];
