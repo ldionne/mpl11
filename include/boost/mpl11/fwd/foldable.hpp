@@ -69,7 +69,7 @@ namespace boost { namespace mpl11 {
     template <typename f, typename structure>
     struct foldr1;
 
-    /*
+    /*!
      * Left-associative fold of a structure using a binary operation.
      *
      * Specifically, returns the result of the successive application of the
