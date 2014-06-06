@@ -29,6 +29,8 @@ namespace boost { namespace mpl11 {
      *
      *
      * @todo
+     * - The semantics of `on` do not match those of Haskell's `on`. See
+     *   Boost.Hana for a possible resolution.
      * - Consider moving `into` out of this module. Maybe it would fit better
      *   with other utilities manipulating template specializations.
      * - Try generalizing `rsect` and `lsect`. Not sure it can be done, but

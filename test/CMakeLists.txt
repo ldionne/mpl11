@@ -84,6 +84,7 @@ mpl11_add_tests(
     infix
     into
     lift
+    namespace
     on
     partial
     sections
