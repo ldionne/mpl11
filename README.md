@@ -3,7 +3,10 @@
 
 ## Disclaimers
 This is not an official Boost library. It might be proposed as a successor
-for the current Boost.MPL in the future, but there is no guarantee.
+for the current Boost.MPL in the future, but there is no guarantee. Also, I
+am currently working on [Boost.Hana][hana_github], a library which tries to
+merge MPL11 and Boost.Fusion into a single library. If that works out, it
+would probably replace the MPL11.
 
 The library is unstable at the moment; do not use for production.
 
@@ -1387,6 +1390,7 @@ a boxed type, so they're not completely forgotten.
 [call-by-value]: http://en.wikipedia.org/wiki/Call_by_value
 [Cmake]: http://www.cmake.org
 [doxygen-doc]: http://ldionne.github.io/mpl11
+[hana_github]: http://github.com/ldionne/hana
 [haskell-denot-semantics]: http://en.wikibooks.org/wiki/Haskell/Denotational_semantics
 [Haskell]: http://www.haskell.org
 [lazy]: http://en.wikipedia.org/wiki/Lazy_evaluation
