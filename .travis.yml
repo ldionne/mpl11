@@ -1,0 +1,138 @@
+# Copyright Louis Dionne 2015
+# Distributed under the Boost Software License, Version 1.0.
+# (See accompanying file LICENSE.md or copy at http://boost.org/LICENSE_1_0.txt)
+
+language: c++
+compiler: clang
+os: linux
+sudo: false
+
+env:
+  # Workaround for https://github.com/travis-ci/travis-ci/issues/4681
+  matrix:
+    - TRAVIS_EMPTY_JOB_WORKAROUND=true
+
+
+matrix:
+  exclude:
+    - env: TRAVIS_EMPTY_JOB_WORKAROUND=true
+
+  include:
+    # Clang 3.5
+    - env: COMPILER=clang++-3.5
+      addons:
+        apt:
+          packages: ["clang-3.5"]
+          sources: &sources
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.5
+            - llvm-toolchain-precise-3.6
+            - llvm-toolchain-precise-3.7
+            - llvm-toolchain-precise
+
+    # Clang 3.6
+    - env: COMPILER=clang++-3.6
+      addons:
+        apt:
+          packages: ["clang-3.6"]
+          sources: *sources
+
+    # Clang 3.7
+    - env: COMPILER=clang++-3.7
+      addons:
+        apt:
+          packages: ["clang-3.7"]
+          sources: *sources
+
+    # Xcode 6.3
+    - os: osx
+      env: COMPILER=clang++
+      osx_image: beta-xcode6.3
+
+    # Xcode 6.4
+    - os: osx
+      env: COMPILER=clang++
+      osx_image: xcode6.4
+
+    # Xcode 7
+    - os: osx
+      env: COMPILER=clang++
+      osx_image: xcode7
+
+    # Xcode 7.1
+    - os: osx
+      env: COMPILER=clang++
+      osx_image: xcode7.1
+
+
+before_install:
+  - set -e # Fail the whole script whenever any command fails
+
+
+install:
+  ############################################################################
+  # All the dependencies are installed in ${TRAVIS_BUILD_DIR}/deps/
+  ############################################################################
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+
+  ############################################################################
+  # Install Boost headers
+  ############################################################################
+  - BOOST_URL="http://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz"
+  - mkdir boost && travis_retry wget --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C boost
+  - if [[ -d ${DEPS_DIR}/boost ]]; then CMAKE_OPTIONS+=" -DBOOST_ROOT=${DEPS_DIR}/boost"; fi
+
+  ############################################################################
+  # Install a recent CMake
+  ############################################################################
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      CMAKE_URL="http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.tar.gz"
+      mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+      export PATH=${DEPS_DIR}/cmake/bin:${PATH}
+    else
+      brew install cmake
+    fi
+
+  ############################################################################
+  # Install libc++ and libc++abi (on Linux only; Xcode uses libc++ by default)
+  ############################################################################
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      if   [[ "${COMPILER}" == "clang++-3.5" ]]; then LLVM_VERSION="3.5.2"
+      elif [[ "${COMPILER}" == "clang++-3.6" ]]; then LLVM_VERSION="3.6.2";
+      elif [[ "${COMPILER}" == "clang++-3.7" ]]; then LLVM_VERSION="3.7.0"; fi
+
+      LLVM_URL="http://llvm.org/releases/${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz"
+      LIBCXX_URL="http://llvm.org/releases/${LLVM_VERSION}/libcxx-${LLVM_VERSION}.src.tar.xz"
+      LIBCXXABI_URL="http://llvm.org/releases/${LLVM_VERSION}/libcxxabi-${LLVM_VERSION}.src.tar.xz"
+      TAR_FLAGS="-xJ"
+
+      mkdir -p llvm llvm/build llvm/projects/libcxx llvm/projects/libcxxabi
+      travis_retry wget --quiet -O - ${LLVM_URL} | tar --strip-components=1 ${TAR_FLAGS} -C llvm
+      travis_retry wget --quiet -O - ${LIBCXX_URL} | tar --strip-components=1 ${TAR_FLAGS} -C llvm/projects/libcxx
+      travis_retry wget --quiet -O - ${LIBCXXABI_URL} | tar --strip-components=1 ${TAR_FLAGS} -C llvm/projects/libcxxabi
+      (cd llvm/build && cmake .. -DCMAKE_INSTALL_PREFIX=${DEPS_DIR}/llvm/install -DCMAKE_CXX_COMPILER=clang++)
+      (cd llvm/build/projects/libcxx && make install -j2)
+      (cd llvm/build/projects/libcxxabi && make install -j2)
+
+      export CXXFLAGS="-isystem ${DEPS_DIR}/llvm/install/include/c++/v1"
+      export LDFLAGS="-L ${DEPS_DIR}/llvm/install/lib -l c++ -l c++abi"
+      export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${DEPS_DIR}/llvm/install/lib"
+    fi
+
+
+before_script:
+  ############################################################################
+  # Go back to the root of the project and setup the build directory
+  ############################################################################
+  - cd ${TRAVIS_BUILD_DIR}
+  - (mkdir build && cd build && cmake .. -DCMAKE_CXX_COMPILER=${COMPILER} ${CMAKE_OPTIONS})
+
+
+script:
+  ############################################################################
+  # Build the unit tests.
+  ############################################################################
+  - (cd build && make -k)
